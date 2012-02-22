@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Quem Sou! :D"
-date: 2012-02-14 13:09
+title: "whoam"
+date: 2012-02-15 23:12
 comments: true
 sharing: true
 footer: true
