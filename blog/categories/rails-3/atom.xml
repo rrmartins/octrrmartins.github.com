@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails 3 | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/rails-3/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-02-22T22:31:11-02:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Criando Combobox com Rails 3]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/"/>
+    <updated>2012-02-15T13:05:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3</id>
+    <content type="html"><![CDATA[<p>
+Para todos aqueles que conhecem o <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">Form_for</a>,
+ e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e 
+ estudem logo, o mercado esta precisando de programadores bons.. :D
+ </p>
+
+
+<!-- more -->
+
+
+<p>
+Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: </p>
+
+
+<p><select name="estado">
+<option value="AL">AL</option>
+<option value="AP">AP</option>
+<option value="AM">AM</option>
+<option value="BA">BA</option>
+<option value="CE">CE</option>
+<option value="ES">ES</option>
+</select></p>
+
+<p>
+Faça assim:
+</p>
+
+
+<p><code>ruby Criando Combobox em Rails
+&lt;%= f.select :estado, ([["AC", "AC"], ["AL", "AL"], ["AP", "AP"],
+["AM", "AM"], ["BA", "BA"], ["CE", "CE"], ["DF", "DF"], ["ES", "ES"],
+["GO", "GO"], ["MA", "MA"], ["MT", "MT"], ["MS", "MS"], ["MG", "MG"],
+["PA", "PA"], ["PB", "PB"], ["PR", "PR"], ["PE", "PE"], ["PI", "PI"],
+["RJ", "RJ"], ["RN", "RN"], ["RS", "RS"], ["RO", "RO"], ["RR", "RR"],
+["SC", "SC"], ["SP", "SP"], ["SE", "SE"], ["TO", "TO"]]) %&gt;
+</code></p>
+
+<p>
+Até a próxima rubistas... :D
+
+]]></content>
+  </entry>
+  
+</feed>

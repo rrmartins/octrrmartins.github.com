@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-02-22T22:31:11-02:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Iniciando com o Octpress :D]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/"/>
+    <updated>2012-02-15T13:30:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d</id>
+    <content type="html"><![CDATA[<p>Ai amigos nerd&#8217;s&#8230; <br/>
+Estou iniciando com o <a href="http://octopress.org/">Octopress</a>&#8230; e é muito FODA!! :D</p>
+
+<br/>
+
+
+<p>Indico a todos os Dev&#8217;s para estudar e iniciar com ele.. muito simples&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Criando Combobox com Rails 3]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/"/>
+    <updated>2012-02-15T13:05:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3</id>
+    <content type="html"><![CDATA[<p>
+Para todos aqueles que conhecem o <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">Form_for</a>,
+ e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e 
+ estudem logo, o mercado esta precisando de programadores bons.. :D
+ </p>
+
+
+<!-- more -->
+
+
+<p>
+Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: </p>
+
+
+<p><select name="estado">
+<option value="AL">AL</option>
+<option value="AP">AP</option>
+<option value="AM">AM</option>
+<option value="BA">BA</option>
+<option value="CE">CE</option>
+<option value="ES">ES</option>
+</select></p>
+
+<p>
+Faça assim:
+</p>
+
+
+<figure class='code'><figcaption><span>Criando Combobox em Rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">select</span> <span class="ss">:estado</span><span class="p">,</span> <span class="p">(</span><span class="o">[[</span><span class="s2">&quot;AC&quot;</span><span class="p">,</span> <span class="s2">&quot;AC&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;AL&quot;</span><span class="p">,</span> <span class="s2">&quot;AL&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;AP&quot;</span><span class="p">,</span> <span class="s2">&quot;AP&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;AM&quot;</span><span class="p">,</span> <span class="s2">&quot;AM&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;BA&quot;</span><span class="p">,</span> <span class="s2">&quot;BA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;CE&quot;</span><span class="p">,</span> <span class="s2">&quot;CE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;DF&quot;</span><span class="p">,</span> <span class="s2">&quot;DF&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;ES&quot;</span><span class="p">,</span> <span class="s2">&quot;ES&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;GO&quot;</span><span class="p">,</span> <span class="s2">&quot;GO&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MA&quot;</span><span class="p">,</span> <span class="s2">&quot;MA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MT&quot;</span><span class="p">,</span> <span class="s2">&quot;MT&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MS&quot;</span><span class="p">,</span> <span class="s2">&quot;MS&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MG&quot;</span><span class="p">,</span> <span class="s2">&quot;MG&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;PA&quot;</span><span class="p">,</span> <span class="s2">&quot;PA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PB&quot;</span><span class="p">,</span> <span class="s2">&quot;PB&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PR&quot;</span><span class="p">,</span> <span class="s2">&quot;PR&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PE&quot;</span><span class="p">,</span> <span class="s2">&quot;PE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PI&quot;</span><span class="p">,</span> <span class="s2">&quot;PI&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;RJ&quot;</span><span class="p">,</span> <span class="s2">&quot;RJ&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RN&quot;</span><span class="p">,</span> <span class="s2">&quot;RN&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RS&quot;</span><span class="p">,</span> <span class="s2">&quot;RS&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RO&quot;</span><span class="p">,</span> <span class="s2">&quot;RO&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RR&quot;</span><span class="p">,</span> <span class="s2">&quot;RR&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span> <span class="s2">&quot;SC&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;SP&quot;</span><span class="p">,</span> <span class="s2">&quot;SP&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;SE&quot;</span><span class="p">,</span> <span class="s2">&quot;SE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;TO&quot;</span><span class="p">,</span> <span class="s2">&quot;TO&quot;</span><span class="o">]]</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+Até a próxima rubistas&#8230; :D
+
+]]></content>
+  </entry>
+  
+</feed>

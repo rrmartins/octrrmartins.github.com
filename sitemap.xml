@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/</loc>
+        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/</loc>
+        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/blog/archives/</loc>
+        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/</loc>
+        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/who-am/</loc>
+        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+    </url>
+</urlset>
