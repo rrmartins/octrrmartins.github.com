@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-02-22T22:35:41-02:00</updated>
+  <updated>2012-02-24T22:47:04-02:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,8 @@
     <link href="http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/"/>
     <updated>2012-02-15T13:30:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d</id>
-    <content type="html"><![CDATA[<p>Ai amigos nerd&#8217;s&#8230; <br/>
+    <content type="html"><![CDATA[<p>Olá amigos nerd&#8217;s&#8230; <br/>
+<img class="left" src="http://rrmartins.github.com/images/octopress.png" width="150" height="250" title="Octopress #3" >
 Estou iniciando com o <a href="http://octopress.org/">Octopress</a>&#8230; e é muito FODA!! :D</p>
 
 <br/>
