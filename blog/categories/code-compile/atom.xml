@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Code Compile | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/code-compile/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-02-26T01:21:43-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[O que é Construção de Software ?]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction/"/>
+    <updated>2012-02-25T23:27:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction</id>
+    <content type="html"><![CDATA[<p>Amigos, estou lendo um livro muito bom.. E vou começar a compartilhar algumas partes dele com todos... Este é só o primeiro post de tradução.<br/></p>
+
+<h1>
+O que é Software Construção?
+</h1>
+
+
+<p>O desenvolvimento de software de computador pode ser um processo complicado, e nos últimos 25 anos,
+  pesquisadores identificaram inúmeras atividades distintas que são para desenvolvimento de software. Eles incluem:
+  <br/>
+  * Definição do problema  <br/>
+  * Requisitos de desenvolvimento  <br/>
+<!-- more -->
+  * Planejamento da construção  <br/>
+  * Arquitetura de software, ou alto nível de design  <br/>
+  * O projeto detalhado  <br/>
+  * Codificação e depuração  <br/>
+  * Teste de unidade  <br/>
+  * Testes de integração  <br/>
+  * Teste do sistema  <br/>
+  * Manutenção corretiva  <br/>
+ </p>
+
+
+<p> <p>
+  Se você trabalhou principalmente em projetos informais,
+  você não poderia ter feito distinções entre as muitas atividades que são para
+  criação de um produto de software. Mentalmente, você pode ter todas estas atividades agrupadas
+ em conjunto, como "programação". Se você trabalhar em projetos informais, as principais
+  atividades que você pensa quando você pensa sobre a criação de software é, provavelmente,
+  a atividade, os pesquisadores se referem como "construção".
+ </p>
+ <p>
+  Esta noção intuitiva de "construção" é bastante precisa, mas sofre
+  de uma falta de perspectiva. Colocando construção no seu contexto com outras
+  atividades ajuda a manter o foco nas tarefas certas durante a construção
+  e o apropriadamente enfatiza importantes atividades que não serão construidas.</p>
+  <br/>
+  Em breve mais do livro abaixo.</p>
+
+<p>  Fonte: Livro: Code Complete: A practical handbook of software construction (Autor: Steve McConnell)</p>
+]]></content>
+  </entry>
+  
+</feed>
