@@ -2,8 +2,8 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://localhost:4000/blog
-title: Rodrigo Martins - Blog
+url: http://rrmartins.github.com
+title: Rodrigo Martins
 subtitle: A blogging framework for hackers.
 author: Rodrigo Martins
 simple_search: http://google.com/search
@@ -17,7 +17,7 @@ date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
-subscribe_email:
+subscribe_email: rodrigo@rrmartins.com
 # RSS feeds can list your email address if you like
 email: rodrigo@rrmartins.com
 
@@ -68,10 +68,10 @@ github_skip_forks: true
 
 # Twitter
 twitter_user: rr_martins
-twitter_tweet_count: 4
-twitter_show_replies: false
+twitter_tweet_count: 5
+twitter_show_replies: true
 twitter_follow_button: true
-twitter_show_follower_count: false
+twitter_show_follower_count: true
 twitter_tweet_button: true
 
 # Google +1
@@ -99,4 +99,6 @@ disqus_show_comment_count: false
 google_analytics_tracking_id:
 
 # Facebook Like
+facebook_user: rr.martins.j
 facebook_like: true
+
