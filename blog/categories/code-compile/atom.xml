@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code Compile | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/code-compile/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-03-01T12:47:42-03:00</updated>
+  <updated>2012-03-01T13:36:00-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pontos Chaves Para a Construção de Software!]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/03/01/pontos-chaves/"/>
+    <updated>2012-03-01T13:31:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/03/01/pontos-chaves</id>
+    <content type="html"><![CDATA[<p>
+Pontos-chaves Para a Construção de Software!
+</p>
+
+
+<p>
+-> Construção de software é a atividade central no desenvolvimento de software;
+construção é a única atividade que está garantida a acontecer em cada projeto.
+</p>
+
+
+<p>
+-> As atividades principais da construção estão detalhadas design, codificação,
+depuração, integração e testes de desenvolvedor
+(testes unitários e testes de integração).
+</p>
+
+
+<p>
+-> Outros termos comuns para construção são "codificação" e "programação".
+</p>
+
+
+<p>
+-> A qualidade da construção afeta substancialmente
+a qualidade do software.
+</p>
+
+
+<p>
+-> Na análise final, o seu entendimento de como fazer construção determina
+como um bom programador você é, e esse é o assunto do resto do livro.
+</p>
+
+
+<p>Texto retirado do livro Code Compile, de Steve McConnell.</p>
+
+<p>"Conhecimento nunca é de mais!" (<a href="http://twitter.com/sfalsin">@sfalsin</a>)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Por que Construção de Software é Importante?]]></title>
