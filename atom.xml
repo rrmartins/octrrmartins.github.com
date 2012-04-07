@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-03-26T13:06:32-03:00</updated>
+  <updated>2012-04-07T20:28:29-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Caligrafia de Software: Escrevendo Códigos]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
+    <updated>2012-04-07T19:22:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
+    <content type="html"><![CDATA[<p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
+a Caligrafia das Codigos.</p>
+
+<p><b>Caligrafia de Software: Escrevendo Códigos</b></p>
+
+<p>A metáfora mais primitiva para desenvolvimento de software, cresce fora da expressão
+&#8220;código escrito&#8221;. A metáfora da escrita sugere que o desenvolvimento de um programa
+é como escrever uma carta ocasional - Você se senta com caneta, tinta, papel e
+vai escrevendo a partir do início ao fim. Não exige planejamento formal, e você
+vai descobrindo o que você quer dizer com o andamento da escrita.</p>
+
+<!-- more -->
+
+
+<p>Muitas idéias derivam da metáfora escrita. Jon Bentley diz que você deve ser
+capaz de se sentar perto da lareira com um copo de conhaque, um bom charuto, e seu
+cão de caça favorito para desfrutar de um &#8220;programa de alfabetizado&#8221; a maneira como
+você faria um bom romance. Brian Kernighan e PJ Plauger nomeou seu livro de programação
+de Os Elementos de Estilo da Programação (1978), depois que o livro escrito em
+estilo de The Elements of Style (Strunk e White 2000). Os programadores muitas vezes falam de &#8220;leitura do programa.&#8221;</p>
+
+<p>Para o trabalho de um indivídual ou para projetos de pequena escala, uma pequena
+metáfora escrita, funciona adequadamente, mas para outros fins que deixa a brincadeira
+a desejar, e não descreve o desenvolvimento de software totalmente ou adequadamente.
+A escrita é geralmente um uma pessoa em atividade, enquanto um projeto de software
+provavelmente irá envolver muitas pessoas com muitas responsabilidades diferentes.
+Quando você terminar de escrever um conjunto de códigos, você coloca-lo em um arquivo e salva.
+Você não irá mudá-lo mais, e para todos os efeitos, ele é completo.
+Software não é tão difícil mudar e quase nunca é totalmente completo. Tanto quanto 90% do desenvolvimento de
+esforço em um sistema típico de software vem após o seu lançamento inicial, com
+dois terços sendo típico (Pigoski 1997). Na escrita, um prémio mais elevado é colocado em
+originalidade. Na construção de software, tentando criar uma obra verdadeiramente original é
+muitas vezes menos eficaz do que com foco no reuso de idéias do projeto, código e teste
+de casos de projetos anteriores. Em suma, a metáfora da escrita implica um
+processo de desenvolvimento de software que é muito simples e rígida para ser saudável.</p>
+
+<p>Infelizmente, a metáfora da letra-escrita foi perpetuado por um dos
+livros de software mais populares no planeta Fred Brook The Mythical Man-Month
+(Brooks, 1995). Brooks diz: &#8220;Planeje jogar algo fora, você vai de qualquer maneira.&#8221;
+Isso evoca uma imagem de uma pilha de meio-escritas rascunhos jogados em um
+cesto de lixo.</p>
+
+<p>A metáfora epistolar sugere que o processo de software se baseia em
+julgamento mais caro e errado, em vez de um planejamento cuidadoso e de bom design.</p>
+
+<p>&#8220;Planeje jogar algo fora, você vai jogar de qualquer maneira.&#8221;
+- Fred Brooks, diz:</p>
+
+<pre><code>Se você pretende jogar algo fora, você vai jogar fora o caro e o errado.
+</code></pre>
+
+<p>-Craig Zerouni</p>
+
+<pre><code>Planejamento para jogar algo fora pode ser prático quando você está escrevendo 
+um código fácil de se ler. Mas estender a metáfora da "escrita" de software
+para um plano de jogar algo fora é mau conselho para desenvolvimento de software, 
+onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares. 
+É fácil pegar o anel de latão se você pode dar ao luxo de sentar no seu
+pônei de madeira favorita para um número ilimitado de rodadas ao redor do carrossel.
+O truque é colocá-lo na primeira vez ou se arriscar de varios modos
+quando é mais barato. Outras metáforas de iluminar melhor as formas de alcançar
+tais objetivos.
+</code></pre>
+
+<p>Até a proxima galera&#8230;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Como usar metáforas de software?]]></title>
