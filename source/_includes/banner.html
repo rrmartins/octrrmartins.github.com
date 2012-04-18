@@ -1,11 +1,13 @@
-{% if site.twitter_user %}
-<div id="banner" class="inner">
-	<div class="container">
-		<ul class="feed"></ul>
-	</div>
-	<small><a href="http://twitter.com/{{ site.twitter_user }}">{{ site.twitter_user }}</a> @ <a href="http://twitter.com">Twitter</a></small>
-	<div class="loading">Loading...</div>
-</div>
+<!--{% if site.twitter_user %}
+	<center>
+		<div id="banner" class="inner">
+			<div class="container">
+				<ul class="feed"></ul>
+			</div>
+			<small><a href="http://twitter.com/{{ site.twitter_user }}">{{ site.twitter_user }}</a> @ <a href="http://twitter.com">Twitter</a></small>
+			<div class="loading">Loading...</div>
+		</div>
+	</center>
 <script src="{{ root_url }}/javascripts/twitter.js"></script>
 <script type="text/javascript">
 	(function($){
@@ -13,3 +15,18 @@
 	})(jQuery);
 </script>
 {% endif %}
+-->
+
+<div style="float:right">
+	<div class="social right">
+		{% if site.facebook_user %}
+		<a class="facebook" href="http://www.facebook.com/{{ site.facebook_user }}" title="Facebook">Facebook</a>
+		{% endif %}
+		{% if site.googleplus_user %}
+		<a class="google" href="https://plus.google.com/{{ site.googleplus_user }}" title="Google+">Google+</a>
+		{% endif %}
+		{% if site.twitter_user %}
+		<a class="twitter" href="http://twitter.com/{{ site.twitter_user }}" title="Twitter">Twitter</a>
+		{% endif %}
+	</div>
+</div>
