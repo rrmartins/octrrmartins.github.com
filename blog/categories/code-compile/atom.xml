@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code Compile | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/code-compile/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-04-22T10:50:57-03:00</updated>
+  <updated>2012-04-22T20:44:45-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Agricultura de Software: Acréscimo no Sistema]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
+    <updated>2012-04-22T20:31:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
+    <content type="html"><![CDATA[<h2>Agricultura de Software: Acréscimo no Sistema</h2>
+
+
+<p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
+<a href="http://pt.wikipedia.org/wiki/Acre%C3%A7%C3%A3o">acreção</a>. As duas metáforas são intimamente relacionados, mas acréscimo de software é a
+imagem mais esclarecedora. "Acréscimo", no caso de você não ter um dicionário à mão,
+significa qualquer crescimento ou aumento em tamanho por uma adição gradual externo ou inclusão.
+Acréscimo descreve a maneira como uma ostra faz uma pérola, por adicionando gradualmente pequenas
+quantidades de carbonato de cálcio. Em geologia, "acreção" significa uma adição lenta
+terra pelo depósito de sedimentos pela água. Em termos jurídicos, "acreção" significa um
+aumentar de terra ao longo das margens de um corpo de água através do depósito de vias de sedimentos navegáveis.
+</p>
+
+
+<!--more-->
+
+
+<p>
+Isso não significa que você tem que aprender a tornar o código de sedimentos pela água;
+isso significa que você tem que aprender a adicionar aos seus sistemas de software uma pequena quantidade
+de cada vez. Outras palavras intimamente relacionadas com a deposição são "incremental", "interativo",
+"adaptativa" e "evolutivo". A incremental concepção, construção e testes são
+alguns dos mais poderosos conceitos de desenvolvimento de software disponíveis.</p>
+
+
+<p>
+No desenvolvimento incremental, você primeiro faz a versão mais simples possível do sistema
+que será executado. Não tem que aceitar a entrada de dados realista, ele não tem que executar
+manipulações realistas sobre dados, ele não tem de produzir uma saída realista -
+ele só tem que ser um esqueleto forte o suficiente para manter o sistema real como ele é desenvolvido.
+Pode chamar classes simulando a partir de cada uma das funções básicas que você identificou.
+Este princípio básico é como início da ostra, uma pérola com um pequeno grão de areia.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Caligrafia de Software: Escrevendo Códigos]]></title>
@@ -275,34 +316,6 @@ Uma boa metáfora é simples, se relaciona bem com metáfora relevantes,
 e explica grande parte das evidências experimentais e outros fenômenos observados.</p>
 
 <p>Aguardem... Em breve novos conteudos!!!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Metáforas de Desenvolvimento de Software]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/"/>
-    <updated>2012-03-05T20:53:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/05/metaforas-de-desenvolvimento-de-software</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd's... Continuando os estudos...</p>
-
-
-<p><strong> Metáforas para uma compreensão mais rica de Desenvolvimento de Software </strong></p>
-
-<!-- more -->
-
-
-<p>Ciência da Computação tem uma parte da linguagem mais colorida de qualquer campo.
-Em que outro campo você pode andar em uma sala estéril, cuidadosamente controlada no
-20° C, e encontrar os vírus, cavalos de Tróia, <a href="http://cartilha.cert.br/malware/sec6.html" target=_blank>worms</a>, bugs, bombas, falha,
-chamas, trocadores de sexo torcidas, e erros fatais?</p>
-
-<p>Essas metáforas gráficas descrevem fenômenos de software específicos.
-Igualmente metáforas vivas descrevem fenômenos mais amplos, e você pode usá-los
-para melhorar a sua compreensão do processo de desenvolvimento de software.</p>
-
-<p>O resto do livro não dependem diretamente da discussão de metáforas
-neste capítulo. Ignorá-lo se você quiser chegar às sugestões práticas.
-Leia-o se você quer pensar sobre desenvolvimento de software de forma mais clara.</p>
 ]]></content>
   </entry>
   

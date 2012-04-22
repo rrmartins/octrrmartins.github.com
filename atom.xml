@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-04-22T10:50:57-03:00</updated>
+  <updated>2012-04-22T20:44:45-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Agricultura de Software: Acréscimo no Sistema]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
+    <updated>2012-04-22T20:31:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
+    <content type="html"><![CDATA[<h2>Agricultura de Software: Acréscimo no Sistema</h2>
+
+
+<p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
+<a href="http://pt.wikipedia.org/wiki/Acre%C3%A7%C3%A3o">acreção</a>. As duas metáforas são intimamente relacionados, mas acréscimo de software é a
+imagem mais esclarecedora. &#8220;Acréscimo&#8221;, no caso de você não ter um dicionário à mão,
+significa qualquer crescimento ou aumento em tamanho por uma adição gradual externo ou inclusão.
+Acréscimo descreve a maneira como uma ostra faz uma pérola, por adicionando gradualmente pequenas
+quantidades de carbonato de cálcio. Em geologia, &#8220;acreção&#8221; significa uma adição lenta
+terra pelo depósito de sedimentos pela água. Em termos jurídicos, &#8220;acreção&#8221; significa um
+aumentar de terra ao longo das margens de um corpo de água através do depósito de vias de sedimentos navegáveis.
+</p>
+
+
+<!--more-->
+
+
+<p>
+Isso não significa que você tem que aprender a tornar o código de sedimentos pela água;
+isso significa que você tem que aprender a adicionar aos seus sistemas de software uma pequena quantidade
+de cada vez. Outras palavras intimamente relacionadas com a deposição são &#8220;incremental&#8221;, &#8220;interativo&#8221;,
+&#8220;adaptativa&#8221; e &#8220;evolutivo&#8221;. A incremental concepção, construção e testes são
+alguns dos mais poderosos conceitos de desenvolvimento de software disponíveis.</p>
+
+
+<p>
+No desenvolvimento incremental, você primeiro faz a versão mais simples possível do sistema
+que será executado. Não tem que aceitar a entrada de dados realista, ele não tem que executar
+manipulações realistas sobre dados, ele não tem de produzir uma saída realista -
+ele só tem que ser um esqueleto forte o suficiente para manter o sistema real como ele é desenvolvido.
+Pode chamar classes simulando a partir de cada uma das funções básicas que você identificou.
+Este princípio básico é como início da ostra, uma pérola com um pequeno grão de areia.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[#FLISOL_ES 2012 - Um evento Latino-Americano]]></title>
