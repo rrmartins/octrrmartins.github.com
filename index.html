@@ -7,7 +7,7 @@
     <meta name="author" content="Rodrigo Martins">
 
     
-    <meta name="description" content="Next Agricultura De Software: Acréscimo No Sistema Agricultura de Software: Acréscimo no Sistema Às vezes as pessoas falam sobre crescimento de &hellip;">
+    <meta name="description" content="Next Codificações De String E Caracteres Multibyte Olá&#8230; Resolvi começar a escrever alguma coisa também de Ruby&#8230; Vamos começar com um &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -73,6 +73,81 @@
         <a href="/blog/page/2/" class="next">Next</a>
     
 </nav>
+
+
+    <article class="post">
+    <h1 class="title"><a href="/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/">Codificações De String E Caracteres Multibyte</a></h1>
+    <div class="entry">
+        <p>Olá&#8230; Resolvi começar a escrever alguma coisa também de <a href="http://www.ruby-lang.org/pt/">Ruby</a>&#8230; Vamos começar com um pouco do inicio da classe <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a>.</p>
+
+
+
+
+<h2>Codificações de <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> e Caracteres multibyte</h2>
+
+
+
+
+<p>
+<a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são fundamentalmente diferentes em <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>:
+</p>
+
+
+<p>
+No <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são uma seqüência de bytes. quando cadeias
+são usados ​​para representar texto (em vez de dados binários), cada byte da 
+cadeia é considerada para representar um único caractere ASCII. no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, os elementos individuais de uma <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> não são caracteres, mas
+números, o valor de byte real ou codificação de caracteres.
+</p>
+
+
+<p>
+Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, por outro lado, as cadeias são sequências verdadeiras
+de caracteres, e esses caracteres não necessitam de ser confinado à
+Conjunto de caracteres ASCII. Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, os elementos individuais de uma cadeia
+são caracteres representados como cadeias de tamanho igual a 1 - em vez de
+inteiros códigos de caracteres. Cada <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> tem uma codificação que
+especifica a correspondência entre os bytes na cadeia e
+os caracteres representam os bytes. Codificações, como o UTF-8
+codificação de caracteres Unicode utilizam número variável de bytes para
+cada carácter, e não há mais uma 1-para-1 (nem mesmo uma correspondência 2-para-1)
+entre bytes e subseções de caracteres. As subseções que seguem, explicam a codificação relacionada de
+características de strings em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, e também demonstram de forma rudimentar o 
+suporte para caracteres multibyte no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> usando a biblioteca jcode.
+</p>
+
+
+<p>Até o proximo.. :D</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T00:04:00-03:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -269,46 +344,6 @@ mais como uma heurística do que como um algoritmo.</p>
 
 
 <time datetime="2012-03-24T10:23:00-03:00" pubdate data-updated="true">Mar 24<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/blog/categories/code/'>Code</a>, <a class='category' href='/blog/categories/code-compile/'>Code Compile</a>, <a class='category' href='/blog/categories/compile/'>Compile</a>, <a class='category' href='/blog/categories/steve-mcconnell/'>Steve McConnell</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/">A Importância Das Metáforas - Parte II</a></h1>
-    <div class="entry">
-        <p>Olá amigos nerd&#8217;s&#8230; Continuando os estudos&#8230;</p>
-
-
-<p><strong> A importância das metáforas - Parte II </strong></p>
-
-
-        
-        <a href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/" class="more-link">Read on &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-11T16:33:00-03:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time></div>
         <div class="tags">
 
 <div class="cat">
