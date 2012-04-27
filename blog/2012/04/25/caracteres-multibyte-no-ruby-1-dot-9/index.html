@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Rodrigo Martins</title>
+    <title>Caracteres multibyte no Ruby 1.9 - Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
 
     
-    <meta name="description" content="Next Caracteres Multibyte No Ruby 1.9 Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language A classe String foi &hellip;">
+    <meta name="description" content="Caracteres Multibyte No Ruby 1.9 Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language A classe String foi reescrita no &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -66,19 +66,9 @@
 	})(jQuery);
 </script>
 
-	<div id="content" class="inner">
-<nav id="pagenavi">
-    
-    
-        <a href="/blog/page/2/" class="next">Next</a>
-    
-</nav>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/04/25/caracteres-multibyte-no-ruby-1-dot-9/">Caracteres Multibyte No Ruby 1.9</a></h1>
-    <div class="entry">
-        <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">Caracteres Multibyte No Ruby 1.9</h1>
+    <div class="entry"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -379,10 +369,7 @@ String.encode &#8220;dará mais detalhes quando as opções são mais
 implementadas.
 </p>
 
-
-        
-        
-    </div>
+</div>
     <div class="meta">
         <div class="date">
 
@@ -409,237 +396,20 @@ implementadas.
         
     </div>
 </article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/">Codificações De String E Caracteres Multibyte</a></h1>
-    <div class="entry">
-        <p>Olá&#8230; Resolvi começar a escrever alguma coisa também de <a href="http://www.ruby-lang.org/pt/">Ruby</a>&#8230; Vamos começar com um pouco do inicio da classe <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a>.</p>
-
-
-
-
-<h2>Codificações de <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> e Caracteres multibyte</h2>
-
-
-
-
-<p>
-<a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são fundamentalmente diferentes em <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>:
-</p>
-
-
-<p>
-No <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são uma seqüência de bytes. quando cadeias
-são usados ​​para representar texto (em vez de dados binários), cada byte da 
-cadeia é considerada para representar um único caractere ASCII. no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, os elementos individuais de uma <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> não são caracteres, mas
-números, o valor de byte real ou codificação de caracteres.
-</p>
-
-
-<p>
-Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, por outro lado, as cadeias são sequências verdadeiras
-de caracteres, e esses caracteres não necessitam de ser confinado à
-Conjunto de caracteres ASCII. Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, os elementos individuais de uma cadeia
-são caracteres representados como cadeias de tamanho igual a 1 - em vez de
-inteiros códigos de caracteres. Cada <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> tem uma codificação que
-especifica a correspondência entre os bytes na cadeia e
-os caracteres representam os bytes. Codificações, como o UTF-8
-codificação de caracteres Unicode utilizam número variável de bytes para
-cada carácter, e não há mais uma 1-para-1 (nem mesmo uma correspondência 2-para-1)
-entre bytes e subseções de caracteres. As subseções que seguem, explicam a codificação relacionada de
-características de strings em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, e também demonstram de forma rudimentar o 
-suporte para caracteres multibyte no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> usando a biblioteca jcode.
-</p>
-
-
-<p>Até o proximo.. :D</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-24T00:04:00-03:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
 </div>
-
 </div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/04/22/agricultura-software-acrescimo-sistema/">Agricultura De Software: Acréscimo No Sistema</a></h1>
-    <div class="entry">
-        <h2>Agricultura de Software: Acréscimo no Sistema</h2>
-
-
-<p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
-<a href="http://pt.wikipedia.org/wiki/Acre%C3%A7%C3%A3o">acreção</a>. As duas metáforas são intimamente relacionados, mas acréscimo de software é a
-imagem mais esclarecedora. &#8220;Acréscimo&#8221;, no caso de você não ter um dicionário à mão,
-significa qualquer crescimento ou aumento em tamanho por uma adição gradual externo ou inclusão.
-Acréscimo descreve a maneira como uma ostra faz uma pérola, por adicionando gradualmente pequenas
-quantidades de carbonato de cálcio. Em geologia, &#8220;acreção&#8221; significa uma adição lenta
-terra pelo depósito de sedimentos pela água. Em termos jurídicos, &#8220;acreção&#8221; significa um
-aumentar de terra ao longo das margens de um corpo de água através do depósito de vias de sedimentos navegáveis.
-</p>
-
-
-
-        
-        <a href="/blog/2012/04/22/agricultura-software-acrescimo-sistema/" class="more-link">Read on &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-22T20:31:00-03:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/blog/categories/code/'>Code</a>, <a class='category' href='/blog/categories/code-compile/'>Code Compile</a>, <a class='category' href='/blog/categories/compile/'>Compile</a>, <a class='category' href='/blog/categories/steve-mcconnell/'>Steve McConnell</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/">#FLISOL_ES 2012 - Um Evento Latino-Americano</a></h1>
-    <div class="entry">
-        <h2>
-    <a href="http://flisol-es.heroku.com/">FLISOL - ES</a> # Um evento Latino-Americano
-</h2>
-
-
-<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
-
-<p> Olá amigos&#8230;</p>
-
-
-<p>Semana que vem, no dia 28/04, irá acontecer em Vitória-ES, um dos maiores eventos de Tecnologia da
-<a href="http://softwarelivre.org/">Comunidade de Software Livre</a>, o <a href="http://flisol.net/">FLISOL</a>
-é um evento que acontece simultaneamente em varios locais da America Latina. </p>
-
-
-<p>A grade completa você pode conferir <a href="http://flisol-es.heroku.com/schedule">AQUI</a>.</p>
-
-
-
-        
-        <a href="/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/" class="more-link">Read on &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-22T09:26:00-03:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/blog/categories/almir-m3nd3s-/'>Almir &#8216;m3nd3s&#8217;</a>, <a class='category' href='/blog/categories/daniel-marcos/'>Daniel Marcos</a>, <a class='category' href='/blog/categories/flisol/'>FLISOL</a>, <a class='category' href='/blog/categories/festival-latino-americano-de-instalação-de-software-livre/'>Festival Latino-Americano de Instalação de Software Livre</a>, <a class='category' href='/blog/categories/léo-hackin/'>Léo Hackin</a>, <a class='category' href='/blog/categories/pfsense/'>Pfsense</a>, <a class='category' href='/blog/categories/pomodoro/'>Pomodoro</a>, <a class='category' href='/blog/categories/rodrigo-griffo/'>Rodrigo Griffo</a>, <a class='category' href='/blog/categories/rodrigo-martins/'>Rodrigo Martins</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/shellscript/'>ShellScript</a>, <a class='category' href='/blog/categories/wordpress/'>Wordpress</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/">Caligrafia De Software: Escrevendo Códigos</a></h1>
-    <div class="entry">
-        <p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
-a Caligrafia das Codigos.</p>
-
-<p><b>Caligrafia de Software: Escrevendo Códigos</b></p>
-
-<p>A metáfora mais primitiva para desenvolvimento de software, cresce fora da expressão
-&#8220;código escrito&#8221;. A metáfora da escrita sugere que o desenvolvimento de um programa
-é como escrever uma carta ocasional - Você se senta com caneta, tinta, papel e
-vai escrevendo a partir do início ao fim. Não exige planejamento formal, e você
-vai descobrindo o que você quer dizer com o andamento da escrita.</p>
-
-
-        
-        <a href="/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/" class="more-link">Read on &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-07T19:22:00-03:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/blog/categories/code/'>Code</a>, <a class='category' href='/blog/categories/code-compile/'>Code Compile</a>, <a class='category' href='/blog/categories/compile/'>Compile</a>, <a class='category' href='/blog/categories/steve-mcconnell/'>Steve McConnell</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-<nav id="pagenavi">
-    
-    
-        <a href="/blog/page/2/" class="next">Next</a>
-    
-    <a href="/blog/archives" class="center">Blog Archives</a>
-</nav></div>
 	<footer class="inner">Copyright &copy; 2012 Rodrigo Martins</footer>
 	<script src="/javascripts/jquery.easing.1.3.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
