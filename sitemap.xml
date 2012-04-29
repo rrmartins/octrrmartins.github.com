@@ -2,98 +2,102 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/</loc>
-        <lastmod>2012-02-22T22:24:27-02:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/</loc>
-        <lastmod>2012-02-27T21:26:43-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction/</loc>
-        <lastmod>2012-02-27T21:22:54-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/02/27/what-is-software-construction-part-2/
         </loc>
-        <lastmod>2012-02-28T13:12:51-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/02/29/por-que-construcao-de-software-e-importante/
         </loc>
-        <lastmod>2012-03-01T12:47:30-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/03/01/pontos-chaves/</loc>
-        <lastmod>2012-03-01T13:35:48-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/
         </loc>
-        <lastmod>2012-03-04T01:25:43-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/
         </loc>
-        <lastmod>2012-03-05T21:02:26-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas/</loc>
-        <lastmod>2012-03-07T21:27:07-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/
         </loc>
-        <lastmod>2012-03-11T16:39:51-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/</loc>
-        <lastmod>2012-03-26T13:04:48-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/
         </loc>
-        <lastmod>2012-04-23T12:57:05-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/
         </loc>
-        <lastmod>2012-04-22T10:50:51-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/
         </loc>
-        <lastmod>2012-04-22T20:44:38-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/
         </loc>
-        <lastmod>2012-04-24T00:16:39-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>
             http://rrmartins.github.com/blog/2012/04/25/caracteres-multibyte-no-ruby-1-dot-9/
         </loc>
-        <lastmod>2012-04-27T20:51:35-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/apostilas/</loc>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/archives/</loc>
-        <lastmod>2012-04-27T20:51:35-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/</loc>
-        <lastmod>2012-04-27T20:51:35-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/who-am/</loc>
-        <lastmod>2012-04-28T10:44:47-03:00</lastmod>
+        <lastmod>2012-04-29T09:44:06-03:00</lastmod>
     </url>
 </urlset>
