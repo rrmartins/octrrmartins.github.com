@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-01T09:29:23-03:00</updated>
+  <updated>2012-05-01T12:02:47-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -288,6 +288,13 @@
 </span><span class='line'><span class="nt">&lt;/body&gt;</span>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Proximo, passo, só levantar o servidor:</p>
+
+<figure class='code'><figcaption><span>Levantando o Servidor </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>node helloworld_server.js</span></code></pre></td></tr></table></div></figure>
 
 
 <p>É isso ai amigos, segue o lick de como a aplicação ficou no heroku, e o lick do repositorio dela no github.</p>
