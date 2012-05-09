@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hash | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/hash/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-05-08T21:37:46-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte I]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/"/>
+    <updated>2012-05-08T21:27:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+<p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
+como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
+valores. Eles às vezes são chamados de matrizes associativas, porque eles
+associam valores com cada uma das chaves, e pode ser pensado como matrizes
+em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
+exemplo torna isso mais claro:</p>
+
+<p>```ruby Hash</p>
+
+<h1>Este hash irá mapear os nomes dos dígitos para os dígitos se</h1>
+
+<p>números = Hash.new # Criar um novo objeto, vazio de hash
+números["um"] = 1 # Mapa do String "um" para o Fixnum 1
+números["dois"] = 2 # Note que estamos usando a notação de matriz aqui
+números["três"] = 3</p>
+
+<p>soma = números["um"] + números["dois"] # soma os valores e resulta em "3"
+```</p>
+
+<p>Esta introdução à sintaxe hashes de hash documentos Ruby literal
+e explica os requisitos para um objeto a ser usado como uma chave hash.
+Mais informações sobre a API definida pela classe Hash é fornecido em <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hashes</a>.</p>
+
+<p>Em breve, mais conteudo de Hash!</p>
+]]></content>
+  </entry>
+  
+</feed>
