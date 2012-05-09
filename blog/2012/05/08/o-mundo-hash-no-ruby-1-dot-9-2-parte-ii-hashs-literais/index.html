@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>#FLISOL_ES 2012 - Um evento Latino-Americano - Rodrigo Martins</title>
+  <title>O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="FLISOL - ES # Um evento Latino-Americano Olá amigos&#8230; Semana que vem, no dia 28/04, irá acontecer em Vitória-ES, um dos maiores eventos de &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Na primeira parte eu fiz uma introdução do Hash:
+-> O Mundo Hash &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -94,7 +95,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">#FLISOL_ES 2012 - Um Evento Latino-Americano</h1>
+      <h1 class="entry-title">O Mundo Hash No Ruby 1.9.2 - Parte II - Hashs Literais</h1>
     
     
       <p class="meta">
@@ -110,93 +111,73 @@
   
 
 
-<time datetime="2012-04-22T09:26:00-03:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time>
+<time datetime="2012-05-08T22:28:00-03:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>
-    <a href="http://flisol-es.heroku.com/">FLISOL - ES</a> # Um evento Latino-Americano
-</h2>
+<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
-<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
+<p>Na primeira parte eu fiz uma introdução do Hash:
+-> <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
 
-<p> Olá amigos&#8230;</p>
+<p>Vamos lá!</p>
 
+<p>Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
+pares, colocados dentro de chaves. Chaves e valores são separados
+com um caractere de dois &#8220;arrow&#8221;: &#8216;=>&#8217;. O objeto Hash criado anteriormente também pode ser
+criado com o literal seguinte:</p>
 
-<p>Semana que vem, no dia 28/04, irá acontecer em Vitória-ES, um dos maiores eventos de Tecnologia da
-<a href="http://softwarelivre.org/">Comunidade de Software Livre</a>, o <a href="http://flisol.net/">FLISOL</a>
-é um evento que acontece simultaneamente em varios locais da America Latina. </p>
-
-
-<p>A grade completa você pode conferir <a href="http://flisol-es.heroku.com/schedule">AQUI</a>.</p>
-
-
-<!-- more -->
-
-
-<p>Tentando descrever o evento com poucas palavras, copiarei um trecho do site do FLISOL&#8230;</p>
-
-
-<pre><code>O FLISOL (Festival Latinoamericano de Instalação de Software Livre) é o maior evento de divulgação de 
-Software Livre da América Latina. Ele acontece desde 2005 e seu principal objetivo é promover o uso de 
-software livre, apresentando sua filosofia, seu alcance, avanços e desenvolvimento ao público em geral.
-Com esta finalidade, diversas comunidades locais de software livre 
-(em cada país, em cada cidade/localidade), 
-organizam simultaneamente eventos em que se instala gratuitamente e totalmente legal, 
-software livre nos computadores 
-levados pelos participantes. Também, paralelamente, são oferecidas apresentações, palestras e oficinas, 
-sobre temas locais, nacionais e latinoamericanos sobre Software Livre, 
-com toda sua variedade de expressões: artística, acadêmica, empresarial e social.
-O FLISOL 2012 acontece no dia 28 de Abril em diversas cidades.
-</code></pre>
-
-<p>Será um evento muito bom. Estará lá grandes nomes da <a href="http://www.tux-es.org/portal/">Comunidade Local , TUX-ES</a>.</p>
+<!--more-->
 
 
 
 
-<p>Como o <a href="http://www.leohackin.com.br/2012/04/flisoles-212-e-pomodoros/">&#8220;Mestre&#8221; Leo Hackin</a> disse:</p>
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;um&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;dois&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;três&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<pre><code>"Será um dia de muitas instalações de Linux, muita nerdisse, bate papo, 
-networking e muita troca de experiência."
-</code></pre>
+<p>Em geral, objetos <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> trabalham mais eficientemente como chaves de hash de strings, fazem assim:</p>
 
-<p>E é isso ai galera&#8230; o evento terá muitas paradas legais.. :D</p>
-
-
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:um</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span><span class="ss">:dois</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span><span class="ss">:tr</span><span class="err">ê</span><span class="n">s</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>E eu estarei palestrando sobre <a href="http://flisol-es.heroku.com/ruby">&#8220;Ruby, Simples e Expressivo!&#8221;</a>,<br/>
-estarei falando um pouco de <a href="http://www.ruby-lang.org/">Ruby</a>, como uma linguagem de uma facil e rapida aprendizagem.<br/> 
-Hoje trabalho com <a href="http://www.ruby-lang.org/">Ruby</a> na veia, e a cada dia eu e os membros do #TEAMFLEXA estamos evoluindo<br/>
-na tecnologia com todo o apoio desta forte ferramenta.</p>
+<p>Os <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> são imutáveis, escrito como
+prefixados identificadores, que serão explicados em maior detalhe em um outro post.</p>
+
+<p>Ruby 1.8 permite vírgulas em lugar de setas, mas isso não teve a sintaxe substituída, mais suportado no Ruby 1.9:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="n">numeros</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:um</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:dois</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:tres</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1"># Igual, mas mais difícil de ler</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Tanto Ruby 1.8 quanto no Ruby 1.9 permite uma única vírgula à direita do
+final da lista de chave / valor:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{:</span> <span class="n">um</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,:</span> <span class="n">dois</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># vírgula extra ignorado</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Além da minha palestra, que irá abrir o evento, terá outras palestras muito legais, confira a grade do evento: <a href="http://flisol-es.heroku.com/schedule">Programação do FLISOL</a></p>
+<p>Ruby 1.9 suporta muito útil e sucinto a sintaxe literal de Hash
+quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="n">um</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dois</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tres</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Note-se que pode não haver qualquer espaço entre a chave Hash
+identificador e dos dois pontos.</p>
 
-
-<p>Galera é isso ai&#8230; </p>
-
-
-
-
-<p>Não poderia de deixar de parabenizar aos organizadores do Evento, <a href="http://twitter.com/#!/m3nd3s">Almir M3nd3s</a> e <a href="http://twitter.com/#!/jvrmaia">João Víctor</a>, <br/>
-Parabens amigos&#8230; Bora fazer outros eventos, para fazer a tecnologia crescer no ES. :D</p>
-
-
-
-
-<p>Bora Codar e apreender.. :D</p>
-
+<p>Até breve!</p>
 </div>
 
 
@@ -219,12 +200,12 @@ Parabens amigos&#8230; Bora fazer outros eventos, para fazer a tecnologia cresce
   
 
 
-<time datetime="2012-04-22T09:26:00-03:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time>
+<time datetime="2012-05-08T22:28:00-03:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/almir-m3nd3s-/'>Almir 'm3nd3s'</a>, <a class='category' href='/blog/categories/daniel-marcos/'>Daniel Marcos</a>, <a class='category' href='/blog/categories/flisol/'>FLISOL</a>, <a class='category' href='/blog/categories/festival-latino-americano-de-instalação-de-software-livre/'>Festival Latino-Americano de Instalação de Software Livre</a>, <a class='category' href='/blog/categories/léo-hackin/'>Léo Hackin</a>, <a class='category' href='/blog/categories/pfsense/'>Pfsense</a>, <a class='category' href='/blog/categories/pomodoro/'>Pomodoro</a>, <a class='category' href='/blog/categories/rodrigo-griffo/'>Rodrigo Griffo</a>, <a class='category' href='/blog/categories/rodrigo-martins/'>Rodrigo Martins</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/shellscript/'>ShellScript</a>, <a class='category' href='/blog/categories/wordpress/'>Wordpress</a>
+    <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/hash-liiteral/'>Hash Liiteral</a>, <a class='category' href='/blog/categories/literal/'>Literal</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
   
 </span>
 
@@ -233,7 +214,7 @@ Parabens amigos&#8230; Bora fazer outros eventos, para fazer a tecnologia cresce
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -248,14 +229,10 @@ Parabens amigos&#8230; Bora fazer outros eventos, para fazer a tecnologia cresce
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/" title="Previous Post:
-        Caligrafia de Software: Escrevendo Códigos">&laquo; Caligrafia de Software: Escrevendo Códigos</a></li>
+        href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/" title="Previous Post:
+        O Mundo Hash no Ruby 1.9.2 - Parte I">&laquo; O Mundo Hash no Ruby 1.9.2 - Parte I</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/04/22/agricultura-software-acrescimo-sistema/"
-        title="Next Post: Agricultura de Software: Acréscimo no Sistema">Agricultura de Software: Acréscimo no Sistema
-        &raquo;</a></li>
       
     </ul>
   </footer>

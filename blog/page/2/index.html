@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Olá&#8230; Resolvi começar a escrever alguma coisa também de Ruby&#8230; Vamos começar com um pouco do inicio da classe String. Codificações de &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language A classe String foi reescrita no Ruby 1.9 para estar ciente e para &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +90,342 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/25/caracteres-multibyte-no-ruby-1-dot-9/">Caracteres Multibyte No Ruby 1.9</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-25T22:27:00-03:00" pubdate data-updated="true">Apr 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>A classe String foi reescrita no Ruby 1.9 para estar ciente e para
+lidar corretamente com caracteres multibyte. Embora o apoio de vários bytes é
+a maior mudança no Ruby 1,9, não é uma mudança altamente visível:
+código que usa string multibyte simplesmente funciona. Vale a pena
+entender por que ele funciona, no entanto, e esta seção explica o
+detalhes.</p>
+
+
+
+
+<p>Se uma string contém caracteres de vários bytes, então o número de
+bytes não corresponde ao número de caracteres. No Ruby 1.9,
+o comprimento ea
+métodos tamanho retornar o número de
+caracteres em uma seqüência, eo método novo tamanho byte
+retorna o número de bytes. [] E [] = operadores permitem consultar e definir
+os caracteres de uma string, e os novos métodos e getByte setbyte permitem que você
+para consultar e definir bytes individuais (embora você não deve muitas vezes precisam
+para fazer isso):</p>
+
+
+
+
+<figure class='code'><figcaption><span>Encode</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># - * - Coding: utf-8 - * - # Especifique Unicode UTF-8 caracteres</span>
+</span><span class='line'><span class="c1"># Esta é uma string literal contendo uma personagem multiplicação multibyte</span>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;2 × 2 = 4&quot;</span>
+</span><span class='line'><span class="c1"># A seqüência contém 6 bytes que codificam 5 caracteres</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 6</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">bytesize</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">s</span><span class="o">.</span><span class="n">getbyte</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">}</span> <span class="c1"># Mostra &quot;50 195 151 50 61 52&quot;</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">length</span> <span class="c1"># =&gt; 5</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">print</span> <span class="n">s</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;2 × 2 = 4&quot;</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">setbyte</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">getbyte</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1"># s é agora &quot;2 × 2 = 5&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Note-se que a primeira linha deste código é um comentário de codificação que define a codificação de origem (consulte Especificando Encoding Program) para UTF-8. Sem este comentário, o Ruby intérprete não saberia como decodificar a seqüência de bytes
+na seqüência literal em uma seqüência de caracteres.</p>
+
+
+
+
+<p>Quando uma string contém caracteres codificados com números variados
+de bytes, já não é possível mapear diretamente do personagem
+índice para deslocamento de byte na seqüência. Na seqüência acima, para
+exemplo, o segundo carácter começa no segundo byte. Mas o
+terceiro personagem começa no quarto byte. Isto significa que você
+não pode assumir que o acesso aleatório a caracteres arbitrários dentro de um
+string é uma operação rápida. Quando você usa o operador [], como
+fizemos no código acima, para acessar um caractere ou substring dentro
+uma string multibyte, a implementação de Ruby deve internamente iterar
+sequencialmente na cadeia para encontrar o índice do caractere desejado.
+Em geral, portanto, você deve tentar fazer o seu processamento de cadeia
+utilizando algoritmos seqüenciais, quando possível. Ou seja: usar o iterator each_char quando possível, em vez
+de chamadas repetidas para o []
+operador. Por outro lado, não é geralmente necessário se preocupar
+muito sobre isso. Implementações Ruby otimizar os casos que
+pode ser otimizado, e se uma string é composta inteiramente de 1 byte
+personagens, o acesso aleatório a esses personagens vão ser eficiente. Se
+você quiser tentar suas próprias otimizações, você pode usar a instância
+método ascii_only? para determinar
+se uma seqüência consiste inteiramente de 7-bit ASCII.</p>
+
+
+
+
+<p>A classe String no Ruby 1.9
+define uma codificação
+método que retorna a codificação de uma string (o retorno
+valor é um objeto de codificação,
+o qual é descrito em baixo):</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># - * - Coding: utf-8 - * -</span>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;2 × 2 = 4&quot;</span> <span class="c1"># caráter multiplicação #  Note multibyte</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># =&gt; &lt;Encoding: UTF-8&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>A codificação de strings é sempre o mesmo que o
+codificação de origem do arquivo, exceto que os literais que contêm
+Escapes \u sempre são codificados em
+UTF-8, independentemente da fonte de codificação.</p>
+
+
+
+
+<p>Determinadas operações de corda, tais como concatenação e padrão
+correspondência, exigem que duas strings (ou uma corda e um regular
+expressão) possuem uma codificação compatíveis. Se você concatenar um ASCII
+string com uma string UTF-8, por exemplo, obter uma string UTF-8.
+Não é possível, no entanto, para concatenar uma string UTF-8 e um
+SJIS string: as codificações não são compatíveis, e uma exceção será
+ser levantada. Você pode testar se duas strings (ou uma corda e um
+expressão regular) possuem uma codificação compatíveis usando a classe
+método Encoding.compatible?.
+Se as codificações dos dois argumentos são compatíveis,
+retorna a uma que é o superconjunto do outro. Se o
+codificações são incompatíveis, ela retorna nil.</p>
+
+
+
+
+<p>Você pode definir explicitamente a codificação de uma string com force_encoding. Isso é útil se você tiver
+uma seqüência de bytes (leia-se de um fluxo de I / O, talvez) e quer
+dizer Ruby como eles devem ser interpretados como caracteres. Ou, se você
+ter uma seqüência de caracteres de vários bytes, mas você deseja indexar
+bytes individuais com []:</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">bytes</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="s2">&quot;binário&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+<b>force_encoding</b>
+não fazer uma cópia de seu receptor, que modifica o
+codificação da string e retorna a string. Este método não
+que qualquer caractere conversão dos bytes subjacentes da cadeia são
+não mudou, apenas a interpretação de Ruby deles é alterado. O
+argumento para force_encoding pode ser
+o nome de uma codificação ou um objeto de codificação.
+</p>
+
+
+
+
+<p>O force_encoding não faz validação, mas não verifica se os bytes subjacentes do
+cadeia de representar uma seqüência válida de caracteres especificada no
+de codificação. Use valid_encoding? para
+executar a validação. Este método de instância não tem argumentos e verifica se
+os bytes de uma cadeia pode ser interpretada como uma seqüência válida de
+caracteres usando codificação da seqüência:</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\xa4</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">force_encoding</span> <span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="c1"># Este não é um UTF-8 válido cadeia</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">valid_encoding?</span> <span class="c1"># =&gt; False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>O método de codificar de uma string é bastante
+diferente da force_encoding. Ele retorna uma string que representa a mesma seqüência de caracteres como
+seu receptor, mas usando uma codificação diferente. A fim de alterar o
+codificação de ou-transcodificar uma string como esta,
+o método de codificar deve alterar o
+bytes subjacentes que compõem a cadeia. Aqui está um exemplo:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># - * - Coding: utf-8 - * -</span>
+</span><span class='line'><span class="no">EURO1</span> <span class="o">=</span> <span class="s2">&quot;\u20AC&quot;</span> <span class="c1"># Comece com o personagem Euro Unicode</span>
+</span><span class='line'><span class="nb">puts</span> <span class="no">EURO1</span> <span class="c1"># Imprime &quot;€&quot;</span>
+</span><span class='line'><span class="n">euro1</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># =&gt; &lt;Encoding:UTF-8&gt;</span>
+</span><span class='line'><span class="n">euro1</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 3</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">euro2</span> <span class="o">=</span> <span class="n">euro1</span><span class="o">.</span><span class="n">encode</span> <span class="p">(</span><span class="s2">&quot;iso-8859-15&quot;</span><span class="p">)</span> <span class="c1"># transcode para a América-15</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">euro2</span><span class="o">.</span><span class="n">inspect</span> <span class="c1"># Imprime &quot;\xA4&quot;</span>
+</span><span class='line'><span class="n">euro2</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># =&gt; &lt;Encoding:iso-8859-15&gt;</span>
+</span><span class='line'><span class="n">euro2</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">euro3</span> <span class="o">=</span> <span class="n">euro2</span><span class="o">.</span><span class="n">encode</span> <span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="c1"># transcode de volta para UTF-8</span>
+</span><span class='line'><span class="no">EURO1</span> <span class="o">==</span> <span class="n">euro3</span> <span class="c1"># =&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Note que você não deve muitas vezes precisa usar o método de codificação. O tempo mais comum para
+transcode cordas é antes de escrevê-las em um arquivo ou enviá-los
+através de uma conexão de rede. E, como veremos em Streams e codificações, classes Ruby I/O, apoiar o
+transcodificação automática de texto quando ele é gravado.</p>
+
+
+
+
+<p>Se a seqüência que você está chamando de codificar consiste de bytes não codificados, vocês
+precisa especificar a codificação, que para interpretar esses bytes
+antes de transcodificação-los para outra codificação. Faça isso passando dois
+argumentos para codificar. O primeiro
+argumento é a codificação desejada, eo segundo argumento é o
+codificação atual da cadeia. Por exemplo:</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Interpretar um byte como um codepoint iso-8859-15, e transcodificar para UTF-8</span>
+</span><span class='line'><span class="n">byte</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\xA4</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="n">char</span> <span class="o">=</span> <span class="n">byte</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;iso-8859-15&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Isto é, as duas seguintes linhas de código tem o mesmo efeito:</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">from</span><span class="p">)</span>
+</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">bytes</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Se você ligar para codificar sem
+argumentos, ele transcodifica seu receptor para o padrão interno
+codificação, caso tenha sido definido com o E-ou-U opções intérprete (ver Opções de codificação). Isso permite que os módulos de biblioteca (por
+exemplo) para transcodificar suas constantes de cadeias públicas para um comum
+codifica para a interoperabilidade.</p>
+
+
+
+
+<p>Codificações de caracteres diferentes não só no seu mapeamento de
+bytes para caracteres, mas no conjunto de caracteres que podem
+representam. Unicode (também conhecido como UCS-o Universal Character Set) tenta
+permitir que todos os personagens, mas codificações de caracteres não baseadas em Unicode
+só pode representar um subconjunto de caracteres. Não é possível,
+portanto, para transcodificar todos os UTF-8 cordas para EUC-JP (por exemplo);
+Caracteres Unicode que não são nem latim, nem japonês não pode ser
+traduzida.</p>
+
+
+
+
+<p>Se a codificar ou codificar! método encontra um personagem que não pode transcodificar, ele gera uma exceção:</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;\U20AC&quot;</span><span class="o">.</span><span class="n">Encode</span><span class="p">(</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span> <span class="c1"># Nenhum sinal de euros em Latin-1, para levantar exceção</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>codificar e codificar! aceitar um hash de transcodificação
+opções como seu argumento final. No momento da redação deste texto, o
+Nome de opção só é definido: inválido, eo único valor definido para
+essa chave é :ignore. &#8220;ri
+String.encode &#8220;dará mais detalhes quando as opções são mais
+implementadas.
+</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -320,70 +656,6 @@ vai descobrindo o que você quer dizer com o andamento da escrita.</p>
   
     <footer>
       <a rel="full-article" href="/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/24/como-usar-metaforas-de-software/">Como Usar Metáforas De Software?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-24T10:23:00-03:00" pubdate data-updated="true">Mar 24<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software&#8230;</p>
-
-
-<p> Vamos descrever agora como usar Metaforas..</p>
-
-
-<ol>
-    <li>
-        <a href="/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/">Metaforas de Desenvolvimento de Software</a>
-    </li>
-    <li>
-        <a href="/blog/2012/03/05/a-importancia-das-metaforas/">A Importancia das Metaforas - Part I</a>
-    </li>
-    <li>
-        <a href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/">A Importancia das Metaforas - Part II</a>
-    </li>
-</ol>
-
-
-<p><b>-> Como usar metáforas de software</b></p>
-
-<p>Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
-onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
-mais como uma heurística do que como um algoritmo.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/24/como-usar-metaforas-de-software/">Read on &rarr;</a>
     </footer>
   
 

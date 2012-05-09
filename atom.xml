@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-08T21:37:46-03:00</updated>
+  <updated>2012-05-08T23:05:34-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,74 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/"/>
+    <updated>2012-05-08T22:28:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+<p>Na primeira parte eu fiz uma introdução do Hash:
+-> <a href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
+
+<p>Vamos lá!</p>
+
+<p>Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
+pares, colocados dentro de chaves. Chaves e valores são separados
+com um caractere de dois &#8220;arrow&#8221;: &#8216;=>&#8217;. O objeto Hash criado anteriormente também pode ser
+criado com o literal seguinte:</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;um&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;dois&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;três&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Em geral, objetos <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> trabalham mais eficientemente como chaves de hash de strings, fazem assim:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:um</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span><span class="ss">:dois</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span><span class="ss">:tr</span><span class="err">ê</span><span class="n">s</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Os <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> são imutáveis, escrito como
+prefixados identificadores, que serão explicados em maior detalhe em um outro post.</p>
+
+<p>Ruby 1.8 permite vírgulas em lugar de setas, mas isso não teve a sintaxe substituída, mais suportado no Ruby 1.9:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="n">numeros</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:um</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:dois</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:tres</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1"># Igual, mas mais difícil de ler</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tanto Ruby 1.8 quanto no Ruby 1.9 permite uma única vírgula à direita do
+final da lista de chave / valor:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{:</span> <span class="n">um</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,:</span> <span class="n">dois</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># vírgula extra ignorado</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby 1.9 suporta muito útil e sucinto a sintaxe literal de Hash
+quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta:</p>
+
+<figure class='code'><figcaption><span>Hash Literal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="p">{</span><span class="n">um</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dois</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tres</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note-se que pode não haver qualquer espaço entre a chave Hash
+identificador e dos dois pontos.</p>
+
+<p>Até breve!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte I]]></title>
@@ -1841,60 +1909,6 @@ Estou iniciando com o <a href="http://octopress.org/">Octopress</a>&#8230; e é 
 
 
 <p>Indico a todos os Dev&#8217;s para estudar e iniciar com ele.. muito simples&#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Criando Combobox com Rails 3]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/"/>
-    <updated>2012-02-15T13:05:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3</id>
-    <content type="html"><![CDATA[<p>
-Para todos aqueles que conhecem o <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">Form_for</a>,
- e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e 
- estudem logo, o mercado esta precisando de programadores bons.. :D
- </p>
-
-
-<!-- more -->
-
-
-<p>
-Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: </p>
-
-
-<p><select name="estado">
-<option value="AL">AL</option>
-<option value="AP">AP</option>
-<option value="AM">AM</option>
-<option value="BA">BA</option>
-<option value="CE">CE</option>
-<option value="ES">ES</option>
-</select></p>
-
-<p>
-Faça assim:
-</p>
-
-
-<figure class='code'><figcaption><span>Criando Combobox em Rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">select</span> <span class="ss">:estado</span><span class="p">,</span> <span class="p">(</span><span class="o">[[</span><span class="s2">&quot;AC&quot;</span><span class="p">,</span> <span class="s2">&quot;AC&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;AL&quot;</span><span class="p">,</span> <span class="s2">&quot;AL&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;AP&quot;</span><span class="p">,</span> <span class="s2">&quot;AP&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="o">[</span><span class="s2">&quot;AM&quot;</span><span class="p">,</span> <span class="s2">&quot;AM&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;BA&quot;</span><span class="p">,</span> <span class="s2">&quot;BA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;CE&quot;</span><span class="p">,</span> <span class="s2">&quot;CE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;DF&quot;</span><span class="p">,</span> <span class="s2">&quot;DF&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;ES&quot;</span><span class="p">,</span> <span class="s2">&quot;ES&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="o">[</span><span class="s2">&quot;GO&quot;</span><span class="p">,</span> <span class="s2">&quot;GO&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MA&quot;</span><span class="p">,</span> <span class="s2">&quot;MA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MT&quot;</span><span class="p">,</span> <span class="s2">&quot;MT&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MS&quot;</span><span class="p">,</span> <span class="s2">&quot;MS&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;MG&quot;</span><span class="p">,</span> <span class="s2">&quot;MG&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="o">[</span><span class="s2">&quot;PA&quot;</span><span class="p">,</span> <span class="s2">&quot;PA&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PB&quot;</span><span class="p">,</span> <span class="s2">&quot;PB&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PR&quot;</span><span class="p">,</span> <span class="s2">&quot;PR&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PE&quot;</span><span class="p">,</span> <span class="s2">&quot;PE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;PI&quot;</span><span class="p">,</span> <span class="s2">&quot;PI&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="o">[</span><span class="s2">&quot;RJ&quot;</span><span class="p">,</span> <span class="s2">&quot;RJ&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RN&quot;</span><span class="p">,</span> <span class="s2">&quot;RN&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RS&quot;</span><span class="p">,</span> <span class="s2">&quot;RS&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RO&quot;</span><span class="p">,</span> <span class="s2">&quot;RO&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;RR&quot;</span><span class="p">,</span> <span class="s2">&quot;RR&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="o">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span> <span class="s2">&quot;SC&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;SP&quot;</span><span class="p">,</span> <span class="s2">&quot;SP&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;SE&quot;</span><span class="p">,</span> <span class="s2">&quot;SE&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;TO&quot;</span><span class="p">,</span> <span class="s2">&quot;TO&quot;</span><span class="o">]]</span><span class="p">)</span> <span class="o">%&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-Até a próxima rubistas&#8230; :D
-
 ]]></content>
   </entry>
   
