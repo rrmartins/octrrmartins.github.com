@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-10T13:29:34-03:00</updated>
+  <updated>2012-05-13T03:33:25-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ranges - Ruby 1.9.2 - Part I ]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
+    <updated>2012-05-13T02:16:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Ranges</h2>
+
+
+<p>Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span> <span class="c1"># Os números inteiros de 1 a 10, incluindo 10</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">10</span> <span class="c1"># Os números entre 1 e 10, excluindo-se 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Testar se um valor está incluído em um intervalo com o método include? (mas ver abaixo para uma discussão de alternativas):</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cold_war</span> <span class="o">=</span> <span class="mi">1945</span> <span class="o">.</span><span class="n">.</span> <span class="mi">1989</span>
+</span><span class='line'><span class="n">cold_war</span><span class="o">.</span><span class="n">include?</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">year</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos,
+há, obviamente, deve ser alguma forma para comparar os valores para os pontos de extremidade. Em Ruby, isso é feito
+com o operador de comparação &lt;=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
+(ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador &lt;=>. o
+valor só pode ser utilizado como um ponto de extremidade do intervalo se ele responde a esta
+operador. Os pontos de extremidade de um intervalo e os valores &#8220;em&#8221; range são
+tipicamente, todos da mesma classe. Tecnicamente, no entanto, qualquer valor que é
+compatível com o &lt;=> operador do ponto da extremidade do range pode ser considerado um membro do intervalo.</p>
+
+<p>O objetivo primário para os ranges é comparação: para ser capaz de determinar se um valor está dentro ou fora do range. Um importante
+objetivo secundário é a iteração: se a classe dos parâmetros de um range definido um método succ (por sucessor), então existe um conjunto discreto de membros de intervalo, e eles podem
+ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &#8216;A&#8217; .. &#8216;c&#8217;, por exemplo:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="o">.</span><span class="n">.</span> <span class="s1">&#39;c&#39;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [b] [c]&quot;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [c]&quot;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># =&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]: Enumerable define to_a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A razão pela qual isto funciona é que a classe String define um método succ e &#8216;a&#8217;.succ é &#8216;b&#8217; e &#8216;b&#8217;.succ é &#8216;c&#8217;. Intervalos que
+podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
+e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.</p>
+
+<p>Faixas com terminais inteiros são os mais comuns de serem usados ​​em programas típicos de Ruby. Porque eles são discretos, os ranges inteiros podem sasurusados para cordas de índice e matrizes. Eles são também uma forma conveniente para
+representam uma coleção enumerável de valores ascendentes. Observe que o código atribui um range literal a uma variável, e
+em seguida, chama métodos no intervalo através da variável. Se você quiser ou
+invocar diretamente em uma ampla literal, você deve colocar parênteses o literal, ou a invocação do método é na verdade sobre o ponto final da variavel, em vez de o objecto range em si:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># tenta chamar to_a sobre o número 3</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span> <span class="no">To_a</span> <span class="c1"># =&gt; [1,2,3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Até a proxima!!!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes]]></title>
@@ -1882,55 +1964,6 @@ Aqui estão algumas das tarefas específicas envolvidas na construção:<br/>
 </p></p>
 
 <p>Apresentando os estudos aos poucos&#8230; Vamos evoluindo a cada dia&#8230; Até a proxima!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[O que é Construção de Software ? Parte 1]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction/"/>
-    <updated>2012-02-25T23:27:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction</id>
-    <content type="html"><![CDATA[<p>Amigos, estou lendo um livro muito bom.. E vou começar a compartilhar algumas partes dele com todos&#8230; Este é só o primeiro post de tradução.<br/></p>
-
-<h1>
-O que é Software Construção?
-</h1>
-
-
-<p>O desenvolvimento de software de computador pode ser um processo complicado, e nos últimos 25 anos,
-  pesquisadores identificaram inúmeras atividades distintas que são para desenvolvimento de software. Eles incluem:
-  <br/>
-  * Definição do problema  <br/>
-  * Requisitos de desenvolvimento  <br/>
-<!-- more -->
-  * Planejamento da construção  <br/>
-  * Arquitetura de software, ou alto nível de design  <br/>
-  * O projeto detalhado  <br/>
-  * Codificação e depuração  <br/>
-  * Teste de unidade  <br/>
-  * Testes de integração  <br/>
-  * Teste do sistema  <br/>
-  * Manutenção corretiva  <br/>
- </p>
-
-
-<p> <p>
-  Se você trabalhou principalmente em projetos informais,
-  você não poderia ter feito distinções entre as muitas atividades que são para
-  criação de um produto de software. Mentalmente, você pode ter todas estas atividades agrupadas
- em conjunto, como &#8220;programação&#8221;. Se você trabalhar em projetos informais, as principais
-  atividades que você pensa quando você pensa sobre a criação de software é, provavelmente,
-  a atividade, os pesquisadores se referem como &#8220;construção&#8221;.
- </p>
- <p>
-  Esta noção intuitiva de &#8220;construção&#8221; é bastante precisa, mas sofre
-  de uma falta de perspectiva. Colocando construção no seu contexto com outras
-  atividades ajuda a manter o foco nas tarefas certas durante a construção
-  e o apropriadamente enfatiza importantes atividades que não serão construidas.</p>
-  <br/>
-  Em breve mais do livro abaixo.</p>
-
-<p>  Fonte: Livro: Code Complete: A practical handbook of software construction (Autor: Steve McConnell)</p>
 ]]></content>
   </entry>
   

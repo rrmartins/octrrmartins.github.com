@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rodrigo Martins</title>
+  <title>Ranges - Ruby 1.9.2 - Part I  - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -88,15 +88,13 @@
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/">Ranges - Ruby 1.9.2 - Part I</a></h1>
+      <h1 class="entry-title">Ranges - Ruby 1.9.2 - Part I</h1>
     
     
       <p class="meta">
@@ -119,7 +117,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -194,87 +192,16 @@ invocar diretamente em uma ampla literal, você deve colocar parênteses o liter
 
 <p>Até a proxima!!!</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/">O Mundo Hash No Ruby 1.9.2 - Parte III - Hashs Codes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
 
-<time datetime="2012-05-10T13:01:00-03:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.</p>
-
-
-
-
-<h3>Códigos de Hash, Igualdade e mutáveis ​​Chaves</h3>
-
-
-<p>Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
-estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna <a href="http://www.ruby-doc.org/core-1.9.2/Fixnum.html">Fixnum</a> hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
-hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash&#8217;s de tabelas são mais eficientes quando hashcodes duplicados são raros.</p>
-
-<p>A classe Hash compara chaves igualdade com o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F">eql?</a>. Para
-outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que
-substitui o método eql?, você deve também substituir o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-hash">hash</a>, ou se não as instâncias de sua classe não vam funcionar como chaves em um hash.</p>
-
-<p>Se você definir uma classe e não sobreescrever o método eql?, em seguida, as instâncias dessa classe são
-comparadas com a identidade do objeto quando usado como chave de hash. Duas instâncias distintas de sua classe são distintas chaves de hash mesmo que eles representam o mesmo conteúdo. Neste caso, o método padrão hash é apropriado: retorna a única object_id do objeto.</p>
-
-<p>Note-se que objetos mutáveis ​​são problemáticos como chaves de hash. Mudar o conteúdo de um objeto geralmente muda seu hashcode. Se você usar um objeto como uma chave e então alterar esse objeto, a tabela de hash ficará corrompida, e o hash não funciona corretamente.</p>
-
-<p>Porque strings são mutáveis, mas comumente usamos chaves de hash, Ruby trata eles como um caso especial e faz cópias privadas de todas as cadeias utilizadas como chaves. Este é o único caso especial, no entanto, você deve ser muito cuidado ao usar qualquer outro objeto mutável como uma chave hash. Considera fazendo uma cópia privada ou chamando o método <a href="http://ruby-doc.org/core-1.9.2/Object.html#method-i-freeze">freeze</a>.
-Se você deve usar chaves de hash mutável, chame o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-rehash">rehash</a> do Hash cada vez que você alterar uma chave.</p>
-
-<p>-> <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hash</a></p>
-
-<p>Até a proxima!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/">O Mundo Hash No Ruby 1.9.2 - Parte II - Hashs Literais</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -286,162 +213,44 @@ Se você deve usar chaves de hash mutável, chame o método <a href="http://www.
   
 
 
-<time datetime="2012-05-08T22:28:00-03:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Na primeira parte eu fiz uma introdução do Hash:
--> <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
-
-<p>Vamos lá!</p>
-
-<p>Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
-pares, colocados dentro de chaves. Chaves e valores são separados
-com um caractere de dois &#8220;arrow&#8221;: &#8216;=>&#8217;. O objeto Hash criado anteriormente também pode ser
-criado com o literal seguinte:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true">May 13<span>th</span>, 2012</time>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash No Ruby 1.9.2 - Parte I</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/range/'>Range</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
 
 
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
-como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
-valores. Eles às vezes são chamados de matrizes associativas, porque eles
-associam valores com cada uma das chaves, e pode ser pensado como matrizes
-em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
-exemplo torna isso mais claro:</p>
-
-<figure class='code'><figcaption><span>Hash</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Este hash irá mapear os nomes dos dígitos para os dígitos se</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="c1"># Criar um novo objeto, vazio de hash</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Mapa do String &quot;um&quot; para o Fixnum 1</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Note que estamos usando a notação de matriz aqui</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;três&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">+</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="c1"># soma os valores e resulta em &quot;3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Esta introdução à sintaxe hashes de hash documentos Ruby literal
-e explica os requisitos para um objeto a ser usado como uma chave hash.
-Mais informações sobre a API definida pela classe Hash é fornecido em <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hashes</a>.</p>
-
-<p>Em breve, mais conteudo de Hash!</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    
+    <ul class="pager">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/07/um-pouco-de-array-no-ruby/">Um Pouco De Array No Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/" title="Previous Post:
+        O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes">&laquo; O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-07T13:02:00-03:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Um Array é uma seqüência de valores que permite que os valores serem acessados ​​por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
-elemento do Array é no índice de size-1. Valores de índice negativo contar a partir do
-final do Array, de modo que o último elemento de uma Array também pode ser acessado
-com um índice de -1. O segundo ao último tem um índice de -2,
-e assim por diante. Se você tentar ler um elemento além do final de uma Array
-(Com um index >= size), ou antes
-o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e não lançará uma exceção.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/07/um-pouco-de-array-no-ruby/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <ul class="pager">
-    
-    <li class="previous"><a href="/blog/page/2/">&larr; Older</a></li>
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
-</div>
 <aside class="sidebar-nav span3">
   
     <section>
@@ -451,7 +260,7 @@ o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e 
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -464,11 +273,37 @@ o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e 
   
 </section>
 
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/">Ranges - Ruby 1.9.2 - Part I </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/">O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/">O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/07/um-pouco-de-array-no-ruby/">Um pouco de Array no Ruby</a>
+      </li>
+    
+  </ul>
+</section>
 
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
@@ -497,6 +332,7 @@ o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e 
 
   
 </aside>
+
 
     </div>
   </div>
