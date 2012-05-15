@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ShellScript | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/shellscript/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-15T13:23:16-03:00</updated>
+  <updated>2012-05-15T13:31:41-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -23,7 +23,7 @@
 </h2>
 
 
-<p>{% img center /images/flisol.png FLISOL %}<br/></p>
+<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
 
 <p> Olá amigos...</p>
 

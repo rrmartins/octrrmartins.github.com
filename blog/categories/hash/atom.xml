@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hash | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/hash/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-15T13:23:16-03:00</updated>
+  <updated>2012-05-15T13:31:41-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -60,7 +60,7 @@ Se você deve usar chaves de hash mutável, chame o método <a href="http://www.
 
 
 <p>Na primeira parte eu fiz uma introdução do Hash:
--> <a href="{{root_url}}/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
+-> <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
 
 <p>Vamos lá!</p>
 
