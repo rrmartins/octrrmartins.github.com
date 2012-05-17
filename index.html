@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Range, é hora de nos aprofundar. &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,65 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/">Symbols - Ruby 1.9.2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
+        
+         | <a href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/#disqus_thread">Commentário</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Symbol</h2>
+
+
+<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
+que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
+Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
+posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -390,75 +449,6 @@ criado com o literal seguinte:</p>
     <footer>
       <a rel="full-article" href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash No Ruby 1.9.2 - Parte I</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">08/05/12 às 21:27 hrs</time>
-        
-         | <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/#disqus_thread">Commentário</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
-como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
-valores. Eles às vezes são chamados de matrizes associativas, porque eles
-associam valores com cada uma das chaves, e pode ser pensado como matrizes
-em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
-exemplo torna isso mais claro:</p>
-
-<figure class='code'><figcaption><span>Hash</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Este hash irá mapear os nomes dos dígitos para os dígitos se</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="c1"># Criar um novo objeto, vazio de hash</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Mapa do String &quot;um&quot; para o Fixnum 1</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Note que estamos usando a notação de matriz aqui</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;três&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">+</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="c1"># soma os valores e resulta em &quot;3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Esta introdução à sintaxe hashes de hash documentos Ruby literal
-e explica os requisitos para um objeto a ser usado como uma chave hash.
-Mais informações sobre a API definida pela classe Hash é fornecido em <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hashes</a>.</p>
-
-<p>Em breve, mais conteudo de Hash!</p>
-</div>
-  
   
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-15T22:39:13-03:00</updated>
+  <updated>2012-05-16T22:38:05-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Symbols - Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
+    <updated>2012-05-16T21:37:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Symbol</h2>
+
+
+<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
+que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
+Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
+posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
+
+<!--more-->
+
+
+<p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
+programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
+dois pontos:</p>
+
+<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">:symbol</span> <span class="c1"># Symbol Um literal</span>
+</span><span class='line'><span class="ss">:&quot;symbol&quot;</span> <span class="c1"># O mesmo literal</span>
+</span><span class='line'><span class="ss">:&#39;another long symbol&#39;</span> <span class="s2">&quot;# são úteis para símbolos com espaços</span>
+</span><span class='line'><span class="s2">s = &quot;</span><span class="n">string</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">sym = :&quot;</span><span class="c1">#{s}&quot; # O Symbol :string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Símbolos têm também uma sintaxe literal %s que permite delimitadores arbitrários da mesma maneira
+que %q e %Q pode ser usado para strings:</p>
+
+<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sx">%s[&quot;]</span> <span class="c1"># O mesmo que: &#39;&quot;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Os símbolos são usados ​​frequentemente para se referir a nomes de métodos no reflexivo
+código. Por exemplo, suponha que queremos para saber se algum objeto tem um método each:</p>
+
+<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="ss">:each</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aqui está outro exemplo. Ele testa se um determinado objeto responde a um método especificado, e, em caso afirmativo, invoca o método:</p>
+
+<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nome</span> <span class="o">=</span> <span class="ss">:size</span>
+</span><span class='line'><span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">nome</span>
+</span><span class='line'>  <span class="n">o</span><span class="o">.</span><span class="n">send</span> <span class="p">(</span><span class="n">nome</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você pode converter uma String para um Symbol utilizando os métodos intern ou to_sym. E você pode converter um Symbol de volta para uma String com o método to_s ou sue alias id2name:</p>
+
+<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span> <span class="c1"># Comece com uma string</span>
+</span><span class='line'><span class="n">sym</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">intern</span>  <span class="c1"># Converter para um símbolo</span>
+</span><span class='line'><span class="n">sym</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">to_sym</span> <span class="c1"># Outra maneira de fazer a mesma coisa</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">to_s</span> <span class="c1"># converter de volta para uma string</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">id2name</span> <span class="c1"># Outra maneira de fazê-lo</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Duas seqüências podem ter o mesmo conteúdo e ainda ser completamente de objetos distintos. Este nunca é o caso com símbolos.
+Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo objeto symbol. Dois objetos distintos Symbols terá sempre conteúdo diferente.</p>
+
+<p>Sempre que você escrever código que usa string não para o seu conteúdo textual,
+mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
+Ao invés de escrever um método que espera um argumento para ser ou a string de &#8220;AM&#8221; ou &#8220;PM&#8221;, por exemplo, você poderia escrevê-lo para
+esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
+de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.</p>
+
+<p>No Ruby 1.9, a classe símbolo define um número de métodos String, como length, o size, os operadores de comparação, e mesmo os operadores
+[] e =~. Isto faz com que os símbolos sejam um pouco permutável com string e permite a sua utilização como uma espécie de imutável
+(E não garbage-collected) string.</p>
+
+<p>É isso ai amigos até a proxima.. :D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Testando Associações em Range - Part II]]></title>
@@ -1993,66 +2097,6 @@ como um bom programador você é, e esse é o assunto do resto do livro.
 <p>Texto retirado do livro Code Compile, de Steve McConnell.</p>
 
 <p>&#8220;Conhecimento nunca é de mais!&#8221; (<a href="http://twitter.com/sfalsin">@sfalsin</a>)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Por que Construção de Software é Importante?]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/02/29/por-que-construcao-de-software-e-importante/"/>
-    <updated>2012-02-29T23:46:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/02/29/por-que-construcao-de-software-e-importante</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd&#8217;s&#8230; Continuando os estudos&#8230;</p>
-
-
-<p>Agora vou falar um outro capitulo&#8230; Que é sobre:<br/>
-<strong> Por que Construção de Software é Importante? </strong></p>
-
-<!-- more -->
-
-
-<p>
-Uma vez que você está lendo este livro, provavelmente você concorda que a melhoria
-  qualidade do software e a produtividade do desenvolvedor é importante. Muitos dos mais de hoje
-  projetos interessantes usar software intensamente. A Internet,
-  efeitos especiais de cinema, médicos de suporte de vida de sistemas, programas espaciais, aeronáutica,
-  alta velocidade de análise financeira e pesquisa científica são alguns exemplos ao poucos.
-  Esses projetos e mais projetos convetional podem se beneficiar
-  melhores práticas, porque muitos dos fundamentos são os mesmos.
-</p>
-
-
-<p></p>
-
-<p>
-  Se você concorda que a melhoria de desenvolvimento de software é importante, em geral,
-  a pergunta para você como leitor deste livro torna-se,
-  Por que é a construção de um foco importante?
- </p>
-
-
-<p> <p>
-  Eis o porquê:
-  Construção é uma grande parte do desenvolvimento mercadoria software.
-  Dependendo do tamanho do projecto, a construção tipicamente
-  leva 30 a 80 por cento do tempo total gasto em um projeto.
-  Qualquer coisa que leva até que o tempo de projeto muito é obrigado a
-  afetar o sucesso do projeto.
- </p>
- <p>
-  A construção é a atividade central no desenvolvimento de software.
-  Requisitos e arquitetura são feitas antes da construção
-  de modo que você pode construção de forma eficaz. O teste do sistema (no estrito
-  sensação de testes independentes) é feito após a construção para verificar
-  que a construção verificar que a construção foi feito correctamente.
-  Construção está no centro do processo de desenvolvimento de software.
-</p></p>
-
-<p>Vale a pena estudar&#8230; :D</p>
-
-<br/>
-
-
-<p>Até a proxima amigos&#8230; :D</p>
 ]]></content>
   </entry>
   

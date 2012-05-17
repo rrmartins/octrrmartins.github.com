@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-15T22:39:13-03:00</updated>
+  <updated>2012-05-16T22:38:05-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Symbols - Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
+    <updated>2012-05-16T21:37:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Symbol</h2>
+
+
+<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
+que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
+Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
+posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
+
+<!--more-->
+
+
+<p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
+programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
+dois pontos:</p>
+
+<p><code>ruby Symbol
+:symbol # Symbol Um literal
+:"symbol" # O mesmo literal
+:'another long symbol' "# são úteis para símbolos com espaços
+s = "string"
+sym = :"#{s}" # O Symbol :string
+</code></p>
+
+<p>Símbolos têm também uma sintaxe literal %s que permite delimitadores arbitrários da mesma maneira
+que %q e %Q pode ser usado para strings:</p>
+
+<p><code>ruby Symbol
+%s["] # O mesmo que: '"'
+</code></p>
+
+<p>Os símbolos são usados ​​frequentemente para se referir a nomes de métodos no reflexivo
+código. Por exemplo, suponha que queremos para saber se algum objeto tem um método each:</p>
+
+<p><code>ruby Symbol
+o.respond_to? :each
+</code></p>
+
+<p>Aqui está outro exemplo. Ele testa se um determinado objeto responde a um método especificado, e, em caso afirmativo, invoca o método:</p>
+
+<p><code>ruby Symbol
+nome = :size
+if o.respond_to? nome
+  o.send (nome)
+end
+</code></p>
+
+<p>Você pode converter uma String para um Symbol utilizando os métodos intern ou to_sym. E você pode converter um Symbol de volta para uma String com o método to_s ou sue alias id2name:</p>
+
+<p><code>ruby Symbol
+str = "string" # Comece com uma string
+sym = str.intern  # Converter para um símbolo
+sym = str.to_sym # Outra maneira de fazer a mesma coisa
+str = sym.to_s # converter de volta para uma string
+str = sym.id2name # Outra maneira de fazê-lo
+</code></p>
+
+<p>Duas seqüências podem ter o mesmo conteúdo e ainda ser completamente de objetos distintos. Este nunca é o caso com símbolos.
+Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo objeto symbol. Dois objetos distintos Symbols terá sempre conteúdo diferente.</p>
+
+<p>Sempre que você escrever código que usa string não para o seu conteúdo textual,
+mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
+Ao invés de escrever um método que espera um argumento para ser ou a string de "AM" ou "PM", por exemplo, você poderia escrevê-lo para
+esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
+de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.</p>
+
+<p>No Ruby 1.9, a classe símbolo define um número de métodos String, como length, o size, os operadores de comparação, e mesmo os operadores
+[] e =~. Isto faz com que os símbolos sejam um pouco permutável com string e permite a sua utilização como uma espécie de imutável
+(E não garbage-collected) string.</p>
+
+<p>É isso ai amigos até a proxima.. :D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Testando Associações em Range - Part II]]></title>
@@ -282,41 +370,6 @@ números = {um: 1, dois: 2, tres: 3}
 identificador e dos dois pontos.</p>
 
 <p>Até breve!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte I]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/"/>
-    <updated>2012-05-08T21:27:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
-como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
-valores. Eles às vezes são chamados de matrizes associativas, porque eles
-associam valores com cada uma das chaves, e pode ser pensado como matrizes
-em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
-exemplo torna isso mais claro:</p>
-
-<p>```ruby Hash</p>
-
-<h1>Este hash irá mapear os nomes dos dígitos para os dígitos se</h1>
-
-<p>números = Hash.new # Criar um novo objeto, vazio de hash
-números["um"] = 1 # Mapa do String "um" para o Fixnum 1
-números["dois"] = 2 # Note que estamos usando a notação de matriz aqui
-números["três"] = 3</p>
-
-<p>soma = números["um"] + números["dois"] # soma os valores e resulta em "3"
-```</p>
-
-<p>Esta introdução à sintaxe hashes de hash documentos Ruby literal
-e explica os requisitos para um objeto a ser usado como uma chave hash.
-Mais informações sobre a API definida pela classe Hash é fornecido em <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hashes</a>.</p>
-
-<p>Em breve, mais conteudo de Hash!</p>
 ]]></content>
   </entry>
   

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>O Mundo Hash no Ruby 1.9.2 - Parte I - Rodrigo Martins</title>
+  <title>Category: Symbol - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Um hash é uma estrutura de dados que mantém um conjunto de objetos &hellip;">
+  <meta name="description" content="Category: Symbol">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2">
+  <link rel="canonical" href="http://rrmartins.github.comblog/categories/symbol">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -99,136 +99,40 @@
   <div class="container">
     <div class="row-fluid">
       
-<article class="hentry span9" role="article">
+<article role="article" class="span9">
 
   
   <header class="page-header">
-    
-      <h1 class="entry-title">O Mundo Hash No Ruby 1.9.2 - Parte I</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">08/05/12 às 21:27 hrs</time>
-        
-         | <a href="#disqus_thread">Commentário</a>
-        
-      </p>
+    <h1 class="entry-title">Category: Symbol</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
+  
+  <h1>2012</h1>
 
-<p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
-como chaves, e associa um valor com cada chave. Hashs são também conhecidos como mapas porque mapeam as chaves para
-valores. Eles às vezes são chamados de matrizes associativas, porque eles
-associam valores com cada uma das chaves, e pode ser pensado como matrizes
-em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
-exemplo torna isso mais claro:</p>
+<article>
+  <div class="well">
+	
+	<h2><a href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/">Symbols - Ruby 1.9.2</a></h2>
+	<time datetime="2012-05-16T21:37:00-03:00" pubdate>
+		<span class='month'>May</span> <span class='day'>16</span> <span class='year'>2012</span>
+	</time>
 
-<figure class='code'><figcaption><span>Hash</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Este hash irá mapear os nomes dos dígitos para os dígitos se</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="c1"># Criar um novo objeto, vazio de hash</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Mapa do String &quot;um&quot; para o Fixnum 1</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Note que estamos usando a notação de matriz aqui</span>
-</span><span class='line'><span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;três&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;um&quot;</span><span class="o">]</span> <span class="o">+</span> <span class="n">n</span><span class="err">ú</span><span class="n">meros</span><span class="o">[</span><span class="s2">&quot;dois&quot;</span><span class="o">]</span> <span class="c1"># soma os valores e resulta em &quot;3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<footer>
+  <span class="categories">Publicado em <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a></span>
+</footer>
 
-
-<p>Esta introdução à sintaxe hashes de hash documentos Ruby literal
-e explica os requisitos para um objeto a ser usado como uma chave hash.
-Mais informações sobre a API definida pela classe Hash é fornecido em <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hashes</a>.</p>
-
-<p>Em breve, mais conteudo de Hash!</p>
 </div>
 
+</article>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">08/05/12 às 21:27 hrs</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
 </div>
 
-    
-    
-    <section>
-      <h1>Comments</h1>
-      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </section>
-    
-    <ul class="pager">
-      
-      <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/05/07/um-pouco-de-array-no-ruby/" title="Previous Post:
-        Um pouco de Array no Ruby">&laquo; Um pouco de Array no Ruby</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/"
-        title="Next Post: O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais">O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais
-        &raquo;</a></li>
-      
-    </ul>
-  </footer>
+  
 </article>
 
 <aside class="sidebar-nav span3">
@@ -329,10 +233,7 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
       var disqus_shortname = 'rrmartins';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
-        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
