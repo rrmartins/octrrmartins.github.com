@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-18T13:23:58-03:00</updated>
+  <updated>2012-05-19T12:42:15-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,121 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part I]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/"/>
+    <updated>2012-05-19T10:23:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+<p>Ruby é uma forma muito pura de linguagem orientada a objetos: todos os valores são
+objetos, e não há distinção entre tipos primitivos e tipos de objetos, como existem em muitos
+outras línguas. Em Ruby, todos os objetos herdam de uma classe chamada
+<a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> e compartilhar os métodos definidos
+por essa classe. Esta seção explica as características comuns de todos os objetos
+em Ruby. Teremos algumas partes para falar desta classe tão poderosa, mas é muito importante para o entendimento de OO em Ruby.</p>
+
+<!--more-->
+
+
+<h3>Referências de objeto</h3>
+
+
+<p>Quando trabalhamos com objetos em Ruby, realmente estamos trabalhando com referências a objetos. Não é o
+próprio objeto que manipula, mas uma referência a ele<a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/#referencia">[*]</a>.
+Quando atribuir um valor a uma variável, não estamos copiando um objeto "em" variável que, nós
+São apenas armazenar uma referência a um objeto para essa variável. Alguns
+código deixa isso claro:</p>
+
+<p><code>ruby Objects
+s = "Ruby" # Criar um objeto String. Armazenar uma referência a ele em s.
+t = s # Copiar a referência a t. s e t referem-se ambos para o mesmo objeto.
+t[-1] = "" # Modificar o objeto através da referência t.
+print s # Acesse o objeto modificado através de s. Prints "Esfregue".
+t = "Java" # t agora se refere a um objeto diferente.
+print s, t # Imprime "RubJava".
+</code></p>
+
+<p>Quando você passar um objeto para um método em Ruby, é um objeto
+referência que é passado para o método. Não é o objeto em si,
+e não é uma referência para a referência ao objecto. Outra forma
+dizer isso é que os argumentos do método são passados ​​por
+valor e não por referência, mas
+que os valores passados ​​são referências de objeto.</p>
+
+<p>Porque as referências de objeto são passados ​​para os métodos, os métodos podem usar
+essas referências para modificar o objeto subjacente. Essas modificações
+são, então, visível quando o método retorna.</p>
+
+<h3>Valores imediatos</h3>
+
+
+<p>Nós dissemos que todos os valores em Ruby são objetos e todos os objetos
+são manipulados por referência. Na implementação de referência, no entanto objetos Fixnum e Symbol são realmente "valores imediatos",
+em vez de referências. Nenhuma destas duas classes tem métodos diferenciados, de modo que os
+Objetos Fixnum e símbolo são imutáveis, o que significa que não há realmente nenhuma maneira de dizer que eles são manipulados por
+valor, e não pela existência de valores de referencia.</p>
+
+<p>A existência de valores imediatos deve ser considerado um detalhe de implementação. A única diferença prática entre
+valores imediatos e valores de referência é que os valores imediatos
+não pode ter métodos singleton definidas sobre eles.</p>
+
+<h3>Vida útil de objeto</h3>
+
+
+<p>As classes internas em Ruby descritas neste capítulo têm sintaxes literal e instâncias dessas classes são criadas simplesmente por
+inclusão de valores literalmente em seu código. Objetos de outras classes precisam ser explicitamente criados,
+e isso é feito na maioria das vezes com um método chamado de new:</p>
+
+<p><code>ruby Class.new
+myObject = MyClass.New
+</code></p>
+
+<p>new é um método do Classe Class. Atribui na memória para manter o objeto new, então ele inicializa o estado do
+recém alocados objetos "vazio", invocando seu método initialize. Os argumentos para new são passadas diretamente para inicializar.
+A maioria das classes definem um método initialize para executar qualquer inicialização, sendo necessário para instâncias.</p>
+
+<p>Os métodos new e initialize fornecer o padrão técnico para a criação de novas classes, mas classes também podem definir outros
+métodos, conhecidos como "métodos de fábrica", que retornam instâncias.</p>
+
+<p>Objetos Ruby não precisa ser desalocada explicitamente, como o fazem as linguagens C, C++, entre outras. Ruby usa uma técnica chamada
+<a href="http://www.rubyinside.com.br/como-o-ruby-gerencia-memoria-e-faz-garbage-collection-3018">garbage collection</a> (coleta de lixo) automaticamente, para destruir objetos que não são mais necessários. Um objeto se torna um candidato para o garbage collection quando é
+inacessível, quando não há referências restantes para o objeto com exceção de outros objetos inacessíveis.</p>
+
+<p>O fato de que Ruby usa garbage collection, isso significa que programas em Ruby são menos suscetíveis a vazamentos de memória
+que os programas escritos em linguagems que requerem objetos e memória para ser desalocada explicitamente e liberado.
+Mas o garbage collection não significa que vazamentos de memória são impossíveis:
+qualquer código que cria vida longa tem referências a objetos que de outro modo seria de curta duração pode ser uma fonte de
+falhas de memória. Considere um hash usado como um cache. Se o cache não é podado usando algum tipo de algoritmo
+menos utilizado recentemente, os objetos em cache permanecem acessíveis enquanto o hash em si é alcançável. Se o hash
+é referenciado por uma variável global, então será acessível como desde que o interpretador Ruby está sendo executado.</p>
+
+<p><a href="referencia"></a></p>
+
+<pre><code>[*] -&gt; Se você está familiarizado com C ou C++, você pode pensar de uma
+referência como um ponteiro: o endereço do objeto na memória. Ruby
+não utiliza ponteiros, no entanto. Referências em Ruby são opacas e
+internas para a implementação. Não há maneira de tirar o
+tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmético.
+</code></pre>
+
+<p>Um pouco de conceito de Objetos, logo teremos mais na pratica...</p>
+
+<p>Até a proxima</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[True, False e Nil]]></title>
@@ -308,44 +423,6 @@ invocar diretamente em uma ampla literal, você deve colocar parênteses o liter
 </code></p>
 
 <p>Até a proxima!!!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/"/>
-    <updated>2012-05-10T13:01:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.</p>
-
-
-
-
-<h3>Códigos de Hash, Igualdade e mutáveis ​​Chaves</h3>
-
-
-<p>Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
-estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna <a href="http://www.ruby-doc.org/core-1.9.2/Fixnum.html">Fixnum</a> hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
-hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash's de tabelas são mais eficientes quando hashcodes duplicados são raros.</p>
-
-<p>A classe Hash compara chaves igualdade com o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F">eql?</a>. Para
-outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que
-substitui o método eql?, você deve também substituir o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-hash">hash</a>, ou se não as instâncias de sua classe não vam funcionar como chaves em um hash.</p>
-
-<p>Se você definir uma classe e não sobreescrever o método eql?, em seguida, as instâncias dessa classe são
-comparadas com a identidade do objeto quando usado como chave de hash. Duas instâncias distintas de sua classe são distintas chaves de hash mesmo que eles representam o mesmo conteúdo. Neste caso, o método padrão hash é apropriado: retorna a única object_id do objeto.</p>
-
-<p>Note-se que objetos mutáveis ​​são problemáticos como chaves de hash. Mudar o conteúdo de um objeto geralmente muda seu hashcode. Se você usar um objeto como uma chave e então alterar esse objeto, a tabela de hash ficará corrompida, e o hash não funciona corretamente.</p>
-
-<p>Porque strings são mutáveis, mas comumente usamos chaves de hash, Ruby trata eles como um caso especial e faz cópias privadas de todas as cadeias utilizadas como chaves. Este é o único caso especial, no entanto, você deve ser muito cuidado ao usar qualquer outro objeto mutável como uma chave hash. Considera fazendo uma cópia privada ou chamando o método <a href="http://ruby-doc.org/core-1.9.2/Object.html#method-i-freeze">freeze</a>.
-Se você deve usar chaves de hash mutável, chame o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-rehash">rehash</a> do Hash cada vez que você alterar uma chave.</p>
-
-<p>-> <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hash</a></p>
-
-<p>Até a proxima!</p>
 ]]></content>
   </entry>
   

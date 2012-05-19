@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-18T13:23:58-03:00</updated>
+  <updated>2012-05-19T12:42:15-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,128 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part I]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/"/>
+    <updated>2012-05-19T10:23:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+<p>Ruby é uma forma muito pura de linguagem orientada a objetos: todos os valores são
+objetos, e não há distinção entre tipos primitivos e tipos de objetos, como existem em muitos
+outras línguas. Em Ruby, todos os objetos herdam de uma classe chamada
+<a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> e compartilhar os métodos definidos
+por essa classe. Esta seção explica as características comuns de todos os objetos
+em Ruby. Teremos algumas partes para falar desta classe tão poderosa, mas é muito importante para o entendimento de OO em Ruby.</p>
+
+<!--more-->
+
+
+<h3>Referências de objeto</h3>
+
+
+<p>Quando trabalhamos com objetos em Ruby, realmente estamos trabalhando com referências a objetos. Não é o
+próprio objeto que manipula, mas uma referência a ele<a href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/#referencia">[*]</a>.
+Quando atribuir um valor a uma variável, não estamos copiando um objeto &#8220;em&#8221; variável que, nós
+São apenas armazenar uma referência a um objeto para essa variável. Alguns
+código deixa isso claro:</p>
+
+<figure class='code'><figcaption><span>Objects</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># Criar um objeto String. Armazenar uma referência a ele em s.</span>
+</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="n">s</span> <span class="c1"># Copiar a referência a t. s e t referem-se ambos para o mesmo objeto.</span>
+</span><span class='line'><span class="n">t</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># Modificar o objeto através da referência t.</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">s</span> <span class="c1"># Acesse o objeto modificado através de s. Prints &quot;Esfregue&quot;.</span>
+</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;Java&quot;</span> <span class="c1"># t agora se refere a um objeto diferente.</span>
+</span><span class='line'><span class="nb">print</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="c1"># Imprime &quot;RubJava&quot;.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Quando você passar um objeto para um método em Ruby, é um objeto
+referência que é passado para o método. Não é o objeto em si,
+e não é uma referência para a referência ao objecto. Outra forma
+dizer isso é que os argumentos do método são passados ​​por
+valor e não por referência, mas
+que os valores passados ​​são referências de objeto.</p>
+
+<p>Porque as referências de objeto são passados ​​para os métodos, os métodos podem usar
+essas referências para modificar o objeto subjacente. Essas modificações
+são, então, visível quando o método retorna.</p>
+
+<h3>Valores imediatos</h3>
+
+
+<p>Nós dissemos que todos os valores em Ruby são objetos e todos os objetos
+são manipulados por referência. Na implementação de referência, no entanto objetos Fixnum e Symbol são realmente &#8220;valores imediatos&#8221;,
+em vez de referências. Nenhuma destas duas classes tem métodos diferenciados, de modo que os
+Objetos Fixnum e símbolo são imutáveis, o que significa que não há realmente nenhuma maneira de dizer que eles são manipulados por
+valor, e não pela existência de valores de referencia.</p>
+
+<p>A existência de valores imediatos deve ser considerado um detalhe de implementação. A única diferença prática entre
+valores imediatos e valores de referência é que os valores imediatos
+não pode ter métodos singleton definidas sobre eles.</p>
+
+<h3>Vida útil de objeto</h3>
+
+
+<p>As classes internas em Ruby descritas neste capítulo têm sintaxes literal e instâncias dessas classes são criadas simplesmente por
+inclusão de valores literalmente em seu código. Objetos de outras classes precisam ser explicitamente criados,
+e isso é feito na maioria das vezes com um método chamado de new:</p>
+
+<figure class='code'><figcaption><span>Class.new</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">myObject</span> <span class="o">=</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">New</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>new é um método do Classe Class. Atribui na memória para manter o objeto new, então ele inicializa o estado do
+recém alocados objetos &#8220;vazio&#8221;, invocando seu método initialize. Os argumentos para new são passadas diretamente para inicializar.
+A maioria das classes definem um método initialize para executar qualquer inicialização, sendo necessário para instâncias.</p>
+
+<p>Os métodos new e initialize fornecer o padrão técnico para a criação de novas classes, mas classes também podem definir outros
+métodos, conhecidos como &#8220;métodos de fábrica&#8221;, que retornam instâncias.</p>
+
+<p>Objetos Ruby não precisa ser desalocada explicitamente, como o fazem as linguagens C, C++, entre outras. Ruby usa uma técnica chamada
+<a href="http://www.rubyinside.com.br/como-o-ruby-gerencia-memoria-e-faz-garbage-collection-3018">garbage collection</a> (coleta de lixo) automaticamente, para destruir objetos que não são mais necessários. Um objeto se torna um candidato para o garbage collection quando é
+inacessível, quando não há referências restantes para o objeto com exceção de outros objetos inacessíveis.</p>
+
+<p>O fato de que Ruby usa garbage collection, isso significa que programas em Ruby são menos suscetíveis a vazamentos de memória
+que os programas escritos em linguagems que requerem objetos e memória para ser desalocada explicitamente e liberado.
+Mas o garbage collection não significa que vazamentos de memória são impossíveis:
+qualquer código que cria vida longa tem referências a objetos que de outro modo seria de curta duração pode ser uma fonte de
+falhas de memória. Considere um hash usado como um cache. Se o cache não é podado usando algum tipo de algoritmo
+menos utilizado recentemente, os objetos em cache permanecem acessíveis enquanto o hash em si é alcançável. Se o hash
+é referenciado por uma variável global, então será acessível como desde que o interpretador Ruby está sendo executado.</p>
+
+<p><a href="referencia"></a></p>
+
+<pre><code>[*] -&gt; Se você está familiarizado com C ou C++, você pode pensar de uma
+referência como um ponteiro: o endereço do objeto na memória. Ruby
+não utiliza ponteiros, no entanto. Referências em Ruby são opacas e
+internas para a implementação. Não há maneira de tirar o
+tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmético.
+</code></pre>
+
+<p>Um pouco de conceito de Objetos, logo teremos mais na pratica&#8230;</p>
+
+<p>Até a proxima</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[True, False e Nil]]></title>
@@ -2030,66 +2152,6 @@ para melhorar a sua compreensão do processo de desenvolvimento de software.</p>
 <p>O resto do livro não dependem diretamente da discussão de metáforas
 neste capítulo. Ignorá-lo se você quiser chegar às sugestões práticas.
 Leia-o se você quer pensar sobre desenvolvimento de software de forma mais clara.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Por que Construção de Software é Importante? - Parte 2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/"/>
-    <updated>2012-03-03T19:55:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/03/por-que-construcao-de-software-e-importante-parte-2</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd&#8217;s&#8230; Continuando os estudos&#8230;</p>
-
-
-<p><strong> Por que Construção de Software é Importante? - Parte 2</strong></p>
-
-<!-- more -->
-
-
-<p>
-Com foco na construção, a produtividade do programador indivídual pode
-  melhorar enormemente. Um estudo clássico de Sackman, Erikson e Grant mostrou
-  que a produtividade dos programadores individuais variaram por um fator de 10 a 20
-  durante a construção (1968). Desde o seu estudo, seus resultados têm
-  se confirmado por numerosos outros estudos (&#8230;). Este livro, ajuda a todos os programadores
-  aprender tecnicas que já são utilizados pelos melhores programadores.
-</p>
-
-
-<p>
-  Produto de construção, o código-fonte, é muitas vezes a única
-  descrição precisa do software. Em muitos projetos, a documentação só
-  disponível para os programadores é o próprio código. Requisitos e especificações
-  documentos de projeto pode ir fora da data, mas o código fonte é sempre atualizado.
-  Consequentemente, é imperativo que o código fonte de ser o mais alto possível
-  qualidade. A aplicação consistente de técnicas para melhoria do código-fonte
-  faz a diferença entre um aparelho de Rube Goldberg e uma análise detalhada,
-  corrigir, e um programa informativo portanto. Tais técnicas são mais
-  efectivamente aplicado durante a construção.
- </p>
-
-
-<p> <p>
-  A construção é a única atividade que está garantido para ser feito.
-  O projeto de software ideal passa por desenvolvimento de requisitos cuidadoso e
-  projeto arquitetônico antes do início da construção. O projeto ideal
-  sofre abrangente, o teste do sistema estatisticamente controlada após
-  construção.
- </p>
- <p>
-  Imperfeitos, projetos do mundo real, no entanto, muitas vezes ignorar exigências
-  e design para pular para a construção. Eles deixam de testes, porque eles têm
-  muitos erros para corrigir e eles ficar sem tempo.
-  Mas não importa o quão apressado ou mal planejado um projeto é que você não pode
-  cair de construção, é onde a borracha encontra a estrada.
- </p>
- <p>
-  Melhorar a construção é, assim, uma forma de melhorar a qualquer desenvolvimento de software
-  esforço, não importa o quão abreviado.
-  </p></p>
-
-<p>Texto retirado do livro Code Compile, de Steve McConnell.
-Até a proxima amigos&#8230; :D</p>
 ]]></content>
   </entry>
   
