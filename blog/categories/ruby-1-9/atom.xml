@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 1.9 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-1-9/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-20T13:37:02-03:00</updated>
+  <updated>2012-05-20T13:39:00-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -30,6 +30,8 @@
 
 <h3>Ordem de Object</h3>
 
+
+<p></p>
 
 <p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
 classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
