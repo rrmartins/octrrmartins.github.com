@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Como usar metáforas de software? - Rodrigo Martins</title>
+  <title>Classe Objects em Ruby 1.9.2 - Part IV - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Olá amigos, após ler um pouco sobre Metaforas de Construção de Software&#8230; Vamos descrever agora como usar Metaforas.. Metaforas de &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Ordem de Object Praticamente todas as classes podem definir o método ==, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -104,7 +104,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">Como Usar Metáforas De Software?</h1>
+      <h1 class="entry-title">Classe Objects Em Ruby 1.9.2 - Part IV</h1>
     
     
       <p class="meta">
@@ -120,7 +120,7 @@
   
 
 
-<time datetime="2012-03-24T10:23:00-03:00" pubdate data-updated="true">24/03/12 às 10:23 hrs</time>
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
         
          | <a href="#disqus_thread">Commentário</a>
         
@@ -129,83 +129,89 @@
   </header>
 
 
-<div class="entry-content"><p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software&#8230;</p>
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
 
 
-<p> Vamos descrever agora como usar Metaforas..</p>
 
 
-<ol>
-    <li>
-        <a href="/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/">Metaforas de Desenvolvimento de Software</a>
-    </li>
-    <li>
-        <a href="/blog/2012/03/05/a-importancia-das-metaforas/">A Importancia das Metaforas - Part I</a>
-    </li>
-    <li>
-        <a href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/">A Importancia das Metaforas - Part II</a>
-    </li>
-</ol>
+<h1>Objetos</h1>
 
 
-<p><b>-> Como usar metáforas de software</b></p>
-
-<p>Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
-onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
-mais como uma heurística do que como um algoritmo.</p>
-
-<!-- more -->
 
 
-<p>Um algoritmo é um conjunto de instruções bem definidas para a realização de uma determinada
-tarefa. Um algoritmo é previsível, determinista, e não está sujeita ao acaso.
-Um algoritmo diz-lhe como ir do ponto A, ao ponto B sem desvios
-sem viagens colaterais para pontos D, E e F, e não parando para cheirar as rosas ou
-tome uma xícara de café. A heurística é uma técnica que ajuda você a procurar uma
-responder. Seus resultados estão sujeitos a chance porque uma heurística telles você
-apenas a forma de olhar, não o que encontrar. Ele não lhe diz como chegar diretamente
-do ponto A ao ponto B, ele pode até não saber onde o ponto A eo ponto B são.
-Com efeito, uma heurística é um algoritmo em uma roupa de palhaço. É menos previsível,
-é mais divertido, e ele vem sem um de 30 dias, garantia de devolução do dinheiro.</p>
+<h3>Ordem de Object</h3>
 
-<p>Aqui é um algoritmo para dirigir a casa de alguém: Take Highway 167 sul
-para Puyallup. Pegue a saída Sul Shopping Hill e conduzir 4,5 milhas até a colina.
-Vire à direita na luz pelo supermercado, e depois tome a primeira à esquerda.
-Vire para a garagem da casa grande tan à esquerda, na 714 Norte Cedar.</p>
 
-<p>Aqui está uma heurística para chegar a casa de alguém? Encontre a última letra
-nós lhe enviado. Conduza até a cidade no endereço de retorno. Quando você chegar à cidade,
-perguntar a alguém onde é nossa casa. Todo mundo nos conhece alguém, será feliz para
-ajudá-lo. Se você não consegue encontrar ninguém, chamar-nos de um telefone público, e
-nós vamos buscá-la.</p>
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser &#8220;menos que&#8221; a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
 
-<p>A diferença entre um algoritmo e uma heurística é sutil, e os dois
-termos se sobrepõem ligeiramente. Para os propósitos deste livro, a principal diferença
-entre os dois é o nível de engano a partir da solução.
-Um algoritmo dá-lhe as instruções diretamente. Uma heurística diz-lhe
-como descobrir as instruções para você mesmo, ou pelo menos onde procurar
-para eles.</p>
+<!--more-->
 
-<p>Tendo direções que disse-lhe exatamente como resolver seus problemas de programação
-certamente facilitar a programação e os resultados mais previsíveis.
-Mas a ciência programação ainda não está avançado e que não pode nunca ser.
-A parte mais desafiadora de programação é conceituar o problema,
-e muitos erros de programação são erros conceituais. Porque cada programa
-é conceitualmente único, é dificil ou impossível criar um conjunto geral de
-direcções que levam a uma solução em cada caso. Assim, saber como abordar
-problemas, em geral, é pelo menos tão valioso como sabendo soluções specifc para
-problemas específicos.</p>
 
-<p>Como você usa metáforas de software? Use-os para lhe dar uma visão em sua
-problemas de programação e processos. Use-os para ajudá-lo a pensar sobre o seu
-programação das actividades e para ajudá-lo a imaginar maneiras melhores de fazer as coisas.
-Você não será capaz de olhar para uma linha de código e dizer que ela viola a de
-as metáforas descritas neste capítulo. Com o tempo, porém, a pessoa que
-usa metáforas para iluminar o processo de desenvolvimento de software será percebido
-como alguém que tem uma compreensão melhor da programação e produz um código melhor
-mais rápido do que pessoas que não os utilizam.</p>
+<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
+é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
+Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
+em seguida, o operador deve retornar nil:</p>
 
-<p>Até a proxima galera.. ! :D</p>
+<figure class='code'><figcaption><span>Operador <=></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># -1</span>
+</span><span class='line'><span class="mi">5</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 0</span>
+</span><span class='line'><span class="mi">9</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 1</span>
+</span><span class='line'><span class="s2">&quot;1&quot;</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># nil: inteiros e strings não são comparáveis</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
+este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
+(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
+
+<pre><code>&lt;   -   Menor que
+&lt;=  -   Menor ou igual
+==  -   Igual
+&gt;=  -   Maior ou igual
+&gt;   -   Maior que
+</code></pre>
+
+<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
+operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+
+<figure class='code'><figcaption><span>Comparable between?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">between?</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># verdadeiro: 0 &lt;= 1 &lt;= 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
+
+<figure class='code'><figcaption><span>Float NaN</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nan</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span> <span class="c1"># zero dividido por zero não é um número</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="c1"># false: não é menor que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># false: não é maior que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1"># false: não é igual a zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="n">nan</span> <span class="c1"># false: não é mesmo igual a si mesmo!</span>
+</span><span class='line'><span class="n">nan</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">nan</span><span class="p">)</span> <span class="c1"># isso é verdade, claro</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
+implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
+implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
+para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
+se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
+
+<p>É isso amigos&#8230; o proximo post vamos conversar um pouco de Conversões de Object&#8217;s.</p>
+
+<p>Até Mais..</p>
 </div>
 
 
@@ -228,12 +234,12 @@ mais rápido do que pessoas que não os utilizam.</p>
   
 
 
-<time datetime="2012-03-24T10:23:00-03:00" pubdate data-updated="true">24/03/12 às 10:23 hrs</time>
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/code/'>Code</a>, <a class='category' href='/blog/categories/code-compile/'>Code Compile</a>, <a class='category' href='/blog/categories/compile/'>Compile</a>, <a class='category' href='/blog/categories/steve-mcconnell/'>Steve McConnell</a>
+    <a class='category' href='/blog/categories/comparable/'>Comparable</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
   
 </span>
 
@@ -242,7 +248,7 @@ mais rápido do que pessoas que não os utilizam.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -263,14 +269,10 @@ mais rápido do que pessoas que não os utilizam.</p>
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/" title="Previous Post:
-        A importância das metáforas - Parte II">&laquo; A importância das metáforas - Parte II</a></li>
+        href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/" title="Previous Post:
+        Classe Objects em Ruby 1.9.2 - Part III">&laquo; Classe Objects em Ruby 1.9.2 - Part III</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"
-        title="Next Post: Caligrafia de Software: Escrevendo Códigos">Caligrafia de Software: Escrevendo Códigos
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -372,8 +374,8 @@ mais rápido do que pessoas que não os utilizam.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/';
-        var disqus_url = 'http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/';
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
         var disqus_script = 'embed.js';
       
     (function () {

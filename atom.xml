@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-19T19:31:37-03:00</updated>
+  <updated>2012-05-20T13:37:02-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part IV]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/"/>
+    <updated>2012-05-20T13:01:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Ordem de Object</h3>
+
+
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser &#8220;menos que&#8221; a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+<!--more-->
+
+
+<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
+é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
+Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
+em seguida, o operador deve retornar nil:</p>
+
+<figure class='code'><figcaption><span>Operador <=></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># -1</span>
+</span><span class='line'><span class="mi">5</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 0</span>
+</span><span class='line'><span class="mi">9</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 1</span>
+</span><span class='line'><span class="s2">&quot;1&quot;</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># nil: inteiros e strings não são comparáveis</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
+este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
+(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
+
+<pre><code>&lt;   -   Menor que
+&lt;=  -   Menor ou igual
+==  -   Igual
+&gt;=  -   Maior ou igual
+&gt;   -   Maior que
+</code></pre>
+
+<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
+operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+
+<figure class='code'><figcaption><span>Comparable between?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">between?</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># verdadeiro: 0 &lt;= 1 &lt;= 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
+
+<figure class='code'><figcaption><span>Float NaN</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nan</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span> <span class="c1"># zero dividido por zero não é um número</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="c1"># false: não é menor que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># false: não é maior que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1"># false: não é igual a zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="n">nan</span> <span class="c1"># false: não é mesmo igual a si mesmo!</span>
+</span><span class='line'><span class="n">nan</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">nan</span><span class="p">)</span> <span class="c1"># isso é verdade, claro</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
+implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
+implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
+para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
+se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
+
+<p>É isso amigos&#8230; o proximo post vamos conversar um pouco de Conversões de Object&#8217;s.</p>
+
+<p>Até Mais..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part III]]></title>
@@ -2335,62 +2426,6 @@ como alguém que tem uma compreensão melhor da programação e produz um códig
 mais rápido do que pessoas que não os utilizam.</p>
 
 <p>Até a proxima galera.. ! :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A importância das metáforas - Parte II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
-    <updated>2012-03-11T16:33:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd&#8217;s&#8230; Continuando os estudos&#8230;</p>
-
-
-<p><strong> A importância das metáforas - Parte II </strong></p>
-
-<!-- more -->
-
-
-<p>Considere o exemplo de uma pedra pesada oscila para frente e para trás em uma corda.
-Antes de Galileu, um aristotélico olhar para a pedra balançando pensei que um
-objeto pesado passou naturalmente a partir de uma posição mais elevada para uma estatística de descanso em uma menor
- uma. A aristotélica poderia pensar que o que a pedra estava realmente fazendo era
- caindo com dificuldade. Quando Galileu viu a pedra oscilante, ele viu um pêndulo.
- Ele pensou que o que a pedra estava realmente fazendo estava repetindo o mesmo movimento
- uma e outra vez, quase que perfeitamente.</p>
-
-<p>Os poderes sugestivos dos dois modelos são bem diferentes. A aristotélica
-que viu a pedra balançando como um objeto em queda seria observar o peso da pedra,
-a altura a que tinha sido levantada, e o tempo que levou a vir para descansar.
-Para o modelo de Galileu pêndulo, os fatores proeminentes eram diferentes.
-Galileu observou peso da pedra, o raio de balanço do pêndulo,
-o deslocamento angular, e o tempo de balanço. Galileu descobriu as leis do
-Aristotélicos não conseguiram descobrir porque seu modelo levou-os a olhar diferente
-fenômenos e fazer perguntas diferentes.</p>
-
-<p>Metáforas contribuir para uma compreensão greate de desenvolvimento de software questões
-da mesma forma que contribuam para uma maior compreensão do conhecimento científico
-perguntas. Em sua palestra Prêmio Turing 1973, Charles Bachman descreveu o
-mudar a partir do ponto de vista predominante earthcentered do universo a uma visão encontrada.
-Modelo de Ptolomeu, centrado na Terra, durou sem grande desafio para 1400 anos.
-Então, em 1543, Copérnico introduziu a teoria heliocêntrica, a idéia de que
-o sol antes que a Terra era o centro do universo. Esta mudança na
-modelos mentais levou finalmente à descoberta de novos planetas, a reclassificação
-da Lua como um satélite, e não como um planeta, e uma compreensão diferente
-do lugar da humanidade no universo.</p>
-
-<p>Bachman comparou a mudança ptolomaico-to-copernicana em astronomia para a mudança na
-programação de computadores no início de 1970. Quando Bachman fez a comparação, em 1973,
-processamento de dados estava mudando de uma visão centrada no computador de sistemas de informação
-a uma vista do banco de dados centralizada. Bachman apontou que os antigos de dados
-processamento queria ver todos os dados como um fluxo seqüencial de cartões de fluxo
-através de um computador (a visão centrada no computador). A mudança foi para se concentrar em um
-conjunto de dados em que o computador passou a agir (uma visão de banco de dados-oriented).</p>
-
-<p>O valor das metáforas não deve ser subestimado. Metáforas têm a virtude
-de um comportamento esperado que seja compreendida por todos. Comunicação desnecessária e
-mal-entendidos são reduzido. Apreendizado e educação são mais rápidos. Com efeito,
-metáforas são uma forma de internalizar e abstrair conceitos, permitindo que um de pensamento estar em um plano superior e os erros de baixo nível que devem ser evitadas.</p>
 ]]></content>
   </entry>
   

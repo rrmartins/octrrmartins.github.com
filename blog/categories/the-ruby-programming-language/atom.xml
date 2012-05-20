@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-19T19:31:37-03:00</updated>
+  <updated>2012-05-20T13:37:02-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part IV]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/"/>
+    <updated>2012-05-20T13:01:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Ordem de Object</h3>
+
+
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser "menos que" a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+<!--more-->
+
+
+<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
+é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
+Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
+em seguida, o operador deve retornar nil:</p>
+
+<p><code>ruby Operador &lt;=&gt;
+1 &lt;=&gt; 5 # -1
+5 &lt;=&gt; 5 # 0
+9 &lt;=&gt; 5 # 1
+"1" &lt;=&gt; 5 # nil: inteiros e strings não são comparáveis
+</code></p>
+
+<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
+este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
+(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
+
+<pre><code>&lt;   -   Menor que
+&lt;=  -   Menor ou igual
+==  -   Igual
+&gt;=  -   Maior ou igual
+&gt;   -   Maior que
+</code></pre>
+
+<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
+operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+
+<p><code>ruby Comparable between?
+1.between?(0,10) # verdadeiro: 0 &lt;= 1 &lt;= 10
+</code></p>
+
+<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
+
+<p><code>ruby Float NaN
+nan = 0.0/0.0; # zero dividido por zero não é um número
+nan &lt; 0 # false: não é menor que zero
+nan &gt; 0 # false: não é maior que zero
+nan == 0 # false: não é igual a zero
+nan == nan # false: não é mesmo igual a si mesmo!
+nan.equal?(nan) # isso é verdade, claro
+</code></p>
+
+<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
+implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
+implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
+para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
+se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
+
+<p>É isso amigos... o proximo post vamos conversar um pouco de Conversões de Object's.</p>
+
+<p>Até Mais..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part III]]></title>
@@ -444,94 +524,6 @@ o.nil? # Outra maneira de testar
 <p>Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
 não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de
 nil ou False se comporta como True.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Symbols - Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
-    <updated>2012-05-16T21:37:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
-
-
-
-
-<h2>Symbol</h2>
-
-
-<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
-que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
-Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
-posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
-
-<!--more-->
-
-
-<p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
-programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
-dois pontos:</p>
-
-<p><code>ruby Symbol
-:symbol # Symbol Um literal
-:"symbol" # O mesmo literal
-:'another long symbol' "# são úteis para símbolos com espaços
-s = "string"
-sym = :"#{s}" # O Symbol :string
-</code></p>
-
-<p>Símbolos têm também uma sintaxe literal %s que permite delimitadores arbitrários da mesma maneira
-que %q e %Q pode ser usado para strings:</p>
-
-<p><code>ruby Symbol
-%s["] # O mesmo que: '"'
-</code></p>
-
-<p>Os símbolos são usados ​​frequentemente para se referir a nomes de métodos no reflexivo
-código. Por exemplo, suponha que queremos para saber se algum objeto tem um método each:</p>
-
-<p><code>ruby Symbol
-o.respond_to? :each
-</code></p>
-
-<p>Aqui está outro exemplo. Ele testa se um determinado objeto responde a um método especificado, e, em caso afirmativo, invoca o método:</p>
-
-<p><code>ruby Symbol
-nome = :size
-if o.respond_to? nome
-  o.send (nome)
-end
-</code></p>
-
-<p>Você pode converter uma String para um Symbol utilizando os métodos intern ou to_sym. E você pode converter um Symbol de volta para uma String com o método to_s ou sue alias id2name:</p>
-
-<p><code>ruby Symbol
-str = "string" # Comece com uma string
-sym = str.intern  # Converter para um símbolo
-sym = str.to_sym # Outra maneira de fazer a mesma coisa
-str = sym.to_s # converter de volta para uma string
-str = sym.id2name # Outra maneira de fazê-lo
-</code></p>
-
-<p>Duas seqüências podem ter o mesmo conteúdo e ainda ser completamente de objetos distintos. Este nunca é o caso com símbolos.
-Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo objeto symbol. Dois objetos distintos Symbols terá sempre conteúdo diferente.</p>
-
-<p>Sempre que você escrever código que usa string não para o seu conteúdo textual,
-mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
-Ao invés de escrever um método que espera um argumento para ser ou a string de "AM" ou "PM", por exemplo, você poderia escrevê-lo para
-esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
-de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.</p>
-
-<p>No Ruby 1.9, a classe símbolo define um número de métodos String, como length, o size, os operadores de comparação, e mesmo os operadores
-[] e =~. Isto faz com que os símbolos sejam um pouco permutável com string e permite a sua utilização como uma espécie de imutável
-(E não garbage-collected) string.</p>
-
-<p>É isso ai amigos até a proxima.. :D</p>
 ]]></content>
   </entry>
   
