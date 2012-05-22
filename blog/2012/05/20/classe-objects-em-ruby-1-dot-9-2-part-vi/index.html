@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Classe Objects em Ruby 1.9.2 - Part VI - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Copiando objetos A classe Object define dois métodos estreitamente &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    .sharing, .meta {
+      margin: 20px 0px 20px 0px;
+    }
+    .pager {
+      margin: 20px 0px 5px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // Avoid conflict with ender.js.
+    jQuery.noConflict();
+</script>
+<!-- jQuery Form Plugin -->
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- jQuery Form Validation Plugin -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+<script src="/javascripts/google_form.js"></script>
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="brand" href="/">Rodrigo Martins</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Post's</a></li>
+  <li><a href="/who-am">Apresentações</a></li>
+  <li><a href="/contato">Contato</a></li>
+</ul>
+ 
+      </div>
+
+      <ul class="nav pull-right" data-subscription="rss email">
+        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+            <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+          
+      </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:rrmartins.github.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">Classe Objects Em Ruby 1.9.2 - Part VI</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true">20/05/12 às 19:08 hrs</time>
+        
+         | <a href="#disqus_thread">Commentário</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Copiando objetos</h3>
+
+
+<p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
+superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
+referências a objetos são copiadas, não os próprios objetos referenciados.</p>
+
+<p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
+classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este &#8220;Construtor
+de cópias&#8221;, podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
+para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
+
+<p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
+
+<p>Há duas diferenças importantes entre os métodos clone e dup definidos pelo objeto. Primeiro, as cópias do clone tanto o congelado e
+quanto o estado contaminado(definido em breve) de um objeto, enquanto dup apenas copia o estado contaminado, chamando dup sobre um objeto
+congelado retorna uma cópia descongelada. Em segundo lugar, clone cópia quaisquer métodos singleton do objeto, enquanto que dup não.</p>
+
+<h3>Objetos Empacotamento</h3>
+
+
+<p>Você pode salvar o estado de um objeto passando para a classe <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html">Marshal</a>, com o método <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">dump</a>. Se você passar um objeto de fluxo de I/O como o segundo argumento, escreve o estado do objeto Marshal.dump (e, de forma recursiva, quaisquer objetos que referencia) para esse fluxo.
+Caso contrário, ele simplesmente retorna o estado codificado como uma string binária.</p>
+
+<p>Para restaurar um objeto empacotado, passe uma string ou um fluxo de contendo I/O do objeto de <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a>.</p>
+
+<p>O empacotamento de um objeto é uma maneira muito simples para salvar seu estado para uma utilização posterior, e estes métodos podem ser
+usados ​​para fornecer um arquivo automático no formato de programas Ruby. Note, no entanto, que o formato binário usado por <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">Marshal.dump</a> e <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a> é dependente da versão, e nas mais recentes versões do Ruby não são garantidos para ser capaz de ler
+objetos empacotados escritos por versões mais antigas do Ruby.</p>
+
+<p>Outro uso para Marshal.dump e Marshal.load é criar cópias de profundidade de objetos:</p>
+
+<figure class='code'><figcaption><span>Marshal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">deepcopy</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Marshal</span><span class="o">.</span><span class="n">load</span> <span class="p">(</span><span class="no">Marshal</span><span class="o">.</span><span class="n">dump</span> <span class="p">(</span><span class="n">o</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
+maneira confiável para restaurar seu Estado.</p>
+
+<p>YAML (&#8220;YAML não é Markup Language&#8221;) é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
+partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo &#8216;yaml&#8217;.</p>
+
+<h3>Objetos de congelamento</h3>
+
+
+<p>Qualquer objeto pode ser congelado chamando seu método de freeze. A objeto congelado torna imutável e nenhum de seu estado interno pode
+ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de modificadores:</p>
+
+<figure class='code'><figcaption><span>Freeze</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;gelo&quot;</span> <span class="c1"># String são objetos mutáveis</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">freeze</span> <span class="c1"># Faça desta cadeia imutável</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">frozen?</span> <span class="c1"># Verdade: ele foi congelado</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">upcase!</span> <span class="c1"># TypeError: não pode modificar cadeia de congelados</span>
+</span><span class='line'><span class="n">s</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;ni&quot;</span> <span class="c1"># TypeError: não pode modificar cadeia de congelados</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
+
+<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para &#8220;descongelar&#8221; um objeto. Se
+você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
+cópia não será congelada.</p>
+
+<h3>Objetos contaminados e não confiáveis</h3>
+
+
+<p>Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
+de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
+contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
+taint de um objeto pode ser testado com o método tainted? método:</p>
+
+<figure class='code'><figcaption><span>taint</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;não confiáveis&quot;</span> <span class="c1"># Os objetos são normalmente não viciada</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">taint</span> <span class="c1"># Marcar como não confiável objeto contaminado</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">tainted?</span> <span class="c1"># Verdade: ele está contaminado</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">upcase</span><span class="o">.</span><span class="n">tainted?</span> <span class="c1"># Verdade: objetos derivados estão contaminados</span>
+</span><span class='line'><span class="n">s</span><span class="o">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="o">].</span><span class="n">tainted?</span> <span class="c1"># Verdade: substrings estão contaminados</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
+contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
+vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
+pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.</p>
+
+<p>Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
+lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
+confiáveis.</p>
+
+<p>Boa noite amigos&#8230; até a proxima..</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true">20/05/12 às 19:08 hrs</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/marshal/'>Marshal</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/yaml/'>YAML</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/" title="Previous Post:
+        Classe Objects em Ruby 1.9.2 - Part V">&laquo; Classe Objects em Ruby 1.9.2 - Part V</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    
+<section class="well">
+  <ul id="tweets" class="nav">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/">Classe Objects em Ruby 1.9.2 - Part VI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/">Classe Objects em Ruby 1.9.2 - Part V</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/">Classe Objects em Ruby 1.9.2 - Part IV</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/">Classe Objects em Ruby 1.9.2 - Part III</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/">Classe Objects em Ruby 1.9.2 - Part II</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
+  <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
