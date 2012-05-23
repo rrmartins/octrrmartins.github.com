@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-22T21:47:37-03:00</updated>
+  <updated>2012-05-23T08:05:14-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Expressões e Operadores - O inicio]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/"/>
+    <updated>2012-05-23T07:22:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Expressões e Operadores</p>
+
+
+
+
+<h1>Expressões e Operadores</h1>
+
+
+<p>Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos
+de expressões:</p>
+
+<figure class='code'><figcaption><span>Expressões</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">2</span> <span class="c1"># Um literal numérico</span>
+</span><span class='line'><span class="n">x</span> <span class="c1"># Uma referência variável local</span>
+</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># invocação Um método</span>
+</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Atribuição</span>
+</span><span class='line'><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="c1"># Multiplicação com o operador *</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Como você pode ver, expressões primárias, tal como literais, referências variáveis, e invocações de método podem ser combinadas em
+expressões maiores com operadores, tais como o operador de atribuição e o operador de multiplicação.</p>
+
+<p>Muitas linguagens de programação diferenciam entre expressões de baixo nível e alto nível de declarações, tais como condicionais e loops.
+Nestas linguagens, as declarações de controlar o fluxo de um programa, mas eles não têm valores. Eles são executados, em vez de avaliados.
+Em Ruby, não há distinção clara entre as afirmações e expressões; tudo em Ruby, incluindo a definição de classe e de método, pode ser
+avaliado como uma expressão e retorna um valor. É ainda útil, no entanto, diferenciam sintaxe normalmente usada como expressões de sintaxe
+tipicamente usadas ​​como indicações.</p>
+
+<p>Até mais amigos.. ainda vem muito conteudo legal com por ai.. :D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Arranhando sua própria coceira]]></title>
@@ -2456,47 +2498,6 @@ suporte para caracteres multibyte no <a href="http://www.ruby-doc.org/core-1.8.7
 
 
 <p>Até o proximo.. :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Agricultura de Software: Acréscimo no Sistema]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
-    <updated>2012-04-22T20:31:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
-    <content type="html"><![CDATA[<h2>Agricultura de Software: Acréscimo no Sistema</h2>
-
-
-<p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
-<a href="http://pt.wikipedia.org/wiki/Acre%C3%A7%C3%A3o">acreção</a>. As duas metáforas são intimamente relacionados, mas acréscimo de software é a
-imagem mais esclarecedora. &#8220;Acréscimo&#8221;, no caso de você não ter um dicionário à mão,
-significa qualquer crescimento ou aumento em tamanho por uma adição gradual externo ou inclusão.
-Acréscimo descreve a maneira como uma ostra faz uma pérola, por adicionando gradualmente pequenas
-quantidades de carbonato de cálcio. Em geologia, &#8220;acreção&#8221; significa uma adição lenta
-terra pelo depósito de sedimentos pela água. Em termos jurídicos, &#8220;acreção&#8221; significa um
-aumentar de terra ao longo das margens de um corpo de água através do depósito de vias de sedimentos navegáveis.
-</p>
-
-
-<!--more-->
-
-
-<p>
-Isso não significa que você tem que aprender a tornar o código de sedimentos pela água;
-isso significa que você tem que aprender a adicionar aos seus sistemas de software uma pequena quantidade
-de cada vez. Outras palavras intimamente relacionadas com a deposição são &#8220;incremental&#8221;, &#8220;interativo&#8221;,
-&#8220;adaptativa&#8221; e &#8220;evolutivo&#8221;. A incremental concepção, construção e testes são
-alguns dos mais poderosos conceitos de desenvolvimento de software disponíveis.</p>
-
-
-<p>
-No desenvolvimento incremental, você primeiro faz a versão mais simples possível do sistema
-que será executado. Não tem que aceitar a entrada de dados realista, ele não tem que executar
-manipulações realistas sobre dados, ele não tem de produzir uma saída realista -
-ele só tem que ser um esqueleto forte o suficiente para manter o sistema real como ele é desenvolvido.
-Pode chamar classes simulando a partir de cada uma das funções básicas que você identificou.
-Este princípio básico é como início da ostra, uma pérola com um pequeno grão de areia.</p>
-
 ]]></content>
   </entry>
   
