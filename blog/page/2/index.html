@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Objects, é hora de nos aprofundar &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Ordem de Object Praticamente todas as classes podem definir o método ==, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,77 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/">Classe Objects Em Ruby 1.9.2 - Part IV</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
+        
+         | <a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/comparable/'>Comparable</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Ordem de Object</h3>
+
+
+<p></p>
+
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser &#8220;menos que&#8221; a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -406,74 +477,6 @@ não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se compo
 nil ou False se comporta como True.</p>
 </div>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/">Symbols - Ruby 1.9.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
-        
-         | <a href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
-
-
-
-
-<h2>Symbol</h2>
-
-
-<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
-que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
-Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
-posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/">Read on &rarr;</a>
-    </footer>
   
 
 

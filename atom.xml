@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-26T11:39:49-03:00</updated>
+  <updated>2012-05-27T12:39:19-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Literais e Palavras-Chaves Literais]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/"/>
+    <updated>2012-05-27T12:15:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais</p>
+
+
+
+
+<h1>Literais e Plavras-chaves literais</h1>
+
+
+<p>Literais são valores como 1.0, &#8220;Hello world&#8221;, e [] que são incorporados diretamente em seu texto do programa.</p>
+
+<p>É interessante notar que muitos literais, tais como números, são as principais expressões - as expressões mais simples possíveis não
+compostas de expressões simples. Literais, tais como Array e literais de hash e strings duplas citadas que usam interpolação, incluem
+sub-expressões e são, portanto, expressões não primárias.</p>
+
+<p>Determinadas palavras-chave em Ruby são expressões primárias e podem ser considerados palavras-chave literais ou formas especializadas
+de referência da variável:</p>
+
+<pre><code>nil            -&gt;   Avalia o valor nulo, de NilClass classe.
+true           -&gt;   Avalia-se à instância singleton da Classe TrueClass, que um objeto representa o valor booleano 
+                    verdadeiro.
+false          -&gt;   Avalia-se à instância singleton da Classe FalseClass, que um objeto representa os valores booleanos
+                    falsos.
+self           -&gt;   Auto avalia o objeto atual.
+__FILE__       -&gt;   Avalia a uma string que nomeia o arquivo que o Ruby Intérprete (IRB) está em execução. Isto pode ser
+                    útil em erro de mensagens.
+__LINE__       -&gt;   Avalia como um inteiro que especifica o número da linha dentro da linha do código atual do __FILE__.
+__ENCODING__   -&gt;   Avalia a um objeto Encoding que especifica a codificação do arquivo atual. (Ruby 1.9 apenas.)
+</code></pre>
+
+<p>É isso ai galera, até o proximo post.. :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Expressões e Operadores - O inicio]]></title>
@@ -2450,54 +2488,6 @@ String.encode &#8220;dará mais detalhes quando as opções são mais
 implementadas.
 </p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Codificações de String e Caracteres multibyte]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/"/>
-    <updated>2012-04-24T00:04:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte</id>
-    <content type="html"><![CDATA[<p>Olá&#8230; Resolvi começar a escrever alguma coisa também de <a href="http://www.ruby-lang.org/pt/">Ruby</a>&#8230; Vamos começar com um pouco do inicio da classe <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a>.</p>
-
-
-
-
-<h2>Codificações de <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> e Caracteres multibyte</h2>
-
-
-
-
-<p>
-<a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são fundamentalmente diferentes em <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>:
-</p>
-
-
-<p>
-No <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são uma seqüência de bytes. quando cadeias
-são usados ​​para representar texto (em vez de dados binários), cada byte da 
-cadeia é considerada para representar um único caractere ASCII. no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, os elementos individuais de uma <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> não são caracteres, mas
-números, o valor de byte real ou codificação de caracteres.
-</p>
-
-
-<p>
-Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, por outro lado, as cadeias são sequências verdadeiras
-de caracteres, e esses caracteres não necessitam de ser confinado à
-Conjunto de caracteres ASCII. Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, os elementos individuais de uma cadeia
-são caracteres representados como cadeias de tamanho igual a 1 - em vez de
-inteiros códigos de caracteres. Cada <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> tem uma codificação que
-especifica a correspondência entre os bytes na cadeia e
-os caracteres representam os bytes. Codificações, como o UTF-8
-codificação de caracteres Unicode utilizam número variável de bytes para
-cada carácter, e não há mais uma 1-para-1 (nem mesmo uma correspondência 2-para-1)
-entre bytes e subseções de caracteres. As subseções que seguem, explicam a codificação relacionada de
-características de strings em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, e também demonstram de forma rudimentar o 
-suporte para caracteres multibyte no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a> usando a biblioteca jcode.
-</p>
-
-
-<p>Até o proximo.. :D</p>
 ]]></content>
   </entry>
   

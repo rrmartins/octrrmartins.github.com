@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Hash Liiteral - Rodrigo Martins</title>
+  <title>Literais e Palavras-Chaves Literais - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Category: Hash Liiteral">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais Literais e Plavras-chaves &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.comblog/categories/hash-liiteral">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -111,46 +111,112 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: Hash Liiteral</h1>
     
+      <h1 class="entry-title">Literais E Palavras-Chaves Literais</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-27T12:15:00-03:00" pubdate data-updated="true">27/05/12 às 12:15 hrs</time>
+        
+         | <a href="#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais</p>
 
 
 
-  
-  <h1>2012</h1>
 
-<article>
-  <div class="well">
-	
-	<h2><a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/">O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais</a></h2>
-	<time datetime="2012-05-08T22:28:00-03:00" pubdate>
-		<span class='month'>May</span> <span class='day'>08</span> <span class='year'>2012</span>
-	</time>
-	
-	<footer>
-	  <span class="categories">Publicado em <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/hash-liiteral/'>Hash Liiteral</a>, <a class='category' href='/blog/categories/literal/'>Literal</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a></span>
-	</footer>
-	
+<h1>Literais e Plavras-chaves literais</h1>
+
+
+<p>Literais são valores como 1.0, &#8220;Hello world&#8221;, e [] que são incorporados diretamente em seu texto do programa.</p>
+
+<p>É interessante notar que muitos literais, tais como números, são as principais expressões - as expressões mais simples possíveis não
+compostas de expressões simples. Literais, tais como Array e literais de hash e strings duplas citadas que usam interpolação, incluem
+sub-expressões e são, portanto, expressões não primárias.</p>
+
+<p>Determinadas palavras-chave em Ruby são expressões primárias e podem ser considerados palavras-chave literais ou formas especializadas
+de referência da variável:</p>
+
+<pre><code>nil            -&gt;   Avalia o valor nulo, de NilClass classe.
+true           -&gt;   Avalia-se à instância singleton da Classe TrueClass, que um objeto representa o valor booleano 
+                    verdadeiro.
+false          -&gt;   Avalia-se à instância singleton da Classe FalseClass, que um objeto representa os valores booleanos
+                    falsos.
+self           -&gt;   Auto avalia o objeto atual.
+__FILE__       -&gt;   Avalia a uma string que nomeia o arquivo que o Ruby Intérprete (IRB) está em execução. Isto pode ser
+                    útil em erro de mensagens.
+__LINE__       -&gt;   Avalia como um inteiro que especifica o número da linha dentro da linha do código atual do __FILE__.
+__ENCODING__   -&gt;   Avalia a um objeto Encoding que especifica a codificação do arquivo atual. (Ruby 1.9 apenas.)
+</code></pre>
+
+<p>É isso ai galera, até o proximo post.. :)</p>
 </div>
 
-</article>
 
-</div>
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
 
   
-    <footer>
-      
-      
-        <div class="sharing">
+
+
+<time datetime="2012-05-27T12:15:00-03:00" pubdate data-updated="true">27/05/12 às 12:15 hrs</time>
+      Categorias: 
+
+<span class="categories">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.comblog/categories/hash-liiteral/index.html" data-via="rr_martins" data-counturl="http://rrmartins.github.comblog/categories/hash-liiteral/index.html" >Tweet</a>
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -160,10 +226,24 @@
   
 </div>
 
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
       
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/" title="Previous Post:
+        Expressões e Operadores - O inicio">&laquo; Expressões e Operadores - O inicio</a></li>
       
-    </footer>
-  
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">
@@ -261,7 +341,10 @@
       var disqus_shortname = 'rrmartins';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
