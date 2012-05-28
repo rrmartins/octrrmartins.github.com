@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenSource | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/opensource/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-27T12:39:19-03:00</updated>
+  <updated>2012-05-28T13:19:15-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A presenção de paixão]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/28/naa-presencao-de-paixao/"/>
+    <updated>2012-05-28T13:13:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/28/naa-presencao-de-paixao</id>
+    <content type="html"><![CDATA[<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte muito boa..</p>
+
+<p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
+
+<h2>A presenção de paixão</h2>
+
+
+<p>Em design, onde o significado é normalmente e controversamente subjetivo ou dolorosamente indecifrável, poucas coisas são mais aparentes e lúcidas do que a presença de paixão. Isso é verdade seja quando o design do produto o agrada ou o deixa frio; em ambos os casos é difícil não detectar o investimento emocional das mãos que o construíram.</p>
+
+<p>Entusiasmo se manifesta prontamente, claro, mas indiferença é igualmente inesquecível. Se seu compromisso não vem com paixão genuína para o trabalho às mãos, isso se torna um vazio que é quase impossível de conciliar, não importa o quão elaborado ou atrativo é o design.</p>
+
+<pre><code>—Khoi Vinh, Subtraction.com
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Arranhando sua própria coceira]]></title>
