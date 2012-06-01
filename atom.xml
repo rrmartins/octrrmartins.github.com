@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-05-28T13:19:15-03:00</updated>
+  <updated>2012-06-01T13:26:38-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Variáveis de Referência]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/"/>
+    <updated>2012-06-01T13:16:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis de Referência</p>
+
+
+
+
+<h1>Variáveis de Referência</h1>
+
+
+<p>Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões
+de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma
+variável de referência à expressão e avaliado como o valor da variável:</p>
+
+<figure class='code'><figcaption><span>Referência</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="c1"># Esta é uma expressão de atribuição</span>
+</span><span class='line'><span class="n">one</span> <span class="c1"># Essa expressão de referência variável avalia a 1,0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Existem quatro tipos de variáveis ​​em Ruby, e regras <a href="http://pt.wikipedia.org/wiki/Item_lexical">lexicais</a> para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
+variáveis ​​de instância e variáveis ​​de classe, usado em programação orientada a objeto. E as variáveis ​​cujos nomes começam com um sublinhado
+ou uma letra minúscula são variáveis ​​locais, definidas apenas dentro do atual método ou bloco.</p>
+
+<p>Variáveis ​​sempre são simples, nomes não qualificados. Se um . ou :: aparece em uma expressão, em seguida, que a expressão é ou um
+uma referência a uma constante ou uma invocação de método. Por exemplo, Math::PI é uma referência a uma constante, e a expressão
+item.preco é uma invocação do método chamado preco (preço) sobre o valor realizado pela variável item.</p>
+
+<p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
+
+<p>Até a próxima.. :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Emergencia]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/28/emergencia/"/>
+    <updated>2012-05-28T13:24:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/28/emergencia</id>
+    <content type="html"><![CDATA[<p>Emergencia</p>
+
+<p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
+projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
+do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
+ocorrer, se beneficiando dela.</p>
+
+<p>Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
+simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
+graciosamente pelos céus, se remodelando em torno de obstáculos e assim por diante. Nenhum desses comportamentos avançados (como se
+remodelar na mesma forma ao redor de obstáculos) é especificado pelas regras; eles emergem da dinâmica do sistema.</p>
+
+<p>Regras simples, como na simulação dos pássaros, leva a comportamentos complexos. Regras complexas, como com leis tributárias na maioria
+dos países, levam a comportamentos estúpidos.</p>
+
+<p>Muitas práticas comuns de desenvolvimento de software tem o infeliz efeito-colateral de eliminar qualquer chance de comportamento emergente. A maioria das tentativas de otimização – amarrando alguma coisa muito explicitamente – reduz a extensão e escopo de interações e relacionamentos, que é a origem da emergencia. No exemplo do bando de pássaros, assim como sistemas bem-desenhados, são as interações e relacionamentos que criam os comportamentos interessantes.</p>
+
+<p>Quanto mais amarramos as coisas, menos espaço deixamos para uma solução criativa e emergente. Seja tanto travando requisitos, antes de serem bem entendidos ou otimizando o código prematuramente, como inventando navegações e cenários de fluxo de trabalho complexas, antes de deixar o usuário final usar o sistema, o resultado é o mesmo: um sistema exageramente complicado e estúpido ao invés de um sistema limpo e elegante que aproveita a emergencia.</p>
+
+<p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
+
+<pre><code>—Andrew Hunt, The Pragmatic Programmers 
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A presenção de paixão]]></title>
@@ -1723,483 +1792,6 @@ push, reverse, reverse_each, rindex, shift, sort, sort!, uniq!, e unshift.</p>
 <p><a href="http://www.ruby-doc.org/core-1.9.2/Array.html">www.ruby-doc.org/core-1.9.2/Array.html</a></p>
 
 <p>Até a proxima amigos&#8230; :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Desenvolvendo Um Chat com NodeJS]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/"/>
-    <updated>2012-04-30T17:34:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs</id>
-    <content type="html"><![CDATA[<p>Olá Developers&#8230;</p>
-
-<p>Vamos desenvolver um pequeno Chat em NodeJS&#8230; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&#8230;</p>
-
-<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos&#8230; :D</p>
-
-<p>Vamos criar a aplicação, crie uma pasta com o nome da aplicação:</p>
-
-<figure class='code'><figcaption><span>Criando Pasta </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir app_chat</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Agora vamos entrar na pasta do projeto, e criar o arquivo que será nosso servidor, nome exemplo: heloword_server.js.</p>
-
-<p>Hora de começar a brincar com o servidor.</p>
-
-<figure class='code'><figcaption><span>Criando o server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;helloworld.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="s1">&#39;text/html&#39;</span><span class="p">});</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Na linha 1, temos um require(&#8216;fs&#8217;), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
-
-<p>Na linha 2, estamos instanciando e criando o server &#8216;http&#8217;.</p>
-
-<p>Na linha 3, já dentro da função do createServer, temos a leitura do arquivo que será alimentado, e uma criação de função.</p>
-
-<p>Na linha 4, estamos escrevendo o arquivo, lembrando que ele será do tipo HTML.</p>
-
-<p>Na linha 5, temos a escrita no arquivo. E abaixo finalizamos.</p>
-
-<p>Este processo de leitura do arquivo, ocorre sempre que alguem entra na aplicação.</p>
-
-<p>Vamos continuar, agora vamos colocar uma porta para o servidor.</p>
-
-<figure class='code'><figcaption><span>Criando uma porta e aplicando ao server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on &quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste exemplo acima, pegamos o número da porta do processo, ou fica valendo a porta 3000.</p>
-
-<p>Logo depois coloco a port no server, neste exemplo eu criei uma função, só para logar o numero da porta, logo nos logs do servidor estará o numero da porta, quando iniciar.</p>
-
-<p>Vamos agora começar a escrever as funcionalidades do servidor. Vamos escrever as funções que tratam que esta entrando e quem esta saindo da app.</p>
-
-<figure class='code'><figcaption><span>Function Connected e Disconnected</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">everyone</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;now&quot;</span><span class="p">).</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">connected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Joined: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">disconnected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nesta função, instancio o framework &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, que voce pode esta instalando com o comando: npm install now</p>
-
-<p>Dentro do &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
-
-<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal&#8230;</p>
-
-<figure class='code'><figcaption><span>Criando Funções dentro de Funções</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mensagem &quot;</span><span class="o">+</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;([^&gt;]+)&gt;)/ig</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste bloco de codigos, estamos criando a função distributeMessage, que esta, receberá a mensagem.</p>
-
-<p>Na linha 2, estou somente logando a mensagem que chegou.</p>
-
-<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas&#8230;</p>
-
-<p>Na linha 4, estamos fazendo a chamada da função que esta na view, e ela que imprimi a mensagem no DOM.</p>
-
-<p>Logo o arquivo do helloword_server.js precisa ficar assim:</p>
-
-<figure class='code'><figcaption><span>Arquivo do Server NodeJS (helloworld_server.js)</span> <a href='http://rrmartins.github.com/downloads/code/helloworld_server.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="err">﻿</span><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;helloworld.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="s1">&#39;text/html&#39;</span><span class="p">});</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
-</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on &quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">everyone</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;now&quot;</span><span class="p">).</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">connected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Joined: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">disconnected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mensagem &quot;</span><span class="o">+</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;([^&gt;]+)&gt;)/ig</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Criando a View</h3>
-
-
-<p>A nossa view, será basicamente HTML, e um pouco de simples javascript, então, dessa vez será 0 de explicação.</p>
-
-<figure class='code'><figcaption><span>View do Chat (helloworld.html)</span> <a href='http://rrmartins.github.com/downloads/code/helloworld.html'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;title&gt;</span>nowjs test<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;nowjs/now.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script&gt;</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">empty</span><span class="p">(</span><span class="nx">v</span><span class="p">){</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="o">==</span><span class="kc">null</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="s2">&quot;&quot;</span><span class="p">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="kc">true</span>
-</span><span class='line'><span class="p">}</span><span class="k">else</span> <span class="p">{</span><span class="k">return</span> <span class="kc">false</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">now</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;Qual seu Nome?&quot;</span><span class="p">,</span> <span class="s2">&quot;nome&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;mensagem vazia&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">empty</span><span class="p">(</span><span class="nx">message</span><span class="p">)){</span>
-</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;mensagem vazia&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span><span class="k">else</span>  <span class="p">{</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#messages&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#send-button&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#text-input&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#text-input&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;messages&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;text-input&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">value=</span><span class="s">&quot;Send&quot;</span> <span class="na">id=</span><span class="s">&quot;send-button&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Proximo, passo, só levantar o servidor:</p>
-
-<figure class='code'><figcaption><span>Levantando o Servidor </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>node helloworld_server.js</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É isso ai amigos, segue o lick de como a aplicação ficou no heroku, e o lick do repositorio dela no github.</p>
-
-<p>Heroku -> <a href="http://nodechat.herokuapp.com">nodechat.herokuapp.com</a></p>
-
-<p>Github -> <a href="https://github.com/rrmartins/node_chat">Node Chat</a></p>
-
-<p>Até a proxima..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A classe Encoding]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/30/a-classe-encoding/"/>
-    <updated>2012-04-30T10:04:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/30/a-classe-encoding</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>A classe Encoding de Ruby 1.9 representa uma codificação de caracteres. Objetos de codificação para agir como identificadores opacos para uma codificação e não têm muitos métodos próprios. O nome do método retorna o nome de uma codificação. to_s é um sinônimo para o name, e inspect converte um objeto em uma seqüência de codificação de uma forma mais detalhada do que o name faz.</p>
-
-
-
-
-<p>Ruby define uma constante para cada uma das codificações built-in&#8217;s que ele suporta, e estes são a maneira mais fácil de especificar uma codificação em seu programa. As constantes predefinidas incluem pelo menos o seguinte:</p>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">ASCII_8BIT</span>     <span class="c1"># Also ::BINARY</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span>          <span class="c1"># UTF-8-encoded Unicode characters</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">EUC_JP</span>         <span class="c1"># EUC-encoded Japanese</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">SHIFT_JIS</span>      <span class="c1"># Japanese: also ::SJIS, ::WINDOWS_31J, ::CP932</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!--more-->
-
-
-<p>Observe que, como estas são constantes, eles devem ser escritos em letras maiúsculas e hífens nos nomes de codificação devem ser convertidos para sublinhados. Ruby 1.9 também suporta a codificação US-ASCII, as codificações européias ISO-8859-1 através da ISO-8859-15, e o Unicode UTF-16 e UTF-32 codificações em variantes big-endian e little-endian.</p>
-
-
-
-
-<p>Se você tiver um nome de codificação como uma string e deseja obter o objeto de codificação correspondente, use o método de fábrica Encoding.find:</p>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">encoding</span> <span class="o">=</span> <span class="no">Encoding</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-Usando Encoding.find faz com que a codificação passa a ser carregada dinamicamente, se necessário. Encoding.find aceita names de codificação que são qualquer maiúsculo ou minúsculo. Chame o método name de uma codificação para obter o nome da codificação como uma string.</p>
-
-
-
-
-<p>Encoding.list retorna uma matriz de todos os objetos de codificação disponíveis. Encoding.name_list retorna um array de nomes (como strings) de todas as codificações disponíveis. Codificações muito têm mais de um nome de uso comum, e Encoding.aliases retorna um hash que mapeia aliases de codificação para os names de codificação oficial pelos quais são sinônimos. A matriz retornada por Encoding.name_list inclui os aliases nos Encoding.aliases hash.</p>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding.name_list</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">name_list</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ASCII-8BIT&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="s2">&quot;US-ASCII&quot;</span><span class="p">,</span> <span class="s2">&quot;Big5&quot;</span><span class="p">,</span> <span class="s2">&quot;Big5-HKSCS&quot;</span><span class="p">,</span> <span class="s2">&quot;Big5-UAO&quot;</span><span class="p">,</span> <span class="s2">&quot;CP949&quot;</span><span class="p">,</span> <span class="s2">&quot;Emacs-Mule&quot;</span><span class="p">,</span> <span class="s2">&quot;EUC-JP&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;EUC-KR&quot;</span><span class="p">,</span> <span class="s2">&quot;EUC-TW&quot;</span><span class="p">,</span> <span class="s2">&quot;GB18030&quot;</span><span class="p">,</span> <span class="s2">&quot;GBK&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-2&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-3&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-4&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-5&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;ISO-8859-6&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-7&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-8&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-9&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-10&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-11&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-13&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;ISO-8859-14&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-15&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-8859-16&quot;</span><span class="p">,</span> <span class="s2">&quot;KOI8-R&quot;</span><span class="p">,</span> <span class="s2">&quot;KOI8-U&quot;</span><span class="p">,</span> <span class="s2">&quot;Shift_JIS&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-16BE&quot;</span><span class="p">,</span><span class="s2">&quot;UTF-16LE&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;UTF-32BE&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-32LE&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1251&quot;</span><span class="p">,</span> <span class="s2">&quot;BINARY&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM437&quot;</span><span class="p">,</span> <span class="s2">&quot;CP437&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM737&quot;</span><span class="p">,</span> <span class="s2">&quot;CP737&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM775&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;CP775&quot;</span><span class="p">,</span> <span class="s2">&quot;CP850&quot;</span><span class="p">,</span><span class="s2">&quot;IBM850&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM852&quot;</span><span class="p">,</span> <span class="s2">&quot;CP852&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM855&quot;</span><span class="p">,</span> <span class="s2">&quot;CP855&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM857&quot;</span><span class="p">,</span> <span class="s2">&quot;CP857&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM860&quot;</span><span class="p">,</span> <span class="s2">&quot;CP860&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;IBM861&quot;</span><span class="p">,</span> <span class="s2">&quot;CP861&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM862&quot;</span><span class="p">,</span> <span class="s2">&quot;CP862&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM863&quot;</span><span class="p">,</span><span class="s2">&quot;CP863&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM864&quot;</span><span class="p">,</span> <span class="s2">&quot;CP864&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM865&quot;</span><span class="p">,</span> <span class="s2">&quot;CP865&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM866&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;CP866&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM869&quot;</span><span class="p">,</span> <span class="s2">&quot;CP869&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1258&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1258&quot;</span><span class="p">,</span> <span class="s2">&quot;GB1988&quot;</span><span class="p">,</span><span class="s2">&quot;macCentEuro&quot;</span><span class="p">,</span> <span class="s2">&quot;macCroatian&quot;</span><span class="p">,</span> <span class="s2">&quot;macCyrillic&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;macGreek&quot;</span><span class="p">,</span> <span class="s2">&quot;macIceland&quot;</span><span class="p">,</span> <span class="s2">&quot;macRoman&quot;</span><span class="p">,</span> <span class="s2">&quot;macRomania&quot;</span><span class="p">,</span> <span class="s2">&quot;macThai&quot;</span><span class="p">,</span> <span class="s2">&quot;macTurkish&quot;</span><span class="p">,</span><span class="s2">&quot;macUkraine&quot;</span><span class="p">,</span> <span class="s2">&quot;CP950&quot;</span><span class="p">,</span> <span class="s2">&quot;CP951&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;stateless-ISO-2022-JP&quot;</span><span class="p">,</span> <span class="s2">&quot;eucJP&quot;</span><span class="p">,</span> <span class="s2">&quot;eucJP-ms&quot;</span><span class="p">,</span> <span class="s2">&quot;euc-jp-ms&quot;</span><span class="p">,</span> <span class="s2">&quot;CP51932&quot;</span><span class="p">,</span> <span class="s2">&quot;eucKR&quot;</span><span class="p">,</span> <span class="s2">&quot;eucTW&quot;</span><span class="p">,</span> <span class="s2">&quot;GB2312&quot;</span><span class="p">,</span><span class="s2">&quot;EUC-CN&quot;</span><span class="p">,</span>
-</span><span class='line'> <span class="s2">&quot;eucCN&quot;</span><span class="p">,</span> <span class="s2">&quot;GB12345&quot;</span><span class="p">,</span> <span class="s2">&quot;CP936&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-2022-JP&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO2022-JP&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-2022-JP-2&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO2022-JP2&quot;</span><span class="p">,</span> <span class="s2">&quot;CP50220&quot;</span><span class="p">,</span> <span class="s2">&quot;CP50221&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;ISO8859-1&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1252&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1252&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-2&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1250&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1250&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-3&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-4&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;ISO8859-5&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-6&quot;</span><span class="p">,</span><span class="s2">&quot;Windows-1256&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1256&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-7&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1253&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1253&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-8&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Windows-1255&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1255&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-9&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1254&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1254&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-10&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-11&quot;</span><span class="p">,</span> <span class="s2">&quot;TIS-620&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Windows-874&quot;</span><span class="p">,</span> <span class="s2">&quot;CP874&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-13&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-1257&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1257&quot;</span><span class="p">,</span><span class="s2">&quot;ISO8859-14&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-15&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-16&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;CP878&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows-31J&quot;</span><span class="p">,</span> <span class="s2">&quot;CP932&quot;</span><span class="p">,</span> <span class="s2">&quot;csWindows31J&quot;</span><span class="p">,</span> <span class="s2">&quot;MacJapanese&quot;</span><span class="p">,</span> <span class="s2">&quot;MacJapan&quot;</span><span class="p">,</span><span class="s2">&quot;ASCII&quot;</span><span class="p">,</span> <span class="s2">&quot;ANSI_X3.4-1968&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;646&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-7&quot;</span><span class="p">,</span> <span class="s2">&quot;CP65000&quot;</span><span class="p">,</span> <span class="s2">&quot;CP65001&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF8-MAC&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8-MAC&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8-HFS&quot;</span><span class="p">,</span> <span class="s2">&quot;UCS-2BE&quot;</span><span class="p">,</span> <span class="s2">&quot;UCS-4BE&quot;</span><span class="p">,</span><span class="s2">&quot;UCS-4LE&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;CP1251&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF8-DoCoMo&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS-DoCoMo&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF8-KDDI&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS-KDDI&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO-2022-JP-KDDI&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;stateless-ISO-2022-JP-KDDI&quot;</span><span class="p">,</span><span class="s2">&quot;UTF8-SoftBank&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS-SoftBank&quot;</span><span class="p">,</span> <span class="s2">&quot;locale&quot;</span><span class="p">,</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span> <span class="s2">&quot;filesystem&quot;</span><span class="p">,</span> <span class="s2">&quot;internal&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding.aliases</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">aliases</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">&quot;BINARY&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ASCII-8BIT&quot;</span><span class="p">,</span> <span class="s2">&quot;CP437&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM437&quot;</span><span class="p">,</span> <span class="s2">&quot;CP737&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM737&quot;</span><span class="p">,</span> <span class="s2">&quot;CP775&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM775&quot;</span><span class="p">,</span> <span class="s2">&quot;IBM850&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;CP850&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP857&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM857&quot;</span><span class="p">,</span> <span class="s2">&quot;CP860&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM860&quot;</span><span class="p">,</span> <span class="s2">&quot;CP861&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM861&quot;</span><span class="p">,</span> <span class="s2">&quot;CP862&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM862&quot;</span><span class="p">,</span> <span class="s2">&quot;CP863&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM863&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP864&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM864&quot;</span><span class="p">,</span> <span class="s2">&quot;CP865&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM865&quot;</span><span class="p">,</span> <span class="s2">&quot;CP866&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM866&quot;</span><span class="p">,</span> <span class="s2">&quot;CP869&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;IBM869&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1258&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1258&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP950&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Big5&quot;</span><span class="p">,</span> <span class="s2">&quot;CP951&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Big5-HKSCS&quot;</span><span class="p">,</span> <span class="s2">&quot;eucJP&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;EUC-JP&quot;</span><span class="p">,</span> <span class="s2">&quot;euc-jp-ms&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;eucJP-ms&quot;</span><span class="p">,</span> <span class="s2">&quot;eucKR&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;EUC-KR&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;eucTW&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;EUC-TW&quot;</span><span class="p">,</span> <span class="s2">&quot;EUC-CN&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;GB2312&quot;</span><span class="p">,</span> <span class="s2">&quot;eucCN&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;GB2312&quot;</span><span class="p">,</span> <span class="s2">&quot;CP936&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;GBK&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO2022-JP&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-2022-JP&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;ISO2022-JP2&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-2022-JP-2&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-1&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1252&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1252&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-2&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-2&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP1250&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1250&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-3&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-3&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-4&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-4&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-5&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-5&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;ISO8859-6&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-6&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1256&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1256&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-7&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-7&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1253&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1253&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;ISO8859-8&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-8&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1255&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1255&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-9&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-9&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1254&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1254&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;ISO8859-10&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-10&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-11&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-11&quot;</span><span class="p">,</span> <span class="s2">&quot;CP874&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-874&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-13&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-13&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP1257&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1257&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-14&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-14&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-15&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-15&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8859-16&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ISO-8859-16&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP878&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;KOI8-R&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Shift_JIS&quot;</span><span class="p">,</span> <span class="s2">&quot;CP932&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-31J&quot;</span><span class="p">,</span> <span class="s2">&quot;csWindows31J&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-31J&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;MacJapan&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;MacJapanese&quot;</span><span class="p">,</span> <span class="s2">&quot;ASCII&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;US-ASCII&quot;</span><span class="p">,</span> <span class="s2">&quot;ANSI_X3.4-1968&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;US-ASCII&quot;</span><span class="p">,</span> <span class="s2">&quot;646&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;US-ASCII&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;CP65000&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-7&quot;</span><span class="p">,</span> <span class="s2">&quot;CP65001&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8-MAC&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF8-MAC&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8-HFS&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF8-MAC&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;UCS-2BE&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-16BE&quot;</span><span class="p">,</span> <span class="s2">&quot;UCS-4BE&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-32BE&quot;</span><span class="p">,</span> <span class="s2">&quot;UCS-4LE&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-32LE&quot;</span><span class="p">,</span> <span class="s2">&quot;CP1251&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Windows-1251&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;locale&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="s2">&quot;external&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="s2">&quot;filesystem&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Use Encoding.default_external e Encoding.default_internal para obter os objetos de codificação que representam os padrões externos e internos de codificação padrão. Para obter a codificação para o local atual, chame Encoding.locale_charmap e passar a seqüência resultante para Encoding.find.</p>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding.default_external</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">default_external</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="c1">#&lt;Encoding:UTF-8&gt; </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding.default_internal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">default_internal</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">nil</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding.locale_charmap</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">locale_charmap</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="s2">&quot;UTF-8&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>A maioria dos métodos que esperam um objeto Encoding também aceitará um nome de codificação maiúsculas e minúsculas (como ascii, binário, UTF-8, EUC-JP, ou sjis) no lugar de um objeto de codificação.</p>
-
-
-<p>É isso ai&#8230; até a proxima&#8230; :D</p>
 ]]></content>
   </entry>
   

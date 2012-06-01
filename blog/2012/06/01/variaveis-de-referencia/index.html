@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: FLISOL - Rodrigo Martins</title>
+  <title>Variáveis de Referência - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Category: FLISOL">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Variáveis de Referência Variáveis de Referência Uma variável é &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.comblog/categories/flisol">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -111,46 +111,112 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: FLISOL</h1>
     
+      <h1 class="entry-title">Variáveis De Referência</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-01T13:16:00-03:00" pubdate data-updated="true">01/06/12 às 13:16 hrs</time>
+        
+         | <a href="#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis de Referência</p>
 
 
 
-  
-  <h1>2012</h1>
 
-<article>
-  <div class="well">
-	
-	<h2><a href="/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/">#FLISOL_ES 2012 - Um evento Latino-Americano</a></h2>
-	<time datetime="2012-04-22T09:26:00-03:00" pubdate>
-		<span class='month'>Apr</span> <span class='day'>22</span> <span class='year'>2012</span>
-	</time>
-	
-	<footer>
-	  <span class="categories">Publicado em <a class='category' href='/blog/categories/almir-m3nd3s-/'>Almir 'm3nd3s'</a>, <a class='category' href='/blog/categories/daniel-marcos/'>Daniel Marcos</a>, <a class='category' href='/blog/categories/flisol/'>FLISOL</a>, <a class='category' href='/blog/categories/festival-latino-americano-de-instalação-de-software-livre/'>Festival Latino-Americano de Instalação de Software Livre</a>, <a class='category' href='/blog/categories/léo-hackin/'>Léo Hackin</a>, <a class='category' href='/blog/categories/pfsense/'>Pfsense</a>, <a class='category' href='/blog/categories/pomodoro/'>Pomodoro</a>, <a class='category' href='/blog/categories/rodrigo-griffo/'>Rodrigo Griffo</a>, <a class='category' href='/blog/categories/rodrigo-martins/'>Rodrigo Martins</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/shellscript/'>ShellScript</a>, <a class='category' href='/blog/categories/wordpress/'>Wordpress</a></span>
-	</footer>
-	
+<h1>Variáveis de Referência</h1>
+
+
+<p>Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões
+de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma
+variável de referência à expressão e avaliado como o valor da variável:</p>
+
+<figure class='code'><figcaption><span>Referência</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="c1"># Esta é uma expressão de atribuição</span>
+</span><span class='line'><span class="n">one</span> <span class="c1"># Essa expressão de referência variável avalia a 1,0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Existem quatro tipos de variáveis ​​em Ruby, e regras <a href="http://pt.wikipedia.org/wiki/Item_lexical">lexicais</a> para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
+variáveis ​​de instância e variáveis ​​de classe, usado em programação orientada a objeto. E as variáveis ​​cujos nomes começam com um sublinhado
+ou uma letra minúscula são variáveis ​​locais, definidas apenas dentro do atual método ou bloco.</p>
+
+<p>Variáveis ​​sempre são simples, nomes não qualificados. Se um . ou :: aparece em uma expressão, em seguida, que a expressão é ou um
+uma referência a uma constante ou uma invocação de método. Por exemplo, Math::PI é uma referência a uma constante, e a expressão
+item.preco é uma invocação do método chamado preco (preço) sobre o valor realizado pela variável item.</p>
+
+<p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
+
+<p>Até a próxima.. :)</p>
 </div>
 
-</article>
 
-</div>
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
 
   
-    <footer>
-      
-      
-        <div class="sharing">
+
+
+<time datetime="2012-06-01T13:16:00-03:00" pubdate data-updated="true">01/06/12 às 13:16 hrs</time>
+      Categorias: 
+
+<span class="categories">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.comblog/categories/flisol/index.html" data-via="rr_martins" data-counturl="http://rrmartins.github.comblog/categories/flisol/index.html" >Tweet</a>
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -160,10 +226,24 @@
   
 </div>
 
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
       
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/28/emergencia/" title="Previous Post:
+        Emergencia">&laquo; Emergencia</a></li>
       
-    </footer>
-  
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">
@@ -261,7 +341,10 @@
       var disqus_shortname = 'rrmartins';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
