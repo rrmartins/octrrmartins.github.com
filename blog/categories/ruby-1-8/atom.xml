@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 1.8 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-1-8/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-01T13:26:38-03:00</updated>
+  <updated>2012-06-01T13:30:16-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -31,8 +31,8 @@ de atribuição. Quando o nome de uma variável aparece num programa em qualquer
 variável de referência à expressão e avaliado como o valor da variável:</p>
 
 <p><code>ruby Referência
-one = 1.0 # Esta é uma expressão de atribuição
-one # Essa expressão de referência variável avalia a 1,0
+one = 1.0 # Esta é uma atribuição de expressão
+one # Essa referência de expressão da variável, que imprimi 1.0
 </code></p>
 
 <p>Existem quatro tipos de variáveis ​​em Ruby, e regras <a href="http://pt.wikipedia.org/wiki/Item_lexical">lexicais</a> para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
