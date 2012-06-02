@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-02T11:53:28-03:00</updated>
+  <updated>2012-06-02T18:21:22-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Invocações de método]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/"/>
+    <updated>2012-06-02T15:36:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+
+
+
+
+<h1>Invocações de método</h1>
+
+
+<p>Uma expressão de invocação de método tem quatro partes:</p>
+
+<ul>
+<li><p>Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
+do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.</p></li>
+<li><p>O nome do método a ser invocado. Este é o único pedaço exigido de uma expressão chamada de método.</p></li>
+<li><p>Valores com o argumento passado para o método. A lista de argumentos podem ser colocados entre parênteses, mas estes são geralmente
+opcionais. Se há mais de um argumento, eles são separados uns dos outros com vírgulas. O número e tipo de argumentos necessários
+dependem da definição do método. Alguns métodos podem ser chamodos sem argumentos.</p></li>
+<li><p>Um bloco opcional de código delimitado por chaves ou por um par <code>do/end</code>. O método pode invocar esse código usando a palavra-chave de
+ <code>yield</code>. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby.</p></li>
+</ul>
+
+
+<p>Um nome do método é normalmente separado do objeto sobre o qual é chamado com um <code>..</code>, e com o <code>::</code>, que também é permitido, mas é raramente
+usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.</p>
+
+<p>Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+chamado usando um processo conhecido como "método de pesquisa" ou "resolução de nome do método." Os detalhes não são importantes aqui,
+mas eles são explicados completamente no método de pesquisa.</p>
+
+<p>O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
+alguns exemplos de invocações de método:</p>
+
+<p><code>ruby Ruby
+puts "Olá mundo" # "puts" invocado em auto, com uma seqüência de arg
+Math.sqrt(2) # "sqrt" invocado em Matemática objeto com uma arg
+message.length # "comprimento" invocado em mensagem objeto; não args
+a.each{|x| p x} # "cada" chamado em um objeto, com um bloco associado
+</code></p>
+
+<p>Um dos exemplos do método de invocação mostradas anteriormente foi <code>message.length</code>. Você pode ser tentado a pensar-lo como uma variável
+de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
+um modelo de programação muito orientada a objetos: objetos em Ruby podem encapsular qualquer número de variáveis ​​de instância interna,
+mas expõem métodos apenas para o mundo exterior. Como o método <code>length</code> não espera argumentos e é chamado sem os parênteses opcionais,
+parece que referência uma variável. Na verdade, isso é intencional. Métodos como estes são chamados para atribuir métodos de acesso, e
+dizemos que o objeto da <code>mensage</code> tem um atributo de <code>lenght</code>. Como veremos, é possível que o objeto de <code>mensage</code>
+para definir um método chamado <code>length=</code>. Se este método espera um único argumento, então é um método setter do atributo e
+Ruby invoca em resposta a atribuição. Se um tal método é definido, então estas duas linhas de código seria tanto chamar o mesmo método:</p>
+
+<p><code>ruby Length
+message.length=(3) # invocação do método tradicional
+message.length = 3 # invocação Método como a atribuição
+</code></p>
+
+<p>Agora, considere a seguinte linha de código, assumindo que uma variável contém um <code>Array</code>:</p>
+
+<p><code>ruby Array
+a[0]
+</code></p>
+
+<p>Você pode pensar novamente que este é um tipo especial de variável de referência, onde a variável em questão é na verdade um elemento do
+<code>Array</code>. Novamente, no entanto, esta é invocação do método. O intérprete Ruby converte o acesso ao <code>Array</code> para isso:</p>
+
+<p><code>ruby Array
+a.[](0)
+</code></p>
+
+<p>O acesso ao <code>Array</code> torna-se uma invocação do método chamado <code>[]</code>, com o índice do <code>Array</code> como seu
+argumento. Esta sintaxe de acesso de <code>Array</code> não se limita a <code>Arrays</code>. Qualquer objeto é permitido para definir um
+método chamado <code>[]</code>. Quando o objeto é "indexado", com o indix entre parênteses, os valores dentro dos parênteses será passado
+para o método. Se o método <code>[]</code> é escrito para esperar três argumentos, então você deve colocar três expressões separados por
+vírgula dentro dos colchetes.</p>
+
+<p>Atribuição de <code>Arrays</code> também é feito através de invocação de método. Se o objeto o define um método chamado <code>[]=</code>, então a expressão <code>o[x] = y</code> torna-se <code>o.[] = (x, y)</code>, e a expressão <code>o[x, y] = z</code> se torna <code>o.[] = (x , y, z)</code>.</p>
+
+<p>Muitos operadores do Ruby são definidos como métodos, e expressões como <code>x + y</code> são avaliados como <code>x.+(y)</code>, onde o
+nome de método é <code>+</code>. O fato de que muitos dos operadores do Ruby são definidos como métodos que significa você pode redefinir
+esses operadores na sua próprias classes.</p>
+
+<p>Agora, vamos considerar esta expressão muito simples:</p>
+
+<p><code>ruby Ruby
+x
+</code></p>
+
+<p>Se uma variável x nomeada existe (Isto é, se o interpretador Ruby tem visto uma atribuição a x), então esta é uma variável de referência.
+Se nenhuma variável existe, então esta é uma invocação do método x, sem argumentos.</p>
+
+<p>A palavra <code>super</code> em Ruby é um tipo especial de invocação de método. Esta palavra é usada ao criar uma subclasse de outra
+classe. Por si só, <code>super</code> passa os argumentos do método corrente para o método com o mesmo nome na superclasse. Ele também
+pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
+<code>super</code> é abordada em detalhes no Aumentando Comportamento por encadeamento.</p>
+
+<p>Até a Proxima... :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Variáveis ​​não inicializadas]]></title>
@@ -185,114 +286,6 @@ avaliado como uma expressão e retorna um valor. É ainda útil, no entanto, dif
 tipicamente usadas ​​como indicações.</p>
 
 <p>Até mais amigos.. ainda vem muito conteudo legal com por ai.. :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part VI]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/"/>
-    <updated>2012-05-20T19:08:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Copiando objetos</h3>
-
-
-<p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
-superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
-referências a objetos são copiadas, não os próprios objetos referenciados.</p>
-
-<p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
-classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor
-de cópias", podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
-para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
-
-<p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
-
-<p>Há duas diferenças importantes entre os métodos clone e dup definidos pelo objeto. Primeiro, as cópias do clone tanto o congelado e
-quanto o estado contaminado(definido em breve) de um objeto, enquanto dup apenas copia o estado contaminado, chamando dup sobre um objeto
-congelado retorna uma cópia descongelada. Em segundo lugar, clone cópia quaisquer métodos singleton do objeto, enquanto que dup não.</p>
-
-<h3>Objetos Empacotamento</h3>
-
-
-<p>Você pode salvar o estado de um objeto passando para a classe <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html">Marshal</a>, com o método <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">dump</a>. Se você passar um objeto de fluxo de I/O como o segundo argumento, escreve o estado do objeto Marshal.dump (e, de forma recursiva, quaisquer objetos que referencia) para esse fluxo.
-Caso contrário, ele simplesmente retorna o estado codificado como uma string binária.</p>
-
-<p>Para restaurar um objeto empacotado, passe uma string ou um fluxo de contendo I/O do objeto de <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a>.</p>
-
-<p>O empacotamento de um objeto é uma maneira muito simples para salvar seu estado para uma utilização posterior, e estes métodos podem ser
-usados ​​para fornecer um arquivo automático no formato de programas Ruby. Note, no entanto, que o formato binário usado por <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">Marshal.dump</a> e <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a> é dependente da versão, e nas mais recentes versões do Ruby não são garantidos para ser capaz de ler
-objetos empacotados escritos por versões mais antigas do Ruby.</p>
-
-<p>Outro uso para Marshal.dump e Marshal.load é criar cópias de profundidade de objetos:</p>
-
-<p><code>ruby Marshal
-def deepcopy(o)
-  Marshal.load (Marshal.dump (o))
-end
-</code></p>
-
-<p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
-maneira confiável para restaurar seu Estado.</p>
-
-<p>YAML ("YAML não é Markup Language") é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
-partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo 'yaml'.</p>
-
-<h3>Objetos de congelamento</h3>
-
-
-<p>Qualquer objeto pode ser congelado chamando seu método de freeze. A objeto congelado torna imutável e nenhum de seu estado interno pode
-ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de modificadores:</p>
-
-<p><code>ruby  Freeze
-s = "gelo" # String são objetos mutáveis
-s.freeze # Faça desta cadeia imutável
-s.frozen? # Verdade: ele foi congelado
-s.upcase! # TypeError: não pode modificar cadeia de congelados
-s[0] = "ni" # TypeError: não pode modificar cadeia de congelados
-</code></p>
-
-<p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
-
-<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para "descongelar" um objeto. Se
-você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
-cópia não será congelada.</p>
-
-<h3>Objetos contaminados e não confiáveis</h3>
-
-
-<p>Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
-de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
-contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
-taint de um objeto pode ser testado com o método tainted? método:</p>
-
-<p><code>ruby taint
-s = "não confiáveis" # Os objetos são normalmente não viciada
-s.taint # Marcar como não confiável objeto contaminado
-s.tainted? # Verdade: ele está contaminado
-s.upcase.tainted? # Verdade: objetos derivados estão contaminados
-s[3,4].tainted? # Verdade: substrings estão contaminados
-</code></p>
-
-<p>De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
-contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
-vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
-pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.</p>
-
-<p>Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
-lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
-confiáveis.</p>
-
-<p>Boa noite amigos... até a proxima..</p>
 ]]></content>
   </entry>
   

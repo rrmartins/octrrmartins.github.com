@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rodrigo Martins</title>
+  <title>Invocações de método - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -110,15 +110,13 @@
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/06/02/invocacoes-de-metodo/">Invocações De Método</a></h1>
+      <h1 class="entry-title">Invocações De Método</h1>
     
     
       <p class="meta">
@@ -136,7 +134,7 @@
 
 <time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
         
-         | <a href="/blog/2012/06/02/invocacoes-de-metodo/#disqus_thread">Comentário</a>
+         | <a href="#disqus_thread">Comentário</a>
         
       </p>
     
@@ -152,7 +150,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
 
 
 
@@ -255,22 +253,16 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 
 <p>Até a Proxima&#8230; :)</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/02/variaveis-nao-inicializadas/">Variáveis ​​não Inicializadas</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
 
 
 
@@ -282,13 +274,8 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
   
 
 
-<time datetime="2012-06-02T11:30:00-03:00" pubdate data-updated="true">02/06/12 às 11:30 hrs</time>
-        
-         | <a href="/blog/2012/06/02/variaveis-nao-inicializadas/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
+<time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
+      Categorias: 
 
 <span class="categories">
   
@@ -297,295 +284,47 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 </span>
 
 
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
-
-
-
-
-<h1>Variáveis ​​não inicializadas</h1>
-
-
-<p>Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
-no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:</p>
-
-<h4>Variáveis ​​de classe</h4>
-
-
-<pre><code>Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se 
-referir a uma variável de classe à qual nenhum valor foi atribuído.
-</code></pre>
-
-<h4>Variáveis ​​de instância</h4>
-
-
-<pre><code>Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de 
-contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la 
-com a opção -w.
-</code></pre>
-
-<h4>As variáveis ​​globais</h4>
-
-
-<pre><code>Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra 
-um aviso quando o Ruby é executado com o flag do -w.
-</code></pre>
-
-<h4>As variáveis ​​locais</h4>
-
-
-<pre><code>Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo. 
-Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o 
-interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método, 
-e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma 
-invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.
-
-Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe 
-uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa 
-variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi 
-atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
-</code></pre>
-
-<figure class='code'><figcaption><span>Variaveis</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span> <span class="k">if</span> <span class="kp">false</span> <span class="c1"># atribuição Isso nunca é executado</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">a</span> <span class="c1"># Imprime nulo: a variável existe mas não é atribuída</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">b</span> <span class="c1"># NameError: nenhuma variável ou método chamado existe b</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
-
-<p>Até a próxima.. :)</p>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/01/variaveis-de-referencia/">Variáveis De Referência</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-01T13:16:00-03:00" pubdate data-updated="true">01/06/12 às 13:16 hrs</time>
-        
-         | <a href="/blog/2012/06/01/variaveis-de-referencia/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis de Referência</p>
-
-
-
-
-<h1>Variáveis de Referência</h1>
-
-
-<p>Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões
-de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma
-variável de referência à expressão e avaliado como o valor da variável:</p>
-
-<figure class='code'><figcaption><span>Referência</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="c1"># Esta é uma atribuição de expressão</span>
-</span><span class='line'><span class="n">one</span> <span class="c1"># Essa referência de expressão da variável, que imprimi 1.0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Existem quatro tipos de variáveis ​​em Ruby, e regras <a href="http://pt.wikipedia.org/wiki/Item_lexical">lexicais</a> para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
-variáveis ​​de instância e variáveis ​​de classe, usado em programação orientada a objeto. E as variáveis ​​cujos nomes começam com um sublinhado
-ou uma letra minúscula são variáveis ​​locais, definidas apenas dentro do atual método ou bloco.</p>
-
-<p>Variáveis ​​sempre são simples, nomes não qualificados. Se um . ou :: aparece em uma expressão, em seguida, que a expressão é ou um
-uma referência a uma constante ou uma invocação de método. Por exemplo, Math::PI é uma referência a uma constante, e a expressão
-item.preco é uma invocação do método chamado preco (preço) sobre o valor realizado pela variável item.</p>
-
-<p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
-
-<p>Até a próxima.. :)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/06/02/variaveis-nao-inicializadas/" title="Previous Post:
+        Variáveis ​​não inicializadas">&laquo; Variáveis ​​não inicializadas</a></li>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/28/emergencia/">Emergencia</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-28T13:24:00-03:00" pubdate data-updated="true">28/05/12 às 13:24 hrs</time>
-        
-         | <a href="/blog/2012/05/28/emergencia/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/caindo-na-real/'>Caindo na Real</a>, <a class='category' href='/blog/categories/opensource/'>OpenSource</a>, <a class='category' href='/blog/categories/software-livre/'>Software Livre</a>, <a class='category' href='/blog/categories/the-progmatic-programmers/'>The Progmatic Programmers</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Emergencia</p>
-
-<p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
-projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
-do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
-ocorrer, se beneficiando dela.</p>
-
-<p>Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
-simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
-graciosamente pelos céus, se remodelando em torno de obstáculos e assim por diante. Nenhum desses comportamentos avançados (como se
-remodelar na mesma forma ao redor de obstáculos) é especificado pelas regras; eles emergem da dinâmica do sistema.</p>
-
-<p>Regras simples, como na simulação dos pássaros, leva a comportamentos complexos. Regras complexas, como com leis tributárias na maioria
-dos países, levam a comportamentos estúpidos.</p>
-
-<p>Muitas práticas comuns de desenvolvimento de software tem o infeliz efeito-colateral de eliminar qualquer chance de comportamento emergente. A maioria das tentativas de otimização – amarrando alguma coisa muito explicitamente – reduz a extensão e escopo de interações e relacionamentos, que é a origem da emergencia. No exemplo do bando de pássaros, assim como sistemas bem-desenhados, são as interações e relacionamentos que criam os comportamentos interessantes.</p>
-
-<p>Quanto mais amarramos as coisas, menos espaço deixamos para uma solução criativa e emergente. Seja tanto travando requisitos, antes de serem bem entendidos ou otimizando o código prematuramente, como inventando navegações e cenários de fluxo de trabalho complexas, antes de deixar o usuário final usar o sistema, o resultado é o mesmo: um sistema exageramente complicado e estúpido ao invés de um sistema limpo e elegante que aproveita a emergencia.</p>
-
-<p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
-
-<pre><code>—Andrew Hunt, The Pragmatic Programmers 
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+      <li><a href="/blog/archives">Blog Archives</a></li>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/28/naa-presencao-de-paixao/">A Presenção De Paixão</a></h1>
-    
-    
-      <p class="meta">
-        
+    </ul>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-28T13:13:00-03:00" pubdate data-updated="true">28/05/12 às 13:13 hrs</time>
-        
-         | <a href="/blog/2012/05/28/naa-presencao-de-paixao/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/caindo-na-real/'>Caindo na Real</a>, <a class='category' href='/blog/categories/opensource/'>OpenSource</a>, <a class='category' href='/blog/categories/software-livre/'>Software Livre</a>, <a class='category' href='/blog/categories/the-progmatic-programmers/'>The Progmatic Programmers</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&#8220;Caindo na Real&#8221;</a>, e me deparei com uma parte muito boa..</p>
-
-<p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
-
-<h2>A presenção de paixão</h2>
-
-
-<p>Em design, onde o significado é normalmente e controversamente subjetivo ou dolorosamente indecifrável, poucas coisas são mais aparentes e lúcidas do que a presença de paixão. Isso é verdade seja quando o design do produto o agrada ou o deixa frio; em ambos os casos é difícil não detectar o investimento emocional das mãos que o construíram.</p>
-
-<p>Entusiasmo se manifesta prontamente, claro, mas indiferença é igualmente inesquecível. Se seu compromisso não vem com paixão genuína para o trabalho às mãos, isso se torna um vazio que é quase impossível de conciliar, não importa o quão elaborado ou atrativo é o design.</p>
-
-<pre><code>—Khoi Vinh, Subtraction.com
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  <ul class="pager">
-    
-    <li class="previous"><a href="/blog/page/2/">&larr; Older</a></li>
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
-</div>
 <aside class="sidebar-nav span3">
   
     
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -598,11 +337,37 @@ dos países, levam a comportamentos estúpidos.</p>
   
 </section>
 
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/02/invocacoes-de-metodo/">Invocações de método</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/02/variaveis-nao-inicializadas/">Variáveis ​​não inicializadas</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/01/variaveis-de-referencia/">Variáveis de Referência</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/28/emergencia/">Emergencia</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/28/naa-presencao-de-paixao/">A presenção de paixão</a>
+      </li>
+    
+  </ul>
+</section>
 
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
@@ -632,6 +397,7 @@ dos países, levam a comportamentos estúpidos.</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo" class="page-footer"><hr>
@@ -647,7 +413,10 @@ dos países, levam a comportamentos estúpidos.</p>
       var disqus_shortname = 'rrmartins';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
