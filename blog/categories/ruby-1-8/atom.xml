@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 1.8 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-1-8/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-01T13:30:16-03:00</updated>
+  <updated>2012-06-02T11:53:28-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Variáveis ​​não inicializadas]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/"/>
+    <updated>2012-06-02T11:30:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+
+
+
+
+<h1>Variáveis ​​não inicializadas</h1>
+
+
+<p>Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
+no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:</p>
+
+<h4>Variáveis ​​de classe</h4>
+
+
+<pre><code>Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se 
+referir a uma variável de classe à qual nenhum valor foi atribuído.
+</code></pre>
+
+<h4>Variáveis ​​de instância</h4>
+
+
+<pre><code>Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de 
+contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la 
+com a opção -w.
+</code></pre>
+
+<h4>As variáveis ​​globais</h4>
+
+
+<pre><code>Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra 
+um aviso quando o Ruby é executado com o flag do -w.
+</code></pre>
+
+<h4>As variáveis ​​locais</h4>
+
+
+<pre><code>Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo. 
+Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o 
+interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método, 
+e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma 
+invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.
+
+Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe 
+uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa 
+variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi 
+atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
+</code></pre>
+
+<p><code>ruby Variaveis
+a = 0.0 if false # atribuição Isso nunca é executado
+puts a # Imprime nulo: a variável existe mas não é atribuída
+puts b # NameError: nenhuma variável ou método chamado existe b
+</code></p>
+
+<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
+
+<p>Até a próxima.. :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Variáveis de Referência]]></title>
@@ -228,165 +293,6 @@ lealdade de um objeto. Código não confiável cria objetos não confiáveis, ob
 confiáveis.</p>
 
 <p>Boa noite amigos... até a proxima..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part V]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/"/>
-    <updated>2012-05-20T14:04:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Conversão de objetos</h3>
-
-
-<p></p>
-
-<p>Muitas classes de Ruby definem métodos que retornam uma representação do objeto como um valor de uma classe diferente.
-O método to_s, para a obtenção de uma representação de um objeto, é provavelmente o mais comumente implementado e mais conhecido
-dos métodos. As subseções a seguir descrevem várias categorias de conversões.</p>
-
-<!--more-->
-
-
-<h5>Conversões explícitas</h5>
-
-
-<p>As classes definem métodos de conversão explícitos para uso da aplicação de código que precisa de converter um valor para uma
-outra representação. Os métodos mais comuns nesta categoria são to_s, to_i, to_f e to_a para converter a String, Integer, Float,
-e array, respectivamente. Ruby 1.9 adiciona métodos to_c e to_r que se converterem ao <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/syck/rdoc/Complex.html">Complex</a> e <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/bigdecimal/rdoc/Rational.html">Rational</a>.</p>
-
-<p>Métodos built-in normalmente não chamam esses métodos para você. Se você chamar um método que espera uma String e passar um objeto
-de algum outro tipo, que o método não é esperado para converter o argumento com to_s. (Valores interpolados em aspas dupla em strings,
-no entanto, são automaticamente convertidos com to_s.)</p>
-
-<p>to_s é facilmente o mais importantes dos métodos de conversão, porque representações de seqüência de objetos são tão comumente
-utilizadas em interfaces de usuário. Uma importante alternativa para to_s é o método inspect. to_s é geralmente destinados a retornar uma
-representação legível do objeto, adequado para usuários finais. inspect, por outro lado, é destinados ao uso de depuração, e deve
-retornar uma representação que é útil para os desenvolvedores de Ruby. O padrão do método inspect, herdado de Object, simplesmente chama
-to_s.</p>
-
-<h5>As conversões implícitas</h5>
-
-
-<p>Às vezes, uma classe tem características fortes de uma outra classe. A classe Exception de Ruby representa um erro ou condição
-inesperada em um programa e encapsula uma mensagem de erro. No Ruby 1.8, objetos Exception não são apenas conversível para strings,
-que são strings como objetos e podem ser tratadas como se fossem strings em muitos contextos [*], Por exemplo:</p>
-
-<p>``` ruby class Exception</p>
-
-<h1>Ruby 1.8</h1>
-
-<p>e = Exception.new("não é realmente uma exceção")
-msg = "Erro:" + e # concatenação de String com uma exceção
-```</p>
-
-<p>Como os objetos de exceção são strings, eles podem ser usados ​​com a cadeia no operador de concatenação. Isso não funciona com a
-maioria das outras classes de Ruby. A razão pela qual os objetos de Exceção pode se comportar como Objetos String é que, em Ruby
-1.8, Exception implementa o método to_str, implícito de conversão, e o operador + definido pela String chama esse método em seu
-do lado direito do operando.</p>
-
-<p>Outros métodos de conversão implícitos são to_int para objetos que querem ser inteiro, como to_ary, para objetos que quer ser
-array, e to_hash para objetos que querem ser hash. Infelizmente, as circunstâncias em que estes métodos de conversão são implícitos
-chamados não são bem documentados. Entre as classes embutidas, estes métodos de conversões implícitas que normalmente não são implementadas, tampouco.</p>
-
-<p>Observamos anteriormente, de passagem, que o operador == pode realizar um tipo fraco de tipo de conversão ao testar a igualdade.
-Os operadores == definidos pelo Array, String, e Hash para ver se o operando do lado direito é da mesma classe como o operando esquerdo.
-Se assim for, eles se comparam. Se não, verifica se o operando do lado direito tem um to_str, to_ary, ou método to_hash.
-Eles não invocam estes métodos, mas se eles existem, eles invocam o método == do operando do lado direito e permiti que ele se decida
-se é igual ao do operando esquerda.</p>
-
-<p>No Ruby 1.9, as classes String, Array, Hash, RegExp e IO definiem tudas um método de classe chamado try_convert. Este métodos
-convertem seu argumento se definido um método implícito apropriado de conversão, ou retorna contrário nil . Array.try_convert(o)
-retorna o.to_ary se o método define, caso contrário, retorna nil. Estes métodos são try_convert conveniente se você quiser escrever
-métodos que permitem conversões implícitas no seu argumento.</p>
-
-<h5>Funções de conversão</h5>
-
-
-<p>O módulo de Kernel define quatro métodos de conversão que se comportam como funções globais de conversão. Estas funções de array, Float,
-Integer e String, têm os mesmos nomes que as classes para que se convertam, e eles são incomuns em que eles começam com uma
-letra maiúscula.</p>
-
-<p>A função Array tenta converter seu argumento para um array chamando to_ary. Se esse método é não definido ou retorna nil, ou ele tenta
-o método to_a. Se to_a não está definido retorna nulo, a função Array simplesmente retorna um novo array contendo o argumento como
-seu único elemento.</p>
-
-<p>A função Float converte argumentos numéricos para objetos Float diretamente. Para qualquer valor não numérico, que chama o método to_f.</p>
-
-<p>A função Integer converte o argumento para um Fixnum ou Bignum. Se o argumento é um valor numérico, ele é convertido diretamente. Valores
-de Float são truncados e não arredondado. Se o argumento é uma string, ele procura por um indicador de radix(um condutor 0 para octal,
-0x para hexadecimal, ou 0b para binário) e converte a string em conformidade. Ao contrário String.to_i não permiti caracteres não
-numéricos à direita. Para qualquer outro tipo de argumento, a função Integer tenta converter primeiro com to_int e depois com to_i.</p>
-
-<p>Finalmente, a função String converte o argumento para uma string simplesmente chamando seu método to_s.</p>
-
-<h5>Tipo de operador Aritmético</h5>
-
-
-<p>Tipos numéricos definem um método de conversão chamado <a href="http://www.ruby-doc.org/core-1.9.2/Numeric.html#method-i-coerce">coerce</a>. A intenção deste método é o de converter o argumento para o mesmo tipo como o objeto numérico no qual o método é invocado, ou
-para converter ambos os objetos para algum tipo mais geralmente compatíveis. O método de coerce sempre retorna uma matriz que tem dois
-valores numéricos do mesmo tipo. O primeiro elemento do array é o valor convertido do argumento para coerce. O segundo elemento do
-retornado do array é o valor(convertido, se necessário) em que foi invocado coerce:</p>
-
-<p><code>ruby Coerc
-1.1.coerce(1) # [1.0, 1.1]: coagir Fixnum para Flutuar
-require "rational" # Use números racionais
-r = Rational(1,3) # terceira Um como um número racional
-r.coerce (2) # [Rational (2,1), Rational (1,3)]: Fixnum para Rational
-</code>
-O método coerce é usado pelos operadores aritméticos. O operador + definido por Fixnum não sabe sobre números Rational, por exemplo, e se
-o operando do lado direito é um valor rational, não se sabe como adicionar. coerce fornece a solução. Operadores numéricos são escritos
-de modo que, se eles não sabem o tipo do operando do lado direito, que invocam o método coerce do operando do lado direito, passando o
-operando da esquerda como um argumento. Voltando ao nosso exemplo de adição de um Fixnum e um Rational, o método coerce de Rational
-retorna um array de dois valores racionais. Agora, o operador + definido por Fixnum pode simplesmente invocar + sobre os valores no array.</p>
-
-<h5>Conversões de tipos Booleanos</h5>
-
-
-<p>Valores booleanos merecem uma menção especial no contexto de conversão de tipo. Ruby é muito rigoroso com seus valores booleanos: true e
-falso têm métodos to_s, que retornam "true" e "falso", mas definem nenhum outro método de conversão. E não há nenhum método to_b
-para converter os outros valores para Booleanos.</p>
-
-<p>Em algumas Linguagens, é falsa a mesma coisa que 0, ou pode ser convertidos para 0. Em Ruby, os valores verdadeiros e falsos são os
-seus próprios objetos distintos, e não existem conversões implícitas que convertem os outros valores para verdadeiro ou falso.
-Esta é apenas metade da história, no entanto. Operadores booleanos de Ruby e de sua condicional e construções em loops que usam
-expressões booleanas podem trabalhar com outros valores que o verdadeiro e o falso. A regra é simples: em expressões Boolean, qualquer
-valor diferente de false ou nil se comporta como (mas não é convertida em) verdadeiro. nil, por outro lado se comporta como falsa.</p>
-
-<p>Suponha que você queira testar se a variável x é nula ou não. Em algumas línguagens, você deve escrever explicitamente uma expressão
-de comparação que avalia a verdadeira ou falso:</p>
-
-<p><code>ruby True ou False
-if x != nil #  a expressão "x! = nil" retorna true ou false para o caso
-  puts x # x Imprimir se ela é definida
-end
-</code></p>
-
-<p>Esse código funciona em Ruby, mas é mais comum simplesmente para tomar vantagem do fato de que todos os outros valores do que zero e
-falso se comportam como verdadeiras:</p>
-
-<p><code>ruby True ou False
-if x # Se x é não-nula
-  puts x # Em seguida, imprimi-lo
-end
-</code></p>
-
-<p>É importante lembrar que os valores como 0, 0.0, e uma string vazia "" comportam-se como verdadeiro em Ruby, que é surpreendente se você
-está acostumado a linguagens como C ou JavaScript.</p>
-
-<p>É isso amigos...</p>
-
-<p>Até Mais..</p>
 ]]></content>
   </entry>
   

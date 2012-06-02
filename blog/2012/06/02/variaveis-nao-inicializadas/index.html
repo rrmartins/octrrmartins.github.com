@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>apostilas - Rodrigo Martins</title>
+  <title>Variáveis ​​não inicializadas - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Apostilas 29/04/12 às 00:17 hrs oioio 29/04/12 às 00:17 hrs Tweet Comentários Please enable JavaScript to view the comments powered by Disqus. &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas Variáveis ​​não inicializadas Em &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/apostilas">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -111,33 +111,16 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Apostilas</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-29T00:17:00-03:00" pubdate data-updated="true">29/04/12 às 00:17 hrs</time></p>
-  </header>
-  
-  <p>oioio</p>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Variáveis ​​não Inicializadas</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -149,13 +132,121 @@
   
 
 
-<time datetime="2012-04-29T00:17:00-03:00" pubdate data-updated="true">29/04/12 às 00:17 hrs</time>
+<time datetime="2012-06-02T11:30:00-03:00" pubdate data-updated="true">02/06/12 às 11:30 hrs</time>
+        
+         | <a href="#disqus_thread">Comentário</a>
         
       </p>
-      
-        <div class="sharing">
+    
+    Categorias: 
+
+<span class="categories">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/apostilas/index.html" data-via="rr_martins" data-counturl="http://rrmartins.github.com/apostilas/index.html" >Tweet</a>
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+  
+</span>
+
+
+  </header>
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+
+
+
+
+<h1>Variáveis ​​não inicializadas</h1>
+
+
+<p>Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
+no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:</p>
+
+<h4>Variáveis ​​de classe</h4>
+
+
+<pre><code>Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se 
+referir a uma variável de classe à qual nenhum valor foi atribuído.
+</code></pre>
+
+<h4>Variáveis ​​de instância</h4>
+
+
+<pre><code>Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de 
+contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la 
+com a opção -w.
+</code></pre>
+
+<h4>As variáveis ​​globais</h4>
+
+
+<pre><code>Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra 
+um aviso quando o Ruby é executado com o flag do -w.
+</code></pre>
+
+<h4>As variáveis ​​locais</h4>
+
+
+<pre><code>Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo. 
+Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o 
+interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método, 
+e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma 
+invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.
+
+Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe 
+uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa 
+variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi 
+atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
+</code></pre>
+
+<figure class='code'><figcaption><span>Variaveis</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span> <span class="k">if</span> <span class="kp">false</span> <span class="c1"># atribuição Isso nunca é executado</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">a</span> <span class="c1"># Imprime nulo: a variável existe mas não é atribuída</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">b</span> <span class="c1"># NameError: nenhuma variável ou método chamado existe b</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
+
+<p>Até a próxima.. :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-02T11:30:00-03:00" pubdate data-updated="true">02/06/12 às 11:30 hrs</time>
+      Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -165,16 +256,24 @@
   
 </div>
 
-      
-      
-      <section>
-        <h1>Comentários</h1>
-        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-      </section>
+    </section>
+    
+    <ul class="pager">
       
-    </footer>
-  
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/06/01/variaveis-de-referencia/" title="Previous Post:
+        Variáveis de Referência">&laquo; Variáveis de Referência</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">
@@ -273,8 +372,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/apostilas/index.html';
-        var disqus_url = 'http://rrmartins.github.com/apostilas/index.html';
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/';
         var disqus_script = 'embed.js';
       
     (function () {

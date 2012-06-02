@@ -4,7 +4,7 @@
   <title><![CDATA[Category: String | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/string/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-01T13:30:16-03:00</updated>
+  <updated>2012-06-02T11:53:28-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Variáveis ​​não inicializadas]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/"/>
+    <updated>2012-06-02T11:30:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+
+
+
+
+<h1>Variáveis ​​não inicializadas</h1>
+
+
+<p>Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
+no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:</p>
+
+<h4>Variáveis ​​de classe</h4>
+
+
+<pre><code>Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se 
+referir a uma variável de classe à qual nenhum valor foi atribuído.
+</code></pre>
+
+<h4>Variáveis ​​de instância</h4>
+
+
+<pre><code>Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de 
+contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la 
+com a opção -w.
+</code></pre>
+
+<h4>As variáveis ​​globais</h4>
+
+
+<pre><code>Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra 
+um aviso quando o Ruby é executado com o flag do -w.
+</code></pre>
+
+<h4>As variáveis ​​locais</h4>
+
+
+<pre><code>Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo. 
+Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o 
+interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método, 
+e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma 
+invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.
+
+Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe 
+uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa 
+variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi 
+atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
+</code></pre>
+
+<p><code>ruby Variaveis
+a = 0.0 if false # atribuição Isso nunca é executado
+puts a # Imprime nulo: a variável existe mas não é atribuída
+puts b # NameError: nenhuma variável ou método chamado existe b
+</code></p>
+
+<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
+
+<p>Até a próxima.. :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Variáveis de Referência]]></title>
