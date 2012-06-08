@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-02T18:55:07-03:00</updated>
+  <updated>2012-06-08T11:38:43-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,201 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Atribuições #Ruby]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/03/atribuicoes/"/>
+    <updated>2012-06-03T11:55:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/03/atribuicoes</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições</p>
+
+
+
+
+<h1>Atribuições</h1>
+
+
+<p>Uma expressão de atribuição especifica um ou mais valores para um ou mais valores. lvalue é o termo para algo que pode aparecer no lado
+esquerdo de uma atribuição do operador. Os valores no lado direito de um operador de atribuição são algumas vezes chamado de rvalues ​​por
+contraste. Variáveis, constantes, atributos e elementos do Array são lvalues ​​em Ruby. As regras para o significado de expressões de
+atribuição são um pouco diferente para diferentes tipos de lvalues, e cada tipo é descrito em detalhe neste post.</p>
+
+<!--more-->
+
+
+<p>Existem três diferentes formas de expressões de atribuição em Ruby. Atribuição simples envolve um lvalue do operador <code>=</code>, e um rvalue.
+Para exemplo:</p>
+
+<p><code>ruby Atribuição
+x = 1 # Define o lvalue x para o valor 1
+</code></p>
+
+<p>Atribuição abreviada é uma expressão abreviada que atualiza o valor de uma variável através da aplicação de alguma outro operador (tais
+como a adição) ao valor atual da variável. Atribuição abreviada utiliza a atribuição de operadores como <code>+=</code> e <code>*=</code> que combinam operadores binários com uma sinal de igual:</p>
+
+<p><code>ruby Atribuição
+x += 1 # Define o lvalue x para o valor de x + 1
+</code></p>
+
+<p>Por fim, a atribuição paralela é qualquer expressão de atribuição que tem mais do que um lvalue ou mais do que um rvalue. Aqui é um simples exemplo:</p>
+
+<p><code>ruby Atribuição
+x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3
+</code></p>
+
+<p>Atribuição paralela é mais complicado quando o número de lvalues não é o mesmo que o número de rvalues ​​ou quando existe um <code>array</code> sobre à direita.</p>
+
+<p>O valor de uma expressão de atribuição é o valor (ou um <code>array</code> dos valores) atribuído. Além disso, o operador de atribuição
+é "Associativo à direita", se aparecer várias atribuições em uma única expressão, eles são avaliados da direita para a esquerda.
+Isto significa que a atribuição pode ser acorrentado para atribuir o mesmo valor para as múltiplas variáveis:</p>
+
+<p><code>ruby Atribuição
+x = y = 0 # X e Y recebem 0
+</code></p>
+
+<p>Note-se que este não é um caso de atribuição paralela é duas atribuições simples, acorrentados juntos: Y é atribuído o valor 0, e então x é atribuído o valor da primeira tarefa (também 0).</p>
+
+<h5>Atribuindo a Variáveis</h5>
+
+
+<p>Quando nós pensamos em atribuição, geralmente pensamos em variáveis ​​e, na verdade, estes são os mais comuns em expressões de atribuição de lvalues. Lembre-se que Ruby tem quatro tipos de variáveis: variáveis ​​locais, variáveis ​​globais, variáveis ​​de instância e variáveis ​​de classe. Estes são distintas um do outro, pelo primeiro carácter no nome da variável. Atribuição funciona da mesma forma para todos os quatro tipos de variáveis, de modo que não é necessário fazer a distinção entre os tipos de variáveis ​​aqui.</p>
+
+<p>Tenha em mente que as variáveis ​​de instância de objetos do Ruby são nunca nomes visíveis fora do objeto, e variável nunca é qualificado com um nome de objeto. Considere esta atribuição:</p>
+
+<p><code>ruby Atribuição
+ponto.x, ponto.y = 1, 2
+</code></p>
+
+<p>Os lvalues ​​nesta expressão não são variáveis, são atributos.</p>
+
+<p>Atribuição a uma variável funciona como seria de se esperar: a variável é simplesmente definida como o valor especificado. Ruby não tem nenhuma sintaxe para declarar explicitamente uma variável: variáveis ​​simplesmente vir à existência quando são atribuídas. Assim, uma  expressão simples como X poderia se referir a uma variável local chamada x ou um método chamado x. Para resolver essa ambigüidade, Ruby trata de um identificador como uma variável local se tem visto qualquer trabalho anterior para a variável. Ele faz isso com uma atribuição nunca foi executada. O código a seguir demonstra isso:</p>
+
+<p>```ruby Atribuição
+class Ambiguous  
+  def x; 1; end # Um método chamado "x". Sempre retorna 1  </p>
+
+<p>  def teste    </p>
+
+<pre><code>puts x # Nenhuma variável foi visto, refere-se ao método acima: imprime 1    
+
+# A linha abaixo não é avaliada, por causa da cláusula "if falsa". 
+# Mas o analisador vê e trata x como uma variável para o resto do método.    
+x = 0 if false
+
+puts x # x é uma variável, mas nunca foi atribuído: irá imprimir nil
+
+x = 2 # Esta atribuição não é avaliada
+puts x # Então agora esta linha imprime 2  
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h5>Atribuindo a Constantes</h5>
+
+
+<p>Constantes são diferentes das variáveis ​​de uma forma óbvia: seus valores são destinados a permanecer constante durante a execução de um programa. Portanto, existem algumas regras especiais para a atribuição de constantes:</p>
+
+<pre><code>* Atribuição a uma constante que já existe, faz com o Ruby emita um aviso. O Ruby executa a tarefa,
+no entanto, que significa que as constantes não são realmente constante.
+
+* Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos 
+destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método, 
+que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é 
+permitido.
+</code></pre>
+
+<p>Ao contrário das variáveis, as constantes não vem a existir até que o <code>Intérprete Ruby</code> realmente executa a expressão de atribuição. A expressão não avaliada abaixo, não cria uma constante:</p>
+
+<p><code>ruby Atribuiçao de Constante
+N = 100 if false
+</code></p>
+
+<p>Note-se que isto significa que uma constante nunca está em um estado de inicialização. Se uma constante existe, então ele tem um valor atribuído a ela. A constante só terá valor se o valor realmente for <code>nil</code>.</p>
+
+<h5>Atribuindo a Atributos e elementos de Array</h5>
+
+
+<p>Atribuição a um atributo ou um elemento de um <code>Array</code> é na verdade uma abreviação do Ruby para a invocação método. Suponha que um objeto tem um método chamado <code>m=:</code>, o nome do método tem um sinal de igual como seu último caractere. Em seguida, <code>o.m</code> pode ser usado como um lvalue em uma expressão de atribuição. Suponha, além disso, que o valor v é atribuído:</p>
+
+<p><code>ruby Atribuição
+o.m = v
+</code></p>
+
+<p>O interpretador Ruby converte essa tarefa para a seguinte invocação de método:</p>
+
+<p><code>ruby Atribuição
+o.m=(v) # Se omitir os parênteses e adicionar um espaço, isso parece tarefa!
+</code></p>
+
+<p>Isto é, ele passa o valor v para o método <code>m=</code>. Esse método pode fazer o que quiser com o valor. Normalmente, ele irá verificar que o valor é de desejado tipo e dentro da gama desejada, e, em seguida, armazená-lo em uma variável de instância do objeto. Métodos como <code>m=</code> são geralmente acompanhados de um método <code>m</code>, que simplesmente retorna o valor mais recentemente passado para <code>m=</code>. Alguns dizem que <code>m=</code> é um método setter e <code>m</code> é um método getter. Quando um objeto tem esse par de métodos, dizemos que ele tem um atributo <code>m</code>. Atributos são às vezes chamado de "Propriedades" em outras línguas.</p>
+
+<p>Atribuindo valores aos elementos de um <code>Array</code> também é feito pelo método de invocação. Se um objeto define um método chamado <code>[]=</code> (nome do método é apenas esses três caracteres de pontuação) que espera dois argumentos, então na expressão o <code>[x] = y</code> é realmente executado como:</p>
+
+<p><code>ruby Atribuição
+o.[]= (x, y)
+</code></p>
+
+<p>Se um objeto tem um método <code>[]=</code> que espera três argumentos, então ele pode ser indexado com dois valores entre os colchetes. As dois seguintes expressões são equivalentes neste caso:</p>
+
+<p><code>ruby Atribuição
+o[x, y] = z
+o.[] = (x, y, z)
+</code></p>
+
+<h5>Atribuição Abreviada</h5>
+
+
+<p>Atribuição Abreviada é uma forma de atribuição que combina atribuição com alguns outras operações. Ele é usado mais comumente para incrementar variáveis:</p>
+
+<p><code>ruby Atribuição Abreviada
+x += 1
+</code></p>
+
+<p>O <code>+=</code>, não é um operador real de Ruby, e a expressão acima é simplesmente uma abreviatura para:</p>
+
+<p><code>ruby Atribuição Abreviada
+x = x + 1
+</code></p>
+
+<p>Atribuição Abreviada não pode ser combinado com paralelo de atribuição: ela só funciona quando há um único lvalue à esquerda e um único valor do lado direito. Ela não deve ser usado quando o lvalue é uma constante, porque ele vai reatribuir a constante e causar um aviso. Atribuição abreviada pode, contudo, ser utilizado quando o lvalue é um atributo. As duas expressões a seguir são equivalentes:</p>
+
+<p><code>ruby Atribuição Abreviada
+o.m += 1
+o.m=(o.m()+1)
+</code></p>
+
+<p>Atribuição abreviada funciona até mesmo quando o lvalue é um elemento de um <code>array</code>. Estas duas expressões são equivalente:</p>
+
+<p><code>ruby Atribuição Abreviada
+o[x] -= 2
+o.[]=(x, o.[](x) - 2)
+</code></p>
+
+<p>Observe que esse código usa <code>-=</code> em vez de <code>+=</code>. Como você poderia esperar, o <code>-=</code> é pseudooperator que subtrai seu rvalue a partir do seu lvalue.</p>
+
+<p>Além <code>+=</code> e <code>-=</code>, há outros 11 pseudooperators que podem ser usados ​​para atribuição abreviada. Eles são listados abaixo. Note-se que estes não são verdadeiros operadores próprios, eles são simplesmente uma abreviação para expressões que usam outros operadores. Muitos desses outros operadores são definidos como métodos. Se uma classe define um método chamado <code>+</code>, por exemplo, em seguida, que as alterações do sentido da Atribuição abreviada com <code>+=</code> para todas as instâncias dessa classe.</p>
+
+<pre><code>Atribuição                          Expansão
+x += y                              x = x + y
+x -= y                              x = x - y
+x *= y                              x = x * y
+x /= y                              x = x / y
+x %= y                              x = x % y
+x **= y                             x = x ** y
+x &amp;&amp;= y                             x = x &amp;&amp; y
+x ||= y                             x = x || y
+x &amp;= y                              x = x &amp; y
+x |= y                              x = x | y
+x ^= y                              x = x ^ y
+x &lt;&lt;= y                             x = x &lt;&lt; y
+x &gt;&gt;= y                             x = x &gt;&gt; y
+</code></pre>
+
+<p>É isso aí amigos... até o proximo post!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Invocações de método]]></title>
@@ -250,195 +445,6 @@ __ENCODING__   -&gt;   Avalia a um objeto Encoding que especifica a codificaçã
 </code></pre>
 
 <p>É isso ai galera, até o proximo post.. :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Um pouco de Array no Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/07/um-pouco-de-array-no-ruby/"/>
-    <updated>2012-05-07T13:02:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/07/um-pouco-de-array-no-ruby</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-<p>Um Array é uma seqüência de valores que permite que os valores serem acessados ​​por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
-elemento do Array é no índice de size-1. Valores de índice negativo contar a partir do
-final do Array, de modo que o último elemento de uma Array também pode ser acessado
-com um índice de -1. O segundo ao último tem um índice de -2,
-e assim por diante. Se você tentar ler um elemento além do final de uma Array
-(Com um index >= size), ou antes
-o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e não lançará uma exceção.</p>
-
-<!--more-->
-
-
-<p>Arrays de Ruby não são tipados e mutáveis. Os elementos de um Array
-não precisam de ser todos da mesma classe, e eles podem ser alterados em qualquer momento.
-Além disso, os Arrays são dinamicamente redimensionáveis, você pode acrescentar elementos
-a eles e crescer conforme necessário. Se você atribuir um valor a um elemento
-além do final do Array, a Array é automaticamente prorrogado com
-elementos nil. (É um erro, No entanto, para atribuir um valor para um elemento antes do início de um
-Array.)</p>
-
-<p>Uma Array literal é uma lista separada por vírgulas de valores, dentro de
-parênteses:</p>
-
-<p><code>ruby Arrays Literal
-[1, 2, 3] # Uma Array que contém três objetos Fixnum
-[-10 ... 0, 0 .. 10,] # Uma Array de duas faixas; vírgulas extras são permitidos
-[[1,2], [3,4], [5]] # Uma Array de Arrayes aninhadas
-[X + y, xy, x * y] # array os elementos podem ser expressões arbitrárias
-[] # O array vazio tem o tamanho 0
-</code></p>
-
-<p>Ruby inclui uma sintaxe especial, no caso para expressar literais de Array
-cujos elementos são seqüências curtas sem espaços:</p>
-
-<p><code>ruby Arrays
-palavras = %w[este é um teste] # O mesmo que: ['este', 'é', 'um', 'teste']
-aberto = %w| ( [ { &lt; | # O mesmo que: ['(', '[', '{', '&lt;']
-branco = %W(\s \t \r \n) # O mesmo que: ["\ s", "\ t", "\ r", "\ n"]
-</code></p>
-
-<p>%w e %W introduzir uma Array literal, bem como %q e %Q introduzir uma string literal. Em
-particular, as regras delimitadores para %w e %W são as mesmos que para %q e %Q. Dentro dos delimitadores, sem aspas
-são necessários em torno das cadeias de elementos do array, e sem vírgulas são
-requerido entre os elementos. Elementos do Array são delimitados por espaço em branco.</p>
-
-<p>Você também pode criar Arrays com o construtor Array.new, e isso proporciona
-opções de programação inicializando os elementos de Array:</p>
-
-<p><code>ruby Initiallize Array
-vazio = Array.new # []: retorna um novo array vazio
-nils = Array.new(3) # [nil, nil, nil]: nova Array com 3 elementos nulos
-zeros = Array.new(4, 0) # [0, 0, 0, 0]: nova Array com 4 elementos 0
-cópia = Array.new(nils) # Faça uma nova cópia de uma Array existente
-count = Array.new(3) {| i | i +1} # [1,2,3]: 3 elementos calculado a partir do índice
-</code></p>
-
-<p>Para obter o valor de um elemento do Array, use um único número inteiro
-entre colchetes:</p>
-
-<p><code>ruby Valores com Array
-a = [0, 1, 4, 9, 16] # O Array mantém os quadrados dos índices
-a[0] # primeiro elemento é 0
-a[-1] # O ultimo elemento é de 16
-a[-2] # segundo ao último elemento é 9
-a[a.size-1] # Outra forma de consultar o último elemento
-a[-a.size] # Outra forma de consultar o primeiro elemento
-a[8] # Consultando além do fim retorna nil
-a[-8] # Consultando antes do início retorna nil, também
-</code>
-Todas as expressões acima, exceto para a última, pode também ser
-utilizado no lado esquerdo de uma atribuição:</p>
-
-<p><code>ruby Arrays
-a[0] = "zero" # a é ["zero", 1, 4, 9, 16]
-a[-1] = 1..16 # a é ["zero", 1, 4, 9, 1 .. 16]
-a[8] = 64 # a é ["zero", 1, 4, 9, 1 .. 16, nil, nil, nil, 64]
-a[-10] = 100 # erro: não é possível atribuir antes do início de um array
-</code></p>
-
-<p>Como strings, Arrayes também podem ser indexados com dois números inteiros que
-representam um índice de partida e um número de elementos, ou um objeto de intervalo. Em qualquer caso, a expressão
-retorna o sub-array especificado:</p>
-
-<p><code>ruby Array
-a = ('a'..'e').to_a # Faixa convertido para ['a', 'b', 'c', 'd', 'e']
-a[0,0] # []: este subarray tem zero elementos
-a[1,1] # ['b']: uma Array de um elemento
-a[-2,2] # ['d', 'e']: os últimos dois elementos do array
-a[0..2] # ['a', 'b', 'c']: os primeiros três elementos
-a[-2 .. -1] # ['d', 'e']: os últimos dois elementos do array
-a [0 ... -1] # ['a', 'b', 'c', 'd']: a totalidade, mas o último elemento
-</code></p>
-
-<p>Quando utilizado no lado esquerdo de uma atribuição, um sub-array pode ser
-substituído pelos elementos do Array do lado direito. Esta básica
-operação funciona para inserções e exclusões, bem como:</p>
-
-<p><code>ruby Arrays
-a[0,2] = ['A', 'B'] # se torna ['A', 'B', 'c', 'd', 'e']
-a[2 ... 5] = ['C', 'D', 'E'] # se torna ['A', 'B', 'C', 'D', 'E']
-a[0,0] = [1,2,3] # Inserir elementos no início de a
-a[0 .. 2] = [] # Excluir os elementos
-a[-1,1] = ['Z'] # Substitua último elemento com outro
-a[-1,1] = 'Z' # Para os elementos individuais, a Array é opcional
-a[-2,2] = nil # Excluir últimos 2 elementos em 1,8; substituir com nil em 1,9
-</code></p>
-
-<p>Além disso para o operador colchete para indexar um Array,
-a classe Array define uma série de outros operadores úteis. Use + para
-concatenar dois Arrays:</p>
-
-<p><code>ruby Concatenar Arrays
-a = [1, 2, 3] + [4, 5] # [1, 2, 3, 4, 5]
-a = a + [[6, 7, 8]] # [1, 2, 3, 4, 5, [6, 7, 8]]
-a = a + 9 # erro: lado direito deve ser um array
-</code></p>
-
-<p>O operador + cria um novo Array que contém os elementos de ambos os seus operandos. Use &lt;&lt; para acrescentar um elemento para o final de um
-Array existente, e usar a concat anexar os elementos de um array:</p>
-
-<p><code>ruby Array + e concat
-a = [] # Comece com uma Array vazia
-a &lt;&lt; 1 # a é [1]
-a &lt;&lt; 2 &lt;&lt; 3 # a é [1, 2, 3]
-a &lt;&lt; [4,5,6] # a é [1, 2, 3, [4, 5, 6]]
-a.concat [7,8] # a é [1, 2, 3, [4, 5, 6], 7, 8]
-</code></p>
-
-<p>O operador - subtrai um Array do outro. Começa por fazer uma cópia de sua Array da esquerda,
-e, em seguida, remove todos os elementos de que a cópia se que apareçam em qualquer
-a Array do lado direito:</p>
-
-<p><code>ruby Array -
-['A', 'b', 'c', 'b', 'a'] - ['b', 'c', 'd'] # ['A', 'a']
-</code></p>
-
-<p>Como a classe String, Array também usa o operador de multiplicação
-para a repetição:</p>
-
-<p><code>ruby Array *
-a = [0] * 8 # [0, 0, 0, 0, 0, 0, 0, 0]
-</code></p>
-
-<p>A classe Array contem tambem os Operadores booleanos (| , &amp;) e usa-los para a união e
-interseção. | Concatena seu argumentos e, em seguida, remove todos os elementos repetidos no resultado.
-&amp; retorna uma Array que contém elementos que aparecem em ambas as Arrayes de operando. A Array retornada
-não contém elementos duplicados:</p>
-
-<p><code>ruby Array
-a = [1, 1, 2, 2, 3, 3, 4]
-b = [5, 5, 4, 4, 3, 3, 2]
-a | b # [1, 2, 3, 4, 5]: duplicatas são removidas
-b | a # [5, 4, 3, 2, 1]: elementos são os mesmos, mas a ordem é diferente
-a &amp; b # [2, 3, 4]
-b &amp; a # [4, 3, 2]
-</code></p>
-
-<p>Note-se que estes operadores não são transitivos: a | b não é o mesmo que b | a, por exemplo. Se você ignorar o ordenamento
-dos elementos, no entanto, e considerar os Arrays para ser ordenado os conjuntos,
-então estes operadores fazem mais sentido. Note também que o algoritmo
-que a união e intersecção são realizados não é especificado, e não
-existem garantias sobre a ordem dos elementos no retornou dos
-Arrays.</p>
-
-<p>A classe Array define um bom número de alguns métodos úteis. O único que vamos discutir aqui é o iterador each, usada para loop através ds
-elementos de um Array:</p>
-
-<p><code>ruby Array each
-a = ('A' .. 'Z').to_a # Comece com uma série de cartas
-a.each {| x | print x} # Imprimir o alfabeto, uma letra de cada vez
-</code></p>
-
-<p>Outros métodos do Array você pode deseja procurar,  incluindo: clear,
-compact!, delete_if, each_index, empty?, fill, flatten!, include?, index, join, pop,
-push, reverse, reverse_each, rindex, shift, sort, sort!, uniq!, e unshift.</p>
-
-<p><a href="http://www.ruby-doc.org/core-1.9.2/Array.html">www.ruby-doc.org/core-1.9.2/Array.html</a></p>
-
-<p>Até a proxima amigos... :)</p>
 ]]></content>
   </entry>
   
