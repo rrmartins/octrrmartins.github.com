@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Atribuições Atribuições Uma expressão de atribuição especifica um &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Atribuições Paralelas Atribuições Paralelas Atribuição paralela é &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,68 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela #Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true">11/06/12 às 19:36 hrs</time>
+        
+         | <a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
+
+
+
+
+<h1>Atribuições Paralelas</h1>
+
+
+<p>Atribuição paralela é qualquer atribuição de expressão que tem mais do que um <code>lvalue</code>, mais do que um <code>rvalue</code>, ou ambos. Múltiplos <code>lvalues</code> e ​​múltiplos <code>rvalues</code> são separados uns dos outros com uma vírgula. <code>lvalues</code> e <code>rvalues</code> ​​pode ser prefixado com <code>*</code>, que às vezes é chamado de operador <code>splat</code>, embora não seja um verdadeiro operador. O significado de <code>*</code> é explicado mais adiante neste post.</p>
+
+<p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -499,75 +561,6 @@ item.preco é uma invocação do método chamado preco (preço) sobre o valor re
 <p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
 
 <p>Até a próxima.. :)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/28/emergencia/">Emergencia</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-28T13:24:00-03:00" pubdate data-updated="true">28/05/12 às 13:24 hrs</time>
-        
-         | <a href="/blog/2012/05/28/emergencia/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/caindo-na-real/'>Caindo na Real</a>, <a class='category' href='/blog/categories/opensource/'>OpenSource</a>, <a class='category' href='/blog/categories/software-livre/'>Software Livre</a>, <a class='category' href='/blog/categories/the-progmatic-programmers/'>The Progmatic Programmers</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Emergencia</p>
-
-<p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
-projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
-do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
-ocorrer, se beneficiando dela.</p>
-
-<p>Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
-simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
-graciosamente pelos céus, se remodelando em torno de obstáculos e assim por diante. Nenhum desses comportamentos avançados (como se
-remodelar na mesma forma ao redor de obstáculos) é especificado pelas regras; eles emergem da dinâmica do sistema.</p>
-
-<p>Regras simples, como na simulação dos pássaros, leva a comportamentos complexos. Regras complexas, como com leis tributárias na maioria
-dos países, levam a comportamentos estúpidos.</p>
-
-<p>Muitas práticas comuns de desenvolvimento de software tem o infeliz efeito-colateral de eliminar qualquer chance de comportamento emergente. A maioria das tentativas de otimização – amarrando alguma coisa muito explicitamente – reduz a extensão e escopo de interações e relacionamentos, que é a origem da emergencia. No exemplo do bando de pássaros, assim como sistemas bem-desenhados, são as interações e relacionamentos que criam os comportamentos interessantes.</p>
-
-<p>Quanto mais amarramos as coisas, menos espaço deixamos para uma solução criativa e emergente. Seja tanto travando requisitos, antes de serem bem entendidos ou otimizando o código prematuramente, como inventando navegações e cenários de fluxo de trabalho complexas, antes de deixar o usuário final usar o sistema, o resultado é o mesmo: um sistema exageramente complicado e estúpido ao invés de um sistema limpo e elegante que aproveita a emergencia.</p>
-
-<p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
-
-<pre><code>—Andrew Hunt, The Pragmatic Programmers 
-</code></pre>
 </div>
   
   

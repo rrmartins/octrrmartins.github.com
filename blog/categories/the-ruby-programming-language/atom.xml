@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-08T11:38:43-03:00</updated>
+  <updated>2012-06-14T13:29:16-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
+    <updated>2012-06-11T19:36:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
+
+
+
+
+<h1>Atribuições Paralelas</h1>
+
+
+<p>Atribuição paralela é qualquer atribuição de expressão que tem mais do que um <code>lvalue</code>, mais do que um <code>rvalue</code>, ou ambos. Múltiplos <code>lvalues</code> e ​​múltiplos <code>rvalues</code> são separados uns dos outros com uma vírgula. <code>lvalues</code> e <code>rvalues</code> ​​pode ser prefixado com <code>*</code>, que às vezes é chamado de operador <code>splat</code>, embora não seja um verdadeiro operador. O significado de <code>*</code> é explicado mais adiante neste post.</p>
+
+<p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
+
+<!--more-->
+
+
+
+
+<h5>Mesmo número de lvalues ​​e rvalues</h5>
+
+
+<p>Atribuição paralela é a sua forma mais simples quando não são os mesmos número de <code>lvalues</code> ​​e <code>rvalues</code>:</p>
+
+<p><code>ruby Atribuição de Mesmo número
+x, y, z = 1, 2, 3 # x = 1; y = 2; z = 3
+</code></p>
+
+<p>Neste caso, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>; o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante.</p>
+
+<p>Estas atribuições são efetivamente executadas em paralelo, não seqüencialmente. Por exemplo, as seguintes duas linhas não são as mesmas:</p>
+
+<p><code>ruby Atribuição
+x, y = y, x # Paralela: trocar o valor de duas variáveis
+x = y; y = x # seqüencial: ambas as variáveis ​​têm o mesmo valor
+</code></p>
+
+<h5>Um lvalue, ​​múltiplos rvalues</h5>
+
+
+<p>Quando há um único <code>lvalue</code> e mais do que um <code>rvalue</code>, Ruby cria um <code>array</code> para armazenar os <code>rvalues</code> ​​e atribui esse <code>array</code> para o <code>lvalue</code>:</p>
+
+<p><code>ruby Um lvalue e Múltiplos rvalues
+x = 1, 2, 3 # x = [1,2,3]
+</code></p>
+
+<p>Você pode colocar um <code>*</code> antes do lvalue sem alterar o significado ou o valor de retorno desta atribuição.</p>
+
+<p>Se você quiser impedir que os ​múltiplos <code>rvalues</code> de serem combinados em um único <code>array</code>, siga o <code>lvalue</code> com uma vírgula. Mesmo sem um lvalue depois da vírgula, isto torna que o Ruby se comporte como se há ​​múltiplos lvalues:</p>
+
+<p><code>ruby Atribuições
+x, = 1, 2, 3 # x = 1; outros valores são descartados
+</code></p>
+
+<h5>M​últiplos lvalues, array único de rvalue</h5>
+
+
+<p>Quando existem múltiplos <code>lvalues​</code> e apenas um único <code>rvalue</code>, Ruby tenta expandir o rvalue em uma <code>lista</code> de valores a atribuir. Se o <code>rvalue</code> é um <code>array</code>, Ruby expande o <code>array</code> para que cada elemento torna-se seu próprio <code>rvalue</code>. Se o <code>rvalue</code> não é um <code>array</code>, mas implementa um método <code>to_ary</code>, Ruby invoca esse método e, em seguida, se expande o <code>array</code> no retorno:</p>
+
+<p><code>ruby Atribuição
+x, y, z = [1, 2, 3] # mesmo que x, y, z = 1,2,3
+</code></p>
+
+<p>A atribuição paralela foi transformado de modo que há ​​múltiplos <code>lvalues</code> e zero (se expandida o <code>array</code> estando <code>empty</code>) ou mais <code>rvalues</code>. Se o número de <code>lvalues</code> ​​e <code>rvalues</code> ​​são os mesmos, então a atribuição ocorre conforme descrito anteriormente, Mesmo número de lvalues ​​e rvalues<code>. Se os números são diferentes, então a atribuição ocorre como descrito a seguir em</code>Diferentes números de lvalues ​​e rvalues`.</p>
+
+<p>Podemos usar o truque de fuga por vírgula descrito acima para transformar uma sessão ordinária não paralela em uma atribuição que automaticamente descompacta um <code>array</code> à direita:</p>
+
+<p><code>ruby Atribuição
+x = [1,2] # x torna-se [1,2]: isso não é atribuição paralela
+x, = [1,2] # x torna-se 1: da vírgula torna paralelo
+</code></p>
+
+<h5>Diferentes números de lvalues ​​e rvalues</h5>
+
+
+<p>Se houver <code>lvalues</code> mais do que ​​<code>rvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>, o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante, até todos os <code>rvalues</code> ​​forem atribuídos. Em seguida, cada um dos restantes <code>lvalues</code> ​​é atribuído nil, substituindo qualquer valor existente para que <code>lvalue</code>:</p>
+
+<p><code>ruby Atribuição
+x, y, z = 1, 2 # x = 1; y = 2; z = nil
+</code></p>
+
+<p>Se houver <code>rvalues</code> mais do que ​<code>​lvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, os <code>rvalues</code> ​são atribuídos em ordem a cada um dos <code>lvalues</code>, e os restantes <code>rvalues</code> são descartados :</p>
+
+<p><code>ruby Atribuição
+x, y = 1, 2, 3 # x = 1; y = 2, 3 não é atribuído
+</code></p>
+
+<h5>O operador splat</h5>
+
+
+<p>Quando um <code>rvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que o referido valor é um <code>array</code> e que seus elementos devem ser cada um <code>rvalues</code>. Os elementos do <code>array</code> substituem o <code>array</code> na lista original do <code>rvalue</code>, e a atribuição procede como descrito abaixo:</p>
+
+<p><code>ruby Atribuição
+x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3
+</code></p>
+
+<p>No Ruby 1.8, um splat só pode aparecer antes do último <code>rvalue</code> em uma atribuição. No Ruby 1.9, a lista de <code>rvalues</code> ​​em uma atribuição paralela pode ter qualquer número de <code>splats</code>, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um "splat double" em uma lista aninhada:</p>
+
+<p><code>ruby Erro de Atribuição
+x,y = **[[1,2]]   # SyntaxError!
+</code></p>
+
+<p>Os <code>rvalues</code> com i​ntervalo de <code>arrays</code> e de <code>hash</code> pode ser <code>splatted</code>. Em geral, qualquer <code>rvalue</code> que define um método <code>to_a</code> pode ser prefixado com um <code>splat</code>. Qualquer objeto <a href="http://ruby-doc.org/core-1.9.3/Enumerable.html"><code>Enumerable</code></a>, incluindo enumeradores pode ser <code>splatted</code>, por exemplo. Quando um <code>splat</code> é aplicado a um objecto que não define um método <code>to_a</code>, nenhuma expansão é realizada e o <code>splat</code> avaliado como o próprio objeto.</p>
+
+<p>Quando um <code>lvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que todos ​​os adicionais <code>rvalues</code> devem ser colocados em um <code>array</code> e atribuído ao <code>lvalue</code>. O valor atribuído a esse <code>lvalue</code> é sempre um <code>array</code>, e ele pode ter zero, um ou mais elementos:</p>
+
+<p><code>ruby Atribuição
+x,*y = 1, 2, 3  # x=1; y=[2,3]
+x,*y = 1, 2     # x=1; y=[2]
+x,*y = 1        # x=1; y=[]
+</code></p>
+
+<p>No Ruby 1.8, um <code>splat</code> só pode preceder o <code>lvalue</code> passado na lista. No Ruby 1.9, do lado esquerdo de uma atribuição paralela pode incluem um operador <code>splat</code>, mas pode aparecer em qualquer posição na lista:</p>
+
+<p>``` ruby Atribuição</p>
+
+<h1>Ruby 1.9 somente</h1>
+
+<p><em>x,y = 1, 2, 3  # x=[1,2]; y=3
+</em>x,y = 1, 2     # x=[1]; y=2
+*x,y = 1        # x=[]; y=1
+```</p>
+
+<p>Note-se que <code>splats</code> pode aparecer em ambos os lados de uma expressão paralela de atribuição:</p>
+
+<p><code>ruby Atribuição
+x, y, *z = 1, *[2,3,4]  # x=1; y=2; z=[3,4].
+</code></p>
+
+<p>Finalmente, lembre-se que anteriormente descrevemos dois casos simples de atribuição paralela em que há um <code>lvalue</code> único ou uma única <code>rvalue</code>. Note-se que ambos os casos se comportam como se existe um <code>splat</code> antes da única <code>lvalue</code> ou <code>rvalue</code>. Explicitamente, incluindo um <code>splat</code> em nestes casos não tem qualquer efeito adicional.</p>
+
+<h5>Parênteses na atribuição paralelo</h5>
+
+
+<p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para "sub atrobuição". Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
+
+<p><code>ruby Atribuição
+x, (y, z) = a, b
+</code></p>
+
+<p>Este é efetivamente executam dois trabalhos ao mesmo tempo:</p>
+
+<p><code>ruby Atribuição
+x = a
+y,z = b
+</code></p>
+
+<p>Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto <code>splattable</code> como um <code>array</code> ou <code>enumerador</code>.</p>
+
+<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a "desembrulhar" um nível de <code>array</code> aninhado à direita:</p>
+
+<p>```ruby Atribuição
+x,y,z = 1,[2,3]             # Sem parenteses: x=1;y=[2,3];z=nil
+x,(y,z) = 1,[2,3]           # Parenteses: x=1;y=2;z=3</p>
+
+<p>a,b,c,d = [1,[2,[3,4]]]     # Sem parenteses: a=1;b=[2,[3,4]];c=d=nil
+a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
+```</p>
+
+<p>É isso aí amigos..</p>
+
+<p>Bons estudos e até a proxima! :D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Atribuições #Ruby]]></title>
@@ -407,44 +575,6 @@ item.preco é uma invocação do método chamado preco (preço) sobre o valor re
 <p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
 
 <p>Até a próxima.. :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Literais e Palavras-Chaves Literais]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais/"/>
-    <updated>2012-05-27T12:15:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/27/literais-e-palavras-chaves-literais</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Literais e Plavras-chaves literais</p>
-
-
-
-
-<h1>Literais e Plavras-chaves literais</h1>
-
-
-<p>Literais são valores como 1.0, "Hello world", e [] que são incorporados diretamente em seu texto do programa.</p>
-
-<p>É interessante notar que muitos literais, tais como números, são as principais expressões - as expressões mais simples possíveis não
-compostas de expressões simples. Literais, tais como Array e literais de hash e strings duplas citadas que usam interpolação, incluem
-sub-expressões e são, portanto, expressões não primárias.</p>
-
-<p>Determinadas palavras-chave em Ruby são expressões primárias e podem ser considerados palavras-chave literais ou formas especializadas
-de referência da variável:</p>
-
-<pre><code>nil            -&gt;   Avalia o valor nulo, de NilClass classe.
-true           -&gt;   Avalia-se à instância singleton da Classe TrueClass, que um objeto representa o valor booleano 
-                    verdadeiro.
-false          -&gt;   Avalia-se à instância singleton da Classe FalseClass, que um objeto representa os valores booleanos
-                    falsos.
-self           -&gt;   Auto avalia o objeto atual.
-__FILE__       -&gt;   Avalia a uma string que nomeia o arquivo que o Ruby Intérprete (IRB) está em execução. Isto pode ser
-                    útil em erro de mensagens.
-__LINE__       -&gt;   Avalia como um inteiro que especifica o número da linha dentro da linha do código atual do __FILE__.
-__ENCODING__   -&gt;   Avalia a um objeto Encoding que especifica a codificação do arquivo atual. (Ruby 1.9 apenas.)
-</code></pre>
-
-<p>É isso ai galera, até o proximo post.. :)</p>
 ]]></content>
   </entry>
   
