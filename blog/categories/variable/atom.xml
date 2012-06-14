@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Variable | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/variable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-14T13:29:16-03:00</updated>
+  <updated>2012-06-14T13:31:59-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -165,7 +165,7 @@ y,z = b
 
 <p>Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto <code>splattable</code> como um <code>array</code> ou <code>enumerador</code>.</p>
 
-<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a "desembrulhar" um nível de <code>array</code> aninhado à direita:</p>
+<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a "desembrulhar" um nível de <code>array</code> alinhado à direita:</p>
 
 <p>```ruby Atribuição
 x,y,z = 1,[2,3]             # Sem parenteses: x=1;y=[2,3];z=nil
