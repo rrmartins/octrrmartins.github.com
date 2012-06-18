@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Copiando objetos A classe Object define dois métodos estreitamente &hellip;">
+  <meta name="description" content="Como um apaixonado por codigo aberto, estou lendo o livro &#8220;Caindo na Real&#8221;, e me deparei com uma parte do livro The Progmatic Programmers &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,67 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/22/arranhando-sua-propria-coceira/">Arranhando Sua Própria Coceira</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-22T13:21:00-03:00" pubdate data-updated="true">22/05/12 às 13:21 hrs</time>
+        
+         | <a href="/blog/2012/05/22/arranhando-sua-propria-coceira/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/caindo-na-real/'>Caindo na Real</a>, <a class='category' href='/blog/categories/opensource/'>OpenSource</a>, <a class='category' href='/blog/categories/software-livre/'>Software Livre</a>, <a class='category' href='/blog/categories/the-progmatic-programmers/'>The Progmatic Programmers</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&#8220;Caindo na Real&#8221;</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
+
+<p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
+
+<h2>Arranhando sua proípria coceira</h2>
+
+
+<p>O mundo de Código Aberto abraçou esse mantra há muito tempo – eles chamam de “arranhando sua própria coceira”. Para os desenvolvedores de código aberto, significa que terão as ferramentas que querem, entregues da maneira que querem. Mas os benefícios vão mais a fundo.</p>
+
+<p>Como designer ou desenvolvedor de uma nova aplicação, você precisa encarar centenas de micro-decisões todos os dias: azul ou verde? Uma tabela ou duas? Estática ou dinâmica? Abortar ou recuperar? Como tomamos essas decisões? Se é algo que reconhecemos como importante, poderíamos perguntar. O resto, chutamos. E todos esses chutes constroem um tipo de débito em nossas aplicações – uma rede interconectada de coisas que assumimos.</p>
+
+<p>Como um desenvolvedor, detesto isso. O conhecimento de todas essas bombasrelógio em pequena escala nas aplicações que escrevo somam-se ao meu stress. Desenvolvedores de código aberto, arranhando suas próprias coceiras, não sofrem isso. Porque eles são seus próprios usuários, eles sabem a resposta correta para 90% das decisões que precisam tomar. Acho que é uma das razões que as pessoas chegam em casa após um dia duro de trabalho de codificação e ainda trabalham com código aberto: é relaxante.</p>
+
+<pre><code>— Dave Thomas, The Pragmatic Programmers
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -476,87 +537,6 @@ uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
   
     <footer>
       <a rel="full-article" href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/">Classe Objects Em Ruby 1.9.2 - Part II</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-19T13:14:00-03:00" pubdate data-updated="true">19/05/12 às 13:14 hrs</time>
-        
-         | <a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Identidade do objeto</h3>
-
-
-<p>Cada objeto tem um identificador de objeto, um Fixnum, que você pode obter com o método object_id. O valor retornado por este
-método é constante e exclusivo para a vida útil do objeto. Enquanto o objeto é acessível, ele terá sempre a mesma identificação, e não
-outro objeto que irá partilhar do mesmo ID.</p>
-
-<p>O ID de método é um sinônimo preterido para object_id. Ruby 1.8 emite um aviso se você usá-lo, e ele foi removido em
-Ruby 1.9.</p>
-
-<p><strong>id</strong> é um sinônimo válido para object_id. Ele existe como um retorno, assim você pode acessar ID de um objeto, mesmo se o método
-object_id foi indefinido ou substituído.</p>
-
-<p>A classe <a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> implementa o método de hash para simplesmente retornar um
-ID objeto.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/">Read on &rarr;</a>
     </footer>
   
 

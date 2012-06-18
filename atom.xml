@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-14T13:31:59-03:00</updated>
+  <updated>2012-06-18T19:07:39-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,242 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Demonstrações e Estruturas de controle - Part I #Ruby]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
+    <updated>2012-06-18T08:43:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+
+
+
+
+<h1>Demonstrações e estruturas de controle</h1>
+
+
+<p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
+
+<figure class='code'><figcaption><span>Programa Simples</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter primeiro argumento para um número</span>
+</span><span class='line'><span class="n">y</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter segundo argumento para um número</span>
+</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="c1"># Adicione os argumentos</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">soma</span> <span class="c1"># Imprimir a soma</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
+particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
+sem ramificação ou repetição. É um programa raro que pode ser tão simples.</p>
+
+<h3>Condicionais</h3>
+
+
+<p>A estrutura de controle mais comum, em qualquer linguagem de programação, é a condicional. Esta é uma forma de dizer ao
+computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita.
+A condição é uma expressão, se for avaliada como qualquer valor diferente de falso ou nulo, então a condição é satisfeita.</p>
+
+<p>Ruby tem um vocabulário rico para expressar condicionais. Algumas sintaxes são descritas abaixo. Ao escrever código Ruby,
+você pode escolher o que parece mais elegante para a tarefa.</p>
+
+<!--more-->
+
+
+
+
+<h5>if</h5>
+
+
+<p>Ele é a mais simples das condicionais. Em sua forma mais simples, parece que isso:</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O código entre <code>if</code> e <code>end</code>é executado se (e somente se) o <code>expression</code> é avaliada como algo diferente que <code>falso</code> ou
+<code>nulo</code>. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
+seguida. Aqui estão duas maneiras de escrever a mesma condicional <code>if</code> de forma simples:</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Se x é menor que 10, incrementá-lo</span>
+</span><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># nova linha de separação</span>
+</span><span class='line'><span class="err">  </span><span class="n">x</span> <span class="o">+</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">then</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">end</span> <span class="c1"># the separato</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você também pode usar <code>then</code> como o símbolo de separação, e segui-lo com uma nova linha. Isso torna o seu código robusto.</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">then</span>
+</span><span class='line'><span class="err">  </span><span class="n">x</span> <span class="o">+</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Os programadores que estão acostumados a C, ou linguagens cuja sintaxe é derivada de C, deve observar duas coisas
+importantes sobre if no Ruby:</p>
+
+<ul>
+<li><p>Parênteses não é necessário (e normalmente não utilizado) em torno da expressão condicional. O ponto e vírgula, quebra
+de linha, ou então palavra-chave serve para delimitar a expressão.</p></li>
+<li><p>A palavra-chave <code>end</code> é exigida, mesmo quando o código a ser executado condicionalmente consiste de uma única instrução.
+A forma modificador do <code>if</code>, descrito abaixo, fornece uma maneira para gravar condicionais simples sem a palavra-chave <code>end</code>.</p></li>
+</ul>
+
+
+<h5>else</h5>
+
+
+<p>Uma declaração <code>if</code> pode incluir uma cláusula <code>else</code> para especificar o código para ser executado se a condição não é
+<code>true</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional else</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O código entre <code>if</code> e <code>else</code> é executado se <code>expression</code> é avaliada como qualquer outra coisa que <code>false</code> ou <code>nil</code>. Caso
+contrário (se expression é <code>false</code> ou <code>nil</code>), o código entre o <code>else</code> e o <code>end</code> é executado. Como na forma simples
+de <code>if</code>, na expressão deve ser separado do código que o segue por uma nova linha, um ponto e vírgula, ou a palavra-chave <code>then</code>. As palavras-chave <code>else</code> e <code>end</code>, totalmente delimitam o segundo pedaço de código, e sem novas linhas ou
+delimitadores adicionais são exigido.</p>
+
+<p>Aqui é um exemplo de um condicional que inclui uma cláusula <code>else</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional if - else</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">dados</span> <span class="c1"># Se o array existe</span>
+</span><span class='line'><span class="err">  </span><span class="n">dados</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="c1"># em seguida, acrescentar um valor a ela.</span>
+</span><span class='line'><span class="k">else</span> <span class="c1"># Caso contrário ...</span>
+</span><span class='line'><span class="err">  </span><span class="n">data</span> <span class="o">=</span> <span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="c1"># criar uma nova matriz que contém o valor.</span>
+</span><span class='line'><span class="k">end</span> <span class="c1"># Este é o fim do condicional</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h5>elsif</h5>
+
+
+<p>Se você quiser testar mais de uma condição dentro de uma condicional, você pode adicionar um ou mais cláusulas <code>elsif</code>
+entre um <code>if</code> e um <code>else</code>. <code>elsif</code> é uma forma abreviada de <code>else if</code>. Note que há apenas um <code>else</code> em <code>elsif</code>. A condicional <code>elsif</code> usando parecido com este:</p>
+
+<figure class='code'><figcaption><span>Expressão elsif</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression1</span>
+</span><span class='line'><span class="err">  </span><span class="n">code1</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">expression2</span>
+</span><span class='line'><span class="err">  </span><span class="n">code2</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">expressionN</span>
+</span><span class='line'><span class="err">  </span><span class="n">codeN</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se <code>expression1</code> for avaliado não sendo <code>false</code> ou <code>nil</code>, então <code>code1</code> é executado. Caso contrário, <code>expression2</code> é
+avaliada. Se for outra coisa senão <code>false</code> ou <code>nil</code>, então code2 é executado. Este processo continua até que uma expressão
+é avaliada como algo diferente de <code>false</code> ou <code>nil</code>, ou até que todas as cláusulas <code>elsif</code> foram testadas. Se a expressão
+associada com a última cláusula <code>elsif</code> for <code>false</code> ou <code>nil</code>, e da cláusula <code>elsif</code> é seguido por uma cláusula <code>else</code>, em
+seguida, o código entre <code>else</code> e no <code>end</code> é executado. Se nenhuma cláusula mais está presente, em seguida, nenhum código é
+executado.</p>
+
+<p><code>elsif</code> é como se: a expressão deve ser separada do código por uma nova linha, uma vírgula ou uma palavra-chave, em seguida
+. Aqui é um exemplo de uma multi condicional usando <code>elsif</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional elsif</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;um&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;dois&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span> <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;três&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span><span class="p">;</span> <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;quatro&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;muitos&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h5>Valor de retorno</h5>
+
+
+<p>Na maioria das linguagens, a condicional <code>if</code> é uma afirmação. Em Ruby, no entanto, tudo é uma expressão, mesmo as
+estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma &#8220;declaração&#8221; <code>if</code>, é o valor da
+última expressão no código que foi executado, ou <code>nil</code> se nenhum bloco de código foi executado.</p>
+
+<p>O fato de que, as declarações <code>if</code> devolvem um valor significa que, por exemplo, a muilti condicional mostrado
+anteriormente pode ser elegantemente reescrito como este abaixo:</p>
+
+<figure class='code'><figcaption><span>Valor de Retorno</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">then</span> <span class="s2">&quot;um&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">then</span> <span class="s2">&quot;dois&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span> <span class="s2">&quot;três&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">then</span> <span class="s2">&quot;quatro&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">else</span> <span class="s2">&quot;muitos&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>É isso aí amigos..</p>
+
+<p>Bons estudos e até a proxima! :D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
@@ -1926,88 +2162,6 @@ e 1.9 têm pouco impacto.</p>
 <p>É isso ai, até a proxima&#8230; :D</p>
 
 <p>E bons estudos..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ranges - Ruby 1.9.2 - Part I ]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
-    <updated>2012-05-13T02:16:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
-
-
-
-
-<h2>Ranges</h2>
-
-
-<p>Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:</p>
-
-<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span> <span class="c1"># Os números inteiros de 1 a 10, incluindo 10</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">10</span> <span class="c1"># Os números entre 1 e 10, excluindo-se 10</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Testar se um valor está incluído em um intervalo com o método include? (mas ver abaixo para uma discussão de alternativas):</p>
-
-<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cold_war</span> <span class="o">=</span> <span class="mi">1945</span> <span class="o">.</span><span class="n">.</span> <span class="mi">1989</span>
-</span><span class='line'><span class="n">cold_war</span><span class="o">.</span><span class="n">include?</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">year</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos,
-há, obviamente, deve ser alguma forma para comparar os valores para os pontos de extremidade. Em Ruby, isso é feito
-com o operador de comparação &lt;=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
-(ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador &lt;=>. o
-valor só pode ser utilizado como um ponto de extremidade do intervalo se ele responde a esta
-operador. Os pontos de extremidade de um intervalo e os valores &#8220;em&#8221; range são
-tipicamente, todos da mesma classe. Tecnicamente, no entanto, qualquer valor que é
-compatível com o &lt;=> operador do ponto da extremidade do range pode ser considerado um membro do intervalo.</p>
-
-<p>O objetivo primário para os ranges é comparação: para ser capaz de determinar se um valor está dentro ou fora do range. Um importante
-objetivo secundário é a iteração: se a classe dos parâmetros de um range definido um método succ (por sucessor), então existe um conjunto discreto de membros de intervalo, e eles podem
-ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &#8216;A&#8217; .. &#8216;c&#8217;, por exemplo:</p>
-
-<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="o">.</span><span class="n">.</span> <span class="s1">&#39;c&#39;</span>
-</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [b] [c]&quot;</span>
-</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [c]&quot;</span>
-</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># =&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]: Enumerable define to_a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A razão pela qual isto funciona é que a classe String define um método succ e &#8216;a&#8217;.succ é &#8216;b&#8217; e &#8216;b&#8217;.succ é &#8216;c&#8217;. Intervalos que
-podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
-e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.</p>
-
-<p>Faixas com terminais inteiros são os mais comuns de serem usados ​​em programas típicos de Ruby. Porque eles são discretos, os ranges inteiros podem sasurusados para cordas de índice e matrizes. Eles são também uma forma conveniente para
-representam uma coleção enumerável de valores ascendentes. Observe que o código atribui um range literal a uma variável, e
-em seguida, chama métodos no intervalo através da variável. Se você quiser ou
-invocar diretamente em uma ampla literal, você deve colocar parênteses o literal, ou a invocação do método é na verdade sobre o ponto final da variavel, em vez de o objecto range em si:</p>
-
-<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># tenta chamar to_a sobre o número 3</span>
-</span><span class='line'><span class="p">(</span><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span> <span class="no">To_a</span> <span class="c1"># =&gt; [1,2,3]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>Até a proxima!!!</p>
 ]]></content>
   </entry>
   

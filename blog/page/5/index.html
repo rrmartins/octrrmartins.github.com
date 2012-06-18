@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar. &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos falar um pouco de Range, é hora de nos aprofundar. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,126 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/">Ranges - Ruby 1.9.2 - Part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true">13/05/12 às 02:16 hrs</time>
+        
+         | <a href="/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/range/'>Range</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Ranges</h2>
+
+
+<p>Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span> <span class="c1"># Os números inteiros de 1 a 10, incluindo 10</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">10</span> <span class="c1"># Os números entre 1 e 10, excluindo-se 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Testar se um valor está incluído em um intervalo com o método include? (mas ver abaixo para uma discussão de alternativas):</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cold_war</span> <span class="o">=</span> <span class="mi">1945</span> <span class="o">.</span><span class="n">.</span> <span class="mi">1989</span>
+</span><span class='line'><span class="n">cold_war</span><span class="o">.</span><span class="n">include?</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">year</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos,
+há, obviamente, deve ser alguma forma para comparar os valores para os pontos de extremidade. Em Ruby, isso é feito
+com o operador de comparação &lt;=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
+(ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador &lt;=>. o
+valor só pode ser utilizado como um ponto de extremidade do intervalo se ele responde a esta
+operador. Os pontos de extremidade de um intervalo e os valores &#8220;em&#8221; range são
+tipicamente, todos da mesma classe. Tecnicamente, no entanto, qualquer valor que é
+compatível com o &lt;=> operador do ponto da extremidade do range pode ser considerado um membro do intervalo.</p>
+
+<p>O objetivo primário para os ranges é comparação: para ser capaz de determinar se um valor está dentro ou fora do range. Um importante
+objetivo secundário é a iteração: se a classe dos parâmetros de um range definido um método succ (por sucessor), então existe um conjunto discreto de membros de intervalo, e eles podem
+ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &#8216;A&#8217; .. &#8216;c&#8217;, por exemplo:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="o">.</span><span class="n">.</span> <span class="s1">&#39;c&#39;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [b] [c]&quot;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">#{</span><span class="n">l</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;[a] [c]&quot;</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># =&gt; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]: Enumerable define to_a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A razão pela qual isto funciona é que a classe String define um método succ e &#8216;a&#8217;.succ é &#8216;b&#8217; e &#8216;b&#8217;.succ é &#8216;c&#8217;. Intervalos que
+podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
+e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.</p>
+
+<p>Faixas com terminais inteiros são os mais comuns de serem usados ​​em programas típicos de Ruby. Porque eles são discretos, os ranges inteiros podem sasurusados para cordas de índice e matrizes. Eles são também uma forma conveniente para
+representam uma coleção enumerável de valores ascendentes. Observe que o código atribui um range literal a uma variável, e
+em seguida, chama métodos no intervalo através da variável. Se você quiser ou
+invocar diretamente em uma ampla literal, você deve colocar parênteses o literal, ou a invocação do método é na verdade sobre o ponto final da variavel, em vez de o objecto range em si:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># tenta chamar to_a sobre o número 3</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span> <span class="o">.</span><span class="n">.</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span> <span class="no">To_a</span> <span class="c1"># =&gt; [1,2,3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Até a proxima!!!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -386,338 +506,6 @@ o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e 
     <footer>
       <a rel="full-article" href="/blog/2012/05/07/um-pouco-de-array-no-ruby/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/">Desenvolvendo Um Chat Com NodeJS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-30T17:34:00-03:00" pubdate data-updated="true">30/04/12 às 17:34 hrs</time>
-        
-         | <a href="/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/backend/'>BackEnd</a>, <a class='category' href='/blog/categories/frontend/'>FrontEnd</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/nodejs/'>NodeJS</a>, <a class='category' href='/blog/categories/realtime/'>RealTime</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Olá Developers&#8230;</p>
-
-<p>Vamos desenvolver um pequeno Chat em NodeJS&#8230; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&#8230;</p>
-
-<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos&#8230; :D</p>
-
-<p>Vamos criar a aplicação, crie uma pasta com o nome da aplicação:</p>
-
-<figure class='code'><figcaption><span>Criando Pasta </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir app_chat</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Agora vamos entrar na pasta do projeto, e criar o arquivo que será nosso servidor, nome exemplo: heloword_server.js.</p>
-
-<p>Hora de começar a brincar com o servidor.</p>
-
-<figure class='code'><figcaption><span>Criando o server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;helloworld.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="s1">&#39;text/html&#39;</span><span class="p">});</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Na linha 1, temos um require(&#8216;fs&#8217;), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
-
-<p>Na linha 2, estamos instanciando e criando o server &#8216;http&#8217;.</p>
-
-<p>Na linha 3, já dentro da função do createServer, temos a leitura do arquivo que será alimentado, e uma criação de função.</p>
-
-<p>Na linha 4, estamos escrevendo o arquivo, lembrando que ele será do tipo HTML.</p>
-
-<p>Na linha 5, temos a escrita no arquivo. E abaixo finalizamos.</p>
-
-<p>Este processo de leitura do arquivo, ocorre sempre que alguem entra na aplicação.</p>
-
-<p>Vamos continuar, agora vamos colocar uma porta para o servidor.</p>
-
-<figure class='code'><figcaption><span>Criando uma porta e aplicando ao server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on &quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste exemplo acima, pegamos o número da porta do processo, ou fica valendo a porta 3000.</p>
-
-<p>Logo depois coloco a port no server, neste exemplo eu criei uma função, só para logar o numero da porta, logo nos logs do servidor estará o numero da porta, quando iniciar.</p>
-
-<p>Vamos agora começar a escrever as funcionalidades do servidor. Vamos escrever as funções que tratam que esta entrando e quem esta saindo da app.</p>
-
-<figure class='code'><figcaption><span>Function Connected e Disconnected</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">everyone</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;now&quot;</span><span class="p">).</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">connected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Joined: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">disconnected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nesta função, instancio o framework &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, que voce pode esta instalando com o comando: npm install now</p>
-
-<p>Dentro do &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
-
-<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal&#8230;</p>
-
-<figure class='code'><figcaption><span>Criando Funções dentro de Funções</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mensagem &quot;</span><span class="o">+</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;([^&gt;]+)&gt;)/ig</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste bloco de codigos, estamos criando a função distributeMessage, que esta, receberá a mensagem.</p>
-
-<p>Na linha 2, estou somente logando a mensagem que chegou.</p>
-
-<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas&#8230;</p>
-
-<p>Na linha 4, estamos fazendo a chamada da função que esta na view, e ela que imprimi a mensagem no DOM.</p>
-
-<p>Logo o arquivo do helloword_server.js precisa ficar assim:</p>
-
-<figure class='code'><figcaption><span>Arquivo do Server NodeJS (helloworld_server.js)</span> <a href='/downloads/code/helloworld_server.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="err">﻿</span><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;helloworld.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="s1">&#39;text/html&#39;</span><span class="p">});</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
-</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on &quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">everyone</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;now&quot;</span><span class="p">).</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">connected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Joined: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">disconnected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mensagem &quot;</span><span class="o">+</span><span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;([^&gt;]+)&gt;)/ig</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Criando a View</h3>
-
-
-<p>A nossa view, será basicamente HTML, e um pouco de simples javascript, então, dessa vez será 0 de explicação.</p>
-
-<figure class='code'><figcaption><span>View do Chat (helloworld.html)</span> <a href='/downloads/code/helloworld.html'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;title&gt;</span>nowjs test<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;nowjs/now.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script&gt;</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">empty</span><span class="p">(</span><span class="nx">v</span><span class="p">){</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="o">==</span><span class="kc">null</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="nx">v</span><span class="o">==</span><span class="s2">&quot;&quot;</span><span class="p">){</span>
-</span><span class='line'>      <span class="k">return</span> <span class="kc">true</span>
-</span><span class='line'><span class="p">}</span><span class="k">else</span> <span class="p">{</span><span class="k">return</span> <span class="kc">false</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">now</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;Qual seu Nome?&quot;</span><span class="p">,</span> <span class="s2">&quot;nome&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">){</span>
-</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;mensagem vazia&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">empty</span><span class="p">(</span><span class="nx">message</span><span class="p">)){</span>
-</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;mensagem vazia&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span><span class="k">else</span>  <span class="p">{</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#messages&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#send-button&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#text-input&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#text-input&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;messages&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;text-input&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">value=</span><span class="s">&quot;Send&quot;</span> <span class="na">id=</span><span class="s">&quot;send-button&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Proximo, passo, só levantar o servidor:</p>
-
-<figure class='code'><figcaption><span>Levantando o Servidor </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>node helloworld_server.js</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É isso ai amigos, segue o lick de como a aplicação ficou no heroku, e o lick do repositorio dela no github.</p>
-
-<p>Heroku -> <a href="http://nodechat.herokuapp.com">nodechat.herokuapp.com</a></p>
-
-<p>Github -> <a href="https://github.com/rrmartins/node_chat">Node Chat</a></p>
-
-<p>Até a proxima..</p>
-</div>
-  
   
 
 
