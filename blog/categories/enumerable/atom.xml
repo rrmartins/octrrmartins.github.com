@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Enumerable | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/enumerable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-18T19:07:39-03:00</updated>
+  <updated>2012-07-06T10:39:44-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
+    <updated>2012-07-05T01:57:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Unless</h1>
+
+
+<p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
+associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
+permitidas:</p>
+
+<p>``` ruby Declaração unless</p>
+
+<h1>Uma maneira, declaração unless</h1>
+
+<p>unless condition
+  code
+end</p>
+
+<h1>Duas vias da declaração unless</h1>
+
+<p>unless condition
+  code
+else
+  code
+end</p>
+
+<h1>modificador unless</h1>
+
+<p>code unless condition
+```</p>
+
+<p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
+uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
+código que são executados, ou <code>nil</code> se executar nada:</p>
+
+<p>``` ruby Declaração unless</p>
+
+<h1>Chama o método to_s sobre o objeto, a menos que o objeto 'o' for nulo</h1>
+
+<p>s = unless o.nil?                        # Nova linha de separação
+  o.to_s
+end</p>
+
+<p>s = unless o.nil? then o.to_s end        # separador então
+```</p>
+
+<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
+
+<p><code>ruby Unless
+s = o.to_s unless o.nil?
+</code></p>
+
+<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
+
+<p>``` ruby unless
+unless x == 0
+  puts "x is not 0"
+else
+  unless y == 0</p>
+
+<pre><code>puts "y is not 0"
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>unless z == 0
+  puts "z is not 0"
+else
+  puts "all are 0"
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>É isso ai amigos!</p>
+
+<p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
+
+<p>Esta ai..</p>
+
+<p>Até a proxima!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>

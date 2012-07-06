@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Symbols - Ruby 1.9.2 - Rodrigo Martins</title>
+  <title>unless #Ruby 1.9 - Rodrigo Martins</title>
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar. &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `unless`&#8230; Estranho para alguns, mas, veremos que é simples! &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2">
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -116,7 +116,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">Symbols - Ruby 1.9.2</h1>
+      <h1 class="entry-title">Unless #Ruby 1.9</h1>
     
     
       <p class="meta">
@@ -132,7 +132,7 @@
   
 
 
-<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
+<time datetime="2012-07-05T01:57:00-03:00" pubdate data-updated="true">05/07/12 às 01:57 hrs</time>
         
          | <a href="#disqus_thread">Comentário</a>
         
@@ -142,7 +142,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
   
 </span>
 
@@ -150,102 +150,113 @@
   </header>
 
 
-<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
-<p>Hoje vamos continuar falando de Symbol, é hora de nos aprofundar.</p>
+<h1>Unless</h1>
 
 
+<p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
+associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
+permitidas:</p>
 
-
-<h2>Symbol</h2>
-
-
-<p>Uma implementação típica de um interpretador Ruby mantém um símbolo em tabela
-que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
-Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
-posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
-
-<!--more-->
-
-
-<p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
-programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
-dois pontos:</p>
-
-<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Declaração unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">:symbol</span> <span class="c1"># Symbol Um literal</span>
-</span><span class='line'><span class="ss">:&quot;symbol&quot;</span> <span class="c1"># O mesmo literal</span>
-</span><span class='line'><span class="ss">:&#39;another long symbol&#39;</span> <span class="s2">&quot;# são úteis para símbolos com espaços</span>
-</span><span class='line'><span class="s2">s = &quot;</span><span class="n">string</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">sym = :&quot;</span><span class="c1">#{s}&quot; # O Symbol :string</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Uma maneira, declaração unless</span>
+</span><span class='line'><span class="k">unless</span> <span class="n">condition</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Duas vias da declaração unless</span>
+</span><span class='line'><span class="k">unless</span> <span class="n">condition</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># modificador unless</span>
+</span><span class='line'><span class="n">code</span> <span class="k">unless</span> <span class="n">condition</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Símbolos têm também uma sintaxe literal %s que permite delimitadores arbitrários da mesma maneira
-que %q e %Q pode ser usado para strings:</p>
+<p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
+uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
+código que são executados, ou <code>nil</code> se executar nada:</p>
 
-<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sx">%s[&quot;]</span> <span class="c1"># O mesmo que: &#39;&quot;&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os símbolos são usados ​​frequentemente para se referir a nomes de métodos no reflexivo
-código. Por exemplo, suponha que queremos para saber se algum objeto tem um método each:</p>
-
-<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="ss">:each</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Aqui está outro exemplo. Ele testa se um determinado objeto responde a um método especificado, e, em caso afirmativo, invoca o método:</p>
-
-<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Declaração unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nome</span> <span class="o">=</span> <span class="ss">:size</span>
-</span><span class='line'><span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">nome</span>
-</span><span class='line'>  <span class="n">o</span><span class="o">.</span><span class="n">send</span> <span class="p">(</span><span class="n">nome</span><span class="p">)</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Chama o método to_s sobre o objeto, a menos que o objeto &#39;o&#39; for nulo</span>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span>                        <span class="c1"># Nova linha de separação</span>
+</span><span class='line'>  <span class="n">o</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span> <span class="k">then</span> <span class="n">o</span><span class="o">.</span><span class="n">to_s</span> <span class="k">end</span>        <span class="c1"># separador então</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
+
+<figure class='code'><figcaption><span>Unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">to_s</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
+
+<figure class='code'><figcaption><span>unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">unless</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;x is not 0&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="k">unless</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;y is not 0&quot;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;z is not 0&quot;</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;all are 0&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Você pode converter uma String para um Symbol utilizando os métodos intern ou to_sym. E você pode converter um Symbol de volta para uma String com o método to_s ou sue alias id2name:</p>
+<p>É isso ai amigos!</p>
 
-<figure class='code'><figcaption><span>Symbol</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span> <span class="c1"># Comece com uma string</span>
-</span><span class='line'><span class="n">sym</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">intern</span>  <span class="c1"># Converter para um símbolo</span>
-</span><span class='line'><span class="n">sym</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="n">to_sym</span> <span class="c1"># Outra maneira de fazer a mesma coisa</span>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">to_s</span> <span class="c1"># converter de volta para uma string</span>
-</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">id2name</span> <span class="c1"># Outra maneira de fazê-lo</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
 
+<p>Esta ai..</p>
 
-<p>Duas seqüências podem ter o mesmo conteúdo e ainda ser completamente de objetos distintos. Este nunca é o caso com símbolos.
-Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo objeto symbol. Dois objetos distintos Symbols terá sempre conteúdo diferente.</p>
-
-<p>Sempre que você escrever código que usa string não para o seu conteúdo textual,
-mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
-Ao invés de escrever um método que espera um argumento para ser ou a string de &#8220;AM&#8221; ou &#8220;PM&#8221;, por exemplo, você poderia escrevê-lo para
-esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
-de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.</p>
-
-<p>No Ruby 1.9, a classe símbolo define um número de métodos String, como length, o size, os operadores de comparação, e mesmo os operadores
-[] e =~. Isto faz com que os símbolos sejam um pouco permutável com string e permite a sua utilização como uma espécie de imutável
-(E não garbage-collected) string.</p>
-
-<p>É isso ai amigos até a proxima.. :D</p>
+<p>Até a proxima!</p>
 </div>
 
 
@@ -268,12 +279,12 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
   
 
 
-<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
+<time datetime="2012-07-05T01:57:00-03:00" pubdate data-updated="true">05/07/12 às 01:57 hrs</time>
       Categorias: 
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
   
 </span>
 
@@ -282,7 +293,7 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -303,14 +314,10 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/05/15/testando-associacoes-em-range/" title="Previous Post:
-        Testando Associações em Range - Part II">&laquo; Testando Associações em Range - Part II</a></li>
+        href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/" title="Previous Post:
+        Demonstrações e Estruturas de controle - Part I #Ruby">&laquo; Demonstrações e Estruturas de controle - Part I #Ruby</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/05/18/true/"
-        title="Next Post: True, False e Nil">True, False e Nil
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -412,8 +419,8 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
-        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/';
         var disqus_script = 'embed.js';
       
     (function () {

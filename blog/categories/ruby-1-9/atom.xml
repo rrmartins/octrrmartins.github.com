@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 1.9 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-1-9/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-06-18T19:07:39-03:00</updated>
+  <updated>2012-07-06T10:39:44-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
+    <updated>2012-07-05T01:57:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Unless</h1>
+
+
+<p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
+associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
+permitidas:</p>
+
+<p>``` ruby Declaração unless</p>
+
+<h1>Uma maneira, declaração unless</h1>
+
+<p>unless condition
+  code
+end</p>
+
+<h1>Duas vias da declaração unless</h1>
+
+<p>unless condition
+  code
+else
+  code
+end</p>
+
+<h1>modificador unless</h1>
+
+<p>code unless condition
+```</p>
+
+<p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
+uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
+código que são executados, ou <code>nil</code> se executar nada:</p>
+
+<p>``` ruby Declaração unless</p>
+
+<h1>Chama o método to_s sobre o objeto, a menos que o objeto 'o' for nulo</h1>
+
+<p>s = unless o.nil?                        # Nova linha de separação
+  o.to_s
+end</p>
+
+<p>s = unless o.nil? then o.to_s end        # separador então
+```</p>
+
+<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
+
+<p><code>ruby Unless
+s = o.to_s unless o.nil?
+</code></p>
+
+<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
+
+<p>``` ruby unless
+unless x == 0
+  puts "x is not 0"
+else
+  unless y == 0</p>
+
+<pre><code>puts "y is not 0"
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>unless z == 0
+  puts "z is not 0"
+else
+  puts "all are 0"
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>É isso ai amigos!</p>
+
+<p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
+
+<p>Esta ai..</p>
+
+<p>Até a proxima!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Demonstrações e Estruturas de controle - Part I #Ruby]]></title>
@@ -656,71 +749,6 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 <code>super</code> é abordada em detalhes no Aumentando Comportamento por encadeamento.</p>
 
 <p>Até a Proxima... :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Variáveis ​​não inicializadas]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/"/>
-    <updated>2012-06-02T11:30:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
-
-
-
-
-<h1>Variáveis ​​não inicializadas</h1>
-
-
-<p>Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
-no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:</p>
-
-<h4>Variáveis ​​de classe</h4>
-
-
-<pre><code>Variáveis ​​de classe deve sempre ter um valor atribuído a elas antes que serem utilizadas. Ruby levanta uma NameError se 
-referir a uma variável de classe à qual nenhum valor foi atribuído.
-</code></pre>
-
-<h4>Variáveis ​​de instância</h4>
-
-
-<pre><code>Se você se referir a uma variável de instância não inicializada, Ruby retorna nil. Considera-se má programação de 
-contar com esse comportamento, no entanto. Ruby vai emitir um aviso sobre a variável não inicializada se você executá-la 
-com a opção -w.
-</code></pre>
-
-<h4>As variáveis ​​globais</h4>
-
-
-<pre><code>Variáveis ​​globais não inicializadas são como o exemplo de variáveis não inicializadas: elas igualam a nil, mas mostra 
-um aviso quando o Ruby é executado com o flag do -w.
-</code></pre>
-
-<h4>As variáveis ​​locais</h4>
-
-
-<pre><code>Este caso é mais complicado que os outros, porque variáveis locais ​​não têm um caractere de pontuação como um prefixo. 
-Este significa que variáveis ​​locais referênciam olhando apenas como uma invocação de método de expressões. Se o 
-interpretador Ruby tem visto uma atribuição de uma variável local, ele sabe que é uma variável e não um método, 
-e pode retornar o valor da variável. Se não tiver havido nenhuma atribuição, então o Ruby trata a expressão como uma 
-invocação de método. Se nenhum método com esse nome existe, Ruby levanta um NameError.
-
-Em geral, portanto, a tentativa de usar uma variável local antes de ter sido inicializada resulta em um erro. Existe 
-uma peculiaridade, uma variável passa a existir quando o interpretador Ruby vê uma expressão de atribuição para essa 
-variável. Este é o caso, mesmo se essa atribuição não é realmente executada. A variável que existe, mas não foi 
-atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
-</code></pre>
-
-<p><code>ruby Variaveis
-a = 0.0 if false # atribuição Isso nunca é executado
-puts a # Imprime nulo: a variável existe mas não é atribuída
-puts b # NameError: nenhuma variável ou método chamado existe b
-</code></p>
-
-<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
-
-<p>Até a próxima.. :)</p>
 ]]></content>
   </entry>
   
