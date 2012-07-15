@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Almir 'm3nd3s' | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/almir-m3nd3s-/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-15T12:12:53-03:00</updated>
+  <updated>2012-07-15T12:13:14-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -23,7 +23,7 @@
 </h2>
 
 
-<p>{% img center /images/flisol.png FLISOL %}<br/></p>
+<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
 
 <p> Olá amigos...</p>
 
