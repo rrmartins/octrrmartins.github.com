@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Compile | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/compile/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-15T12:08:37-03:00</updated>
+  <updated>2012-07-15T12:12:53-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -140,13 +140,13 @@ tais objetivos.
 
 <ol>
     <li>
-        <a href="/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/">Metaforas de Desenvolvimento de Software</a>
+        <a href="{{ root_url }}/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/">Metaforas de Desenvolvimento de Software</a>
     </li>
     <li>
-        <a href="/blog/2012/03/05/a-importancia-das-metaforas/">A Importancia das Metaforas - Part I</a>
+        <a href="{{ root_url }}/blog/2012/03/05/a-importancia-das-metaforas/">A Importancia das Metaforas - Part I</a>
     </li>
     <li>
-        <a href="/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/">A Importancia das Metaforas - Part II</a>
+        <a href="{{ root_url }}/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/">A Importancia das Metaforas - Part II</a>
     </li>
 </ol>
 
