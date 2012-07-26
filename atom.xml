@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-25T23:31:41-03:00</updated>
+  <updated>2012-07-25T23:37:17-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -70,8 +70,8 @@ iteradores mais especializados que são implementados em cima do método <code>e
 
 
 <p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
-<code>inject. O método</code>collect<code>(também conhecido como</code>map<code>) executa o seu bloco associado para cada elemento do objeto
-enumerável, e coleta os valores de retorno dos blocos em um</code>array`:</p>
+<code>inject</code>. O método <code>collect</code> (também conhecido como <code>map</code>) executa o seu bloco associado para cada elemento do objeto
+enumerável, e coleta os valores de retorno dos blocos em um <code>array</code>:</p>
 
 <figure class='code'><figcaption><span>Metodo Collect</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">quadrados</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">collect</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">}</span>   <span class="c1"># =&gt; [1,4,9]</span>

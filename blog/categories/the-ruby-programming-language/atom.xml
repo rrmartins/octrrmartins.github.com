@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-25T23:31:41-03:00</updated>
+  <updated>2012-07-25T23:37:17-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -63,8 +63,8 @@ end
 ```</p>
 
 <p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
-<code>inject. O método</code>collect<code>(também conhecido como</code>map<code>) executa o seu bloco associado para cada elemento do objeto
-enumerável, e coleta os valores de retorno dos blocos em um</code>array`:</p>
+<code>inject</code>. O método <code>collect</code> (também conhecido como <code>map</code>) executa o seu bloco associado para cada elemento do objeto
+enumerável, e coleta os valores de retorno dos blocos em um <code>array</code>:</p>
 
 <p><code>ruby Metodo Collect
 quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
