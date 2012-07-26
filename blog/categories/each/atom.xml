@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: each | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/each/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-07-25T23:31:41-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
+    <updated>2012-07-25T22:50:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Objetos Enumeráveis</h1>
+
+
+<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
+coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
+iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
+
+<p><code>ruby Metodo each
+[1,2,3].each {|x| print x }   # =&gt; prints "123"
+(1..3).each  {|x| print x }   # =&gt; prints "123" Same as 1.upto(3)
+</code></p>
+
+<!--more-->
+
+
+<p>O iterador <code>each</code> não é só para as classes tradicionais "de estrutura de dados". Classes <code>IO</code> Ruby definem um
+iterador <code>each</code> que cada linha de texto lido do objeto produz <code>Input/Output</code>. Assim, você pode processar as linhas
+de um arquivo em Ruby com um código como esse:</p>
+
+<p><code>ruby Metodo each para File
+File.open(filename) do |f|       # Abrir arquivo nomeado, passando f como parametro
+  f.each {|line| print line }    # Imprimir f em cada linha
+end
+</code></p>
+
+<p>A maioria das classes que definem um método <code>each</code> também incluem o módulo <code>Enumerable</code>, que define um número de
+iteradores mais especializados que são implementados em cima do método <code>each</code>. Um iterador é útil tal <code>each_with_index</code>, o que nos permite adicionar a linha de numeração para o exemplo anterior:</p>
+
+<p>``` ruby Metodo each com Index
+File.open(filename) do |f|
+  f.each_with_index do |line,number|</p>
+
+<pre><code>print "#{number}: #{line}"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
+<code>inject. O método</code>collect<code>(também conhecido como</code>map<code>) executa o seu bloco associado para cada elemento do objeto
+enumerável, e coleta os valores de retorno dos blocos em um</code>array`:</p>
+
+<p><code>ruby Metodo Collect
+quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
+</code></p>
+
+<p>O método <code>select</code> invoca o bloco associado para cada elemento no objeto enumerável, e retorna uma matriz de
+elementos para a qual o bloco retorna um outro valor <code>false</code> ou <code>nil</code>. Por exemplo:</p>
+
+<p><code>ruby Metodo Select
+nivela = (1..10).select{|x| x%2 == 0} # =&gt; [2,4,6,8,10]
+</code></p>
+
+<p>O método <code>reject</code> é simplesmente o oposto de <code>select</code>, ele retorna uma matriz de elementos para a qual o bloco
+retorna <code>nil</code> ou <code>false</code>. Por exemplo:</p>
+
+<p><code>ruby Metodo reject
+odds = (1..10).reject{|x| x%2 == 0} # =&gt; [1,3,5,7,9]
+</code></p>
+
+<p>O método <code>inject</code> é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
+O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
+o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqueado para a próxima iteração, ou torna-
+se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de
+<code>inject</code>, se houver um, ou o primeiro elemento do objeto enumerável. (Neste caso, o bloco é invocado. Apenas uma vez durante os primeiros dois elementos). Exemplos para <code>injects</code> mais claros:</p>
+
+<p><code>ruby Metodo Inject
+data = [2, 5, 3, 4]
+sum = data.inject{|sum, x| sum + x }      # =&gt; 14    (2+5+3+4)
+floatprod = data.inject(1.0){|p,x| p*x }  # =&gt; 120.0 (1.0*2*5*3*4)
+max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
+</code></p>
+
+<p>Veja <a href="http://ruby-doc.org/core-1.9.2/Enumerable.html">Objetos Enumeráveis</a> ​​para obter mais detalhes sobre o <code>Módulo Enumerable</code> e a seus iteradores.</p>
+
+<p>Até a proxima amigos...</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-15T12:13:14-03:00</updated>
+  <updated>2012-07-25T23:31:41-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
+    <updated>2012-07-25T22:50:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Objetos Enumeráveis</h1>
+
+
+<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
+coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
+iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
+
+<figure class='code'><figcaption><span>Metodo each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot;</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span>  <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot; Same as 1.upto(3)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<p>O iterador <code>each</code> não é só para as classes tradicionais &#8220;de estrutura de dados&#8221;. Classes <code>IO</code> Ruby definem um
+iterador <code>each</code> que cada linha de texto lido do objeto produz <code>Input/Output</code>. Assim, você pode processar as linhas
+de um arquivo em Ruby com um código como esse:</p>
+
+<figure class='code'><figcaption><span>Metodo each para File</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>       <span class="c1"># Abrir arquivo nomeado, passando f como parametro</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="nb">print</span> <span class="n">line</span> <span class="p">}</span>    <span class="c1"># Imprimir f em cada linha</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A maioria das classes que definem um método <code>each</code> também incluem o módulo <code>Enumerable</code>, que define um número de
+iteradores mais especializados que são implementados em cima do método <code>each</code>. Um iterador é útil tal <code>each_with_index</code>, o que nos permite adicionar a linha de numeração para o exemplo anterior:</p>
+
+<figure class='code'><figcaption><span>Metodo each com Index</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">f</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="p">,</span><span class="n">number</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">number</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
+<code>inject. O método</code>collect<code>(também conhecido como</code>map<code>) executa o seu bloco associado para cada elemento do objeto
+enumerável, e coleta os valores de retorno dos blocos em um</code>array`:</p>
+
+<figure class='code'><figcaption><span>Metodo Collect</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">quadrados</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">collect</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">}</span>   <span class="c1"># =&gt; [1,4,9]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O método <code>select</code> invoca o bloco associado para cada elemento no objeto enumerável, e retorna uma matriz de
+elementos para a qual o bloco retorna um outro valor <code>false</code> ou <code>nil</code>. Por exemplo:</p>
+
+<figure class='code'><figcaption><span>Metodo Select</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nivela</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span> <span class="c1"># =&gt; [2,4,6,8,10]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O método <code>reject</code> é simplesmente o oposto de <code>select</code>, ele retorna uma matriz de elementos para a qual o bloco
+retorna <code>nil</code> ou <code>false</code>. Por exemplo:</p>
+
+<figure class='code'><figcaption><span>Metodo reject</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">odds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reject</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span> <span class="c1"># =&gt; [1,3,5,7,9]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O método <code>inject</code> é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
+O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
+o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqueado para a próxima iteração, ou torna-
+se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de
+<code>inject</code>, se houver um, ou o primeiro elemento do objeto enumerável. (Neste caso, o bloco é invocado. Apenas uma vez durante os primeiros dois elementos). Exemplos para <code>injects</code> mais claros:</p>
+
+<figure class='code'><figcaption><span>Metodo Inject</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">]</span>
+</span><span class='line'><span class="n">sum</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">inject</span><span class="p">{</span><span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">x</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">x</span> <span class="p">}</span>      <span class="c1"># =&gt; 14    (2+5+3+4)</span>
+</span><span class='line'><span class="n">floatprod</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">){</span><span class="o">|</span><span class="nb">p</span><span class="p">,</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span><span class="o">*</span><span class="n">x</span> <span class="p">}</span>  <span class="c1"># =&gt; 120.0 (1.0*2*5*3*4)</span>
+</span><span class='line'><span class="n">max</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">inject</span><span class="p">{</span><span class="o">|</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="o">|</span> <span class="n">m</span><span class="o">&gt;</span><span class="n">x</span> <span class="p">?</span> <span class="n">m</span> <span class="p">:</span> <span class="n">x</span> <span class="p">}</span>     <span class="c1"># =&gt; 5     (elemento maior)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Veja <a href="http://ruby-doc.org/core-1.9.2/Enumerable.html">Objetos Enumeráveis</a> ​​para obter mais detalhes sobre o <code>Módulo Enumerable</code> e a seus iteradores.</p>
+
+<p>Até a proxima amigos&#8230;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Iteradores Numéricos #Ruby 1.9.2]]></title>
@@ -2044,45 +2148,6 @@ tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmétic
 <p>Um pouco de conceito de Objetos, logo teremos mais na pratica&#8230;</p>
 
 <p>Até a proxima</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[True, False e Nil]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/18/true/"/>
-    <updated>2012-05-18T12:58:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/18/true</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de True, False e Nil, é hora de nos aprofundar.</p>
-
-
-
-
-<h2>True, False e Nil</h2>
-
-
-<p>Ruby tem alguma das palavras-chave, as palavras: True, False e nil(nulo). True e False são os dois valores booleanos, e eles
-representar a verdade e a falsidade, sim e não, ligado e desligado, de um objeto. nil é um valor especial reservado para indicar
-a ausência de valor.</p>
-
-<p>Cada uma dessas palavras-chave avaliada como um objeto especial. True avalia a um objeto que é uma instância de <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/singleton/rdoc/Singleton.html">Singleton</a> de TrueClass. Da mesma forma, False e nil são exemplos de FalseClass e NilClass. Note que não há nenhuma classe Boolean em Ruby. TrueClass e False Class ambos têm como objeto de sua superclasse.</p>
-
-<p>Se você quiser verificar se um valor é nulo, você pode simplesmente compará-lo a nil, ou usar o método nil?</p>
-
-<figure class='code'><figcaption><span>NilClass</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span> <span class="o">==</span> <span class="kp">nil</span> <span class="c1"># o é nil</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">nil?</span> <span class="c1"># Outra maneira de testar</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
-não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de
-nil ou False se comporta como True.</p>
 ]]></content>
   </entry>
   

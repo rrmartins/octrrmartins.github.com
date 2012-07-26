@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Ordem de Object Praticamente todas as classes podem definir o método ==, &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Conversão de objetos Muitas classes de Ruby definem métodos que retornam &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,75 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/">Classe Objects Em Ruby 1.9.2 - Part V</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T14:04:00-03:00" pubdate data-updated="true">20/05/12 às 14:04 hrs</time>
+        
+         | <a href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Conversão de objetos</h3>
+
+
+<p></p>
+
+<p>Muitas classes de Ruby definem métodos que retornam uma representação do objeto como um valor de uma classe diferente.
+O método to_s, para a obtenção de uma representação de um objeto, é provavelmente o mais comumente implementado e mais conhecido
+dos métodos. As subseções a seguir descrevem várias categorias de conversões.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -400,83 +469,6 @@ em Ruby. Teremos algumas partes para falar desta classe tão poderosa, mas é mu
     <footer>
       <a rel="full-article" href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/18/true/">True, False E Nil</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-18T12:58:00-03:00" pubdate data-updated="true">18/05/12 às 12:58 hrs</time>
-        
-         | <a href="/blog/2012/05/18/true/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/falso/'>Falso</a>, <a class='category' href='/blog/categories/nil/'>Nil</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/verdadeiro/'>Verdadeiro</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de True, False e Nil, é hora de nos aprofundar.</p>
-
-
-
-
-<h2>True, False e Nil</h2>
-
-
-<p>Ruby tem alguma das palavras-chave, as palavras: True, False e nil(nulo). True e False são os dois valores booleanos, e eles
-representar a verdade e a falsidade, sim e não, ligado e desligado, de um objeto. nil é um valor especial reservado para indicar
-a ausência de valor.</p>
-
-<p>Cada uma dessas palavras-chave avaliada como um objeto especial. True avalia a um objeto que é uma instância de <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/singleton/rdoc/Singleton.html">Singleton</a> de TrueClass. Da mesma forma, False e nil são exemplos de FalseClass e NilClass. Note que não há nenhuma classe Boolean em Ruby. TrueClass e False Class ambos têm como objeto de sua superclasse.</p>
-
-<p>Se você quiser verificar se um valor é nulo, você pode simplesmente compará-lo a nil, ou usar o método nil?</p>
-
-<figure class='code'><figcaption><span>NilClass</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span> <span class="o">==</span> <span class="kp">nil</span> <span class="c1"># o é nil</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">nil?</span> <span class="c1"># Outra maneira de testar</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
-não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de
-nil ou False se comporta como True.</p>
-</div>
-  
   
 
 

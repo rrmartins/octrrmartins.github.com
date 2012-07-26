@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`&#8230; Estranho para alguns, mas, veremos &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`&#8230; Estranho para alguns, mas, veremos &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,75 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Objetos Enumeráveis #Ruby 1.9.2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T22:50:00-03:00" pubdate data-updated="true">25/07/12 às 22:50 hrs</time>
+        
+         | <a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/each/'>each</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Objetos Enumeráveis</h1>
+
+
+<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
+coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
+iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
+
+<figure class='code'><figcaption><span>Metodo each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot;</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span>  <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot; Same as 1.upto(3)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -501,69 +570,6 @@ você pode escolher o que parece mais elegante para a tarefa.</p>
   
     <footer>
       <a rel="full-article" href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/03/atribuicoes/">Atribuições #Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-03T11:55:00-03:00" pubdate data-updated="true">03/06/12 às 11:55 hrs</time>
-        
-         | <a href="/blog/2012/06/03/atribuicoes/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições</p>
-
-
-
-
-<h1>Atribuições</h1>
-
-
-<p>Uma expressão de atribuição especifica um ou mais valores para um ou mais valores. lvalue é o termo para algo que pode aparecer no lado
-esquerdo de uma atribuição do operador. Os valores no lado direito de um operador de atribuição são algumas vezes chamado de rvalues ​​por
-contraste. Variáveis, constantes, atributos e elementos do Array são lvalues ​​em Ruby. As regras para o significado de expressões de
-atribuição são um pouco diferente para diferentes tipos de lvalues, e cada tipo é descrito em detalhe neste post.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/03/atribuicoes/">Read on &rarr;</a>
     </footer>
   
 
