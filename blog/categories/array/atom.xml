@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-05T19:21:51-03:00</updated>
+  <updated>2012-08-05T19:25:48-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -36,6 +36,9 @@ def twice
   yield
 end
 </code></p>
+
+<!--more-->
+
 
 <p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
 expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
