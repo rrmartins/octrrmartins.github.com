@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`&#8230; Estranho para alguns, mas, veremos &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`&#8230; Estranho para alguns &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,204 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Escrevendo Iteradores Personalizados #Ruby 1.9.2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-05T16:18:00-03:00" pubdate data-updated="true">05/08/12 às 16:18 hrs</time>
+        
+         | <a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/each/'>each</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Escrevendo iteradores personalizados</h1>
+
+
+<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
+invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
+invoca o seu bloco duas vezes:</p>
+
+<figure class='code'><figcaption><span>yield</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twice</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'><span class="err">  </span><span class="k">yield</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
+expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
+com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+
+<figure class='code'><figcaption><span>Method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Este método espera um bloco. Gera n valores da forma</span>
+</span><span class='line'><span class="c1"># M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</span>
+</span><span class='line'><span class="c1"># Para o bloco associado.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequencia</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span><span class='line'><span class="err">  </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="err">  </span><span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># loop n vezes</span>
+</span><span class='line'><span class="err">    </span><span class="k">yield</span> <span class="n">m</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">c</span> <span class="c1"># Invocar o bloco, e passar um valor a ela</span>
+</span><span class='line'><span class="err">    </span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># Incrementa i de cada vez</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Aqui está uma invocação desse método, com um bloco.</span>
+</span><span class='line'><span class="c1"># Ela imprime os valores 1, 6 e 11</span>
+</span><span class='line'><span class="n">sequencia</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span> <span class="n">y</span> <span class="o">|</span> <span class="nb">puts</span> <span class="n">y</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>Nomenclatura: rendimento e iteradores
+
+Dependendo da sua experiência em programação, você pode encontrar os
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
+de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
+no entanto, em algum código que possa parecer como se fosse o bloco que é
+produzindo um resultado de volta para o método que o invocou.
+
+Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
+
+Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
+e 'iteradores externos'.
+</code></pre>
+
+<p>Aqui está outro exemplo de um &#8216;iterador&#8217; em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+que a implementação deste iterador usa outro iterador internamente:</p>
+
+<figure class='code'><figcaption><span>yield</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gera n pontos uniformemente espaçados em torno da circunferência de um</span>
+</span><span class='line'><span class="c1"># Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</span>
+</span><span class='line'><span class="c1"># De cada ponto ao bloco associado.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>    <span class="c1">#  Observe que este método é implementado com um bloco</span>
+</span><span class='line'>    <span class="n">angle</span> <span class="o">=</span> <span class="no">Math</span><span class="o">::</span><span class="no">PI</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">n</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">r</span><span class="o">*</span><span class="no">Math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">r</span><span class="o">*</span><span class="no">Math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Esta invocação das impressões iterador:</span>
+</span><span class='line'><span class="c1"># (1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</span>
+</span><span class='line'><span class="n">circle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">|</span> <span class="nb">printf</span> <span class="s2">&quot;(%.2f, %.2f)&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
+individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
+de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
+Você não pode passar um bloco a um bloco.</p>
+
+<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
+você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
+um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
+associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
+funções mundiais. Aqui está um exemplo:</p>
+
+<figure class='code'><figcaption><span>block_biven?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Retorna um array com n elementos da forma m * i + c</span>
+</span><span class='line'><span class="c1"># Se um bloco é dado, igualmente produzir cada elemento para o bloco</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequence</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">[]</span>                  <span class="c1"># Inicializa variáveis</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>                  <span class="c1"># Loop n vezes</span>
+</span><span class='line'>    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">c</span>                 <span class="c1"># calcula o valor</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">y</span> <span class="k">if</span> <span class="nb">block_given?</span>
+</span><span class='line'>    <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">y</span>                      <span class="c1"># armazena o valor</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">s</span>             <span class="c1"># Retorna o array de valores</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>É isso aí!</p>
+
+<p>Até o proximo!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -508,68 +706,6 @@ você pode escolher o que parece mais elegante para a tarefa.</p>
   
     <footer>
       <a rel="full-article" href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela #Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true">11/06/12 às 19:36 hrs</time>
-        
-         | <a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
-
-
-
-
-<h1>Atribuições Paralelas</h1>
-
-
-<p>Atribuição paralela é qualquer atribuição de expressão que tem mais do que um <code>lvalue</code>, mais do que um <code>rvalue</code>, ou ambos. Múltiplos <code>lvalues</code> e ​​múltiplos <code>rvalues</code> são separados uns dos outros com uma vírgula. <code>lvalues</code> e <code>rvalues</code> ​​pode ser prefixado com <code>*</code>, que às vezes é chamado de operador <code>splat</code>, embora não seja um verdadeiro operador. O significado de <code>*</code> é explicado mais adiante neste post.</p>
-
-<p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Read on &rarr;</a>
     </footer>
   
 

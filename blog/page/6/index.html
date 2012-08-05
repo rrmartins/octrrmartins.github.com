@@ -9,8 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Na primeira parte eu fiz uma introdução do Hash:
--> O Mundo Hash &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -113,6 +112,82 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/">O Mundo Hash No Ruby 1.9.2 - Parte III - Hashs Codes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T13:01:00-03:00" pubdate data-updated="true">10/05/12 às 13:01 hrs</time>
+        
+         | <a href="/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/codes/'>Codes</a>, <a class='category' href='/blog/categories/equals/'>Equals</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/hash-codes/'>Hash Codes</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+<p>Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.</p>
+
+
+
+
+<h3>Códigos de Hash, Igualdade e mutáveis ​​Chaves</h3>
+
+
+<p>Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
+estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna <a href="http://www.ruby-doc.org/core-1.9.2/Fixnum.html">Fixnum</a> hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
+hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash&#8217;s de tabelas são mais eficientes quando hashcodes duplicados são raros.</p>
+
+<p>A classe Hash compara chaves igualdade com o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F">eql?</a>. Para
+outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que
+substitui o método eql?, você deve também substituir o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-hash">hash</a>, ou se não as instâncias de sua classe não vam funcionar como chaves em um hash.</p>
+
+<p>Se você definir uma classe e não sobreescrever o método eql?, em seguida, as instâncias dessa classe são
+comparadas com a identidade do objeto quando usado como chave de hash. Duas instâncias distintas de sua classe são distintas chaves de hash mesmo que eles representam o mesmo conteúdo. Neste caso, o método padrão hash é apropriado: retorna a única object_id do objeto.</p>
+
+<p>Note-se que objetos mutáveis ​​são problemáticos como chaves de hash. Mudar o conteúdo de um objeto geralmente muda seu hashcode. Se você usar um objeto como uma chave e então alterar esse objeto, a tabela de hash ficará corrompida, e o hash não funciona corretamente.</p>
+
+<p>Porque strings são mutáveis, mas comumente usamos chaves de hash, Ruby trata eles como um caso especial e faz cópias privadas de todas as cadeias utilizadas como chaves. Este é o único caso especial, no entanto, você deve ser muito cuidado ao usar qualquer outro objeto mutável como uma chave hash. Considera fazendo uma cópia privada ou chamando o método <a href="http://ruby-doc.org/core-1.9.2/Object.html#method-i-freeze">freeze</a>.
+Se você deve usar chaves de hash mutável, chame o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-rehash">rehash</a> do Hash cada vez que você alterar uma chave.</p>
+
+<p>-> <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html">Hash</a></p>
+
+<p>Até a proxima!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -643,82 +718,6 @@ o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e 
 <p>Até a proxima..</p>
 </div>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/30/a-classe-encoding/">A Classe Encoding</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-30T10:04:00-03:00" pubdate data-updated="true">30/04/12 às 10:04 hrs</time>
-        
-         | <a href="/blog/2012/04/30/a-classe-encoding/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>A classe Encoding de Ruby 1.9 representa uma codificação de caracteres. Objetos de codificação para agir como identificadores opacos para uma codificação e não têm muitos métodos próprios. O nome do método retorna o nome de uma codificação. to_s é um sinônimo para o name, e inspect converte um objeto em uma seqüência de codificação de uma forma mais detalhada do que o name faz.</p>
-
-
-
-
-<p>Ruby define uma constante para cada uma das codificações built-in&#8217;s que ele suporta, e estes são a maneira mais fácil de especificar uma codificação em seu programa. As constantes predefinidas incluem pelo menos o seguinte:</p>
-
-
-
-
-<figure class='code'><figcaption><span>Encoding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">ASCII_8BIT</span>     <span class="c1"># Also ::BINARY</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span>          <span class="c1"># UTF-8-encoded Unicode characters</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">EUC_JP</span>         <span class="c1"># EUC-encoded Japanese</span>
-</span><span class='line'><span class="no">Encoding</span><span class="o">::</span><span class="no">SHIFT_JIS</span>      <span class="c1"># Japanese: also ::SJIS, ::WINDOWS_31J, ::CP932</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/04/30/a-classe-encoding/">Read on &rarr;</a>
-    </footer>
   
 
 

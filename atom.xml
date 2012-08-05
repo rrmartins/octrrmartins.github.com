@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-27T22:56:57-03:00</updated>
+  <updated>2012-08-05T19:21:51-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,166 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
+    <updated>2012-08-05T16:18:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Escrevendo iteradores personalizados</h1>
+
+
+<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
+invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
+invoca o seu bloco duas vezes:</p>
+
+<figure class='code'><figcaption><span>yield</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twice</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'><span class="err">  </span><span class="k">yield</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
+expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
+com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+
+<figure class='code'><figcaption><span>Method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Este método espera um bloco. Gera n valores da forma</span>
+</span><span class='line'><span class="c1"># M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</span>
+</span><span class='line'><span class="c1"># Para o bloco associado.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequencia</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span><span class='line'><span class="err">  </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="err">  </span><span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># loop n vezes</span>
+</span><span class='line'><span class="err">    </span><span class="k">yield</span> <span class="n">m</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">c</span> <span class="c1"># Invocar o bloco, e passar um valor a ela</span>
+</span><span class='line'><span class="err">    </span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># Incrementa i de cada vez</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Aqui está uma invocação desse método, com um bloco.</span>
+</span><span class='line'><span class="c1"># Ela imprime os valores 1, 6 e 11</span>
+</span><span class='line'><span class="n">sequencia</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span> <span class="n">y</span> <span class="o">|</span> <span class="nb">puts</span> <span class="n">y</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>Nomenclatura: rendimento e iteradores
+
+Dependendo da sua experiência em programação, você pode encontrar os
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
+de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
+no entanto, em algum código que possa parecer como se fosse o bloco que é
+produzindo um resultado de volta para o método que o invocou.
+
+Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
+
+Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
+e 'iteradores externos'.
+</code></pre>
+
+<p>Aqui está outro exemplo de um &#8216;iterador&#8217; em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+que a implementação deste iterador usa outro iterador internamente:</p>
+
+<figure class='code'><figcaption><span>yield</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gera n pontos uniformemente espaçados em torno da circunferência de um</span>
+</span><span class='line'><span class="c1"># Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</span>
+</span><span class='line'><span class="c1"># De cada ponto ao bloco associado.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>    <span class="c1">#  Observe que este método é implementado com um bloco</span>
+</span><span class='line'>    <span class="n">angle</span> <span class="o">=</span> <span class="no">Math</span><span class="o">::</span><span class="no">PI</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">n</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">r</span><span class="o">*</span><span class="no">Math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">r</span><span class="o">*</span><span class="no">Math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Esta invocação das impressões iterador:</span>
+</span><span class='line'><span class="c1"># (1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</span>
+</span><span class='line'><span class="n">circle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">|</span> <span class="nb">printf</span> <span class="s2">&quot;(%.2f, %.2f)&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
+individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
+de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
+Você não pode passar um bloco a um bloco.</p>
+
+<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
+você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
+um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
+associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
+funções mundiais. Aqui está um exemplo:</p>
+
+<figure class='code'><figcaption><span>block_biven?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Retorna um array com n elementos da forma m * i + c</span>
+</span><span class='line'><span class="c1"># Se um bloco é dado, igualmente produzir cada elemento para o bloco</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequence</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">[]</span>                  <span class="c1"># Inicializa variáveis</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>                  <span class="c1"># Loop n vezes</span>
+</span><span class='line'>    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">c</span>                 <span class="c1"># calcula o valor</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">y</span> <span class="k">if</span> <span class="nb">block_given?</span>
+</span><span class='line'>    <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">y</span>                      <span class="c1"># armazena o valor</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">s</span>             <span class="c1"># Retorna o array de valores</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>É isso aí!</p>
+
+<p>Até o proximo!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
@@ -2026,128 +2186,6 @@ e testa a classe do argumento com is_a? IO, em seguida, o método não funciona 
 <p>[*] -> <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/stringio/rdoc/StringIO.html">StringIO</a></p>
 
 <p>É isso ai rubistas&#8230; A cada vez que leio sobre, me apaixono mais. :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part I]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/"/>
-    <updated>2012-05-19T10:23:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-<p>Ruby é uma forma muito pura de linguagem orientada a objetos: todos os valores são
-objetos, e não há distinção entre tipos primitivos e tipos de objetos, como existem em muitos
-outras línguas. Em Ruby, todos os objetos herdam de uma classe chamada
-<a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> e compartilhar os métodos definidos
-por essa classe. Esta seção explica as características comuns de todos os objetos
-em Ruby. Teremos algumas partes para falar desta classe tão poderosa, mas é muito importante para o entendimento de OO em Ruby.</p>
-
-<!--more-->
-
-
-<h3>Referências de objeto</h3>
-
-
-<p>Quando trabalhamos com objetos em Ruby, realmente estamos trabalhando com referências a objetos. Não é o
-próprio objeto que manipula, mas uma referência a ele<a href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/#referencia">[*]</a>.
-Quando atribuir um valor a uma variável, não estamos copiando um objeto &#8220;em&#8221; variável que, nós
-São apenas armazenar uma referência a um objeto para essa variável. Alguns
-código deixa isso claro:</p>
-
-<figure class='code'><figcaption><span>Objects</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># Criar um objeto String. Armazenar uma referência a ele em s.</span>
-</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="n">s</span> <span class="c1"># Copiar a referência a t. s e t referem-se ambos para o mesmo objeto.</span>
-</span><span class='line'><span class="n">t</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># Modificar o objeto através da referência t.</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">s</span> <span class="c1"># Acesse o objeto modificado através de s. Prints &quot;Esfregue&quot;.</span>
-</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;Java&quot;</span> <span class="c1"># t agora se refere a um objeto diferente.</span>
-</span><span class='line'><span class="nb">print</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="c1"># Imprime &quot;RubJava&quot;.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Quando você passar um objeto para um método em Ruby, é um objeto
-referência que é passado para o método. Não é o objeto em si,
-e não é uma referência para a referência ao objecto. Outra forma
-dizer isso é que os argumentos do método são passados ​​por
-valor e não por referência, mas
-que os valores passados ​​são referências de objeto.</p>
-
-<p>Porque as referências de objeto são passados ​​para os métodos, os métodos podem usar
-essas referências para modificar o objeto subjacente. Essas modificações
-são, então, visível quando o método retorna.</p>
-
-<h3>Valores imediatos</h3>
-
-
-<p>Nós dissemos que todos os valores em Ruby são objetos e todos os objetos
-são manipulados por referência. Na implementação de referência, no entanto objetos Fixnum e Symbol são realmente &#8220;valores imediatos&#8221;,
-em vez de referências. Nenhuma destas duas classes tem métodos diferenciados, de modo que os
-Objetos Fixnum e símbolo são imutáveis, o que significa que não há realmente nenhuma maneira de dizer que eles são manipulados por
-valor, e não pela existência de valores de referencia.</p>
-
-<p>A existência de valores imediatos deve ser considerado um detalhe de implementação. A única diferença prática entre
-valores imediatos e valores de referência é que os valores imediatos
-não pode ter métodos singleton definidas sobre eles.</p>
-
-<h3>Vida útil de objeto</h3>
-
-
-<p>As classes internas em Ruby descritas neste capítulo têm sintaxes literal e instâncias dessas classes são criadas simplesmente por
-inclusão de valores literalmente em seu código. Objetos de outras classes precisam ser explicitamente criados,
-e isso é feito na maioria das vezes com um método chamado de new:</p>
-
-<figure class='code'><figcaption><span>Class.new</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">myObject</span> <span class="o">=</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">New</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>new é um método do Classe Class. Atribui na memória para manter o objeto new, então ele inicializa o estado do
-recém alocados objetos &#8220;vazio&#8221;, invocando seu método initialize. Os argumentos para new são passadas diretamente para inicializar.
-A maioria das classes definem um método initialize para executar qualquer inicialização, sendo necessário para instâncias.</p>
-
-<p>Os métodos new e initialize fornecer o padrão técnico para a criação de novas classes, mas classes também podem definir outros
-métodos, conhecidos como &#8220;métodos de fábrica&#8221;, que retornam instâncias.</p>
-
-<p>Objetos Ruby não precisa ser desalocada explicitamente, como o fazem as linguagens C, C++, entre outras. Ruby usa uma técnica chamada
-<a href="http://www.rubyinside.com.br/como-o-ruby-gerencia-memoria-e-faz-garbage-collection-3018">garbage collection</a> (coleta de lixo) automaticamente, para destruir objetos que não são mais necessários. Um objeto se torna um candidato para o garbage collection quando é
-inacessível, quando não há referências restantes para o objeto com exceção de outros objetos inacessíveis.</p>
-
-<p>O fato de que Ruby usa garbage collection, isso significa que programas em Ruby são menos suscetíveis a vazamentos de memória
-que os programas escritos em linguagems que requerem objetos e memória para ser desalocada explicitamente e liberado.
-Mas o garbage collection não significa que vazamentos de memória são impossíveis:
-qualquer código que cria vida longa tem referências a objetos que de outro modo seria de curta duração pode ser uma fonte de
-falhas de memória. Considere um hash usado como um cache. Se o cache não é podado usando algum tipo de algoritmo
-menos utilizado recentemente, os objetos em cache permanecem acessíveis enquanto o hash em si é alcançável. Se o hash
-é referenciado por uma variável global, então será acessível como desde que o interpretador Ruby está sendo executado.</p>
-
-<p><a href="referencia"></a></p>
-
-<pre><code>[*] -&gt; Se você está familiarizado com C ou C++, você pode pensar de uma
-referência como um ponteiro: o endereço do objeto na memória. Ruby
-não utiliza ponteiros, no entanto. Referências em Ruby são opacas e
-internas para a implementação. Não há maneira de tirar o
-tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmético.
-</code></pre>
-
-<p>Um pouco de conceito de Objetos, logo teremos mais na pratica&#8230;</p>
-
-<p>Até a proxima</p>
 ]]></content>
   </entry>
   

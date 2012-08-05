@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby API | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-api/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-27T22:56:57-03:00</updated>
+  <updated>2012-08-05T19:21:51-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,144 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
+    <updated>2012-08-05T16:18:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Escrevendo iteradores personalizados</h1>
+
+
+<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
+invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
+invoca o seu bloco duas vezes:</p>
+
+<p><code>ruby yield
+def twice
+  yield
+  yield
+end
+</code></p>
+
+<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
+expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
+com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+
+<p>```ruby Method</p>
+
+<h1>Este método espera um bloco. Gera n valores da forma</h1>
+
+<h1>M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</h1>
+
+<h1>Para o bloco associado.</h1>
+
+<p>def sequencia(n, m, c)
+  i = 0
+  while (i &lt; n) # loop n vezes
+    yield m * i + c # Invocar o bloco, e passar um valor a ela
+    i += 1 # Incrementa i de cada vez
+  end
+end</p>
+
+<h1>Aqui está uma invocação desse método, com um bloco.</h1>
+
+<h1>Ela imprime os valores 1, 6 e 11</h1>
+
+<p>sequencia(3, 5, 1) {| y | puts y}
+```</p>
+
+<pre><code>Nomenclatura: rendimento e iteradores
+
+Dependendo da sua experiência em programação, você pode encontrar os
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
+de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
+no entanto, em algum código que possa parecer como se fosse o bloco que é
+produzindo um resultado de volta para o método que o invocou.
+
+Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
+
+Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
+e 'iteradores externos'.
+</code></pre>
+
+<p>Aqui está outro exemplo de um 'iterador' em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+que a implementação deste iterador usa outro iterador internamente:</p>
+
+<p>```ruby  yield</p>
+
+<h1>Gera n pontos uniformemente espaçados em torno da circunferência de um</h1>
+
+<h1>Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</h1>
+
+<h1>De cada ponto ao bloco associado.</h1>
+
+<p>def circle(r,n)
+  n.times do |i|    #  Observe que este método é implementado com um bloco</p>
+
+<pre><code>angle = Math::PI * 2 * i / n
+yield r*Math.cos(angle), r*Math.sin(angle)
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>Esta invocação das impressões iterador:</h1>
+
+<h1>(1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</h1>
+
+<p>circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
+```</p>
+
+<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
+individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
+de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
+Você não pode passar um bloco a um bloco.</p>
+
+<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
+você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
+um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
+associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
+funções mundiais. Aqui está um exemplo:</p>
+
+<p>```ruby block_biven?</p>
+
+<h1>Retorna um array com n elementos da forma m * i + c</h1>
+
+<h1>Se um bloco é dado, igualmente produzir cada elemento para o bloco</h1>
+
+<p>def sequence(n, m, c)
+  i, s = 0, []                  # Inicializa variáveis
+  while(i &lt; n)                  # Loop n vezes</p>
+
+<pre><code>y = m*i + c                 # calcula o valor
+yield y if block_given?     
+s &lt;&lt; y                      # armazena o valor
+i += 1
+</code></pre>
+
+<p>  end
+  s             # Retorna o array de valores
+end
+```</p>
+
+<p>É isso aí!</p>
+
+<p>Até o proximo!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>

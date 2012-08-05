@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-07-27T22:56:57-03:00</updated>
+  <updated>2012-08-05T19:21:51-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,144 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
+    <updated>2012-08-05T16:18:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Escrevendo iteradores personalizados</h1>
+
+
+<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
+invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
+invoca o seu bloco duas vezes:</p>
+
+<p><code>ruby yield
+def twice
+  yield
+  yield
+end
+</code></p>
+
+<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
+expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
+com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+
+<p>```ruby Method</p>
+
+<h1>Este método espera um bloco. Gera n valores da forma</h1>
+
+<h1>M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</h1>
+
+<h1>Para o bloco associado.</h1>
+
+<p>def sequencia(n, m, c)
+  i = 0
+  while (i &lt; n) # loop n vezes
+    yield m * i + c # Invocar o bloco, e passar um valor a ela
+    i += 1 # Incrementa i de cada vez
+  end
+end</p>
+
+<h1>Aqui está uma invocação desse método, com um bloco.</h1>
+
+<h1>Ela imprime os valores 1, 6 e 11</h1>
+
+<p>sequencia(3, 5, 1) {| y | puts y}
+```</p>
+
+<pre><code>Nomenclatura: rendimento e iteradores
+
+Dependendo da sua experiência em programação, você pode encontrar os
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
+de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
+no entanto, em algum código que possa parecer como se fosse o bloco que é
+produzindo um resultado de volta para o método que o invocou.
+
+Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
+
+Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
+e 'iteradores externos'.
+</code></pre>
+
+<p>Aqui está outro exemplo de um 'iterador' em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+que a implementação deste iterador usa outro iterador internamente:</p>
+
+<p>```ruby  yield</p>
+
+<h1>Gera n pontos uniformemente espaçados em torno da circunferência de um</h1>
+
+<h1>Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</h1>
+
+<h1>De cada ponto ao bloco associado.</h1>
+
+<p>def circle(r,n)
+  n.times do |i|    #  Observe que este método é implementado com um bloco</p>
+
+<pre><code>angle = Math::PI * 2 * i / n
+yield r*Math.cos(angle), r*Math.sin(angle)
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>Esta invocação das impressões iterador:</h1>
+
+<h1>(1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</h1>
+
+<p>circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
+```</p>
+
+<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
+individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
+de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
+Você não pode passar um bloco a um bloco.</p>
+
+<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
+você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
+um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
+associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
+funções mundiais. Aqui está um exemplo:</p>
+
+<p>```ruby block_biven?</p>
+
+<h1>Retorna um array com n elementos da forma m * i + c</h1>
+
+<h1>Se um bloco é dado, igualmente produzir cada elemento para o bloco</h1>
+
+<p>def sequence(n, m, c)
+  i, s = 0, []                  # Inicializa variáveis
+  while(i &lt; n)                  # Loop n vezes</p>
+
+<pre><code>y = m*i + c                 # calcula o valor
+yield y if block_given?     
+s &lt;&lt; y                      # armazena o valor
+i += 1
+</code></pre>
+
+<p>  end
+  s             # Retorna o array de valores
+end
+```</p>
+
+<p>É isso aí!</p>
+
+<p>Até o proximo!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
@@ -422,174 +560,6 @@ name = if x == 1 then "um"
        else "muitos"
        end
 </code></p>
-
-<p>É isso aí amigos..</p>
-
-<p>Bons estudos e até a proxima! :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
-    <updated>2012-06-11T19:36:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
-
-
-
-
-<h1>Atribuições Paralelas</h1>
-
-
-<p>Atribuição paralela é qualquer atribuição de expressão que tem mais do que um <code>lvalue</code>, mais do que um <code>rvalue</code>, ou ambos. Múltiplos <code>lvalues</code> e ​​múltiplos <code>rvalues</code> são separados uns dos outros com uma vírgula. <code>lvalues</code> e <code>rvalues</code> ​​pode ser prefixado com <code>*</code>, que às vezes é chamado de operador <code>splat</code>, embora não seja um verdadeiro operador. O significado de <code>*</code> é explicado mais adiante neste post.</p>
-
-<p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
-
-<!--more-->
-
-
-
-
-<h5>Mesmo número de lvalues ​​e rvalues</h5>
-
-
-<p>Atribuição paralela é a sua forma mais simples quando não são os mesmos número de <code>lvalues</code> ​​e <code>rvalues</code>:</p>
-
-<p><code>ruby Atribuição de Mesmo número
-x, y, z = 1, 2, 3 # x = 1; y = 2; z = 3
-</code></p>
-
-<p>Neste caso, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>; o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante.</p>
-
-<p>Estas atribuições são efetivamente executadas em paralelo, não seqüencialmente. Por exemplo, as seguintes duas linhas não são as mesmas:</p>
-
-<p><code>ruby Atribuição
-x, y = y, x # Paralela: trocar o valor de duas variáveis
-x = y; y = x # seqüencial: ambas as variáveis ​​têm o mesmo valor
-</code></p>
-
-<h5>Um lvalue, ​​múltiplos rvalues</h5>
-
-
-<p>Quando há um único <code>lvalue</code> e mais do que um <code>rvalue</code>, Ruby cria um <code>array</code> para armazenar os <code>rvalues</code> ​​e atribui esse <code>array</code> para o <code>lvalue</code>:</p>
-
-<p><code>ruby Um lvalue e Múltiplos rvalues
-x = 1, 2, 3 # x = [1,2,3]
-</code></p>
-
-<p>Você pode colocar um <code>*</code> antes do lvalue sem alterar o significado ou o valor de retorno desta atribuição.</p>
-
-<p>Se você quiser impedir que os ​múltiplos <code>rvalues</code> de serem combinados em um único <code>array</code>, siga o <code>lvalue</code> com uma vírgula. Mesmo sem um lvalue depois da vírgula, isto torna que o Ruby se comporte como se há ​​múltiplos lvalues:</p>
-
-<p><code>ruby Atribuições
-x, = 1, 2, 3 # x = 1; outros valores são descartados
-</code></p>
-
-<h5>M​últiplos lvalues, array único de rvalue</h5>
-
-
-<p>Quando existem múltiplos <code>lvalues​</code> e apenas um único <code>rvalue</code>, Ruby tenta expandir o rvalue em uma <code>lista</code> de valores a atribuir. Se o <code>rvalue</code> é um <code>array</code>, Ruby expande o <code>array</code> para que cada elemento torna-se seu próprio <code>rvalue</code>. Se o <code>rvalue</code> não é um <code>array</code>, mas implementa um método <code>to_ary</code>, Ruby invoca esse método e, em seguida, se expande o <code>array</code> no retorno:</p>
-
-<p><code>ruby Atribuição
-x, y, z = [1, 2, 3] # mesmo que x, y, z = 1,2,3
-</code></p>
-
-<p>A atribuição paralela foi transformado de modo que há ​​múltiplos <code>lvalues</code> e zero (se expandida o <code>array</code> estando <code>empty</code>) ou mais <code>rvalues</code>. Se o número de <code>lvalues</code> ​​e <code>rvalues</code> ​​são os mesmos, então a atribuição ocorre conforme descrito anteriormente, Mesmo número de lvalues ​​e rvalues<code>. Se os números são diferentes, então a atribuição ocorre como descrito a seguir em</code>Diferentes números de lvalues ​​e rvalues`.</p>
-
-<p>Podemos usar o truque de fuga por vírgula descrito acima para transformar uma sessão ordinária não paralela em uma atribuição que automaticamente descompacta um <code>array</code> à direita:</p>
-
-<p><code>ruby Atribuição
-x = [1,2] # x torna-se [1,2]: isso não é atribuição paralela
-x, = [1,2] # x torna-se 1: da vírgula torna paralelo
-</code></p>
-
-<h5>Diferentes números de lvalues ​​e rvalues</h5>
-
-
-<p>Se houver <code>lvalues</code> mais do que ​​<code>rvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>, o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante, até todos os <code>rvalues</code> ​​forem atribuídos. Em seguida, cada um dos restantes <code>lvalues</code> ​​é atribuído nil, substituindo qualquer valor existente para que <code>lvalue</code>:</p>
-
-<p><code>ruby Atribuição
-x, y, z = 1, 2 # x = 1; y = 2; z = nil
-</code></p>
-
-<p>Se houver <code>rvalues</code> mais do que ​<code>​lvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, os <code>rvalues</code> ​são atribuídos em ordem a cada um dos <code>lvalues</code>, e os restantes <code>rvalues</code> são descartados :</p>
-
-<p><code>ruby Atribuição
-x, y = 1, 2, 3 # x = 1; y = 2, 3 não é atribuído
-</code></p>
-
-<h5>O operador splat</h5>
-
-
-<p>Quando um <code>rvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que o referido valor é um <code>array</code> e que seus elementos devem ser cada um <code>rvalues</code>. Os elementos do <code>array</code> substituem o <code>array</code> na lista original do <code>rvalue</code>, e a atribuição procede como descrito abaixo:</p>
-
-<p><code>ruby Atribuição
-x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3
-</code></p>
-
-<p>No Ruby 1.8, um splat só pode aparecer antes do último <code>rvalue</code> em uma atribuição. No Ruby 1.9, a lista de <code>rvalues</code> ​​em uma atribuição paralela pode ter qualquer número de <code>splats</code>, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um "splat double" em uma lista aninhada:</p>
-
-<p><code>ruby Erro de Atribuição
-x,y = **[[1,2]]   # SyntaxError!
-</code></p>
-
-<p>Os <code>rvalues</code> com i​ntervalo de <code>arrays</code> e de <code>hash</code> pode ser <code>splatted</code>. Em geral, qualquer <code>rvalue</code> que define um método <code>to_a</code> pode ser prefixado com um <code>splat</code>. Qualquer objeto <a href="http://ruby-doc.org/core-1.9.3/Enumerable.html"><code>Enumerable</code></a>, incluindo enumeradores pode ser <code>splatted</code>, por exemplo. Quando um <code>splat</code> é aplicado a um objecto que não define um método <code>to_a</code>, nenhuma expansão é realizada e o <code>splat</code> avaliado como o próprio objeto.</p>
-
-<p>Quando um <code>lvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que todos ​​os adicionais <code>rvalues</code> devem ser colocados em um <code>array</code> e atribuído ao <code>lvalue</code>. O valor atribuído a esse <code>lvalue</code> é sempre um <code>array</code>, e ele pode ter zero, um ou mais elementos:</p>
-
-<p><code>ruby Atribuição
-x,*y = 1, 2, 3  # x=1; y=[2,3]
-x,*y = 1, 2     # x=1; y=[2]
-x,*y = 1        # x=1; y=[]
-</code></p>
-
-<p>No Ruby 1.8, um <code>splat</code> só pode preceder o <code>lvalue</code> passado na lista. No Ruby 1.9, do lado esquerdo de uma atribuição paralela pode incluem um operador <code>splat</code>, mas pode aparecer em qualquer posição na lista:</p>
-
-<p>``` ruby Atribuição</p>
-
-<h1>Ruby 1.9 somente</h1>
-
-<p><em>x,y = 1, 2, 3  # x=[1,2]; y=3
-</em>x,y = 1, 2     # x=[1]; y=2
-*x,y = 1        # x=[]; y=1
-```</p>
-
-<p>Note-se que <code>splats</code> pode aparecer em ambos os lados de uma expressão paralela de atribuição:</p>
-
-<p><code>ruby Atribuição
-x, y, *z = 1, *[2,3,4]  # x=1; y=2; z=[3,4].
-</code></p>
-
-<p>Finalmente, lembre-se que anteriormente descrevemos dois casos simples de atribuição paralela em que há um <code>lvalue</code> único ou uma única <code>rvalue</code>. Note-se que ambos os casos se comportam como se existe um <code>splat</code> antes da única <code>lvalue</code> ou <code>rvalue</code>. Explicitamente, incluindo um <code>splat</code> em nestes casos não tem qualquer efeito adicional.</p>
-
-<h5>Parênteses na atribuição paralelo</h5>
-
-
-<p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para "sub atrobuição". Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
-
-<p><code>ruby Atribuição
-x, (y, z) = a, b
-</code></p>
-
-<p>Este é efetivamente executam dois trabalhos ao mesmo tempo:</p>
-
-<p><code>ruby Atribuição
-x = a
-y,z = b
-</code></p>
-
-<p>Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto <code>splattable</code> como um <code>array</code> ou <code>enumerador</code>.</p>
-
-<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a "desembrulhar" um nível de <code>array</code> alinhado à direita:</p>
-
-<p>```ruby Atribuição
-x,y,z = 1,[2,3]             # Sem parenteses: x=1;y=[2,3];z=nil
-x,(y,z) = 1,[2,3]           # Parenteses: x=1;y=2;z=3</p>
-
-<p>a,b,c,d = [1,[2,[3,4]]]     # Sem parenteses: a=1;b=[2,[3,4]];c=d=nil
-a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
-```</p>
 
 <p>É isso aí amigos..</p>
 
