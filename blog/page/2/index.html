@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Atribuições Paralelas Atribuições Paralelas Atribuição paralela é &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle Demonstrações e estruturas &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,91 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/">Demonstrações E Estruturas De Controle - Part I #Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-18T08:43:00-03:00" pubdate data-updated="true">18/06/12 às 08:43 hrs</time>
+        
+         | <a href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>, <a class='category' href='/blog/categories/else/'>else</a>, <a class='category' href='/blog/categories/elsif/'>elsif</a>, <a class='category' href='/blog/categories/if/'>if</a>
+  
+</span>
+
+
+  </header>
+
+
+  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+
+
+
+
+<h1>Demonstrações e estruturas de controle</h1>
+
+
+<p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
+
+<figure class='code'><figcaption><span>Programa Simples</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter primeiro argumento para um número</span>
+</span><span class='line'><span class="n">y</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter segundo argumento para um número</span>
+</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="c1"># Adicione os argumentos</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">soma</span> <span class="c1"># Imprimir a soma</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
+particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
+sem ramificação ou repetição. É um programa raro que pode ser tão simples.</p>
+
+<h3>Condicionais</h3>
+
+
+<p>A estrutura de controle mais comum, em qualquer linguagem de programação, é a condicional. Esta é uma forma de dizer ao
+computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita.
+A condição é uma expressão, se for avaliada como qualquer valor diferente de falso ou nulo, então a condição é satisfeita.</p>
+
+<p>Ruby tem um vocabulário rico para expressar condicionais. Algumas sintaxes são descritas abaixo. Ao escrever código Ruby,
+você pode escolher o que parece mais elegante para a tarefa.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -483,82 +568,6 @@ atribuído um valor, é dado o valor nulo   como padrão. Por exemplo:
 
 
 <p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/html/tut_classes.html">Variaveis Ruby 1.9.2</a></p>
-
-<p>Até a próxima.. :)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/01/variaveis-de-referencia/">Variáveis De Referência</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-01T13:16:00-03:00" pubdate data-updated="true">01/06/12 às 13:16 hrs</time>
-        
-         | <a href="/blog/2012/06/01/variaveis-de-referencia/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis de Referência</p>
-
-
-
-
-<h1>Variáveis de Referência</h1>
-
-
-<p>Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões
-de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma
-variável de referência à expressão e avaliado como o valor da variável:</p>
-
-<figure class='code'><figcaption><span>Referência</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="c1"># Esta é uma atribuição de expressão</span>
-</span><span class='line'><span class="n">one</span> <span class="c1"># Essa referência de expressão da variável, que imprimi 1.0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Existem quatro tipos de variáveis ​​em Ruby, e regras <a href="http://pt.wikipedia.org/wiki/Item_lexical">lexicais</a> para governar seus nomes. Variáveis que começam com $ são variáveis ​​globais, visível ao longo de um programa Ruby. Variáveis ​​que começam com @ e @@ são
-variáveis ​​de instância e variáveis ​​de classe, usado em programação orientada a objeto. E as variáveis ​​cujos nomes começam com um sublinhado
-ou uma letra minúscula são variáveis ​​locais, definidas apenas dentro do atual método ou bloco.</p>
-
-<p>Variáveis ​​sempre são simples, nomes não qualificados. Se um . ou :: aparece em uma expressão, em seguida, que a expressão é ou um
-uma referência a uma constante ou uma invocação de método. Por exemplo, Math::PI é uma referência a uma constante, e a expressão
-item.preco é uma invocação do método chamado preco (preço) sobre o valor realizado pela variável item.</p>
-
-<p>O interpretador Ruby predefine um número de variáveis ​​globais quando ele é iniciado.</p>
 
 <p>Até a próxima.. :)</p>
 </div>

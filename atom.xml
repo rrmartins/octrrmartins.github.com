@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-05T19:25:48-03:00</updated>
+  <updated>2012-08-09T01:16:17-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,192 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Filosofia do #Ruby <3]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/"/>
+    <updated>2012-08-08T22:59:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3</id>
+    <content type="html"><![CDATA[<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
+autorização para colocar aqui para vocês&#8230;</p>
+
+
+
+
+<p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>.</p>
+
+
+
+
+<h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>
+
+
+
+
+<h6>Resumo</h6>
+
+
+
+
+<p><a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>, como é conhecido online, é o criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tem encontrado seu caminho para os corações de programadores em todo o mundo.</p>
+
+
+
+
+<p>Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, as características da linguagem <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de <a href="http://pt.wikipedia.org/wiki/Ortogonalidade">ortogonalidade</a>, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.</p>
+
+
+<!--more-->
+
+
+
+
+<h6>Nenhuma Línguagem Perfeita</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Dave Thomas, co-autor de Programming <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>: Um Guia do Programador Pragmático, disse que você não acha que um projeto de linguagem deve ser perfeito. Por que não?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: designers de Linguagens querem projetar a linguagem perfeita. Eles querem ser capazes de dizer: &#8220;A minha linguagem é perfeita. Ela pode fazer tudo.&#8221; Mas é simplesmente impossível projetar uma linguagem perfeita, porque existem duas maneiras de olhar para uma mesma linguagem. Uma maneira é olhar para o que pode ser feito com essa linguagem. A outra é olhar para o que sentimos usando essa linguagem, como nos sentimos durante a programação.</p>
+
+
+
+
+<p>Por causa da Teoria da <a href="http://ethosproject.blogspot.com.br/2012/06/preconceito-ignorancia-e-genialidade.html">Integridade de Turing</a>, tudo que uma linguagem pode fazer teoricamente pode ser feito por outra linguagem, mas a um custo diferente. Você pode fazer tudo em <a href="http://pt.wikipedia.org/wiki/Assembly">Assembler</a>, mas ninguém quer programar em assembler mais. Do ponto de vista que você pode fazer, portanto, as línguas diferem entre si, mas as diferenças são limitadas. Por exemplo, <a href="http://www.python.org/">Python</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fornecem quase o mesmo poder para o programador.</p>
+
+
+
+
+<p>Em vez de enfatizar o que eu quero enfatizar a parte como: Como nos sentimos durante a programação, essa é a diferença principal do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> a partir de projetos em outras linguagens. Eu enfatizo a sensação, em particular, como eu me sinto usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu não trabalho duro para tornar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeito para todos, porque você se sente diferente de mim. Nenhuma linguagem pode ser perfeita para todos. Eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeita para mim, mas talvez ela não é perfeito para você. A linguagem perfeita para Guido van Rossum provavelmente é <a href="http://www.python.org/">Python</a>.</p>
+
+
+
+
+<h6><a href="http://www.dicio.com.br/ortogonal/">Ortogonais</a> em relação harmoniosa</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Dave Thomas também afirmou que, se eu pedir para você adicionar um recurso que é ortogonal, você não vai fazer. O que você quer é algo que seje harmonioso. O que significa isso?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Eu acredito que a consistência e ortogonalidade são ferramentas de design, não o objetivo principal no projeto.</p>
+
+
+
+
+<p><b>Bill Venners</b>: O que significa ortogonalidade neste contexto?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Um exemplo de ortogonalidade é permitir qualquer combinação de características de pequeno porte ou de sintaxe. Por exemplo, <a href="http://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)">C</a> suporta ambos os valores de parâmetro padrão para funções e sobrecarga de nomes de função com base em parâmetros. Ambos são boas características  para se ter em uma língua, mas porque elas são ortogonais, você pode aplicar ao mesmo tempo. O compilador sabe como aplicar ao mesmo tempo. Se é ambígua, o compilador irá sinalizar um erro. Mas se eu olhar para o código, eu preciso aplicar a regra com o meu cérebro também. Eu preciso adivinhar como o compilador funciona. Se eu estiver certo, e eu for inteligente o suficiente, não há problema. Mas se eu não sou inteligente o suficiente, e eu não sou realmente, causa confusão. O resultado será inesperado para uma pessoa comum. Este é um exemplo de como ortogonalidade é má.</p>
+
+
+
+
+<p><b>Bill Venners</b>: Em outras palavras, as características ortogonais irá funcionar uma vez que o escritor do compilador entendê-las e recebe-las para trabalhar. Mas é difícil para os programadores entender quando olham para ele, porque é complicado, porque eu tenho que descobrir como essas duas coisas andam juntas.</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: As funcionalidades ortogonais, quando combinadas, podem explodir em complexidade.</p>
+
+
+
+
+<p><b>Bill Venners</b>: Então, qual é a alternativa? O que seria mais harmonioso?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Basta pegar um dos dois para colocar na linguagem. Você não tem que fazer tudo o que você pode pensar. Você precisa escolher um deles, mesmo que ambos sejam bons.</p>
+
+
+
+
+<h6>Liberdade e Conforto</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Uma das filosofias de design na comunidade <a href="http://www.python.org/">Python</a> está fornecendo uma e apenas uma maneira de fazer as coisas. Se você fornecer cinquenta maneiras diferentes de fazer a mesma coisa, então você forneceu comodidade para os escritores de código. As pessoas podem escrever coisas da sua melhor forma. A troca é para os leitores de código. Quando eu li o seu código, você poderia ter escrito de um jeito. Quando eu li o código de outras pessoas, elas podem ter escrito de outra forma. Então, como um leitor de eu acabar precisando estar familiarizado com todos os meios para realizar a tarefa, não apenas a minha maneira favorita de escrevê-la. Esse é o dilema do design. A comunidade <a href="http://www.python.org/">Python</a> parece preferir a uma e apenas uma maneira de abordagem, mas <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> parece fornecer várias maneiras de fazer a mesma coisa.</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> herdou a filosofia <a href="http://www.perl.org.br/Main/WebHome">Perl</a> de ter mais de uma maneira de fazer a mesma coisa. Eu herdei essa filosofia de <a href="http://pt.wikipedia.org/wiki/Larry_Wall">Larry Wall</a>, que é o meu herói, na verdade. Eu quero fazer os usuários de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> livre. Eu quero dar-lhes a liberdade de escolher. As pessoas são diferentes. As pessoas escolhem diferentes critérios. Mas se há uma maneira melhor entre muitas alternativas, eu quero encorajar esse caminho, tornando-o confortável. Então é isso que eu tentei fazer. Talvez o código do <a href="http://www.python.org/">Python</a> é um pouco mais legível. Todo mundo pode escrever o mesmo estilo de código <a href="http://www.python.org/">Python</a>, por isso pode ser mais fácil de ler, talvez. Mas a diferença de uma pessoa para outra é tão grande, proporcionando apenas uma maneira de ajudar é pouco, mesmo se você estiver usando o <a href="http://www.python.org/">Python</a>, eu acho. Prefiro fornecer muitas maneiras se é possível, mas encorajar ou orientar os usuários a escolher um caminho melhor, se é possível.</p>
+
+
+
+
+<h6>A alegria do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h6>
+
+
+
+
+<p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: &#8220;Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. &#8221; Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p>
+
+<p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p>
+
+<p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, &#8220;Olá, mundo de impressão.&#8221; Eu só quero dizer, &#8220;imprimir isto!&#8221; Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p>
+
+<p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p>
+
+<p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p>
+
+<p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p>
+
+<p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p>
+
+<h6>O Fator Humano</h6>
+
+<p><b>Bill Venners</b>: Em uma entrevista, você disse, &#8221; Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana.&#8221; O que você quer dizer com isso?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p>
+
+<p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p>
+
+<p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: &#8220;Não subestime o fator humano.&#8221; Por quê?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: &#8220;Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo.&#8221; Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p>
+
+<p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p>
+
+<p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p>
+
+<h6>Princípio da menor surpresa</h6>
+
+<p><b>Bill Venners</b>: Em uma entrevista, você disse &#8220;Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. &#8220;Por que o princípio da menor surpresa?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p>
+
+<p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p>
+
+<p><b>Bill Venners</b>: Como é mal compreendido?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: &#8220;Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa&#8221;. Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p>
+
+<p>Fonte: <a href="http://www.artima.com">Artima</a></p>
+
+&#8212;&#8212;
+<p>
+É isso ai amigos.. uma boa entrevista!
+
+Até a proxima! =D</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
@@ -2029,166 +2215,6 @@ se essa classe define um tipo de correspondência de operação padrão ou tem u
 !~ é definido como o inverso da =~. É definível em Ruby 1.9 mas não no Ruby 1.8</p>
 
 <p>É isso ai rubistas&#8230; Até a proxima!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/"/>
-    <updated>2012-05-19T13:14:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
-
-
-
-
-<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Identidade do objeto</h3>
-
-
-<p>Cada objeto tem um identificador de objeto, um Fixnum, que você pode obter com o método object_id. O valor retornado por este
-método é constante e exclusivo para a vida útil do objeto. Enquanto o objeto é acessível, ele terá sempre a mesma identificação, e não
-outro objeto que irá partilhar do mesmo ID.</p>
-
-<p>O ID de método é um sinônimo preterido para object_id. Ruby 1.8 emite um aviso se você usá-lo, e ele foi removido em
-Ruby 1.9.</p>
-
-<p><strong>id</strong> é um sinônimo válido para object_id. Ele existe como um retorno, assim você pode acessar ID de um objeto, mesmo se o método
-object_id foi indefinido ou substituído.</p>
-
-<p>A classe <a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> implementa o método de hash para simplesmente retornar um
-ID objeto.</p>
-
-<!--more-->
-
-
-
-
-<h3>Classe de Objeto e Tipo de Objeto</h3>
-
-
-<p>Existem várias maneiras de determinar a classe de um objeto em Ruby. O mais simples é simplesmente perguntar para ele:</p>
-
-<figure class='code'><figcaption><span>Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span> <span class="o">=</span> <span class="s2">&quot;teste&quot;</span> <span class="c1"># Este é um valor</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span> <span class="c1"># Retorna um objeto que representa a classe String</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se você estiver interessado na hierarquia de classe de um objeto, você pode perguntar para qualquer classe qual é sua superclasse:</p>
-
-<figure class='code'><figcaption><span>Class - Ruby 1.8</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span> <span class="c1"># String: o é um objeto String</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span> <span class="c1"># Object: superclasse de String é objeto</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span> <span class="c1"># nil: Object não tem superclasse</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.9, Object já não é a verdadeira raiz da hierarquia de classes:</p>
-
-<figure class='code'><figcaption><span>Class - Ruby 1.9</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9</span>
-</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">superclass</span> <span class="c1"># BasicObject: Object tem uma superclasse em 1.9</span>
-</span><span class='line'><span class="no">BasicObject</span><span class="o">.</span><span class="n">superclass</span> <span class="c1"># nil: BasicObject não tem nenhuma superclasse</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Assim, uma forma particularmente simples para verificar a classe de um objeto é, por comparação direta:</p>
-
-<figure class='code'><figcaption><span>Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span> <span class="o">==</span> <span class="nb">String</span> <span class="c1"># true se o é uma String</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O método instance_of? faz a mesma coisa e é um pouco mais elegante:</p>
-
-<figure class='code'><figcaption><span>Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_of?</span> <span class="nb">String</span> <span class="c1"># verdade se o é uma String</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Normalmente, quando testamos a classe de um objeto, também gostaríamos saber se o objeto é uma instância de qualquer subclasse
-dessa classe. Para testar isso, use o método is_a?, ou seu sinônimo kind_of?</p>
-
-<figure class='code'><figcaption><span>Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Este é o valor que estamos trabalhando com</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">instance_of?</span> <span class="no">Fixnum</span> <span class="c1"># verdade: é uma instância de Fixnum</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">instance_of?</span> <span class="no">Numeric</span> <span class="c1"># false: instance_of? não verifica a herança</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Fixnum</span> <span class="c1"># verdadeiro: x é um Fixnum</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">is_a?</span> <span class="nb">Integer</span> <span class="c1"># verdade: x é um número inteiro</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Numeric</span> <span class="c1"># verdade: x é um numérico</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Comparable</span> <span class="c1"># verdade: funciona também com módulos mixin</span>
-</span><span class='line'><span class="n">x</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Object</span> <span class="c1"># verdadeira para qualquer valor de x</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A classe Class define o operador === em tal modo que ele pode ser usado no lugar do is_a?:</p>
-
-<figure class='code'><figcaption><span>Class method ===</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Numeric</span> <span class="o">===</span> <span class="n">x</span> <span class="c1"># verdade: x is_a Numérico</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Essa expressão é exclusivo para Ruby e é, provavelmente, menos legível do que utilizando o mais tradicional método is_a?.</p>
-
-<p>Cada objeto tem uma classe bem definida em Ruby, e que a classe nunca muda durante a vida útil do objeto. Um objeto
-type, por outro lado, é mais fluido. O tipo de um objeto está relacionada à sua classe, mas a classe é apenas parte de um
-tipo de objeto. Quando falamos sobre o tipo de um objeto, nós entendemos o conjunto de comportamentos que caracterizam o objeto.
-Outra maneira é colocar o tipo de um objeto em um conjunto de métodos que podem responder.
-(Esta definição torna-se recursiva, porque não é apenas o nome dos métodos que importam, mas também os tipos de argumentos que os
-métodos podem aceitar.)</p>
-
-<p>Na programação com Ruby, que muitas vezes não se preocupam com a classe de um objeto, nós só queremos saber se podemos invocar
-algum método nele.  Considere-se, por exemplo, o operador &lt;&lt;. Arrays, strings, files e outros I/O relacionados ao definir as classes
-isso como um operador de acréscimo. Se estamos escrevendo um método que produz produção textual, podemos escrever, genericamente,
-a usar esse operador. Então, o nosso método pode ser invocado com qualquer argumento que implementa &lt;&lt;. Nós não nos importamos com a
-classe do argumento, basta que possamos anexá-lo. Nós podemos testar para isto com o método respond_to? :</p>
-
-<figure class='code'><figcaption><span>Class respond_to?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="ss">:&quot;&lt;&lt;&quot;</span> <span class="c1"># Verdadeiro se o operador tem uma &lt;&lt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A deficiência desta abordagem é que ela só verifica o nome de um método, não os argumentos para esse método. Por exemplo,
-Fixnum e Bignum implementam &lt;&lt; como um operador de deslocamento à esquerda e espera o argumento de ser um número em vez de uma string.
-Objetos inteiros parecem ser &#8220;appendable&#8221; (adicionável) quando usamos um respond_to? de teste, mas que produzem um erro quando
-adiciona um código em string. Não há uma solução geral para este problema, mas um recurso ad-hoc, neste caso,
-é explicitamente excluir objectos numéricos com o método is_a? :</p>
-
-<figure class='code'><figcaption><span>Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="ss">:&quot;&lt;&lt;&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">o</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Numeric</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Outro exemplo do tipo distinção-versus-classe é a classe StringIO<a href="partir%20da%20Biblioteca%20padrão%20do%20Ruby">*</a>. StringIO permite a
-leitura e gravação das strings como se fossem Objetos de IO. StringIO[*] imita os objetos IO API-StringIO definem os mesmos métodos
-que os objetos IO fazem. Mas StringIO não é uma subclasse de IO. Se você escrever um método que espera um argumento de fluxo,
-e testa a classe do argumento com is_a? IO, em seguida, o método não funciona com argumentos StringIO.</p>
-
-<p>[*] -> <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/stringio/rdoc/StringIO.html">StringIO</a></p>
-
-<p>É isso ai rubistas&#8230; A cada vez que leio sobre, me apaixono mais. :D</p>
 ]]></content>
   </entry>
   
