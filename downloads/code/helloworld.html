@@ -1,0 +1,40 @@
+<html> 
+<head> 
+<title>nowjs test</title> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> 
+<script src="nowjs/now.js"></script>
+
+<script>
+function empty(v){
+	if (v==null || v==0 || v=='' || v==""){
+		return true
+}else {return false}
+}
+$(document).ready(function(){
+
+  now.name = prompt("Qual seu Nome?", "nome");  
+  now.receiveMessage = function(name, message){
+    if (message.length < 1){
+	alert("mensagem vazia");
+    } else if (empty(message)){
+	alert("mensagem vazia");
+    }else  {
+    	$("#messages").append("<br>" + name + ": " + message);
+    }
+  }
+  
+  $("#send-button").click(function(){
+    now.distributeMessage($("#text-input").val());
+    $("#text-input").val("");
+  });
+  
+});
+</script>
+</head> 
+ 
+<body> 
+<div id="messages"></div>
+<input type="text" id="text-input">
+<input type="button" value="Send" id="send-button">
+</body> 
+</html> 

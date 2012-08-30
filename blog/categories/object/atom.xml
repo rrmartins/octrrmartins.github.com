@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Object | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/object/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-08-09T01:16:17-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part VI]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/"/>
+    <updated>2012-05-20T19:08:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Copiando objetos</h3>
+
+
+<p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
+superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
+referências a objetos são copiadas, não os próprios objetos referenciados.</p>
+
+<p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
+classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor
+de cópias", podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
+para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
+
+<p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
+
+<p>Há duas diferenças importantes entre os métodos clone e dup definidos pelo objeto. Primeiro, as cópias do clone tanto o congelado e
+quanto o estado contaminado(definido em breve) de um objeto, enquanto dup apenas copia o estado contaminado, chamando dup sobre um objeto
+congelado retorna uma cópia descongelada. Em segundo lugar, clone cópia quaisquer métodos singleton do objeto, enquanto que dup não.</p>
+
+<h3>Objetos Empacotamento</h3>
+
+
+<p>Você pode salvar o estado de um objeto passando para a classe <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html">Marshal</a>, com o método <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">dump</a>. Se você passar um objeto de fluxo de I/O como o segundo argumento, escreve o estado do objeto Marshal.dump (e, de forma recursiva, quaisquer objetos que referencia) para esse fluxo.
+Caso contrário, ele simplesmente retorna o estado codificado como uma string binária.</p>
+
+<p>Para restaurar um objeto empacotado, passe uma string ou um fluxo de contendo I/O do objeto de <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a>.</p>
+
+<p>O empacotamento de um objeto é uma maneira muito simples para salvar seu estado para uma utilização posterior, e estes métodos podem ser
+usados ​​para fornecer um arquivo automático no formato de programas Ruby. Note, no entanto, que o formato binário usado por <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">Marshal.dump</a> e <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a> é dependente da versão, e nas mais recentes versões do Ruby não são garantidos para ser capaz de ler
+objetos empacotados escritos por versões mais antigas do Ruby.</p>
+
+<p>Outro uso para Marshal.dump e Marshal.load é criar cópias de profundidade de objetos:</p>
+
+<p><code>ruby Marshal
+def deepcopy(o)
+  Marshal.load (Marshal.dump (o))
+end
+</code></p>
+
+<p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
+maneira confiável para restaurar seu Estado.</p>
+
+<p>YAML ("YAML não é Markup Language") é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
+partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo 'yaml'.</p>
+
+<h3>Objetos de congelamento</h3>
+
+
+<p>Qualquer objeto pode ser congelado chamando seu método de freeze. A objeto congelado torna imutável e nenhum de seu estado interno pode
+ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de modificadores:</p>
+
+<p><code>ruby  Freeze
+s = "gelo" # String são objetos mutáveis
+s.freeze # Faça desta cadeia imutável
+s.frozen? # Verdade: ele foi congelado
+s.upcase! # TypeError: não pode modificar cadeia de congelados
+s[0] = "ni" # TypeError: não pode modificar cadeia de congelados
+</code></p>
+
+<p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
+
+<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para "descongelar" um objeto. Se
+você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
+cópia não será congelada.</p>
+
+<h3>Objetos contaminados e não confiáveis</h3>
+
+
+<p>Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
+de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
+contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
+taint de um objeto pode ser testado com o método tainted? método:</p>
+
+<p><code>ruby taint
+s = "não confiáveis" # Os objetos são normalmente não viciada
+s.taint # Marcar como não confiável objeto contaminado
+s.tainted? # Verdade: ele está contaminado
+s.upcase.tainted? # Verdade: objetos derivados estão contaminados
+s[3,4].tainted? # Verdade: substrings estão contaminados
+</code></p>
+
+<p>De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
+contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
+vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
+pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.</p>
+
+<p>Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
+lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
+confiáveis.</p>
+
+<p>Boa noite amigos... até a proxima..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part V]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/"/>
+    <updated>2012-05-20T14:04:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Conversão de objetos</h3>
+
+
+<p></p>
+
+<p>Muitas classes de Ruby definem métodos que retornam uma representação do objeto como um valor de uma classe diferente.
+O método to_s, para a obtenção de uma representação de um objeto, é provavelmente o mais comumente implementado e mais conhecido
+dos métodos. As subseções a seguir descrevem várias categorias de conversões.</p>
+
+<!--more-->
+
+
+<h5>Conversões explícitas</h5>
+
+
+<p>As classes definem métodos de conversão explícitos para uso da aplicação de código que precisa de converter um valor para uma
+outra representação. Os métodos mais comuns nesta categoria são to_s, to_i, to_f e to_a para converter a String, Integer, Float,
+e array, respectivamente. Ruby 1.9 adiciona métodos to_c e to_r que se converterem ao <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/syck/rdoc/Complex.html">Complex</a> e <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/bigdecimal/rdoc/Rational.html">Rational</a>.</p>
+
+<p>Métodos built-in normalmente não chamam esses métodos para você. Se você chamar um método que espera uma String e passar um objeto
+de algum outro tipo, que o método não é esperado para converter o argumento com to_s. (Valores interpolados em aspas dupla em strings,
+no entanto, são automaticamente convertidos com to_s.)</p>
+
+<p>to_s é facilmente o mais importantes dos métodos de conversão, porque representações de seqüência de objetos são tão comumente
+utilizadas em interfaces de usuário. Uma importante alternativa para to_s é o método inspect. to_s é geralmente destinados a retornar uma
+representação legível do objeto, adequado para usuários finais. inspect, por outro lado, é destinados ao uso de depuração, e deve
+retornar uma representação que é útil para os desenvolvedores de Ruby. O padrão do método inspect, herdado de Object, simplesmente chama
+to_s.</p>
+
+<h5>As conversões implícitas</h5>
+
+
+<p>Às vezes, uma classe tem características fortes de uma outra classe. A classe Exception de Ruby representa um erro ou condição
+inesperada em um programa e encapsula uma mensagem de erro. No Ruby 1.8, objetos Exception não são apenas conversível para strings,
+que são strings como objetos e podem ser tratadas como se fossem strings em muitos contextos [*], Por exemplo:</p>
+
+<p>``` ruby class Exception</p>
+
+<h1>Ruby 1.8</h1>
+
+<p>e = Exception.new("não é realmente uma exceção")
+msg = "Erro:" + e # concatenação de String com uma exceção
+```</p>
+
+<p>Como os objetos de exceção são strings, eles podem ser usados ​​com a cadeia no operador de concatenação. Isso não funciona com a
+maioria das outras classes de Ruby. A razão pela qual os objetos de Exceção pode se comportar como Objetos String é que, em Ruby
+1.8, Exception implementa o método to_str, implícito de conversão, e o operador + definido pela String chama esse método em seu
+do lado direito do operando.</p>
+
+<p>Outros métodos de conversão implícitos são to_int para objetos que querem ser inteiro, como to_ary, para objetos que quer ser
+array, e to_hash para objetos que querem ser hash. Infelizmente, as circunstâncias em que estes métodos de conversão são implícitos
+chamados não são bem documentados. Entre as classes embutidas, estes métodos de conversões implícitas que normalmente não são implementadas, tampouco.</p>
+
+<p>Observamos anteriormente, de passagem, que o operador == pode realizar um tipo fraco de tipo de conversão ao testar a igualdade.
+Os operadores == definidos pelo Array, String, e Hash para ver se o operando do lado direito é da mesma classe como o operando esquerdo.
+Se assim for, eles se comparam. Se não, verifica se o operando do lado direito tem um to_str, to_ary, ou método to_hash.
+Eles não invocam estes métodos, mas se eles existem, eles invocam o método == do operando do lado direito e permiti que ele se decida
+se é igual ao do operando esquerda.</p>
+
+<p>No Ruby 1.9, as classes String, Array, Hash, RegExp e IO definiem tudas um método de classe chamado try_convert. Este métodos
+convertem seu argumento se definido um método implícito apropriado de conversão, ou retorna contrário nil . Array.try_convert(o)
+retorna o.to_ary se o método define, caso contrário, retorna nil. Estes métodos são try_convert conveniente se você quiser escrever
+métodos que permitem conversões implícitas no seu argumento.</p>
+
+<h5>Funções de conversão</h5>
+
+
+<p>O módulo de Kernel define quatro métodos de conversão que se comportam como funções globais de conversão. Estas funções de array, Float,
+Integer e String, têm os mesmos nomes que as classes para que se convertam, e eles são incomuns em que eles começam com uma
+letra maiúscula.</p>
+
+<p>A função Array tenta converter seu argumento para um array chamando to_ary. Se esse método é não definido ou retorna nil, ou ele tenta
+o método to_a. Se to_a não está definido retorna nulo, a função Array simplesmente retorna um novo array contendo o argumento como
+seu único elemento.</p>
+
+<p>A função Float converte argumentos numéricos para objetos Float diretamente. Para qualquer valor não numérico, que chama o método to_f.</p>
+
+<p>A função Integer converte o argumento para um Fixnum ou Bignum. Se o argumento é um valor numérico, ele é convertido diretamente. Valores
+de Float são truncados e não arredondado. Se o argumento é uma string, ele procura por um indicador de radix(um condutor 0 para octal,
+0x para hexadecimal, ou 0b para binário) e converte a string em conformidade. Ao contrário String.to_i não permiti caracteres não
+numéricos à direita. Para qualquer outro tipo de argumento, a função Integer tenta converter primeiro com to_int e depois com to_i.</p>
+
+<p>Finalmente, a função String converte o argumento para uma string simplesmente chamando seu método to_s.</p>
+
+<h5>Tipo de operador Aritmético</h5>
+
+
+<p>Tipos numéricos definem um método de conversão chamado <a href="http://www.ruby-doc.org/core-1.9.2/Numeric.html#method-i-coerce">coerce</a>. A intenção deste método é o de converter o argumento para o mesmo tipo como o objeto numérico no qual o método é invocado, ou
+para converter ambos os objetos para algum tipo mais geralmente compatíveis. O método de coerce sempre retorna uma matriz que tem dois
+valores numéricos do mesmo tipo. O primeiro elemento do array é o valor convertido do argumento para coerce. O segundo elemento do
+retornado do array é o valor(convertido, se necessário) em que foi invocado coerce:</p>
+
+<p><code>ruby Coerc
+1.1.coerce(1) # [1.0, 1.1]: coagir Fixnum para Flutuar
+require "rational" # Use números racionais
+r = Rational(1,3) # terceira Um como um número racional
+r.coerce (2) # [Rational (2,1), Rational (1,3)]: Fixnum para Rational
+</code>
+O método coerce é usado pelos operadores aritméticos. O operador + definido por Fixnum não sabe sobre números Rational, por exemplo, e se
+o operando do lado direito é um valor rational, não se sabe como adicionar. coerce fornece a solução. Operadores numéricos são escritos
+de modo que, se eles não sabem o tipo do operando do lado direito, que invocam o método coerce do operando do lado direito, passando o
+operando da esquerda como um argumento. Voltando ao nosso exemplo de adição de um Fixnum e um Rational, o método coerce de Rational
+retorna um array de dois valores racionais. Agora, o operador + definido por Fixnum pode simplesmente invocar + sobre os valores no array.</p>
+
+<h5>Conversões de tipos Booleanos</h5>
+
+
+<p>Valores booleanos merecem uma menção especial no contexto de conversão de tipo. Ruby é muito rigoroso com seus valores booleanos: true e
+falso têm métodos to_s, que retornam "true" e "falso", mas definem nenhum outro método de conversão. E não há nenhum método to_b
+para converter os outros valores para Booleanos.</p>
+
+<p>Em algumas Linguagens, é falsa a mesma coisa que 0, ou pode ser convertidos para 0. Em Ruby, os valores verdadeiros e falsos são os
+seus próprios objetos distintos, e não existem conversões implícitas que convertem os outros valores para verdadeiro ou falso.
+Esta é apenas metade da história, no entanto. Operadores booleanos de Ruby e de sua condicional e construções em loops que usam
+expressões booleanas podem trabalhar com outros valores que o verdadeiro e o falso. A regra é simples: em expressões Boolean, qualquer
+valor diferente de false ou nil se comporta como (mas não é convertida em) verdadeiro. nil, por outro lado se comporta como falsa.</p>
+
+<p>Suponha que você queira testar se a variável x é nula ou não. Em algumas línguagens, você deve escrever explicitamente uma expressão
+de comparação que avalia a verdadeira ou falso:</p>
+
+<p><code>ruby True ou False
+if x != nil #  a expressão "x! = nil" retorna true ou false para o caso
+  puts x # x Imprimir se ela é definida
+end
+</code></p>
+
+<p>Esse código funciona em Ruby, mas é mais comum simplesmente para tomar vantagem do fato de que todos os outros valores do que zero e
+falso se comportam como verdadeiras:</p>
+
+<p><code>ruby True ou False
+if x # Se x é não-nula
+  puts x # Em seguida, imprimi-lo
+end
+</code></p>
+
+<p>É importante lembrar que os valores como 0, 0.0, e uma string vazia "" comportam-se como verdadeiro em Ruby, que é surpreendente se você
+está acostumado a linguagens como C ou JavaScript.</p>
+
+<p>É isso amigos...</p>
+
+<p>Até Mais..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part IV]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/"/>
+    <updated>2012-05-20T13:01:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Ordem de Object</h3>
+
+
+<p></p>
+
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser "menos que" a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+<!--more-->
+
+
+<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
+é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
+Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
+em seguida, o operador deve retornar nil:</p>
+
+<p><code>ruby Operador &lt;=&gt;
+1 &lt;=&gt; 5 # -1
+5 &lt;=&gt; 5 # 0
+9 &lt;=&gt; 5 # 1
+"1" &lt;=&gt; 5 # nil: inteiros e strings não são comparáveis
+</code></p>
+
+<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
+este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
+(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
+
+<pre><code>&lt;   -   Menor que
+&lt;=  -   Menor ou igual
+==  -   Igual
+&gt;=  -   Maior ou igual
+&gt;   -   Maior que
+</code></pre>
+
+<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
+operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+
+<p><code>ruby Comparable between?
+1.between?(0,10) # verdadeiro: 0 &lt;= 1 &lt;= 10
+</code></p>
+
+<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
+
+<p><code>ruby Float NaN
+nan = 0.0/0.0; # zero dividido por zero não é um número
+nan &lt; 0 # false: não é menor que zero
+nan &gt; 0 # false: não é maior que zero
+nan == 0 # false: não é igual a zero
+nan == nan # false: não é mesmo igual a si mesmo!
+nan.equal?(nan) # isso é verdade, claro
+</code></p>
+
+<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
+implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
+implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
+para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
+se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
+
+<p>É isso amigos... o proximo post vamos conversar um pouco de Conversões de Object's.</p>
+
+<p>Até Mais..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part III]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/"/>
+    <updated>2012-05-19T16:58:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Igualdade objeto</h3>
+
+
+<p>Ruby tem um número surpreendente de maneiras de comparar objetos para igualdade, e é importante entender como eles funcionam, assim você sabe quando usar cada método.</p>
+
+<!--more-->
+
+
+
+
+<h3>O método equal? </h3>
+
+
+<p>O método equal? é definido pelo objeto para testar se os dois valores referem-se exatamente o mesmo objeto. Para qualquer dos dois
+distintos objetos, esse método sempre retorna false:</p>
+
+<p><code>ruby equal?
+a = "Ruby" # Uma referência a um objeto String
+b = c = "Ruby" # Duas referências a outro objeto String
+a.equal?(b) # falsa: a e b são objetos diferentes
+b.equal?(c) # verdadeiro: b e c referem-se ao mesmo objeto
+</code></p>
+
+<p>Por convenção, nunca subclasses substituem o método equal?.</p>
+
+<p>Outra maneira de determinar se os dois objetos são, de fato, do mesmo objetivo é verificar a sua object_id:</p>
+
+<p><code>ruby equal?
+a.object_id == b.object_id # Funciona como a.equal? ​​(b)
+</code></p>
+
+<h3>O operador ==</h3>
+
+
+<p>O operador == é a forma mais comum para testar a igualdade. Na Classe Object, é simplesmente uns testes de sinónimos para equal?, e
+se duas referências de objeto são idênticos. A maioria das classes redefinem este operador para permitir instâncias distintas para ser
+testado para igualdade:</p>
+
+<p><code>ruby Operador ==
+a = "Ruby" # uma string
+b = "Ruby" # Um objeto String diferente com o mesmo conteúdo
+a.equal?(b) # falsa: a e b não se referem ao mesmo objeto
+a == b # verdade: mas estes dois objetos distintos têm valores iguais
+</code></p>
+
+<p>Note que o único sinal de igual nesse código é o operador de atribuição. Leva dois sinais de igual para testar a igualdade
+em Ruby (esta é uma convenção que compartilha Ruby com muitas outras linguagens de programação).</p>
+
+<p>Padrão de Classes do Ruby definem o operador == para implementar uma razoável definição de igualdade. Isso inclui Array
+e as classes de hash. Dois Arrays são iguais de acordo com == se tiverem o mesmo número de elementos,
+e se os seus elementos correspondentes são todos iguais de acordo com ==. Dois hashes são == se contiverem o mesmo número de pares
+chave/valor, e se as chaves e valores são, eles próprios iguais. (Os valores são comparados com o operador ==,
+mas chaves de hash são comparados com o método eql?.)</p>
+
+<pre><code>Igualdade para programadores Java
+
+Se você é um programador Java, você está acostumado a usar o operador == para testar se dois objetos são
+o mesmo objeto, e você está acostumado a usar o método equals para testar se dois objetos distintos têm o mesmo valor. 
+Convenção do Ruby é apenas sobre o oposto de Java.
+</code></pre>
+
+<p>As classes numéricas realizam conversões de tipo simples nas suas operações de ==, de modo que (por exemplo) o
+Fixnum 1 e o Float 1.0 comparados como iguais. O operador == de classes, como String e Array, normalmente requerem dois operandos
+para ser da mesma classe. Se o operando do lado direito define uma to_str ou função de conversão to_ary, então estes operadores invocam
+o operador == definido pelo lado direito operando, e deixam que objeto decidem se é igual ao lado esquerdo, sendo string ou array.
+Assim, é possível (embora não comum) para definir classes com comportamento comparação de string ou array.</p>
+
+<p>!= ("Não-igual") é usado em Ruby para testar a desigualdade. Quando o Ruby vê !=, Ele simplesmente usa o operador == e depois
+inverte o resultado. Isto significa que uma única classe precisa definir o operador == para definir a sua própria noção de
+igualdade. Ruby dá o operador != de graça. No Ruby 1.9, no entanto, as classes podem explicitamente definir os seus próprios operadores !=.</p>
+
+<h3>O método eql?</h3>
+
+
+<p>O método eql? é definido pelo objeto como um sinônimo para equal?. Classes que se sobrepõem a ele normalmente usá ele como uma
+versão rígida do operador == que não faz nenhum tipo de conversão. Por exemplo:</p>
+
+<p><code>ruby eql?
+1 == 1.0 # verdade: Fixnum e objetos flutuantes podem ser ==
+1.eql (1,0) # falsa: mas eles nunca são eql!
+</code></p>
+
+<p>A classe Hash usa eql? para verificar se duas chaves de hash são iguais. Se dois objetos são eql?, os métodos de hash também
+deve retornar o mesmo valor. Normalmente, se você criar uma classe e defini o operador ==, você pode simplesmente escrever um
+método de hash e definir eql? para usar ==.</p>
+
+<h3>O operador ===</h3>
+
+
+<p>O operador === é comumente chamado de "caso de igualdade" e é usado para testar se o valor-alvo de uma declaração caso corresponde
+a qualquer das cláusulas, quando dessa declaração.</p>
+
+<p>Classe Object define por padrão o operador === para que ele chama o operador ==. Para muitas classes, por conseguinte, a igualdade
+caso é o mesmo que == (igualdade). Mas certas classes principais definem === de maneira diferente, e nestes casos, é mais de um membro
+ou operador correspondente. Range define === para testar se um valor está dentro do intervalo. Regexp define === para testar se uma
+string corresponde à expressão regular. E Class define === para testar se um objeto é uma instância dessa Class. No Ruby 1.9, Symbol
+define === retornando true se o operando do lado direito é o mesmo símbolo como o esquerda ou se é uma cadeia guardando o mesmo texto.
+Exemplos:</p>
+
+<p><code>ruby Operador ===
+(1..10) === 5 # verdadeiro: 5 está na gama de 1 .. 10
+/\d+/ === "123" # verdade: a seqüência corresponde à expressão regular
+String === "s" # verdade: "s" é uma instância da classe String
+:s === "s" # verdadeiro no Ruby 1.9
+</code></p>
+
+<p>É raro ver o operador === usado explicitamente como este. Mais comumente, a sua utilização é simplesmente implícita em uma instrução case.</p>
+
+<h3>O operador =~</h3>
+
+
+<p>O operador =~ é definido pela String e Regexp (e Symbol no Ruby 1.9) para realizar ligações de padrões, e isso não é realmente um
+operador de igualdade em tudo. Mas isso não tem um sinal de igual na mesma, de modo que ele está aqui para ser completo.
+Objeto define uma versão sem o operador de =~, que sempre retorna false. Você pode definir este operador em sua própria classe,
+se essa classe define um tipo de correspondência de operação padrão ou tem uma noção de igualdade aproximada, por exemplo.
+!~ é definido como o inverso da =~. É definível em Ruby 1.9 mas não no Ruby 1.8</p>
+
+<p>É isso ai rubistas... Até a proxima!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part II]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/"/>
+    <updated>2012-05-19T13:14:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Identidade do objeto</h3>
+
+
+<p>Cada objeto tem um identificador de objeto, um Fixnum, que você pode obter com o método object_id. O valor retornado por este
+método é constante e exclusivo para a vida útil do objeto. Enquanto o objeto é acessível, ele terá sempre a mesma identificação, e não
+outro objeto que irá partilhar do mesmo ID.</p>
+
+<p>O ID de método é um sinônimo preterido para object_id. Ruby 1.8 emite um aviso se você usá-lo, e ele foi removido em
+Ruby 1.9.</p>
+
+<p><strong>id</strong> é um sinônimo válido para object_id. Ele existe como um retorno, assim você pode acessar ID de um objeto, mesmo se o método
+object_id foi indefinido ou substituído.</p>
+
+<p>A classe <a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> implementa o método de hash para simplesmente retornar um
+ID objeto.</p>
+
+<!--more-->
+
+
+
+
+<h3>Classe de Objeto e Tipo de Objeto</h3>
+
+
+<p>Existem várias maneiras de determinar a classe de um objeto em Ruby. O mais simples é simplesmente perguntar para ele:</p>
+
+<p><code>ruby Class
+o = "teste" # Este é um valor
+o.class # Retorna um objeto que representa a classe String
+</code></p>
+
+<p>Se você estiver interessado na hierarquia de classe de um objeto, você pode perguntar para qualquer classe qual é sua superclasse:</p>
+
+<p><code>ruby Class - Ruby 1.8
+o.class # String: o é um objeto String
+o.class.superclass # Object: superclasse de String é objeto
+o.class.superclass.superclass # nil: Object não tem superclasse
+</code></p>
+
+<p>No Ruby 1.9, Object já não é a verdadeira raiz da hierarquia de classes:</p>
+
+<p>``` ruby Class - Ruby 1.9</p>
+
+<h1>Ruby 1.9</h1>
+
+<p>Object.superclass # BasicObject: Object tem uma superclasse em 1.9
+BasicObject.superclass # nil: BasicObject não tem nenhuma superclasse
+```</p>
+
+<p>Assim, uma forma particularmente simples para verificar a classe de um objeto é, por comparação direta:</p>
+
+<p><code>ruby Class
+o.class == String # true se o é uma String
+</code></p>
+
+<p>O método instance_of? faz a mesma coisa e é um pouco mais elegante:</p>
+
+<p><code>ruby Class
+o.instance_of? String # verdade se o é uma String
+</code></p>
+
+<p>Normalmente, quando testamos a classe de um objeto, também gostaríamos saber se o objeto é uma instância de qualquer subclasse
+dessa classe. Para testar isso, use o método is_a?, ou seu sinônimo kind_of?</p>
+
+<p><code>ruby Class
+x = 1 # Este é o valor que estamos trabalhando com
+x.instance_of? Fixnum # verdade: é uma instância de Fixnum
+x.instance_of? Numeric # false: instance_of? não verifica a herança
+x.is_a? Fixnum # verdadeiro: x é um Fixnum
+x.is_a? Integer # verdade: x é um número inteiro
+x.is_a? Numeric # verdade: x é um numérico
+x.is_a? Comparable # verdade: funciona também com módulos mixin
+x.is_a? Object # verdadeira para qualquer valor de x
+</code></p>
+
+<p>A classe Class define o operador === em tal modo que ele pode ser usado no lugar do is_a?:</p>
+
+<p><code>ruby Class method ===
+Numeric === x # verdade: x is_a Numérico
+</code></p>
+
+<p>Essa expressão é exclusivo para Ruby e é, provavelmente, menos legível do que utilizando o mais tradicional método is_a?.</p>
+
+<p>Cada objeto tem uma classe bem definida em Ruby, e que a classe nunca muda durante a vida útil do objeto. Um objeto
+type, por outro lado, é mais fluido. O tipo de um objeto está relacionada à sua classe, mas a classe é apenas parte de um
+tipo de objeto. Quando falamos sobre o tipo de um objeto, nós entendemos o conjunto de comportamentos que caracterizam o objeto.
+Outra maneira é colocar o tipo de um objeto em um conjunto de métodos que podem responder.
+(Esta definição torna-se recursiva, porque não é apenas o nome dos métodos que importam, mas também os tipos de argumentos que os
+métodos podem aceitar.)</p>
+
+<p>Na programação com Ruby, que muitas vezes não se preocupam com a classe de um objeto, nós só queremos saber se podemos invocar
+algum método nele.  Considere-se, por exemplo, o operador &lt;&lt;. Arrays, strings, files e outros I/O relacionados ao definir as classes
+isso como um operador de acréscimo. Se estamos escrevendo um método que produz produção textual, podemos escrever, genericamente,
+a usar esse operador. Então, o nosso método pode ser invocado com qualquer argumento que implementa &lt;&lt;. Nós não nos importamos com a
+classe do argumento, basta que possamos anexá-lo. Nós podemos testar para isto com o método respond_to? :</p>
+
+<p><code>ruby Class respond_to?
+o.respond_to? :"&lt;&lt;" # Verdadeiro se o operador tem uma &lt;&lt;
+</code></p>
+
+<p>A deficiência desta abordagem é que ela só verifica o nome de um método, não os argumentos para esse método. Por exemplo,
+Fixnum e Bignum implementam &lt;&lt; como um operador de deslocamento à esquerda e espera o argumento de ser um número em vez de uma string.
+Objetos inteiros parecem ser "appendable" (adicionável) quando usamos um respond_to? de teste, mas que produzem um erro quando
+adiciona um código em string. Não há uma solução geral para este problema, mas um recurso ad-hoc, neste caso,
+é explicitamente excluir objectos numéricos com o método is_a? :</p>
+
+<p><code>ruby Class
+o.respond_to? :"&lt;&lt;" and not o.is_a? Numeric
+</code></p>
+
+<p>Outro exemplo do tipo distinção-versus-classe é a classe StringIO<a href="partir%20da%20Biblioteca%20padrão%20do%20Ruby">*</a>. StringIO permite a
+leitura e gravação das strings como se fossem Objetos de IO. StringIO[*] imita os objetos IO API-StringIO definem os mesmos métodos
+que os objetos IO fazem. Mas StringIO não é uma subclasse de IO. Se você escrever um método que espera um argumento de fluxo,
+e testa a classe do argumento com is_a? IO, em seguida, o método não funciona com argumentos StringIO.</p>
+
+<p>[*] -> <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/stringio/rdoc/StringIO.html">StringIO</a></p>
+
+<p>É isso ai rubistas... A cada vez que leio sobre, me apaixono mais. :D</p>
+]]></content>
+  </entry>
+  
+</feed>
