@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reflexão e Metaprogramação #Ruby 1.9 - Part III"
+title: "Reflexão e Metaprogramação - Variáveis e Constantes - #Ruby 1.9 - Part III"
 date: 2012-08-29 23:34
 comments: true
 categories: 

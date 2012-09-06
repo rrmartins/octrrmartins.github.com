@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reflexão e Metaprogramação #Ruby 1.9 - Part II"
+title: "Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II"
 date: 2012-08-29 22:15
 comments: true
 categories:  
