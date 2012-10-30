@@ -7,6 +7,7 @@ sharing: true
 footer: true
 ---
 <p>Segue abaixo alguns slides de Palestras.</p>
+<script async class="speakerdeck-embed" data-id="50875b4907a206000201b042" data-ratio="1.299492385786802" src="//speakerdeck.com/assets/embed.js"></script>
 <br/>
 <p>
 <li>
