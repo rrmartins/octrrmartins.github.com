@@ -4,7 +4,7 @@
 
 url: http://rrmartins.github.com
 title: Rodrigo Martins
-subtitle: A blogging framework for hackers.
+subtitle: 
 author: Rodrigo Martins
 simple_search: http://google.com/search
 description:
@@ -46,7 +46,8 @@ titlecase: true       # Converts page and post titles to titlecase
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 # custom/asides/whoam.html
-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+# default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/github.html]
 blog_index_asides: [asides/twitter.html, asides/github.html]
 post_asides: [asides/twitter.html, asides/recent_posts.html, asides/github.html ]
 page_asides: [asides/twitter.html, asides/recent_posts.html, asides/github.html ]
