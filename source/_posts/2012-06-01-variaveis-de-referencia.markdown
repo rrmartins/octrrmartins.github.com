@@ -16,7 +16,7 @@ categories:
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis de Referência</p>
 
 <h1>Variáveis de Referência</h1>
-
+<!-- more -->
 Uma variável é simplesmente um nome para um valor. As variáveis ​​são criadas e os valores que lhes são atribuídos por expressões 
 de atribuição. Quando o nome de uma variável aparece num programa em qualquer lugar que não seja o lado esquerdo de uma atribuição, é uma 
 variável de referência à expressão e avaliado como o valor da variável:

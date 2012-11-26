@@ -19,7 +19,7 @@ categories:
 <b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Avaliando Strings e Blocos</h1>
-
+<!-- more -->
 Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método `eval`. Se o seu programa Ruby pode gerar uma seqüência de código
 válido Ruby, o método `Kernel.eval` pode avaliar que o código:
 
@@ -32,7 +32,6 @@ eval "x + 1"  # => 2
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar `eval` no texto recebido
 de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que  
 usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos `eval` e `eval-like`.
-<!--more-->
 
 <h3>Associações e eval</h3>
 

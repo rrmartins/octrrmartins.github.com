@@ -24,11 +24,11 @@ Ruby define uma série de características para rastrear a execução de um prog
 imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: `__FILE__` e `__LINE__`.
 Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
 para especificar o local exato em que ela foi gerado:
-
+<!-- more -->
 ``` ruby __FILE__ e __LINE__
 STDERR.puts "#{__FILE__}:#{__LINE__): invalid data"
 ```
-<!--more-->
+
 Como um aparte, note que os métodos `Kernel.eval`, `Object.instance_eval`, e `Module.class_eval` todos aceitam um nome de arquivo (ou outra seqüência) e
 um número de linha como os seus dois últimos argumentos. Se você está avaliando o código que você tenha extraído de um arquivo de algum tipo, você pode
 usar esses argumentos para especificar os valores de `__FILE__` e `__LINE__` para a avaliação.

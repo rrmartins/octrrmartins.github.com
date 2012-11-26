@@ -17,7 +17,7 @@ categories:
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
 
 <h1>Variáveis ​​não inicializadas</h1>
-
+<!-- more -->
 Em geral, você deve sempre atribuir um valor para, ou inicializar as variáveis ​​antes de usá-las em expressões. Em algumas circunstâncias,
 no entanto, Ruby lhe permitirá utilizar variáveis ​​que ainda não foram inicializadas. As regras são diferentes para diferentes tipos de variáveis:
 

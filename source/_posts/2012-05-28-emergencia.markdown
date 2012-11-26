@@ -16,7 +16,7 @@ A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais 
 projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
 do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
 ocorrer, se beneficiando dela.
-
+<!-- more -->
 Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
 simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
 graciosamente pelos céus, se remodelando em torno de obstáculos e assim por diante. Nenhum desses comportamentos avançados (como se

@@ -13,7 +13,7 @@ categories:
 
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
-Um Array é uma seqüência de valores que permite que os valores serem acessados ​​por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
+Um Array é uma seqüência de valores que permite que os valores serem acessados por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
 elemento do Array é no índice de size-1. Valores de índice negativo contar a partir do
 final do Array, de modo que o último elemento de uma Array também pode ser acessado
 com um índice de -1. O segundo ao último tem um índice de -2,

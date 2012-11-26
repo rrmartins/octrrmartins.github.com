@@ -22,8 +22,9 @@ Aqui estão algumas das tarefas específicas envolvidas na construção:<br/>
   * Verificar se o projeto foi colocado de modo que
   construção pode avançar com sucesso;<br/>
   * Determinar como seu código será testado<br/>
+	<!-- more -->
   * Desenhando e escrevendo de Classes e Rotinas<br/>
-  * Criar e nomear variáveis ​​e constantes nomeadas, sempre colocando nomes simples e expressivos.<br/>
+  * Criar e nomear variáveis e constantes nomeadas, sempre colocando nomes simples e expressivos.<br/>
   * Seleção de estruturas de controle e organização de blocos de instruções<br/>
   * O teste de unidade, testes de integração e depuração de seu próprio código<br/>
   * Revisão de baixo nível outros membros da equipe de projetos e códigos<br/>
@@ -31,7 +32,7 @@ Aqui estão algumas das tarefas específicas envolvidas na construção:<br/>
   * Integração de componentes de software que foram criados separadamente<br/>
   * Sintonizar código para torná-lo mais rápido e usar menos recursos<br/>
 </p>
-<!-- more -->
+
 <p>
  Para obter uma lista ainda mais cheia de atividades de construção,
   olhe através dos títulos dos capítulos na tabela de conteúdos. </p>

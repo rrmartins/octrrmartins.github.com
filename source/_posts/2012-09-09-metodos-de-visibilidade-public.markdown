@@ -19,7 +19,7 @@ categories:
 <b>Metodos de Visibilidade: Public, Protected, Private</b>...</p>
 
 <h1>Metodos de Visibilidade: Public, Protected, Private</h1>
-
+<!-- more -->
 Métodos de instância podem ser `public`, `private` ou `protected`. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
 familiarizado com esses termos. Preste atenção de qualquer maneira, porque estas palavras têm um significado um pouco diferente em Ruby do que em
 outras Linguagens.
@@ -40,7 +40,7 @@ estado interno com o outro, mas não permite que os utilizadores de classe possa
 Métodos `protected` são os menos comumente definido e também o mais difícil de entender. A regra sobre quando um método `protected` pode ser invocado
 pode ser mais formalmente descritos como segue: um método `protected` definido por uma classe C pode ser invocado em um `objeto o` através de um método
 em um `objeto p` se e somente se as classes de `o` e `p` são ambos subclasses ou iguais para, a classe C.
-<!--more-->
+
 Métodos de visibilidade é declarado com três métodos chamados `public`, `private` e `protected`. Estes são os métodos de instância da Classe do módulo. 
 Todas as classes são módulos, e dentro de uma definição de classe, a classe auto-refere-se ao que está sendo definido. Assim, `public`, `private` e
 `protected` pode ser usado como se fossem palavras-chave da linguagem. Em fato, no entanto, são chamadas de método em si. Há duas maneiras para chamar

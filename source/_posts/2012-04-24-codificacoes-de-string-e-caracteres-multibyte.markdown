@@ -18,10 +18,11 @@ categories:
 </p>
 <p>
 No <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> são uma seqüência de bytes. quando cadeias
-são usados ​​para representar texto (em vez de dados binários), cada byte da 
+são usados para representar texto (em vez de dados binários), cada byte da 
 cadeia é considerada para representar um único caractere ASCII. no <a href="http://www.ruby-doc.org/core-1.8.7/">Ruby 1.8</a>, os elementos individuais de uma <a href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> não são caracteres, mas
 números, o valor de byte real ou codificação de caracteres.
 </p>
+<!-- more -->
 <p>
 Em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby 1.9</a>, por outro lado, as cadeias são sequências verdadeiras
 de caracteres, e esses caracteres não necessitam de ser confinado à

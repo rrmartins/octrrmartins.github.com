@@ -17,12 +17,12 @@ Hoje vamos continuar falando de [Ruby](http://www.ruby-doc.org/core-1.9.3/), é 
 ## Threads e Concorrência
 
 ### Escalando Threads
-
+<!-- more -->
 Intérpretes do Ruby(irb), muitas vezes têm mais `threads` para executar do que há CPU tem disponível para executá-los. Quando 
 o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre `threads`. O processo para 
 a partilha de uma CPU entre as `threads` é chamado de escalonamento de `threads`. Dependendo da implementação e plataforma, 
 agendamento de `threads` pode ser feito pelo Intérprete do Ruby(irb), ou pode ser tratado pelo sistema operacional.
-<!--more-->
+
 #### Prioridades da Thread
 
 O primeiro fator que afeta o agendamento de `threads` é prioridades de `thread`: com a alta prioridade da `thread` são 
@@ -49,8 +49,8 @@ executada. Outros programadores não são preempção: uma vez que uma `thread`
 que durma, blocos para I/O, ou uma `thread` de maior prioridade acorda.
 
 Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
-não preemptivo, ela vai "morrer de fome" as outras `threads com a mesma prioridade, e elas nunca tem a chance de correr. Para 
-evitar esse problema, de longa duração `compute-bound` `threads` devem chamar periodicamente `Thread.pass` para pedir o 
+não preemptivo, ela vai "morrer de fome" as outras `threads` com a mesma prioridade, e elas nunca tem a chance de correr. 
+Para evitar esse problema, de longa duração `compute-bound` `threads` devem chamar periodicamente `Thread.pass` para pedir o 
 programador para produzir a CPU para outra `thread`.
 
 Até a proxima amigos! :D

@@ -22,7 +22,7 @@ categories:
 A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
 superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
 referências a objetos são copiadas, não os próprios objetos referenciados.
-
+<!-- more -->
 Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
 classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor
 de cópias", podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto

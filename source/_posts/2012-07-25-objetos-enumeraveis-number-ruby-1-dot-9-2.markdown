@@ -22,12 +22,12 @@ categories:
 `Array`, `Range`, `Hash`, e um número de outras classes definem um iterador `each` que passa cada elemento da
 coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
 iterar sobre objetos que têm o método `each`. Exemplos de iteradores `each`:
-
+<!-- more -->
 ```ruby Metodo each
 [1,2,3].each {|x| print x }   # => prints "123"
 (1..3).each  {|x| print x }   # => prints "123" Same as 1.upto(3)
 ```
-<!--more-->
+
 O iterador `each` não é só para as classes tradicionais "de estrutura de dados". Classes `IO` Ruby definem um
 iterador `each` que cada linha de texto lido do objeto produz `Input/Output`. Assim, você pode processar as linhas
 de um arquivo em Ruby com um código como esse:

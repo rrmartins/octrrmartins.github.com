@@ -26,8 +26,9 @@ categories:
 <p>Semana que vem, no dia 28/04, irá acontecer em Vitória-ES, um dos maiores eventos de Tecnologia da
 <a href="http://softwarelivre.org/">Comunidade de Software Livre</a>, o <a href="http://flisol.net/">FLISOL</a>
 é um evento que acontece simultaneamente em varios locais da America Latina. </p>
-<p>A grade completa você pode conferir <a href="http://flisol-es.heroku.com/schedule">AQUI</a>.</p>
 <!-- more -->
+<p>A grade completa você pode conferir <a href="http://flisol-es.heroku.com/schedule">AQUI</a>.</p>
+
 <p>Tentando descrever o evento com poucas palavras, copiarei um trecho do site do FLISOL...</p>
 
 	O FLISOL (Festival Latinoamericano de Instalação de Software Livre) é o maior evento de divulgação de 

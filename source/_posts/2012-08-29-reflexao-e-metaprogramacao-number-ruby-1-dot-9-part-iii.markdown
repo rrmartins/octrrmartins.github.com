@@ -19,7 +19,7 @@ categories:
 <b>Reflexão e Metaprogramação</b> agora <b>Variáveis e constantes</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Variáveis e Constantes</h1>
-
+<!-- more -->
 `Kernel`, `Object`, `Module` definem métodos reflexivos para listar os nomes (como `strings`) de todas as variáveis definidas globais, atualmente
 variáveis locais definidas, todas as variáveis de instância de um objeto, todas as variáveis de classe de uma classe ou módulo, e todas as constantes
 de uma classe ou módulo:
@@ -44,7 +44,6 @@ Point.constants                  # => ["ORIGIN"]
 Os `global_variables`, `local_variables`, `instance_variables`, `class_variables` e métodos constantes retornam `arrays` de `strings` em Ruby 1.8 e
 `arrays` de símbolos no Ruby 1.9.
 
-<!--more-->
 <h3>Consultando, Configuração e testando Variáveis</h3>
 
 Além das variáveis listadas definidos e constantes, `object` e `Module` em Ruby também definem métodos de reflexão para consultas, a criação e

@@ -17,7 +17,7 @@ categories:
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Iteradores Numéricos</h1>
-
+<!-- more -->
 O núcleo do `Ruby API` fornece um número de iteradores padrão. Os métodos de loops do Kernel se comporta como um
 loop infinito, executando seu bloco associado repetidamente até que o bloco executa um `return`, `break`, ou outra
 declaração que sai do laço.

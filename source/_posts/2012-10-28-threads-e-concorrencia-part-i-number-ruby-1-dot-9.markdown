@@ -16,7 +16,7 @@ categories:
 Hoje vamos continuar falando de [Ruby](http://www.ruby-doc.org/core-1.9.3/), é hora de nos aprofundar em um pouco de **Threads e Concorrência** agora **Thread Lifecycle**...
 
 ## Threads e Concorrência
-
+<!-- more -->
 Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma `thread` de execução. Dentro de cada `
 thread`, os comandos são executados sequencialmente, mas as próprias `threads` podem ser executadas em paralelo em uma 
@@ -51,7 +51,6 @@ Finalmente, é importante notar que os programas de Ruby também pode alcançar 
 operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do 
 sistema operacional. Para mais informações, use `ri` para procurar os métodos `Kernel.system`, `Kernel.exec`, `Kernel.fork`, 
 `IO.popen`, e o módulo `Process`.
-<!--more-->
 
 ### Lifecycle Tópico
 

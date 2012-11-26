@@ -19,7 +19,7 @@ categories:
 <h1>Invocações de método</h1>
 
 Uma expressão de invocação de método tem quatro partes:
-
+<!-- more -->
 * Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
   do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.
 

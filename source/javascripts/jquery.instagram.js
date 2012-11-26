@@ -1,5 +1,13 @@
-(function($){
-  $.fn.instagram = function(options) {
+/*
+ * Instagram jQuery plugin
+ * v0.2.1
+ * http://potomak.github.com/jquery-instagram/
+ * Copyright (c) 2012 Giovanni Cappellotto
+ * Licensed MIT
+ */
+
+(function ($){
+  $.fn.instagram = function (options) {
     var that = this,
         apiEndpoint = "https://api.instagram.com/v1",
         settings = {
@@ -15,11 +23,24 @@
           , maxId: null
           , minId: null
           , next_url: null
+          , image_size: null
         };
         
     options && $.extend(settings, options);
     
     function createPhotoElement(photo) {
+      var image_url = photo.images.thumbnail.url;
+      
+      if (settings.image_size == 'low_resolution') {
+        image_url = photo.images.low_resolution.url;
+      }
+      else if (settings.image_size == 'thumbnail') {
+        image_url = photo.images.thumbnail.url;
+      }
+      else if (settings.image_size == 'standard_resolution') {
+        image_url = photo.images.standard_resolution.url;
+      }
+
       return $('<div>')
         .addClass('instagram-placeholder')
         .attr('id', photo.id)
@@ -30,7 +51,7 @@
             .append(
               $('<img>')
                 .addClass('instagram-image')
-                .attr('src', photo.images.thumbnail.url)
+                .attr('src', image_url)
             )
         );
     }
@@ -51,10 +72,10 @@
         return settings.next_url;
       }
 
-      if(settings.hash != null) {
+      if (settings.hash != null) {
         url += "/tags/" + settings.hash + "/media/recent";
       }
-      else if(settings.search != null) {
+      else if (settings.search != null) {
         url += "/media/search";
         params.lat = settings.search.lat;
         params.lng = settings.search.lng;
@@ -62,10 +83,10 @@
         settings.search.min_timestamp != null && (params.min_timestamp = settings.search.min_timestamp);
         settings.search.distance != null && (params.distance = settings.search.distance);
       }
-      else if(settings.userId != null) {
+      else if (settings.userId != null) {
         url += "/users/" + settings.userId + "/media/recent";
       }
-      else if(settings.locationId != null) {
+      else if (settings.locationId != null) {
         url += "/locations/" + settings.locationId + "/media/recent";
       }
       else {
@@ -90,12 +111,12 @@
       dataType: "jsonp",
       cache: false,
       url: composeRequestURL(),
-      success: function(res) {
+      success: function (res) {
         var length = typeof res.data != 'undefined' ? res.data.length : 0;
         var limit = settings.show != null && settings.show < length ? settings.show : length;
         
-        if(limit > 0) {
-          for(var i = 0; i < limit; i++) {
+        if (limit > 0) {
+          for (var i = 0; i < limit; i++) {
             that.append(createPhotoElement(res.data[i]));
           }
         }

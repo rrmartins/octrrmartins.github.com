@@ -18,7 +18,7 @@ Hoje vamos continuar falando de [Ruby](http://www.ruby-doc.org/core-1.9.3/), é 
 ## Threads e Concorrência
 
 ### Threads e Variáveis
-
+<!-- more -->
 Uma das características-chave de `Thread` é que elas podem compartilhar o acesso a variáveis. Como `Threads` são definidas
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
  assim por diante) estão no escopo do bloco:
@@ -38,7 +38,6 @@ end
 
 Quando dois ou mais `Thread` de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
 fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de `threads` abaixo.
-<!--more-->
 
 #### Thread-privadas variáveis
 

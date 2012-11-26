@@ -21,7 +21,7 @@ categories:
 <h1>Demonstrações e estruturas de controle</h1>
 
 Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:
-
+<!-- more -->
 ``` ruby Programa Simples
 x = ARGV[0].to_f # Converter primeiro argumento para um número
 y = ARGV[1].to_f # Converter segundo argumento para um número

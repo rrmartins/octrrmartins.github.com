@@ -18,7 +18,7 @@ categories:
 <h1>Objetos</h1>
 
 <h3>Identidade do objeto</h3>
-
+<!-- more -->
 Cada objeto tem um identificador de objeto, um Fixnum, que você pode obter com o método object_id. O valor retornado por este
 método é constante e exclusivo para a vida útil do objeto. Enquanto o objeto é acessível, ele terá sempre a mesma identificação, e não
 outro objeto que irá partilhar do mesmo ID.
@@ -31,7 +31,6 @@ object_id foi indefinido ou substituído.
 
 A classe <a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> implementa o método de hash para simplesmente retornar um
 ID objeto.
-<!--more-->
 
 <h3>Classe de Objeto e Tipo de Objeto</h3>
 

@@ -19,7 +19,7 @@ valores. Eles às vezes são chamados de matrizes associativas, porque eles
 associam valores com cada uma das chaves, e pode ser pensado como matrizes
 em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
 exemplo torna isso mais claro:
-
+<!-- more -->
 ```ruby Hash
 # Este hash irá mapear os nomes dos dígitos para os dígitos se
 números = Hash.new # Criar um novo objeto, vazio de hash

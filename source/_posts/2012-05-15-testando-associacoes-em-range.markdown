@@ -19,11 +19,11 @@ categories:
 
 A classe Range define métodos para determinar se um valor arbitrário é um membro de (isto é, está incluído no) um Range. Antes de entrar em
 detalhes sobre estes métodos, é necessário explicar que associaçãoem range pode ser definido de duas maneiras diferentes que estão relacionadas com a diferença entre os intervalos contínuos e discretos. Um valor x é um membro do range entre begin..end pela primeira definição se:
-
+<!-- more -->
 ``` ruby Range
 begin <= x <= end
 ```
-<!--more-->
+
 E X é um membro do range begin...end (com três pontos), se:
 
 ``` ruby Range

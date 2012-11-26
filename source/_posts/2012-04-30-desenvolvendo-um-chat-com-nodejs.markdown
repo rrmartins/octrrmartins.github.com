@@ -15,7 +15,7 @@ Olá Developers...
 Vamos desenvolver um pequeno Chat em NodeJS... Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim...
 
 Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos... :D
-
+<!-- more -->
 Vamos criar a aplicação, crie uma pasta com o nome da aplicação:
 
 {% codeblock Criando Pasta %}

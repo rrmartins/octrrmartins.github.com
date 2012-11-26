@@ -12,7 +12,7 @@ categories:
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 <p>A classe Encoding de Ruby 1.9 representa uma codificação de caracteres. Objetos de codificação para agir como identificadores opacos para uma codificação e não têm muitos métodos próprios. O nome do método retorna o nome de uma codificação. to_s é um sinônimo para o name, e inspect converte um objeto em uma seqüência de codificação de uma forma mais detalhada do que o name faz.</p>
-
+<!-- more -->
 <p>Ruby define uma constante para cada uma das codificações built-in's que ele suporta, e estes são a maneira mais fácil de especificar uma codificação em seu programa. As constantes predefinidas incluem pelo menos o seguinte:</p>
 
 ``` ruby Encoding
@@ -21,7 +21,7 @@ Encoding::UTF_8          # UTF-8-encoded Unicode characters
 Encoding::EUC_JP         # EUC-encoded Japanese
 Encoding::SHIFT_JIS      # Japanese: also ::SJIS, ::WINDOWS_31J, ::CP932
 ```
-<!--more-->
+
 <p>Observe que, como estas são constantes, eles devem ser escritos em letras maiúsculas e hífens nos nomes de codificação devem ser convertidos para sublinhados. Ruby 1.9 também suporta a codificação US-ASCII, as codificações européias ISO-8859-1 através da ISO-8859-15, e o Unicode UTF-16 e UTF-32 codificações em variantes big-endian e little-endian.</p>
 
 <p>Se você tiver um nome de codificação como uma string e deseja obter o objeto de codificação correspondente, use o método de fábrica Encoding.find:</p>

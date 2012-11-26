@@ -15,7 +15,7 @@ Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettin
 Então, vejam ai uma parte muito boa, só para dar um gostinho! :D
 
 <h2>Arranhando sua proípria coceira</h2>
-
+<!-- more -->
 O mundo de Código Aberto abraçou esse mantra há muito tempo – eles chamam de “arranhando sua própria coceira”. Para os desenvolvedores de código aberto, significa que terão as ferramentas que querem, entregues da maneira que querem. Mas os benefícios vão mais a fundo.
 
 Como designer ou desenvolvedor de uma nova aplicação, você precisa encarar centenas de micro-decisões todos os dias: azul ou verde? Uma tabela ou duas? Estática ou dinâmica? Abortar ou recuperar? Como tomamos essas decisões? Se é algo que reconhecemos como importante, poderíamos perguntar. O resto, chutamos. E todos esses chutes constroem um tipo de débito em nossas aplicações – uma rede interconectada de coisas que assumimos.

@@ -24,7 +24,7 @@ categories:
 defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
 estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
 `hook` (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em "ed".
-
+<!-- more -->
 Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como 
 argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
 herdados, de modo que a um método herdado será chamado se ele é definido por qualquer um dos antepassados da nova classe. Definir `Object.inherited`
@@ -35,7 +35,7 @@ def Object.inherited(c)
   puts "class #{c} < #{self}"
 end
 ```
-<!--more-->
+
 Quando um módulo é incluído numa classe ou em outro módulo, o método da classe incluída do módulo incluído é chamado com o objeto de classe ou módulo
 em que foi incluído como um argumento. Isto dá o módulo incluído uma oportunidade para aumentar ou alterar a classe da maneira que ele efetivamente 
 quer ser permitido que um módulo define o seu próprio significado para incluir. Além da adição de métodos para a classe em que se insere, um módulo com

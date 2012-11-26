@@ -18,7 +18,7 @@ categories:
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Reflexão e Metaprogramação</h1>
-
+<!-- more -->
 Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
 para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
 Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um

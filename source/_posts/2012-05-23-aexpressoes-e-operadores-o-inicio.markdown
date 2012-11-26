@@ -19,7 +19,7 @@ categories:
 
 Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos 
 de expressões:
-
+<!-- more -->
 ```ruby Expressões
 2 # Um literal numérico
 x # Uma referência variável local

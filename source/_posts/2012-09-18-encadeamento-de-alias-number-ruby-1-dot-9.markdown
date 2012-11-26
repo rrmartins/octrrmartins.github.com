@@ -22,7 +22,7 @@ categories:
 
 Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
 Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:
-
+<!-- more -->
 	* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para 
 	a versão não modificada do método.
 
@@ -36,7 +36,6 @@ Este post inclui três exemplos de encadeamento de alias. O primeiro realiza o e
 regulares e declarações `def`. Os segundo e terceiro exemplos são mais dinâmicos; eles são apelidos que acorrentam métodos arbitrariamente nomeados
 utilizando `alias_method`, `define_method` e `class_eval`.
 
-<!--more-->
 
 <h3>Rastreando Arquivos Carregados e Classes Definidas</h3>
 

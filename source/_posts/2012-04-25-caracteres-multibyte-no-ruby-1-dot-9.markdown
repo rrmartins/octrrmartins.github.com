@@ -17,6 +17,7 @@ a maior mudança no Ruby 1,9, não é uma mudança altamente visível:
 código que usa string multibyte simplesmente funciona. Vale a pena
 entender por que ele funciona, no entanto, e esta seção explica o
 detalhes.</p>
+<!-- more -->
 
 <p>Se uma string contém caracteres de vários bytes, então o número de
 bytes não corresponde ao número de caracteres. No Ruby 1.9,

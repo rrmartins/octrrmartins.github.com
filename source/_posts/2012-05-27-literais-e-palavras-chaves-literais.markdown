@@ -18,7 +18,7 @@ categories:
 <h1>Literais e Plavras-chaves literais</h1>
 
 Literais são valores como 1.0, "Hello world", e [] que são incorporados diretamente em seu texto do programa.
-
+<!-- more -->
 É interessante notar que muitos literais, tais como números, são as principais expressões - as expressões mais simples possíveis não
 compostas de expressões simples. Literais, tais como Array e literais de hash e strings duplas citadas que usam interpolação, incluem
 sub-expressões e são, portanto, expressões não primárias.

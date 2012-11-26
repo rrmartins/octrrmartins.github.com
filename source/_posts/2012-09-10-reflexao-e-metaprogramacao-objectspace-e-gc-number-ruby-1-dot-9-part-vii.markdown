@@ -19,7 +19,7 @@ categories:
 <b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>ObjectSpace e GC</h1>
-
+<!-- more -->
 O módulo `ObjectSpace` define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação. 
 O método mais notável é `each_object`, um iterador que pode render cada objeto (ou a cada instância de uma classe especificada) que o intérprete sabe
 sobre:
@@ -28,7 +28,7 @@ sobre:
 # Imprima uma lista de todas as classes conhecidas
 ObjectSpace.each_object(Class) {|c| puts c }
 ```
-<!--more-->
+
 `ObjectSpace._id2ref` é o inverso da `Object.object_id:` leva um objeto como seu argumento ID e retorna ao objeto correspondente, ou levanta uma
 RangeError se não há nenhum objeto com que ID.
 

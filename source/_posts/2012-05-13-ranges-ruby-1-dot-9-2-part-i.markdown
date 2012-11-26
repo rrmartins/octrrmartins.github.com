@@ -15,11 +15,10 @@ categories:
 
 <p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
 
-
 <h2>Ranges</h2>
 
 Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:
-
+<!-- more -->
 ``` ruby Range
 1..10 # Os números inteiros de 1 a 10, incluindo 10
 1...10 # Os números entre 1 e 10, excluindo-se 10

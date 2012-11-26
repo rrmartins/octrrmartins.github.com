@@ -22,14 +22,13 @@ categories:
 A definição de característica de um método `Iterator`, é que ele invoca um bloco de código associado com a
 invocação do método. Você faz isso com a declaração `yield`. O método que se segue é um iterador trivial que apenas
 invoca o seu bloco duas vezes:
-
+<!-- more -->
 ```ruby yield
 def twice
   yield
   yield
 end
 ```
-<!--more-->
 
 Para passar valores de argumento para o bloco, veja a declaração do `yield` com uma lista separada por vírgulas de
 expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
