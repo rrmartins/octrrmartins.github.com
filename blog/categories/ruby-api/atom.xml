@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby API | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/ruby-api/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-08-09T01:16:17-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Filosofia do #Ruby <3]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/"/>
+    <updated>2012-08-08T22:59:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3</id>
+    <content type="html"><![CDATA[<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
+autorização para colocar aqui para vocês...</p>
+
+
+
+
+<p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto 'Matz'</a>.</p>
+
+
+
+
+<h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>
+
+
+
+
+<h6>Resumo</h6>
+
+
+
+
+<p><a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto 'Matz'</a>, como é conhecido online, é o criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tem encontrado seu caminho para os corações de programadores em todo o mundo.</p>
+
+
+
+
+<p>Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, as características da linguagem <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de <a href="http://pt.wikipedia.org/wiki/Ortogonalidade">ortogonalidade</a>, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.</p>
+
+
+<!--more-->
+
+
+
+
+<h6>Nenhuma Línguagem Perfeita</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Dave Thomas, co-autor de Programming <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>: Um Guia do Programador Pragmático, disse que você não acha que um projeto de linguagem deve ser perfeito. Por que não?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: designers de Linguagens querem projetar a linguagem perfeita. Eles querem ser capazes de dizer: "A minha linguagem é perfeita. Ela pode fazer tudo." Mas é simplesmente impossível projetar uma linguagem perfeita, porque existem duas maneiras de olhar para uma mesma linguagem. Uma maneira é olhar para o que pode ser feito com essa linguagem. A outra é olhar para o que sentimos usando essa linguagem, como nos sentimos durante a programação.</p>
+
+
+
+
+<p>Por causa da Teoria da <a href="http://ethosproject.blogspot.com.br/2012/06/preconceito-ignorancia-e-genialidade.html">Integridade de Turing</a>, tudo que uma linguagem pode fazer teoricamente pode ser feito por outra linguagem, mas a um custo diferente. Você pode fazer tudo em <a href="http://pt.wikipedia.org/wiki/Assembly">Assembler</a>, mas ninguém quer programar em assembler mais. Do ponto de vista que você pode fazer, portanto, as línguas diferem entre si, mas as diferenças são limitadas. Por exemplo, <a href="http://www.python.org/">Python</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fornecem quase o mesmo poder para o programador.</p>
+
+
+
+
+<p>Em vez de enfatizar o que eu quero enfatizar a parte como: Como nos sentimos durante a programação, essa é a diferença principal do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> a partir de projetos em outras linguagens. Eu enfatizo a sensação, em particular, como eu me sinto usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu não trabalho duro para tornar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeito para todos, porque você se sente diferente de mim. Nenhuma linguagem pode ser perfeita para todos. Eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeita para mim, mas talvez ela não é perfeito para você. A linguagem perfeita para Guido van Rossum provavelmente é <a href="http://www.python.org/">Python</a>.</p>
+
+
+
+
+<h6><a href="http://www.dicio.com.br/ortogonal/">Ortogonais</a> em relação harmoniosa</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Dave Thomas também afirmou que, se eu pedir para você adicionar um recurso que é ortogonal, você não vai fazer. O que você quer é algo que seje harmonioso. O que significa isso?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Eu acredito que a consistência e ortogonalidade são ferramentas de design, não o objetivo principal no projeto.</p>
+
+
+
+
+<p><b>Bill Venners</b>: O que significa ortogonalidade neste contexto?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Um exemplo de ortogonalidade é permitir qualquer combinação de características de pequeno porte ou de sintaxe. Por exemplo, <a href="http://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)">C</a> suporta ambos os valores de parâmetro padrão para funções e sobrecarga de nomes de função com base em parâmetros. Ambos são boas características  para se ter em uma língua, mas porque elas são ortogonais, você pode aplicar ao mesmo tempo. O compilador sabe como aplicar ao mesmo tempo. Se é ambígua, o compilador irá sinalizar um erro. Mas se eu olhar para o código, eu preciso aplicar a regra com o meu cérebro também. Eu preciso adivinhar como o compilador funciona. Se eu estiver certo, e eu for inteligente o suficiente, não há problema. Mas se eu não sou inteligente o suficiente, e eu não sou realmente, causa confusão. O resultado será inesperado para uma pessoa comum. Este é um exemplo de como ortogonalidade é má.</p>
+
+
+
+
+<p><b>Bill Venners</b>: Em outras palavras, as características ortogonais irá funcionar uma vez que o escritor do compilador entendê-las e recebe-las para trabalhar. Mas é difícil para os programadores entender quando olham para ele, porque é complicado, porque eu tenho que descobrir como essas duas coisas andam juntas.</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: As funcionalidades ortogonais, quando combinadas, podem explodir em complexidade.</p>
+
+
+
+
+<p><b>Bill Venners</b>: Então, qual é a alternativa? O que seria mais harmonioso?</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: Basta pegar um dos dois para colocar na linguagem. Você não tem que fazer tudo o que você pode pensar. Você precisa escolher um deles, mesmo que ambos sejam bons.</p>
+
+
+
+
+<h6>Liberdade e Conforto</h6>
+
+
+
+
+<p><b>Bill Venners</b>: Uma das filosofias de design na comunidade <a href="http://www.python.org/">Python</a> está fornecendo uma e apenas uma maneira de fazer as coisas. Se você fornecer cinquenta maneiras diferentes de fazer a mesma coisa, então você forneceu comodidade para os escritores de código. As pessoas podem escrever coisas da sua melhor forma. A troca é para os leitores de código. Quando eu li o seu código, você poderia ter escrito de um jeito. Quando eu li o código de outras pessoas, elas podem ter escrito de outra forma. Então, como um leitor de eu acabar precisando estar familiarizado com todos os meios para realizar a tarefa, não apenas a minha maneira favorita de escrevê-la. Esse é o dilema do design. A comunidade <a href="http://www.python.org/">Python</a> parece preferir a uma e apenas uma maneira de abordagem, mas <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> parece fornecer várias maneiras de fazer a mesma coisa.</p>
+
+
+
+
+<p><b>Yukihiro Matsumoto</b>: <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> herdou a filosofia <a href="http://www.perl.org.br/Main/WebHome">Perl</a> de ter mais de uma maneira de fazer a mesma coisa. Eu herdei essa filosofia de <a href="http://pt.wikipedia.org/wiki/Larry_Wall">Larry Wall</a>, que é o meu herói, na verdade. Eu quero fazer os usuários de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> livre. Eu quero dar-lhes a liberdade de escolher. As pessoas são diferentes. As pessoas escolhem diferentes critérios. Mas se há uma maneira melhor entre muitas alternativas, eu quero encorajar esse caminho, tornando-o confortável. Então é isso que eu tentei fazer. Talvez o código do <a href="http://www.python.org/">Python</a> é um pouco mais legível. Todo mundo pode escrever o mesmo estilo de código <a href="http://www.python.org/">Python</a>, por isso pode ser mais fácil de ler, talvez. Mas a diferença de uma pessoa para outra é tão grande, proporcionando apenas uma maneira de ajudar é pouco, mesmo se você estiver usando o <a href="http://www.python.org/">Python</a>, eu acho. Prefiro fornecer muitas maneiras se é possível, mas encorajar ou orientar os usuários a escolher um caminho melhor, se é possível.</p>
+
+
+
+
+<h6>A alegria do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h6>
+
+
+
+
+<p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: "Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. " Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p>
+
+<p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p>
+
+<p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, "Olá, mundo de impressão." Eu só quero dizer, "imprimir isto!" Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p>
+
+<p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p>
+
+<p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p>
+
+<p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p>
+
+<p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p>
+
+<h6>O Fator Humano</h6>
+
+<p><b>Bill Venners</b>: Em uma entrevista, você disse, " Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana." O que você quer dizer com isso?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p>
+
+<p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p>
+
+<p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: "Não subestime o fator humano." Por quê?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: "Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo." Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p>
+
+<p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p>
+
+<p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p>
+
+<h6>Princípio da menor surpresa</h6>
+
+<p><b>Bill Venners</b>: Em uma entrevista, você disse "Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. "Por que o princípio da menor surpresa?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p>
+
+<p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p>
+
+<p><b>Bill Venners</b>: Como é mal compreendido?</p>
+
+<p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: "Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa". Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p>
+
+<p>Fonte: <a href="http://www.artima.com">Artima</a></p>
+
+------
+<p>
+É isso ai amigos.. uma boa entrevista!
+
+Até a proxima! =D</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
+    <updated>2012-08-05T16:18:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Escrevendo iteradores personalizados</h1>
+
+
+<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
+invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
+invoca o seu bloco duas vezes:</p>
+
+<p><code>ruby yield
+def twice
+  yield
+  yield
+end
+</code></p>
+
+<!--more-->
+
+
+<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
+expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
+com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+
+<p>```ruby Method</p>
+
+<h1>Este método espera um bloco. Gera n valores da forma</h1>
+
+<h1>M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</h1>
+
+<h1>Para o bloco associado.</h1>
+
+<p>def sequencia(n, m, c)
+  i = 0
+  while (i &lt; n) # loop n vezes
+    yield m * i + c # Invocar o bloco, e passar um valor a ela
+    i += 1 # Incrementa i de cada vez
+  end
+end</p>
+
+<h1>Aqui está uma invocação desse método, com um bloco.</h1>
+
+<h1>Ela imprime os valores 1, 6 e 11</h1>
+
+<p>sequencia(3, 5, 1) {| y | puts y}
+```</p>
+
+<pre><code>Nomenclatura: rendimento e iteradores
+
+Dependendo da sua experiência em programação, você pode encontrar os
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
+de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
+no entanto, em algum código que possa parecer como se fosse o bloco que é
+produzindo um resultado de volta para o método que o invocou.
+
+Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
+
+Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
+e 'iteradores externos'.
+</code></pre>
+
+<p>Aqui está outro exemplo de um 'iterador' em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+que a implementação deste iterador usa outro iterador internamente:</p>
+
+<p>```ruby  yield</p>
+
+<h1>Gera n pontos uniformemente espaçados em torno da circunferência de um</h1>
+
+<h1>Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</h1>
+
+<h1>De cada ponto ao bloco associado.</h1>
+
+<p>def circle(r,n)
+  n.times do |i|    #  Observe que este método é implementado com um bloco</p>
+
+<pre><code>angle = Math::PI * 2 * i / n
+yield r*Math.cos(angle), r*Math.sin(angle)
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>Esta invocação das impressões iterador:</h1>
+
+<h1>(1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</h1>
+
+<p>circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
+```</p>
+
+<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
+individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
+de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
+Você não pode passar um bloco a um bloco.</p>
+
+<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
+você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
+um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
+associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
+funções mundiais. Aqui está um exemplo:</p>
+
+<p>```ruby block_biven?</p>
+
+<h1>Retorna um array com n elementos da forma m * i + c</h1>
+
+<h1>Se um bloco é dado, igualmente produzir cada elemento para o bloco</h1>
+
+<p>def sequence(n, m, c)
+  i, s = 0, []                  # Inicializa variáveis
+  while(i &lt; n)                  # Loop n vezes</p>
+
+<pre><code>y = m*i + c                 # calcula o valor
+yield y if block_given?     
+s &lt;&lt; y                      # armazena o valor
+i += 1
+</code></pre>
+
+<p>  end
+  s             # Retorna o array de valores
+end
+```</p>
+
+<p>É isso aí!</p>
+
+<p>Até o proximo!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
+    <updated>2012-07-25T22:50:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Objetos Enumeráveis</h1>
+
+
+<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
+coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
+iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
+
+<p><code>ruby Metodo each
+[1,2,3].each {|x| print x }   # =&gt; prints "123"
+(1..3).each  {|x| print x }   # =&gt; prints "123" Same as 1.upto(3)
+</code></p>
+
+<!--more-->
+
+
+<p>O iterador <code>each</code> não é só para as classes tradicionais "de estrutura de dados". Classes <code>IO</code> Ruby definem um
+iterador <code>each</code> que cada linha de texto lido do objeto produz <code>Input/Output</code>. Assim, você pode processar as linhas
+de um arquivo em Ruby com um código como esse:</p>
+
+<p><code>ruby Metodo each para File
+File.open(filename) do |f|       # Abrir arquivo nomeado, passando f como parametro
+  f.each {|line| print line }    # Imprimir f em cada linha
+end
+</code></p>
+
+<p>A maioria das classes que definem um método <code>each</code> também incluem o módulo <code>Enumerable</code>, que define um número de
+iteradores mais especializados que são implementados em cima do método <code>each</code>. Um iterador é útil tal <code>each_with_index</code>, o que nos permite adicionar a linha de numeração para o exemplo anterior:</p>
+
+<p>``` ruby Metodo each com Index
+File.open(filename) do |f|
+  f.each_with_index do |line,number|</p>
+
+<pre><code>print "#{number}: #{line}"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
+<code>inject</code>. O método <code>collect</code> (também conhecido como <code>map</code>) executa o seu bloco associado para cada elemento do objeto
+enumerável, e coleta os valores de retorno dos blocos em um <code>array</code>:</p>
+
+<p><code>ruby Metodo Collect
+quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
+</code></p>
+
+<p>O método <code>select</code> invoca o bloco associado para cada elemento no objeto enumerável, e retorna uma matriz de
+elementos para a qual o bloco retorna um outro valor <code>false</code> ou <code>nil</code>. Por exemplo:</p>
+
+<p><code>ruby Metodo Select
+nivela = (1..10).select{|x| x%2 == 0} # =&gt; [2,4,6,8,10]
+</code></p>
+
+<p>O método <code>reject</code> é simplesmente o oposto de <code>select</code>, ele retorna uma matriz de elementos para a qual o bloco
+retorna <code>nil</code> ou <code>false</code>. Por exemplo:</p>
+
+<p><code>ruby Metodo reject
+odds = (1..10).reject{|x| x%2 == 0} # =&gt; [1,3,5,7,9]
+</code></p>
+
+<p>O método <code>inject</code> é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
+O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
+o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqueado para a próxima iteração, ou torna-
+se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de
+<code>inject</code>, se houver um, ou o primeiro elemento do objeto enumerável. (Neste caso, o bloco é invocado. Apenas uma vez durante os primeiros dois elementos). Exemplos para <code>injects</code> mais claros:</p>
+
+<p><code>ruby Metodo Inject
+data = [2, 5, 3, 4]
+sum = data.inject{|sum, x| sum + x }      # =&gt; 14    (2+5+3+4)
+floatprod = data.inject(1.0){|p,x| p*x }  # =&gt; 120.0 (1.0*2*5*3*4)
+max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
+</code></p>
+
+<p>Veja <a href="http://ruby-doc.org/core-1.9.2/Enumerable.html">Objetos Enumeráveis</a> ​​para obter mais detalhes sobre o <code>Módulo Enumerable</code> e a seus iteradores.</p>
+
+<p>Até a proxima amigos...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Iteradores Numéricos #Ruby 1.9.2]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos/"/>
+    <updated>2012-07-14T22:52:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos</id>
+    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Iteradores Numéricos</h1>
+
+
+<p>O núcleo do <code>Ruby API</code> fornece um número de iteradores padrão. Os métodos de loops do Kernel se comporta como um
+loop infinito, executando seu bloco associado repetidamente até que o bloco executa um <code>return</code>, <code>break</code>, ou outra
+declaração que sai do laço.</p>
+
+<p>A classe <code>Integer</code> define três iteradores usados. O método <code>upto</code> chama seu bloco associado uma vez para cada número
+inteiro entre o número inteiro no qual ele é invocado e o número inteiro que é passado como um argumento.
+Por exemplo:</p>
+
+<p><code>ruby upto
+4.upto(6){|x| print x} # =&gt; prints "456"
+</code></p>
+
+<p>Como você pode ver, <code>upto</code> intera cada número inteiro para o bloco associado, e inclui tanto o ponto de partida e o
+ponto final na iteração. Em geral, <code>n.upto(m)</code> é executado o bloco <code>m-n +1</code> vezes.</p>
+
+<p>O método <code>downto</code> é como <code>upto</code> mas itera a partir de um maior número para um número menor.</p>
+
+<p>Quando o método <code>Integer.times</code> é chamado no <code>n</code> inteiro, invoque o seu bloco de <code>n vezes</code>, passando os valores de
+<code>0 a n-1</code> em iterações sucessivas. Por exemplo:</p>
+
+<p><code>ruby times
+3.times {|x| print x }    # =&gt; prints "012"
+</code></p>
+
+<p>Em geral, é <code>n.times</code> equivalente a <code>0.upto(n-1)</code>.</p>
+
+<p>Se você quer fazer uma iteração numérica usando um ponto flutuante de números, você pode usar o método <code>step</code> mais
+complexo definido pela classe numérica. O iterador a seguir, por exemplo, começa a 0 e itera em passos de 0.1 até
+atingir <code>Math::PI</code>:</p>
+
+<p><code>ruby metodo step
+0.step(Math::PI, 0.1){|x| puts Math.sin(x)}
+</code></p>
+
+<p>Até a proxima!</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Range | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/range/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2012-08-09T01:16:17-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testando Associações em Range - Part II]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/"/>
+    <updated>2012-05-15T21:49:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de Range, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Teste Associação em um intervalo</h2>
+
+
+<p>A classe Range define métodos para determinar se um valor arbitrário é um membro de (isto é, está incluído no) um Range. Antes de entrar em
+detalhes sobre estes métodos, é necessário explicar que associaçãoem range pode ser definido de duas maneiras diferentes que estão relacionadas com a diferença entre os intervalos contínuos e discretos. Um valor x é um membro do range entre begin..end pela primeira definição se:</p>
+
+<p><code>ruby Range
+begin &lt;= x &lt;= end
+</code></p>
+
+<!--more-->
+
+
+<p>E X é um membro do range begin...end (com três pontos), se:</p>
+
+<p><code>ruby Range
+begin &lt;= x &lt; end
+</code></p>
+
+<p>Todos os valores de ponto de extremidade deve implementar o operador &lt;=>, assim que esta definição de associação funciona para qualquer objeto Range e não requer um ponto final para implementar o método succ. Esse é o teste de associação contínua.</p>
+
+<p>A segunda definição de filiação discreta independe succ. Ele trata um intervalo begin..end como um conjunto que inclui begin, begin.succ, begin.succ.succ, e assim por diante. Por esta definição, a associação do Range é ajustada a associação, e um valor de x está incluído numa range apenas se for um valor retornado por uma das invocações de succ. Observe que os testes de associação discreta é potencialmente
+uma operação muito mais cara do que os testes de associação contínua.</p>
+
+<p>Com isso de fundo, podemos descrever os métodos de distribuição para testar a associação. Ruby 1.8 suporta dois métodos, include?
+e member?. Eles são sinônimos, e ambos usam a associação contínua, teste:</p>
+
+<p><code>ruby Range
+r = 0...100 # O intervalo de números inteiros de 0 a 99
+r.member? 50 # =&gt; verdadeira: 50 é um membro da range
+r.include? 100 # =&gt; falso: 100 está excluída a partir do intervalo
+r.include? 99.9 # =&gt; verdadeira: 99,9 é inferior a 100
+</code></p>
+
+<p>A situação é diferente no Ruby 1.9. Essa versão da linguagem introduz um novo método, cover?, que
+funciona como include? e member? do Ruby 1.8, ele sempre usa o teste de associação contínua.
+include? e member? ainda são sinônimos no Ruby 1.9. Se os pontos finais do intervalo são números, estes métodos utilizam o
+teste de associação contínua, assim como eles fizeram no Ruby 1.8. Se os desfechos não são numéricas, no entanto, eles ao invés de
+usar o teste de associação discreta. Podemos ilustrar estas mudanças com um Range discreto de Srintgs (você pode querer usar ri entender como String.succ funciona):</p>
+
+<p>``` ruby ri String.succ
+= String.succ</p>
+
+<h2>(from ruby site)</h2>
+
+<p>  str.succ   -> new_str
+  str.next   -> new_str</p>
+
+<hr />
+
+<p>Returns the successor to str. The successor is calculated by
+incrementing characters starting from the rightmost alphanumeric (or the
+rightmost character if there are no alphanumerics) in the string. Incrementing
+a digit always results in another digit, and incrementing a letter results in
+another letter of the same case. Incrementing nonalphanumerics uses the
+underlying character set's collating sequence.</p>
+
+<p>If the increment generates a ``carry,'' the character to the left of it is
+incremented. This process repeats until there is no carry, adding an
+additional character if necessary.</p>
+
+<p>  "abcd".succ        #=> "abce"
+  "THX1138".succ     #=> "THX1139"
+  "&lt;<koala>>".succ   #=> "&lt;<koalb>>"
+  "1999zzz".succ     #=> "2000aaa"
+  "ZZZ9999".succ     #=> "AAAA0000"
+  "<strong>*".succ         #=> "</strong>+"</p>
+
+<p>(END)
+```</p>
+
+<p><code>ruby Range
+triplica = "AAA".."ZZZ"
+triplica.include? "ABC" # verdade, rápido em 1.8 e lento em 1.9
+triplica.include? "ABCD" # verdadeira em 1.8, false em 1.9
+triplica.cover? "ABCD" # verdadeiro e rápido em 1.9
+triplica.to_a.include? "ABCD" # false e lento em 1.8 e 1.9
+</code></p>
+
+<p>Na prática, a maioria dos Ranges têm pontos de extremidade numéricos, e o Range de mudanças na API entre Ruby 1.8
+e 1.9 têm pouco impacto.</p>
+
+<p>É isso ai, até a proxima... :D</p>
+
+<p>E bons estudos..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ranges - Ruby 1.9.2 - Part I ]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
+    <updated>2012-05-13T02:16:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
+    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Ranges</h2>
+
+
+<p>Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:</p>
+
+<p><code>ruby Range
+1..10 # Os números inteiros de 1 a 10, incluindo 10
+1...10 # Os números entre 1 e 10, excluindo-se 10
+</code></p>
+
+<p>Testar se um valor está incluído em um intervalo com o método include? (mas ver abaixo para uma discussão de alternativas):</p>
+
+<p><code>ruby Range
+cold_war = 1945 .. 1989
+cold_war.include? DateTime.now.year
+</code></p>
+
+<p>O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos,
+há, obviamente, deve ser alguma forma para comparar os valores para os pontos de extremidade. Em Ruby, isso é feito
+com o operador de comparação &lt;=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
+(ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador &lt;=>. o
+valor só pode ser utilizado como um ponto de extremidade do intervalo se ele responde a esta
+operador. Os pontos de extremidade de um intervalo e os valores "em" range são
+tipicamente, todos da mesma classe. Tecnicamente, no entanto, qualquer valor que é
+compatível com o &lt;=> operador do ponto da extremidade do range pode ser considerado um membro do intervalo.</p>
+
+<p>O objetivo primário para os ranges é comparação: para ser capaz de determinar se um valor está dentro ou fora do range. Um importante
+objetivo secundário é a iteração: se a classe dos parâmetros de um range definido um método succ (por sucessor), então existe um conjunto discreto de membros de intervalo, e eles podem
+ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo 'A' .. 'c', por exemplo:</p>
+
+<p><code>ruby Range
+r = 'a' .. 'c'
+r.each {|l| print "[#{l}]"} # imprime "[a] [b] [c]"
+r.step(2) {|l| print "[#{l}]"} # imprime "[a] [c]"
+r.to_a # =&gt; ['a', 'b', 'c']: Enumerable define to_a
+</code></p>
+
+<p>A razão pela qual isto funciona é que a classe String define um método succ e 'a'.succ é 'b' e 'b'.succ é 'c'. Intervalos que
+podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
+e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.</p>
+
+<p>Faixas com terminais inteiros são os mais comuns de serem usados ​​em programas típicos de Ruby. Porque eles são discretos, os ranges inteiros podem sasurusados para cordas de índice e matrizes. Eles são também uma forma conveniente para
+representam uma coleção enumerável de valores ascendentes. Observe que o código atribui um range literal a uma variável, e
+em seguida, chama métodos no intervalo através da variável. Se você quiser ou
+invocar diretamente em uma ampla literal, você deve colocar parênteses o literal, ou a invocação do método é na verdade sobre o ponto final da variavel, em vez de o objecto range em si:</p>
+
+<p><code>ruby Range
+1 .. 3.to_a # tenta chamar to_a sobre o número 3
+(1 .. 3). To_a # =&gt; [1,2,3]
+</code></p>
+
+<p>Até a proxima!!!</p>
+]]></content>
+  </entry>
+  
+</feed>

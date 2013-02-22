@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Invocações de método - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas Invocações de método Uma expressão &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    .sharing, .meta {
+      margin: 20px 0px 20px 0px;
+    }
+    .pager {
+      margin: 20px 0px 5px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // Avoid conflict with ender.js.
+    jQuery.noConflict();
+</script>
+<!-- jQuery Form Plugin -->
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- jQuery Form Validation Plugin -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+<script src="/javascripts/google_form.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="brand" href="/">Rodrigo Martins</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Post's</a></li>
+  <li><a href="/who-am">Apresentações</a></li>
+  <li><a href="/contato">Contato</a></li>
+</ul>
+ 
+      </div>
+
+      <ul class="nav pull-right" data-subscription="rss email">
+        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+            <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+          
+      </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:rrmartins.github.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">Invocações De Método</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
+        
+         | <a href="#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+  
+</span>
+
+
+  </header>
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+
+
+
+
+<h1>Invocações de método</h1>
+
+
+<p>Uma expressão de invocação de método tem quatro partes:</p>
+
+<ul>
+<li><p>Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
+do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.</p></li>
+<li><p>O nome do método a ser invocado. Este é o único pedaço exigido de uma expressão chamada de método.</p></li>
+<li><p>Valores com o argumento passado para o método. A lista de argumentos podem ser colocados entre parênteses, mas estes são geralmente
+opcionais. Se há mais de um argumento, eles são separados uns dos outros com vírgulas. O número e tipo de argumentos necessários
+dependem da definição do método. Alguns métodos podem ser chamodos sem argumentos.</p></li>
+<li><p>Um bloco opcional de código delimitado por chaves ou por um par <code>do/end</code>. O método pode invocar esse código usando a palavra-chave de
+ <code>yield</code>. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby.</p></li>
+</ul>
+
+
+<p>Um nome do método é normalmente separado do objeto sobre o qual é chamado com um <code>..</code>, e com o <code>::</code>, que também é permitido, mas é raramente
+usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.</p>
+
+<p>Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+chamado usando um processo conhecido como &#8220;método de pesquisa&#8221; ou &#8220;resolução de nome do método.&#8221; Os detalhes não são importantes aqui,
+mas eles são explicados completamente no método de pesquisa.</p>
+
+<p>O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
+alguns exemplos de invocações de método:</p>
+
+<figure class='code'><figcaption><span>Ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Olá mundo&quot;</span> <span class="c1"># &quot;puts&quot; invocado em auto, com uma seqüência de arg</span>
+</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># &quot;sqrt&quot; invocado em Matemática objeto com uma arg</span>
+</span><span class='line'><span class="n">message</span><span class="o">.</span><span class="n">length</span> <span class="c1"># &quot;comprimento&quot; invocado em mensagem objeto; não args</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># &quot;cada&quot; chamado em um objeto, com um bloco associado</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Um dos exemplos do método de invocação mostradas anteriormente foi <code>message.length</code>. Você pode ser tentado a pensar-lo como uma variável
+de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
+um modelo de programação muito orientada a objetos: objetos em Ruby podem encapsular qualquer número de variáveis ​​de instância interna,
+mas expõem métodos apenas para o mundo exterior. Como o método <code>length</code> não espera argumentos e é chamado sem os parênteses opcionais,
+parece que referência uma variável. Na verdade, isso é intencional. Métodos como estes são chamados para atribuir métodos de acesso, e
+dizemos que o objeto da <code>mensage</code> tem um atributo de <code>lenght</code>. Como veremos, é possível que o objeto de <code>mensage</code>
+para definir um método chamado <code>length=</code>. Se este método espera um único argumento, então é um método setter do atributo e
+Ruby invoca em resposta a atribuição. Se um tal método é definido, então estas duas linhas de código seria tanto chamar o mesmo método:</p>
+
+<figure class='code'><figcaption><span>Length</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">message</span><span class="o">.</span><span class="n">length</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># invocação do método tradicional</span>
+</span><span class='line'><span class="n">message</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># invocação Método como a atribuição</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Agora, considere a seguinte linha de código, assumindo que uma variável contém um <code>Array</code>:</p>
+
+<figure class='code'><figcaption><span>Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você pode pensar novamente que este é um tipo especial de variável de referência, onde a variável em questão é na verdade um elemento do
+<code>Array</code>. Novamente, no entanto, esta é invocação do método. O intérprete Ruby converte o acesso ao <code>Array</code> para isso:</p>
+
+<figure class='code'><figcaption><span>Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">[</span><span class="o">]</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O acesso ao <code>Array</code> torna-se uma invocação do método chamado <code>[]</code>, com o índice do <code>Array</code> como seu
+argumento. Esta sintaxe de acesso de <code>Array</code> não se limita a <code>Arrays</code>. Qualquer objeto é permitido para definir um
+método chamado <code>[]</code>. Quando o objeto é &#8220;indexado&#8221;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+para o método. Se o método <code>[]</code> é escrito para esperar três argumentos, então você deve colocar três expressões separados por
+vírgula dentro dos colchetes.</p>
+
+<p>Atribuição de <code>Arrays</code> também é feito através de invocação de método. Se o objeto o define um método chamado <code>[]=</code>, então a expressão <code>o[x] = y</code> torna-se <code>o.[] = (x, y)</code>, e a expressão <code>o[x, y] = z</code> se torna <code>o.[] = (x , y, z)</code>.</p>
+
+<p>Muitos operadores do Ruby são definidos como métodos, e expressões como <code>x + y</code> são avaliados como <code>x.+(y)</code>, onde o
+nome de método é <code>+</code>. O fato de que muitos dos operadores do Ruby são definidos como métodos que significa você pode redefinir
+esses operadores na sua próprias classes.</p>
+
+<p>Agora, vamos considerar esta expressão muito simples:</p>
+
+<figure class='code'><figcaption><span>Ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se uma variável x nomeada existe (Isto é, se o interpretador Ruby tem visto uma atribuição a x), então esta é uma variável de referência.
+Se nenhuma variável existe, então esta é uma invocação do método x, sem argumentos.</p>
+
+<p>A palavra <code>super</code> em Ruby é um tipo especial de invocação de método. Esta palavra é usada ao criar uma subclasse de outra
+classe. Por si só, <code>super</code> passa os argumentos do método corrente para o método com o mesmo nome na superclasse. Ele também
+pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
+<code>super</code> é abordada em detalhes no Aumentando Comportamento por encadeamento.</p>
+
+<p>Até a Proxima&#8230; :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
+      Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/06/02/variaveis-nao-inicializadas/" title="Previous Post:
+        Variáveis ​​não inicializadas">&laquo; Variáveis ​​não inicializadas</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blog/2012/06/03/atribuicoes/"
+        title="Next Post: Atribuições #Ruby">Atribuições #Ruby
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    
+<section class="well">
+  <ul id="tweets" class="nav">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/">A Filosofia do #Ruby <3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Escrevendo iteradores personalizados #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Objetos Enumeráveis #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/14/iteradores-numericos/">Iteradores Numéricos #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/05/unless-number-ruby-1-dot-9/">unless #Ruby 1.9</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
+  <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

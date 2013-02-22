@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Classe Objects em Ruby 1.9.2 - Part IV - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Hoje vamos continuar falando de Objects, é hora de nos aprofundar. Objetos Ordem de Object Praticamente todas as classes podem definir o método ==, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    .sharing, .meta {
+      margin: 20px 0px 20px 0px;
+    }
+    .pager {
+      margin: 20px 0px 5px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // Avoid conflict with ender.js.
+    jQuery.noConflict();
+</script>
+<!-- jQuery Form Plugin -->
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- jQuery Form Validation Plugin -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+<script src="/javascripts/google_form.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="brand" href="/">Rodrigo Martins</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Post's</a></li>
+  <li><a href="/who-am">Apresentações</a></li>
+  <li><a href="/contato">Contato</a></li>
+</ul>
+ 
+      </div>
+
+      <ul class="nav pull-right" data-subscription="rss email">
+        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+            <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+          
+      </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:rrmartins.github.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">Classe Objects Em Ruby 1.9.2 - Part IV</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
+        
+         | <a href="#disqus_thread">Comentário</a>
+        
+      </p>
+    
+    Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/comparable/'>Comparable</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+  </header>
+
+
+<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Ordem de Object</h3>
+
+
+<p></p>
+
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser &#8220;menos que&#8221; a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+<!--more-->
+
+
+<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
+é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
+Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
+em seguida, o operador deve retornar nil:</p>
+
+<figure class='code'><figcaption><span>Operador <=></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># -1</span>
+</span><span class='line'><span class="mi">5</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 0</span>
+</span><span class='line'><span class="mi">9</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># 1</span>
+</span><span class='line'><span class="s2">&quot;1&quot;</span> <span class="o">&lt;=&gt;</span> <span class="mi">5</span> <span class="c1"># nil: inteiros e strings não são comparáveis</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
+este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
+(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
+
+<pre><code>&lt;   -   Menor que
+&lt;=  -   Menor ou igual
+==  -   Igual
+&gt;=  -   Maior ou igual
+&gt;   -   Maior que
+</code></pre>
+
+<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
+operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+
+<figure class='code'><figcaption><span>Comparable between?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">between?</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># verdadeiro: 0 &lt;= 1 &lt;= 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
+
+<figure class='code'><figcaption><span>Float NaN</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nan</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span> <span class="c1"># zero dividido por zero não é um número</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="c1"># false: não é menor que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># false: não é maior que zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1"># false: não é igual a zero</span>
+</span><span class='line'><span class="n">nan</span> <span class="o">==</span> <span class="n">nan</span> <span class="c1"># false: não é mesmo igual a si mesmo!</span>
+</span><span class='line'><span class="n">nan</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">nan</span><span class="p">)</span> <span class="c1"># isso é verdade, claro</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
+implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
+implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
+para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
+se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
+
+<p>É isso amigos&#8230; o proximo post vamos conversar um pouco de Conversões de Object&#8217;s.</p>
+
+<p>Até Mais..</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
+      Categorias: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/comparable/'>Comparable</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comentários</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/" title="Previous Post:
+        Classe Objects em Ruby 1.9.2 - Part III">&laquo; Classe Objects em Ruby 1.9.2 - Part III</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/"
+        title="Next Post: Classe Objects em Ruby 1.9.2 - Part V">Classe Objects em Ruby 1.9.2 - Part V
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    
+<section class="well">
+  <ul id="tweets" class="nav">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/">A Filosofia do #Ruby <3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Escrevendo iteradores personalizados #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Objetos Enumeráveis #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/14/iteradores-numericos/">Iteradores Numéricos #Ruby 1.9.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/05/unless-number-ruby-1-dot-9/">unless #Ruby 1.9</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
+  <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

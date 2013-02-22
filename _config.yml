@@ -4,8 +4,11 @@
 
 url: http://rrmartins.github.com
 title: Rodrigo Martins
-subtitle: A blogging framework for hackers.
+subtitle:
 author: Rodrigo Martins
+dev: Developer
+company: MyFreeComm
+city_current: Rio de Janeiro, RJ
 simple_search: http://google.com/search
 description:
 
@@ -13,7 +16,7 @@ description:
 # You can customize the format as defined in
 # http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
 # Additionally, %o will give you the ordinal representation of the day
-date_format: "ordinal"
+date_format: "%d/%m/%y às %H:%M hrs"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
@@ -45,10 +48,12 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
-blog_index_asides: [custom/asides/whoam.html, asides/github.html, asides/twitter.html]
+# custom/asides/whoam.html
+# default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/github.html]
+blog_index_asides: [asides/twitter.html, asides/github.html]
 post_asides: [asides/twitter.html, asides/recent_posts.html, asides/github.html ]
-page_asides: [custom/asides/whoam.html, asides/github.html, custom/asides/about.html]
+page_asides: [asides/twitter.html, asides/recent_posts.html, asides/github.html ]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -62,7 +67,7 @@ page_asides: [custom/asides/whoam.html, asides/github.html, custom/asides/about.
 
 # Github repositories
 github_user: rrmartins
-github_repo_count: 0
+github_repo_count: 5
 github_show_profile_link: true
 github_skip_forks: true
 
@@ -75,7 +80,7 @@ twitter_show_follower_count: true
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
@@ -92,13 +97,18 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: rrmartins
+disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-32145575-1
 
 # Facebook Like
 facebook_user: rr.martins.j
 facebook_like: true
 
+# Instagram
+instagram_user: rrmartinsj
+
+
+# [formidable id=4]
