@@ -1,0 +1,350 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Classe Objects em Ruby 1.9.2 - Part III - Rodrigo Martins</title>
+    <meta name="author" content="Rodrigo Martins">
+    
+	<meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Objects, é hora de nos aprofundar &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+
+    <!-- remove or comment it to disable ajaxification -->   
+    <script src="/javascripts/ajaxify.js"></script>
+   
+    
+</head>
+
+
+<body>
+    <div id="wrapper">
+    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<h1 class="animated bounceInDown">
+    <div id="headerbg">
+        Rodrigo Martins
+    </div>
+</h1>
+<br>
+
+<ul id="social-links" style="text-align:center">
+  
+  <!-- GitHub -->
+  <li>
+  <a href="https://github.com/rrmartins" class="github" title="Github"></a>
+  </li>
+  
+  
+  <!-- Google Plus -->
+  <li>
+  <a href="http://plus.google.com/110837662054300392665?rel=author" class="google" title="Google+"></a>
+  </li>
+  
+  
+  <!-- Facebook -->
+  <li>
+  <a href="http://www.facebook.com/rr.martins.j" class="facebook" title="Facebook"></a>
+  </li>
+  
+  
+  <!-- Twitter -->
+  <li>
+  <a href="http://www.twitter.com/rr_martins" class="twitter" title="Twitter"></a>
+  </li>
+  
+  
+  
+  
+  
+</ul>
+
+
+<!-- use full url including 'index.html' for navigation bar if you are using ajax -->
+<ul id="nav">
+	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
+	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    
+    <li>
+    <div id="dark">
+        <form method="get" action="/search.html" id="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    </div>
+    </li>
+    
+</ul>
+
+
+
+
+</header>
+
+<div id="toload">
+<!-- begin toload --> 
+    <div id="content" class="inner">
+        <article class="post">
+	<h2 class="title">Classe Objects Em Ruby 1.9.2 - Part III</h2>
+	<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Igualdade objeto</h3>
+
+
+<p>Ruby tem um número surpreendente de maneiras de comparar objetos para igualdade, e é importante entender como eles funcionam, assim você sabe quando usar cada método.</p>
+
+<!--more-->
+
+
+
+
+<h3>O método equal? </h3>
+
+
+<p>O método equal? é definido pelo objeto para testar se os dois valores referem-se exatamente o mesmo objeto. Para qualquer dos dois
+distintos objetos, esse método sempre retorna false:</p>
+
+<figure class='code'><figcaption><span>equal?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># Uma referência a um objeto String</span>
+</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># Duas referências a outro objeto String</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># falsa: a e b são objetos diferentes</span>
+</span><span class='line'><span class="n">b</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># verdadeiro: b e c referem-se ao mesmo objeto</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Por convenção, nunca subclasses substituem o método equal?.</p>
+
+<p>Outra maneira de determinar se os dois objetos são, de fato, do mesmo objetivo é verificar a sua object_id:</p>
+
+<figure class='code'><figcaption><span>equal?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># Funciona como a.equal? ​​(b)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>O operador ==</h3>
+
+
+<p>O operador == é a forma mais comum para testar a igualdade. Na Classe Object, é simplesmente uns testes de sinónimos para equal?, e
+se duas referências de objeto são idênticos. A maioria das classes redefinem este operador para permitir instâncias distintas para ser
+testado para igualdade:</p>
+
+<figure class='code'><figcaption><span>Operador ==</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># uma string</span>
+</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;Ruby&quot;</span> <span class="c1"># Um objeto String diferente com o mesmo conteúdo</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">equal?</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># falsa: a e b não se referem ao mesmo objeto</span>
+</span><span class='line'><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="c1"># verdade: mas estes dois objetos distintos têm valores iguais</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note que o único sinal de igual nesse código é o operador de atribuição. Leva dois sinais de igual para testar a igualdade
+em Ruby (esta é uma convenção que compartilha Ruby com muitas outras linguagens de programação).</p>
+
+<p>Padrão de Classes do Ruby definem o operador == para implementar uma razoável definição de igualdade. Isso inclui Array
+e as classes de hash. Dois Arrays são iguais de acordo com == se tiverem o mesmo número de elementos,
+e se os seus elementos correspondentes são todos iguais de acordo com ==. Dois hashes são == se contiverem o mesmo número de pares
+chave/valor, e se as chaves e valores são, eles próprios iguais. (Os valores são comparados com o operador ==,
+mas chaves de hash são comparados com o método eql?.)</p>
+
+<pre><code>Igualdade para programadores Java
+
+Se você é um programador Java, você está acostumado a usar o operador == para testar se dois objetos são
+o mesmo objeto, e você está acostumado a usar o método equals para testar se dois objetos distintos têm o mesmo valor. 
+Convenção do Ruby é apenas sobre o oposto de Java.
+</code></pre>
+
+<p>As classes numéricas realizam conversões de tipo simples nas suas operações de ==, de modo que (por exemplo) o
+Fixnum 1 e o Float 1.0 comparados como iguais. O operador == de classes, como String e Array, normalmente requerem dois operandos
+para ser da mesma classe. Se o operando do lado direito define uma to_str ou função de conversão to_ary, então estes operadores invocam
+o operador == definido pelo lado direito operando, e deixam que objeto decidem se é igual ao lado esquerdo, sendo string ou array.
+Assim, é possível (embora não comum) para definir classes com comportamento comparação de string ou array.</p>
+
+<p>!= (&#8220;Não-igual&#8221;) é usado em Ruby para testar a desigualdade. Quando o Ruby vê !=, Ele simplesmente usa o operador == e depois
+inverte o resultado. Isto significa que uma única classe precisa definir o operador == para definir a sua própria noção de
+igualdade. Ruby dá o operador != de graça. No Ruby 1.9, no entanto, as classes podem explicitamente definir os seus próprios operadores !=.</p>
+
+<h3>O método eql?</h3>
+
+
+<p>O método eql? é definido pelo objeto como um sinônimo para equal?. Classes que se sobrepõem a ele normalmente usá ele como uma
+versão rígida do operador == que não faz nenhum tipo de conversão. Por exemplo:</p>
+
+<figure class='code'><figcaption><span>eql?</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="c1"># verdade: Fixnum e objetos flutuantes podem ser ==</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">eql</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># falsa: mas eles nunca são eql!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A classe Hash usa eql? para verificar se duas chaves de hash são iguais. Se dois objetos são eql?, os métodos de hash também
+deve retornar o mesmo valor. Normalmente, se você criar uma classe e defini o operador ==, você pode simplesmente escrever um
+método de hash e definir eql? para usar ==.</p>
+
+<h3>O operador ===</h3>
+
+
+<p>O operador === é comumente chamado de &#8220;caso de igualdade&#8221; e é usado para testar se o valor-alvo de uma declaração caso corresponde
+a qualquer das cláusulas, quando dessa declaração.</p>
+
+<p>Classe Object define por padrão o operador === para que ele chama o operador ==. Para muitas classes, por conseguinte, a igualdade
+caso é o mesmo que == (igualdade). Mas certas classes principais definem === de maneira diferente, e nestes casos, é mais de um membro
+ou operador correspondente. Range define === para testar se um valor está dentro do intervalo. Regexp define === para testar se uma
+string corresponde à expressão regular. E Class define === para testar se um objeto é uma instância dessa Class. No Ruby 1.9, Symbol
+define === retornando true se o operando do lado direito é o mesmo símbolo como o esquerda ou se é uma cadeia guardando o mesmo texto.
+Exemplos:</p>
+
+<figure class='code'><figcaption><span>Operador ===</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span> <span class="o">===</span> <span class="mi">5</span> <span class="c1"># verdadeiro: 5 está na gama de 1 .. 10</span>
+</span><span class='line'><span class="sr">/\d+/</span> <span class="o">===</span> <span class="s2">&quot;123&quot;</span> <span class="c1"># verdade: a seqüência corresponde à expressão regular</span>
+</span><span class='line'><span class="nb">String</span> <span class="o">===</span> <span class="s2">&quot;s&quot;</span> <span class="c1"># verdade: &quot;s&quot; é uma instância da classe String</span>
+</span><span class='line'><span class="ss">:s</span> <span class="o">===</span> <span class="s2">&quot;s&quot;</span> <span class="c1"># verdadeiro no Ruby 1.9</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>É raro ver o operador === usado explicitamente como este. Mais comumente, a sua utilização é simplesmente implícita em uma instrução case.</p>
+
+<h3>O operador =~</h3>
+
+
+<p>O operador =~ é definido pela String e Regexp (e Symbol no Ruby 1.9) para realizar ligações de padrões, e isso não é realmente um
+operador de igualdade em tudo. Mas isso não tem um sinal de igual na mesma, de modo que ele está aqui para ser completo.
+Objeto define uma versão sem o operador de =~, que sempre retorna false. Você pode definir este operador em sua própria classe,
+se essa classe define um tipo de correspondência de operação padrão ou tem uma noção de igualdade aproximada, por exemplo.
+!~ é definido como o inverso da =~. É definível em Ruby 1.9 mas não no Ruby 1.8</p>
+
+<p>É isso ai rubistas&#8230; Até a proxima!</p>
+</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+    </div>
+    <footer id="footer">
+    <div style="display:inline">
+    Copyright &copy; 2013
+
+    Rodrigo Martins
+. Powered by <a href="http://octopress.org">Octopress</a> | 
+    Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
+</div>
+
+
+    </footer>
+    <script src="/javascripts/fabric.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-32145575-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+
+<!-- end toload --> 
+</div>
+</div>
+<script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery); 
+/*]]>*/
+</script><!-- remove it to remove the scroll to top button -->
+</body>
+</html>
