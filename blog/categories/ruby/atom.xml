@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-23T10:46:25-03:00</updated>
+  <updated>2013-02-27T01:16:07-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,580 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    <updated>2013-02-26T22:54:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    <content type="html"><![CDATA[<p>Olá amigos,</p>
+
+<p>Tudo tranquilo?</p>
+
+<p>Estava conversando com o <a href="https://twitter.com/malafortune">Marc-Andre Lafortune</a>, do blog <a href="http://blog.marc-andre.ca/">Marc Andre</a>, sobre a nova versão do <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0</a>, e ele me permitiu traduzir o <a href="http://blog.marc-andre.ca/2013/02/23/ruby-2-by-example/">post dele</a> e ai vai.. :)</p>
+
+<p>Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no <a href="https://twitter.com/yukihiro_matz/statuses/305334327938519040">twitter</a>:</p>
+
+<p><blockquote><p></p></p><p><p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p></p><p><p></p><footer><strong>@yukihiro_matz</strong> <cite><a href='https://twitter.com/yukihiro_matz/status/305334327938519040'>twitter.com/yukihiro_matz/&hellip;</a></cite></footer></blockquote></p>
+
+<p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
+
+<p>Vamos a tradução... :D</p>
+
+<!--more-->
+
+
+<hr />
+
+<p>Tradução</p>
+
+<hr />
+
+<p>Um rápido resumo de alguns dos novos recursos do <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>:</p>
+
+<h3>Alterações na Linguagem</h3>
+
+<p>``` ruby</p>
+
+<pre><code># Ruby 1.9:
+</code></pre>
+
+<p>  # (Do action_view/helpers/text_helper.rb)
+def cycle(first_value, *values)
+  options = values.extract_options!
+  name = options.fetch(:name, 'default')
+  # ...
+end</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>def cycle(first_value, *values, name: 'default')
+  # ...
+end</p>
+
+<h1>ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:</h1>
+
+<p>cycle('odd', 'even', nme: 'foo')</p>
+
+<h1>=> ArgumentError: unknown keyword: nme</h1>
+
+<h1>Para obter o mesmo resultado e melhor exato:</h1>
+
+<p>def cycle(first_value, *values, name: 'default', **ignore_extra)
+  # ...
+end</p>
+
+<p>```</p>
+
+<p>Isso faz com que as definições de método seja muito flexível. Em resumo:</p>
+
+<p>``` ruby
+def name({required_arguments, ...}</p>
+
+<pre><code>     {optional_arguments, ...}
+     {*rest || additional_required_arguments...} # Você Sabia?
+     {keyword_arguments: "with_defaults"...}
+     {**rest_of_keyword_arguments}
+     {&amp;block_capture})
+</code></pre>
+
+<p>```</p>
+
+<p>Em <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>, argumentos devem ter padrões, ou então deve ser capturado por <code>**extra</code> no final. Próxima versão <a href="https://bugs.ruby-lang.org/issues/7701">permitirá</a> argumentos obrigatórios, por exemplo, <code>def hello(optional: 'default', required:)</code>, mas há <a href="http://stackoverflow.com/questions/13250447/can-i-have-required-named-parameters-in-ruby-2-x/15078852#15078852">maneiras de fazer isso agora</a>.</p>
+
+<p>Padrões, para parâmetros opcionais ou argumentos de palavras-chave, pode ser na maior parte qualquer expressão, incluindo chamadas de método para o objeto atual e pode usar os parâmetros anteriores.</p>
+
+<p>Um exemplo complexo que mostra a maior parte deste:</p>
+
+<p>``` ruby
+class C
+  def hi(needed, needed2,</p>
+
+<pre><code>     maybe1 = "42", maybe2 = maybe1.upcase,
+     *args,
+     named1: 'hello', named2: a_method(named1, needed2),
+     **options,
+     &amp;block)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def a_method(a, b)</p>
+
+<pre><code># ...
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>C.instance_method(:hi).parameters</p>
+
+<h1>=> [ [:req, :needed], [:req, :needed2],</h1>
+
+<h1>[:opt, :maybe1], [:opt, :maybe2],</h1>
+
+<h1>[:rest, :args],</h1>
+
+<h1>[:key, :named1], [:key, :named2],</h1>
+
+<h1>[:keyrest, :options],</h1>
+
+<h1>[:block, :block] ]</h1>
+
+<p>```</p>
+
+<p><a href="http://bugs.ruby-lang.org/issues/7922">Bug conhecido</a>: não é atualmente possível ignorar opções extras sem citar o argumento <code>**</code>.</p>
+
+<h3>Criação de lista de Symbol</h3>
+
+<p>Maneira fácil de criar listas de símbolos com <code>%i</code> e <code>%I</code> (onde i é para uso interno):</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9:</h1>
+
+<p>KEYS = [:foo, :bar, :baz]</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>KEYS = %i[foo bar baz]
+```</p>
+
+<h3>Codificação padrão é UTF-8</h3>
+
+<p>Nenhum comentário magico é necessário caso a codificação for UTF-8.</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9:</h1>
+
+<h1>encoding: utf-8</h1>
+
+<h1>^<sup>^</sup> previous line was needed!</h1>
+
+<p>puts "❤ Rodrigo Martins ❤"</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>puts "❤ Rodrigo Martins ❤"
+```</p>
+
+<h3>Variáveis ​​não utilizadas pode começar com _</h3>
+
+<p>Você sabia que Ruby pode avisá-lo sobre as variáveis ​​utilizadas?</p>
+
+<p>```ruby</p>
+
+<h1>Qualquer versão do Ruby, com aviso em:</h1>
+
+<p>ruby -w -e "
+  def hi</p>
+
+<pre><code>hello, world = 'hello, world'.split(', ')
+world
+</code></pre>
+
+<p>  end"</p>
+
+<h1>=> warning: assigned but unused variable - hello</h1>
+
+<p>```</p>
+
+<p>A maneira de evitar o aviso era usar <code>_</code>. Agora podemos usar qualquer nome de variável começando com um underscore:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9</h1>
+
+<p>ruby -w -e "
+  def foo</p>
+
+<pre><code>_, world = 'hello, world'.split(', ')
+world
+</code></pre>
+
+<p>  end"</p>
+
+<h1>=> no warning</h1>
+
+<h1>Ruby 2.0</h1>
+
+<p>ruby -w -e "
+  def hi</p>
+
+<pre><code>_hello, world = 'hello, world'.split(', ')
+world
+</code></pre>
+
+<p>  end"</p>
+
+<h1>=> no warning either</h1>
+
+<p>```</p>
+
+<h2>Mudanças das Classes Principais</h2>
+
+<h3>Prepend</h3>
+
+<p><a href="http://ruby-doc.org/core-2.0/String.html#method-i-prepend">Module#prepend</a> insere um módulo no início da cadeia de ligação. Pode muito bem substituir por <code>alias_method_chain</code>.</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9:</h1>
+
+<p>class Range
+  # Do active_support/core_ext/range/include_range.rb
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include_with_range?(value)</p>
+
+<pre><code>if value.is_a?(::Range)
+  # 1...10 inclue 1..9 mas não inclue 1..10.
+  operator = exclude_end? &amp;&amp; !value.exclude_end? ? :&lt; : :&lt;=
+  include_without_range?(value.first) &amp;&amp; value.last.send(operator, last)
+else
+  include_without_range?(value)
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  alias_method_chain :include?, :range
+end</p>
+
+<p>Range.ancestors # => [Range, Enumerable, Object...]</p>
+
+<h1>Ruby 2.0</h1>
+
+<p>module IncludeRangeExt
+  # Estende o padrão Range#include? para suportar comparações de range
+  def include?(value)</p>
+
+<pre><code>if value.is_a?(::Range)
+  # 1...10 inclue 1..9 mas não inclue 1..10.
+  operator = exclude_end? &amp;&amp; !value.exclude_end? ? :&lt; : :&lt;=
+  super(value.first) &amp;&amp; value.last.send(operator, last)
+else
+  super
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Range
+  prepend IncludeRangeExt
+end</p>
+
+<p>Range.ancestors # => [IncludeRangeExt, Range, Enumerable, Object...]
+```</p>
+
+<h3>Refinamentos [experimental]</h3>
+
+<p>No Ruby 1.9, se você usa um metodo <code>alias_method_chain</code>, a nova definição ocorre em todos os lugares. Em <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>, você pode fazer esse tipo de mudança apenas para si mesmo utilizando o <a href="http://ruby-doc.org/core-2.0/Module.html#method-i-refine">Module#refine</a>:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0</h1>
+
+<p>module IncludeRangeExt
+  refine Range do</p>
+
+<pre><code># Estende o padrão Range#include? para suportar comparações de range
+def include?(value)
+  if value.is_a?(::Range)
+    # 1...10 inclue 1..9 mas não inclue 1..10.
+    operator = exclude_end? &amp;&amp; !value.exclude_end? ? :&lt; : :&lt;=
+    super(value.first) &amp;&amp; value.last.send(operator, last)
+  else
+    super
+  end
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>def test_before(r)
+  r.include?(2..3)
+end
+(1..4).include?(2..3) # => false (comportamento padrão)</p>
+
+<h1>Agora liga o refinamento:</h1>
+
+<p>using IncludeRangeExt</p>
+
+<p>(1..4).include?(2..3) # => true  (comportamento refinado)</p>
+
+<p>def test_after(r)
+  r.include?(2..3)
+end
+test_after(1..4) # => true (definido depois de usar, o comportamento tão refinado)</p>
+
+<p>3.times.all? do
+  (1..4).include?(2..3)
+end # => true  (comportamento refinado)</p>
+
+<h1>Mas a versão refinada acontece apenas para chamadas definidas após o uso:</h1>
+
+<p>test_before(1..4) # => false (definido anteriormente, não afetado)
+require 'some_other_file' # => não afetado, usará o comportamento predefinido</p>
+
+<h1>Note:</h1>
+
+<p>(1..4).send :include?, 2..3 # => false (por agora, envio ignora refinamentos)
+```
+Spec completo está <a href="http://bugs.ruby-lang.org/projects/ruby-trunk/wiki/RefinementsSpec">aqui</a> e está sujeita a mudanças em versões posteriores. Discussão mais aprofundada <a href="http://benhoskin.gs/2013/02/24/ruby-2-0-by-example#refinements">aqui</a>.</p>
+
+<h3>Enumeradores Lazy</h3>
+
+<p>Um <a href="http://ruby-doc.org/core-2.0/Enumerable.html">Enumerable</a> pode ser transformado em um lazy com o novo método <a href="http://ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy">Enumerable#lazy</a>:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>lines = File.foreach('a_very_large_file')</p>
+
+<pre><code>        .lazy # por isso só ler as partes necessárias!
+        .select {|line| line.length &lt; 10 }
+        .map(&amp;:chomp)
+        .each_slice(3)
+        .map {|lines| lines.join(';').downcase }
+        .take_while {|line| line.length &gt; 20 }
+</code></pre>
+
+<p>  # => Enumerador lazy, ainda não executa nada
+lines.first(3) # => Lê o arquivo até que ele retornar 3 elementos</p>
+
+<pre><code>           # ou até que um elemento de length &lt;= 20 é
+           # retornado (por causa da take_while)
+</code></pre>
+
+<h1>Para consumir o enumerável:</h1>
+
+<p>lines.to_a # ou...
+lines.force # => Lê o arquivo e retorna uma array
+lines.each{|elem| puts elem } # => Lê o arquivo e imprime os elementos resultantes
+```</p>
+
+<p>Note-se que, muitas vezes, <code>lazy</code> é mais lento do que uma versão não <code>lazy</code>. Ele deve ser usado somente quando ele realmente faz sentido, não apenas para evitar a construção de um <code>array</code> intermediário.</p>
+
+<p>```ruby
+require 'fruity'
+r = 1..100
+compare do
+  lazy   { r.lazy.map(&amp;:to_s).each_cons(2).map(&amp;:join).to_a }
+  direct { r     .map(&amp;:to_s).each_cons(2).map(&amp;:join)      }
+end</p>
+
+<h1>=> direto é mais rápida do que por lazy 2x ± 0.1</h1>
+
+<p>```</p>
+
+<h3>Tamanho Lazy</h3>
+
+<p><a href="http://ruby-doc.org/core-2.0/Enumerator.html#method-i-size">Enumerator#size</a> pode ser chamado para obter o tamanho do enumerador sem consumi-lo (se disponível).</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>(1..100).to_a.permutation(4).size # => 94109400
+loop.size # => Float::INFINITY
+(1..100).drop_while.size # => nil
+```</p>
+
+<p>Ao criar enumeradores, seja com <code>to_enum</code>, <code>Enumerator::New</code> ou <code>Enumerator::Lazy::New</code> é possível definir um tamanho muito:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>fib = Enumerator.new(Float::INFINITY) do |y|
+  a = b = 1
+  loop do</p>
+
+<pre><code>y &lt;&lt; a
+a, b = b, b+a
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>still_lazy = fib.lazy.take(1_000_000).drop(42)
+still_lazy.size # => 1_000_000 - 42</p>
+
+<p>class Enumerable
+  def skip(every)</p>
+
+<pre><code>unless block_given?
+  return to_enum(:skip, every) { size &amp;&amp; (size+every)/(every + 1) }
+end
+each_slice(every+1) do |first, *ignore|
+  yield last
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>(1..10).skip(3).to_a # => [1, 5, 9]
+(1..10).skip(3).size # => 3, sem executar o loop
+```</p>
+
+<p>Detalhes adicionais e exemplos na doc de <a href="http://ruby-doc.org/core-2.0/Object.html#method-i-to_enum">to_enum</a>.</p>
+
+<h3><strong>dir</strong></h3>
+
+<p>Embora <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-require_relative">require_relative</a> torna o uso de <code>File.dirname(__FILE__)</code> muito menos freqüentes, agora podemos usar <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-__dir__"><strong>dir</strong></a></p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.8:</h1>
+
+<p>require File.dirname(<strong>FILE</strong>) + "/lib"
+File.read(File.dirname(<strong>FILE</strong>) + "/.Gemfile")</p>
+
+<h1>Ruby 1.9:</h1>
+
+<p>require_relative 'lib'
+File.read(File.dirname(<strong>FILE</strong>) + '/.config')</p>
+
+<h1>Ruby 2.0</h1>
+
+<p>require_relative 'lib' # há necessidade de usar <strong>dir</strong> por isso!
+File.read(<strong>dir</strong> + '/.config')
+```</p>
+
+<h3>bsearch</h3>
+
+<p>Pesquisa binária já está disponível, usando <a href="http://ruby-doc.org/core-2.0/Array.html#method-i-bsearch">Array#bsearch</a> ou <a href="http://ruby-doc.org/core-2.0/Range.html#method-i-bsearch">Range#bsearch</a>:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>ary = [0, 4, 7, 10, 12]
+ary.bsearch {|x| x >=   6 } #=> 7
+ary.bsearch {|x| x >= 100 } #=> nil</p>
+
+<h1>Também em range, incluindo range de floats:</h1>
+
+<p>(Math::PI * 6 .. Math::PI * 6.5).bsearch{|f| Math.cos(f) &lt;= 0.5}</p>
+
+<h1>=> Math::PI * (6+1/3.0)</h1>
+
+<p>```</p>
+
+<h3>to_h</h3>
+
+<p>Existe agora uma forma oficial para converter uma classe a um Hash, utilizando <code>to_h</code>:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>Car = Struct.new(:make, :model, :year) do
+  def build</p>
+
+<pre><code>#...
+</code></pre>
+
+<p>  end
+end
+car = Car.new('Toyota', 'Prius', 2014)
+car.to_h # => {:make=>"Toyota", :model=>"Prius", :year=>2014}
+nil.to_h # => {}
+```</p>
+
+<p>Isso foi implementado para <code>nil</code>, <code>Struct</code> e <code>OpenStruct</code>, mas não para <code>Array</code>/<code>Enumerable</code>:</p>
+
+<p>```ruby
+{hello: 'world'}.map{|k, v| [k.to_s, v.upcase]}</p>
+
+<pre><code>            .to_h # =&gt; NoMethodError:
+</code></pre>
+
+<h1>undefined method `to_h' for [["hello", "WORLD"]]:Array</h1>
+
+<p>```</p>
+
+<p>Se você acha que isso seria um recurso útil, você deve <a href="http://bugs.ruby-lang.org/issues/7292">tentar convencer Matz</a>.</p>
+
+<h3>caller_locations</h3>
+
+<p>É usado para ser difícil saber qual o método chamado apenas. Que não foi muito eficiente, dado que o backtrace todo teve de ser retornado. Cada frames foi uma seqüência que precisava ser computado primeiramento pelo Ruby e provavelmente analisado depois.</p>
+
+<p>Entra <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-caller_locations">caller_locations</a> que retorna a informação de uma forma de objeto e com uma api melhor que pode limitar o número de frames solicitados.</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9:</h1>
+
+<p>def whoze_there_using_caller
+  caller[0][/`([<sup>']*)'/,</sup> 1]
+end</p>
+
+<h1>Ruby 2.0:</h1>
+
+<p>def whoze_there_using_locations
+  caller_locations(1,1)[0].label
+end
+```</p>
+
+<p>Quanto mais rápido é? <a href="https://gist.github.com/marcandre/5041813">Um teste simples</a> me dá um aumento de velocidade de 45x de um stacktrace curto, e 100x para um stacktrace de 100 entradas!</p>
+
+<p>A informação extra, como o caminho do arquivo, número da linha, ainda são acessíveis, em vez de pedir para o <code>label</code>, para pedir <code>path</code> ou <code>lineno</code>.</p>
+
+<h3>Otimizações</h3>
+
+<p>É difícil mostrar a maioria das otimizações de código, mas algumas otimizações agradáveis que foi feito no <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>. Em particular, o GC foi otimizado, em particular para fazer bifurcar muito mais rápido.</p>
+
+<p>Uma otimização que podemos demonstrar é fazer de imediatos muitos floats em sistemas de 64 bits. Isso evita a criação de novos objetos em muitos casos:</p>
+
+<p>```ruby</p>
+
+<h1>Ruby 1.9</h1>
+
+<p>4.2.object_id == 4.2.object_id # => false</p>
+
+<h1>Ruby 2.0</h1>
+
+<p>warn "Optimization only on 64 bit systems" unless 42.size * 8 == 64
+4.2.object_id == 4.2.object_id # => true (4.2 é imediato)
+4.2e100.object_id == 4.2e100.object_id # => false (4.2e100 não é)
+```</p>
+
+<h2>O que mais?</h2>
+
+<p>Uma extensa lista de mudanças é o <a href="https://github.com/marcandre/ruby/blob/news/NEWS.rdoc">arquivo NEWS</a>.</p>
+
+<h2>Eu quero!</h2>
+
+<p>Experimente hoje:</p>
+
+<ul>
+<li>Instalar com rvm: <code>rvm get head &amp;&amp; rvm install 2.0.0</code> (note que <code>rvm get stable</code> não é suficiente!)</li>
+<li>Instalar com rbenv: <code>rbenv install 2.0.0-p0</code> (eu acho)</li>
+<li>Outra instalação: Veja as instruções de <a href="http://www.ruby-lang.org/en/downloads/">ruby-lang.org</a></li>
+</ul>
+
+
+<p>Para aqueles que não podem atualizar ainda, você ainda pode ter um pouco da diversão com a minha gem <a href="https://github.com/marcandre/backports">backports</a>. Ele faz <code>bsearch</code>, <code>lazy</code> e mais um par disponível para qualquer versão do Ruby. A lista completa está no <a href="https://github.com/marcandre/backports#ruby-200">readme</a>.</p>
+
+<p>Aproveite o <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>!</p>
+
+<hr />
+
+<p>Até a proxima amigos...</p>
+
+<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>...</p>
+
+<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>...</p>
+
+<p>:D</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
@@ -544,122 +1118,6 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
 </code></p>
 
 <p>Até a proxima galera! :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:26:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
-
-<h2>Threads e Concorrência</h2>
-
-<!-- more -->
-
-
-<p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
-sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
-thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
-CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
-realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das <code>threads</code>.</p>
-
-<p>Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito <code>compute-bound</code>. Eles só
-podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
-programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
-tempo de espera para a rede ou arquivo <code>I/O</code>. Programas como estes estão a ser dito <code>IO-bound</code>. Programas <code>IO-bound</code> pode ser
-útil mesmo quando várias <code>threads</code> há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma <code>thread</code>
-enquanto outra <code>thread</code> está à espera para a próxima imagem para ser baixada da rede.</p>
-
-<p>Ruby faz com que seja fácil de escrever programas <code>multi-threaded</code> com a <code>Class Thread</code>. Para iniciar uma nova <code>thread</code>,
-apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
-<code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
-
-<p>```ruby Iniciando um thread</p>
-
-<h1>Thread #1 está sendo executado aqui</h1>
-
-<p>Thread.new {
-  # Thread #2 executa esse código
-}</p>
-
-<h1>Thread #1 executa esse código</h1>
-
-<p>```</p>
-
-<p>Vamos começar nossa cobertura de <code>threads</code> explicando o modelo <code>Thread</code> de Ruby e API em alguns detalhes. Estas seções
-introdutórias explicam as coisas como ciclo de vida da <code>thread</code>, agendamento de threads, e os estados da <code>thread</code>. Com que o
-material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir <code>threads</code> avançadas como
-sincronização de <code>threads</code>.</p>
-
-<p>Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
-operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
-sistema operacional. Para mais informações, use <code>ri</code> para procurar os métodos <code>Kernel.system</code>, <code>Kernel.exec</code>, <code>Kernel.fork</code>,
-<code>IO.popen</code>, e o módulo <code>Process</code>.</p>
-
-<h3>Lifecycle Tópico</h3>
-
-<p>Como descrito acima, novas <code>threads</code> são criados com <code>Thread.new</code>. Você também pode usar os sinónimos <code>Thread.start</code> e
-<code>Thread.fork</code>. Não há necessidade de se iniciar uma <code>thread</code> depois de criá-la, ele começa a ser executado automaticamente
-quando os recursos da CPU estejam disponíveis. O valor da invocação <code>Thread.new</code> é um objeto <code>Thread</code>. A classe <code>Thread</code>
-define um número de métodos para consultar e manipular a <code>thread</code> enquanto ela está sendo executada.</p>
-
-<p>Uma <code>thread</code> é executa o código do bloco associado à chamada para <code>Thread.new</code> e depois pára execução. O valor da última
-expressão em que o bloco é o valor da <code>thread</code>, e pode ser obtido chamando o método do valor do objeto <code>Thread</code>. Se a <code>thread</code>
-foi executado para conclusão, então o valor retorna o valor da <code>thread</code> de imediato. Caso contrário, os blocos de valor do
-método e não retorna até que a <code>threado</code> for concluída.</p>
-
-<p>O método de classe <code>Thread.current</code> retorna o objeto <code>Thread</code> que representa o atual <code>thread</code>. Isso permite que as <code>threads</code>
-manipulam-se. O método da classe <code>Thread.main</code> retorna o objeto <code>Thread</code> que representa a principal <code>thread</code>, este é a
-<code>thread</code> inicial de execução que começou quando o Programa Ruby foi iniciado.</p>
-
-<h4>A Thread principal</h4>
-
-<p>A <code>Thread</code> principal é especial: o interpretador Ruby pára de correr quando a <code>thread</code> principal é feita. Ele faz isso mesmo
-que a <code>thread</code> principal criou outras <code>threads</code> que ainda estão em execução. Você deve garantir, portanto, que a sua princial
-<code>thread</code> não termina enquanto outras <code>threads</code> ainda estão em execução. Uma maneira de fazer isso é escrever sua <code>thread</code>
-principal sob a forma de um <code>loop</code> infinito. Outra maneira é explicitamente esperar para as <code>threads</code> ser concluída. Já
-mencionamos que você pode chamar o método <code>value</code> de uma <code>thread</code> que espera que ela termine. Se você não se importa com o
-valor de suas <code>threads</code>, você pode esperar com o método de instancia <code>join</code>.</p>
-
-<p>O seguinte método espera até que todas as linhas, com excepção da <code>thread</code> principal e a <code>thread</code> atual (que pode ser a mesma
-coisa), ter saído:</p>
-
-<p><code>ruby Thread Principal
-def join_all
-  main = Thread.main        # Thread Principal
-  current = Thread.current  # Thread atual
-  all = Thread.list         # Todas as threads ainda em execução
-  # Agora chama join em cada thread
-  all.each {|t| t.join unless t == current or t == main }
-end
-</code></p>
-
-<h4>Threads e exceções não tratadas</h4>
-
-<p>Se uma exceção é levantada na <code>thread</code> principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
-mensagem e sai. Em outras <code>threads</code> que a <code>thread</code> principal, exceções não tratadas causam a <code>thread</code> para parar de executar.
-Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma <code>thread</code> <code>t</code> sai por causa de
-uma exceção não tratada, e outra <code>thread</code> de chamadas <code>t.join</code> ou <code>t.value</code>, então a exceção que ocorreu em <code>t</code> é levantada
-na <code>thread</code> de <code>s</code>.</p>
-
-<p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
-classe <code>Thread.abort_on_exception=</code>:</p>
-
-<p><code>ruby Thread
-Thread.abort_on_exception = true
-</code></p>
-
-<p>Se você quer uma exceção não tratada em uma <code>thread</code> específica faz com que o intérprete saia, utilizando o método de
-exemplo, através do mesmo nome:</p>
-
-<p><code>ruby Thread abort
-t = Thread.new { ... }
-t.abort_on_exception = true
-</code></p>
-
-<p>É isso ai amigos.. até a proxima!</p>
 ]]></content>
   </entry>
   

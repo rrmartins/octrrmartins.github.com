@@ -340,7 +340,11 @@
         <loc>
             http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/
         </loc>
-        <lastmod>2013-02-22T01:51:39-03:00</lastmod>
+        <lastmod>2013-02-26T22:57:59-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</loc>
+        <lastmod>2013-02-27T01:15:51-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/apostilas/2012-05-28-nao-siga-o-lider.html</loc>
@@ -352,7 +356,7 @@
     </url>
     <url>
         <loc>http://rrmartins.github.com/blog/archives/</loc>
-        <lastmod>2013-02-22T01:51:39-03:00</lastmod>
+        <lastmod>2013-02-27T01:15:51-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/contato/</loc>
@@ -360,7 +364,7 @@
     </url>
     <url>
         <loc>http://rrmartins.github.com/</loc>
-        <lastmod>2013-02-22T01:51:40-03:00</lastmod>
+        <lastmod>2013-02-27T01:15:51-03:00</lastmod>
     </url>
     <url>
         <loc>http://rrmartins.github.com/search.html</loc>
