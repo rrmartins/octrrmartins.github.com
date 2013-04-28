@@ -3,10 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Ruby 2.0 - Rodrigo Martins</title>
+	<title>Não é bem uma String - Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Category: Ruby 2.0">
+	<meta name="description" content="Continuando o ultimo post As Duas Faces de String
+que finaliza com a pergunta: Então, por que o Ruby nos dar tanto? A resposta é que nós tendemos a &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -97,91 +98,73 @@
 <div id="toload">
 <!-- begin toload --> 
     <div id="content" class="inner">
-        
+        <article class="post">
+	<h2 class="title">Não é Bem Uma String</h2>
+	<div class="entry-content"><!--more-->
+
+
+<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de &#8220;significa&#8221; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+</div>
+
+<div class="meta">
 	
-
-
+		<span class="comments"><a href="/blog/2013/04/28/nao-e-bem-uma-string/#disqus_thread">Comments</a></span>
 	
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a></h2>
-	<div class="meta">
-		<span class="date">Apr 28</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/eloquent-ruby/'>Eloquent Ruby</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-2-0/'>Ruby 2.0</a>, <a class='category' href='/blog/categories/string/'>String</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/28/nao-e-bem-uma-string/#disqus_thread">Comments</a></span>
-	    
-	</div>
+</div>
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/28/as-duas-faces-de-string/">As duas faces de String</a></h2>
-	<div class="meta">
-		<span class="date">Apr 28</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-2-0/'>Ruby 2.0</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/28/as-duas-faces-de-string/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/04/28/expressoes-regulares-em-ruby/">Expressões Regulares em Ruby</a></h2>
-	<div class="meta">
-		<span class="date">Apr 28</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/eloquent-ruby/'>Eloquent Ruby</a>, <a class='category' href='/blog/categories/expressão-regular/'>Expressão Regular</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9-3/'>Ruby 1.9.3</a>, <a class='category' href='/blog/categories/ruby-2-0/'>Ruby 2.0</a>, <a class='category' href='/blog/categories/string/'>String</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/28/expressoes-regulares-em-ruby/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
 	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/">[Tradução] Ruby 2.0 por Exemplos</a></h2>
-	<div class="meta">
-		<span class="date">Feb 26</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/marc-andre/'>Marc-Andre</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-2-0/'>Ruby 2.0</a>, <a class='category' href='/blog/categories/tradução/'>Tradução</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/#disqus_thread">Comments</a></span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
     </div>
     <footer id="footer">
@@ -208,7 +191,10 @@
       var disqus_shortname = 'rrmartins';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

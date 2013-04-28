@@ -4,7 +4,7 @@
   <title><![CDATA[Category: String | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/string/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T18:27:26-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Não é bem uma String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <updated>2013-04-28T18:35:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de "significa" que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
@@ -44,8 +85,11 @@ book = Book.find('all')
 </code></p>
 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
-do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar
-tanto?</p>
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+
+<p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
+
+<p>Até mais galera! :)</p>
 ]]></content>
   </entry>
   
@@ -357,124 +401,6 @@ Para evitar esse problema, de longa duração <code>compute-bound</code> <code>t
 programador para produzir a CPU para outra <code>thread</code>.</p>
 
 <p>Até a proxima amigos! :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:53:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
-
-<h2>Threads e Concorrência</h2>
-
-<h3>Threads e Variáveis</h3>
-
-<p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
-por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
- assim por diante) estão no escopo do bloco:</p>
-
-<p>``` ruby Thread e Variavel
-x = 0</p>
-
-<p>t1 = Thread.new do
-  # Esta Thread pode consultar e definir a variável x
-end</p>
-
-<p>t2 = Thread.new do
-  # Esta Thread e também consulta e seta x
-  # E pode consultar e definir T1 e T2 também.
-end
-```</p>
-
-<p>Quando dois ou mais <code>Thread</code> de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
-fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de <code>threads</code> abaixo.</p>
-
-<h4>Thread-privadas variáveis</h4>
-
-<p>Variáveis ​​definidas dentro do bloco de uma <code>thread</code> são particulares para essa <code>thread</code> e não são visíveis para qualquer
-outra <code>thread</code>. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.</p>
-
-<p>Muitas vezes queremos uma <code>Thread</code> tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
-altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
-respectivamente) os números 1, 2 e 3:</p>
-
-<p><code>ruby Threads Privadas
-n = 1
-while n &lt;= 3
-  Thread.new { puts n }
-  n += 1
-end
-</code></p>
-
-<p>Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
-3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
-criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
-variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela <code>thread</code> depende de quando esse
-segmento é executado em relação para a thread pai.</p>
-
-<p>Para resolver este problema, passamos o valor atual de n para o método <code>Thread.new</code>, e atribuimos o atual valor da variável a
-um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:</p>
-
-<p><code>ruby Threads Privadas
-n = 1
-while n &lt;= 3
-  # Obtem uma cópia privada do valor atual de n em x
-  Thread.new(n) {|x| puts x }
-  n += 1
-end
-</code></p>
-
-<p>Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop <code>while</code>. Neste
-caso, o valor de <code>n</code> é modificado para particular para o bloco externo e nunca durante a execução desse bloco:</p>
-
-<p><code>ruby Thread Privada com Interator
-1.upto (3) {| n | Thread.new {puts n}}
-</code></p>
-
-<h4>Variáveis ​​de Threads locais</h4>
-
-<p>Algumas das variáveis especiais globais de Ruby são <code>thread</code> local: elas podem ter valores diferentes em <code>threads</code> diferentes.
-<code>$SAFE</code> e <code>$~</code> são exemplos. Isto significa que, se dois <code>thread</code> estão realizando conconrrencia de expressão regular ao mesmo
-tempo, eles vão ver diferentes valores de <code>$~</code>, e a realização de um jogo em um fio não irá interferir com os resultados de
-um jogo executado na outra discussão.</p>
-
-<p>A classe <code>Thread</code> provê <code>hash-like</code> como o comportamento. Ele define métodos de instância <code>[]</code> e <code>[]=</code> que permitem associar
-valores arbitrários com qualquer símbolo. (Se você usar uma cadeia de caracteres em vez disso, ele será convertido em um
-símbolo. Ao contrário <code>hashs</code> de verdade, a classe <code>Thread</code> só permite símbolos como chaves.) Os valores associados a estes
-símbolos comportam-se como variáveis ​​de <code>Thread</code> locais. Eles não são privados como variáveis de block ​​locais porque qualquer
-<code>Thread</code> pode pesquisar um valor em qualquer outra <code>Thread</code>. Mas eles não são variáveis partilhadas, uma vez que cada Thread
-pode ter a sua própria cópia.</p>
-
-<p>Como exemplo, suponha que nós criamos <code>thread</code> para download de arquivos de um servidor web. A <code>Thread</code> principal pode querer
-monitorar o progresso do download. Para permitir isso, cada <code>Thread</code> pode fazer o seguinte:</p>
-
-<p><code>ruby Thread de progresso
-Thread.current[:progress] = bytes_received
-</code></p>
-
-<p>A <code>Thread</code> principal poderia, então, determinar o total de bytes baixado com um código como este:</p>
-
-<p><code>ruby Thread de progresso
-total = 0
-download_threads.each {|t| total += t[:progress] }
-</code></p>
-
-<p>Junto com <code>[]</code> e <code>[]=</code>, <code>Thread</code> também define um método <code>key?</code> para testar se uma determinada chave existe para uma discussão
-. Os métodos <code>keys</code> retorna uma matriz de símbolos que representam as chaves definidas para a <code>Thread</code>. Este código pode ser
-melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
-:progress ainda:</p>
-
-<p><code>ruby Thread de progresso
-total = 0
-download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
-</code></p>
-
-<p>Até a proxima galera! :D</p>
 ]]></content>
   </entry>
   

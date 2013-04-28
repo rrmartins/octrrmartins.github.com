@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Eloquent Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/eloquent-ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T18:27:26-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Não é bem uma String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <updated>2013-04-28T18:35:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de "significa" que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>

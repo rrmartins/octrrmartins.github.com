@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T18:27:26-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Não é bem uma String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <updated>2013-04-28T18:35:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de "significa" que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
@@ -44,8 +85,11 @@ book = Book.find('all')
 </code></p>
 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
-do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar
-tanto?</p>
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+
+<p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
+
+<p>Até mais galera! :)</p>
 ]]></content>
   </entry>
   
@@ -947,153 +991,6 @@ postar um comentário abaixo!</p>
 <p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo... :D</p>
 
 <hr />
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
-    <updated>2012-11-04T09:20:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
-
-<h4>Exemplos de Threads</h4>
-
-<p>Agora que já passamos alguns post falando do modelo <code>Thread</code> e da API de <code>Thread</code> em Ruby, vamos dar uma olhada em alguns
-exemplos reais de vários códigos de <code>threads</code>.</p>
-
-<h3>Leitura de arquivos simultaneamente</h3>
-
-<p>O uso mais comum de <code>threads</code> de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até
-mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
-define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
-com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
-destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL's <code>HTTP</code> e <code>FTP</code> possam ser abertas com
-<code>Kernel.open</code> e ler como se fossem arquivos:</p>
-
-<p>```ruby Lendo arquivos</p>
-
-<h1>Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.</h1>
-
-<h1>Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.</h1>
-
-<p>def conread(filenames)
-  h = {}            # hash vazio de resultados</p>
-
-<p>  # Crie uma linha para cada arquivo
-  filenames.each do |filename|      # Para cada arquivo chamado
-    h[filename] = Thread.new do     # Criar um fio, mapa para filename
-      open(filename) {|f| f.read }  # Abra e leia o arquivo
-    end                             # valor da linha é o conteúdo do arquivo
-  end</p>
-
-<p>  # Percorre o hash, à espera de cada thread para completar.
-  # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
-  h.each_pair do |filename, thread|</p>
-
-<pre><code>begin
-  h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
-rescue
-  h[filename] = $!              # Ou a exceção levantada
-end
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<h3>Servidor A Multithreads</h3>
-
-<p>Outra, quase canônico caso, o uso de <code>threads</code> é para escrever servidores que podem comunicar com mais do que um cliente
-de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
-possivelmente menos escalável) solução usa <code>threads</code>:</p>
-
-<p>```ruby Servidor a Multithreads
-require 'socket'</p>
-
-<h1>Este método espera um socket ligado a um cliente.</h1>
-
-<h1>Ele lê as linhas do cliente, inverte-los e envia-los de volta.</h1>
-
-<h1>Múltiplas Threads podem executar este método, ao mesmo tempo.</h1>
-
-<p>def handle_client(c)
-  while true</p>
-
-<pre><code>input = c.gets.chop     # Ler uma linha de entrada do cliente
-break if !input         # sai se tem muitas entradas
-break if input=="quit"  # ou se o cliente pede
-c.puts(input.reverse)   # Caso contrário, responde ao cliente.
-c.flush                 # Força a saída para fora
-</code></pre>
-
-<p>  end
-  c.close                   # Fecha o socket cliente
-end</p>
-
-<p>server = TCPServer.open(2000) # Ouve na porta 2000</p>
-
-<p>while true                    # Laço de servidores para sempre
-  client = server.accept      # Espere um cliente para conectar
-  Thread.start(client) do |c| # Inicia uma nova thread</p>
-
-<pre><code>handle_client(c)          # E Lida com o clinete nessa Thread
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<h3>Iteradores simultâneas</h3>
-
-<p>Embora tarefas IO são o caso de uso típico para <code>threads</code> de Ruby, eles não se restringem aos que usam. O código a seguir
-adiciona um método <code>conmap</code> (por mapa concorrente) para o modulo <code>Enumerável</code>. Ele funciona como mapa, mas processa cada
-elemento da matriz de entrada com uma distinta <code>Thread</code>:</p>
-
-<p>```ruby Iterador Simultâneo
-module Enumerable           # Abre o módulo Enumerable
-  def conmap(&amp;block)        # Define um novo método que espera um block</p>
-
-<pre><code>threads = []            # Começa com uma matriz vazia de threads
-self.each do |item|     # Para cada item enumerable
-  # Chama o bloco em uma nova Thread, e lembra da Thread
-  threads &lt;&lt; Thread.new { block.call(item) }
-end
-# Agora mapea o conjunto de Threads para os seus valores
-threads.map {|t| t.value } # E retorna a matriz de valores
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>E aqui está uma versão concorrente similar do iterador de cada um:</p>
-
-<p>```ruby Módulo Enumerable
-module Enumerable
-  def concurrently</p>
-
-<pre><code>map {|item| Thread.new { yield item }}.each {|t| t.join }
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
-Ruby e iteradores Ruby.</p>
-
-<p>Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
-que, dado o método <code>concurrently</code> definido mais cedo e um objeto <code>Hash h</code>, podemos escrever:</p>
-
-<p><code>ruby Método Concurrently
-h.each_pair.concurrently {|*pair| process(pair)}
-</code></p>
-
-<p>Até o proximo amigos!</p>
 ]]></content>
   </entry>
   

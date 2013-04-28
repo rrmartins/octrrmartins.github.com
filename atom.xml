@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T18:27:26-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Não é bem uma String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <updated>2013-04-28T18:35:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando o ultimo post <a href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de &#8220;significa&#8221; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
@@ -44,8 +85,11 @@ código para que pudéssemos usar uma string para sinal de que queria que todos 
 
 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
-do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar
-tanto?</p>
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+
+<p>Continuando no post <a href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+
+<p>Até mais galera! :)</p>
 ]]></content>
   </entry>
   
@@ -3942,157 +3986,6 @@ as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais 
 <p>É isso ai amigos&#8230; Bora continuar estudando!</p>
 
 <p>Em breve, irei postar um pouco sobre Engenharia! :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
-    <updated>2012-08-29T22:15:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Avaliando Strings e Blocos</h1>
-
-
-<p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
-válido Ruby, o método <code>Kernel.eval</code> pode avaliar que o código:</p>
-
-<figure class='code'><figcaption><span>Kernel.eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">eval</span> <span class="s2">&quot;x + 1&quot;</span>  <span class="c1"># =&gt; 2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
-inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
-de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que
-usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos <code>eval</code> e <code>eval-like</code>.</p>
-
-<h3>Associações e eval</h3>
-
-
-<p>Um objeto de Associação, representa o estado de variáveis <code>bindings</code> de Ruby em algum momento. O objeto <code>Kernel.binding</code> retorna as ligações em vigor
-no local da chamada. Você pode passar um objeto de associação como o segundo argumento para <code>eval</code>, e a <code>String</code> especificada será avaliada no
-contexto dessas ligações. Se, por exemplo, definir um método de instância que retorna um objeto <code>Binding</code> que representa a variável de ligações
-dentro de um objeto, então nós podemos usar essas ligações para consultar e definir as variáveis de instância do objeto. Podemos conseguir isso como segue:</p>
-
-<figure class='code'><figcaption><span>Binding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Object</span> <span class="c1"># Abre objeto para adicionar um novo método</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">bindings</span> <span class="c1"># Nota plural sobre este método</span>
-</span><span class='line'><span class="err">    </span><span class="nb">binding</span> <span class="c1"># Este é o método de Kernel predefinido</span>
-</span><span class='line'><span class="err">  </span><span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Test</span> <span class="c1"># Uma classe simples com uma variável de instância</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="vi">@x</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="no">Test</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Criar um objeto test</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;@x&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">bindings</span><span class="p">)</span>  <span class="c1"># =&gt; 10: Espia dentro t</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note que não é realmente necessário definir um método de <code>Object.bindings</code> deste tipo para observar nas variáveis de instância de um objeto. Vários
-outros métodos descritos logo oferecem maneiras mais fáceis de consulta (e de conjunto) do valor das variáveis de instância de um objeto.</p>
-
-<p>Os objetos <code>Proc</code> definem um método público de ligação que retorna uma Associação de objeto que representa a variável ligação em vigor para o corpo
-do <code>Proc</code>. Além disso, o método <code>eval</code> permite que você passe um objeto <code>Proc</code> em vez de um objeto de associação como o segundo argumento.</p>
-
-<p>Ruby 1.9 define um método <code>eval</code> em objetos de associação, de modo em vez de passar uma associação como o segundo argumento para o <code>eval</code> global,
-você pode, em vez de invocar o método <code>eval</code> em uma ligação. Qual você escolhe é puramente uma questão de estética, as duas técnicas são equivalentes.</p>
-
-<h3>instance_eval e class_eval</h3>
-
-
-<p>A classe <code>Object</code> define um método chamado <code>instance_eval</code>, e a classe <code>Module</code> define um método chamado <code>class_eval</code>. <code>module_eval</code> é um sinônimo
-para <code>class_eval</code>. Ambos os métodos avaliam código Ruby, como o <code>eval</code> faz, mas existem duas diferenças importantes. A primeira diferença é a que eles
-avaliam o código no contexto do objecto específico ou no contexto especificado de cada módulo do objecto ou é o valor enquanto o código está sendo
-avaliado. Aqui estão alguns exemplos:</p>
-
-<figure class='code'><figcaption><span>instance_eval e class_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span><span class="p">(</span><span class="s2">&quot;@x&quot;</span><span class="p">)</span>  <span class="c1"># Retorna o valor da variável de instância o @x</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Define um len método de instância de String para retornar comprimento da String</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span><span class="p">(</span><span class="s2">&quot;def len; size; end&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Aqui está outra maneira de fazer isso</span>
-</span><span class='line'><span class="c1"># O código citado se comporta como se fosse dentro da &quot;class String&quot; e &quot;end&quot;</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span><span class="p">(</span><span class="s2">&quot;alias len size&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Use instance_eval para definir método de classe String.Empty</span>
-</span><span class='line'><span class="c1"># Note que as aspas dentro da aspas fica um pouco complicado ...</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">(</span><span class="s2">&quot;def vazio;&#39;&#39;; fim&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Observe a diferença sutil, mas crucial entre <code>instance_eval</code> e <code>class_eval</code> quando o código que está sendo avaliado contém uma definição de método.
-<code>instance_eval</code> define métodos únicos do objeto (e isso resulta em métodos de classe quando for chamado em uma classe de objeto). <code>class_eval</code> define métodos de instância regulare.</p>
-
-<p>A segunda diferença importante entre estes dois métodos e o eval global é que <code>instance_eval</code> e <code>class_eval</code> pode aceitar um bloco de código para
-avaliar. Quando passa um bloco em vez de uma <code>String</code>, o código do bloco é executado no contexto apropriado. Aqui, por conseguinte, são alternativas
-para as invocações anteriorment mostrada:</p>
-
-<figure class='code'><figcaption><span>instance_eval e class_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="vi">@x</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">len</span>
-</span><span class='line'>    <span class="n">size</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="k">alias</span> <span class="n">len</span> <span class="n">size</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="k">def</span> <span class="nf">empty</span><span class="p">;</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="k">end</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>instance_exec e class_exec</h3>
-
-
-<p>Ruby 1.9 define dois métodos de avaliação a mais: <code>instance_exec</code> e <code>class_exec</code> (e seu alias, <code>module_exec</code>). Estes métodos de avaliação de um bloco
-(Mas não uma cadeia) de código, no contexto do objeto receptor, como fazem <code>instance_eval</code> e <code>class_eval</code>. A diferença é que o métodos <code>exec</code> aceita
-argumentos e passá para o bloco. Assim, o bloco do código é avaliado no contexto de um objeto determinado, com parâmetros cujos valores vêm a partir
-do exterior do objecto.</p>
-
-<p>Até o proximo post amigos! :P</p>
 ]]></content>
   </entry>
   
