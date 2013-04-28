@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,11 +14,942 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Não é bem uma String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <updated>2013-04-28T18:35:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando o ultimo post <a href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+que finaliza com a pergunta:</p>
+
+<pre><code>Então, por que o Ruby nos dar tanto?
+</code></pre>
+
+<p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
+O primeiro, e mais óbvio, o uso de <code>strings</code> é manter alguns dados que estamos processando. Leia naqueles
+objetos livro a partir do banco de dados e você muito provavelmente vai ter suas mãos cheias de dados de
+<code>string</code>, coisas como o título do livro, o autor, o nome do AOS, e o texto real.</p>
+
+<p>A segunda maneira que nós usamos cadeias de caracteres é para representar as coisas em nossos programas,
+coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
+de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
+voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
+tipo de &#8220;significa&#8221; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
+
+<p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
+um lado, e, postos de trabalho, do tipo marcador simbólicos internos sobre o outro - faz muita
+diferença sobre demandas de objetos. Se você estiver processando dados, você vai querer ter toda a gama de
+ferramentas de manipulação de <code>string</code> na ponta dos dedos: Você pode querer os dez primeiros caracteres do
+título, ou você pode querer obter o seu comprimento ou ver se ele corresponde a alguma expressão regular. Por
+outro lado, se você estiver usando alguns caracteres para estar em algo no seu código, você provavelmente não
+está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
+saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
+Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
+esta é forma é a mesma que rápida e confiável.</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[As duas faces de String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <updated>2013-04-28T16:30:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string &#8220;dog&#8221; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &#8220;d&#8221;, um &#8220;o&#8221;, e &#8220;g&#8221;.</p>
+
+<p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>book = Book.find(:all)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O argumento para o método <code>find</code> é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para <code>Book.find</code> realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do <code>ActiveRecord</code> e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>book = Book.find('all')</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+
+<p>Continuando no post <a href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <updated>2013-04-28T13:52:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos,</p>
+
+<p>Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.</p>
+
+<p>Volto falando um pouco de <code>Expressão Regular</code> em Ruby(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão <a href="http://ruby-doc.org/core-2.0/">2.0</a> é a que estou usando, e não esta me deixando na mão.</p>
+
+<p>Em Ruby, a expressão regular, ou <code>Regexp</code>(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/\d\d:\d\d (AM|PM)/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você usa o operador <code>=~</code> para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/PM/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="sr">/May/</span> <span class="o">=~</span> <span class="s1">&#39;Sometime in June&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Voltará <code>nil</code>. Desde o operador <code>=~</code> retorna um número quando se encontra uma correspondência e <code>nil</code> se não, você pode usar
+conjuntos de expressões regulares como booleanos:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="n">the_time</span> <span class="o">=</span> <span class="s1">&#39;10:24 AM&#39;</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/</span> <span class="o">=~</span> <span class="n">the_time</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador <code>=~</code> também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="s1">&#39;10:24 AM&#39;</span> <span class="o">=~</span> <span class="sr">/AM/</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Como disse, as expressões regulares são por padrão <code>case sensitive</code>: <code>/AM/</code> não corresponde <code>/am/</code>. Felizmente, você pode
+transformar esse <code>case sensitive</code> colocando um i no fim de sua expressão, de modo que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/i</span> <span class="o">=~</span> <span class="s1">&#39;am&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Irá imprimir algo!</p>
+
+<p>Além de seu uso mais ou menos independente com o operador <code>=~</code>, expressões regulares também entram em jogo nos métodos de <code>string</code>
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método <a href="http://ruby-doc.org/core-2.0/String.html#method-i-gsub">gsub</a> da classe <code>string</code>, talvez para apagar todo o conteúdo de um documento:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Document</span>
+</span><span class='line'>  <span class="c1"># A maioria da classe omitida...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">obscure_times!</span>
+</span><span class='line'>    <span class="vi">@content</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span><span class="p">,</span> <span class="s1">&#39;**:** **&#39;</span> <span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.</p>
+
+<p>Até mais&#8230; :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    <updated>2013-02-26T22:54:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos,</p>
+
+<p>Tudo tranquilo?</p>
+
+<p>Estava conversando com o <a href="https://twitter.com/malafortune">Marc-Andre Lafortune</a>, do blog <a href="http://blog.marc-andre.ca/">Marc Andre</a>, sobre a nova versão do <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0</a>, e ele me permitiu traduzir o <a href="http://blog.marc-andre.ca/2013/02/23/ruby-2-by-example/">post dele</a> e ai vai.. :)</p>
+
+<p>Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no <a href="https://twitter.com/yukihiro_matz/statuses/305334327938519040">twitter</a>:</p>
+
+<blockquote><p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p><footer><strong>@yukihiro_matz</strong> <cite><a href='https://twitter.com/yukihiro_matz/status/305334327938519040'>twitter.com/yukihiro_matz/&hellip;</a></cite></footer></blockquote>
+
+
+<p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
+
+<p>Vamos a tradução&#8230; :D</p>
+
+<hr />
+
+<p>Tradução</p>
+
+<hr />
+
+<p>Um rápido resumo de alguns dos novos recursos do <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>:</p>
+
+<h3>Alterações na Linguagem</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'>  <span class="c1"># (Do action_view/helpers/text_helper.rb)</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">options</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">extract_options!</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:</span>
+</span><span class='line'><span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="n">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; ArgumentError: unknown keyword: nme</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Para obter o mesmo resultado e melhor exato:</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">ignore_extra</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Isso faz com que as definições de método seja muito flexível. Em resumo:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">name</span><span class="p">({</span><span class="n">required_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="n">optional_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="o">*</span><span class="n">rest</span> <span class="o">||</span> <span class="n">additional_required_arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span> <span class="c1"># Você Sabia?</span>
+</span><span class='line'>         <span class="p">{</span><span class="n">keyword_arguments</span><span class="p">:</span> <span class="s2">&quot;with_defaults&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="o">**</span><span class="n">rest_of_keyword_arguments</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="o">&amp;</span><span class="n">block_capture</span><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Em <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>, argumentos devem ter padrões, ou então deve ser capturado por <code>**extra</code> no final. Próxima versão <a href="https://bugs.ruby-lang.org/issues/7701">permitirá</a> argumentos obrigatórios, por exemplo, <code>def hello(optional: 'default', required:)</code>, mas há <a href="http://stackoverflow.com/questions/13250447/can-i-have-required-named-parameters-in-ruby-2-x/15078852#15078852">maneiras de fazer isso agora</a>.</p>
+
+<p>Padrões, para parâmetros opcionais ou argumentos de palavras-chave, pode ser na maior parte qualquer expressão, incluindo chamadas de método para o objeto atual e pode usar os parâmetros anteriores.</p>
+
+<p>Um exemplo complexo que mostra a maior parte deste:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">C</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">hi</span><span class="p">(</span><span class="n">needed</span><span class="p">,</span> <span class="n">needed2</span><span class="p">,</span>
+</span><span class='line'>         <span class="n">maybe1</span> <span class="o">=</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="n">maybe2</span> <span class="o">=</span> <span class="n">maybe1</span><span class="o">.</span><span class="n">upcase</span><span class="p">,</span>
+</span><span class='line'>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+</span><span class='line'>         <span class="n">named1</span><span class="p">:</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">named2</span><span class="p">:</span> <span class="n">a_method</span><span class="p">(</span><span class="n">named1</span><span class="p">,</span> <span class="n">needed2</span><span class="p">),</span>
+</span><span class='line'>         <span class="o">**</span><span class="n">options</span><span class="p">,</span>
+</span><span class='line'>         <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">a_method</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">instance_method</span><span class="p">(</span><span class="ss">:hi</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+</span><span class='line'><span class="c1"># =&gt; [ [:req, :needed], [:req, :needed2],</span>
+</span><span class='line'><span class="c1">#      [:opt, :maybe1], [:opt, :maybe2],</span>
+</span><span class='line'><span class="c1">#      [:rest, :args],</span>
+</span><span class='line'><span class="c1">#      [:key, :named1], [:key, :named2],</span>
+</span><span class='line'><span class="c1">#      [:keyrest, :options],</span>
+</span><span class='line'><span class="c1">#      [:block, :block] ]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://bugs.ruby-lang.org/issues/7922">Bug conhecido</a>: não é atualmente possível ignorar opções extras sem citar o argumento <code>**</code>.</p>
+
+<h3>Criação de lista de Symbol</h3>
+
+<p>Maneira fácil de criar listas de símbolos com <code>%i</code> e <code>%I</code> (onde i é para uso interno):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'><span class="no">KEYS</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:foo</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">,</span> <span class="ss">:baz</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="no">KEYS</span> <span class="o">=</span> <span class="o">%</span><span class="n">i</span><span class="o">[</span><span class="n">foo</span> <span class="n">bar</span> <span class="n">baz</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Codificação padrão é UTF-8</h3>
+
+<p>Nenhum comentário magico é necessário caso a codificação for UTF-8.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'><span class="c1"># encoding: utf-8</span>
+</span><span class='line'><span class="c1"># ^^^ previous line was needed!</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;❤ Rodrigo Martins ❤&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;❤ Rodrigo Martins ❤&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Variáveis ​​não utilizadas pode começar com _</h3>
+
+<p>Você sabia que Ruby pode avisá-lo sobre as variáveis ​​utilizadas?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Qualquer versão do Ruby, com aviso em:</span>
+</span><span class='line'><span class="n">ruby</span> <span class="o">-</span><span class="n">w</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">  def hi</span>
+</span><span class='line'><span class="s2">    hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)</span>
+</span><span class='line'><span class="s2">    world</span>
+</span><span class='line'><span class="s2">  end&quot;</span>
+</span><span class='line'><span class="c1"># =&gt; warning: assigned but unused variable - hello</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A maneira de evitar o aviso era usar <code>_</code>. Agora podemos usar qualquer nome de variável começando com um underscore:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9</span>
+</span><span class='line'><span class="n">ruby</span> <span class="o">-</span><span class="n">w</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">  def foo</span>
+</span><span class='line'><span class="s2">    _, world = &#39;hello, world&#39;.split(&#39;, &#39;)</span>
+</span><span class='line'><span class="s2">    world</span>
+</span><span class='line'><span class="s2">  end&quot;</span>
+</span><span class='line'><span class="c1"># =&gt; no warning</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0</span>
+</span><span class='line'><span class="n">ruby</span> <span class="o">-</span><span class="n">w</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">  def hi</span>
+</span><span class='line'><span class="s2">    _hello, world = &#39;hello, world&#39;.split(&#39;, &#39;)</span>
+</span><span class='line'><span class="s2">    world</span>
+</span><span class='line'><span class="s2">  end&quot;</span>
+</span><span class='line'><span class="c1"># =&gt; no warning either</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Mudanças das Classes Principais</h2>
+
+<h3>Prepend</h3>
+
+<p><a href="http://ruby-doc.org/core-2.0/String.html#method-i-prepend">Module#prepend</a> insere um módulo no início da cadeia de ligação. Pode muito bem substituir por <code>alias_method_chain</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Range</span>
+</span><span class='line'>  <span class="c1"># Do active_support/core_ext/range/include_range.rb</span>
+</span><span class='line'>  <span class="c1"># Estende o padrão Range#include? para suportar comparações de range</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">include_with_range?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="o">::</span><span class="no">Range</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># 1...10 inclue 1..9 mas não inclue 1..10.</span>
+</span><span class='line'>      <span class="n">operator</span> <span class="o">=</span> <span class="n">exclude_end?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">value</span><span class="o">.</span><span class="n">exclude_end?</span> <span class="p">?</span> <span class="p">:</span><span class="o">&lt;</span> <span class="p">:</span> <span class="p">:</span><span class="o">&lt;=</span>
+</span><span class='line'>      <span class="n">include_without_range?</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">first</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">include_without_range?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">alias_method_chain</span> <span class="ss">:include?</span><span class="p">,</span> <span class="ss">:range</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Range</span><span class="o">.</span><span class="n">ancestors</span> <span class="c1"># =&gt; [Range, Enumerable, Object...]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">IncludeRangeExt</span>
+</span><span class='line'>  <span class="c1"># Estende o padrão Range#include? para suportar comparações de range</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">include?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="o">::</span><span class="no">Range</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># 1...10 inclue 1..9 mas não inclue 1..10.</span>
+</span><span class='line'>      <span class="n">operator</span> <span class="o">=</span> <span class="n">exclude_end?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">value</span><span class="o">.</span><span class="n">exclude_end?</span> <span class="p">?</span> <span class="p">:</span><span class="o">&lt;</span> <span class="p">:</span> <span class="p">:</span><span class="o">&lt;=</span>
+</span><span class='line'>      <span class="k">super</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">first</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="k">super</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Range</span>
+</span><span class='line'>  <span class="n">prepend</span> <span class="no">IncludeRangeExt</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Range</span><span class="o">.</span><span class="n">ancestors</span> <span class="c1"># =&gt; [IncludeRangeExt, Range, Enumerable, Object...]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Refinamentos [experimental]</h3>
+
+<p>No Ruby 1.9, se você usa um metodo <code>alias_method_chain</code>, a nova definição ocorre em todos os lugares. Em <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>, você pode fazer esse tipo de mudança apenas para si mesmo utilizando o <a href="http://ruby-doc.org/core-2.0/Module.html#method-i-refine">Module#refine</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">IncludeRangeExt</span>
+</span><span class='line'>  <span class="n">refine</span> <span class="no">Range</span> <span class="k">do</span>
+</span><span class='line'>    <span class="c1"># Estende o padrão Range#include? para suportar comparações de range</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">include?</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="o">::</span><span class="no">Range</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1"># 1...10 inclue 1..9 mas não inclue 1..10.</span>
+</span><span class='line'>        <span class="n">operator</span> <span class="o">=</span> <span class="n">exclude_end?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">value</span><span class="o">.</span><span class="n">exclude_end?</span> <span class="p">?</span> <span class="p">:</span><span class="o">&lt;</span> <span class="p">:</span> <span class="p">:</span><span class="o">&lt;=</span>
+</span><span class='line'>        <span class="k">super</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">first</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="k">super</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">test_before</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">r</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># =&gt; false (comportamento padrão)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Agora liga o refinamento:</span>
+</span><span class='line'><span class="n">using</span> <span class="no">IncludeRangeExt</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># =&gt; true  (comportamento refinado)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">test_after</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">r</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">test_after</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; true (definido depois de usar, o comportamento tão refinado)</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">all?</span> <span class="k">do</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span> <span class="c1"># =&gt; true  (comportamento refinado)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Mas a versão refinada acontece apenas para chamadas definidas após o uso:</span>
+</span><span class='line'><span class="n">test_before</span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; false (definido anteriormente, não afetado)</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;some_other_file&#39;</span> <span class="c1"># =&gt; não afetado, usará o comportamento predefinido</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Note:</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">send</span> <span class="ss">:include?</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span> <span class="c1"># =&gt; false (por agora, envio ignora refinamentos)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Spec completo está <a href="http://bugs.ruby-lang.org/projects/ruby-trunk/wiki/RefinementsSpec">aqui</a> e está sujeita a mudanças em versões posteriores. Discussão mais aprofundada <a href="http://benhoskin.gs/2013/02/24/ruby-2-0-by-example#refinements">aqui</a>.</p>
+
+<h3>Enumeradores Lazy</h3>
+
+<p>Um <a href="http://ruby-doc.org/core-2.0/Enumerable.html">Enumerable</a> pode ser transformado em um lazy com o novo método <a href="http://ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy">Enumerable#lazy</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="n">lines</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;a_very_large_file&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">lazy</span> <span class="c1"># por isso só ler as partes necessárias!</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">select</span> <span class="p">{</span><span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">}</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">each_slice</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">lines</span><span class="o">|</span> <span class="n">lines</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span> <span class="p">}</span>
+</span><span class='line'>            <span class="o">.</span><span class="n">take_while</span> <span class="p">{</span><span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="p">}</span>
+</span><span class='line'>  <span class="c1"># =&gt; Enumerador lazy, ainda não executa nada</span>
+</span><span class='line'><span class="n">lines</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># =&gt; Lê o arquivo até que ele retornar 3 elementos</span>
+</span><span class='line'>               <span class="c1"># ou até que um elemento de length &lt;= 20 é</span>
+</span><span class='line'>               <span class="c1"># retornado (por causa da take_while)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Para consumir o enumerável:</span>
+</span><span class='line'><span class="n">lines</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># ou...</span>
+</span><span class='line'><span class="n">lines</span><span class="o">.</span><span class="n">force</span> <span class="c1"># =&gt; Lê o arquivo e retorna uma array</span>
+</span><span class='line'><span class="n">lines</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span> <span class="c1"># =&gt; Lê o arquivo e imprime os elementos resultantes</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note-se que, muitas vezes, <code>lazy</code> é mais lento do que uma versão não <code>lazy</code>. Ele deve ser usado somente quando ele realmente faz sentido, não apenas para evitar a construção de um <code>array</code> intermediário.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;fruity&#39;</span>
+</span><span class='line'><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span>
+</span><span class='line'><span class="n">compare</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">lazy</span>   <span class="p">{</span> <span class="n">r</span><span class="o">.</span><span class="n">lazy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_s</span><span class="p">)</span><span class="o">.</span><span class="n">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:join</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">direct</span> <span class="p">{</span> <span class="n">r</span>     <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_s</span><span class="p">)</span><span class="o">.</span><span class="n">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:join</span><span class="p">)</span>      <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1"># =&gt; direto é mais rápida do que por lazy 2x ± 0.1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Tamanho Lazy</h3>
+
+<p><a href="http://ruby-doc.org/core-2.0/Enumerator.html#method-i-size">Enumerator#size</a> pode ser chamado para obter o tamanho do enumerador sem consumi-lo (se disponível).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">size</span> <span class="c1"># =&gt; 94109400</span>
+</span><span class='line'><span class="kp">loop</span><span class="o">.</span><span class="n">size</span> <span class="c1"># =&gt; Float::INFINITY</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">drop_while</span><span class="o">.</span><span class="n">size</span> <span class="c1"># =&gt; nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ao criar enumeradores, seja com <code>to_enum</code>, <code>Enumerator::New</code> ou <code>Enumerator::Lazy::New</code> é possível definir um tamanho muito:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="n">fib</span> <span class="o">=</span> <span class="no">Enumerator</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">Float</span><span class="o">::</span><span class="no">INFINITY</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">a</span>
+</span><span class='line'>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="n">a</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">still_lazy</span> <span class="o">=</span> <span class="n">fib</span><span class="o">.</span><span class="n">lazy</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span class='line'><span class="n">still_lazy</span><span class="o">.</span><span class="n">size</span> <span class="c1"># =&gt; 1_000_000 - 42</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Enumerable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">every</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="nb">block_given?</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">to_enum</span><span class="p">(</span><span class="ss">:skip</span><span class="p">,</span> <span class="n">every</span><span class="p">)</span> <span class="p">{</span> <span class="n">size</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">size</span><span class="o">+</span><span class="n">every</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">every</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">each_slice</span><span class="p">(</span><span class="n">every</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">first</span><span class="p">,</span> <span class="o">*</span><span class="n">ignore</span><span class="o">|</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="n">last</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># =&gt; [1, 5, 9]</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">size</span> <span class="c1"># =&gt; 3, sem executar o loop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Detalhes adicionais e exemplos na doc de <a href="http://ruby-doc.org/core-2.0/Object.html#method-i-to_enum">to_enum</a>.</p>
+
+<h3><strong>dir</strong></h3>
+
+<p>Embora <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-require_relative">require_relative</a> torna o uso de <code>File.dirname(__FILE__)</code> muito menos freqüentes, agora podemos usar <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-__dir__"><strong>dir</strong></a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.8:</span>
+</span><span class='line'><span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/lib&quot;</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/.Gemfile&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;lib&#39;</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/.config&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;lib&#39;</span> <span class="c1"># há necessidade de usar __dir__ por isso!</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">__dir__</span> <span class="o">+</span> <span class="s1">&#39;/.config&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>bsearch</h3>
+
+<p>Pesquisa binária já está disponível, usando <a href="http://ruby-doc.org/core-2.0/Array.html#method-i-bsearch">Array#bsearch</a> ou <a href="http://ruby-doc.org/core-2.0/Range.html#method-i-bsearch">Range#bsearch</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="o">]</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">bsearch</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">&gt;=</span>   <span class="mi">6</span> <span class="p">}</span> <span class="c1">#=&gt; 7</span>
+</span><span class='line'><span class="n">ary</span><span class="o">.</span><span class="n">bsearch</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">100</span> <span class="p">}</span> <span class="c1">#=&gt; nil</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Também em range, incluindo range de floats:</span>
+</span><span class='line'><span class="p">(</span><span class="no">Math</span><span class="o">::</span><span class="no">PI</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">.</span><span class="n">.</span> <span class="no">Math</span><span class="o">::</span><span class="no">PI</span> <span class="o">*</span> <span class="mi">6</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">bsearch</span><span class="p">{</span><span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">Math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
+</span><span class='line'><span class="c1"># =&gt; Math::PI * (6+1/3.0)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>to_h</h3>
+
+<p>Existe agora uma forma oficial para converter uma classe a um Hash, utilizando <code>to_h</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="no">Car</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:make</span><span class="p">,</span> <span class="ss">:model</span><span class="p">,</span> <span class="ss">:year</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">build</span>
+</span><span class='line'>    <span class="c1">#...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">car</span> <span class="o">=</span> <span class="no">Car</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;Toyota&#39;</span><span class="p">,</span> <span class="s1">&#39;Prius&#39;</span><span class="p">,</span> <span class="mi">2014</span><span class="p">)</span>
+</span><span class='line'><span class="n">car</span><span class="o">.</span><span class="n">to_h</span> <span class="c1"># =&gt; {:make=&gt;&quot;Toyota&quot;, :model=&gt;&quot;Prius&quot;, :year=&gt;2014}</span>
+</span><span class='line'><span class="kp">nil</span><span class="o">.</span><span class="n">to_h</span> <span class="c1"># =&gt; {}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Isso foi implementado para <code>nil</code>, <code>Struct</code> e <code>OpenStruct</code>, mas não para <code>Array</code>/<code>Enumerable</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">upcase</span><span class="o">]</span><span class="p">}</span>
+</span><span class='line'>                <span class="o">.</span><span class="n">to_h</span> <span class="c1"># =&gt; NoMethodError:</span>
+</span><span class='line'><span class="c1"># undefined method `to_h&#39; for [[&quot;hello&quot;, &quot;WORLD&quot;]]:Array</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se você acha que isso seria um recurso útil, você deve <a href="http://bugs.ruby-lang.org/issues/7292">tentar convencer Matz</a>.</p>
+
+<h3>caller_locations</h3>
+
+<p>É usado para ser difícil saber qual o método chamado apenas. Que não foi muito eficiente, dado que o backtrace todo teve de ser retornado. Cada frames foi uma seqüência que precisava ser computado primeiramento pelo Ruby e provavelmente analisado depois.</p>
+
+<p>Entra <a href="http://ruby-doc.org/core-2.0/Kernel.html#method-i-caller_locations">caller_locations</a> que retorna a informação de uma forma de objeto e com uma api melhor que pode limitar o número de frames solicitados.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9:</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">whoze_there_using_caller</span>
+</span><span class='line'>  <span class="nb">caller</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="sr">/`([^&#39;]*)&#39;/</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0:</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">whoze_there_using_locations</span>
+</span><span class='line'>  <span class="n">caller_locations</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">label</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Quanto mais rápido é? <a href="https://gist.github.com/marcandre/5041813">Um teste simples</a> me dá um aumento de velocidade de 45x de um stacktrace curto, e 100x para um stacktrace de 100 entradas!</p>
+
+<p>A informação extra, como o caminho do arquivo, número da linha, ainda são acessíveis, em vez de pedir para o <code>label</code>, para pedir <code>path</code> ou <code>lineno</code>.</p>
+
+<h3>Otimizações</h3>
+
+<p>É difícil mostrar a maioria das otimizações de código, mas algumas otimizações agradáveis que foi feito no <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>. Em particular, o GC foi otimizado, em particular para fazer bifurcar muito mais rápido.</p>
+
+<p>Uma otimização que podemos demonstrar é fazer de imediatos muitos floats em sistemas de 64 bits. Isso evita a criação de novos objetos em muitos casos:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Ruby 1.9</span>
+</span><span class='line'><span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; false</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Ruby 2.0</span>
+</span><span class='line'><span class="nb">warn</span> <span class="s2">&quot;Optimization only on 64 bit systems&quot;</span> <span class="k">unless</span> <span class="mi">42</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">==</span> <span class="mi">64</span>
+</span><span class='line'><span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; true (4.2 é imediato)</span>
+</span><span class='line'><span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="n">e100</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="n">e100</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; false (4.2e100 não é)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>O que mais?</h2>
+
+<p>Uma extensa lista de mudanças é o <a href="https://github.com/marcandre/ruby/blob/news/NEWS.rdoc">arquivo NEWS</a>.</p>
+
+<h2>Eu quero!</h2>
+
+<p>Experimente hoje:</p>
+
+<ul>
+<li>Instalar com rvm: <code>rvm get head &amp;&amp; rvm install 2.0.0</code> (note que <code>rvm get stable</code> não é suficiente!)</li>
+<li>Instalar com rbenv: <code>rbenv install 2.0.0-p0</code> (eu acho)</li>
+<li>Outra instalação: Veja as instruções de <a href="http://www.ruby-lang.org/en/downloads/">ruby-lang.org</a></li>
+</ul>
+
+
+<p>Para aqueles que não podem atualizar ainda, você ainda pode ter um pouco da diversão com a minha gem <a href="https://github.com/marcandre/backports">backports</a>. Ele faz <code>bsearch</code>, <code>lazy</code> e mais um par disponível para qualquer versão do Ruby. A lista completa está no <a href="https://github.com/marcandre/backports#ruby-200">readme</a>.</p>
+
+<p>Aproveite o <a href="http://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/">Ruby 2.0.0</a>!</p>
+
+<hr />
+
+<p>Até a proxima amigos&#8230;</p>
+
+<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+
+<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+
+<p>:D</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
-    <updated>2012-12-02T09:37:00-02:00</updated>
+    <updated>2012-12-02T09:37:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
-    <content type="html"><![CDATA[<p>Conversando com o <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, um cara super gente boa. :) E ele liberou ai a tradução do post <a href="http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails">Working with time zones in Ruby on Rails</a>.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Conversando com o <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, um cara super gente boa. :) E ele liberou ai a tradução do post <a href="http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails">Working with time zones in Ruby on Rails</a>.</p>
 
 <hr />
 
@@ -29,9 +960,6 @@
 <p><a href="http://api.rubyonrails.org">Rails</a> oferece ótimas ferramentas para trabalhar com fusos horários, mas ainda há um monte de coisas que
 podem dar errado. Este blog tem como objetivo lançar alguma luz sobre essas pegadinhas e oferecer soluções
 para os problemas mais comuns.</p>
-
-<!--more-->
-
 
 <p>O que, provavelmente, tem me enganado é que a maioria das vezes o fato de que os tolos do Rails acredita que
 você tem tudo coberto o tempo todo <strong>(com o perdão do trocadilho)</strong>. Não me interpretem mal. Eu uso Rails
@@ -261,16 +1189,16 @@ postar um comentário abaixo!</p>
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
-    <updated>2012-11-04T09:30:00-02:00</updated>
+    <updated>2012-11-04T09:30:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
-    <content type="html"><![CDATA[<p>Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do <a href="http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277">Rails 3 in Action</a>.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do <a href="http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277">Rails 3 in Action</a>.</p>
 
 <p>Lendo o capitulo 1, ele deixou uma pergunta no ar: como você faz aplicações Rails sustentável?</p>
 
 <p>A resposta é que você escreve testes automatizados para a aplicação como você desenvolve, e você escreve isso <strong>o tempo todo</strong>.</p>
-
-<!-- more -->
-
 
 <p>Ao escrever testes automatizados para a sua aplicação, você pode rapidamente assegurar que o aplicativo está funcionando
 como deveria. Se você não escrever testes, a sua alternativa seria a de verificar toda a aplicação manualmente, o que é
@@ -325,17 +1253,17 @@ repensar o teste e desfazer sua implementação.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
-    <updated>2012-11-04T09:20:00-02:00</updated>
+    <updated>2012-11-04T09:20:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&#8230;</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&#8230;</p>
 
 <h4>Exemplos de Threads</h4>
 
 <p>Agora que já passamos alguns post falando do modelo <code>Thread</code> e da API de <code>Thread</code> em Ruby, vamos dar uma olhada em alguns
 exemplos reais de vários códigos de <code>threads</code>.</p>
-
-<!--more-->
-
 
 <h3>Leitura de arquivos simultaneamente</h3>
 
@@ -514,16 +1442,16 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T15:04:00-02:00</updated>
+    <updated>2012-10-28T15:04:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Escalando Threads</h3>
-
-<!-- more -->
-
 
 <p>Intérpretes do Ruby(irb), muitas vezes têm mais <code>threads</code> para executar do que há CPU tem disponível para executá-los. Quando
 o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre <code>threads</code>. O processo para
@@ -567,16 +1495,16 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:53:00-02:00</updated>
+    <updated>2012-10-28T14:53:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&#8230;</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&#8230;</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Threads e Variáveis</h3>
-
-<!-- more -->
-
 
 <p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
@@ -712,14 +1640,14 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:26:00-02:00</updated>
+    <updated>2012-10-28T14:26:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&#8230;</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&#8230;</p>
 
 <h2>Threads e Concorrência</h2>
-
-<!-- more -->
-
 
 <p>Programas tradicionais têm uma única &#8220;thread de execução&#8221;: as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
@@ -841,7 +1769,10 @@ exemplo, através do mesmo nome:</p>
     <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
     <updated>2012-09-18T08:38:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>&#8230;</p>
 
 
@@ -853,10 +1784,7 @@ exemplo, através do mesmo nome:</p>
 <p>Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
 Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:</p>
 
-<!-- more -->
-
-
-<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para 
+<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
 a versão não modificada do método.
 
 * Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
@@ -1290,7 +2218,7 @@ objeto.</p>
 </span><span class='line'>
 </span><span class='line'><span class="err">    </span><span class="c1"># Trace o fato de que estamos começando a traçar estes métodos</span>
 </span><span class='line'><span class="err">    </span><span class="no">STDERR</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Tracing </span><span class="si">#{</span><span class="nb">methods</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> on </span><span class="si">#{</span><span class="nb">object_id</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>  
+</span><span class='line'>
 </span><span class='line'>      <span class="c1"># Singleton métodos são definidos na eigenclass</span>
 </span><span class='line'>    <span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
 </span><span class='line'>
@@ -1331,7 +2259,7 @@ objeto.</p>
 </span><span class='line'>      <span class="nb">methods</span> <span class="o">&amp;=</span> <span class="vi">@_traced</span>   <span class="c1"># todos os métodos especificados que são rastreados</span>
 </span><span class='line'>      <span class="no">STDERR</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Untracing </span><span class="si">#{</span><span class="nb">methods</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> on </span><span class="si">#{</span><span class="nb">object_id</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
 </span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>      
+</span><span class='line'>
 </span><span class='line'>      <span class="vi">@_traced</span> <span class="o">-=</span> <span class="nb">methods</span>     <span class="c1"># Retire-os do nosso conjunto de métodos de traçados</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="c1"># Remove os métodos traçados únicos do eigenclass</span>
@@ -1360,7 +2288,10 @@ objeto.</p>
     <link href="http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T20:38:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -1373,11 +2304,6 @@ objeto.</p>
 métodos de instância privados do <code>Module</code> são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
 argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
 métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.</p>
-
-<!--more-->
-
-
-
 
 <h3>Métodos definidos com class_eval</h3>
 
@@ -1579,7 +2505,10 @@ significa que os métodos resultantes usam variáveis de instância de classe em
     <link href="http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T12:46:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -1591,11 +2520,6 @@ significa que os métodos resultantes usam variáveis de instância de classe em
 <p>O método <code>method_missing</code> é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
 invocações arbitrárias sobre um objeto. O método <code>const_missing</code> de <code>Module</code> executa uma função similar para o algoritmo de pesquisa constante e que
 nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.</p>
-
-<!--more-->
-
-
-
 
 <h3>Constantes Unicode Codepoint com const_missing</h3>
 
@@ -1905,7 +2829,10 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
     <link href="http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
     <updated>2012-09-13T22:50:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -1917,11 +2844,6 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
 <p>Uso de blocos em Ruby, juntamente com sua sintaxe de parênteses opcional, tornam muito fácil de definir métodos que parecem <code>iterator</code> e se comportam
 como estruturas de controle. O método <code>loop</code> do <code>Kernel</code> é um exemplo simples. Neste post, desenvolvo mais três exemplos. Os exemplos aqui usam
 segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência para compreender todos os detalhes.</p>
-
-<!--more-->
-
-
-
 
 <h3>Executando Delaying e Repeating: `after` e `every`</h3>
 
@@ -2143,16 +3065,16 @@ de palavras-chave novo estilo!</p>
     <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
     <updated>2012-09-10T23:26:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>ObjectSpace e GC</h1>
-
-
-<!-- more -->
 
 
 <p>O módulo <code>ObjectSpace</code> define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação.
@@ -2192,7 +3114,10 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
     <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
     <updated>2012-09-10T22:50:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -2205,9 +3130,6 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
 imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: <code>__FILE__</code> e <code>__LINE__</code>.
 Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
 para especificar o local exato em que ela foi gerado:</p>
-
-<!-- more -->
-
 
 <figure class='code'><figcaption><span>__FILE__ e __LINE__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="p">):</span> <span class="n">invalid</span> <span class="n">data</span><span class="s2">&quot;</span>
@@ -2288,16 +3210,16 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
     <link href="http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
     <updated>2012-09-09T19:31:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Metodos de Visibilidade: Public, Protected, Private</b>&#8230;</p>
 
 
 
 
 <h1>Metodos de Visibilidade: Public, Protected, Private</h1>
-
-
-<!-- more -->
 
 
 <p>Métodos de instância podem ser <code>public</code>, <code>private</code> ou <code>protected</code>. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
@@ -2434,7 +3356,10 @@ específico.</p>
     <link href="http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/"/>
     <updated>2012-09-05T23:04:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -2447,9 +3372,6 @@ específico.</p>
 defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
 estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
 <code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &#8220;ed&#8221;.</p>
-
-<!-- more -->
-
 
 <p>Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
 argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
@@ -2570,7 +3492,10 @@ são invocados nesse módulo. Quando um método <code>singleton</code> é removi
     <link href="http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/"/>
     <updated>2012-08-31T20:12:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Métodos</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -2581,9 +3506,6 @@ são invocados nesse módulo. Quando um método <code>singleton</code> é removi
 
 <p>As classes de <code>Object</code> e <code>Module</code> de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
 cada categoria, por sua vez.</p>
-
-<!--more-->
-
 
 <h3>Listagem e Teste para Métodos</h3>
 
@@ -2624,7 +3546,7 @@ por módulo. Como os métodos de objeto, eles retornam <code>arrays</code> de <c
 </span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="o">.</span><span class="n">public_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>  <span class="c1"># =&gt; true</span>
 </span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">public_instance_methods</span> <span class="o">==</span> <span class="nb">String</span><span class="o">.</span><span class="n">instance_methods</span>    <span class="c1"># =&gt; true</span>
 </span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">protected_instance_methods</span>                                                <span class="c1"># =&gt; []</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">private_instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>                                         <span class="c1"># =&gt; [:initialize, :initialize_copy] </span>
+</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">private_instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>                                         <span class="c1"># =&gt; [:initialize, :initialize_copy]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -2634,7 +3556,7 @@ classe, usa <code>Object.singleton_methods</code>:</p>
 <figure class='code'><figcaption><span>Singleton</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">singleton_methods</span> <span class="c1"># =&gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh, </span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">singleton_methods</span> <span class="c1"># =&gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,</span>
 </span><span class='line'>                                                       <span class="ss">:tanh</span><span class="p">,</span> <span class="ss">:acosh</span><span class="p">,</span> <span class="ss">:asinh</span><span class="p">,</span> <span class="ss">:atanh</span><span class="p">,</span> <span class="ss">:exp</span><span class="p">,</span> <span class="ss">:log</span><span class="p">,</span> <span class="ss">:log2</span><span class="p">,</span> <span class="ss">:log10</span><span class="p">,</span> <span class="ss">:sqrt</span><span class="p">,</span>
 </span><span class='line'>                                                       <span class="ss">:cbrt</span><span class="p">,</span> <span class="ss">:frexp</span><span class="p">,</span> <span class="ss">:ldexp</span><span class="p">,</span> <span class="ss">:hypot</span><span class="p">,</span> <span class="ss">:erf</span><span class="p">,</span> <span class="ss">:erfc</span><span class="p">,</span> <span class="ss">:gamma</span><span class="p">,</span> <span class="ss">:lgamma</span><span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -2781,7 +3703,7 @@ a ser avaliada.</p>
 
 <p>Para criar um sinônimo ou um <code>alias</code> para um método existente, normalmente você pode usar a declaração <code>alias</code>:</p>
 
-<figure class='code'><figcaption><span>alias </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>alias</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">alias</span> <span class="s2">&quot;plus&quot;</span> <span class="o">+</span>         <span class="c1"># &quot;plus&quot; é um sinônimo para o operador +</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2915,16 +3837,16 @@ uma classe. Mas, com <code>class_eval</code>, eles também podem ser usados dina
     <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
     <updated>2012-08-29T23:34:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Variáveis e constantes</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Variáveis e Constantes</h1>
-
-
-<!-- more -->
 
 
 <p><code>Kernel</code>, <code>Object</code>, <code>Module</code> definem métodos reflexivos para listar os nomes (como <code>strings</code>) de todas as variáveis definidas globais, atualmente
@@ -3064,935 +3986,6 @@ as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais 
 <p>É isso ai amigos&#8230; Bora continuar estudando!</p>
 
 <p>Em breve, irei postar um pouco sobre Engenharia! :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
-    <updated>2012-08-29T22:15:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Avaliando Strings e Blocos</h1>
-
-
-<!-- more -->
-
-
-<p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
-válido Ruby, o método <code>Kernel.eval</code> pode avaliar que o código:</p>
-
-<figure class='code'><figcaption><span>Kernel.eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">eval</span> <span class="s2">&quot;x + 1&quot;</span>  <span class="c1"># =&gt; 2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
-inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
-de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que<br/>
-usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos <code>eval</code> e <code>eval-like</code>.</p>
-
-<h3>Associações e eval</h3>
-
-
-<p>Um objeto de Associação, representa o estado de variáveis <code>bindings</code> de Ruby em algum momento. O objeto <code>Kernel.binding</code> retorna as ligações em vigor
-no local da chamada. Você pode passar um objeto de associação como o segundo argumento para <code>eval</code>, e a <code>String</code> especificada será avaliada no
-contexto dessas ligações. Se, por exemplo, definir um método de instância que retorna um objeto <code>Binding</code> que representa a variável de ligações
-dentro de um objeto, então nós podemos usar essas ligações para consultar e definir as variáveis de instância do objeto. Podemos conseguir isso como segue:</p>
-
-<figure class='code'><figcaption><span>Binding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Object</span> <span class="c1"># Abre objeto para adicionar um novo método</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">bindings</span> <span class="c1"># Nota plural sobre este método</span>
-</span><span class='line'><span class="err">    </span><span class="nb">binding</span> <span class="c1"># Este é o método de Kernel predefinido</span>
-</span><span class='line'><span class="err">  </span><span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Test</span> <span class="c1"># Uma classe simples com uma variável de instância</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="vi">@x</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="no">Test</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Criar um objeto test</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;@x&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">bindings</span><span class="p">)</span>  <span class="c1"># =&gt; 10: Espia dentro t</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note que não é realmente necessário definir um método de <code>Object.bindings</code> deste tipo para observar nas variáveis de instância de um objeto. Vários
-outros métodos descritos logo oferecem maneiras mais fáceis de consulta (e de conjunto) do valor das variáveis de instância de um objeto.</p>
-
-<p>Os objetos <code>Proc</code> definem um método público de ligação que retorna uma Associação de objeto que representa a variável ligação em vigor para o corpo
-do <code>Proc</code>. Além disso, o método <code>eval</code> permite que você passe um objeto <code>Proc</code> em vez de um objeto de associação como o segundo argumento.</p>
-
-<p>Ruby 1.9 define um método <code>eval</code> em objetos de associação, de modo em vez de passar uma associação como o segundo argumento para o <code>eval</code> global,
-você pode, em vez de invocar o método <code>eval</code> em uma ligação. Qual você escolhe é puramente uma questão de estética, as duas técnicas são equivalentes.</p>
-
-<h3>instance_eval e class_eval</h3>
-
-
-<p>A classe <code>Object</code> define um método chamado <code>instance_eval</code>, e a classe <code>Module</code> define um método chamado <code>class_eval</code>. <code>module_eval</code> é um sinônimo
-para <code>class_eval</code>. Ambos os métodos avaliam código Ruby, como o <code>eval</code> faz, mas existem duas diferenças importantes. A primeira diferença é a que eles
-avaliam o código no contexto do objecto específico ou no contexto especificado de cada módulo do objecto ou é o valor enquanto o código está sendo
-avaliado. Aqui estão alguns exemplos:</p>
-
-<figure class='code'><figcaption><span>instance_eval e class_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span><span class="p">(</span><span class="s2">&quot;@x&quot;</span><span class="p">)</span>  <span class="c1"># Retorna o valor da variável de instância o @x</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Define um len método de instância de String para retornar comprimento da String</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span><span class="p">(</span><span class="s2">&quot;def len; size; end&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Aqui está outra maneira de fazer isso</span>
-</span><span class='line'><span class="c1"># O código citado se comporta como se fosse dentro da &quot;class String&quot; e &quot;end&quot;</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span><span class="p">(</span><span class="s2">&quot;alias len size&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Use instance_eval para definir método de classe String.Empty</span>
-</span><span class='line'><span class="c1"># Note que as aspas dentro da aspas fica um pouco complicado ...</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">(</span><span class="s2">&quot;def vazio;&#39;&#39;; fim&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Observe a diferença sutil, mas crucial entre <code>instance_eval</code> e <code>class_eval</code> quando o código que está sendo avaliado contém uma definição de método.
-<code>instance_eval</code> define métodos únicos do objeto (e isso resulta em métodos de classe quando for chamado em uma classe de objeto). <code>class_eval</code> define métodos de instância regulare.</p>
-
-<p>A segunda diferença importante entre estes dois métodos e o eval global é que <code>instance_eval</code> e <code>class_eval</code> pode aceitar um bloco de código para
-avaliar. Quando passa um bloco em vez de uma <code>String</code>, o código do bloco é executado no contexto apropriado. Aqui, por conseguinte, são alternativas
-para as invocações anteriorment mostrada:</p>
-
-<figure class='code'><figcaption><span>instance_eval e class_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="vi">@x</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">len</span>
-</span><span class='line'>    <span class="n">size</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="k">alias</span> <span class="n">len</span> <span class="n">size</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="k">def</span> <span class="nf">empty</span><span class="p">;</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="k">end</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>instance_exec e class_exec</h3>
-
-
-<p>Ruby 1.9 define dois métodos de avaliação a mais: <code>instance_exec</code> e <code>class_exec</code> (e seu alias, <code>module_exec</code>). Estes métodos de avaliação de um bloco
-(Mas não uma cadeia) de código, no contexto do objeto receptor, como fazem <code>instance_eval</code> e <code>class_eval</code>. A diferença é que o métodos <code>exec</code> aceita
-argumentos e passá para o bloco. Assim, o bloco do código é avaliado no contexto de um objeto determinado, com parâmetros cujos valores vêm a partir
-do exterior do objecto.</p>
-
-<p>Até o proximo post amigos! :P</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação #Ruby 1.9 - Part I]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/"/>
-    <updated>2012-08-26T19:01:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Reflexão e Metaprogramação</h1>
-
-
-<!-- more -->
-
-
-<p>Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
-para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
-Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um
-programa Ruby pode, por exemplo, obter a lista de métodos definidos pela classe <code>Hash</code>, consultar o valor de uma variável de
-instância nomeada dentro de um objeto especificado, ou percorrer todos os objetos <code>Regexp</code> atualmente definidos pelo intérprete.
-A API de reflexão, na verdade, vai além e permite que um programa para alterar o seu estado e estrutura. Um programa Ruby pode
-definir dinamicamente variáveis chamadas, invocar métodos nomeados, e até mesmo definir novas classes e novos métodos.</p>
-
-<p>API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe
-dos seus parênteses opcionais sintaxe torna uma linguagem ideal para metaprogramação. Vagamente definida, metaprogramação está
-escrevendo programas (ou frameworks) que ajudam a escrever programas. Para colocar de outra forma, a metaprogramação é um
-conjunto de técnicas para estender a sintaxe de Ruby de uma forma que facilita a programação. Metaprogramação está intimamente
-ligada à idéia de escrever linguagens específicas de domínio, ou <code>DSL's</code>. <code>DSL's</code> em Ruby normalmente usam invocações de métodos e
-blocos, como se fossem palavras-chave em uma extensão de tarefas específicas para a linguagem.</p>
-
-<p>Neste post começo com várias seções que introduzem a API de reflexão do Ruby. Esta API é surpreendentemente rica e consiste de
-poucos métodos. Estes métodos são definidos, para a maior parte, pelo <code>Kernel</code>, <code>Module</code> e <code>Object</code>.</p>
-
-<p>Enquanto você lê estas seções introdutórias, tenha em mente que reflexão não é, por si só, a metaprogramação. Metaprogramação
-tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de
-reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post demonstrarei, por exemplo, técnicas comuns de
-metaprogramação que usam essa API.</p>
-
-<p>Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
-encontrar que é útil para ler os próximos post&#8217;s deste primeiro livro, e depois retornar a este capítulo. Considere este
-post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!</p>
-
-<!--more-->
-
-
-<h3>Tipos, classes e módulos</h3>
-
-
-<p>Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
-métodos ele responde. Para rever:</p>
-
-<figure class='code'><figcaption><span>Metaprogramming</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span>
-</span><span class='line'><span class="c1"># Retorna a classe de do objeto &#39;o&#39;.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">c</span><span class="o">.</span><span class="n">superclass</span>
-</span><span class='line'><span class="c1"># Retorna a superclasse de uma classe &#39;c&#39;.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_of?</span> <span class="n">c</span>
-</span><span class='line'><span class="c1"># Determina se o objeto &#39;o.class == c&#39;.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">is_a?</span> <span class="n">c</span>
-</span><span class='line'><span class="c1"># Determina se &#39;o&#39; é um exemplo de &#39;c&#39;, ou de qualquer das suas subclasses. Se &#39;c&#39; for um módulo, este método testa se &#39;o.class&#39; (ou qualquer um de seus ancestrais) inclui o módulo.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">kind_of?</span> <span class="n">c</span>
-</span><span class='line'><span class="c1"># kind_of? é um sinônimo para is_a?.</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">c</span> <span class="o">===</span> <span class="n">o</span>
-</span><span class='line'><span class="c1"># Para qualquer classe &#39;c&#39; ou módulo, determina se &#39;o.is_a? (c)&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">nome</span>
-</span><span class='line'><span class="c1"># Determina se o objeto &#39;o&#39; tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Ancestralidade e Módulos</h3>
-
-
-<p>Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma
-classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
-entender quando demonstrado:</p>
-
-<figure class='code'><figcaption><span>Alguns demonstrações</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">A</span><span class="p">;</span> <span class="k">end</span>                <span class="c1"># Modulo vazio</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">B</span><span class="p">;</span> <span class="kp">include</span> <span class="n">A</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>    <span class="c1"># Módulo B inclui A</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">C</span><span class="p">;</span> <span class="kp">include</span> <span class="n">B</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>     <span class="c1"># Classe C inclui o módulo B</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">C</span> <span class="o">&lt;</span> <span class="n">B</span>                <span class="c1"># =&gt; true: C inclui B</span>
-</span><span class='line'><span class="n">B</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true: B inclui A</span>
-</span><span class='line'><span class="n">C</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="no">Fixnum</span> <span class="o">&lt;</span> <span class="nb">Integer</span>     <span class="c1"># =&gt; true: todos os fixnums são inteiros</span>
-</span><span class='line'><span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Comparable</span> <span class="c1"># =&gt; true: inteiros são comparáveis</span>
-</span><span class='line'><span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Fixnum</span>     <span class="c1"># =&gt; false: nem todos os números inteiros são fixnums</span>
-</span><span class='line'><span class="nb">String</span> <span class="o">&lt;</span> <span class="no">Numeric</span>     <span class="c1"># =&gt; nil: cordas não são números</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [A]</span>
-</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [B, A]</span>
-</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [C, B, A, Object, Kernel]</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">ancestors</span>     <span class="c1"># =&gt; [String, Enumerable, Comparable, Object, Kernel]</span>
-</span><span class='line'><span class="err">                     </span><span class="c1"># Nota: em Ruby 1.9, String não é mais Enumerable</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
-</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; []</span>
-</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [A]</span>
-</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [B, A, Kernel]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Este código demonstra <code>include?</code>, que é um método público de instância definido pela classe <code>Module</code>. Mas ele também possui duas
-invocações do método <code>include</code> (Sem o sinal de interrogação), que é um método de instância particular de <code>Module</code>. Como um
-método particular, pode apenas ser chamado implicitamente em si, o que limita a sua utilização para o corpo de uma definição de
-<code>class</code> ou <code>module</code>. Este uso do método <code>include</code>, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no
-núcleo da sintaxe de Ruby.</p>
-
-<p>Um método relacionado com o método <code>include</code>, particular é o público <code>Object.extend</code>. Este método estende um objeto por tornar
-os métodos de instância de cada um dos módulos específicos em métodos <code>singleton</code> do objeto:</p>
-
-<figure class='code'><figcaption><span>Singleton</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Greeter</span><span class="p">;</span> <span class="k">def</span> <span class="nf">hi</span><span class="p">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># módulo Greeter</span>
-</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;objeto de string&quot;</span>
-</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="no">Greeter</span><span class="p">)</span>       <span class="c1"># Adicione &quot;hello&quot; como um método singleton para s</span>
-</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">hi</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="no">Greeter</span><span class="p">)</span>  <span class="c1"># Adicione &quot;hello&quot; como método de classe de String</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">hi</span>               <span class="c1"># =&gt; &quot;hello&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O método <code>Module.nesting</code> de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
-<code>array</code> que especifica o assentamento de módulos da localização atual. <code>Module.nesting[0]</code> é a classe atual ou módulo, <code>Module.nesting[1]</code> é o quem contém a <code>class</code> ou <code>module</code> e assim por diante:</p>
-
-<figure class='code'><figcaption><span>Module e Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">M</span>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">C</span>
-</span><span class='line'>    <span class="no">Module</span><span class="o">.</span><span class="n">nesting</span>   <span class="c1"># =&gt; [M::C, M]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Definindo Classes e Módulos</h3>
-
-
-<p>Classes e módulos são instâncias das classes de <code>Class</code> e <code>Module</code>. Como tal, você pode criá-los dinamicamente:</p>
-
-<figure class='code'><figcaption><span>Class e Module dinamicamente</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">M</span> <span class="o">=</span> <span class="no">Module</span><span class="o">.</span><span class="n">new</span>      <span class="c1"># Define um novo módulo M</span>
-</span><span class='line'><span class="n">C</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span>       <span class="c1"># Define uma nova classe C</span>
-</span><span class='line'><span class="n">D</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>  <span class="c1"># Definir uma subclasse de C</span>
-</span><span class='line'><span class="err">  </span><span class="kp">include</span> <span class="n">M</span>         <span class="c1"># inclui o módulo M</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="n">D</span><span class="o">.</span><span class="n">to_s</span>               <span class="c1"># =&gt; &quot;D&quot;: classe recebe o nome da constante por magia</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
-o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).</p>
-
-<p>É isso ai amigos&#8230;
-Hora de dar um <code>break</code>&#8230; :)</p>
-
-<p>Até o proximo!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Blocos em #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
-    <updated>2012-08-19T14:02:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Blocos em #Ruby 1.9</h1>
-
-
-<p>O uso de blocos é fundamental para o uso de iteradores. As subseções a seguir explicam:</p>
-
-<ul>
-<li>A sintaxe para associar um bloco com uma invocação de método</li>
-<li>O &#8220;valor de retorno&#8221; de um bloco</li>
-<li>O escopo de variáveis ​​em blocos</li>
-<li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
-</ul>
-
-
-<!--more-->
-
-
-
-
-<h3>Sintaxe bloco</h3>
-
-
-<p>Os <code>Blocos</code> não podem ser autônomo, pois eles são apenas legal após uma chamada de método. Você pode, no entanto, colocar um
-bloco depois de qualquer invocação método, se o método não é um iterador e nunca invoca o bloco com a produção, o bloco será
-ignorado. Blocos são delimitados por chaves ou com palavras-chave <code>do/end</code>. A abertura de chave ou a palavra-chave deve ser na
-mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
-o bloco:</p>
-
-<figure class='code'><figcaption><span>Blocos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Imprima os números 1 a 10</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span> <span class="c1"># Invocação e bloco em uma linha com aparelho</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>        <span class="c1"># Delimitado bloco com do/end</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">x</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                 <span class="c1"># Bloco não especificado</span>
-</span><span class='line'><span class="err"> </span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span>        <span class="c1"># Erro na Sintaxe: bloco é permitido não depois de uma invocação</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar <code>do/end</code> quando o bloco
-se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
-para o símbolo que precede. Se você omitir os parênteses em torno de argumentos de método e usar delimitadores de chaves para
-um bloco, em seguida, o bloco vai ser associado com o último argumento do método em vez do método em si, o que não é,
-provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com <code>do</code> e
-<code>end</code>:</p>
-
-<figure class='code'><figcaption><span>Blocks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># Parens e encaracolado chaves trabalhar</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="k">end</span>    
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># erro de sintaxe: tentando passar um bloco para 3!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
-com um par de barra vertical (<code>|</code>), mas eles são de outra maneira muito parecida com os parâmetros do método:</p>
-
-<figure class='code'><figcaption><span>Blocks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># O iterador Hash.each passa dois argumentos para seu bloco</span>
-</span><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="o">|</span> <span class="c1"># Para cada par (chave, valor) no hash</span>
-</span><span class='line'><span class="err">  </span><span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">chave</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">valor</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1"># Imprimir a chave eo valor</span>
-</span><span class='line'><span class="k">end</span> <span class="c1"># Fim do bloco</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É uma convenção comum para escrever os parâmetros do bloco, na mesma linha, como a invocação do método e da chave de abertura
-ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
-
-<h3>O Valor de um Bloco</h3>
-
-
-<p>Considerando o método <code>Array.sort</code>. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
-elementos para o bloco, e é o trabalho do bloco para classificá-los.</p>
-
-<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &#8220;valor de retorno&#8221; do bloco está disponível
-com o método <code>iterator</code> como o valor da declaração <code>yield</code>.</p>
-
-<p>O &#8220;valor de retorno&#8221; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
-
-<figure class='code'><figcaption><span>Metodo sort</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># O bloco tem duas palavras e &quot;retorna&quot; a sua ordem relativa</span>
-</span><span class='line'><span class="n">words</span><span class="o">.</span><span class="n">sort!</span> <span class="p">{</span><span class="o">|</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">|</span> <span class="n">y</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nós estamos colocando a expressão &#8220;valor de retorno&#8221; entre aspas por uma razão muito importante: você não deve usar normalmente
-a palavra-chave <code>return</code> para retornar um bloco. Um <code>return</code> dentro de um bloco faz com que o método que o contém (não o método
-iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
-bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o <code>return</code> se você quer apenas
-voltar de um bloco para o método que chamou <code>yield</code>. Se você precisar forçar um bloco para voltar ao método invocando antes que
-ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar <code>next</code> em vez de retorno. Aqui é um
-exemplo que usa <code>next</code> para voltar a partir do bloco:</p>
-
-<figure class='code'><figcaption><span>Usando next</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">next</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kp">nil</span>  <span class="c1"># Retorna se x é nulo</span>
-</span><span class='line'>  <span class="k">next</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>         <span class="c1"># Retorna dois valores</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note-se que não é particularmente comum usar <code>next</code> desta maneira, e o código acima é facilmente reescrito assim:</p>
-
-<figure class='code'><figcaption><span>Reescrevendo bloco</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kp">nil</span>
-</span><span class='line'>    <span class="mi">0</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="o">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Blocos e escopo de variáveis</h3>
-
-
-<p>Blocos que definem um novo escopo de variáveis: variáveis ​​criadas dentro de um bloco só existem dentro desse bloco e estão são
-indefinidas fora do bloco. Seja cauteloso, no entanto, as variáveis ​​locais em um método estão disponíveis para todos os blocos
-dentro desse método. Então, se um bloco atribui um valor a uma variável que já está definida fora do bloco, este não cria uma
-variável local nova, mas em vez disso, atribui um novo valor para a variável já existente. Às vezes, isso é exatamente o
-comportamento que queremos:</p>
-
-<figure class='code'><figcaption><span>Escopos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">data</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>  <span class="c1"># Some os elementos da matriz de dados</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">total</span>                   <span class="c1"># Impressão do total da soma</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
-uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
-de uma variável existente, então invocações do bloco simplesmente atribuir um valor a essa variável já existente em vez de
-criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador <code>i</code>
-como o parâmetro para dois blocos nested blocos:</p>
-
-<figure class='code'><figcaption><span>Usando mesma variavel, Ruby 1.8</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>         <span class="c1"># 10 linhas</span>
-</span><span class='line'>  <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>       <span class="c1"># Cada um tem 10 colunas</span>
-</span><span class='line'>    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>         <span class="c1"># Imprimi o número de colunas</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot; ==&gt; Row </span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="c1"># Número de linhas</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
-a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
-uma variável existente. Isso ajuda a evitar escrever código que funciona de forma diferente em 1.8 e 1.9.</p>
-
-<p>Ruby 1.9 é diferente de outra maneira importante, também. Sintaxe do bloco foi estendida para permitir que você declare
-variáveis de blocos locais ​​que são garantidas para ser local, mesmo se uma variável com o mesmo nome já existe no escopo
-delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
-variáveis ​​do bloco local. Aqui está um exemplo:</p>
-
-<figure class='code'><figcaption><span>Variaveis</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>            <span class="c1"># variáveis ​​locais</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="p">;</span><span class="n">y</span><span class="o">|</span>   <span class="c1"># x e y são locais para bloquear</span>
-</span><span class='line'>                     <span class="c1"># x e y são &quot;sombra&quot; das variáveis ​​externas</span>
-</span><span class='line'>  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># Usa y como uma variável que vai receber valores</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>           <span class="c1"># imprime 4, 9, 16, 25</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">]</span>                <span class="c1"># =&gt; [0,0]: o bloco não altera essas variaveis.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
-bloco-local. Ele não receber qualquer valor a partir de uma chamada <code>yield</code>, mas tem o valor nil até que o bloco de fato
-atribui outro valor a ele. O ponto de declarar essas variáveis locais no ​​bloco é garantir que você não vai acidentalmente
-sub-escrever o valor de alguma variável existente. Se você chamar Ruby 1.9 com o flag -w, ele irá avisá-lo se um bloco de
-variável local de uma variável existente.</p>
-
-<p>Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
-três variáveis ​​locais:</p>
-
-<figure class='code'><figcaption><span>Variavel Local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Passando argumentos para um bloco</h3>
-
-
-<p>Nós dissemos anteriormente que os parâmetros para um bloco são muito parecidos com os parâmetros de um método. Eles não são
-rigorosamente iguais, no entanto. Os valores de argumento que seguem a palavra-chave <code>yield</code> são designados para bloquear
-parâmetros seguindo as regras que estão mais próximos as regras para a atribuição de variável do que as regras para a invocação
-de método. Assim, quando um iterador executa <code>yield k,v</code>, para invocar um bloco declarado com parâmetros <code>|key, value|</code>, é
-equivalente a esta instrução de atribuição:</p>
-
-<figure class='code'><figcaption><span>Atribuição de parametros</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O iterador <code>Hash.each_pair</code> produz um par <code>key/value</code> como este:</p>
-
-<figure class='code'><figcaption><span>Hash.each_pair</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">:one</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">each_pair</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span> <span class="c1"># key=:one, value=1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
-são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
-variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
-utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:</p>
-
-<figure class='code'><figcaption><span>Variaveis Locais e de Instância</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">:one</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">each_pair</span> <span class="p">{</span><span class="o">|</span><span class="vg">$key</span><span class="p">,</span> <span class="vi">@value</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span> <span class="c1"># Não funciona mais no Ruby 1.9</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Este iterator define a variável global <code>$key</code> para <code>:one</code> e define a variável de instância <code>@value</code> para <code>1</code>. Como já
-mencionado, o Ruby 1.9 faz os parâmetros dos blocos locais para o bloco. Isto também significa que os parâmetros dos blocos não
-podem mais ser variáveis ​​globais ou de instância.</p>
-
-<p>Os iteradores <code>Hash.each</code> segue um pares de <code>key/value</code> como dois elementos de uma única matriz. É muito comum, no entanto,
-para ver o código como esta:</p>
-
-<figure class='code'><figcaption><span>Hash.each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span>  <span class="c1"># Chave e valor atribuído a params k e v</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Isso também funciona por atribuição paralela. O valor cedido, um conjunto de dois elementos, é atribuído às variáveis ​​k e v:</p>
-
-<figure class='code'><figcaption><span>Atribuição</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="o">[</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Pelas regras de atribuição paralela (ver <a href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
-
-<p>Bloco de invocação não funciona exatamente como atribuição paralela. Imagine um iterador que passa dois valores ao seu bloco.
-Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
-valores automaticamente preenchido em uma matriz para nós. Mas não é assim que funciona:</p>
-
-<figure class='code'><figcaption><span>Parametros</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">two</span><span class="p">;</span> <span class="k">yield</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># Um iterador que produz dois valores</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>          <span class="c1"># Ruby 1.8: avisa e impressões [1,2],</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>           <span class="c1"># Ruby 1.9: imprime 1, nenhum aviso</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|*</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>          <span class="c1"># versão Ou: impressões [1,2]; nenhum aviso</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>           <span class="c1"># versão Ou: impressões 1; nenhum aviso</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.8, vários argumentos são embalados em uma matriz, quando existe um parâmetro único no bloco, mas isso é obsoleto e
-gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâmetro do bloco e o segundo valor é descartado. Se
-queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
-explicitamente que estamos prefixando o parâmetro com um <code>*</code>, exatamente como faríamos em uma declaração de método. Observe
-também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
-vírgula, como se dissesse:</p>
-
-<pre><code>"Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele."
-</code></pre>
-
-<p>Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
-também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
-aviso, vai também gerar um erro.</p>
-
-<p>A declaração do <code>yield</code> permite que <code>hashes</code> &#8220;nus&#8221; como o valor do último argumento, assim como invocações de métodos. Isto é,
-se o último argumento para produzir é um literal de <code>hash</code>, você pode omitir as chaves. Porque não é comum para iteradores para
-produzir <code>hashes</code>, temos que maquinar um exemplo para demonstrar isto:</p>
-
-<figure class='code'><figcaption><span>Hashes sem chaves</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">hashiter</span><span class="p">;</span> <span class="k">yield</span> <span class="ss">:a</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:b</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">;</span> <span class="k">end</span>  <span class="c1"># Nota final sem chaves</span>
-</span><span class='line'><span class="n">hashiter</span> <span class="p">{</span><span class="o">|</span><span class="nb">hash</span><span class="o">|</span> <span class="nb">puts</span> <span class="nb">hash</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span> <span class="p">}</span>       <span class="c1"># Imprime 1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Bloquear Parâmetros no Ruby 1.9</h3>
-
-
-<p>No Ruby 1.8, apenas o último parâmetro do bloco pode ter um prefixo <code>*</code>. Ruby 1.9 levanta essa restrição e permite qualquer
-parâmetro do bloco, independentemente da sua posição na lista, para ter um prefixo <code>*</code>:</p>
-
-<figure class='code'><figcaption><span>Prefixo *</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">five</span><span class="p">;</span> <span class="k">yield</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">;</span> <span class="k">end</span>     <span class="c1"># Seguindo os 5 valores</span>
-</span><span class='line'><span class="n">five</span> <span class="k">do</span> <span class="o">|</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">,</span> <span class="n">tail</span><span class="o">|</span>        <span class="c1"># Valores extras entrar em matriz corpo</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="n">head</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">tail</span>           <span class="c1"># Mostra &quot;1 [2,3,4] 5&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.9 parâmetros do bloco podem ter valores padrões, apenas como parâmetros de método pode. Suponha, por exemplo, que
-você deseja iterar os valores de um objeto, mas o que você não sabe se o obejeto é um <code>array</code> ou um <code>hash</code>. Você pode usar um
-bloco como este:</p>
-
-<figure class='code'><figcaption><span>Variavel com um valor pré determinado</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span><span class="n">value</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">value</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do bloco. Se cada um produz um par de valores,
-são atribuídos a ambos os parâmetros.</p>
-
-<p>No Ruby 1.9, o parâmetro do bloco final pode ser prefixado com e para indicar que vai receber qualquer bloco associado com a
-invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> pode não ter um bloco associado.</p>
-
-<p>Até o proximo assunto amigos.. :P</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Filosofia do #Ruby <3]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/"/>
-    <updated>2012-08-08T22:59:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3</id>
-    <content type="html"><![CDATA[<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
-autorização para colocar aqui para vocês&#8230;</p>
-
-
-<!-- more -->
-
-
-<p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>.</p>
-
-
-
-
-<h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>
-
-
-
-
-<h6>Resumo</h6>
-
-
-
-
-<p><a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>, como é conhecido online, é o criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tem encontrado seu caminho para os corações de programadores em todo o mundo.</p>
-
-
-
-
-<p>Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, as características da linguagem <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de <a href="http://pt.wikipedia.org/wiki/Ortogonalidade">ortogonalidade</a>, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.</p>
-
-
-<!--more-->
-
-
-
-
-<h6>Nenhuma Línguagem Perfeita</h6>
-
-
-
-
-<p><b>Bill Venners</b>: Dave Thomas, co-autor de Programming <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>: Um Guia do Programador Pragmático, disse que você não acha que um projeto de linguagem deve ser perfeito. Por que não?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: designers de Linguagens querem projetar a linguagem perfeita. Eles querem ser capazes de dizer: &#8220;A minha linguagem é perfeita. Ela pode fazer tudo.&#8221; Mas é simplesmente impossível projetar uma linguagem perfeita, porque existem duas maneiras de olhar para uma mesma linguagem. Uma maneira é olhar para o que pode ser feito com essa linguagem. A outra é olhar para o que sentimos usando essa linguagem, como nos sentimos durante a programação.</p>
-
-
-
-
-<p>Por causa da Teoria da <a href="http://ethosproject.blogspot.com.br/2012/06/preconceito-ignorancia-e-genialidade.html">Integridade de Turing</a>, tudo que uma linguagem pode fazer teoricamente pode ser feito por outra linguagem, mas a um custo diferente. Você pode fazer tudo em <a href="http://pt.wikipedia.org/wiki/Assembly">Assembler</a>, mas ninguém quer programar em assembler mais. Do ponto de vista que você pode fazer, portanto, as línguas diferem entre si, mas as diferenças são limitadas. Por exemplo, <a href="http://www.python.org/">Python</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fornecem quase o mesmo poder para o programador.</p>
-
-
-
-
-<p>Em vez de enfatizar o que eu quero enfatizar a parte como: Como nos sentimos durante a programação, essa é a diferença principal do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> a partir de projetos em outras linguagens. Eu enfatizo a sensação, em particular, como eu me sinto usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu não trabalho duro para tornar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeito para todos, porque você se sente diferente de mim. Nenhuma linguagem pode ser perfeita para todos. Eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeita para mim, mas talvez ela não é perfeito para você. A linguagem perfeita para Guido van Rossum provavelmente é <a href="http://www.python.org/">Python</a>.</p>
-
-
-
-
-<h6><a href="http://www.dicio.com.br/ortogonal/">Ortogonais</a> em relação harmoniosa</h6>
-
-
-
-
-<p><b>Bill Venners</b>: Dave Thomas também afirmou que, se eu pedir para você adicionar um recurso que é ortogonal, você não vai fazer. O que você quer é algo que seje harmonioso. O que significa isso?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Eu acredito que a consistência e ortogonalidade são ferramentas de design, não o objetivo principal no projeto.</p>
-
-
-
-
-<p><b>Bill Venners</b>: O que significa ortogonalidade neste contexto?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Um exemplo de ortogonalidade é permitir qualquer combinação de características de pequeno porte ou de sintaxe. Por exemplo, <a href="http://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)">C</a> suporta ambos os valores de parâmetro padrão para funções e sobrecarga de nomes de função com base em parâmetros. Ambos são boas características  para se ter em uma língua, mas porque elas são ortogonais, você pode aplicar ao mesmo tempo. O compilador sabe como aplicar ao mesmo tempo. Se é ambígua, o compilador irá sinalizar um erro. Mas se eu olhar para o código, eu preciso aplicar a regra com o meu cérebro também. Eu preciso adivinhar como o compilador funciona. Se eu estiver certo, e eu for inteligente o suficiente, não há problema. Mas se eu não sou inteligente o suficiente, e eu não sou realmente, causa confusão. O resultado será inesperado para uma pessoa comum. Este é um exemplo de como ortogonalidade é má.</p>
-
-
-
-
-<p><b>Bill Venners</b>: Em outras palavras, as características ortogonais irá funcionar uma vez que o escritor do compilador entendê-las e recebe-las para trabalhar. Mas é difícil para os programadores entender quando olham para ele, porque é complicado, porque eu tenho que descobrir como essas duas coisas andam juntas.</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: As funcionalidades ortogonais, quando combinadas, podem explodir em complexidade.</p>
-
-
-
-
-<p><b>Bill Venners</b>: Então, qual é a alternativa? O que seria mais harmonioso?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Basta pegar um dos dois para colocar na linguagem. Você não tem que fazer tudo o que você pode pensar. Você precisa escolher um deles, mesmo que ambos sejam bons.</p>
-
-
-
-
-<h6>Liberdade e Conforto</h6>
-
-
-
-
-<p><b>Bill Venners</b>: Uma das filosofias de design na comunidade <a href="http://www.python.org/">Python</a> está fornecendo uma e apenas uma maneira de fazer as coisas. Se você fornecer cinquenta maneiras diferentes de fazer a mesma coisa, então você forneceu comodidade para os escritores de código. As pessoas podem escrever coisas da sua melhor forma. A troca é para os leitores de código. Quando eu li o seu código, você poderia ter escrito de um jeito. Quando eu li o código de outras pessoas, elas podem ter escrito de outra forma. Então, como um leitor de eu acabar precisando estar familiarizado com todos os meios para realizar a tarefa, não apenas a minha maneira favorita de escrevê-la. Esse é o dilema do design. A comunidade <a href="http://www.python.org/">Python</a> parece preferir a uma e apenas uma maneira de abordagem, mas <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> parece fornecer várias maneiras de fazer a mesma coisa.</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> herdou a filosofia <a href="http://www.perl.org.br/Main/WebHome">Perl</a> de ter mais de uma maneira de fazer a mesma coisa. Eu herdei essa filosofia de <a href="http://pt.wikipedia.org/wiki/Larry_Wall">Larry Wall</a>, que é o meu herói, na verdade. Eu quero fazer os usuários de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> livre. Eu quero dar-lhes a liberdade de escolher. As pessoas são diferentes. As pessoas escolhem diferentes critérios. Mas se há uma maneira melhor entre muitas alternativas, eu quero encorajar esse caminho, tornando-o confortável. Então é isso que eu tentei fazer. Talvez o código do <a href="http://www.python.org/">Python</a> é um pouco mais legível. Todo mundo pode escrever o mesmo estilo de código <a href="http://www.python.org/">Python</a>, por isso pode ser mais fácil de ler, talvez. Mas a diferença de uma pessoa para outra é tão grande, proporcionando apenas uma maneira de ajudar é pouco, mesmo se você estiver usando o <a href="http://www.python.org/">Python</a>, eu acho. Prefiro fornecer muitas maneiras se é possível, mas encorajar ou orientar os usuários a escolher um caminho melhor, se é possível.</p>
-
-
-
-
-<h6>A alegria do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h6>
-
-
-
-
-<p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: &#8220;Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. &#8221; Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p>
-
-<p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p>
-
-<p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, &#8220;Olá, mundo de impressão.&#8221; Eu só quero dizer, &#8220;imprimir isto!&#8221; Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p>
-
-<p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p>
-
-<p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p>
-
-<p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p>
-
-<p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p>
-
-<h6>O Fator Humano</h6>
-
-<p><b>Bill Venners</b>: Em uma entrevista, você disse, &#8221; Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana.&#8221; O que você quer dizer com isso?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p>
-
-<p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p>
-
-<p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: &#8220;Não subestime o fator humano.&#8221; Por quê?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: &#8220;Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo.&#8221; Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p>
-
-<p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p>
-
-<p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p>
-
-<h6>Princípio da menor surpresa</h6>
-
-<p><b>Bill Venners</b>: Em uma entrevista, você disse &#8220;Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. &#8220;Por que o princípio da menor surpresa?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p>
-
-<p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p>
-
-<p><b>Bill Venners</b>: Como é mal compreendido?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: &#8220;Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa&#8221;. Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p>
-
-<p>Fonte: <a href="http://www.artima.com">Artima</a></p>
-
-&#8212;&#8212;
-<p>
-É isso ai amigos.. uma boa entrevista!
-
-Até a proxima! =D</p>
-
 ]]></content>
   </entry>
   

@@ -3,7 +3,7 @@ layout: post
 title: "Reflexão e Metaprogramação #Ruby 1.9 - Part I"
 date: 2012-08-26 19:01
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,11 +14,11 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Reflexão e Metaprogramação</h1>
-<!-- more -->
+
 Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
 para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
 Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um
@@ -27,7 +27,7 @@ instância nomeada dentro de um objeto especificado, ou percorrer todos os objet
 A API de reflexão, na verdade, vai além e permite que um programa para alterar o seu estado e estrutura. Um programa Ruby pode
 definir dinamicamente variáveis chamadas, invocar métodos nomeados, e até mesmo definir novas classes e novos métodos.
 
-API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe 
+API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe
 dos seus parênteses opcionais sintaxe torna uma linguagem ideal para metaprogramação. Vagamente definida, metaprogramação está
 escrevendo programas (ou frameworks) que ajudam a escrever programas. Para colocar de outra forma, a metaprogramação é um
 conjunto de técnicas para estender a sintaxe de Ruby de uma forma que facilita a programação. Metaprogramação está intimamente
@@ -38,7 +38,7 @@ Neste post começo com várias seções que introduzem a API de reflexão do Rub
 poucos métodos. Estes métodos são definidos, para a maior parte, pelo `Kernel`, `Module` e `Object`.
 
 Enquanto você lê estas seções introdutórias, tenha em mente que reflexão não é, por si só, a metaprogramação. Metaprogramação
-tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de 
+tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de
 reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post demonstrarei, por exemplo, técnicas comuns de
 metaprogramação que usam essa API.
 
@@ -77,7 +77,7 @@ o.respond_to? nome
 
 <h3>Ancestralidade e Módulos</h3>
 
-Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma 
+Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma
 classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
 entender quando demonstrado:
 
@@ -114,7 +114,7 @@ C.included_modules # => [B, A, Kernel]
 Este código demonstra `include?`, que é um método público de instância definido pela classe `Module`. Mas ele também possui duas
 invocações do método `include` (Sem o sinal de interrogação), que é um método de instância particular de `Module`. Como um
 método particular, pode apenas ser chamado implicitamente em si, o que limita a sua utilização para o corpo de uma definição de
-`class` ou `module`. Este uso do método `include`, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no 
+`class` ou `module`. Este uso do método `include`, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no
 núcleo da sintaxe de Ruby.
 
 Um método relacionado com o método `include`, particular é o público `Object.extend`. Este método estende um objeto por tornar
@@ -124,12 +124,12 @@ os métodos de instância de cada um dos módulos específicos em métodos `sing
 module Greeter; def hi; "hello"; end; end # módulo Greeter
 s = "objeto de string"
 s.extend(Greeter)       # Adicione "hello" como um método singleton para s
-s.hi                    
+s.hi
 String.extend(Greeter)  # Adicione "hello" como método de classe de String
 String.hi 				# => "hello"
 ```
 
-O método `Module.nesting` de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um 
+O método `Module.nesting` de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
 `array` que especifica o assentamento de módulos da localização atual. `Module.nesting[0]` é a classe atual ou módulo, `Module.nesting[1]` é o quem contém a `class` ou `module` e assim por diante:
 
 ```ruby Module e Class

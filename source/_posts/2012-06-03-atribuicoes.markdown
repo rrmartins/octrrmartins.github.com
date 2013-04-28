@@ -3,7 +3,7 @@ layout: post
 title: "Atribuições #Ruby"
 date: 2012-06-03 11:55
 comments: true
-categories: 
+categories:
 - Variable
 - String
 - Array
@@ -12,7 +12,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições</p>
 
 <h1>Atribuições</h1>
@@ -21,7 +21,6 @@ Uma expressão de atribuição especifica um ou mais valores para um ou mais va
 esquerdo de uma atribuição do operador. Os valores no lado direito de um operador de atribuição são algumas vezes chamado de rvalues ​​por
 contraste. Variáveis, constantes, atributos e elementos do Array são lvalues ​​em Ruby. As regras para o significado de expressões de
 atribuição são um pouco diferente para diferentes tipos de lvalues, e cada tipo é descrito em detalhe neste post.
-<!--more-->
 
 Existem três diferentes formas de expressões de atribuição em Ruby. Atribuição simples envolve um lvalue do operador <code>=</code>, e um rvalue.
 Para exemplo:
@@ -45,7 +44,7 @@ x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3
 
 Atribuição paralela é mais complicado quando o número de lvalues não é o mesmo que o número de rvalues ​​ou quando existe um `array` sobre à direita.
 
-O valor de uma expressão de atribuição é o valor (ou um `array` dos valores) atribuído. Além disso, o operador de atribuição 
+O valor de uma expressão de atribuição é o valor (ou um `array` dos valores) atribuído. Além disso, o operador de atribuição
 é "Associativo à direita", se aparecer várias atribuições em uma única expressão, eles são avaliados da direita para a esquerda.
 Isto significa que a atribuição pode ser acorrentado para atribuir o mesmo valor para as múltiplas variáveis:
 
@@ -77,7 +76,7 @@ class Ambiguous  
   def teste    
     puts x # Nenhuma variável foi visto, refere-se ao método acima: imprime 1    
 
-    # A linha abaixo não é avaliada, por causa da cláusula "if falsa". 
+    # A linha abaixo não é avaliada, por causa da cláusula "if falsa".
     # Mas o analisador vê e trata x como uma variável para o resto do método.    
     x = 0 if false
 
@@ -97,9 +96,9 @@ Constantes são diferentes das variáveis ​​de uma forma óbvia: seus valore
 	* Atribuição a uma constante que já existe, faz com o Ruby emita um aviso. O Ruby executa a tarefa,
 	no entanto, que significa que as constantes não são realmente constante.
 
-	* Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos 
-	destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método, 
-	que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é 
+	* Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos
+	destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método,
+	que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é
 	permitido.
 
 Ao contrário das variáveis, as constantes não vem a existir até que o `Intérprete Ruby` realmente executa a expressão de atribuição. A expressão não avaliada abaixo, não cria uma constante:
@@ -126,7 +125,7 @@ O interpretador Ruby converte essa tarefa para a seguinte invocação de métod
 o.m=(v) # Se omitir os parênteses e adicionar um espaço, isso parece tarefa!
 ```
 
-Isto é, ele passa o valor v para o método `m=`. Esse método pode fazer o que quiser com o valor. Normalmente, ele irá verificar que o valor é de desejado tipo e dentro da gama desejada, e, em seguida, armazená-lo em uma variável de instância do objeto. Métodos como `m=` são geralmente acompanhados de um método `m`, que simplesmente retorna o valor mais recentemente passado para `m=`. Alguns dizem que `m=` é um método setter e `m` é um método getter. Quando um objeto tem esse par de métodos, dizemos que ele tem um atributo `m`. Atributos são às vezes chamado de "Propriedades" em outras línguas. 
+Isto é, ele passa o valor v para o método `m=`. Esse método pode fazer o que quiser com o valor. Normalmente, ele irá verificar que o valor é de desejado tipo e dentro da gama desejada, e, em seguida, armazená-lo em uma variável de instância do objeto. Métodos como `m=` são geralmente acompanhados de um método `m`, que simplesmente retorna o valor mais recentemente passado para `m=`. Alguns dizem que `m=` é um método setter e `m` é um método getter. Quando um objeto tem esse par de métodos, dizemos que ele tem um atributo `m`. Atributos são às vezes chamado de "Propriedades" em outras línguas.
 
 Atribuindo valores aos elementos de um `Array` também é feito pelo método de invocação. Se um objeto define um método chamado `[]=` (nome do método é apenas esses três caracteres de pontuação) que espera dois argumentos, então na expressão o `[x] = y` é realmente executado como:
 

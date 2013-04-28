@@ -3,7 +3,7 @@ layout: post
 title: "O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais"
 date: 2012-05-08 22:28
 comments: true
-categories: 
+categories:
 - Hash
 - Hash Liiteral
 - Literal
@@ -12,7 +12,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 Na primeira parte eu fiz uma introdução do Hash:
@@ -20,11 +20,11 @@ Na primeira parte eu fiz uma introdução do Hash:
 
 Vamos lá!
 
-Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de 
+Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
 pares, colocados dentro de chaves. Chaves e valores são separados
 com um caractere de dois "arrow": '=>'. O objeto Hash criado anteriormente também pode ser
 criado com o literal seguinte:
-<!--more-->
+
 
 ```ruby Hash Literal
 números = {"um" => 1, "dois" => 2, "três" => 3}
@@ -46,14 +46,14 @@ Ruby 1.8 permite vírgulas em lugar de setas, mas isso não teve a sintaxe subst
 ```
 
 Tanto Ruby 1.8 quanto no Ruby 1.9 permite uma única vírgula à direita do
-final da lista de chave / valor: 
+final da lista de chave / valor:
 
 ```ruby Hash Literal
 números = {: um => 1,: dois => 2} # vírgula extra ignorado
 ```
 
 Ruby 1.9 suporta muito útil e sucinto a sintaxe literal de Hash
-quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta: 
+quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta:
 
 ```ruby Hash Literal
 números = {um: 1, dois: 2, tres: 3}

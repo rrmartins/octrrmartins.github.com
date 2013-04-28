@@ -3,7 +3,7 @@ layout: post
 title: "Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9"
 date: 2012-09-09 19:31
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,22 +14,22 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Metodos de Visibilidade: Public, Protected, Private</b>...</p>
 
 <h1>Metodos de Visibilidade: Public, Protected, Private</h1>
-<!-- more -->
+
 Métodos de instância podem ser `public`, `private` ou `protected`. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
 familiarizado com esses termos. Preste atenção de qualquer maneira, porque estas palavras têm um significado um pouco diferente em Ruby do que em
 outras Linguagens.
 
 Métodos são normalmente `public` a menos que explicitamente declarado ser `private` ou `protected`. Uma exceção é o método `initialize`, que é sempre
-implicitamente privada. Outra exceção é qualquer método "global" declarado fora de uma definição de classe desses métodos são definidos como métodos 
+implicitamente privada. Outra exceção é qualquer método "global" declarado fora de uma definição de classe desses métodos são definidos como métodos
 privados de instância de objeto. Um método `public` pode ser chamado em qualquer lugar, não há restrições sobre seu uso.
 
 Um método `private` é uma implementação interna de uma classe, e que só pode ser chamada por métodos de outra instância da classe (ou, como veremos
-mais tarde, as suas subclasses). Métodos `private` são implicitamente invocado em si mesmo, e não podem ser explicitamente chamado em um objeto. Se `m` 
+mais tarde, as suas subclasses). Métodos `private` são implicitamente invocado em si mesmo, e não podem ser explicitamente chamado em um objeto. Se `m`
 é um método `private`, então você deve chamá-lo em estilo funcional como `m`. Você não pode escrever `o.m` ou mesmo `self.m`.
 
 Um método `protected` é como um método `private` em que só pode ser chamado de dentro da implementação de uma classe ou suas subclasses. Ela difere de
@@ -41,7 +41,7 @@ Métodos `protected` são os menos comumente definido e também o mais difícil 
 pode ser mais formalmente descritos como segue: um método `protected` definido por uma classe C pode ser invocado em um `objeto o` através de um método
 em um `objeto p` se e somente se as classes de `o` e `p` são ambos subclasses ou iguais para, a classe C.
 
-Métodos de visibilidade é declarado com três métodos chamados `public`, `private` e `protected`. Estes são os métodos de instância da Classe do módulo. 
+Métodos de visibilidade é declarado com três métodos chamados `public`, `private` e `protected`. Estes são os métodos de instância da Classe do módulo.
 Todas as classes são módulos, e dentro de uma definição de classe, a classe auto-refere-se ao que está sendo definido. Assim, `public`, `private` e
 `protected` pode ser usado como se fossem palavras-chave da linguagem. Em fato, no entanto, são chamadas de método em si. Há duas maneiras para chamar
 esses métodos. Sem argumentos, eles especificam que todas as definições de método subsequentes terão a visibilidade especificada. Uma classe pode
@@ -83,7 +83,7 @@ class Widget
 end
 ```
 
-Lembre-se que `public`, `private` e `protected` aplicam-se apenas aos métodos em Ruby. Variáveis de instância e de classe são encapsuladas e 
+Lembre-se que `public`, `private` e `protected` aplicam-se apenas aos métodos em Ruby. Variáveis de instância e de classe são encapsuladas e
 efetivamente `private`, e constantes são efetivamente `public`. Não há nenhuma maneira de fazer uma variável de instância acessível a partir de fora de
 uma classe (exceto pela definição de um método de acesso, é claro). E não há maneira de definir uma constante que é inacessível para uso externo.
 

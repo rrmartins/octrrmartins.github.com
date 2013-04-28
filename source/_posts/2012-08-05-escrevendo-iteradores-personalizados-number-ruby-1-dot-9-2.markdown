@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Escrevendo iteradores personalizados</h1>
@@ -22,7 +22,7 @@ categories:
 A definição de característica de um método `Iterator`, é que ele invoca um bloco de código associado com a
 invocação do método. Você faz isso com a declaração `yield`. O método que se segue é um iterador trivial que apenas
 invoca o seu bloco duas vezes:
-<!-- more -->
+
 ```ruby yield
 def twice
   yield
@@ -54,17 +54,17 @@ sequencia(3, 5, 1) {| y | puts y}
 	Nomenclatura: rendimento e iteradores
 
 	Dependendo da sua experiência em programação, você pode encontrar os
-	termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
-	um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+	termos "yield" e "iterator". O método de sequencia mostrado anteriormente é
+	um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número
 	na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
 	de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
 	no entanto, em algum código que possa parecer como se fosse o bloco que é
 	produzindo um resultado de volta para o método que o invocou.
 
 	Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
-	'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+	'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está
 	acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
-	o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+	o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles.
 	Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
 
 	Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
@@ -90,10 +90,10 @@ end
 circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
 ```
 
-Usando a palavra-chave `yield` realmente é muito parecido com invocação de um método. 
-Parênteses nos argumentos são opcionais. Você pode usar `*` para expandir uma matriz de argumentos 
+Usando a palavra-chave `yield` realmente é muito parecido com invocação de um método.
+Parênteses nos argumentos são opcionais. Você pode usar `*` para expandir uma matriz de argumentos
 individuais. `yield` ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
-de uma invocação de método, no entanto, uma expressão `yield` pode não ser seguido por um bloco. 
+de uma invocação de método, no entanto, uma expressão `yield` pode não ser seguido por um bloco.
 Você não pode passar um bloco a um bloco.
 
 Se um método é invocado sem um bloco, é um erro para o método `yield`, porque não há nada para `yield`. Às vezes
@@ -109,7 +109,7 @@ def sequence(n, m, c)
   i, s = 0, []                  # Inicializa variáveis
   while(i < n)                  # Loop n vezes
     y = m*i + c                 # calcula o valor
-    yield y if block_given?     
+    yield y if block_given?
     s << y                      # armazena o valor
     i += 1
   end

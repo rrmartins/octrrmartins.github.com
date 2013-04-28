@@ -3,7 +3,7 @@ layout: post
 title: "Estruturas de Controle Personalizados - #Ruby 1.9"
 date: 2012-09-13 22:50
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
@@ -23,7 +23,6 @@ categories:
 Uso de blocos em Ruby, juntamente com sua sintaxe de parênteses opcional, tornam muito fácil de definir métodos que parecem `iterator` e se comportam
 como estruturas de controle. O método `loop` do `Kernel` é um exemplo simples. Neste post, desenvolvo mais três exemplos. Os exemplos aqui usam
 segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência para compreender todos os detalhes.
-<!--more-->
 
 <h3>Executando Delaying e Repeating: `after` e `every`</h3>
 
@@ -31,7 +30,7 @@ O exemplo 1-1 define métodos globais nomeados após os dias. Cada um leva um ar
 bloco associado. Depois cria um novo segmento e retorna o objeto `Thread` imediatamente. O segmento recém-criado dorme para o número especificado de
 segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, "dorme" o número
 especificado de segundos entre chamadas. O segundo argumento para todos é um valor para passar para a primeira chamada do bloco. O valor de retorno de
-cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer 
+cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer
 invocações futuras.
 
 Aqui está um exemplo de código que usa `after` e `every`:
@@ -50,7 +49,7 @@ sleep(6)                            # Dê um tempo acima para executar
 ```
 
 Chamando o `sleep` no final deste código, evita o programa de sair antes que a `thread` seja criada por poder todas completar sua contagem. Com esse
-exemplo de como `after` e `every` são usadas, agora estamos prontos para apresentar a sua implementação. 
+exemplo de como `after` e `every` são usadas, agora estamos prontos para apresentar a sua implementação.
 
 ``` ruby Exemplo 1-1. Os métodos after e every
 
@@ -71,7 +70,7 @@ exemplo de como `after` e `every` são usadas, agora estamos prontos para aprese
 #
 
 # Executar o bloco after depois de esperar o número especificado de segundos.
-def after(seconds, &block)  
+def after(seconds, &block)
   Thread.new do       # Em um novo segmento ...
     sleep(seconds)    # Primeiro espera
     block.call        # Em seguida, chamar o bloco

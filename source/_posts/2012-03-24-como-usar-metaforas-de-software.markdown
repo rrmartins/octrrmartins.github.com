@@ -3,12 +3,13 @@ layout: post
 title: "Como usar metáforas de software?"
 date: 2012-03-24 10:23
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software...</p>
 <p> Vamos descrever agora como usar Metaforas..</p>
 <ol>
@@ -28,7 +29,7 @@ categories:
 Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
 onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
 mais como uma heurística do que como um algoritmo.
-<!-- more -->
+
 Um algoritmo é um conjunto de instruções bem definidas para a realização de uma determinada
 tarefa. Um algoritmo é previsível, determinista, e não está sujeita ao acaso.
 Um algoritmo diz-lhe como ir do ponto A, ao ponto B sem desvios

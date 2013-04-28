@@ -3,7 +3,7 @@ layout: post
 title: "Encadeamento de Alias - #Ruby 1.9"
 date: 2012-09-18 08:38
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
@@ -22,8 +22,8 @@ categories:
 
 Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
 Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:
-<!-- more -->
-	* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para 
+
+	* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
 	a versão não modificada do método.
 
 	* Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
@@ -56,8 +56,8 @@ ruby -rclasstrace my_program.rb  --traceout /tmp/trace
 A opção -r carrega a biblioteca especificado antes de começar a executar o programa.
 
 O `Exemplo 1-1` usa apelido de encadeamento estático para rastrear todas as chamadas dos métodos `Kernel.require` e `Kernel.load`. Ele define um hook
-`Object.inherited` para rastrear as definições de novas classes. E ele usa `Kernel.at_exit` para executar um bloco de código quando o programa termina. 
-Além dos encadeamentos de alias `require` e `load` e defini `Object.inherited`, a única modificação do espaço global feita por este código é a 
+`Object.inherited` para rastrear as definições de novas classes. E ele usa `Kernel.at_exit` para executar um bloco de código quando o programa termina.
+Além dos encadeamentos de alias `require` e `load` e defini `Object.inherited`, a única modificação do espaço global feita por este código é a
 definição de um módulo chamado `ClassTrace`. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
 poluem o `namespace` com variáveis globais.
 
@@ -124,8 +124,8 @@ um alias adequado para qualquer método dado (incluindo métodos como o operador
 
 Depois de definir estes novo métodos `Module`, Exemplo 1-2 redefine o método `synchronized` novamente. Quando o método é invocado dentro de uma classe
 ou de um módulo, ele chama `synchronize_method` em cada um dos símbolos que é passado. Curiosamente, contudo, pode também ser chamado sem argumentos,
-quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o `hook` para receber 
-notificação quando um novo método `method_added` é adicionado.) Note que o código deste exemplo depende do método `Object.mutex` e a classe 
+quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o `hook` para receber
+notificação quando um novo método `method_added` é adicionado.) Note que o código deste exemplo depende do método `Object.mutex` e a classe
 `SynchronizedObject`.
 
 ``` ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread
@@ -191,7 +191,7 @@ def synchronized(*args)
       args.each {|m| self.synchronize_method(m) }
     else
       # Se nenhum método é especificado pelo synchronize o método seguinte define
-      eigenclass = class<<self; self; end 
+      eigenclass = class<<self; self; end
       eigenclass.class_eval do # Use eigenclass para definir métodos de classe
         # Define method_added para notificação quando próximo método é definido
         define_method :method_added do |name|
@@ -239,7 +239,7 @@ classe Object
 
     # Trace o fato de que estamos começando a traçar estes métodos
     STDERR << "Tracing #{methods.join(', ')} on #{object_id}\n"
-	
+
 		# Singleton métodos são definidos na eigenclass
     eigenclass = class << self; self; end
 
@@ -280,7 +280,7 @@ classe Object
       methods &= @_traced   # todos os métodos especificados que são rastreados
       STDERR << "Untracing #{methods.join(', ')} on #{object_id}\n"
     end
-		
+
 		@_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
 
 		# Remove os métodos traçados únicos do eigenclass

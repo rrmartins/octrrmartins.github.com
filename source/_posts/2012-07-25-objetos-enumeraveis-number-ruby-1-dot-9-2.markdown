@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Objetos Enumeráveis</h1>
@@ -22,7 +22,7 @@ categories:
 `Array`, `Range`, `Hash`, e um número de outras classes definem um iterador `each` que passa cada elemento da
 coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
 iterar sobre objetos que têm o método `each`. Exemplos de iteradores `each`:
-<!-- more -->
+
 ```ruby Metodo each
 [1,2,3].each {|x| print x }   # => prints "123"
 (1..3).each  {|x| print x }   # => prints "123" Same as 1.upto(3)
@@ -50,7 +50,7 @@ end
 ```
 
 Alguns dos iteradores mais comumentes utilizados são os métodos `Enumerable`, `collect`, `select`, `reject`, e
-`inject`. O método `collect` (também conhecido como `map`) executa o seu bloco associado para cada elemento do objeto 
+`inject`. O método `collect` (também conhecido como `map`) executa o seu bloco associado para cada elemento do objeto
 enumerável, e coleta os valores de retorno dos blocos em um `array`:
 
 ```ruby Metodo Collect
@@ -71,7 +71,7 @@ retorna `nil` ou `false`. Por exemplo:
 odds = (1..10).reject{|x| x%2 == 0} # => [1,3,5,7,9]
 ```
 
-O método `inject` é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos. 
+O método `inject` é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
 O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
 o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqueado para a próxima iteração, ou torna-
 se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de

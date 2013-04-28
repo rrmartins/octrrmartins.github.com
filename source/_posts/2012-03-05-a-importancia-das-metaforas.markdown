@@ -3,16 +3,17 @@ layout: post
 title: "A importância das metáforas"
 date: 2012-03-05 22:47
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>Olá amigos nerd's... Continuando os estudos...</p>
 
 <strong> A importância das metáforas! </strong>
-<!-- more -->
+
 Desenvolvimentos importantes com freqüência, surgir de analogias. Ao comparar tópico
 você entende mal a algo similar você entender melhor,
 você pode vir acima com idéias que resultaria em uma melhor compreensão do

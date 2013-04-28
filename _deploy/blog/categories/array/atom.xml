@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,16 +18,16 @@
     <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
     <updated>2012-08-29T22:15:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Avaliando Strings e Blocos</h1>
-
-
-<!-- more -->
 
 
 <p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
@@ -40,7 +40,7 @@ eval "x + 1"  # =&gt; 2
 
 <p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
-de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que<br/>
+de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que
 usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos <code>eval</code> e <code>eval-like</code>.</p>
 
 <h3>Associações e eval</h3>
@@ -141,15 +141,15 @@ do exterior do objecto.</p>
     <link href="http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/"/>
     <updated>2012-08-26T19:01:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Reflexão e Metaprogramação</h1>
-
-
-<!-- more -->
 
 
 <p>Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
@@ -269,7 +269,7 @@ os métodos de instância de cada um dos módulos específicos em métodos <code
 module Greeter; def hi; "hello"; end; end # módulo Greeter
 s = "objeto de string"
 s.extend(Greeter)       # Adicione "hello" como um método singleton para s
-s.hi                    
+s.hi
 String.extend(Greeter)  # Adicione "hello" como método de classe de String
 String.hi               # =&gt; "hello"
 </code></p>
@@ -317,7 +317,10 @@ Hora de dar um <code>break</code>... :)</p>
     <link href="http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
     <updated>2012-08-19T14:02:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -333,11 +336,6 @@ Hora de dar um <code>break</code>... :)</p>
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
-
-
-<!--more-->
-
-
 
 
 <h3>Sintaxe bloco</h3>
@@ -370,7 +368,7 @@ provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses o
 
 <p><code>ruby Blocks
 1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
-1.upto 3 do |x| puts x end  
+1.upto 3 do |x| puts x end
 1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
 </code></p>
 
@@ -626,7 +624,10 @@ invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> p
     <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
     <updated>2012-08-05T16:18:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -637,9 +638,6 @@ invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> p
 <p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
 invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
 invoca o seu bloco duas vezes:</p>
-
-<!-- more -->
-
 
 <p><code>ruby yield
 def twice
@@ -678,17 +676,17 @@ end</p>
 <pre><code>Nomenclatura: rendimento e iteradores
 
 Dependendo da sua experiência em programação, você pode encontrar os
-termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
-um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número
 na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
 de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
 no entanto, em algum código que possa parecer como se fosse o bloco que é
 produzindo um resultado de volta para o método que o invocou.
 
 Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
-'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está
 acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
-o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles.
 Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
 
 Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
@@ -746,7 +744,7 @@ funções mundiais. Aqui está um exemplo:</p>
   while(i &lt; n)                  # Loop n vezes</p>
 
 <pre><code>y = m*i + c                 # calcula o valor
-yield y if block_given?     
+yield y if block_given?
 s &lt;&lt; y                      # armazena o valor
 i += 1
 </code></pre>
@@ -767,7 +765,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
     <updated>2012-07-25T22:50:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -778,9 +779,6 @@ end
 <p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
 coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
 iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
-
-<!-- more -->
-
 
 <p><code>ruby Metodo each
 [1,2,3].each {|x| print x }   # =&gt; prints "123"

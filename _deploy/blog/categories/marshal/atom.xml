@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Marshal | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/marshal/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/"/>
     <updated>2012-05-20T19:08:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
 
 
 
@@ -34,9 +37,6 @@
 <p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
 superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
 referências a objetos são copiadas, não os próprios objetos referenciados.</p>
-
-<!-- more -->
-
 
 <p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
 classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor

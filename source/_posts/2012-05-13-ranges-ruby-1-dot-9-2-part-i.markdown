@@ -3,14 +3,14 @@ layout: post
 title: "Ranges - Ruby 1.9.2 - Part I "
 date: 2012-05-13 02:16
 comments: true
-categories: 
+categories:
 - Range
 - Ruby
 - Ruby 1.8
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 <p>Hoje vamos falar um pouco de Range, é hora de nos aprofundar.</p>
@@ -18,7 +18,7 @@ categories:
 <h2>Ranges</h2>
 
 Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:
-<!-- more -->
+
 ``` ruby Range
 1..10 # Os números inteiros de 1 a 10, incluindo 10
 1...10 # Os números entre 1 e 10, excluindo-se 10
@@ -31,7 +31,7 @@ cold_war = 1945 .. 1989
 cold_war.include? DateTime.now.year
 ```
 
-O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos, 
+O que esta implícita na definição de um intervalo é a noção de ordem. Se um intervalo são os valores entre dois pontos,
 há, obviamente, deve ser alguma forma para comparar os valores para os pontos de extremidade. Em Ruby, isso é feito
 com o operador de comparação <=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
 (ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador <=>. o
@@ -51,8 +51,8 @@ r.step(2) {|l| print "[#{l}]"} # imprime "[a] [c]"
 r.to_a # => ['a', 'b', 'c']: Enumerable define to_a
 ```
 
-A razão pela qual isto funciona é que a classe String define um método succ e 'a'.succ é 'b' e 'b'.succ é 'c'. Intervalos que 
-podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada, 
+A razão pela qual isto funciona é que a classe String define um método succ e 'a'.succ é 'b' e 'b'.succ é 'c'. Intervalos que
+podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
 e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.
 
 Faixas com terminais inteiros são os mais comuns de serem usados ​​em programas típicos de Ruby. Porque eles são discretos, os ranges inteiros podem sasurusados para cordas de índice e matrizes. Eles são também uma forma conveniente para
@@ -64,6 +64,6 @@ invocar diretamente em uma ampla literal, você deve colocar parênteses o liter
 ``` ruby Range
 1 .. 3.to_a # tenta chamar to_a sobre o número 3
 (1 .. 3). To_a # => [1,2,3]
-```     
+```
 
 Até a proxima!!!

@@ -3,16 +3,17 @@ layout: post
 title: "A importância das metáforas - Parte II"
 date: 2012-03-11 16:33
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>Olá amigos nerd's... Continuando os estudos...</p>
 
 <strong> A importância das metáforas - Parte II </strong>
-<!-- more -->
+
 Considere o exemplo de uma pedra pesada oscila para frente e para trás em uma corda.
 Antes de Galileu, um aristotélico olhar para a pedra balançando pensei que um
 objeto pesado passou naturalmente a partir de uma posição mais elevada para uma estatística de descanso em uma menor

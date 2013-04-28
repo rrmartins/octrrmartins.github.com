@@ -3,19 +3,19 @@ layout: post
 title: "Arranhando sua própria coceira"
 date: 2012-05-22 13:21
 comments: true
-categories: 
+categories:
 - The Progmatic Programmers
 - OpenSource
 - Software Livre
 - Caindo na Real
 ---
-
+<!--more-->
 Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.
 
 Então, vejam ai uma parte muito boa, só para dar um gostinho! :D
 
 <h2>Arranhando sua proípria coceira</h2>
-<!-- more -->
+
 O mundo de Código Aberto abraçou esse mantra há muito tempo – eles chamam de “arranhando sua própria coceira”. Para os desenvolvedores de código aberto, significa que terão as ferramentas que querem, entregues da maneira que querem. Mas os benefícios vão mais a fundo.
 
 Como designer ou desenvolvedor de uma nova aplicação, você precisa encarar centenas de micro-decisões todos os dias: azul ou verde? Uma tabela ou duas? Estática ou dinâmica? Abortar ou recuperar? Como tomamos essas decisões? Se é algo que reconhecemos como importante, poderíamos perguntar. O resto, chutamos. E todos esses chutes constroem um tipo de débito em nossas aplicações – uma rede interconectada de coisas que assumimos.

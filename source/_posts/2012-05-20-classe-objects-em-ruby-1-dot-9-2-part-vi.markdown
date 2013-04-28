@@ -3,7 +3,7 @@ layout: post
 title: "Classe Objects em Ruby 1.9.2 - Part VI"
 date: 2012-05-20 19:08
 comments: true
-categories: 
+categories:
 - Object
 - Marshal
 - YAML
@@ -12,7 +12,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
 
 <h1>Objetos</h1>
@@ -22,7 +22,7 @@ categories:
 A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
 superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
 referências a objetos são copiadas, não os próprios objetos referenciados.
-<!-- more -->
+
 Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
 classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor
 de cópias", podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
@@ -76,14 +76,14 @@ s[0] = "ni" # TypeError: não pode modificar cadeia de congelados
 Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.
 
 Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para "descongelar" um objeto. Se
-você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a 
+você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
 cópia não será congelada.
 
 <h3>Objetos contaminados e não confiáveis</h3>
 
 Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
 de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
-contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O 
+contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
 taint de um objeto pode ser testado com o método tainted? método:
 
 ``` ruby taint
@@ -94,14 +94,14 @@ s.upcase.tainted? # Verdade: objetos derivados estão contaminados
 s[3,4].tainted? # Verdade: substrings estão contaminados
 ```
 
-De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente 
+De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
 contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
 vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
 pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.
 
 Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
-lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos 
-confiáveis. 
+lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
+confiáveis.
 
 
 Boa noite amigos... até a proxima..

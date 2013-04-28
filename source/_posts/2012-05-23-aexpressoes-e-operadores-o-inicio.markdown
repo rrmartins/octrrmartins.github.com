@@ -3,7 +3,7 @@ layout: post
 title: "Expressões e Operadores - O inicio"
 date: 2012-05-23 07:22
 comments: true
-categories: 
+categories:
 - Expression
 - Operator
 - Math
@@ -12,14 +12,14 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Expressões e Operadores</p>
 
 <h1>Expressões e Operadores</h1>
 
-Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos 
+Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos
 de expressões:
-<!-- more -->
+
 ```ruby Expressões
 2 # Um literal numérico
 x # Uma referência variável local
@@ -32,7 +32,7 @@ expressões maiores com operadores, tais como o operador de atribuição e o ope
 
 Muitas linguagens de programação diferenciam entre expressões de baixo nível e alto nível de declarações, tais como condicionais e loops.
 Nestas linguagens, as declarações de controlar o fluxo de um programa, mas eles não têm valores. Eles são executados, em vez de avaliados.
-Em Ruby, não há distinção clara entre as afirmações e expressões; tudo em Ruby, incluindo a definição de classe e de método, pode ser 
+Em Ruby, não há distinção clara entre as afirmações e expressões; tudo em Ruby, incluindo a definição de classe e de método, pode ser
 avaliado como uma expressão e retorna um valor. É ainda útil, no entanto, diferenciam sintaxe normalmente usada como expressões de sintaxe
 tipicamente usadas ​​como indicações.
 

@@ -3,16 +3,17 @@ layout: post
 title: "Por que Construção de Software é Importante? - Parte 2"
 date: 2012-03-03 19:55
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>Olá amigos nerd's... Continuando os estudos...</p>
 
 <strong> Por que Construção de Software é Importante? - Parte 2</strong>
-<!-- more -->
+
 <p>
 Com foco na construção, a produtividade do programador indivídual pode
   melhorar enormemente. Um estudo clássico de Sackman, Erikson e Grant mostrou
@@ -50,7 +51,7 @@ Com foco na construção, a produtividade do programador indivídual pode
   Melhorar a construção é, assim, uma forma de melhorar a qualquer desenvolvimento de software
   esforço, não importa o quão abreviado.
   </p>
-  
-  
+
+
 Texto retirado do livro Code Compile, de Steve McConnell.
 Até a proxima amigos... :D

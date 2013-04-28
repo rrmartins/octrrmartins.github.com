@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
@@ -24,7 +24,7 @@ Ruby define uma série de características para rastrear a execução de um prog
 imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: `__FILE__` e `__LINE__`.
 Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
 para especificar o local exato em que ela foi gerado:
-<!-- more -->
+
 ``` ruby __FILE__ e __LINE__
 STDERR.puts "#{__FILE__}:#{__LINE__): invalid data"
 ```
@@ -42,12 +42,12 @@ pilha maior.
 Você não precisa levantar uma exceção para obter um rastreamento da pilha atual, no entanto. O método `Kernel.caller` retorna o estadp atual na pilha de
 chamadas da mesma forma como `Exception.backtrace`. Com nenhum argumento, o `caller` retorna um rastreamento de pilha, cujo primeiro elemento é o método
 que chamou o método que chama de `caller`. Isto é, `caller[0]` especifica o local a partir do qual o método atual foi chamado. Você também pode chamar
-de `caller` com um argumento que especifica quantos quadros de pilha a cair a partir do início do registo de `caller`. O padrão é `1`, e do 
-`caller(0)[0]` especifica o local em que o método `caller` é invocado. Isto significa, por exemplo, que o `caller[0]` é a mesma coisa que o 
+de `caller` com um argumento que especifica quantos quadros de pilha a cair a partir do início do registo de `caller`. O padrão é `1`, e do
+`caller(0)[0]` especifica o local em que o método `caller` é invocado. Isto significa, por exemplo, que o `caller[0]` é a mesma coisa que o
 `caller(0)[1]` e que o `caller(2)` é o mesmo como `caller[1 .. -1]`.
 
 Rastreamentos de pilha devolvidos por `Exception.backtrace` e `Kernel.caller` também incluem nomes de métodos. Antes de Ruby 1.9, você deve analisar as
-seqüências de rastreamento de pilha para extrair nomes de métodos. No Ruby 1.9, no entanto, você pode obter o nome (como um símbolo) da execução 
+seqüências de rastreamento de pilha para extrair nomes de métodos. No Ruby 1.9, no entanto, você pode obter o nome (como um símbolo) da execução
 atual do método com `Kernel.__method__` ou seu sinônimo `Kernel.__callee__`. `__method__` é útil em conjunção com __FILE__ e __LINE__:
 
 ``` ruby raise
@@ -84,7 +84,7 @@ trace_var(:$SAFE) {|v|
 }
 ```
 
-O último método de rastreamento é `Kernel.set_trace_func`, que registra um `Proc` a ser chamado após cada linha de um programa Ruby. `set_trace_func` 
+O último método de rastreamento é `Kernel.set_trace_func`, que registra um `Proc` a ser chamado após cada linha de um programa Ruby. `set_trace_func`
 é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.
 
 

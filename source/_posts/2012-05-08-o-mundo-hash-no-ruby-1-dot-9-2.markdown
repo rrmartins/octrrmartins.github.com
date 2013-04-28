@@ -3,14 +3,14 @@ layout: post
 title: "O Mundo Hash no Ruby 1.9.2 - Parte I"
 date: 2012-05-08 21:27
 comments: true
-categories: 
+categories:
 - Hash
 - Ruby
 - Ruby 1.8
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
@@ -19,7 +19,7 @@ valores. Eles às vezes são chamados de matrizes associativas, porque eles
 associam valores com cada uma das chaves, e pode ser pensado como matrizes
 em que o índice da matriz pode ser qualquer objeto em vez de um inteiro. um
 exemplo torna isso mais claro:
-<!-- more -->
+
 ```ruby Hash
 # Este hash irá mapear os nomes dos dígitos para os dígitos se
 números = Hash.new # Criar um novo objeto, vazio de hash

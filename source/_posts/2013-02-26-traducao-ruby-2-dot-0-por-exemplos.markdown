@@ -10,7 +10,7 @@ categories:
 - Marc-Andre
 -
 ---
-
+<!--more-->
 Olá amigos,
 
 Tudo tranquilo?
@@ -28,7 +28,6 @@ Antes de começar a tradução, gostaria de lembrar do que disse o proprio criad
 Neste trecho, [Matz][6] diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.
 
 Vamos a tradução... :D
-<!--more-->
 
 - - -
 Tradução

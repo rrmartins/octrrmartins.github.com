@@ -3,12 +3,13 @@ layout: post
 title: "Pontos Chaves Para a Construção de Software!"
 date: 2012-03-01 13:31
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>
 Pontos-chaves Para a Construção de Software!
 </p>

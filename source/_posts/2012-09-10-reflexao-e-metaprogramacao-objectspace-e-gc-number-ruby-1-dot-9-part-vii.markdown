@@ -14,13 +14,13 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>ObjectSpace e GC</h1>
-<!-- more -->
-O módulo `ObjectSpace` define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação. 
+
+O módulo `ObjectSpace` define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação.
 O método mais notável é `each_object`, um iterador que pode render cada objeto (ou a cada instância de uma classe especificada) que o intérprete sabe
 sobre:
 
@@ -37,7 +37,7 @@ Você deve ter cuidado ao registar um finalizador tal, no entanto, como o bloco 
 valores necessários para finalizar o objeto deve ser capturados no âmbito do bloco `finalizer`, de modo a que estejam disponíveis sem desreferência do
 objeto. Use `ObjectSpace.undefine_finalizer` para excluir todos os blocos inscritos para um objeto `finalizer`.
 
-O final método `ObjectSpace` é `ObjectSpace.garbage_collect`, que força o `garbage collected` de Ruby para ser executado. Funcionalidade de `garbage 
+O final método `ObjectSpace` é `ObjectSpace.garbage_collect`, que força o `garbage collected` de Ruby para ser executado. Funcionalidade de `garbage
 collected` também está disponível através do módulo `GC`. `GC.start` é sinônimo de `ObjectSpace.garbage_collect`. `garbage collected` pode ser
 desativado temporariamente com `GC.disable`, e ele pode ser ativado novamente com `GC.enable`.
 

@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -99,7 +99,10 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Classe Objects Em Ruby 1.9.2 - Part VI</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
 
 
 
@@ -115,9 +118,6 @@
 <p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
 superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
 referências a objetos são copiadas, não os próprios objetos referenciados.</p>
-
-<!-- more -->
-
 
 <p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
 classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este &#8220;Construtor

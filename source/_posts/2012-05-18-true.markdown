@@ -3,7 +3,7 @@ layout: post
 title: "True, False e Nil"
 date: 2012-05-18 12:58
 comments: True
-categories: 
+categories:
 - Verdadeiro
 - Falso
 - Nil
@@ -12,13 +12,13 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 <p>Hoje vamos continuar falando de True, False e Nil, é hora de nos aprofundar.</p>
 
 <h2>True, False e Nil</h2>
-<!-- more -->
+
 Ruby tem alguma das palavras-chave, as palavras: True, False e nil(nulo). True e False são os dois valores booleanos, e eles
 representar a verdade e a falsidade, sim e não, ligado e desligado, de um objeto. nil é um valor especial reservado para indicar
 a ausência de valor.

@@ -3,7 +3,7 @@ layout: post
 title: "O Mundo Hash no Ruby 1.9.2 - Parte III - Hashs Codes"
 date: 2012-05-10 13:01
 comments: true
-categories:  
+categories:
 - Hash
 - Hash Codes
 - Codes
@@ -13,12 +13,12 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 <p>Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.</p>
 
 <h3>Códigos de Hash, Igualdade e mutáveis Chaves</h3>
-<!-- more -->
+
 Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
 estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna <a href="http://www.ruby-doc.org/core-1.9.2/Fixnum.html">Fixnum</a> hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
 hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash's de tabelas são mais eficientes quando hashcodes duplicados são raros.

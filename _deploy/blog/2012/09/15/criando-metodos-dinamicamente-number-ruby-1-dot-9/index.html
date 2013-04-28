@@ -75,9 +75,9 @@ Reflexão e Metaprogramação agora Criando Métodos &hellip;">
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -100,7 +100,10 @@ Reflexão e Metaprogramação agora Criando Métodos &hellip;">
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Criando Métodos Dinamicamente - #Ruby 1.9</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -113,11 +116,6 @@ Reflexão e Metaprogramação agora Criando Métodos &hellip;">
 métodos de instância privados do <code>Module</code> são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
 argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
 métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.</p>
-
-<!--more-->
-
-
-
 
 <h3>Métodos definidos com class_eval</h3>
 

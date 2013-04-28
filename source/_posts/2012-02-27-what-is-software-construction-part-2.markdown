@@ -3,12 +3,13 @@ layout: post
 title: "O que é Software Construção? - Part 2"
 date: 2012-02-27 21:12
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 Olá amigos nerd's... Continuando os estudos do livro Code Compile,
 <h1>
 O que é Software Construção? - Parte 2
@@ -22,8 +23,7 @@ Aqui estão algumas das tarefas específicas envolvidas na construção:<br/>
   * Verificar se o projeto foi colocado de modo que
   construção pode avançar com sucesso;<br/>
   * Determinar como seu código será testado<br/>
-	<!-- more -->
-  * Desenhando e escrevendo de Classes e Rotinas<br/>
+	* Desenhando e escrevendo de Classes e Rotinas<br/>
   * Criar e nomear variáveis e constantes nomeadas, sempre colocando nomes simples e expressivos.<br/>
   * Seleção de estruturas de controle e organização de blocos de instruções<br/>
   * O teste de unidade, testes de integração e depuração de seu próprio código<br/>

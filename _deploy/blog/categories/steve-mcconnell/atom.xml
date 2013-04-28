@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Steve McConnell | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/steve-mcconnell/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
     <updated>2012-04-22T20:31:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
-    <content type="html"><![CDATA[<h2>Agricultura de Software: Acréscimo no Sistema</h2>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h2>Agricultura de Software: Acréscimo no Sistema</h2>
 
 
 <p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
@@ -32,7 +35,6 @@ aumentar de terra ao longo das margens de um corpo de água através do depósit
 </p>
 
 
-<!--more-->
 
 
 <p>
@@ -59,7 +61,10 @@ Este princípio básico é como início da ostra, uma pérola com um pequeno gr�
     <link href="http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
     <updated>2012-04-07T19:22:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
-    <content type="html"><![CDATA[<p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
 a Caligrafia das Codigos.</p>
 
 <p><b>Caligrafia de Software: Escrevendo Códigos</b></p>
@@ -69,9 +74,6 @@ a Caligrafia das Codigos.</p>
 é como escrever uma carta ocasional - Você se senta com caneta, tinta, papel e
 vai escrevendo a partir do início ao fim. Não exige planejamento formal, e você
 vai descobrindo o que você quer dizer com o andamento da escrita.</p>
-
-<!-- more -->
-
 
 <p>Muitas idéias derivam da metáfora escrita. Jon Bentley diz que você deve ser
 capaz de se sentar perto da lareira com um copo de conhaque, um bom charuto, e seu
@@ -112,10 +114,10 @@ julgamento mais caro e errado, em vez de um planejamento cuidadoso e de bom desi
 
 <p>-Craig Zerouni</p>
 
-<pre><code>Planejamento para jogar algo fora pode ser prático quando você está escrevendo 
+<pre><code>Planejamento para jogar algo fora pode ser prático quando você está escrevendo
 um código fácil de se ler. Mas estender a metáfora da "escrita" de software
-para um plano de jogar algo fora é mau conselho para desenvolvimento de software, 
-onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares. 
+para um plano de jogar algo fora é mau conselho para desenvolvimento de software,
+onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares.
 É fácil pegar o anel de latão se você pode dar ao luxo de sentar no seu
 pônei de madeira favorita para um número ilimitado de rodadas ao redor do carrossel.
 O truque é colocá-lo na primeira vez ou se arriscar de varios modos
@@ -132,7 +134,10 @@ tais objetivos.
     <link href="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/"/>
     <updated>2012-03-24T10:23:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software</id>
-    <content type="html"><![CDATA[<p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software...</p>
 
 
 <p> Vamos descrever agora como usar Metaforas..</p>
@@ -156,9 +161,6 @@ tais objetivos.
 <p>Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
 onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
 mais como uma heurística do que como um algoritmo.</p>
-
-<!-- more -->
-
 
 <p>Um algoritmo é um conjunto de instruções bem definidas para a realização de uma determinada
 tarefa. Um algoritmo é previsível, determinista, e não está sujeita ao acaso.
@@ -217,13 +219,13 @@ mais rápido do que pessoas que não os utilizam.</p>
     <link href="http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
     <updated>2012-03-11T16:33:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd's... Continuando os estudos...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos nerd's... Continuando os estudos...</p>
 
 
 <p><strong> A importância das metáforas - Parte II </strong></p>
-
-<!-- more -->
-
 
 <p>Considere o exemplo de uma pedra pesada oscila para frente e para trás em uma corda.
 Antes de Galileu, um aristotélico olhar para a pedra balançando pensei que um
@@ -273,13 +275,13 @@ metáforas são uma forma de internalizar e abstrair conceitos, permitindo que u
     <link href="http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas/"/>
     <updated>2012-03-05T22:47:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd's... Continuando os estudos...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos nerd's... Continuando os estudos...</p>
 
 
 <p><strong> A importância das metáforas! </strong></p>
-
-<!-- more -->
-
 
 <p>Desenvolvimentos importantes com freqüência, surgir de analogias. Ao comparar tópico
 você entende mal a algo similar você entender melhor,

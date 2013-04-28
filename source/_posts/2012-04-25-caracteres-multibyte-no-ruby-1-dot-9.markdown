@@ -3,12 +3,13 @@ layout: post
 title: "Caracteres multibyte no Ruby 1.9"
 date: 2012-04-25 22:27
 comments: true
-categories: 
+categories:
 - Ruby
 - Ruby 1.8
 - Ruby 1.9
 - The Ruby Programming Language
 ---
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 <p>A classe String foi reescrita no Ruby 1.9 para estar ciente e para
@@ -17,7 +18,6 @@ a maior mudança no Ruby 1,9, não é uma mudança altamente visível:
 código que usa string multibyte simplesmente funciona. Vale a pena
 entender por que ele funciona, no entanto, e esta seção explica o
 detalhes.</p>
-<!-- more -->
 
 <p>Se uma string contém caracteres de vários bytes, então o número de
 bytes não corresponde ao número de caracteres. No Ruby 1.9,
@@ -71,7 +71,7 @@ método que retorna a codificação de uma string (o retorno
 valor é um objeto de codificação,
 o qual é descrito em baixo):</p>
 
-``` ruby 
+``` ruby
 # - * - Coding: utf-8 - * -
 s = "2 × 2 = 4" # caráter multiplicação #  Note multibyte
 s.encoding # => <Encoding: UTF-8>

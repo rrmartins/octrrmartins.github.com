@@ -3,14 +3,14 @@ layout: post
 title: "Testando Associações em Range - Part II"
 date: 2012-05-15 21:49
 comments: true
-categories: 
+categories:
 - Range
 - Ruby
 - Ruby 1.8
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 <p>Hoje vamos continuar falando de Range, é hora de nos aprofundar.</p>
@@ -19,7 +19,7 @@ categories:
 
 A classe Range define métodos para determinar se um valor arbitrário é um membro de (isto é, está incluído no) um Range. Antes de entrar em
 detalhes sobre estes métodos, é necessário explicar que associaçãoem range pode ser definido de duas maneiras diferentes que estão relacionadas com a diferença entre os intervalos contínuos e discretos. Um valor x é um membro do range entre begin..end pela primeira definição se:
-<!-- more -->
+
 ``` ruby Range
 begin <= x <= end
 ```
@@ -46,9 +46,9 @@ r.include? 99.9 # => verdadeira: 99,9 é inferior a 100
 ```
 
 A situação é diferente no Ruby 1.9. Essa versão da linguagem introduz um novo método, cover?, que
-funciona como include? e member? do Ruby 1.8, ele sempre usa o teste de associação contínua. 
+funciona como include? e member? do Ruby 1.8, ele sempre usa o teste de associação contínua.
 include? e member? ainda são sinônimos no Ruby 1.9. Se os pontos finais do intervalo são números, estes métodos utilizam o
-teste de associação contínua, assim como eles fizeram no Ruby 1.8. Se os desfechos não são numéricas, no entanto, eles ao invés de 
+teste de associação contínua, assim como eles fizeram no Ruby 1.8. Se os desfechos não são numéricas, no entanto, eles ao invés de
 usar o teste de associação discreta. Podemos ilustrar estas mudanças com um Range discreto de Srintgs (você pode querer usar ri entender como String.succ funciona):
 
 ``` ruby ri String.succ
@@ -80,7 +80,7 @@ additional character if necessary.
   "***".succ         #=> "**+"
 
 
-(END) 
+(END)
 ```
 
 ```ruby Range

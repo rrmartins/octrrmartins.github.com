@@ -3,7 +3,7 @@ layout: post
 title: "Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9"
 date: 2012-10-28 14:53
 comments: true
-categories: 
+categories:
 - Ruby API
 - Thread
 - String
@@ -12,13 +12,13 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 Hoje vamos continuar falando de [Ruby](http://www.ruby-doc.org/core-1.9.3/), é hora de nos aprofundar em um pouco de **Threads e Concorrência** agora **Threads e Variáveis**...
 
 ## Threads e Concorrência
 
 ### Threads e Variáveis
-<!-- more -->
+
 Uma das características-chave de `Thread` é que elas podem compartilhar o acesso a variáveis. Como `Threads` são definidas
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
  assim por diante) estão no escopo do bloco:
@@ -41,7 +41,7 @@ fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a
 
 #### Thread-privadas variáveis
 
-Variáveis ​​definidas dentro do bloco de uma `thread` são particulares para essa `thread` e não são visíveis para qualquer 
+Variáveis ​​definidas dentro do bloco de uma `thread` são particulares para essa `thread` e não são visíveis para qualquer
 outra `thread`. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.
 
 Muitas vezes queremos uma `Thread` tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
@@ -57,8 +57,8 @@ end
 ```
 
 Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
-3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente 
-criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da 
+3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
+criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
 variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela `thread` depende de quando esse
 segmento é executado em relação para a thread pai.
 
@@ -86,7 +86,7 @@ caso, o valor de `n` é modificado para particular para o bloco externo e nunca 
 
 Algumas das variáveis especiais globais de Ruby são `thread` local: elas podem ter valores diferentes em `threads` diferentes.
 `$SAFE` e `$~` são exemplos. Isto significa que, se dois `thread` estão realizando conconrrencia de expressão regular ao mesmo
-tempo, eles vão ver diferentes valores de `$~`, e a realização de um jogo em um fio não irá interferir com os resultados de 
+tempo, eles vão ver diferentes valores de `$~`, e a realização de um jogo em um fio não irá interferir com os resultados de
 um jogo executado na outra discussão.
 
 A classe `Thread` provê `hash-like` como o comportamento. Ele define métodos de instância `[]` e `[]=` que permitem associar
@@ -112,7 +112,7 @@ download_threads.each {|t| total += t[:progress] }
 
 Junto com `[]` e `[]=`, `Thread` também define um método `key?` para testar se uma determinada chave existe para uma discussão
 . Os métodos `keys` retorna uma matriz de símbolos que representam as chaves definidas para a `Thread`. Este código pode ser
-melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave 
+melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
 :progress ainda:
 
 ```ruby Thread de progresso

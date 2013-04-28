@@ -3,19 +3,20 @@ layout: post
 title: "Desenvolvendo Um Chat com NodeJS"
 date: 2012-04-30 17:34
 comments: true
-categories: 
+categories:
 - NodeJS
 - RealTime
 - BackEnd
 - FrontEnd
 - JavaScript
 ---
+<!--more-->
 Olá Developers...
 
 Vamos desenvolver um pequeno Chat em NodeJS... Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim...
 
 Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos... :D
-<!-- more -->
+
 Vamos criar a aplicação, crie uma pasta com o nome da aplicação:
 
 {% codeblock Criando Pasta %}
@@ -30,8 +31,8 @@ Hora de começar a brincar com o servidor.
 var fs = require('fs');
 var server = require('http').createServer(function(req, response){
   fs.readFile('helloworld.html', function(err, data){
-    response.writeHead(200, {'Content-Type':'text/html'});  
-    response.write(data);  
+    response.writeHead(200, {'Content-Type':'text/html'});
+    response.write(data);
     response.end();
   });
 });
@@ -49,7 +50,7 @@ Na linha 5, temos a escrita no arquivo. E abaixo finalizamos.
 
 Este processo de leitura do arquivo, ocorre sempre que alguem entra na aplicação.
 
-Vamos continuar, agora vamos colocar uma porta para o servidor. 
+Vamos continuar, agora vamos colocar uma porta para o servidor.
 
 ``` javascript Criando uma porta e aplicando ao server
 var port = process.env.PORT || 3000;
@@ -122,4 +123,4 @@ Heroku -> <a href="http://nodechat.herokuapp.com">nodechat.herokuapp.com</a>
 
 Github -> <a href="https://github.com/rrmartins/node_chat">Node Chat</a>
 
-Até a proxima.. 
+Até a proxima..

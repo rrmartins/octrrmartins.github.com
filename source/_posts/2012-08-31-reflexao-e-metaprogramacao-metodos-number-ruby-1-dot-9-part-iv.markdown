@@ -3,7 +3,7 @@ layout: post
 title: "Reflexão e Metaprogramação - Metodos - #Ruby 1.9 - Part IV"
 date: 2012-08-31 20:12
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,15 +14,15 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Métodos</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Métodos</h1>
 
-As classes de `Object` e `Module` de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar 
+As classes de `Object` e `Module` de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
 cada categoria, por sua vez.
-<!--more-->
+
 <h3>Listagem e Teste para Métodos</h3>
 
 `Object` define métodos para listar os nomes dos métodos definidos no objeto. Estes métodos retornam `arrays` de nomes de métodos. Aqueles nomes são
@@ -48,15 +48,15 @@ String.instance_methods == "s".public_methods                # => true
 String.instance_methods(false) == "s".public_methods(false)  # => true
 String.public_instance_methods == String.instance_methods    # => true
 String.protected_instance_methods       										 # => []
-String.private_instance_methods(false)  										 # => [:initialize, :initialize_copy] 
+String.private_instance_methods(false)  										 # => [:initialize, :initialize_copy]
 ```
 
-Lembre-se que os métodos de classe de uma `class` ou `module` são métodos `singleton` do objeto de `class` ou `module`. Então, para listar métodos de 
+Lembre-se que os métodos de classe de uma `class` ou `module` são métodos `singleton` do objeto de `class` ou `module`. Então, para listar métodos de
 classe, usa `Object.singleton_methods`:
 
 ``` ruby Singleton
-Math.singleton_methods # => [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh, 
-														 :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt, 
+Math.singleton_methods # => [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,
+														 :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
 														 :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]
 ```
 
@@ -71,7 +71,7 @@ String.method_defined? :upcase!            # => true
 ```
 
 `Module.method_defined?` verifica se o método chamado é definido como um método público ou protegido. Ele serve, essencialmente, com mesma finalidade
-que `Object.respond_to?`. No `Ruby 1.9`, você pode passar `false` como o segundo argumento para especificar que os métodos herdados não deve ser 
+que `Object.respond_to?`. No `Ruby 1.9`, você pode passar `false` como o segundo argumento para especificar que os métodos herdados não deve ser
 considerados.
 
 
@@ -81,7 +81,7 @@ Para consultar um método específico nomeado, chamar o método em qualquer obje
 objeto do Método exigído pelo receptor, e o último retorna um `UnboundMethod`. No `Ruby 1.9`, você pode limitar sua pesquisa aos métodos públicos
 métodos chamando `public_method` e `public_instance_method`. Nós cobrimos esses métodos e os objetos que eles voltam no Método do Objeto:
 
-``` ruby 
+``` ruby
 "s".method(:reverse)             # => objeto Método
 String.instance_method(:reverse) # => objeto UnboundMethod
 ```
@@ -162,17 +162,17 @@ String.define_singleton_method(:greet) {|name| "Hello, " + name }
 
 Uma deficiência do `define_method` é que ele não permite que você especifique um corpo de método que espera um bloco. Se você precisar dinamicamente
 criar um método que aceita um bloco, você vai precisar usar a instrução `def` com `class_eval`. E se o método que está criando é suficientemente
-dinâmico, você pode não ser capaz de passar um bloco para o `class_eval` e em vez disso tem de especificar a definição do método como uma seqüência 
+dinâmico, você pode não ser capaz de passar um bloco para o `class_eval` e em vez disso tem de especificar a definição do método como uma seqüência
 a ser avaliada.
 
 Para criar um sinônimo ou um `alias` para um método existente, normalmente você pode usar a declaração `alias`:
 
-``` ruby alias 
+``` ruby alias
 alias "plus" +         # "plus" é um sinônimo para o operador +
 ```
 Ao programar dinamicamente, no entanto, às vezes você precisa usar `alias_method`. Como `define_method`, `alias_method` é um método particular do
-`Module`. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado 
-em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É `alias_method` muitas vezes utilizados para métodos de 
+`Module`. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado
+em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É `alias_method` muitas vezes utilizados para métodos de
 encadeamento de alias existentes. Aqui está um exemplo simples:
 
 ``` ruby alias_method
@@ -190,7 +190,7 @@ backup(String, :reverse)
 
 Você pode usar a declaração `undef` para indefinir um método. Isso só funciona se você pode expressar o nome de um método como um identificador
 codificado no programa. Se você precisar excluir dinamicamente um método cujo nome tem sido calculado pelo seu programa, você tem duas opções: ou
-`remove_method` ou `undef_method`. Ambos são métodos privados de Módulo. `remove_method` remove a definição do método a partir da classe corrente. 
+`remove_method` ou `undef_method`. Ambos são métodos privados de Módulo. `remove_method` remove a definição do método a partir da classe corrente.
 Se existe uma versão definida por uma superclasse, que a versão vai agora ser herdada. `undef_method` é mais grave, que impede qualquer invocação do
 método especificado por meio de uma instância da classe, mesmo se houver uma versão herdada do método.
 

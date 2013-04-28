@@ -3,7 +3,7 @@ layout: post
 title: "Missing Methods e Missing Constants - #Ruby 1.9"
 date: 2012-09-15 12:46
 comments: true
-categories: 
+categories:
 - Ruby API
 - Integer
 - String
@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
@@ -23,11 +23,10 @@ categories:
 O método `method_missing` é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
 invocações arbitrárias sobre um objeto. O método `const_missing` de `Module` executa uma função similar para o algoritmo de pesquisa constante e que
 nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.
-<!--more-->
 
 <h3>Constantes Unicode Codepoint com const_missing</h3>
 
-O Exemplo 1-1 define um módulo `Unicode` que aparece para definir uma constante (uma string UTF-8) para cada `Unicode codepoint` de `U+0000` a 
+O Exemplo 1-1 define um módulo `Unicode` que aparece para definir uma constante (uma string UTF-8) para cada `Unicode codepoint` de `U+0000` a
 `U+10FFFF`. O único modo prático para suportar estas muitas constantes é a utilização do método `const_missing`. O código faz a suposição de que se uma
 constante é referenciada uma vez, é susceptível de ser utilizado de novo, de modo que o método `const_missing` chama `Module.const_set` para definir
 uma constante real para se referir a cada valor calculado.
@@ -156,7 +155,7 @@ end
 
 <h3>Objetos sincronizados por delegação</h3>
 
-No post anterior, vimos um método global sincronizado, que aceita um objeto e executa um bloco sob a proteção do `Mutex` associado a esse objeto. 
+No post anterior, vimos um método global sincronizado, que aceita um objeto e executa um bloco sob a proteção do `Mutex` associado a esse objeto.
 A maior parte do exemplo consistiu na aplicação do método `Object.mutex`. O método sincronizado foi trivial:
 
 ``` ruby Mutex

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Range | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/range/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/"/>
     <updated>2012-05-15T21:49:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -33,9 +36,6 @@
 
 <p>A classe Range define métodos para determinar se um valor arbitrário é um membro de (isto é, está incluído no) um Range. Antes de entrar em
 detalhes sobre estes métodos, é necessário explicar que associaçãoem range pode ser definido de duas maneiras diferentes que estão relacionadas com a diferença entre os intervalos contínuos e discretos. Um valor x é um membro do range entre begin..end pela primeira definição se:</p>
-
-<!-- more -->
-
 
 <p><code>ruby Range
 begin &lt;= x &lt;= end
@@ -121,7 +121,10 @@ e 1.9 têm pouco impacto.</p>
     <link href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
     <updated>2012-05-13T02:16:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -135,9 +138,6 @@ e 1.9 têm pouco impacto.</p>
 
 
 <p>Um objeto Range representa os valores entre um valor de início e um valor final. Range literais são escritas pela colocação de dois ou três pontos entre o início e o valor fim. Se dois pontos são usados, então o intervalo é inclusivo e o valor final é parte do intervalo. Se três pontos são usados, então o intervalo é exclusiva e o valor final não é parte do range:</p>
-
-<!-- more -->
-
 
 <p><code>ruby Range
 1..10 # Os números inteiros de 1 a 10, incluindo 10

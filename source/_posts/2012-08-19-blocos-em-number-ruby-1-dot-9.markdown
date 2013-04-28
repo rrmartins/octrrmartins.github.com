@@ -14,7 +14,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Blocos em #Ruby 1.9</h1>
@@ -25,12 +25,11 @@ O uso de blocos é fundamental para o uso de iteradores. As subseções a seguir
 * O "valor de retorno" de um bloco
 * O escopo de variáveis ​​em blocos
 * A diferença entre os parâmetros dos blocos e parâmetros de método
-<!--more-->
 
 <h3>Sintaxe bloco</h3>
 
-Os `Blocos` não podem ser autônomo, pois eles são apenas legal após uma chamada de método. Você pode, no entanto, colocar um 
-bloco depois de qualquer invocação método, se o método não é um iterador e nunca invoca o bloco com a produção, o bloco será 
+Os `Blocos` não podem ser autônomo, pois eles são apenas legal após uma chamada de método. Você pode, no entanto, colocar um
+bloco depois de qualquer invocação método, se o método não é um iterador e nunca invoca o bloco com a produção, o bloco será
 ignorado. Blocos são delimitados por chaves ou com palavras-chave `do/end`. A abertura de chave ou a palavra-chave deve ser na
 mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
 o bloco:
@@ -46,19 +45,19 @@ end
 ```
 
 Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar `do/end` quando o bloco
-se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente 
-para o símbolo que precede. Se você omitir os parênteses em torno de argumentos de método e usar delimitadores de chaves para 
+se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
+para o símbolo que precede. Se você omitir os parênteses em torno de argumentos de método e usar delimitadores de chaves para
 um bloco, em seguida, o bloco vai ser associado com o último argumento do método em vez do método em si, o que não é,
 provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com `do` e
 `end`:
 
 ``` ruby Blocks
 1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
-1.upto 3 do |x| puts x end 	
+1.upto 3 do |x| puts x end
 1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
 ```
 
-Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados 
+Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
 com um par de barra vertical (`|`), mas eles são de outra maneira muito parecida com os parâmetros do método:
 
 ```ruby Blocks
@@ -88,11 +87,11 @@ words.sort! {| X, y | y.length <=> x.length}
 ```
 
 Nós estamos colocando a expressão "valor de retorno" entre aspas por uma razão muito importante: você não deve usar normalmente
-a palavra-chave `return` para retornar um bloco. Um `return` dentro de um bloco faz com que o método que o contém (não o método 
-iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do 
+a palavra-chave `return` para retornar um bloco. Um `return` dentro de um bloco faz com que o método que o contém (não o método
+iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
 bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o `return` se você quer apenas
 voltar de um bloco para o método que chamou `yield`. Se você precisar forçar um bloco para voltar ao método invocando antes que
-ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar `next` em vez de retorno. Aqui é um 
+ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar `next` em vez de retorno. Aqui é um
 exemplo que usa `next` para voltar a partir do bloco:
 
 ```ruby Usando next
@@ -131,7 +130,7 @@ puts total                   # Impressão do total da soma
 Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
 uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
 de uma variável existente, então invocações do bloco simplesmente atribuir um valor a essa variável já existente em vez de
-criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador `i` 
+criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador `i`
 como o parâmetro para dois blocos nested blocos:
 
 ``` ruby Usando mesma variavel, Ruby 1.8
@@ -144,10 +143,10 @@ end
 ```
 
 Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
-a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de 
+a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
 uma variável existente. Isso ajuda a evitar escrever código que funciona de forma diferente em 1.8 e 1.9.
 
-Ruby 1.9 é diferente de outra maneira importante, também. Sintaxe do bloco foi estendida para permitir que você declare 
+Ruby 1.9 é diferente de outra maneira importante, também. Sintaxe do bloco foi estendida para permitir que você declare
 variáveis de blocos locais ​​que são garantidas para ser local, mesmo se uma variável com o mesmo nome já existe no escopo
 delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
 variáveis ​​do bloco local. Aqui está um exemplo:
@@ -165,7 +164,7 @@ end
 Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
 bloco-local. Ele não receber qualquer valor a partir de uma chamada `yield`, mas tem o valor nil até que o bloco de fato
 atribui outro valor a ele. O ponto de declarar essas variáveis locais no ​​bloco é garantir que você não vai acidentalmente
-sub-escrever o valor de alguma variável existente. Se você chamar Ruby 1.9 com o flag -w, ele irá avisá-lo se um bloco de 
+sub-escrever o valor de alguma variável existente. Se você chamar Ruby 1.9 com o flag -w, ele irá avisá-lo se um bloco de
 variável local de uma variável existente.
 
 Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
@@ -193,8 +192,8 @@ O iterador `Hash.each_pair` produz um par `key/value` como este:
 {:one=>1}.each_pair {|key,value| ... } # key=:one, value=1
 ```
 
-No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros 
-são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são 
+No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
+são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
 variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
 utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:
 
@@ -278,6 +277,6 @@ Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do 
 são atribuídos a ambos os parâmetros.
 
 No Ruby 1.9, o parâmetro do bloco final pode ser prefixado com e para indicar que vai receber qualquer bloco associado com a
-invocação do bloco. Lembre, no entanto, que a invocação `yield` pode não ter um bloco associado. 
+invocação do bloco. Lembre, no entanto, que a invocação `yield` pode não ter um bloco associado.
 
 Até o proximo assunto amigos.. :P

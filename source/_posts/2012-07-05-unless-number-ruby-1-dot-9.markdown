@@ -3,7 +3,7 @@ layout: post
 title: "unless #Ruby 1.9"
 date: 2012-07-05 01:57
 comments: true
-categories: 
+categories:
 - Enumerable
 - Variable
 - String
@@ -13,12 +13,12 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
 
 <h1>Unless</h1>
-<!-- more -->
-`unless`, como uma declaração ou um modificador, é o oposto do `case`: ele executa o código apenas se uma expressão 
+
+`unless`, como uma declaração ou um modificador, é o oposto do `case`: ele executa o código apenas se uma expressão
 associada é avaliada como `false` ou `nil`. Sua sintaxe é como `if`, exceto que as cláusulas `elsif`, que não são
 permitidas:
 
@@ -76,7 +76,7 @@ else
 end
 ```
 
-É isso ai amigos! 
+É isso ai amigos!
 
 Para todos aqueles que não sabiam ao certo o que seria o `unless`, e que tipo de monstro é isso..
 

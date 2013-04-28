@@ -6,7 +6,7 @@
 	<title>Blocos em #Ruby 1.9 - Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples! &hellip;">
+	<meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -99,7 +99,10 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Blocos Em #Ruby 1.9</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -115,11 +118,6 @@
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
-
-
-<!--more-->
-
-
 
 
 <h3>Sintaxe bloco</h3>
@@ -159,7 +157,7 @@ provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses o
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># Parens e encaracolado chaves trabalhar</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="k">end</span>    
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="k">end</span>
 </span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># erro de sintaxe: tentando passar um bloco para 3!</span>
 </span></code></pre></td></tr></table></div></figure>
 

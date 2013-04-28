@@ -10,7 +10,7 @@ categories:
 - TimeZone
 - Rails
 ---
-
+<!--more-->
 Conversando com o [CJ Kihlbom][1], um cara super gente boa. :) E ele liberou ai a tradução do post [Working with time zones in Ruby on Rails][2].
 - - -
 Tradução
@@ -18,7 +18,6 @@ Tradução
 [Rails][3] oferece ótimas ferramentas para trabalhar com fusos horários, mas ainda há um monte de coisas que
 podem dar errado. Este blog tem como objetivo lançar alguma luz sobre essas pegadinhas e oferecer soluções
 para os problemas mais comuns.
-<!--more-->
 
 O que, provavelmente, tem me enganado é que a maioria das vezes o fato de que os tolos do Rails acredita que
 você tem tudo coberto o tempo todo **(com o perdão do trocadilho)**. Não me interpretem mal. Eu uso Rails

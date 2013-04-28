@@ -3,17 +3,17 @@ layout: post
 title: "Criando Combobox com Rails 3"
 date: 2012-02-15 13:05
 comments: true
-categories: 
+categories:
 - Rails
 - Rails 3
 - Ruby
 ---
+<!--more-->
 <p>
 Para todos aqueles que conhecem o <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">Form_for</a>,
- e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e 
+ e quem ainda não teve a oportunidade de vê-lo. Vamos estudar um pouco de <a href="http://api.rubyonrails.org/">Rails</a>, e
  estudem logo, o mercado esta precisando de programadores bons.. :D
  </p>
-<!-- more -->
 <p>
 Então, vamos ao contexto do post, para gerar um combo box semelhante a este abaixo: </p>
 <select name="estado">

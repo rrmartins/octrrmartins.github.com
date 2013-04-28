@@ -3,16 +3,17 @@ layout: post
 title: "Por que Construção de Software é Importante?"
 date: 2012-02-29 23:46
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 <p>Olá amigos nerd's... Continuando os estudos...</p>
 Agora vou falar um outro capitulo... Que é sobre:<br/>
 <strong> Por que Construção de Software é Importante? </strong>
-<!-- more -->
+
 <p>
 Uma vez que você está lendo este livro, provavelmente você concorda que a melhoria
   qualidade do software e a produtividade do desenvolvedor é importante. Muitos dos mais de hoje
@@ -21,7 +22,7 @@ Uma vez que você está lendo este livro, provavelmente você concorda que a mel
   alta velocidade de análise financeira e pesquisa científica são alguns exemplos ao poucos.
   Esses projetos e mais projetos convetional podem se beneficiar
   melhores práticas, porque muitos dos fundamentos são os mesmos.
-</p> 
+</p>
 <p>
   Se você concorda que a melhoria de desenvolvimento de software é importante, em geral,
   a pergunta para você como leitor deste livro torna-se,

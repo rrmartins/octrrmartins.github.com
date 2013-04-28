@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -99,7 +99,10 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Um Pouco De Array No Ruby</h2>
-	<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+	<div class="entry-content"><!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 <p>Um Array é uma seqüência de valores que permite que os valores serem acessados por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
@@ -109,9 +112,6 @@ com um índice de -1. O segundo ao último tem um índice de -2,
 e assim por diante. Se você tentar ler um elemento além do final de uma Array
 (Com um index >= size), ou antes
 o início de um Array (com um index &lt; size), Ruby simplesmente retorna nil e não lançará uma exceção.</p>
-
-<!--more-->
-
 
 <p>Arrays de Ruby não são tipados e mutáveis. Os elementos de um Array
 não precisam de ser todos da mesma classe, e eles podem ser alterados em qualquer momento.

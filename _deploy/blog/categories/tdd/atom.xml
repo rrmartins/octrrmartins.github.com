@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TDD | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -16,16 +16,16 @@
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
-    <updated>2012-11-04T09:30:00-02:00</updated>
+    <updated>2012-11-04T09:30:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
-    <content type="html"><![CDATA[<p>Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do <a href="http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277">Rails 3 in Action</a>.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do <a href="http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277">Rails 3 in Action</a>.</p>
 
 <p>Lendo o capitulo 1, ele deixou uma pergunta no ar: como você faz aplicações Rails sustentável?</p>
 
 <p>A resposta é que você escreve testes automatizados para a aplicação como você desenvolve, e você escreve isso <strong>o tempo todo</strong>.</p>
-
-<!-- more -->
-
 
 <p>Ao escrever testes automatizados para a sua aplicação, você pode rapidamente assegurar que o aplicativo está funcionando
 como deveria. Se você não escrever testes, a sua alternativa seria a de verificar toda a aplicação manualmente, o que é

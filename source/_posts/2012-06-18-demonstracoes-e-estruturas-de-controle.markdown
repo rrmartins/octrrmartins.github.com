@@ -3,7 +3,7 @@ layout: post
 title: "Demonstrações e Estruturas de controle - Part I #Ruby"
 date: 2012-06-18 08:43
 comments: true
-categories: 
+categories:
 - if
 - else
 - elsif
@@ -15,13 +15,13 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
 
 <h1>Demonstrações e estruturas de controle</h1>
 
 Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:
-<!-- more -->
+
 ``` ruby Programa Simples
 x = ARGV[0].to_f # Converter primeiro argumento para um número
 y = ARGV[1].to_f # Converter segundo argumento para um número
@@ -37,7 +37,7 @@ sem ramificação ou repetição. É um programa raro que pode ser tão simples
 <h3>Condicionais</h3>
 
 A estrutura de controle mais comum, em qualquer linguagem de programação, é a condicional. Esta é uma forma de dizer ao
-computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita. 
+computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita.
 A condição é uma expressão, se for avaliada como qualquer valor diferente de falso ou nulo, então a condição é satisfeita.
 
 Ruby tem um vocabulário rico para expressar condicionais. Algumas sintaxes são descritas abaixo. Ao escrever código Ruby,
@@ -54,7 +54,7 @@ if expression
 end
 ```
 
-O código entre `if` e `end `é executado se (e somente se) o `expression` é avaliada como algo diferente que `falso` ou 
+O código entre `if` e `end `é executado se (e somente se) o `expression` é avaliada como algo diferente que `falso` ou
 `nulo`. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
 seguida. Aqui estão duas maneiras de escrever a mesma condicional `if` de forma simples:
 
@@ -97,8 +97,8 @@ else
 end
 ```
 
-O código entre `if` e `else` é executado se `expression` é avaliada como qualquer outra coisa que `false` ou `nil`. Caso 
-contrário (se expression é `false` ou `nil`), o código entre o `else` e o `end` é executado. Como na forma simples 
+O código entre `if` e `else` é executado se `expression` é avaliada como qualquer outra coisa que `false` ou `nil`. Caso
+contrário (se expression é `false` ou `nil`), o código entre o `else` e o `end` é executado. Como na forma simples
 de `if`, na expressão deve ser separado do código que o segue por uma nova linha, um ponto e vírgula, ou a palavra-chave `then`. As palavras-chave `else` e `end`, totalmente delimitam o segundo pedaço de código, e sem novas linhas ou
 delimitadores adicionais são exigido.
 
@@ -132,7 +132,7 @@ else
 end
 ```
 
-Se `expression1` for avaliado não sendo `false` ou `nil`, então `code1` é executado. Caso contrário, `expression2` é 
+Se `expression1` for avaliado não sendo `false` ou `nil`, então `code1` é executado. Caso contrário, `expression2` é
 avaliada. Se for outra coisa senão `false` ou `nil`, então code2 é executado. Este processo continua até que uma expressão
 é avaliada como algo diferente de `false` ou `nil`, ou até que todas as cláusulas `elsif` foram testadas. Se a expressão
 associada com a última cláusula `elsif` for `false` ou `nil`, e da cláusula `elsif` é seguido por uma cláusula `else`, em

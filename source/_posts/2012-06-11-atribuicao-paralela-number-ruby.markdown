@@ -3,7 +3,7 @@ layout: post
 title: "Atribuição Paralela #Ruby"
 date: 2012-06-11 19:36
 comments: true
-categories: 
+categories:
 - Enumerable
 - Variable
 - String
@@ -13,7 +13,7 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
 
 <h1>Atribuições Paralelas</h1>
@@ -21,7 +21,6 @@ categories:
 Atribuição paralela é qualquer atribuição de expressão que tem mais do que um `lvalue`, mais do que um `rvalue`, ou ambos. Múltiplos `lvalues` e ​​múltiplos `rvalues` são separados uns dos outros com uma vírgula. `lvalues` e `rvalues` ​​pode ser prefixado com `*`, que às vezes é chamado de operador `splat`, embora não seja um verdadeiro operador. O significado de `*` é explicado mais adiante neste post.
 
 Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.
-<!--more-->
 
 <h5>Mesmo número de lvalues ​​e rvalues</h5>
 

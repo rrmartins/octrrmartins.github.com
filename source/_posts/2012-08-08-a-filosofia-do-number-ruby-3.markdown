@@ -3,16 +3,16 @@ layout: post
 title: "A Filosofia do #Ruby <3"
 date: 2012-08-08 22:59
 comments: true
-categories: 
+categories:
 - Ruby API
 - Ruby
 - The Ruby Programming Language
 - Matz
 ---
-
-<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
+<!--more-->
+<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a
 autorização para colocar aqui para vocês...</p>
-<!-- more -->
+
 <p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto 'Matz'</a>.</p>
 
 <h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>

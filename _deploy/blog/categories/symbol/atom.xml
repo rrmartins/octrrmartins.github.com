@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Symbol | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/symbol/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-22T02:23:56-03:00</updated>
+  <updated>2013-04-28T19:04:08-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,11 +14,53 @@
 
   
   <entry>
+    <title type="html"><![CDATA[As duas faces de String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <updated>2013-04-28T16:30:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string "dog" e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um "d", um "o", e "g".</p>
+
+<p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:</p>
+
+<p><code>
+book = Book.find(:all)
+</code></p>
+
+<p>O argumento para o método <code>find</code> é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para <code>Book.find</code> realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do <code>ActiveRecord</code> e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:</p>
+
+<p><code>
+book = Book.find('all')
+</code></p>
+
+<p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+
+<p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
+
+<p>Até mais galera! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Symbols - Ruby 1.9.2]]></title>
     <link href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
     <updated>2012-05-16T21:37:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -35,9 +77,6 @@
 que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
 Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
 posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
-
-<!--more-->
-
 
 <p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
 programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um

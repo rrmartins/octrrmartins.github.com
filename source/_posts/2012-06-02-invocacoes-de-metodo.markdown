@@ -3,7 +3,7 @@ layout: post
 title: "Invocações de método"
 date: 2012-06-02 15:36
 comments: true
-categories: 
+categories:
 - Array
 - Hash
 - Variable
@@ -13,13 +13,13 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
 
 <h1>Invocações de método</h1>
 
 Uma expressão de invocação de método tem quatro partes:
-<!-- more -->
+
 * Uma expressão arbitrária cujo valor é o objeto no qual o método é chamado. Esta expressão é seguido por . ou :: para separá-lo a partir
   do nome do método que se segue. A expressão e o separador são opcionais; se omitido, o método é invocada em si mesmo.
 
@@ -29,8 +29,8 @@ Uma expressão de invocação de método tem quatro partes:
   opcionais. Se há mais de um argumento, eles são separados uns dos outros com vírgulas. O número e tipo de argumentos necessários
   dependem da definição do método. Alguns métodos podem ser chamodos sem argumentos.
 
-* Um bloco opcional de código delimitado por chaves ou por um par <code>do/end</code>. O método pode invocar esse código usando a palavra-chave de 
-   <code>yield</code>. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby. 
+* Um bloco opcional de código delimitado por chaves ou por um par <code>do/end</code>. O método pode invocar esse código usando a palavra-chave de
+   <code>yield</code>. Esta capacidade de associar código arbitrário com qualquer invocação de método é a base para métodos poderosos em Ruby.
 
 Um nome do método é normalmente separado do objeto sobre o qual é chamado com um <code>..</code>, e com o <code>::</code>, que também é permitido, mas é raramente
 usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.
@@ -49,7 +49,7 @@ message.length # "comprimento" invocado em mensagem objeto; não args
 a.each{|x| p x} # "cada" chamado em um objeto, com um bloco associado
 ```
 
-Um dos exemplos do método de invocação mostradas anteriormente foi <code>message.length</code>. Você pode ser tentado a pensar-lo como uma variável 
+Um dos exemplos do método de invocação mostradas anteriormente foi <code>message.length</code>. Você pode ser tentado a pensar-lo como uma variável
 de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
 um modelo de programação muito orientada a objetos: objetos em Ruby podem encapsular qualquer número de variáveis ​​de instância interna,
 mas expõem métodos apenas para o mundo exterior. Como o método <code>length</code> não espera argumentos e é chamado sem os parênteses opcionais,

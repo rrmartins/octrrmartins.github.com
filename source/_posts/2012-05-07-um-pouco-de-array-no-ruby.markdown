@@ -3,14 +3,14 @@ layout: post
 title: "Um pouco de Array no Ruby"
 date: 2012-05-07 13:02
 comments: true
-categories: 
+categories:
 - Array
 - Ruby
 - Ruby 1.8
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 <p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 Um Array é uma seqüência de valores que permite que os valores serem acessados por sua posição, ou índice, na seqüência. Em Ruby, o primeiro valor em um array tem índice 0. Os métodos size e length, retornam o número de elementos em um Array. O último
@@ -20,7 +20,7 @@ com um índice de -1. O segundo ao último tem um índice de -2,
 e assim por diante. Se você tentar ler um elemento além do final de uma Array
 (Com um index >= size), ou antes
 o início de um Array (com um index < size), Ruby simplesmente retorna nil e não lançará uma exceção.
-<!--more-->
+
 Arrays de Ruby não são tipados e mutáveis. Os elementos de um Array
 não precisam de ser todos da mesma classe, e eles podem ser alterados em qualquer momento.
 Além disso, os Arrays são dinamicamente redimensionáveis, você pode acrescentar elementos

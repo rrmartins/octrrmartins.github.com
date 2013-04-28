@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -99,7 +99,10 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">A Classe Encoding</h2>
-	<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+	<div class="entry-content"><!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -107,7 +110,6 @@
 <p>A classe Encoding de Ruby 1.9 representa uma codificação de caracteres. Objetos de codificação para agir como identificadores opacos para uma codificação e não têm muitos métodos próprios. O nome do método retorna o nome de uma codificação. to_s é um sinônimo para o name, e inspect converte um objeto em uma seqüência de codificação de uma forma mais detalhada do que o name faz.</p>
 
 
-<!-- more -->
 
 
 <p>Ruby define uma constante para cada uma das codificações built-in&#8217;s que ele suporta, e estes são a maneira mais fácil de especificar uma codificação em seu programa. As constantes predefinidas incluem pelo menos o seguinte:</p>
@@ -246,7 +248,7 @@ Usando Encoding.find faz com que a codificação passa a ser carregada dinamicam
 <figure class='code'><figcaption><span>Encoding.default_external</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Encoding</span><span class="o">.</span><span class="n">default_external</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="c1">#&lt;Encoding:UTF-8&gt; </span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="c1">#&lt;Encoding:UTF-8&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

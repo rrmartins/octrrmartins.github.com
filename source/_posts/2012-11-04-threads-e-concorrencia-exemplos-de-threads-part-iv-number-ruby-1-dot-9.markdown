@@ -3,7 +3,7 @@ layout: post
 title: "Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9"
 date: 2012-11-04 09:20
 comments: true
-categories: 
+categories:
 - Ruby API
 - Thread
 - String
@@ -12,21 +12,21 @@ categories:
 - Ruby 1.9
 - The Ruby Programming Language
 ---
-
+<!--more-->
 Hoje vamos continuar falando de [Ruby](http://www.ruby-doc.org/core-1.9.3/), é hora de nos aprofundar em um pouco de **Threads e Concorrência** agora **Exemplos de Threads**...
 
 #### Exemplos de Threads
 
 Agora que já passamos alguns post falando do modelo `Thread` e da API de `Thread` em Ruby, vamos dar uma olhada em alguns
 exemplos reais de vários códigos de `threads`.
-<!--more-->
+
 ### Leitura de arquivos simultaneamente
 
-O uso mais comum de `threads` de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até 
+O uso mais comum de `threads` de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até
 mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
-define um método `conread` (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de `hash` 
-com esses nomes para o conteúdo desses arquivos. Ele usa `thread` para ler esses arquivos ao mesmo tempo, e é realmente 
-destinado a ser utilizado com o módulo `open-uri`, que permite que as URL's `HTTP` e `FTP` possam ser abertas com 
+define um método `conread` (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de `hash`
+com esses nomes para o conteúdo desses arquivos. Ele usa `thread` para ler esses arquivos ao mesmo tempo, e é realmente
+destinado a ser utilizado com o módulo `open-uri`, que permite que as URL's `HTTP` e `FTP` possam ser abertas com
 `Kernel.open` e ler como se fossem arquivos:
 
 ```ruby Lendo arquivos
@@ -45,7 +45,7 @@ def conread(filenames)
 
   # Percorre o hash, à espera de cada thread para completar.
   # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
-  h.each_pair do |filename, thread| 
+  h.each_pair do |filename, thread|
     begin
       h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
     rescue
@@ -58,7 +58,7 @@ end
 ### Servidor A Multithreads
 
 Outra, quase canônico caso, o uso de `threads` é para escrever servidores que podem comunicar com mais do que um cliente
-de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora 
+de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
 possivelmente menos escalável) solução usa `threads`:
 
 ```ruby Servidor a Multithreads
@@ -90,7 +90,7 @@ end
 
 ### Iteradores simultâneas
 
-Embora tarefas IO são o caso de uso típico para `threads` de Ruby, eles não se restringem aos que usam. O código a seguir 
+Embora tarefas IO são o caso de uso típico para `threads` de Ruby, eles não se restringem aos que usam. O código a seguir
 adiciona um método `conmap` (por mapa concorrente) para o modulo `Enumerável`. Ele funciona como mapa, mas processa cada
 elemento da matriz de entrada com uma distinta `Thread`:
 
@@ -118,10 +118,10 @@ module Enumerable
 end
 ```
 
-O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de 
+O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
 Ruby e iteradores Ruby.
 
-Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa 
+Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
 que, dado o método `concurrently` definido mais cedo e um objeto `Hash h`, podemos escrever:
 
 ``` ruby Método Concurrently

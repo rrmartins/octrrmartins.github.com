@@ -3,12 +3,13 @@ layout: post
 title: "O que é Construção de Software ? Parte 1"
 date: 2012-02-25 23:27
 comments: true
-categories: 
+categories:
 - Code Compile
 - Code
 - Compile
 - Steve McConnell
 ---
+<!--more-->
 Amigos, estou lendo um livro muito bom.. E vou começar a compartilhar algumas partes dele com todos... Este é só o primeiro post de tradução.<br/>
 <h1>
 O que é Software Construção?
@@ -18,7 +19,6 @@ O que é Software Construção?
   <br/>
   * Definição do problema  <br/>
   * Requisitos de desenvolvimento  <br/>
-<!-- more -->
   * Planejamento da construção  <br/>
   * Arquitetura de software, ou alto nível de design  <br/>
   * O projeto detalhado  <br/>
@@ -43,5 +43,5 @@ O que é Software Construção?
   e o apropriadamente enfatiza importantes atividades que não serão construidas.</p>
   <br/>
   Em breve mais do livro abaixo.
-  
+
   Fonte: Livro: Code Complete: A practical handbook of software construction (Autor: Steve McConnell)
