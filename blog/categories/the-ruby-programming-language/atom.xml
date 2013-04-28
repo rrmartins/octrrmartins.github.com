@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,15 +18,15 @@
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
     <updated>2012-11-04T09:20:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
 
 <h4>Exemplos de Threads</h4>
 
 <p>Agora que já passamos alguns post falando do modelo <code>Thread</code> e da API de <code>Thread</code> em Ruby, vamos dar uma olhada em alguns
 exemplos reais de vários códigos de <code>threads</code>.</p>
-
-<!--more-->
-
 
 <h3>Leitura de arquivos simultaneamente</h3>
 
@@ -165,14 +165,14 @@ h.each_pair.concurrently {|*pair| process(pair)}
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T15:04:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Escalando Threads</h3>
-
-<!-- more -->
-
 
 <p>Intérpretes do Ruby(irb), muitas vezes têm mais <code>threads</code> para executar do que há CPU tem disponível para executá-los. Quando
 o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre <code>threads</code>. O processo para
@@ -218,14 +218,14 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T14:53:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Threads e Variáveis</h3>
-
-<!-- more -->
-
 
 <p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
@@ -336,12 +336,12 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T14:26:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
 
 <h2>Threads e Concorrência</h2>
-
-<!-- more -->
-
 
 <p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
@@ -452,7 +452,10 @@ t.abort_on_exception = true
     <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
     <updated>2012-09-18T08:38:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
 
@@ -464,10 +467,7 @@ t.abort_on_exception = true
 <p>Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
 Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:</p>
 
-<!-- more -->
-
-
-<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para 
+<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
 a versão não modificada do método.
 
 * Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada

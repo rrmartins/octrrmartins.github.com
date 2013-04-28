@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Progmatic Programmers | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-progmatic-programmers/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,15 +18,15 @@
     <link href="http://rrmartins.github.com/blog/2012/05/28/emergencia/"/>
     <updated>2012-05-28T13:24:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/28/emergencia</id>
-    <content type="html"><![CDATA[<p>Emergencia</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Emergencia</p>
 
 <p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
 projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
 do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
 ocorrer, se beneficiando dela.</p>
-
-<!-- more -->
-
 
 <p>Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
 simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
@@ -42,7 +42,7 @@ dos países, levam a comportamentos estúpidos.</p>
 
 <p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
 
-<pre><code>—Andrew Hunt, The Pragmatic Programmers 
+<pre><code>—Andrew Hunt, The Pragmatic Programmers
 </code></pre>
 ]]></content>
   </entry>
@@ -52,14 +52,14 @@ dos países, levam a comportamentos estúpidos.</p>
     <link href="http://rrmartins.github.com/blog/2012/05/28/naa-presenca-de-paixao/"/>
     <updated>2012-05-28T13:13:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/28/naa-presenca-de-paixao</id>
-    <content type="html"><![CDATA[<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte muito boa..</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte muito boa..</p>
 
 <p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
 
 <h2>A presença de paixão</h2>
-
-
-<!-- more -->
 
 
 <p>Em design, onde o significado é normalmente e controversamente subjetivo ou dolorosamente indecifrável, poucas coisas são mais aparentes e lúcidas do que a presença de paixão. Isso é verdade seja quando o design do produto o agrada ou o deixa frio; em ambos os casos é difícil não detectar o investimento emocional das mãos que o construíram.</p>
@@ -76,14 +76,14 @@ dos países, levam a comportamentos estúpidos.</p>
     <link href="http://rrmartins.github.com/blog/2012/05/22/arranhando-sua-propria-coceira/"/>
     <updated>2012-05-22T13:21:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/22/arranhando-sua-propria-coceira</id>
-    <content type="html"><![CDATA[<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
 
 <p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
 
 <h2>Arranhando sua proípria coceira</h2>
-
-
-<!-- more -->
 
 
 <p>O mundo de Código Aberto abraçou esse mantra há muito tempo – eles chamam de “arranhando sua própria coceira”. Para os desenvolvedores de código aberto, significa que terão as ferramentas que querem, entregues da maneira que querem. Mas os benefícios vão mais a fundo.</p>

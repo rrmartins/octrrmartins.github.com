@@ -4,7 +4,7 @@
   <title><![CDATA[Category: each | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/each/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/"/>
     <updated>2012-08-31T20:12:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Métodos</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -29,9 +32,6 @@
 
 <p>As classes de <code>Object</code> e <code>Module</code> de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
 cada categoria, por sua vez.</p>
-
-<!--more-->
-
 
 <h3>Listagem e Teste para Métodos</h3>
 
@@ -68,7 +68,7 @@ classe, usa <code>Object.singleton_methods</code>:</p>
 <p>``` ruby Singleton
 Math.singleton_methods # => [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,</p>
 
-<pre><code>                                                     :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt, 
+<pre><code>                                                     :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
                                                      :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]
 </code></pre>
 
@@ -299,16 +299,16 @@ String.class_eval { private :reverse }
     <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
     <updated>2012-08-29T23:34:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Variáveis e constantes</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Variáveis e Constantes</h1>
-
-
-<!-- more -->
 
 
 <p><code>Kernel</code>, <code>Object</code>, <code>Module</code> definem métodos reflexivos para listar os nomes (como <code>strings</code>) de todas as variáveis definidas globais, atualmente
@@ -349,7 +349,7 @@ varname = "x"
 eval(varname)           # =&gt; 1
 eval("varname = '$g'")  # Ajuste o "$g"
 eval("#{varname} = x")  # Seta $g a 1
-eval(varname)           
+eval(varname)
 </code></p>
 
 <p>Note que <code>eval</code> avalia o seu código em um âmbito temporário. <code>eval</code> pode alterar o valor das variáveis locais que já existem. Mas qualquer nova
@@ -416,16 +416,16 @@ Symbol::Test   # =&gt;: Teste: constante indefinida avalia um símbolo
     <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
     <updated>2012-08-29T22:15:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Avaliando Strings e Blocos</h1>
-
-
-<!-- more -->
 
 
 <p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
@@ -438,7 +438,7 @@ eval "x + 1"  # =&gt; 2
 
 <p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
-de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que<br/>
+de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que
 usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos <code>eval</code> e <code>eval-like</code>.</p>
 
 <h3>Associações e eval</h3>
@@ -539,15 +539,15 @@ do exterior do objecto.</p>
     <link href="http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/"/>
     <updated>2012-08-26T19:01:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Reflexão e Metaprogramação</h1>
-
-
-<!-- more -->
 
 
 <p>Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
@@ -667,7 +667,7 @@ os métodos de instância de cada um dos módulos específicos em métodos <code
 module Greeter; def hi; "hello"; end; end # módulo Greeter
 s = "objeto de string"
 s.extend(Greeter)       # Adicione "hello" como um método singleton para s
-s.hi                    
+s.hi
 String.extend(Greeter)  # Adicione "hello" como método de classe de String
 String.hi               # =&gt; "hello"
 </code></p>
@@ -715,7 +715,10 @@ Hora de dar um <code>break</code>... :)</p>
     <link href="http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
     <updated>2012-08-19T14:02:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -731,11 +734,6 @@ Hora de dar um <code>break</code>... :)</p>
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
-
-
-<!--more-->
-
-
 
 
 <h3>Sintaxe bloco</h3>
@@ -768,7 +766,7 @@ provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses o
 
 <p><code>ruby Blocks
 1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
-1.upto 3 do |x| puts x end  
+1.upto 3 do |x| puts x end
 1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
 </code></p>
 

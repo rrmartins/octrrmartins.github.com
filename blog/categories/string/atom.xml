@@ -4,7 +4,7 @@
   <title><![CDATA[Category: String | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/string/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,11 +14,50 @@
 
   
   <entry>
+    <title type="html"><![CDATA[As duas faces de String]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <updated>2013-04-28T16:30:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string "dog" e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um "d", um "o", e "g".</p>
+
+<p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:</p>
+
+<p><code>
+book = Book.find(:all)
+</code></p>
+
+<p>O argumento para o método <code>find</code> é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para <code>Book.find</code> realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do <code>ActiveRecord</code> e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:</p>
+
+<p><code>
+book = Book.find('all')
+</code></p>
+
+<p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar
+tanto?</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
     <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
-    <content type="html"><![CDATA[<p>Olá amigos,</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos,</p>
 
 <p>Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.</p>
 
@@ -126,15 +165,15 @@ end
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
     <updated>2012-11-04T09:20:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
 
 <h4>Exemplos de Threads</h4>
 
 <p>Agora que já passamos alguns post falando do modelo <code>Thread</code> e da API de <code>Thread</code> em Ruby, vamos dar uma olhada em alguns
 exemplos reais de vários códigos de <code>threads</code>.</p>
-
-<!--more-->
-
 
 <h3>Leitura de arquivos simultaneamente</h3>
 
@@ -273,14 +312,14 @@ h.each_pair.concurrently {|*pair| process(pair)}
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T15:04:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Escalando Threads</h3>
-
-<!-- more -->
-
 
 <p>Intérpretes do Ruby(irb), muitas vezes têm mais <code>threads</code> para executar do que há CPU tem disponível para executá-los. Quando
 o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre <code>threads</code>. O processo para
@@ -326,14 +365,14 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T14:53:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
 
 <h2>Threads e Concorrência</h2>
 
 <h3>Threads e Variáveis</h3>
-
-<!-- more -->
-
 
 <p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
@@ -436,122 +475,6 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
 </code></p>
 
 <p>Até a proxima galera! :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:26:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
-
-<h2>Threads e Concorrência</h2>
-
-<!-- more -->
-
-
-<p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
-sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
-thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
-CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
-realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das <code>threads</code>.</p>
-
-<p>Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito <code>compute-bound</code>. Eles só
-podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
-programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
-tempo de espera para a rede ou arquivo <code>I/O</code>. Programas como estes estão a ser dito <code>IO-bound</code>. Programas <code>IO-bound</code> pode ser
-útil mesmo quando várias <code>threads</code> há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma <code>thread</code>
-enquanto outra <code>thread</code> está à espera para a próxima imagem para ser baixada da rede.</p>
-
-<p>Ruby faz com que seja fácil de escrever programas <code>multi-threaded</code> com a <code>Class Thread</code>. Para iniciar uma nova <code>thread</code>,
-apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
-<code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
-
-<p>```ruby Iniciando um thread</p>
-
-<h1>Thread #1 está sendo executado aqui</h1>
-
-<p>Thread.new {
-  # Thread #2 executa esse código
-}</p>
-
-<h1>Thread #1 executa esse código</h1>
-
-<p>```</p>
-
-<p>Vamos começar nossa cobertura de <code>threads</code> explicando o modelo <code>Thread</code> de Ruby e API em alguns detalhes. Estas seções
-introdutórias explicam as coisas como ciclo de vida da <code>thread</code>, agendamento de threads, e os estados da <code>thread</code>. Com que o
-material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir <code>threads</code> avançadas como
-sincronização de <code>threads</code>.</p>
-
-<p>Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
-operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
-sistema operacional. Para mais informações, use <code>ri</code> para procurar os métodos <code>Kernel.system</code>, <code>Kernel.exec</code>, <code>Kernel.fork</code>,
-<code>IO.popen</code>, e o módulo <code>Process</code>.</p>
-
-<h3>Lifecycle Tópico</h3>
-
-<p>Como descrito acima, novas <code>threads</code> são criados com <code>Thread.new</code>. Você também pode usar os sinónimos <code>Thread.start</code> e
-<code>Thread.fork</code>. Não há necessidade de se iniciar uma <code>thread</code> depois de criá-la, ele começa a ser executado automaticamente
-quando os recursos da CPU estejam disponíveis. O valor da invocação <code>Thread.new</code> é um objeto <code>Thread</code>. A classe <code>Thread</code>
-define um número de métodos para consultar e manipular a <code>thread</code> enquanto ela está sendo executada.</p>
-
-<p>Uma <code>thread</code> é executa o código do bloco associado à chamada para <code>Thread.new</code> e depois pára execução. O valor da última
-expressão em que o bloco é o valor da <code>thread</code>, e pode ser obtido chamando o método do valor do objeto <code>Thread</code>. Se a <code>thread</code>
-foi executado para conclusão, então o valor retorna o valor da <code>thread</code> de imediato. Caso contrário, os blocos de valor do
-método e não retorna até que a <code>threado</code> for concluída.</p>
-
-<p>O método de classe <code>Thread.current</code> retorna o objeto <code>Thread</code> que representa o atual <code>thread</code>. Isso permite que as <code>threads</code>
-manipulam-se. O método da classe <code>Thread.main</code> retorna o objeto <code>Thread</code> que representa a principal <code>thread</code>, este é a
-<code>thread</code> inicial de execução que começou quando o Programa Ruby foi iniciado.</p>
-
-<h4>A Thread principal</h4>
-
-<p>A <code>Thread</code> principal é especial: o interpretador Ruby pára de correr quando a <code>thread</code> principal é feita. Ele faz isso mesmo
-que a <code>thread</code> principal criou outras <code>threads</code> que ainda estão em execução. Você deve garantir, portanto, que a sua princial
-<code>thread</code> não termina enquanto outras <code>threads</code> ainda estão em execução. Uma maneira de fazer isso é escrever sua <code>thread</code>
-principal sob a forma de um <code>loop</code> infinito. Outra maneira é explicitamente esperar para as <code>threads</code> ser concluída. Já
-mencionamos que você pode chamar o método <code>value</code> de uma <code>thread</code> que espera que ela termine. Se você não se importa com o
-valor de suas <code>threads</code>, você pode esperar com o método de instancia <code>join</code>.</p>
-
-<p>O seguinte método espera até que todas as linhas, com excepção da <code>thread</code> principal e a <code>thread</code> atual (que pode ser a mesma
-coisa), ter saído:</p>
-
-<p><code>ruby Thread Principal
-def join_all
-  main = Thread.main        # Thread Principal
-  current = Thread.current  # Thread atual
-  all = Thread.list         # Todas as threads ainda em execução
-  # Agora chama join em cada thread
-  all.each {|t| t.join unless t == current or t == main }
-end
-</code></p>
-
-<h4>Threads e exceções não tratadas</h4>
-
-<p>Se uma exceção é levantada na <code>thread</code> principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
-mensagem e sai. Em outras <code>threads</code> que a <code>thread</code> principal, exceções não tratadas causam a <code>thread</code> para parar de executar.
-Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma <code>thread</code> <code>t</code> sai por causa de
-uma exceção não tratada, e outra <code>thread</code> de chamadas <code>t.join</code> ou <code>t.value</code>, então a exceção que ocorreu em <code>t</code> é levantada
-na <code>thread</code> de <code>s</code>.</p>
-
-<p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
-classe <code>Thread.abort_on_exception=</code>:</p>
-
-<p><code>ruby Thread
-Thread.abort_on_exception = true
-</code></p>
-
-<p>Se você quer uma exceção não tratada em uma <code>thread</code> específica faz com que o intérprete saia, utilizando o método de
-exemplo, através do mesmo nome:</p>
-
-<p><code>ruby Thread abort
-t = Thread.new { ... }
-t.abort_on_exception = true
-</code></p>
-
-<p>É isso ai amigos.. até a proxima!</p>
 ]]></content>
   </entry>
   

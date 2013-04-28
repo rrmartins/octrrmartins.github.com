@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Comparable | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/comparable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/"/>
     <updated>2012-05-20T13:01:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
 
 
 
@@ -31,16 +34,11 @@
 <h3>Ordem de Object</h3>
 
 
-<p></p>
-
 <p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
 classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
 ou uma instância deve ser "menos que" a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
 String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
 uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
-
-<!--more-->
-
 
 <p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
 é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.

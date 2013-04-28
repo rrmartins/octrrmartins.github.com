@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Kernel | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/kernel/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
     <updated>2012-09-18T08:38:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
 
@@ -30,10 +33,7 @@
 <p>Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
 Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:</p>
 
-<!-- more -->
-
-
-<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para 
+<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
 a versão não modificada do método.
 
 * Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
@@ -374,7 +374,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T20:38:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -387,11 +390,6 @@ end
 métodos de instância privados do <code>Module</code> são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
 argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
 métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.</p>
-
-<!--more-->
-
-
-
 
 <h3>Métodos definidos com class_eval</h3>
 
@@ -529,7 +527,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T12:46:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -541,11 +542,6 @@ end
 <p>O método <code>method_missing</code> é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
 invocações arbitrárias sobre um objeto. O método <code>const_missing</code> de <code>Module</code> executa uma função similar para o algoritmo de pesquisa constante e que
 nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.</p>
-
-<!--more-->
-
-
-
 
 <h3>Constantes Unicode Codepoint com const_missing</h3>
 
@@ -775,7 +771,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
     <updated>2012-09-13T22:50:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -787,11 +786,6 @@ end
 <p>Uso de blocos em Ruby, juntamente com sua sintaxe de parênteses opcional, tornam muito fácil de definir métodos que parecem <code>iterator</code> e se comportam
 como estruturas de controle. O método <code>loop</code> do <code>Kernel</code> é um exemplo simples. Neste post, desenvolvo mais três exemplos. Os exemplos aqui usam
 segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência para compreender todos os detalhes.</p>
-
-<!--more-->
-
-
-
 
 <h3>Executando Delaying e Repeating: `after` e `every`</h3>
 
@@ -858,7 +852,7 @@ exemplo de como <code>after</code> e <code>every</code> são usadas, agora estam
 
 <h1>Executar o bloco after depois de esperar o número especificado de segundos.</h1>
 
-<p>def after(seconds, &amp;block)<br/>
+<p>def after(seconds, &amp;block)
   Thread.new do       # Em um novo segmento ...</p>
 
 <pre><code>sleep(seconds)    # Primeiro espera
@@ -976,16 +970,16 @@ end</p>
     <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
     <updated>2012-09-10T23:26:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>ObjectSpace e GC</h1>
-
-
-<!-- more -->
 
 
 <p>O módulo <code>ObjectSpace</code> define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação.

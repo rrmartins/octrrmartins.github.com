@@ -3,10 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Expressões e Operadores - O inicio - Rodrigo Martins</title>
+	<title>As duas faces de String - Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Expressões e Operadores Expressões e Operadores Uma expressão é &hellip;">
+	<meta name="description" content="Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -98,49 +99,40 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         <article class="post">
-	<h2 class="title">Expressões E Operadores - O Inicio</h2>
+	<h2 class="title">As Duas Faces De String</h2>
 	<div class="entry-content"><!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Expressões e Operadores</p>
+<p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
+explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
+Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
+Isto não é tão improvável quanto parece: Pense sobre a string &#8220;dog&#8221; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &#8220;d&#8221;, um &#8220;o&#8221;, e &#8220;g&#8221;.</p>
+
+<p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
+ActiveRecord, que encontra todos os registros no livros de mesa:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>book = Book.find(:all)</span></code></pre></td></tr></table></div></figure>
 
 
+<p>O argumento para o método <code>find</code> é simplesmente um flag, há que dizer que queremos encontrar todos os registros de livros, e não
+apenas o primeiro registro, e não apenas o último registro, mas todos eles. O valor real que passamos para <code>Book.find</code> realmente
+não importa muito. Podemos imaginar que, se tivesse tempo e motivação, podemos ir nas entranhas do <code>ActiveRecord</code> e reescrever o
+código para que pudéssemos usar uma string para sinal de que queria que todos os livros:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>book = Book.find('all')</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>Expressões e Operadores</h1>
-
-
-<p>Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos
-de expressões:</p>
-
-<figure class='code'><figcaption><span>Expressões</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">2</span> <span class="c1"># Um literal numérico</span>
-</span><span class='line'><span class="n">x</span> <span class="c1"># Uma referência variável local</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># invocação Um método</span>
-</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="no">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Atribuição</span>
-</span><span class='line'><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="c1"># Multiplicação com o operador *</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Como você pode ver, expressões primárias, tal como literais, referências variáveis, e invocações de método podem ser combinadas em
-expressões maiores com operadores, tais como o operador de atribuição e o operador de multiplicação.</p>
-
-<p>Muitas linguagens de programação diferenciam entre expressões de baixo nível e alto nível de declarações, tais como condicionais e loops.
-Nestas linguagens, as declarações de controlar o fluxo de um programa, mas eles não têm valores. Eles são executados, em vez de avaliados.
-Em Ruby, não há distinção clara entre as afirmações e expressões; tudo em Ruby, incluindo a definição de classe e de método, pode ser
-avaliado como uma expressão e retorna um valor. É ainda útil, no entanto, diferenciam sintaxe normalmente usada como expressões de sintaxe
-tipicamente usadas ​​como indicações.</p>
-
-<p>Até mais amigos.. ainda vem muito conteudo legal com por ai.. :D</p>
+<p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar
+tanto?</p>
 </div>
 
 <div class="meta">
 	
-		<span class="comments"><a href="/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/#disqus_thread">Comments</a></span>
+		<span class="comments"><a href="/blog/2013/04/28/as-duas-faces-de-string/#disqus_thread">Comments</a></span>
 	
 </div>
 </article>
@@ -195,8 +187,8 @@ tipicamente usadas ​​como indicações.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/';
-        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/';
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/';
         var disqus_script = 'embed.js';
       
     (function () {

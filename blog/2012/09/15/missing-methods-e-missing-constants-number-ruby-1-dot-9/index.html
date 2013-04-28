@@ -100,7 +100,10 @@ Reflexão e Metaprogramação agora Missing Methods e &hellip;">
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Missing Methods E Missing Constants - #Ruby 1.9</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -112,11 +115,6 @@ Reflexão e Metaprogramação agora Missing Methods e &hellip;">
 <p>O método <code>method_missing</code> é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
 invocações arbitrárias sobre um objeto. O método <code>const_missing</code> de <code>Module</code> executa uma função similar para o algoritmo de pesquisa constante e que
 nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.</p>
-
-<!--more-->
-
-
-
 
 <h3>Constantes Unicode Codepoint com const_missing</h3>
 

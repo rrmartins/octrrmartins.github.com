@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 1.9.3 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-1-9-3/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
-    <content type="html"><![CDATA[<p>Olá amigos,</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos,</p>
 
 <p>Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.</p>
 

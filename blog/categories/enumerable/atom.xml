@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Enumerable | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/enumerable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
     <updated>2012-08-05T16:18:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -29,9 +32,6 @@
 <p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
 invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
 invoca o seu bloco duas vezes:</p>
-
-<!-- more -->
-
 
 <p><code>ruby yield
 def twice
@@ -70,17 +70,17 @@ end</p>
 <pre><code>Nomenclatura: rendimento e iteradores
 
 Dependendo da sua experiência em programação, você pode encontrar os
-termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
-um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
+termos "yield" e "iterator". O método de sequencia mostrado anteriormente é
+um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número
 na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
 de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
 no entanto, em algum código que possa parecer como se fosse o bloco que é
 produzindo um resultado de volta para o método que o invocou.
 
 Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
-'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
+'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está
 acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
-o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
+o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles.
 Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
 
 Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
@@ -138,7 +138,7 @@ funções mundiais. Aqui está um exemplo:</p>
   while(i &lt; n)                  # Loop n vezes</p>
 
 <pre><code>y = m*i + c                 # calcula o valor
-yield y if block_given?     
+yield y if block_given?
 s &lt;&lt; y                      # armazena o valor
 i += 1
 </code></pre>
@@ -159,7 +159,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
     <updated>2012-07-25T22:50:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -170,9 +173,6 @@ end
 <p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
 coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
 iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
-
-<!-- more -->
-
 
 <p><code>ruby Metodo each
 [1,2,3].each {|x| print x }   # =&gt; prints "123"
@@ -249,15 +249,15 @@ max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
     <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
     <updated>2012-07-05T01:57:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Unless</h1>
-
-
-<!-- more -->
 
 
 <p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
@@ -345,7 +345,10 @@ end
     <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
     <updated>2012-06-11T19:36:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
 
 
 
@@ -356,11 +359,6 @@ end
 <p>Atribuição paralela é qualquer atribuição de expressão que tem mais do que um <code>lvalue</code>, mais do que um <code>rvalue</code>, ou ambos. Múltiplos <code>lvalues</code> e ​​múltiplos <code>rvalues</code> são separados uns dos outros com uma vírgula. <code>lvalues</code> e <code>rvalues</code> ​​pode ser prefixado com <code>*</code>, que às vezes é chamado de operador <code>splat</code>, embora não seja um verdadeiro operador. O significado de <code>*</code> é explicado mais adiante neste post.</p>
 
 <p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
-
-<!--more-->
-
-
-
 
 <h5>Mesmo número de lvalues ​​e rvalues</h5>
 

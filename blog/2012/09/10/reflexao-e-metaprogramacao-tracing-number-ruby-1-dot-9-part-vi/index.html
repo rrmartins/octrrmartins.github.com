@@ -100,7 +100,10 @@ Reflexão e Metaprogramação agora Tracing&#8230; Estranho &hellip;">
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Reflexão E Metaprogramação - Tracing - #Ruby 1.9 - Part VI</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -113,9 +116,6 @@ Reflexão e Metaprogramação agora Tracing&#8230; Estranho &hellip;">
 imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: <code>__FILE__</code> e <code>__LINE__</code>.
 Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
 para especificar o local exato em que ela foi gerado:</p>
-
-<!-- more -->
-
 
 <figure class='code'><figcaption><span>__FILE__ e __LINE__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="p">):</span> <span class="n">invalid</span> <span class="n">data</span><span class="s2">&quot;</span>

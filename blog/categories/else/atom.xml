@@ -4,7 +4,7 @@
   <title><![CDATA[Category: else | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/else/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
     <updated>2012-06-18T08:43:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
 
 
 
@@ -27,9 +30,6 @@
 
 
 <p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
-
-<!-- more -->
-
 
 <p><code>ruby Programa Simples
 x = ARGV[0].to_f # Converter primeiro argumento para um número

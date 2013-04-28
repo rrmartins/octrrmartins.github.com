@@ -100,16 +100,16 @@ Reflexão e Metaprogramação agora Avaliando Strings e &hellip;">
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Reflexão E Metaprogramação - Avaliando Strings E Blocos - #Ruby 1.9 - Part II</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Avaliando Strings e Blocos</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
 <h1>Avaliando Strings e Blocos</h1>
-
-
-<!-- more -->
 
 
 <p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
@@ -124,7 +124,7 @@ válido Ruby, o método <code>Kernel.eval</code> pode avaliar que o código:</p>
 
 <p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
-de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que<br/>
+de um usuário, que podia conter um código malicioso). Programadores inexperientes, por vezes, acabam usando eval como uma muleta. Se você tiver que
 usá-lo em seu código, ver se não há uma maneira de evitá-lo. Dito isto, há algumas maneiras mais úteis para usar métodos <code>eval</code> e <code>eval-like</code>.</p>
 
 <h3>Associações e eval</h3>

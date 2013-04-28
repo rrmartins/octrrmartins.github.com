@@ -4,7 +4,7 @@
   <title><![CDATA[Category: BackEnd | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/backend/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T16:19:56-03:00</updated>
+  <updated>2013-04-28T18:27:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,14 +18,14 @@
     <link href="http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/"/>
     <updated>2012-04-30T17:34:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs</id>
-    <content type="html"><![CDATA[<p>Olá Developers...</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá Developers...</p>
 
 <p>Vamos desenvolver um pequeno Chat em NodeJS... Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim...</p>
 
 <p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos... :D</p>
-
-<!-- more -->
-
 
 <p>Vamos criar a aplicação, crie uma pasta com o nome da aplicação:</p>
 
@@ -42,8 +42,8 @@ var fs = require('fs');
 var server = require('http').createServer(function(req, response){
   fs.readFile('helloworld.html', function(err, data){</p>
 
-<pre><code>response.writeHead(200, {'Content-Type':'text/html'});  
-response.write(data);  
+<pre><code>response.writeHead(200, {'Content-Type':'text/html'});
+response.write(data);
 response.end();
 </code></pre>
 

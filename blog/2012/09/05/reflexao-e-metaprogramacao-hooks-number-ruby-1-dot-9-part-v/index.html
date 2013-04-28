@@ -100,7 +100,10 @@ Reflexão e Metaprogramação agora Hooks&#8230; Estranho &hellip;">
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Reflexão E Metaprogramação - Hooks - #Ruby 1.9 - Part V</h2>
-	<div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
 <b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
 
 
@@ -113,9 +116,6 @@ Reflexão e Metaprogramação agora Hooks&#8230; Estranho &hellip;">
 defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
 estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
 <code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &#8220;ed&#8221;.</p>
-
-<!-- more -->
-
 
 <p>Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
 argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são

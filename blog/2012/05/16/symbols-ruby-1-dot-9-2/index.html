@@ -6,7 +6,7 @@
 	<title>Symbols - Ruby 1.9.2 - Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar. &hellip;">
+	<meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -99,7 +99,10 @@
     <div id="content" class="inner">
         <article class="post">
 	<h2 class="title">Symbols - Ruby 1.9.2</h2>
-	<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+	<div class="entry-content"><!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -116,9 +119,6 @@
 que ele armazena os nomes de todas as classes, métodos e variáveis ​​que ele conhece.
 Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
 posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
-
-<!--more-->
-
 
 <p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
 programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
