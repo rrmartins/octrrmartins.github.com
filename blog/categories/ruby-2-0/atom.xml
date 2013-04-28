@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 2.0 | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby-2-0/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T19:04:08-03:00</updated>
+  <updated>2013-04-28T19:27:30-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -24,7 +24,7 @@
 <p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
 que finaliza com a pergunta:</p>
 
-<pre><code>Então, por que o Ruby nos dar tanto?
+<pre><code>Então, por que o Ruby nos fornece tanto?
 </code></pre>
 
 <p>A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
@@ -48,7 +48,7 @@ outro lado, se você estiver usando alguns caracteres para estar em algo no seu 
 está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
 saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
 Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
-esta é forma é a mesma que rápida e confiável.</p>
+esta é a forma rápida e confiável.</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
@@ -85,7 +85,7 @@ book = Book.find('all')
 </code></p>
 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
-do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?</p>
+do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
 <p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
 
