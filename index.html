@@ -6,7 +6,7 @@
 	<title>Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Published on: 26/02/13 às 22:54 hrs Tags: Marc-Andre, Ruby, Ruby 2.0, Tradução Olá amigos, Tudo tranquilo? Estava conversando com o Marc-Andre &hellip;">
+	<meta name="description" content="Published on: 28/04/13 às 13:52 hrs Tags: Eloquent Ruby, Expressão Regular, Ruby, Ruby 1.9.3, Ruby 2.0, String Olá amigos, Ando meio sumido, mas &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/who-am">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -98,12 +98,161 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
-<nav id="pagenavi">
-    
-    
-        <a href="/blog/page/2/" class="next">Next</a>
-    
-</nav>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/04/28/expressoes-regulares-em-ruby/">
+		
+			Expressões Regulares Em Ruby</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-28T13:52:00-03:00" pubdate data-updated="true">28/04/13 às 13:52 hrs</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/eloquent-ruby/'>Eloquent Ruby</a>, <a class='category' href='/blog/categories/expressão-regular/'>Expressão Regular</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9-3/'>Ruby 1.9.3</a>, <a class='category' href='/blog/categories/ruby-2-0/'>Ruby 2.0</a>, <a class='category' href='/blog/categories/string/'>String</a>
+
+
+</div>
+    </div>
+		<p>Olá amigos,</p>
+
+<p>Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.</p>
+
+<p>Volto falando um pouco de <code>Expressão Regular</code> em Ruby(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão <a href="http://ruby-doc.org/core-2.0/">2.0</a> é a que estou usando, e não esta me deixando na mão.</p>
+
+<p>Em Ruby, a expressão regular, ou <code>Regexp</code>(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/\d\d:\d\d (AM|PM)/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você usa o operador <code>=~</code> para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/PM/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="sr">/May/</span> <span class="o">=~</span> <span class="s1">&#39;Sometime in June&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Voltará <code>nil</code>. Desde o operador <code>=~</code> retorna um número quando se encontra uma correspondência e <code>nil</code> se não, você pode usar
+conjuntos de expressões regulares como booleanos:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="n">the_time</span> <span class="o">=</span> <span class="s1">&#39;10:24 AM&#39;</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/</span> <span class="o">=~</span> <span class="n">the_time</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador <code>=~</code> também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="s1">&#39;10:24 AM&#39;</span> <span class="o">=~</span> <span class="sr">/AM/</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Como disse, as expressões regulares são por padrão <code>case sensitive</code>: <code>/AM/</code> não corresponde <code>/am/</code>. Felizmente, você pode
+transformar esse <code>case sensitive</code> colocando um i no fim de sua expressão, de modo que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/i</span> <span class="o">=~</span> <span class="s1">&#39;am&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Irá imprimir algo!</p>
+
+<p>Além de seu uso mais ou menos independente com o operador <code>=~</code>, expressões regulares também entram em jogo nos métodos de <code>string</code>
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método <a href="http://ruby-doc.org/core-2.0/String.html#method-i-gsub">gsub</a> da classe <code>string</code>, talvez para apagar todo o conteúdo de um documento:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Document</span>
+</span><span class='line'>  <span class="c1"># A maioria da classe omitida...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">obscure_times!</span>
+</span><span class='line'>    <span class="vi">@content</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span><span class="p">,</span> <span class="s1">&#39;**:** **&#39;</span> <span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.</p>
+
+<p>Até mais&#8230; :)</p>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2013/04/28/expressoes-regulares-em-ruby//index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -185,7 +334,7 @@
   
 
 
-<time datetime="2012-12-02T09:37:00-02:00" pubdate data-updated="true">02/12/12 às 09:37 hrs</time></div>
+<time datetime="2012-12-02T09:37:00-03:00" pubdate data-updated="true">02/12/12 às 09:37 hrs</time></div>
       <div class="tags">Tags: 
 
 
@@ -240,7 +389,7 @@ para os problemas mais comuns.</p>
   
 
 
-<time datetime="2012-11-04T09:30:00-02:00" pubdate data-updated="true">04/11/12 às 09:30 hrs</time></div>
+<time datetime="2012-11-04T09:30:00-03:00" pubdate data-updated="true">04/11/12 às 09:30 hrs</time></div>
       <div class="tags">Tags: 
 
 
@@ -289,7 +438,7 @@ para os problemas mais comuns.</p>
   
 
 
-<time datetime="2012-11-04T09:20:00-02:00" pubdate data-updated="true">04/11/12 às 09:20 hrs</time></div>
+<time datetime="2012-11-04T09:20:00-03:00" pubdate data-updated="true">04/11/12 às 09:20 hrs</time></div>
       <div class="tags">Tags: 
 
 
@@ -313,55 +462,6 @@ exemplos reais de vários códigos de <code>threads</code>.</p>
 <div class="meta">
 	
 		<span class="comments"><a href="/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9//index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/">
-		
-			Threads E Concorrência - Escalando Threads - Part III - #Ruby 1.9</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-28T15:04:00-02:00" pubdate data-updated="true">28/10/12 às 15:04 hrs</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/thread/'>Thread</a>
-
-
-</div>
-    </div>
-		<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
-
-<h2>Threads e Concorrência</h2>
-
-<h3>Escalando Threads</h3>
-
-
-		
-		<a href="/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/" class="more-link">Read on &rarr;</a>
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9//index.html#disqus_thread">Comments</a></span>
 	
 </div>
 </article>

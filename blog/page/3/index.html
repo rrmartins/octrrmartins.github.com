@@ -6,7 +6,7 @@
 	<title>Rodrigo Martins</title>
     <meta name="author" content="Rodrigo Martins">
     
-	<meta name="description" content="Published on: 13/09/12 às 22:50 hrs Tags: Hook, Integer, Kernel, Object, Ruby, Ruby 1.9, Ruby API, String, The Ruby Programming Language Hoje vamos &hellip;">
+	<meta name="description" content="Published on: 15/09/12 às 12:46 hrs Tags: Hook, Integer, Kernel, Object, Ruby, Ruby 1.9, Ruby API, String, The Ruby Programming Language Hoje vamos &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,9 +74,9 @@
 
 <!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-	<li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/index.html">Home</a></li>
     <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
-	<li id="ajax"><a href="/who-am">Palestras</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
     <li><a href="/atom.xml">RSS</a></li>
     
     <li>
@@ -98,14 +98,62 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
-<nav id="pagenavi">
-    
-        <a href="/blog/page/2/" class="prev">Prev</a>
-    
-    
-        <a href="/blog/page/4/" class="next">Next</a>
-    
-</nav>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/">
+		
+			Missing Methods E Missing Constants - #Ruby 1.9</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T12:46:00-03:00" pubdate data-updated="true">15/09/12 às 12:46 hrs</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/hook/'>Hook</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/kernel/'>Kernel</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+
+
+</div>
+    </div>
+		<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Missing Methods e Missing Constants</h1>
+
+
+<p>O método <code>method_missing</code> é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
+invocações arbitrárias sobre um objeto. O método <code>const_missing</code> de <code>Module</code> executa uma função similar para o algoritmo de pesquisa constante e que
+nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.</p>
+
+
+		
+		<a href="/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/" class="more-link">Read on &rarr;</a>
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9//blog/page/3/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -320,63 +368,6 @@ para especificar o local exato em que ela foi gerado:</p>
 <div class="meta">
 	
 		<span class="comments"><a href="/blog/2012/09/09/metodos-de-visibilidade-public//blog/page/3/index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/">
-		
-			Reflexão E Metaprogramação - Hooks - #Ruby 1.9 - Part V</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-05T23:04:00-03:00" pubdate data-updated="true">05/09/12 às 23:04 hrs</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/hook/'>Hook</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/kernel/'>Kernel</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-
-
-</div>
-    </div>
-		<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Hooks</h1>
-
-
-<p><code>Class</code>, <code>Module</code>, e os vários métodos de retorno da chamada do <code>Objectimplement</code>, ou <code>hooks</code>. Estes métodos não são definidos por padrão, mas se você
-defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
-estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
-<code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &#8220;ed&#8221;.</p>
-
-
-		
-		<a href="/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/" class="more-link">Read on &rarr;</a>
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v//blog/page/3/index.html#disqus_thread">Comments</a></span>
 	
 </div>
 </article>

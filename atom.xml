@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-02-27T01:16:07-03:00</updated>
+  <updated>2013-04-28T16:19:56-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,126 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
+    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <updated>2013-04-28T13:52:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <content type="html"><![CDATA[<p>Olá amigos,</p>
+
+<p>Ando meio sumido, mas pretendo voltar a fazer os posts, e dar continuidade nos estudos.</p>
+
+<p>Volto falando um pouco de <code>Expressão Regular</code> em Ruby(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), vou abordar as duas ultimas versões do Ruby, mas gostaria de deixar claro que a nova versão <a href="http://ruby-doc.org/core-2.0/">2.0</a> é a que estou usando, e não esta me deixando na mão.</p>
+
+<p>Em Ruby, a expressão regular, ou <code>Regexp</code>(<a href="http://ruby-doc.org/core-1.9.3/Regexp.html">1.9.3</a>, <a href="http://ruby-doc.org/core-2.0/Regexp.htm">2.0</a>), tem sua própria sintaxe literal especial. Para fazer uma expressão regular em Ruby que você encerra o seu padrão entre as barras. Então, em Ruby nossa expressão regular seria:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/\d\d:\d\d (AM|PM)/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você usa o operador <code>=~</code> para testar se uma expressão regular corresponde a uma string. Assim, se quisermos corresponder à expressão regular acima com um tempo real que seria executado:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que o zero está tentando nos dizer muitas coisas. Primeiro, ele está dizendo que a expressão correspondente, esta começando no
+índice zero. Em segundo lugar, o zero está nos dizendo é que, quando você combinar uma expressão regular, Ruby verifica ao longo
+da String, procurando um conjunto em qualquer lugar da string. Podemos ver a digitalização em ação com este exemplo seguinte:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="sr">/PM/</span> <span class="o">=~</span> <span class="s1">&#39;10:24 PM&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Que seis é uma indicação de onde o Regexp encontrou, mas só depois de Ruby digitalizar bem a string. Se não houver
+correspondência, então você não vai ter um retorno para o seu problema, de modo a que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="sr">/May/</span> <span class="o">=~</span> <span class="s1">&#39;Sometime in June&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Voltará <code>nil</code>. Desde o operador <code>=~</code> retorna um número quando se encontra uma correspondência e <code>nil</code> se não, você pode usar
+conjuntos de expressões regulares como booleanos:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="n">the_time</span> <span class="o">=</span> <span class="s1">&#39;10:24 AM&#39;</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/</span> <span class="o">=~</span> <span class="n">the_time</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O operador <code>=~</code> também é ambidestro: Não importa se a string ou a expressão regular vem em primeiro lugar, para que pudéssemos
+refazer o último exemplo, como:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="s1">&#39;10:24 AM&#39;</span> <span class="o">=~</span> <span class="sr">/AM/</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Como disse, as expressões regulares são por padrão <code>case sensitive</code>: <code>/AM/</code> não corresponde <code>/am/</code>. Felizmente, você pode
+transformar esse <code>case sensitive</code> colocando um i no fim de sua expressão, de modo que este:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 1.9.3 e 2.0</span>
+</span><span class='line'> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="s2">&quot;É de manhã!&quot;</span> <span class="k">if</span> <span class="sr">/AM/i</span> <span class="o">=~</span> <span class="s1">&#39;am&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">É</span> <span class="n">de</span> <span class="n">manh</span><span class="err">ã</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Irá imprimir algo!</p>
+
+<p>Além de seu uso mais ou menos independente com o operador <code>=~</code>, expressões regulares também entram em jogo nos métodos de <code>string</code>
+que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o método <a href="http://ruby-doc.org/core-2.0/String.html#method-i-gsub">gsub</a> da classe <code>string</code>, talvez para apagar todo o conteúdo de um documento:</p>
+
+<figure class='code'><figcaption><span>Regexp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Document</span>
+</span><span class='line'>  <span class="c1"># A maioria da classe omitida...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">obscure_times!</span>
+</span><span class='line'>    <span class="vi">@content</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span> <span class="sr">/\d\d:\d\d (AM|PM)/</span><span class="p">,</span> <span class="s1">&#39;**:** **&#39;</span> <span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.</p>
+
+<p>Até mais&#8230; :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
@@ -741,7 +861,7 @@
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
-    <updated>2012-12-02T09:37:00-02:00</updated>
+    <updated>2012-12-02T09:37:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
     <content type="html"><![CDATA[<p>Conversando com o <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, um cara super gente boa. :) E ele liberou ai a tradução do post <a href="http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails">Working with time zones in Ruby on Rails</a>.</p>
 
@@ -986,7 +1106,7 @@ postar um comentário abaixo!</p>
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
-    <updated>2012-11-04T09:30:00-02:00</updated>
+    <updated>2012-11-04T09:30:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
     <content type="html"><![CDATA[<p>Galera estou lendo mais um livro, e vou passar para vocês um textículo do inicio do <a href="http://www.amazon.com/Rails-3-Action-Ryan-Bigg/dp/1935182277">Rails 3 in Action</a>.</p>
 
@@ -1050,7 +1170,7 @@ repensar o teste e desfazer sua implementação.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
-    <updated>2012-11-04T09:20:00-02:00</updated>
+    <updated>2012-11-04T09:20:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&#8230;</p>
 
@@ -1239,7 +1359,7 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T15:04:00-02:00</updated>
+    <updated>2012-10-28T15:04:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
 
@@ -1292,7 +1412,7 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:53:00-02:00</updated>
+    <updated>2012-10-28T14:53:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&#8230;</p>
 
@@ -1437,7 +1557,7 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:26:00-02:00</updated>
+    <updated>2012-10-28T14:26:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&#8230;</p>
 
@@ -4173,364 +4293,6 @@ o nome dessa constante é usado como o nome do módulo ou classe (e é retornado
 Hora de dar um <code>break</code>&#8230; :)</p>
 
 <p>Até o proximo!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Blocos em #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
-    <updated>2012-08-19T14:02:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Blocos em #Ruby 1.9</h1>
-
-
-<p>O uso de blocos é fundamental para o uso de iteradores. As subseções a seguir explicam:</p>
-
-<ul>
-<li>A sintaxe para associar um bloco com uma invocação de método</li>
-<li>O &#8220;valor de retorno&#8221; de um bloco</li>
-<li>O escopo de variáveis ​​em blocos</li>
-<li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
-</ul>
-
-
-<!--more-->
-
-
-
-
-<h3>Sintaxe bloco</h3>
-
-
-<p>Os <code>Blocos</code> não podem ser autônomo, pois eles são apenas legal após uma chamada de método. Você pode, no entanto, colocar um
-bloco depois de qualquer invocação método, se o método não é um iterador e nunca invoca o bloco com a produção, o bloco será
-ignorado. Blocos são delimitados por chaves ou com palavras-chave <code>do/end</code>. A abertura de chave ou a palavra-chave deve ser na
-mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
-o bloco:</p>
-
-<figure class='code'><figcaption><span>Blocos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Imprima os números 1 a 10</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span> <span class="c1"># Invocação e bloco em uma linha com aparelho</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>        <span class="c1"># Delimitado bloco com do/end</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">x</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                 <span class="c1"># Bloco não especificado</span>
-</span><span class='line'><span class="err"> </span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span>        <span class="c1"># Erro na Sintaxe: bloco é permitido não depois de uma invocação</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar <code>do/end</code> quando o bloco
-se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
-para o símbolo que precede. Se você omitir os parênteses em torno de argumentos de método e usar delimitadores de chaves para
-um bloco, em seguida, o bloco vai ser associado com o último argumento do método em vez do método em si, o que não é,
-provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com <code>do</code> e
-<code>end</code>:</p>
-
-<figure class='code'><figcaption><span>Blocks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># Parens e encaracolado chaves trabalhar</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="k">end</span>    
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span> <span class="mi">3</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># erro de sintaxe: tentando passar um bloco para 3!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
-com um par de barra vertical (<code>|</code>), mas eles são de outra maneira muito parecida com os parâmetros do método:</p>
-
-<figure class='code'><figcaption><span>Blocks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># O iterador Hash.each passa dois argumentos para seu bloco</span>
-</span><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="o">|</span> <span class="c1"># Para cada par (chave, valor) no hash</span>
-</span><span class='line'><span class="err">  </span><span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">chave</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">valor</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1"># Imprimir a chave eo valor</span>
-</span><span class='line'><span class="k">end</span> <span class="c1"># Fim do bloco</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É uma convenção comum para escrever os parâmetros do bloco, na mesma linha, como a invocação do método e da chave de abertura
-ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
-
-<h3>O Valor de um Bloco</h3>
-
-
-<p>Considerando o método <code>Array.sort</code>. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
-elementos para o bloco, e é o trabalho do bloco para classificá-los.</p>
-
-<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &#8220;valor de retorno&#8221; do bloco está disponível
-com o método <code>iterator</code> como o valor da declaração <code>yield</code>.</p>
-
-<p>O &#8220;valor de retorno&#8221; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
-
-<figure class='code'><figcaption><span>Metodo sort</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># O bloco tem duas palavras e &quot;retorna&quot; a sua ordem relativa</span>
-</span><span class='line'><span class="n">words</span><span class="o">.</span><span class="n">sort!</span> <span class="p">{</span><span class="o">|</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">|</span> <span class="n">y</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nós estamos colocando a expressão &#8220;valor de retorno&#8221; entre aspas por uma razão muito importante: você não deve usar normalmente
-a palavra-chave <code>return</code> para retornar um bloco. Um <code>return</code> dentro de um bloco faz com que o método que o contém (não o método
-iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
-bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o <code>return</code> se você quer apenas
-voltar de um bloco para o método que chamou <code>yield</code>. Se você precisar forçar um bloco para voltar ao método invocando antes que
-ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar <code>next</code> em vez de retorno. Aqui é um
-exemplo que usa <code>next</code> para voltar a partir do bloco:</p>
-
-<figure class='code'><figcaption><span>Usando next</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">next</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kp">nil</span>  <span class="c1"># Retorna se x é nulo</span>
-</span><span class='line'>  <span class="k">next</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>         <span class="c1"># Retorna dois valores</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note-se que não é particularmente comum usar <code>next</code> desta maneira, e o código acima é facilmente reescrito assim:</p>
-
-<figure class='code'><figcaption><span>Reescrevendo bloco</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="kp">nil</span>
-</span><span class='line'>    <span class="mi">0</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="o">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Blocos e escopo de variáveis</h3>
-
-
-<p>Blocos que definem um novo escopo de variáveis: variáveis ​​criadas dentro de um bloco só existem dentro desse bloco e estão são
-indefinidas fora do bloco. Seja cauteloso, no entanto, as variáveis ​​locais em um método estão disponíveis para todos os blocos
-dentro desse método. Então, se um bloco atribui um valor a uma variável que já está definida fora do bloco, este não cria uma
-variável local nova, mas em vez disso, atribui um novo valor para a variável já existente. Às vezes, isso é exatamente o
-comportamento que queremos:</p>
-
-<figure class='code'><figcaption><span>Escopos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">data</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>  <span class="c1"># Some os elementos da matriz de dados</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">total</span>                   <span class="c1"># Impressão do total da soma</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
-uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
-de uma variável existente, então invocações do bloco simplesmente atribuir um valor a essa variável já existente em vez de
-criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador <code>i</code>
-como o parâmetro para dois blocos nested blocos:</p>
-
-<figure class='code'><figcaption><span>Usando mesma variavel, Ruby 1.8</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>         <span class="c1"># 10 linhas</span>
-</span><span class='line'>  <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>       <span class="c1"># Cada um tem 10 colunas</span>
-</span><span class='line'>    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>         <span class="c1"># Imprimi o número de colunas</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="s2">&quot; ==&gt; Row </span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="c1"># Número de linhas</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
-a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
-uma variável existente. Isso ajuda a evitar escrever código que funciona de forma diferente em 1.8 e 1.9.</p>
-
-<p>Ruby 1.9 é diferente de outra maneira importante, também. Sintaxe do bloco foi estendida para permitir que você declare
-variáveis de blocos locais ​​que são garantidas para ser local, mesmo se uma variável com o mesmo nome já existe no escopo
-delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
-variáveis ​​do bloco local. Aqui está um exemplo:</p>
-
-<figure class='code'><figcaption><span>Variaveis</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>            <span class="c1"># variáveis ​​locais</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="p">;</span><span class="n">y</span><span class="o">|</span>   <span class="c1"># x e y são locais para bloquear</span>
-</span><span class='line'>                     <span class="c1"># x e y são &quot;sombra&quot; das variáveis ​​externas</span>
-</span><span class='line'>  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># Usa y como uma variável que vai receber valores</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>           <span class="c1"># imprime 4, 9, 16, 25</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">]</span>                <span class="c1"># =&gt; [0,0]: o bloco não altera essas variaveis.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
-bloco-local. Ele não receber qualquer valor a partir de uma chamada <code>yield</code>, mas tem o valor nil até que o bloco de fato
-atribui outro valor a ele. O ponto de declarar essas variáveis locais no ​​bloco é garantir que você não vai acidentalmente
-sub-escrever o valor de alguma variável existente. Se você chamar Ruby 1.9 com o flag -w, ele irá avisá-lo se um bloco de
-variável local de uma variável existente.</p>
-
-<p>Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
-três variáveis ​​locais:</p>
-
-<figure class='code'><figcaption><span>Variavel Local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Passando argumentos para um bloco</h3>
-
-
-<p>Nós dissemos anteriormente que os parâmetros para um bloco são muito parecidos com os parâmetros de um método. Eles não são
-rigorosamente iguais, no entanto. Os valores de argumento que seguem a palavra-chave <code>yield</code> são designados para bloquear
-parâmetros seguindo as regras que estão mais próximos as regras para a atribuição de variável do que as regras para a invocação
-de método. Assim, quando um iterador executa <code>yield k,v</code>, para invocar um bloco declarado com parâmetros <code>|key, value|</code>, é
-equivalente a esta instrução de atribuição:</p>
-
-<figure class='code'><figcaption><span>Atribuição de parametros</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O iterador <code>Hash.each_pair</code> produz um par <code>key/value</code> como este:</p>
-
-<figure class='code'><figcaption><span>Hash.each_pair</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">:one</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">each_pair</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span> <span class="c1"># key=:one, value=1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
-são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
-variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
-utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:</p>
-
-<figure class='code'><figcaption><span>Variaveis Locais e de Instância</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">:one</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">each_pair</span> <span class="p">{</span><span class="o">|</span><span class="vg">$key</span><span class="p">,</span> <span class="vi">@value</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span> <span class="c1"># Não funciona mais no Ruby 1.9</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Este iterator define a variável global <code>$key</code> para <code>:one</code> e define a variável de instância <code>@value</code> para <code>1</code>. Como já
-mencionado, o Ruby 1.9 faz os parâmetros dos blocos locais para o bloco. Isto também significa que os parâmetros dos blocos não
-podem mais ser variáveis ​​globais ou de instância.</p>
-
-<p>Os iteradores <code>Hash.each</code> segue um pares de <code>key/value</code> como dois elementos de uma única matriz. É muito comum, no entanto,
-para ver o código como esta:</p>
-
-<figure class='code'><figcaption><span>Hash.each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">hash</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span>  <span class="c1"># Chave e valor atribuído a params k e v</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Isso também funciona por atribuição paralela. O valor cedido, um conjunto de dois elementos, é atribuído às variáveis ​​k e v:</p>
-
-<figure class='code'><figcaption><span>Atribuição</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="o">[</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Pelas regras de atribuição paralela (ver <a href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
-
-<p>Bloco de invocação não funciona exatamente como atribuição paralela. Imagine um iterador que passa dois valores ao seu bloco.
-Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
-valores automaticamente preenchido em uma matriz para nós. Mas não é assim que funciona:</p>
-
-<figure class='code'><figcaption><span>Parametros</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">two</span><span class="p">;</span> <span class="k">yield</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># Um iterador que produz dois valores</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>          <span class="c1"># Ruby 1.8: avisa e impressões [1,2],</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>           <span class="c1"># Ruby 1.9: imprime 1, nenhum aviso</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|*</span><span class="n">x</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>          <span class="c1"># versão Ou: impressões [1,2]; nenhum aviso</span>
-</span><span class='line'><span class="n">two</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="o">|</span> <span class="nb">p</span> <span class="n">x</span> <span class="p">}</span>           <span class="c1"># versão Ou: impressões 1; nenhum aviso</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.8, vários argumentos são embalados em uma matriz, quando existe um parâmetro único no bloco, mas isso é obsoleto e
-gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâmetro do bloco e o segundo valor é descartado. Se
-queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
-explicitamente que estamos prefixando o parâmetro com um <code>*</code>, exatamente como faríamos em uma declaração de método. Observe
-também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
-vírgula, como se dissesse:</p>
-
-<pre><code>"Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele."
-</code></pre>
-
-<p>Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
-também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
-aviso, vai também gerar um erro.</p>
-
-<p>A declaração do <code>yield</code> permite que <code>hashes</code> &#8220;nus&#8221; como o valor do último argumento, assim como invocações de métodos. Isto é,
-se o último argumento para produzir é um literal de <code>hash</code>, você pode omitir as chaves. Porque não é comum para iteradores para
-produzir <code>hashes</code>, temos que maquinar um exemplo para demonstrar isto:</p>
-
-<figure class='code'><figcaption><span>Hashes sem chaves</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">hashiter</span><span class="p">;</span> <span class="k">yield</span> <span class="ss">:a</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:b</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">;</span> <span class="k">end</span>  <span class="c1"># Nota final sem chaves</span>
-</span><span class='line'><span class="n">hashiter</span> <span class="p">{</span><span class="o">|</span><span class="nb">hash</span><span class="o">|</span> <span class="nb">puts</span> <span class="nb">hash</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span> <span class="p">}</span>       <span class="c1"># Imprime 1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Bloquear Parâmetros no Ruby 1.9</h3>
-
-
-<p>No Ruby 1.8, apenas o último parâmetro do bloco pode ter um prefixo <code>*</code>. Ruby 1.9 levanta essa restrição e permite qualquer
-parâmetro do bloco, independentemente da sua posição na lista, para ter um prefixo <code>*</code>:</p>
-
-<figure class='code'><figcaption><span>Prefixo *</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">five</span><span class="p">;</span> <span class="k">yield</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">;</span> <span class="k">end</span>     <span class="c1"># Seguindo os 5 valores</span>
-</span><span class='line'><span class="n">five</span> <span class="k">do</span> <span class="o">|</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">,</span> <span class="n">tail</span><span class="o">|</span>        <span class="c1"># Valores extras entrar em matriz corpo</span>
-</span><span class='line'>  <span class="nb">print</span> <span class="n">head</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">tail</span>           <span class="c1"># Mostra &quot;1 [2,3,4] 5&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.9 parâmetros do bloco podem ter valores padrões, apenas como parâmetros de método pode. Suponha, por exemplo, que
-você deseja iterar os valores de um objeto, mas o que você não sabe se o obejeto é um <code>array</code> ou um <code>hash</code>. Você pode usar um
-bloco como este:</p>
-
-<figure class='code'><figcaption><span>Variavel com um valor pré determinado</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span><span class="n">value</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">value</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do bloco. Se cada um produz um par de valores,
-são atribuídos a ambos os parâmetros.</p>
-
-<p>No Ruby 1.9, o parâmetro do bloco final pode ser prefixado com e para indicar que vai receber qualquer bloco associado com a
-invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> pode não ter um bloco associado.</p>
-
-<p>Até o proximo assunto amigos.. :P</p>
 ]]></content>
   </entry>
   
