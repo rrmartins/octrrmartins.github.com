@@ -33,7 +33,7 @@ book = Book.find('all')
 ```
 
 Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de `:all` exige um keystroke menos
-do que digitar `'all'`, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos dar tanto?
+do que digitar `'all'`, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?
 
 Continuando no post [Não é bem uma String]({{ root_url }}/blog/2013/04/28/nao-e-bem-uma-string/)...
 

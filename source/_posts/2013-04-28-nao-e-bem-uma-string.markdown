@@ -13,7 +13,7 @@ categories:
 Continuando o ultimo post [As Duas Faces de String]({{ root_url }}/blog/2013/04/28/as-duas-faces-de-string/)
 que finaliza com a pergunta:
 
-    Então, por que o Ruby nos dar tanto?
+    Então, por que o Ruby nos fornece tanto?
 
 A resposta é que nós tendemos a usar cadeias de caracteres em nosso código para duas finalidades diferentes:
 O primeiro, e mais óbvio, o uso de `strings` é manter alguns dados que estamos processando. Leia naqueles
@@ -36,6 +36,6 @@ outro lado, se você estiver usando alguns caracteres para estar em algo no seu 
 está muito interessado em brincar com os caracteres reais. Em vez disso, neste segundo caso, você só precisa
 saber se essa coisa é o flag que fala para você encontrar todos os registros ou apenas o primeiro registro.
 Principalmente, quando você quer alguns caracteres para representar algo, você simplesmente precisa saber se
-esta é forma é a mesma que rápida e confiável.
+esta é a forma rápida e confiável.
 
 Até mais galera! :)
