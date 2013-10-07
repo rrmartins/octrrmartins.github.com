@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-04-28T19:27:30-03:00</updated>
+  <updated>2013-10-07T19:48:30-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -944,7 +944,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
-    <updated>2012-12-02T09:37:00-03:00</updated>
+    <updated>2012-12-02T09:37:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1189,7 +1189,7 @@ postar um comentário abaixo!</p>
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
-    <updated>2012-11-04T09:30:00-03:00</updated>
+    <updated>2012-11-04T09:30:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1253,7 +1253,7 @@ repensar o teste e desfazer sua implementação.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
-    <updated>2012-11-04T09:20:00-03:00</updated>
+    <updated>2012-11-04T09:20:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1442,7 +1442,7 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T15:04:00-03:00</updated>
+    <updated>2012-10-28T15:04:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1495,7 +1495,7 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:53:00-03:00</updated>
+    <updated>2012-10-28T14:53:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1640,7 +1640,7 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
-    <updated>2012-10-28T14:26:00-03:00</updated>
+    <updated>2012-10-28T14:26:00-02:00</updated>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
