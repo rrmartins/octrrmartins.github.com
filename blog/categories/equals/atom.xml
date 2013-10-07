@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Equals | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/equals/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
+  <updated>2013-10-07T16:19:33-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -18,7 +18,10 @@
     <link href="http://rrmartins.github.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/"/>
     <updated>2012-05-10T13:01:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 <p>Hoje vamos falar um pouco mais de Hash, é hora de nos aprofundar.</p>
@@ -26,7 +29,7 @@
 
 
 
-<h3>Códigos de Hash, Igualdade e mutáveis ​​Chaves</h3>
+<h3>Códigos de Hash, Igualdade e mutáveis Chaves</h3>
 
 
 <p>Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de

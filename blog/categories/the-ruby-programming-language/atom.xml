@@ -4,7 +4,7 @@
   <title><![CDATA[Category: The Ruby Programming Language | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/the-ruby-programming-language/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
+  <updated>2013-10-07T16:19:33-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,563 +14,792 @@
 
   
   <entry>
-    <title type="html"><![CDATA[A Filosofia do #Ruby <3]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/"/>
-    <updated>2012-08-08T22:59:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3</id>
-    <content type="html"><![CDATA[<p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
-autorização para colocar aqui para vocês...</p>
+    <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+    <updated>2012-11-04T09:20:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
 
+<h4>Exemplos de Threads</h4>
 
-<p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto 'Matz'</a>.</p>
+<p>Agora que já passamos alguns post falando do modelo <code>Thread</code> e da API de <code>Thread</code> em Ruby, vamos dar uma olhada em alguns
+exemplos reais de vários códigos de <code>threads</code>.</p>
 
+<h3>Leitura de arquivos simultaneamente</h3>
 
+<p>O uso mais comum de <code>threads</code> de Ruby é em programas que são IO. Eles permitem que os programas mantenham ocupado até
+mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
+define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
+com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
+destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL's <code>HTTP</code> e <code>FTP</code> possam ser abertas com
+<code>Kernel.open</code> e ler como se fossem arquivos:</p>
 
+<p>```ruby Lendo arquivos</p>
 
-<h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>
+<h1>Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.</h1>
 
+<h1>Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.</h1>
 
+<p>def conread(filenames)
+  h = {}            # hash vazio de resultados</p>
 
+<p>  # Crie uma linha para cada arquivo
+  filenames.each do |filename|      # Para cada arquivo chamado
+    h[filename] = Thread.new do     # Criar um fio, mapa para filename
+      open(filename) {|f| f.read }  # Abra e leia o arquivo
+    end                             # valor da linha é o conteúdo do arquivo
+  end</p>
 
-<h6>Resumo</h6>
+<p>  # Percorre o hash, à espera de cada thread para completar.
+  # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
+  h.each_pair do |filename, thread|</p>
 
+<pre><code>begin
+  h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
+rescue
+  h[filename] = $!              # Ou a exceção levantada
+end
+</code></pre>
 
+<p>  end
+end
+```</p>
 
+<h3>Servidor A Multithreads</h3>
 
-<p><a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto 'Matz'</a>, como é conhecido online, é o criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tem encontrado seu caminho para os corações de programadores em todo o mundo.</p>
+<p>Outra, quase canônico caso, o uso de <code>threads</code> é para escrever servidores que podem comunicar com mais do que um cliente
+de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
+possivelmente menos escalável) solução usa <code>threads</code>:</p>
 
+<p>```ruby Servidor a Multithreads
+require 'socket'</p>
 
+<h1>Este método espera um socket ligado a um cliente.</h1>
 
+<h1>Ele lê as linhas do cliente, inverte-los e envia-los de volta.</h1>
 
-<p>Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, as características da linguagem <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de <a href="http://pt.wikipedia.org/wiki/Ortogonalidade">ortogonalidade</a>, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.</p>
+<h1>Múltiplas Threads podem executar este método, ao mesmo tempo.</h1>
 
+<p>def handle_client(c)
+  while true</p>
 
-<!--more-->
+<pre><code>input = c.gets.chop     # Ler uma linha de entrada do cliente
+break if !input         # sai se tem muitas entradas
+break if input=="quit"  # ou se o cliente pede
+c.puts(input.reverse)   # Caso contrário, responde ao cliente.
+c.flush                 # Força a saída para fora
+</code></pre>
 
+<p>  end
+  c.close                   # Fecha o socket cliente
+end</p>
 
+<p>server = TCPServer.open(2000) # Ouve na porta 2000</p>
 
+<p>while true                    # Laço de servidores para sempre
+  client = server.accept      # Espere um cliente para conectar
+  Thread.start(client) do |c| # Inicia uma nova thread</p>
 
-<h6>Nenhuma Línguagem Perfeita</h6>
+<pre><code>handle_client(c)          # E Lida com o clinete nessa Thread
+</code></pre>
 
+<p>  end
+end
+```</p>
 
+<h3>Iteradores simultâneas</h3>
 
+<p>Embora tarefas IO são o caso de uso típico para <code>threads</code> de Ruby, eles não se restringem aos que usam. O código a seguir
+adiciona um método <code>conmap</code> (por mapa concorrente) para o modulo <code>Enumerável</code>. Ele funciona como mapa, mas processa cada
+elemento da matriz de entrada com uma distinta <code>Thread</code>:</p>
 
-<p><b>Bill Venners</b>: Dave Thomas, co-autor de Programming <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>: Um Guia do Programador Pragmático, disse que você não acha que um projeto de linguagem deve ser perfeito. Por que não?</p>
+<p>```ruby Iterador Simultâneo
+module Enumerable           # Abre o módulo Enumerable
+  def conmap(&amp;block)        # Define um novo método que espera um block</p>
 
+<pre><code>threads = []            # Começa com uma matriz vazia de threads
+self.each do |item|     # Para cada item enumerable
+  # Chama o bloco em uma nova Thread, e lembra da Thread
+  threads &lt;&lt; Thread.new { block.call(item) }
+end
+# Agora mapea o conjunto de Threads para os seus valores
+threads.map {|t| t.value } # E retorna a matriz de valores
+</code></pre>
 
+<p>  end
+end
+```</p>
 
+<p>E aqui está uma versão concorrente similar do iterador de cada um:</p>
 
-<p><b>Yukihiro Matsumoto</b>: designers de Linguagens querem projetar a linguagem perfeita. Eles querem ser capazes de dizer: "A minha linguagem é perfeita. Ela pode fazer tudo." Mas é simplesmente impossível projetar uma linguagem perfeita, porque existem duas maneiras de olhar para uma mesma linguagem. Uma maneira é olhar para o que pode ser feito com essa linguagem. A outra é olhar para o que sentimos usando essa linguagem, como nos sentimos durante a programação.</p>
+<p>```ruby Módulo Enumerable
+module Enumerable
+  def concurrently</p>
 
+<pre><code>map {|item| Thread.new { yield item }}.each {|t| t.join }
+</code></pre>
 
+<p>  end
+end
+```</p>
 
+<p>O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
+Ruby e iteradores Ruby.</p>
 
-<p>Por causa da Teoria da <a href="http://ethosproject.blogspot.com.br/2012/06/preconceito-ignorancia-e-genialidade.html">Integridade de Turing</a>, tudo que uma linguagem pode fazer teoricamente pode ser feito por outra linguagem, mas a um custo diferente. Você pode fazer tudo em <a href="http://pt.wikipedia.org/wiki/Assembly">Assembler</a>, mas ninguém quer programar em assembler mais. Do ponto de vista que você pode fazer, portanto, as línguas diferem entre si, mas as diferenças são limitadas. Por exemplo, <a href="http://www.python.org/">Python</a> e <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fornecem quase o mesmo poder para o programador.</p>
+<p>Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
+que, dado o método <code>concurrently</code> definido mais cedo e um objeto <code>Hash h</code>, podemos escrever:</p>
 
+<p><code>ruby Método Concurrently
+h.each_pair.concurrently {|*pair| process(pair)}
+</code></p>
 
-
-
-<p>Em vez de enfatizar o que eu quero enfatizar a parte como: Como nos sentimos durante a programação, essa é a diferença principal do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> a partir de projetos em outras linguagens. Eu enfatizo a sensação, em particular, como eu me sinto usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu não trabalho duro para tornar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeito para todos, porque você se sente diferente de mim. Nenhuma linguagem pode ser perfeita para todos. Eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> perfeita para mim, mas talvez ela não é perfeito para você. A linguagem perfeita para Guido van Rossum provavelmente é <a href="http://www.python.org/">Python</a>.</p>
-
-
-
-
-<h6><a href="http://www.dicio.com.br/ortogonal/">Ortogonais</a> em relação harmoniosa</h6>
-
-
-
-
-<p><b>Bill Venners</b>: Dave Thomas também afirmou que, se eu pedir para você adicionar um recurso que é ortogonal, você não vai fazer. O que você quer é algo que seje harmonioso. O que significa isso?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Eu acredito que a consistência e ortogonalidade são ferramentas de design, não o objetivo principal no projeto.</p>
-
-
-
-
-<p><b>Bill Venners</b>: O que significa ortogonalidade neste contexto?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Um exemplo de ortogonalidade é permitir qualquer combinação de características de pequeno porte ou de sintaxe. Por exemplo, <a href="http://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)">C</a> suporta ambos os valores de parâmetro padrão para funções e sobrecarga de nomes de função com base em parâmetros. Ambos são boas características  para se ter em uma língua, mas porque elas são ortogonais, você pode aplicar ao mesmo tempo. O compilador sabe como aplicar ao mesmo tempo. Se é ambígua, o compilador irá sinalizar um erro. Mas se eu olhar para o código, eu preciso aplicar a regra com o meu cérebro também. Eu preciso adivinhar como o compilador funciona. Se eu estiver certo, e eu for inteligente o suficiente, não há problema. Mas se eu não sou inteligente o suficiente, e eu não sou realmente, causa confusão. O resultado será inesperado para uma pessoa comum. Este é um exemplo de como ortogonalidade é má.</p>
-
-
-
-
-<p><b>Bill Venners</b>: Em outras palavras, as características ortogonais irá funcionar uma vez que o escritor do compilador entendê-las e recebe-las para trabalhar. Mas é difícil para os programadores entender quando olham para ele, porque é complicado, porque eu tenho que descobrir como essas duas coisas andam juntas.</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: As funcionalidades ortogonais, quando combinadas, podem explodir em complexidade.</p>
-
-
-
-
-<p><b>Bill Venners</b>: Então, qual é a alternativa? O que seria mais harmonioso?</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: Basta pegar um dos dois para colocar na linguagem. Você não tem que fazer tudo o que você pode pensar. Você precisa escolher um deles, mesmo que ambos sejam bons.</p>
-
-
-
-
-<h6>Liberdade e Conforto</h6>
-
-
-
-
-<p><b>Bill Venners</b>: Uma das filosofias de design na comunidade <a href="http://www.python.org/">Python</a> está fornecendo uma e apenas uma maneira de fazer as coisas. Se você fornecer cinquenta maneiras diferentes de fazer a mesma coisa, então você forneceu comodidade para os escritores de código. As pessoas podem escrever coisas da sua melhor forma. A troca é para os leitores de código. Quando eu li o seu código, você poderia ter escrito de um jeito. Quando eu li o código de outras pessoas, elas podem ter escrito de outra forma. Então, como um leitor de eu acabar precisando estar familiarizado com todos os meios para realizar a tarefa, não apenas a minha maneira favorita de escrevê-la. Esse é o dilema do design. A comunidade <a href="http://www.python.org/">Python</a> parece preferir a uma e apenas uma maneira de abordagem, mas <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> parece fornecer várias maneiras de fazer a mesma coisa.</p>
-
-
-
-
-<p><b>Yukihiro Matsumoto</b>: <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> herdou a filosofia <a href="http://www.perl.org.br/Main/WebHome">Perl</a> de ter mais de uma maneira de fazer a mesma coisa. Eu herdei essa filosofia de <a href="http://pt.wikipedia.org/wiki/Larry_Wall">Larry Wall</a>, que é o meu herói, na verdade. Eu quero fazer os usuários de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> livre. Eu quero dar-lhes a liberdade de escolher. As pessoas são diferentes. As pessoas escolhem diferentes critérios. Mas se há uma maneira melhor entre muitas alternativas, eu quero encorajar esse caminho, tornando-o confortável. Então é isso que eu tentei fazer. Talvez o código do <a href="http://www.python.org/">Python</a> é um pouco mais legível. Todo mundo pode escrever o mesmo estilo de código <a href="http://www.python.org/">Python</a>, por isso pode ser mais fácil de ler, talvez. Mas a diferença de uma pessoa para outra é tão grande, proporcionando apenas uma maneira de ajudar é pouco, mesmo se você estiver usando o <a href="http://www.python.org/">Python</a>, eu acho. Prefiro fornecer muitas maneiras se é possível, mas encorajar ou orientar os usuários a escolher um caminho melhor, se é possível.</p>
-
-
-
-
-<h6>A alegria do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h6>
-
-
-
-
-<p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: "Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. " Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p>
-
-<p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p>
-
-<p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, "Olá, mundo de impressão." Eu só quero dizer, "imprimir isto!" Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p>
-
-<p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p>
-
-<p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p>
-
-<p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p>
-
-<p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p>
-
-<h6>O Fator Humano</h6>
-
-<p><b>Bill Venners</b>: Em uma entrevista, você disse, " Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana." O que você quer dizer com isso?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p>
-
-<p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p>
-
-<p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: "Não subestime o fator humano." Por quê?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: "Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo." Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p>
-
-<p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p>
-
-<p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p>
-
-<h6>Princípio da menor surpresa</h6>
-
-<p><b>Bill Venners</b>: Em uma entrevista, você disse "Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. "Por que o princípio da menor surpresa?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p>
-
-<p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p>
-
-<p><b>Bill Venners</b>: Como é mal compreendido?</p>
-
-<p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: "Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa". Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p>
-
-<p>Fonte: <a href="http://www.artima.com">Artima</a></p>
-
-------
-<p>
-É isso ai amigos.. uma boa entrevista!
-
-Até a proxima! =D</p>
-
+<p>Até o proximo amigos!</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
-    <updated>2012-08-05T16:18:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`... Estranho para alguns, mas, veremos que é simples!</p>
+    <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T15:04:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
+
+<h2>Threads e Concorrência</h2>
+
+<h3>Escalando Threads</h3>
+
+<p>Intérpretes do Ruby(irb), muitas vezes têm mais <code>threads</code> para executar do que há CPU tem disponível para executá-los. Quando
+o processamento paralelo verdadeiro não é possível, é simulado através da partilha de uma CPU entre <code>threads</code>. O processo para
+a partilha de uma CPU entre as <code>threads</code> é chamado de escalonamento de <code>threads</code>. Dependendo da implementação e plataforma,
+agendamento de <code>threads</code> pode ser feito pelo Intérprete do Ruby(irb), ou pode ser tratado pelo sistema operacional.</p>
+
+<h4>Prioridades da Thread</h4>
+
+<p>O primeiro fator que afeta o agendamento de <code>threads</code> é prioridades de <code>thread</code>: com a alta prioridade da <code>thread</code> são
+agendadas antes de baixa prioridade de <code>thread</code>. Mais precisamente, uma <code>thread</code> só vai ficar o tempo de CPU, se não houver
+maior prioridade de <code>thread</code> aguardando para ser executada.</p>
+
+<p>Definir e consultar a prioridade de um objeto Ruby <code>Thread</code> com <code>priority=</code> e <code>priority</code>. Note-se que não há nenhuma maneira
+de definir a prioridade de uma <code>thread</code> antes que ela comece a funcionar. Uma <code>thread</code> pode, no entanto, aumentar ou diminuir
+sua própria prioridade como a primeira ação que toma.</p>
+
+<p>Uma <code>thread</code> recém-criada começa com a mesma prioridade que a <code>thread</code> que a criou. A <code>thread</code> principal começa na prioridade
+ 0.</p>
+
+<p>Como muitos aspectos de <code>threading</code>, prioridades de <code>threads</code> são depende da implementação do <code>Ruby</code> e do subjacente sistema
+operacional. No Linux, por exemplo, <code>threads</code> não privilegiadas não pode ter as suas prioridades levantada ou abaixada. Assim,
+no Ruby 1.9 (que usa <code>threads</code> nativas) no <code>Linux</code>, a definição de prioridades de <code>Thread</code> é ignorada.</p>
+
+<h4>Aquisição de Thread e Thread.pass</h4>
+
+<p>Quando várias <code>Threads</code> com a mesma prioridade precisam compartilhar a CPU, cabe a <code>thread</code> programada para decidir quando e
+por quanto tempo, cada <code>thread</code> é executada. Alguns escalonadores são antecipadas, o que significa que elas permitem a <code>thread</code>
+a ser executada apenas por um determinado período de tempo antes de permitir outra <code>thread</code> da mesma prioridade para ser
+executada. Outros programadores não são preempção: uma vez que uma <code>thread</code> começa a correr, ela continua funcionando a menos
+que durma, blocos para I/O, ou uma <code>thread</code> de maior prioridade acorda.</p>
+
+<p>Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
+não preemptivo, ela vai "morrer de fome" as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
+Para evitar esse problema, de longa duração <code>compute-bound</code> <code>threads</code> devem chamar periodicamente <code>Thread.pass</code> para pedir o
+programador para produzir a CPU para outra <code>thread</code>.</p>
+
+<p>Até a proxima amigos! :D</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T14:53:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
-<h1>Escrevendo iteradores personalizados</h1>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
 
+<h2>Threads e Concorrência</h2>
 
-<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
-invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
-invoca o seu bloco duas vezes:</p>
+<h3>Threads e Variáveis</h3>
 
-<p><code>ruby yield
-def twice
-  yield
-  yield
+<p>Uma das características-chave de <code>Thread</code> é que elas podem compartilhar o acesso a variáveis. Como <code>Threads</code> são definidas
+por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
+ assim por diante) estão no escopo do bloco:</p>
+
+<p>``` ruby Thread e Variavel
+x = 0</p>
+
+<p>t1 = Thread.new do
+  # Esta Thread pode consultar e definir a variável x
+end</p>
+
+<p>t2 = Thread.new do
+  # Esta Thread e também consulta e seta x
+  # E pode consultar e definir T1 e T2 também.
+end
+```</p>
+
+<p>Quando dois ou mais <code>Thread</code> de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
+fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de <code>threads</code> abaixo.</p>
+
+<h4>Thread-privadas variáveis</h4>
+
+<p>Variáveis ​​definidas dentro do bloco de uma <code>thread</code> são particulares para essa <code>thread</code> e não são visíveis para qualquer
+outra <code>thread</code>. Isto é simplesmente consequência de regras de variáveis de escopo ​​Ruby.</p>
+
+<p>Muitas vezes queremos uma <code>Thread</code> tenha sua própria cópia privada de uma variável de modo a que o seu comportamento não se
+altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
+respectivamente) os números 1, 2 e 3:</p>
+
+<p><code>ruby Threads Privadas
+n = 1
+while n &lt;= 3
+  Thread.new { puts n }
+  n += 1
 end
 </code></p>
 
-<!--more-->
+<p>Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
+3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
+criados não executa de imediato) para o código imprimir 4, 4, e 4, por exemplo. Cada thread lê uma cópia compartilhada da
+variável n, e o valor ds mudanças de variáveis ​​como o loop é executado. O valor impresso pela <code>thread</code> depende de quando esse
+segmento é executado em relação para a thread pai.</p>
+
+<p>Para resolver este problema, passamos o valor atual de n para o método <code>Thread.new</code>, e atribuimos o atual valor da variável a
+um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:</p>
+
+<p><code>ruby Threads Privadas
+n = 1
+while n &lt;= 3
+  # Obtem uma cópia privada do valor atual de n em x
+  Thread.new(n) {|x| puts x }
+  n += 1
+end
+</code></p>
+
+<p>Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop <code>while</code>. Neste
+caso, o valor de <code>n</code> é modificado para particular para o bloco externo e nunca durante a execução desse bloco:</p>
+
+<p><code>ruby Thread Privada com Interator
+1.upto (3) {| n | Thread.new {puts n}}
+</code></p>
+
+<h4>Variáveis ​​de Threads locais</h4>
+
+<p>Algumas das variáveis especiais globais de Ruby são <code>thread</code> local: elas podem ter valores diferentes em <code>threads</code> diferentes.
+<code>$SAFE</code> e <code>$~</code> são exemplos. Isto significa que, se dois <code>thread</code> estão realizando conconrrencia de expressão regular ao mesmo
+tempo, eles vão ver diferentes valores de <code>$~</code>, e a realização de um jogo em um fio não irá interferir com os resultados de
+um jogo executado na outra discussão.</p>
+
+<p>A classe <code>Thread</code> provê <code>hash-like</code> como o comportamento. Ele define métodos de instância <code>[]</code> e <code>[]=</code> que permitem associar
+valores arbitrários com qualquer símbolo. (Se você usar uma cadeia de caracteres em vez disso, ele será convertido em um
+símbolo. Ao contrário <code>hashs</code> de verdade, a classe <code>Thread</code> só permite símbolos como chaves.) Os valores associados a estes
+símbolos comportam-se como variáveis ​​de <code>Thread</code> locais. Eles não são privados como variáveis de block ​​locais porque qualquer
+<code>Thread</code> pode pesquisar um valor em qualquer outra <code>Thread</code>. Mas eles não são variáveis partilhadas, uma vez que cada Thread
+pode ter a sua própria cópia.</p>
+
+<p>Como exemplo, suponha que nós criamos <code>thread</code> para download de arquivos de um servidor web. A <code>Thread</code> principal pode querer
+monitorar o progresso do download. Para permitir isso, cada <code>Thread</code> pode fazer o seguinte:</p>
+
+<p><code>ruby Thread de progresso
+Thread.current[:progress] = bytes_received
+</code></p>
+
+<p>A <code>Thread</code> principal poderia, então, determinar o total de bytes baixado com um código como este:</p>
+
+<p><code>ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] }
+</code></p>
+
+<p>Junto com <code>[]</code> e <code>[]=</code>, <code>Thread</code> também define um método <code>key?</code> para testar se uma determinada chave existe para uma discussão
+. Os métodos <code>keys</code> retorna uma matriz de símbolos que representam as chaves definidas para a <code>Thread</code>. Este código pode ser
+melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
+:progress ainda:</p>
+
+<p><code>ruby Thread de progresso
+total = 0
+download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
+</code></p>
+
+<p>Até a proxima galera! :D</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T14:26:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
-<p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
-expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
-com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
 
-<p>```ruby Method</p>
+<h2>Threads e Concorrência</h2>
 
-<h1>Este método espera um bloco. Gera n valores da forma</h1>
+<p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
+sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
+thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
+CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
+realidade executadas em paralelo, mas o paralelismo é simulada intercalando a execução das <code>threads</code>.</p>
 
-<h1>M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</h1>
+<p>Programas como o software de processamento de imagem que fazem um monte de cálculos estão a ser dito <code>compute-bound</code>. Eles só
+podem beneficiar de multithreading, se há realmente múltiplas CPUs para executar os cálculos em paralelo. A maioria dos
+programas não são totalmente vinculados a computação, no entanto. Muitos, como navegadores web, passam a maior parte de seu
+tempo de espera para a rede ou arquivo <code>I/O</code>. Programas como estes estão a ser dito <code>IO-bound</code>. Programas <code>IO-bound</code> pode ser
+útil mesmo quando várias <code>threads</code> há apenas uma única CPU disponível. Um navegador pode tornar uma imagem em uma <code>thread</code>
+enquanto outra <code>thread</code> está à espera para a próxima imagem para ser baixada da rede.</p>
 
-<h1>Para o bloco associado.</h1>
+<p>Ruby faz com que seja fácil de escrever programas <code>multi-threaded</code> com a <code>Class Thread</code>. Para iniciar uma nova <code>thread</code>,
+apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
+<code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
 
-<p>def sequencia(n, m, c)
-  i = 0
-  while (i &lt; n) # loop n vezes
-    yield m * i + c # Invocar o bloco, e passar um valor a ela
-    i += 1 # Incrementa i de cada vez
+<p>```ruby Iniciando um thread</p>
+
+<h1>Thread #1 está sendo executado aqui</h1>
+
+<p>Thread.new {
+  # Thread #2 executa esse código
+}</p>
+
+<h1>Thread #1 executa esse código</h1>
+
+<p>```</p>
+
+<p>Vamos começar nossa cobertura de <code>threads</code> explicando o modelo <code>Thread</code> de Ruby e API em alguns detalhes. Estas seções
+introdutórias explicam as coisas como ciclo de vida da <code>thread</code>, agendamento de threads, e os estados da <code>thread</code>. Com que o
+material introdutório como pré-requisito, passamos a apresentar código de exemplo e para cobrir <code>threads</code> avançadas como
+sincronização de <code>threads</code>.</p>
+
+<p>Finalmente, é importante notar que os programas de Ruby também pode alcançar simultaneidade ao nível do processo de sistema
+operacional executando executáveis externos ​​ou novas cópias de bifurcação do interpretador Ruby. Fazendo isto é dependem do
+sistema operacional. Para mais informações, use <code>ri</code> para procurar os métodos <code>Kernel.system</code>, <code>Kernel.exec</code>, <code>Kernel.fork</code>,
+<code>IO.popen</code>, e o módulo <code>Process</code>.</p>
+
+<h3>Lifecycle Tópico</h3>
+
+<p>Como descrito acima, novas <code>threads</code> são criados com <code>Thread.new</code>. Você também pode usar os sinónimos <code>Thread.start</code> e
+<code>Thread.fork</code>. Não há necessidade de se iniciar uma <code>thread</code> depois de criá-la, ele começa a ser executado automaticamente
+quando os recursos da CPU estejam disponíveis. O valor da invocação <code>Thread.new</code> é um objeto <code>Thread</code>. A classe <code>Thread</code>
+define um número de métodos para consultar e manipular a <code>thread</code> enquanto ela está sendo executada.</p>
+
+<p>Uma <code>thread</code> é executa o código do bloco associado à chamada para <code>Thread.new</code> e depois pára execução. O valor da última
+expressão em que o bloco é o valor da <code>thread</code>, e pode ser obtido chamando o método do valor do objeto <code>Thread</code>. Se a <code>thread</code>
+foi executado para conclusão, então o valor retorna o valor da <code>thread</code> de imediato. Caso contrário, os blocos de valor do
+método e não retorna até que a <code>threado</code> for concluída.</p>
+
+<p>O método de classe <code>Thread.current</code> retorna o objeto <code>Thread</code> que representa o atual <code>thread</code>. Isso permite que as <code>threads</code>
+manipulam-se. O método da classe <code>Thread.main</code> retorna o objeto <code>Thread</code> que representa a principal <code>thread</code>, este é a
+<code>thread</code> inicial de execução que começou quando o Programa Ruby foi iniciado.</p>
+
+<h4>A Thread principal</h4>
+
+<p>A <code>Thread</code> principal é especial: o interpretador Ruby pára de correr quando a <code>thread</code> principal é feita. Ele faz isso mesmo
+que a <code>thread</code> principal criou outras <code>threads</code> que ainda estão em execução. Você deve garantir, portanto, que a sua princial
+<code>thread</code> não termina enquanto outras <code>threads</code> ainda estão em execução. Uma maneira de fazer isso é escrever sua <code>thread</code>
+principal sob a forma de um <code>loop</code> infinito. Outra maneira é explicitamente esperar para as <code>threads</code> ser concluída. Já
+mencionamos que você pode chamar o método <code>value</code> de uma <code>thread</code> que espera que ela termine. Se você não se importa com o
+valor de suas <code>threads</code>, você pode esperar com o método de instancia <code>join</code>.</p>
+
+<p>O seguinte método espera até que todas as linhas, com excepção da <code>thread</code> principal e a <code>thread</code> atual (que pode ser a mesma
+coisa), ter saído:</p>
+
+<p><code>ruby Thread Principal
+def join_all
+  main = Thread.main        # Thread Principal
+  current = Thread.current  # Thread atual
+  all = Thread.list         # Todas as threads ainda em execução
+  # Agora chama join em cada thread
+  all.each {|t| t.join unless t == current or t == main }
+end
+</code></p>
+
+<h4>Threads e exceções não tratadas</h4>
+
+<p>Se uma exceção é levantada na <code>thread</code> principal, e não é tratada em qualquer lugar, o interpretador Ruby imprime uma
+mensagem e sai. Em outras <code>threads</code> que a <code>thread</code> principal, exceções não tratadas causam a <code>thread</code> para parar de executar.
+Por defeito, no entanto, isto não faz o intérprete para imprimir uma mensagem ou saída. Se uma <code>thread</code> <code>t</code> sai por causa de
+uma exceção não tratada, e outra <code>thread</code> de chamadas <code>t.join</code> ou <code>t.value</code>, então a exceção que ocorreu em <code>t</code> é levantada
+na <code>thread</code> de <code>s</code>.</p>
+
+<p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
+classe <code>Thread.abort_on_exception=</code>:</p>
+
+<p><code>ruby Thread
+Thread.abort_on_exception = true
+</code></p>
+
+<p>Se você quer uma exceção não tratada em uma <code>thread</code> específica faz com que o intérprete saia, utilizando o método de
+exemplo, através do mesmo nome:</p>
+
+<p><code>ruby Thread abort
+t = Thread.new { ... }
+t.abort_on_exception = true
+</code></p>
+
+<p>É isso ai amigos.. até a proxima!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    <updated>2012-09-18T08:38:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
+
+
+
+
+<h1>Encadeamento de Alias</h1>
+
+
+<p>Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
+Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:</p>
+
+<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
+a versão não modificada do método.
+
+* Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
+através dos alias, mas pode adicionar qualquer funcionalidade que for necessário, antes e depois de que
+faz isso.
+</code></pre>
+
+<p>Note-se que estes passos podem ser aplicados repetidamente (desde que um alias diferente é usado de cada vez), criando uma cadeia de métodos e aliases.</p>
+
+<p>Este post inclui três exemplos de encadeamento de alias. O primeiro realiza o encadeamento de apelido estaticamente, ou seja, usando pseudônimo
+regulares e declarações <code>def</code>. Os segundo e terceiro exemplos são mais dinâmicos; eles são apelidos que acorrentam métodos arbitrariamente nomeados
+utilizando <code>alias_method</code>, <code>define_method</code> e <code>class_eval</code>.</p>
+
+<h3>Rastreando Arquivos Carregados e Classes Definidas</h3>
+
+
+<p>O <code>Exemplo 1-1</code> é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
+ele imprime um relatório. Você pode usar este código para "instrumento" de um existente programa para que você entenda melhor o que está fazendo. Uma
+maneira de usar este código é inserir esta linha no começo do programa:</p>
+
+<p><code>ruby classtrace
+require 'classtrace'
+</code></p>
+
+<p>Uma solução mais fácil, no entanto, é usar a opção -r para o seu intérprete Ruby(<code>irb</code>):</p>
+
+<p><code>ruby Opção -r
+ruby -rclasstrace my_program.rb  --traceout /tmp/trace
+</code></p>
+
+<p>A opção -r carrega a biblioteca especificado antes de começar a executar o programa.</p>
+
+<p>O <code>Exemplo 1-1</code> usa apelido de encadeamento estático para rastrear todas as chamadas dos métodos <code>Kernel.require</code> e <code>Kernel.load</code>. Ele define um hook
+<code>Object.inherited</code> para rastrear as definições de novas classes. E ele usa <code>Kernel.at_exit</code> para executar um bloco de código quando o programa termina.
+Além dos encadeamentos de alias <code>require</code> e <code>load</code> e defini <code>Object.inherited</code>, a única modificação do espaço global feita por este código é a
+definição de um módulo chamado <code>ClassTrace</code>. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
+poluem o <code>namespace</code> com variáveis globais.</p>
+
+<p>``` ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas</p>
+
+<h1>Definimos este módulo para manter o estado global do require, de modo que</h1>
+
+<h1>Nós não alteramos o espaço global mais do que o necessário.</h1>
+
+<p>module ClassTrace
+   # Esta matriz mantém a nossa lista de arquivos carregados e classes definidas.
+   # Cada elemento é um subarray segurando a classe definida ou o
+   # Arquivo carregado e o quadro de pilha onde ele foi definido ou carregado.
+   T = []  # Array para armazenar os arquivos carregados</p>
+
+<p>   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
+   # O padrão é stderr, mas também pode vir a partir de argumentos na linha de comando
+   if x = ARGV.index("--traceout")    # Se existe argumento
+     OUT = File.open(ARGV[x+1], "w")  # Abre o arquivo especificado
+     ARGV[x,2] = nil                  # E remova os argumentos
+   else
+     OUT = STDERR                     # Caso contrário, o padrão para STDERR
+   end
+end</p>
+
+<h1>Passo 1 encadeamento Alias: definir aliases para os métodos originais</h1>
+
+<p>alias original_require require
+alias original_load load</p>
+
+<h1>Passo 2 encadeamento Alias 2: definir novas versões dos métodos</h1>
+
+<p>def require(file)
+  ClassTrace::T &lt;&lt; [file,caller[0]]     # Lembre-se de onde que estava carregado
+  original_require(file)                # Chame o método original
+end</p>
+
+<p>def load(<em>args)
+  ClassTrace::T &lt;&lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
+  original_load(</em>args)                  # Chame o método original
+end</p>
+
+<h1>Este método hook é chamado de cada vez que uma nova classe é definida</h1>
+
+<p>def Object.inherited(c)
+  ClassTrace::T &lt;&lt; [c,caller[0]]        # Lembre-se onde que foi definido
+end</p>
+
+<h1>Kernel.at_exit registra um bloco a ser executado quando o programa sai</h1>
+
+<h1>Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos</h1>
+
+<p>at_exit {
+  o = ClassTrace::OUT
+  o.puts "="<em>60
+  o.puts "Files Loaded and Classes Defined:"
+  o.puts "="</em>60
+  ClassTrace::T.each do |what,where|</p>
+
+<pre><code>if what.is_a? Class  # Report class (with hierarchy) defined
+  o.puts "Defined: #{what.ancestors.join('&lt;-')} at #{where}"
+else                 # Report file loaded
+  o.puts "Loaded: #{what} at #{where}"
+end
+</code></pre>
+
+<p>  end
+}
+```</p>
+
+<h3>Métodos encadeamento de segurança da Thread</h3>
+
+
+<p>O alias de encadeamento é feito pelo método <code>Module.synchronize_method</code>, o qual, por sua vez usa um método auxiliar <code>Module.create_alias</code> para definir
+um alias adequado para qualquer método dado (incluindo métodos como o operador +).</p>
+
+<p>Depois de definir estes novo métodos <code>Module</code>, Exemplo 1-2 redefine o método <code>synchronized</code> novamente. Quando o método é invocado dentro de uma classe
+ou de um módulo, ele chama <code>synchronize_method</code> em cada um dos símbolos que é passado. Curiosamente, contudo, pode também ser chamado sem argumentos,
+quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o <code>hook</code> para receber
+notificação quando um novo método <code>method_added</code> é adicionado.) Note que o código deste exemplo depende do método <code>Object.mutex</code> e a classe
+<code>SynchronizedObject</code>.</p>
+
+<p>``` ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread</p>
+
+<h1>Define um alias corrente Module.synchronize_method de métodos de instância</h1>
+
+<h1>Assim que sincronizar a instância antes da execução.</h1>
+
+<p>class Module
+  # Esta é uma função auxiliar para o encadeamento alias.
+  # Dado o nome de um método (como uma string ou símbolo) e um prefixo, cria
+  # Um alias exclusivo para o método, e retornar o nome do alias
+  # Como um símbolo. Quaisquer caracteres de pontuação em nome método original
+  # Serão convertidos em números para que os operadores podem ser alias.
+  def create_alias(original, prefix="alias")
+    # Cole o prefixo do nome original e converter pontuação
+    aka = "#{prefix}_#{original}"</p>
+
+<pre><code>aka.gsub!(/([\=\|\&amp;\+\-\*\/\^\!\?\~\%\&lt;\&gt;\[\]])/) {
+  num = $1[0]                       # Ruby 1.8 character -&gt; ordinal
+  num = num.ord if num.is_a? String # Ruby 1.9 character -&gt; ordinal
+  '_' + num.to_s
+}
+</code></pre>
+
+<p>    
+    # Mantenha acrescentando ressalta até chegarmos a um nome que não está em uso
+    aka += "_" while method_defined? aka or private_method_defined? aka</p>
+
+<p>    aka = aka.to_sym           # Converter o nome de alias de um símbolo
+    alias_method aka, original # Na verdade criar o alias
+    aka                                              # Retorna o nome do alias
+  end</p>
+
+<p>  # Alias correntam o método nomeado para adicionar sincronização
+  def synchronize_method(m)
+    # Primeiro, fazemos um alias para a versão dessincronizado do método.
+    aka = create_alias(m, "unsync")
+    # Agora redefini o original para invocar o alias em um bloco sincronizado.
+    # Queremos o método definido como sendo capaz de aceitar os blocos, de modo que
+    # Não pode usar define_method, e deve avaliar vez uma string com
+    # Class_eval. Note-se que tudo entre% Q {} e da correspondência
+    # É uma string entre aspas, e não um bloco.
+    class_eval %Q{</p>
+
+<pre><code>  def #{m}(*args, &amp;block)
+    synchronized(self) { #{aka}(*args, &amp;block) }
   end
-end</p>
-
-<h1>Aqui está uma invocação desse método, com um bloco.</h1>
-
-<h1>Ela imprime os valores 1, 6 e 11</h1>
-
-<p>sequencia(3, 5, 1) {| y | puts y}
-```</p>
-
-<pre><code>Nomenclatura: rendimento e iteradores
-
-Dependendo da sua experiência em programação, você pode encontrar os
-termos "yield" e "iterator". O método de sequencia mostrado anteriormente é 
-um bom exemplo claro de por que o 'yield' tem o nome do que ele faz. Depois de calcular cada número 
-na sequencia, o método 'yield' de controle (e produz o número calculado) para o bloco,
-de modo que o bloco pode trabalhar com ele. Nem sempre é isso claro,
-no entanto, em algum código que possa parecer como se fosse o bloco que é
-produzindo um resultado de volta para o método que o invocou.
-
-Um método como sequencia que espera um bloco e invoca-lo várias vezes é chamado de
-'iterador', porque parece e se comporta como um loop. Isso pode ser confuso se você está 
-acostumado a linguagens como Java em que iteradores são objetos. Em Java, o código que o cliente usa,
-o iterador está no controle e 'puxa' os valores do iterador quando ela precisa deles. 
-Em Ruby, o método iterator está no controle e 'empurra' os valores para o bloco que quer.
-
-Este problema de nomenclatura está relacionada com a distinção entre 'Iteradores interno'
-e 'iteradores externos'.
-</code></pre>
-
-<p>Aqui está outro exemplo de um 'iterador' em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
-que a implementação deste iterador usa outro iterador internamente:</p>
-
-<p>```ruby  yield</p>
-
-<h1>Gera n pontos uniformemente espaçados em torno da circunferência de um</h1>
-
-<h1>Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</h1>
-
-<h1>De cada ponto ao bloco associado.</h1>
-
-<p>def circle(r,n)
-  n.times do |i|    #  Observe que este método é implementado com um bloco</p>
-
-<pre><code>angle = Math::PI * 2 * i / n
-yield r*Math.cos(angle), r*Math.sin(angle)
+}
 </code></pre>
 
 <p>  end
 end</p>
 
-<h1>Esta invocação das impressões iterador:</h1>
+<h1>Este método global sincronizado agora pode ser usado de três maneiras diferentes.</h1>
 
-<h1>(1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</h1>
+<p>def synchronized(*args)
+  # Caso 1: com um argumento e um bloco, sincronizar sobre o objeto
+  # E executar o bloco</p>
 
-<p>circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
-```</p>
-
-<p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
-Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
-individuais. <code>yield</code> ainda permite que você passe um hash literal sem as chaves ao seu redor. Ao contrário
-de uma invocação de método, no entanto, uma expressão <code>yield</code> pode não ser seguido por um bloco.
-Você não pode passar um bloco a um bloco.</p>
-
-<p>Se um método é invocado sem um bloco, é um erro para o método <code>yield</code>, porque não há nada para <code>yield</code>. Às vezes
-você querer escrever um método que produz a um bloco se for fornecido, mas tem alguma ação padrão (outro de lançar
-um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?</code> para determinar se há um bloco
-associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
-funções mundiais. Aqui está um exemplo:</p>
-
-<p>```ruby block_biven?</p>
-
-<h1>Retorna um array com n elementos da forma m * i + c</h1>
-
-<h1>Se um bloco é dado, igualmente produzir cada elemento para o bloco</h1>
-
-<p>def sequence(n, m, c)
-  i, s = 0, []                  # Inicializa variáveis
-  while(i &lt; n)                  # Loop n vezes</p>
-
-<pre><code>y = m*i + c                 # calcula o valor
-yield y if block_given?     
-s &lt;&lt; y                      # armazena o valor
-i += 1
+<pre><code>if args.size == 1 &amp;&amp; block_given?
+args[0].mutex.synchronize { yield }
 </code></pre>
 
-<p>  end
-  s             # Retorna o array de valores
-end
-```</p>
+<p>  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
+  # Devolve um invólucro de SynchronizedObject
+  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?</p>
 
-<p>É isso aí!</p>
-
-<p>Até o proximo!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
-    <updated>2012-07-25T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`... Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Objetos Enumeráveis</h1>
-
-
-<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
-coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
-iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
-
-<p><code>ruby Metodo each
-[1,2,3].each {|x| print x }   # =&gt; prints "123"
-(1..3).each  {|x| print x }   # =&gt; prints "123" Same as 1.upto(3)
-</code></p>
-
-<!--more-->
-
-
-<p>O iterador <code>each</code> não é só para as classes tradicionais "de estrutura de dados". Classes <code>IO</code> Ruby definem um
-iterador <code>each</code> que cada linha de texto lido do objeto produz <code>Input/Output</code>. Assim, você pode processar as linhas
-de um arquivo em Ruby com um código como esse:</p>
-
-<p><code>ruby Metodo each para File
-File.open(filename) do |f|       # Abrir arquivo nomeado, passando f como parametro
-  f.each {|line| print line }    # Imprimir f em cada linha
-end
-</code></p>
-
-<p>A maioria das classes que definem um método <code>each</code> também incluem o módulo <code>Enumerable</code>, que define um número de
-iteradores mais especializados que são implementados em cima do método <code>each</code>. Um iterador é útil tal <code>each_with_index</code>, o que nos permite adicionar a linha de numeração para o exemplo anterior:</p>
-
-<p>``` ruby Metodo each com Index
-File.open(filename) do |f|
-  f.each_with_index do |line,number|</p>
-
-<pre><code>print "#{number}: #{line}"
+<pre><code>SynchronizedObject.new(args[0])
 </code></pre>
 
-<p>  end
-end
-```</p>
+<p>  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
+  # Chamado métodos para adicionar sincronização. Ou, se não há argumentos,
+  # Então apelido acorrentam o próximo método definido.
+  elsif self.is_a? Module and not block_given?</p>
 
-<p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
-<code>inject</code>. O método <code>collect</code> (também conhecido como <code>map</code>) executa o seu bloco associado para cada elemento do objeto
-enumerável, e coleta os valores de retorno dos blocos em um <code>array</code>:</p>
-
-<p><code>ruby Metodo Collect
-quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
-</code></p>
-
-<p>O método <code>select</code> invoca o bloco associado para cada elemento no objeto enumerável, e retorna uma matriz de
-elementos para a qual o bloco retorna um outro valor <code>false</code> ou <code>nil</code>. Por exemplo:</p>
-
-<p><code>ruby Metodo Select
-nivela = (1..10).select{|x| x%2 == 0} # =&gt; [2,4,6,8,10]
-</code></p>
-
-<p>O método <code>reject</code> é simplesmente o oposto de <code>select</code>, ele retorna uma matriz de elementos para a qual o bloco
-retorna <code>nil</code> ou <code>false</code>. Por exemplo:</p>
-
-<p><code>ruby Metodo reject
-odds = (1..10).reject{|x| x%2 == 0} # =&gt; [1,3,5,7,9]
-</code></p>
-
-<p>O método <code>inject</code> é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
-O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
-o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqueado para a próxima iteração, ou torna-
-se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de
-<code>inject</code>, se houver um, ou o primeiro elemento do objeto enumerável. (Neste caso, o bloco é invocado. Apenas uma vez durante os primeiros dois elementos). Exemplos para <code>injects</code> mais claros:</p>
-
-<p><code>ruby Metodo Inject
-data = [2, 5, 3, 4]
-sum = data.inject{|sum, x| sum + x }      # =&gt; 14    (2+5+3+4)
-floatprod = data.inject(1.0){|p,x| p*x }  # =&gt; 120.0 (1.0*2*5*3*4)
-max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
-</code></p>
-
-<p>Veja <a href="http://ruby-doc.org/core-1.9.2/Enumerable.html">Objetos Enumeráveis</a> ​​para obter mais detalhes sobre o <code>Módulo Enumerable</code> e a seus iteradores.</p>
-
-<p>Até a proxima amigos...</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Iteradores Numéricos #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos/"/>
-    <updated>2012-07-14T22:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`... Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Iteradores Numéricos</h1>
-
-
-<p>O núcleo do <code>Ruby API</code> fornece um número de iteradores padrão. Os métodos de loops do Kernel se comporta como um
-loop infinito, executando seu bloco associado repetidamente até que o bloco executa um <code>return</code>, <code>break</code>, ou outra
-declaração que sai do laço.</p>
-
-<p>A classe <code>Integer</code> define três iteradores usados. O método <code>upto</code> chama seu bloco associado uma vez para cada número
-inteiro entre o número inteiro no qual ele é invocado e o número inteiro que é passado como um argumento.
-Por exemplo:</p>
-
-<p><code>ruby upto
-4.upto(6){|x| print x} # =&gt; prints "456"
-</code></p>
-
-<p>Como você pode ver, <code>upto</code> intera cada número inteiro para o bloco associado, e inclui tanto o ponto de partida e o
-ponto final na iteração. Em geral, <code>n.upto(m)</code> é executado o bloco <code>m-n +1</code> vezes.</p>
-
-<p>O método <code>downto</code> é como <code>upto</code> mas itera a partir de um maior número para um número menor.</p>
-
-<p>Quando o método <code>Integer.times</code> é chamado no <code>n</code> inteiro, invoque o seu bloco de <code>n vezes</code>, passando os valores de
-<code>0 a n-1</code> em iterações sucessivas. Por exemplo:</p>
-
-<p><code>ruby times
-3.times {|x| print x }    # =&gt; prints "012"
-</code></p>
-
-<p>Em geral, é <code>n.times</code> equivalente a <code>0.upto(n-1)</code>.</p>
-
-<p>Se você quer fazer uma iteração numérica usando um ponto flutuante de números, você pode usar o método <code>step</code> mais
-complexo definido pela classe numérica. O iterador a seguir, por exemplo, começa a 0 e itera em passos de 0.1 até
-atingir <code>Math::PI</code>:</p>
-
-<p><code>ruby metodo step
-0.step(Math::PI, 0.1){|x| puts Math.sin(x)}
-</code></p>
-
-<p>Até a proxima!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
-    <updated>2012-07-05T01:57:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Unless</h1>
-
-
-<p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
-associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
-permitidas:</p>
-
-<p>``` ruby Declaração unless</p>
-
-<h1>Uma maneira, declaração unless</h1>
-
-<p>unless condition
-  code
-end</p>
-
-<h1>Duas vias da declaração unless</h1>
-
-<p>unless condition
-  code
+<pre><code>if (args.size &gt; 0) # Synchronize the named methods
+  args.each {|m| self.synchronize_method(m) }
 else
-  code
-end</p>
-
-<h1>modificador unless</h1>
-
-<p>code unless condition
-```</p>
-
-<p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
-uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
-código que são executados, ou <code>nil</code> se executar nada:</p>
-
-<p>``` ruby Declaração unless</p>
-
-<h1>Chama o método to_s sobre o objeto, a menos que o objeto 'o' for nulo</h1>
-
-<p>s = unless o.nil?                        # Nova linha de separação
-  o.to_s
-end</p>
-
-<p>s = unless o.nil? then o.to_s end        # separador então
-```</p>
-
-<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
-
-<p><code>ruby Unless
-s = o.to_s unless o.nil?
-</code></p>
-
-<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
-
-<p>``` ruby unless
-unless x == 0
-  puts "x is not 0"
-else
-  unless y == 0</p>
-
-<pre><code>puts "y is not 0"
 </code></pre>
 
-<p>  else</p>
+<p>      # Se nenhum método é especificado pelo synchronize o método seguinte define
+      eigenclass = class&lt;&lt;self; self; end</p>
 
-<pre><code>unless z == 0
-  puts "z is not 0"
-else
-  puts "all are 0"
+<pre><code>  eigenclass.class_eval do # Use eigenclass para definir métodos de classe
+</code></pre>
+
+<p>        # Define method_added para notificação quando próximo método é definido
+        define_method :method_added do |name|
+          # Primeiro remover esse método hook
+          eigenclass.class_eval { remove_method :method_added }
+          # Em seguida, sincronize o método que acabou de ser adicionado
+          self.synchronize_method name</p>
+
+<pre><code>    end
+  end
 end
+</code></pre>
+
+<p>  # Caso 4: qualquer outra invocação é um erro
+  else</p>
+
+<pre><code>raise ArgumentError, "Invalid arguments to synchronize()"
 </code></pre>
 
 <p>  end
 end
 ```</p>
 
-<p>É isso ai amigos!</p>
+<h3>Métodos de encadeamento para Rastreamento</h3>
 
-<p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
 
-<p>Esta ai..</p>
+<p>O Exemplo 1-3 suporta o rastreio de métodos denominados de um objeto. Ele define <code>trace!</code> e <code>untrace!</code> a cadeia e desencadeiam métodos chamados de um
+objeto.</p>
 
-<p>Até a proxima!</p>
+<p>A coisa interessante sobre esse exemplo é que ele faz o seu encadeamento de um modo diferente a partir do Exemplo 1-2. Ele simplesmente define métodos
+únicos no objeto e usa <code>super</code> dentro do <code>singleton</code> para a cadeia de definição do método original de exemplo. Nenhum método são criado aliases.</p>
+
+<p>``` ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear</p>
+
+<h1>Define métodos trace! e untrace! de instância para todos os objetos.</h1>
+
+<h1>trace! "Cadeias" os métodos chamados por definir métodos singleton</h1>
+
+<h1>Que adiciona a funcionalidade de rastreamento e use super para chamar o original.</h1>
+
+<h1>untrace! exclui os métodos singleton para remover o rastreamento.</h1>
+
+<p>classe Object
+  # os métodos trace especificados, enviando a saída para STDERR.
+  def trace!(*methods)</p>
+
+<pre><code>@_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados
+</code></pre>
+
+<p>    # Se nenhum método foi especificado, use todos os métodos públicos definidos
+    # Diretamente (não herdado) pela classe deste objeto
+    methods = public_methods(false) if methods.size == 0</p>
+
+<pre><code>methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
+</code></pre>
+
+<p>    methods -= @<em>traced                     # remove métodos que já estão traçadas
+    return if methods.empty?        # Voltar mais cedo se não há nada a fazer
+    @</em>traced |= methods           # Adiciona métodos para definir métodos de traçados</p>
+
+<p>    # Trace o fato de que estamos começando a traçar estes métodos
+    STDERR &lt;&lt; "Tracing #{methods.join(', ')} on #{object_id}\n"</p>
+
+<pre><code>    # Singleton métodos são definidos na eigenclass
+eigenclass = class &lt;&lt; self; self; end
+
+    methods.each do |m| # Para cada método m
+</code></pre>
+
+<p>      # Define uma versão trace singleton do método m.
+      # Saída de informações de rastreamento e usar super para invocar o
+      # Método de instância que é o rastreamento.
+      # Queremos que os métodos definidos para ser capaz de aceitar blocos, de modo que
+      # Não pode usar define_method, e deve avaliar, em vez de uma string.
+      # Note que tudo entre %Q{} e a correspondência é uma
+      # Entre aspas de string, não um bloco. Observe também que há
+      # Dois níveis de interpolações de string aqui. # {} É interpolada
+      # Quando o método singleton é definida. E \ # {} é interpolada
+      # Quando o método singleton é invocado.
+      eigenclass.class_eval %Q{</p>
+
+<pre><code>    def #{m}(*args, &amp;block)
+      begin
+        STDERR &lt;&lt; "Entering: #{m}(\#{args.join(', ')})\n"
+        result = super
+        STDERR &lt;&lt; "Exiting: #{m} with \#{result}\n"
+        result
+      rescue
+        STDERR &lt;&lt; "Aborting: #{m}: \#{$!.class}: \#{$!.message}"
+        raise
+      end
+    end
+  }
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  # Untrace os métodos especificados ou todos os métodos rastreados</p>
+
+<pre><code>def untrace!(*methods)
+if methods.size == 0    # Se nenhuma métodos especificados untrace
+  methods = @_traced    # todos os métodos atualmente rastreados
+  STDERR &lt;&lt; "Untracing all methods on #{object_id}\n"
+else                    # Caso contrário, untrace
+  methods.map! {|m| m.to_sym }  # Converter string para símbolos
+  methods &amp;= @_traced   # todos os métodos especificados que são rastreados
+  STDERR &lt;&lt; "Untracing #{methods.join(', ')} on #{object_id}\n"
+end
+
+    @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
+
+    # Remove os métodos traçados únicos do eigenclass
+    # Note que nós class_eval um bloco aqui, não uma string
+    (class &lt;&lt; self; self; end).class_eval do
+      methods.each do |m|
+        remove_method m     # undef_method não funciona corretamente
+      end
+    end
+
+    # Se nenhum método são traçados mais, remover o nosso exemplo var
+    if @_traced.empty?
+      remove_instance_variable :@_traced
+    end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>É isso ai galera! Até a proxima!</p>
 ]]></content>
   </entry>
   

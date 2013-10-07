@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: TimeZone | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.github.com/blog/categories/timezone/atom.xml" rel="self"/>
+  <link href="http://rrmartins.github.com/"/>
+  <updated>2013-10-07T16:19:33-03:00</updated>
+  <id>http://rrmartins.github.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
+    <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    <updated>2012-12-02T09:37:00-02:00</updated>
+    <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Conversando com o <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, um cara super gente boa. :) E ele liberou ai a tradução do post <a href="http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails">Working with time zones in Ruby on Rails</a>.</p>
+
+<hr />
+
+<p>Tradução</p>
+
+<hr />
+
+<p><a href="http://api.rubyonrails.org">Rails</a> oferece ótimas ferramentas para trabalhar com fusos horários, mas ainda há um monte de coisas que
+podem dar errado. Este blog tem como objetivo lançar alguma luz sobre essas pegadinhas e oferecer soluções
+para os problemas mais comuns.</p>
+
+<p>O que, provavelmente, tem me enganado é que a maioria das vezes o fato de que os tolos do Rails acredita que
+você tem tudo coberto o tempo todo <strong>(com o perdão do trocadilho)</strong>. Não me interpretem mal. Eu uso Rails
+para fazer o trabalho, tanto para mim quanto possível. Mas eu aprendi da maneira mais difícil que eu não
+posso fugir não sabendo quando e como o Rails está me ajudando. Outra pegadinha é o fato de que você tem mais
+fusos horários em jogo do que você pode acreditar. Considere o seguinte: db, servidor, a máquina dev, sistema
+configurado, o usuário específico configurado e o navegador.</p>
+
+<h3>Configure sua app Rails</h3>
+
+<p>Então, quais as ferramentas que temos à nossa disposição como desenvolvedores <a href="http://api.rubyonrails.org">Rails</a>? O mais importante é
+a configuração <code>config.time_zone</code> em seu arquivo <code>config/application.rb</code>. ActiveRecord irá ajudá-lo a
+converter de e para UTC (o que a documentação não explica) e o fuso horário de sua escolha. Isto significa
+que, se tudo que você está fazendo é ter usuários postando varias vezes através de um formulário e utilizar
+<code>Active Record</code> que ele persista que você é bom para ir.</p>
+
+<h3>Processamento de informações de time</h3>
+
+<p>Então, o que sobre o fato de fazer algo com a informação de <code>time</code> antes de aceitá-lo? Que é quando se torna
+complicado.</p>
+
+<h4>Parsing</h4>
+
+<p>Ao analisar informações de <code>time</code> é importante nunca fazê-lo sem especificar o fuso horário. A melhor maneira
+de o fazer é utilizar <code>Time.zone.parse</code> (que vai usar na zona de tempo especificado no <code>config.time_zone</code>) em
+vez de apenas <code>Time.parse</code> (que vai usar a zona do computador).</p>
+
+<h4>Trabalhar com atributos numéricos e ActiveRecord</h4>
+
+<p>Chamadas de método como <code>2.hours.ago</code> usa o fuso horário que você configurou, portanto, use este se você
+pode! A mesma coisa é verdade para atributos de tempo em modelos <code>ActiveRecord</code>.</p>
+
+<p><code>ruby Time
+post = Post.first
+post.published_at #=&gt; Thu, 22 Mar 2012 00:00:00 CDT -05:00
+</code></p>
+
+<p><code>ActiveRecord</code> busca a hora <code>UTC</code> do banco de dados e converte para o fuso horário em <code>config.time_zone</code> para
+você.</p>
+
+<h4>Date vs Time</h4>
+
+<p><code>Time</code> tem informações de <code>Date</code>, mas <code>Date</code> não tem informação de <code>Time</code>. Mesmo que você não acha que se
+importa, você pode perceber que você faz, mais cedo ou mais tarde. Seja seguro e use <code>Time</code> (ou <code>DateTime</code>,
+se você precisa de suporte para <code>Times</code> muito longe do presente).</p>
+
+<p>Mas vamos dizer que você está preso com uma <code>Date</code> que você precisa para tratar como um <code>Time</code>, pelo menos,
+certifique-se de convertê-lo para o seu fuso horário configurado:</p>
+
+<p><code>ruby Date vs Time
+1.day.from_now # =&gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+</code></p>
+
+<h4>Consultando</h4>
+
+<p>Desde que Rails sabe que a sua informação de <code>Time</code> é armazenado como UTC no banco de dados que irá converter
+a qualquer momento que você dá para o UTC.</p>
+
+<p><code>ruby Query
+Post.where (["posts.publised_at&gt;?", Time.zone.now])
+</code></p>
+
+<p>Só não se esqueça de nunca construir a seqüência de consulta à mão e use sempre <code>Time.zone.now</code> como a base e
+você deve ser seguro.</p>
+
+<h3>Trabalhando com APIs</h3>
+
+<h4>Fornecimento</h4>
+
+<p>A construção de uma API web para o consumo de outros? Certifique-se sempre de enviar todos os dados de tempo
+como <code>UTC</code> (e especificar que este é o caso).</p>
+
+<p><code>ruby Time
+Time.zone.now.utc.iso8601 # =&gt; "2012-03-16T14: 55:33 Z"
+</code></p>
+
+<p>Leia mais sobre por ISO8601 é aconselhável aqui: <a href="http://devblog.avdi.org/2009/10/25/iso8601-dates-in-ruby/">iso8601-dates-in-ruby</a></p>
+
+<h4>Consumindo</h4>
+
+<p>Quando você começa a informação do <code>Time</code> a partir de uma API externa que você não tem controle sobre o que
+você simplesmente necessita de descobrir o formato e o fuso horário que é enviado a você. Porque
+<code>Time.zone.parse</code> pode não funcionar com o formato que você recebe, pode precisar de usar:</p>
+
+<p><code>ruby Time
+Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z').in_time_zone(Time.zone)
+</code></p>
+
+<p>Por que não há nenhum método <code>#strptime</code> em <code>Time.zone</code> quando há um <code>#parse</code>. No entanto, não se esqueça de
+chamar <code>in_time_zone</code> (<code>Time.zone</code>) no seu resultado!</p>
+
+<h3>Trabalhar com vários fusos horários do usuário</h3>
+
+<p>Muitos sistemas necessita de suporte aos usuários para entrar e visualizar as informações de tempo em uma
+variedade de zonas de tempo. Para conseguir isso, você precisa armazenar zona de cada usuário tempo
+(provavelmente só um dos nomes de zona de tempo <code>String</code> encontrado no <code>rake time:zones:all</code>). Então, para
+realmente usar esse fuso horário o padrão mais comum é simplesmente criar um método particular em sua
+<code>ActionController</code> e executá-la antes como um filtro.</p>
+
+<p>```ruby Time
+before_filter :set_time_zone</p>
+
+<p>def set_time_zone
+  Time.zone = current_user.time_zone if current_user
+end
+```</p>
+
+<p>Isso vai fazer a mesma coisa que <code>config.time_zone</code> mas em uma base por pedido. Eu ainda recomendo mudar o
+<code>config.time_zone</code> padrão para um fuso horário que é um bom padrão para seus usuários.</p>
+
+<h4>Testando</h4>
+
+<p>Todos acima é algo que os testes devem pegar para você. O problema é que você como o usuário e seu
+computador como o servidor de desenvolvimento, acontece a residir no mesmo fuso horário. Esse raramente é o
+ caso, uma vez que você levar as coisas para a produção.</p>
+
+<p>Highgroove liberado apenas <a href="https://github.com/highgroove/zonebie">Zonebie</a>, uma gem que o ajuda a lidar com isso. Eu não tive tempo de testá-lo
+eu mesmo ainda, mas parece muito promissor. Se você achar que isso seja um exagero, pelo menos,
+certifique-se de que seus testes executados com um conjunto <code>Time.zone</code> para outro fuso horário do que a sua
+máquina de desenvolvimento está configurado!</p>
+
+<h4>Bug no Time.zone.parse</h4>
+
+<p>Jarkko Laine (<a href="https://twitter.com/#!/jarkko">@Jarkko</a>) apontou que não há atualmente um bug no <code>Rails</code> que pode fazer o
+<code>Time.zone.parse</code> perder uma hora quando o tempo do sistema está em <code>DST</code> (<code>horário de verão</code>) e seu fuso
+horário configurado não. Jarkko postou um problema no <code>Rails</code> rastreando o assunto e escreveu um patch para
+corrigir o bug. Até que o patch foi aceito ou se você está rodando com versões mais antigas do <code>Rails</code> a
+única forma segura de evitar este erro, quer seja um patches para <code>Rails</code> em seu aplicativo com correção
+Jarkko’s ou uso:</p>
+
+<p>```ruby Time</p>
+
+<h1>use</h1>
+
+<p>ActiveSupport::TimeWithZone.new(nil, Time.zone, DateTime.parse("2012-03-25 03:29"))</p>
+
+<h1>=> Sun, 25 Mar 2012 03:29:00 PDT -07:00</h1>
+
+<h1>or if possible pass the time zone in the string</h1>
+
+<p>Time.zone.parse("2012-03-25 03:29 PDT")</p>
+
+<h1>=> Sun, 25 Mar 2012 03:29:00 PDT -07:00</h1>
+
+<h1>instead of</h1>
+
+<p>Time.zone.parse("2012-03-25 03:29")</p>
+
+<h1>=> Sun, 25 Mar 2012 04:29:00 PDT -07:00</h1>
+
+<p>```</p>
+
+<p>Deve, contudo, ser mencionado que é muito raro que esta superfícies de bug e quando ele faz isso só pode
+perder uma hora. Se você pode viver com o que você provavelmente faz melhor por apenas aguardando o patch
+para ser aceito.</p>
+
+<h3>Cheat Sheet</h3>
+
+<h4>FAZER</h4>
+
+<p><code>ruby Date vs Time
+2.hours.ago # =&gt; Fri, 02 Mar 2012 14:02:42 CET +01:00
+1.day.from_now # =&gt; Fri, 02 Mar 2012 22:04:47 JST +09:00
+Date.today.to_time_in_current_zone # =&gt; Fri, 02 Mar 2012 00:00:00 JST +09:00
+Time.zone.parse("2012-03-02 16:05:37") # =&gt; Fri, 02 Mar 2012 16:05:37 JST +09:00
+Time.zone.now # =&gt; Sat, 03 Mar 2012 00:07:37 JST +09:00
+Time.zone.today # If you really can't have a Time or DateTime for some reason
+Time.zone.now.utc.iso8601 # "When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
+Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z').in_time_zone(Time.zone) # If you can't use parse
+</code></p>
+
+<h4>NÃO FAZER</h4>
+
+<p><code>ruby Date vs Time
+Time.now # =&gt; 2012-03-02 16:05:37 +0100
+Date.today.to_time # =&gt; 2012-03-02 00:00:00 +0100
+Time.parse("2012-03-02 16:05:37") # =&gt; 2012-03-02 16:05:37 +0100
+Time.now # =&gt; 2012-03-02 16:07:20 +0100
+Date.today # This could be yesterday or tomorrow depending on the machine's time zone!
+Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z') # You won't have the time in your configured time zone!
+</code></p>
+
+<h3>Epílogo</h3>
+
+<p>Espero que você tenha aprendido alguma coisa com este post. Tenho certeza que fiz ao escrevê-lo! Se você tem
+algum comentário sobre como ele pode ser melhorada, ou se você encontrar algum erro, por favor me avise por
+postar um comentário abaixo!</p>
+
+<hr />
+
+<p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo... :D</p>
+
+<hr />
+]]></content>
+  </entry>
+  
+</feed>
