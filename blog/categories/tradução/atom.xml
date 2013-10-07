@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tradução | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/tradução/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T17:23:48-03:00</updated>
+  <updated>2013-10-07T19:08:46-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -29,7 +29,11 @@
 
 <p>Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no <a href="https://twitter.com/yukihiro_matz/statuses/305334327938519040">twitter</a>:</p>
 
-<p><blockquote><p></p></p><p><p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p></p><p><p></p><footer><strong>@yukihiro_matz</strong> <cite><a href='https://twitter.com/yukihiro_matz/status/305334327938519040'>twitter.com/yukihiro_matz/&hellip;</a></cite></footer></blockquote></p>
+<p>{% blockquote @yukihiro_matz https://twitter.com/yukihiro_matz/status/305334327938519040 %}</p>
+
+<p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p>
+
+<p>{% endblockquote %}</p>
 
 <p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
 
