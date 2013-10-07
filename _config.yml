@@ -65,6 +65,9 @@ page_asides: [asides/twitter.html, asides/recent_posts.html, asides/github.html 
 #   3rd Party Settings    #
 # ----------------------- #
 
+# user linkedin
+linkedin_user: rrmartins
+
 # Github repositories
 github_user: rrmartins
 github_repo_count: 5
@@ -110,5 +113,13 @@ facebook_like: true
 # Instagram
 instagram_user: rrmartinsj
 
-
+navigation:
+- text: Home
+  url: /index.html
+- text: Blog
+  url: /blog/
+- text: Posts
+  url: /blog/archives/index.html
+- text: Palestras
+  url: /who-am/index.html
 # [formidable id=4]

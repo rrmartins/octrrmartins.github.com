@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T17:23:48-03:00</updated>
+  <updated>2013-10-07T19:08:46-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+<p>Continuando o ultimo post <a href="{{%20root_url%20}}/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
 que finaliza com a pergunta:</p>
 
 <pre><code>Então, por que o Ruby nos fornece tanto?
@@ -87,7 +87,7 @@ book = Book.find('all')
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
+<p>Continuando no post <a href="{{%20root_url%20}}/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
@@ -220,7 +220,11 @@ end
 
 <p>Antes de começar a tradução, gostaria de lembrar do que disse o proprio criador do #Ruby no <a href="https://twitter.com/yukihiro_matz/statuses/305334327938519040">twitter</a>:</p>
 
-<p><blockquote><p></p></p><p><p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p></p><p><p></p><footer><strong>@yukihiro_matz</strong> <cite><a href='https://twitter.com/yukihiro_matz/status/305334327938519040'>twitter.com/yukihiro_matz/&hellip;</a></cite></footer></blockquote></p>
+<p>{% blockquote @yukihiro_matz https://twitter.com/yukihiro_matz/status/305334327938519040 %}</p>
+
+<p>20 years has passed since I started developing Ruby. I really appreciate your support from the great Ruby community. Thank you!</p>
+
+<p>{% endblockquote %}</p>
 
 <p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
 
