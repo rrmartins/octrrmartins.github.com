@@ -1,0 +1,431 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demonstrações e Estruturas de controle - Part I #Ruby - Rodrigo Martins</title>
+    <meta name="author" content="Rodrigo Martins">
+    
+	<meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle Demonstrações e estruturas &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+
+    <!-- remove or comment it to disable ajaxification -->   
+    <script src="/javascripts/ajaxify.js"></script>
+   
+    
+</head>
+
+
+<body>
+    <div id="wrapper">
+    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<h1 class="animated bounceInDown">
+    <div id="headerbg">
+        Rodrigo Martins
+    </div>
+</h1>
+<br>
+
+<ul id="social-links" style="text-align:center">
+  
+  <!-- GitHub -->
+  <li>
+  <a href="https://github.com/rrmartins" class="github" title="Github"></a>
+  </li>
+  
+  
+  <!-- Google Plus -->
+  <li>
+  <a href="http://plus.google.com/110837662054300392665?rel=author" class="google" title="Google+"></a>
+  </li>
+  
+  
+  <!-- Facebook -->
+  <li>
+  <a href="http://www.facebook.com/rr.martins.j" class="facebook" title="Facebook"></a>
+  </li>
+  
+  
+  <!-- Twitter -->
+  <li>
+  <a href="http://www.twitter.com/rr_martins" class="twitter" title="Twitter"></a>
+  </li>
+  
+  
+  
+  
+  
+</ul>
+
+
+<!-- use full url including 'index.html' for navigation bar if you are using ajax -->
+<ul id="nav">
+    <li id="ajax"><a href="/index.html">Home</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Posts</a></li>
+    <li id="ajax"><a href="/blog/archives/index.html">Palestras</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    
+    <li>
+    <div id="dark">
+        <form method="get" action="/search.html" id="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    </div>
+    </li>
+    
+</ul>
+
+
+
+
+</header>
+
+<div id="toload">
+<!-- begin toload --> 
+    <div id="content" class="inner">
+        <article class="post">
+	<h2 class="title">Demonstrações E Estruturas De Controle - Part I #Ruby</h2>
+	<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+
+
+
+
+<h1>Demonstrações e estruturas de controle</h1>
+
+
+<p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
+
+<figure class='code'><figcaption><span>Programa Simples</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter primeiro argumento para um número</span>
+</span><span class='line'><span class="n">y</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_f</span> <span class="c1"># Converter segundo argumento para um número</span>
+</span><span class='line'><span class="n">soma</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="c1"># Adicione os argumentos</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">soma</span> <span class="c1"># Imprimir a soma</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
+particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
+sem ramificação ou repetição. É um programa raro que pode ser tão simples.</p>
+
+<h3>Condicionais</h3>
+
+
+<p>A estrutura de controle mais comum, em qualquer linguagem de programação, é a condicional. Esta é uma forma de dizer ao
+computador para condicionalmente executar alguns códigos: para executar ele, só se alguma condição for satisfeita.
+A condição é uma expressão, se for avaliada como qualquer valor diferente de falso ou nulo, então a condição é satisfeita.</p>
+
+<p>Ruby tem um vocabulário rico para expressar condicionais. Algumas sintaxes são descritas abaixo. Ao escrever código Ruby,
+você pode escolher o que parece mais elegante para a tarefa.</p>
+
+<!--more-->
+
+
+
+
+<h5>if</h5>
+
+
+<p>Ele é a mais simples das condicionais. Em sua forma mais simples, parece que isso:</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O código entre <code>if</code> e <code>end</code>é executado se (e somente se) o <code>expression</code> é avaliada como algo diferente que <code>falso</code> ou
+<code>nulo</code>. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
+seguida. Aqui estão duas maneiras de escrever a mesma condicional <code>if</code> de forma simples:</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Se x é menor que 10, incrementá-lo</span>
+</span><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="c1"># nova linha de separação</span>
+</span><span class='line'><span class="err">  </span><span class="n">x</span> <span class="o">+</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">then</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">end</span> <span class="c1"># the separato</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Você também pode usar <code>then</code> como o símbolo de separação, e segui-lo com uma nova linha. Isso torna o seu código robusto.</p>
+
+<figure class='code'><figcaption><span>Condicional IF</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">then</span>
+</span><span class='line'><span class="err">  </span><span class="n">x</span> <span class="o">+</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Os programadores que estão acostumados a C, ou linguagens cuja sintaxe é derivada de C, deve observar duas coisas
+importantes sobre if no Ruby:</p>
+
+<ul>
+<li><p>Parênteses não é necessário (e normalmente não utilizado) em torno da expressão condicional. O ponto e vírgula, quebra
+de linha, ou então palavra-chave serve para delimitar a expressão.</p></li>
+<li><p>A palavra-chave <code>end</code> é exigida, mesmo quando o código a ser executado condicionalmente consiste de uma única instrução.
+A forma modificador do <code>if</code>, descrito abaixo, fornece uma maneira para gravar condicionais simples sem a palavra-chave <code>end</code>.</p></li>
+</ul>
+
+
+<h5>else</h5>
+
+
+<p>Uma declaração <code>if</code> pode incluir uma cláusula <code>else</code> para especificar o código para ser executado se a condição não é
+<code>true</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional else</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O código entre <code>if</code> e <code>else</code> é executado se <code>expression</code> é avaliada como qualquer outra coisa que <code>false</code> ou <code>nil</code>. Caso
+contrário (se expression é <code>false</code> ou <code>nil</code>), o código entre o <code>else</code> e o <code>end</code> é executado. Como na forma simples
+de <code>if</code>, na expressão deve ser separado do código que o segue por uma nova linha, um ponto e vírgula, ou a palavra-chave <code>then</code>. As palavras-chave <code>else</code> e <code>end</code>, totalmente delimitam o segundo pedaço de código, e sem novas linhas ou
+delimitadores adicionais são exigido.</p>
+
+<p>Aqui é um exemplo de um condicional que inclui uma cláusula <code>else</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional if - else</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">dados</span> <span class="c1"># Se o array existe</span>
+</span><span class='line'><span class="err">  </span><span class="n">dados</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="c1"># em seguida, acrescentar um valor a ela.</span>
+</span><span class='line'><span class="k">else</span> <span class="c1"># Caso contrário ...</span>
+</span><span class='line'><span class="err">  </span><span class="n">data</span> <span class="o">=</span> <span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="c1"># criar uma nova matriz que contém o valor.</span>
+</span><span class='line'><span class="k">end</span> <span class="c1"># Este é o fim do condicional</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h5>elsif</h5>
+
+
+<p>Se você quiser testar mais de uma condição dentro de uma condicional, você pode adicionar um ou mais cláusulas <code>elsif</code>
+entre um <code>if</code> e um <code>else</code>. <code>elsif</code> é uma forma abreviada de <code>else if</code>. Note que há apenas um <code>else</code> em <code>elsif</code>. A condicional <code>elsif</code> usando parecido com este:</p>
+
+<figure class='code'><figcaption><span>Expressão elsif</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">expression1</span>
+</span><span class='line'><span class="err">  </span><span class="n">code1</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">expression2</span>
+</span><span class='line'><span class="err">  </span><span class="n">code2</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="err">      </span><span class="o">.</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">expressionN</span>
+</span><span class='line'><span class="err">  </span><span class="n">codeN</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se <code>expression1</code> for avaliado não sendo <code>false</code> ou <code>nil</code>, então <code>code1</code> é executado. Caso contrário, <code>expression2</code> é
+avaliada. Se for outra coisa senão <code>false</code> ou <code>nil</code>, então code2 é executado. Este processo continua até que uma expressão
+é avaliada como algo diferente de <code>false</code> ou <code>nil</code>, ou até que todas as cláusulas <code>elsif</code> foram testadas. Se a expressão
+associada com a última cláusula <code>elsif</code> for <code>false</code> ou <code>nil</code>, e da cláusula <code>elsif</code> é seguido por uma cláusula <code>else</code>, em
+seguida, o código entre <code>else</code> e no <code>end</code> é executado. Se nenhuma cláusula mais está presente, em seguida, nenhum código é
+executado.</p>
+
+<p><code>elsif</code> é como se: a expressão deve ser separada do código por uma nova linha, uma vírgula ou uma palavra-chave, em seguida
+. Aqui é um exemplo de uma multi condicional usando <code>elsif</code>:</p>
+
+<figure class='code'><figcaption><span>Condicional elsif</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;um&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;dois&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span> <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;três&quot;</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span><span class="p">;</span> <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;quatro&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;muitos&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h5>Valor de retorno</h5>
+
+
+<p>Na maioria das linguagens, a condicional <code>if</code> é uma afirmação. Em Ruby, no entanto, tudo é uma expressão, mesmo as
+estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma &#8220;declaração&#8221; <code>if</code>, é o valor da
+última expressão no código que foi executado, ou <code>nil</code> se nenhum bloco de código foi executado.</p>
+
+<p>O fato de que, as declarações <code>if</code> devolvem um valor significa que, por exemplo, a muilti condicional mostrado
+anteriormente pode ser elegantemente reescrito como este abaixo:</p>
+
+<figure class='code'><figcaption><span>Valor de Retorno</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">name</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">then</span> <span class="s2">&quot;um&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">then</span> <span class="s2">&quot;dois&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span> <span class="s2">&quot;três&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">then</span> <span class="s2">&quot;quatro&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">else</span> <span class="s2">&quot;muitos&quot;</span>
+</span><span class='line'><span class="err">       </span><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>É isso aí amigos..</p>
+
+<p>Bons estudos e até a proxima! :D</p>
+</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+    </div>
+    <footer id="footer">
+    <div style="display:inline">
+    Copyright &copy; 2013
+
+    Rodrigo Martins
+. Powered by <a href="http://octopress.org">Octopress</a> | 
+    Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
+</div>
+
+
+    </footer>
+    <script src="/javascripts/fabric.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-32145575-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+
+<!-- end toload --> 
+</div>
+</div>
+<script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery); 
+/*]]>*/
+</script><!-- remove it to remove the scroll to top button -->
+</body>
+</html>
