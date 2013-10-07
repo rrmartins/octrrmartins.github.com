@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Eloquent Ruby | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/eloquent-ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T19:08:46-03:00</updated>
+  <updated>2013-10-07T19:48:30-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Continuando o ultimo post <a href="{{%20root_url%20}}/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+<p>Continuando o ultimo post <a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
 que finaliza com a pergunta:</p>
 
 <pre><code>Então, por que o Ruby nos fornece tanto?
