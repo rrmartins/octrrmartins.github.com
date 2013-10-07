@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Daniel Marcos | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/daniel-marcos/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T19:08:46-03:00</updated>
+  <updated>2013-10-07T19:48:30-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -26,7 +26,7 @@
 </h2>
 
 
-<p>{% img center /images/flisol.png FLISOL %}<br/></p>
+<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
 
 <p> Olá amigos...</p>
 

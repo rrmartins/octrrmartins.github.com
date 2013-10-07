@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Symbol | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/symbol/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T19:08:46-03:00</updated>
+  <updated>2013-10-07T19:48:30-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -46,7 +46,7 @@ book = Book.find('all')
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="{{%20root_url%20}}/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
+<p>Continuando no post <a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>...</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
