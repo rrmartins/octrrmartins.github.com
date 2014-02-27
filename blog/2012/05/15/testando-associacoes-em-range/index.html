@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Testando Associações em Range - Part II - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+   
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/js/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <div class="navbar navbar-inverse navbar-static-top">
+  	<div class="navbar-inner">
+  	  <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="fui-menu-24"></span>
+        </a>
+  	  	<div class="nav-collapse collapse navbar-responsive-collapse" style="height:0;">
+  	      <ul class="nav">
+    
+        <li ><a href="/index.html">Home</a></li>
+    
+        <li ><a href="/blog/">Blog</a></li>
+    
+        <li ><a href="/blog/archives/index.html">Posts</a></li>
+    
+        <li ><a href="/who-am/index.html">Palestras</a></li>
+    
+</ul>
+
+<ul class="nav pull-right">
+    
+    <li><a href="http://github.com/rrmartins" title="Github Profile"><i class="icon-github-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://linkedin.com/in/rrmartins" title="Linkedin Profile"><i class="icon-linkedin-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://twitter.com/rr_martins" title="Twitter Profile"><i class="icon-twitter-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://plus.google.com/110837662054300392665" title="Google+ Profile"><i class="icon-google-plus-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="http://facebook.com/rr.martins.j" title="Facebook Profile"><i class="icon-facebook-sign social-navbar"></i></a></li>
+    
+    
+    <li><a href="mailto:rodrigo@rrmartins.com" title="Email"><i class="icon-envelope-alt social-navbar"></i></a></li>
+    
+</ul>
+
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  <div class="container" id="main">
+    <div class="span12">
+      <div class="row-fluid">
+        <div id="content">
+          <div>
+<article class="hentry" role="article">
+  
+
+  <header>
+  <div class="jumbotron">
+    Testando Associações Em Range - Part II
+	<h5>
+
+
+
+
+
+
+
+
+  
+
+
+<i class="icon-calendar-empty"></i> <time datetime="2012-05-15T21:49:00-03:00" pubdate data-updated="true">15/05/12 às 21:49 hrs</time></h5>
+  </div>
+</header>
+  <div class="row-fluid">
+    <div class="span12">
+      <!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+
+
+
+
+<p>Hoje vamos continuar falando de Range, é hora de nos aprofundar.</p>
+
+
+
+
+<h2>Teste Associação em um intervalo</h2>
+
+
+<p>A classe Range define métodos para determinar se um valor arbitrário é um membro de (isto é, está incluído no) um Range. Antes de entrar em
+detalhes sobre estes métodos, é necessário explicar que associaçãoem range pode ser definido de duas maneiras diferentes que estão relacionadas com a diferença entre os intervalos contínuos e discretos. Um valor x é um membro do range entre begin..end pela primeira definição se:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>E X é um membro do range begin&#8230;end (com três pontos), se:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Todos os valores de ponto de extremidade deve implementar o operador &lt;=>, assim que esta definição de associação funciona para qualquer objeto Range e não requer um ponto final para implementar o método succ. Esse é o teste de associação contínua.</p>
+
+<p>A segunda definição de filiação discreta independe succ. Ele trata um intervalo begin..end como um conjunto que inclui begin, begin.succ, begin.succ.succ, e assim por diante. Por esta definição, a associação do Range é ajustada a associação, e um valor de x está incluído numa range apenas se for um valor retornado por uma das invocações de succ. Observe que os testes de associação discreta é potencialmente
+uma operação muito mais cara do que os testes de associação contínua.</p>
+
+<p>Com isso de fundo, podemos descrever os métodos de distribuição para testar a associação. Ruby 1.8 suporta dois métodos, include?
+e member?. Eles são sinônimos, e ambos usam a associação contínua, teste:</p>
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="mi">100</span> <span class="c1"># O intervalo de números inteiros de 0 a 99</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">member?</span> <span class="mi">50</span> <span class="c1"># =&gt; verdadeira: 50 é um membro da range</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">include?</span> <span class="mi">100</span> <span class="c1"># =&gt; falso: 100 está excluída a partir do intervalo</span>
+</span><span class='line'><span class="n">r</span><span class="o">.</span><span class="n">include?</span> <span class="mi">99</span><span class="o">.</span><span class="mi">9</span> <span class="c1"># =&gt; verdadeira: 99,9 é inferior a 100</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A situação é diferente no Ruby 1.9. Essa versão da linguagem introduz um novo método, cover?, que
+funciona como include? e member? do Ruby 1.8, ele sempre usa o teste de associação contínua.
+include? e member? ainda são sinônimos no Ruby 1.9. Se os pontos finais do intervalo são números, estes métodos utilizam o
+teste de associação contínua, assim como eles fizeram no Ruby 1.8. Se os desfechos não são numéricas, no entanto, eles ao invés de
+usar o teste de associação discreta. Podemos ilustrar estas mudanças com um Range discreto de Srintgs (você pode querer usar ri entender como String.succ funciona):</p>
+
+<figure class='code'><figcaption><span>ri String.succ</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">succ</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="n">from</span> <span class="n">ruby</span> <span class="n">site</span><span class="p">)</span>
+</span><span class='line'><span class="o">------------------------------------------------------------------------------</span>
+</span><span class='line'>  <span class="n">str</span><span class="o">.</span><span class="n">succ</span>   <span class="o">-&gt;</span> <span class="n">new_str</span>
+</span><span class='line'>  <span class="n">str</span><span class="o">.</span><span class="n">next</span>   <span class="o">-&gt;</span> <span class="n">new_str</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">------------------------------------------------------------------------------</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Returns</span> <span class="n">the</span> <span class="n">successor</span> <span class="n">to</span> <span class="n">str</span><span class="o">.</span> <span class="no">The</span> <span class="n">successor</span> <span class="n">is</span> <span class="n">calculated</span> <span class="n">by</span>
+</span><span class='line'><span class="n">incrementing</span> <span class="n">characters</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">rightmost</span> <span class="n">alphanumeric</span> <span class="p">(</span><span class="ow">or</span> <span class="n">the</span>
+</span><span class='line'><span class="n">rightmost</span> <span class="n">character</span> <span class="k">if</span> <span class="n">there</span> <span class="n">are</span> <span class="n">no</span> <span class="n">alphanumerics</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">string</span><span class="o">.</span> <span class="no">Incrementing</span>
+</span><span class='line'><span class="n">a</span> <span class="n">digit</span> <span class="n">always</span> <span class="n">results</span> <span class="k">in</span> <span class="n">another</span> <span class="n">digit</span><span class="p">,</span> <span class="ow">and</span> <span class="n">incrementing</span> <span class="n">a</span> <span class="n">letter</span> <span class="n">results</span> <span class="k">in</span>
+</span><span class='line'><span class="n">another</span> <span class="n">letter</span> <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="k">case</span><span class="o">.</span> <span class="no">Incrementing</span> <span class="n">nonalphanumerics</span> <span class="n">uses</span> <span class="n">the</span>
+</span><span class='line'><span class="n">underlying</span> <span class="n">character</span> <span class="n">set</span><span class="s1">&#39;s collating sequence.</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">If the increment generates a ``carry,&#39;</span><span class="err">&#39;</span> <span class="n">the</span> <span class="n">character</span> <span class="n">to</span> <span class="n">the</span> <span class="n">left</span> <span class="n">of</span> <span class="n">it</span> <span class="n">is</span>
+</span><span class='line'><span class="n">incremented</span><span class="o">.</span> <span class="no">This</span> <span class="n">process</span> <span class="n">repeats</span> <span class="k">until</span> <span class="n">there</span> <span class="n">is</span> <span class="n">no</span> <span class="n">carry</span><span class="p">,</span> <span class="n">adding</span> <span class="n">an</span>
+</span><span class='line'><span class="n">additional</span> <span class="n">character</span> <span class="k">if</span> <span class="n">necessary</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="s2">&quot;abcd&quot;</span><span class="o">.</span><span class="n">succ</span>        <span class="c1">#=&gt; &quot;abce&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;THX1138&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;THX1139&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;&lt;&lt;koala&gt;&gt;&quot;</span><span class="o">.</span><span class="n">succ</span>   <span class="c1">#=&gt; &quot;&lt;&lt;koalb&gt;&gt;&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;1999zzz&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;2000aaa&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;ZZZ9999&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;AAAA0000&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;***&quot;</span><span class="o">.</span><span class="n">succ</span>         <span class="c1">#=&gt; &quot;**+&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">END</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">triplica</span> <span class="o">=</span> <span class="s2">&quot;AAA&quot;</span><span class="o">.</span><span class="n">.</span><span class="s2">&quot;ZZZ&quot;</span>
+</span><span class='line'><span class="n">triplica</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABC&quot;</span> <span class="c1"># verdade, rápido em 1.8 e lento em 1.9</span>
+</span><span class='line'><span class="n">triplica</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># verdadeira em 1.8, false em 1.9</span>
+</span><span class='line'><span class="n">triplica</span><span class="o">.</span><span class="n">cover?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># verdadeiro e rápido em 1.9</span>
+</span><span class='line'><span class="n">triplica</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># false e lento em 1.8 e 1.9</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Na prática, a maioria dos Ranges têm pontos de extremidade numéricos, e o Range de mudanças na API entre Ruby 1.8
+e 1.9 têm pouco impacto.</p>
+
+<p>É isso ai, até a proxima&#8230; :D</p>
+
+<p>E bons estudos..</p>
+
+    </div>
+  </div>
+
+
+
+  <footer>
+    <hr>
+    
+    <div class="row-fluid">
+      
+      <div class="span6">
+        <p class="meta">
+        
+        
+
+
+
+  <a href="/blog/categories/Range/"><span class="badge">Range</span></a>
+
+  <a href="/blog/categories/Ruby/"><span class="badge">Ruby</span></a>
+
+  <a href="/blog/categories/Ruby-1.8/"><span class="badge">Ruby 1.8</span></a>
+
+  <a href="/blog/categories/Ruby-1.9/"><span class="badge">Ruby 1.9</span></a>
+
+  <a href="/blog/categories/The-Ruby-Programming-Language/"><span class="badge">The Ruby Programming Language</span></a>
+
+
+
+
+        </p>
+      </div>
+      
+      <div class="span6 social-sharing">
+        <div class="sharing">
+  <div class="addthis_toolbox addthis_default_style ">
+  
+  <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+  
+  
+  <a class="addthis_button_tweet"></a>
+  
+  
+  <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+  
+  <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+      </div>
+      
+      
+    </div>
+    
+    <div class="row-fluid">
+      <div class="span12">
+        <p class="meta">
+          
+            <a class="basic-alignment left" href="/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/" title="Previous Post: Ranges - Ruby 1.9.2 - Part I ">&laquo; Ranges - Ruby 1.9.2 - Part I </a>
+          
+          
+            <a class="basic-alignment right" href="/blog/2012/05/16/symbols-ruby-1-dot-9-2/" title="Next Post: Symbols - Ruby 1.9.2">Symbols - Ruby 1.9.2 &raquo;</a>
+          
+        </p>
+      </div>
+    </div>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+
+        </div>
+      </div>
+      <div class="row-fluid">
+        <footer class="footer-page" role="contentinfo">
+          <p>
+  Copyright &copy; 2014 - Rodrigo Martins -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> - Theme by <a href="http://alexgaribay.com">Alex Garibay</a>
+</p>
+
+
+        </footer>
+      </div>
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/';
+        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
