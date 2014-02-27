@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2013-10-07T19:48:30-03:00</updated>
+  <updated>2014-02-27T10:13:38-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tenho Sede]]></title>
+    <link href="http://rrmartins.github.com/blog/2014/02/26/tenho-sede/"/>
+    <updated>2014-02-26T20:45:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2014/02/26/tenho-sede</id>
+    <content type="html"><![CDATA[<p>Tenho Sede</p>
+
+<!--more-->
+
+
+<p>
+Minha alma pede ajuda<br/>
+Sinto sede, Senhor<br/>
+Sou como um violão sem corda<br/>
+Repleto de silêncio e dor
+</p>
+
+
+<br/>
+
+
+<p>
+Lançai-me, Senhor<br/>
+Teu Espírito de Amor<br/>
+E minha alma reviverá<br/>
+Tira toda tristeza<br/>
+Que há em mim, Senhor<br/>
+Renova-me com Teu Espírito de Amor
+</p>
+
+
+<br/>
+
+
+<p>
+Carrega-me nos Teus braços<br/>
+Não me deixe jamais<br/>
+Sou como um filho<br/>
+Precisando de um Pai
+</p>
+
+
+<br/>
+
+
+<p>
+Ass,
+Rodrigo Martins
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Não é bem uma String]]></title>
@@ -3829,163 +3882,6 @@ uma classe. Mas, com <code>class_eval</code>, eles também podem ser usados dina
 <p>É isso ai amigos, um post, para introduzir o #StartupDevRumble .. =D</p>
 
 <p>Até o proximo!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Variáveis e Constantes - #Ruby 1.9 - Part III]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
-    <updated>2012-08-29T23:34:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Variáveis e constantes</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Variáveis e Constantes</h1>
-
-
-<p><code>Kernel</code>, <code>Object</code>, <code>Module</code> definem métodos reflexivos para listar os nomes (como <code>strings</code>) de todas as variáveis definidas globais, atualmente
-variáveis locais definidas, todas as variáveis de instância de um objeto, todas as variáveis de classe de uma classe ou módulo, e todas as constantes
-de uma classe ou módulo:</p>
-
-<figure class='code'><figcaption><span>Variaveis e Constantes</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">global_variables</span>   <span class="c1"># =&gt; [&quot;$DEBUG&quot;, &quot;$SAFE&quot;, ...]</span>
-</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>              <span class="c1"># Define uma variável local</span>
-</span><span class='line'><span class="nb">local_variables</span>    <span class="c1"># =&gt; [&quot;x&quot;]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Define uma classe simples</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'><span class="err">  </span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="vi">@x</span><span class="p">,</span><span class="vi">@y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># define variáveis de instância</span>
-</span><span class='line'><span class="err">  </span><span class="vc">@@classvar</span> <span class="o">=</span> <span class="mi">1</span>                        <span class="c1"># Define uma variável de classe</span>
-</span><span class='line'><span class="err">  </span><span class="no">ORIGIN</span> <span class="o">=</span> <span class="no">Point</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>               <span class="c1"># Define uma constante</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Point</span><span class="o">::</span><span class="no">ORIGIN</span><span class="o">.</span><span class="n">instance_variables</span> <span class="c1"># =&gt; [&quot;@y&quot;, &quot;@x&quot;]</span>
-</span><span class='line'><span class="no">Point</span><span class="o">.</span><span class="n">class_variables</span>            <span class="c1"># =&gt; [&quot;@@classvar&quot;]</span>
-</span><span class='line'><span class="no">Point</span><span class="o">.</span><span class="n">constants</span>                  <span class="c1"># =&gt; [&quot;ORIGIN&quot;]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os <code>global_variables</code>, <code>local_variables</code>, <code>instance_variables</code>, <code>class_variables</code> e métodos constantes retornam <code>arrays</code> de <code>strings</code> em Ruby 1.8 e
-<code>arrays</code> de símbolos no Ruby 1.9.</p>
-
-<h3>Consultando, Configuração e testando Variáveis</h3>
-
-
-<p>Além das variáveis listadas definidos e constantes, <code>object</code> e <code>Module</code> em Ruby também definem métodos de reflexão para consultas, a criação e
-remoção de variáveis de instância, variáveis de classe e constantes. Não há métodos de propósito específico para consultar ou definir as variáveis
-locais ou variáveis globais, mas você pode usar o método <code>eval</code> para esta finalidade:</p>
-
-<figure class='code'><figcaption><span>Configurando Variavel</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">varname</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span>           <span class="c1"># =&gt; 1</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;varname = &#39;$g&#39;&quot;</span><span class="p">)</span>  <span class="c1"># Ajuste o &quot;$g&quot;</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">varname</span><span class="si">}</span><span class="s2"> = x&quot;</span><span class="p">)</span>  <span class="c1"># Seta $g a 1</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note que <code>eval</code> avalia o seu código em um âmbito temporário. <code>eval</code> pode alterar o valor das variáveis locais que já existem. Mas qualquer nova
-variável local definida pelo código avaliado, são locais para a invocação do <code>eval</code> e deixam de existir quando ele retorna. (É como se o código
-avaliado é executado no corpo de um bloco de variáveis-locais para um bloco não existem fora do bloco.)</p>
-
-<p>Você pode consultar, definir e testar a existência de variáveis de instância em qualquer objeto e de variáveis de classe e constantes em qualquer
-classe ou módulo:</p>
-
-<figure class='code'><figcaption><span>Consultar Variavel</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span> <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_variable_set</span><span class="p">(</span><span class="ss">:@x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c1"># Nota exigido o prefixo @</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_variable_get</span><span class="p">(</span><span class="ss">:@x</span><span class="p">)</span>      <span class="c1"># =&gt; 0</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_variable_defined?</span><span class="p">(</span><span class="ss">:@x</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">class_variable_set</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># Privado no Ruby 1.8</span>
-</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">class_variable_get</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span>      <span class="c1"># Privado no Ruby 1.8</span>
-</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">class_variable_defined?</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span> <span class="c1"># =&gt; true; Ruby 1.9 e versões mais novas</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="ss">:EPI</span><span class="p">,</span> <span class="no">Math</span><span class="o">::</span><span class="n">E</span><span class="o">*</span><span class="no">Math</span><span class="o">::</span><span class="no">PI</span><span class="p">)</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="ss">:EPI</span><span class="p">)</span>             <span class="c1"># =&gt; 8,53973422267357</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">const_defined?</span> <span class="ss">:EPI</span>         <span class="c1"># =&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.9, você pode passar <code>false</code> como o segundo argumento para <code>const_get</code> e <code>const_defined?</code> para especificar que esses métodos devem olhar
-apenas para a classe atual ou módulo e não deve considerar constantes herdadas.</p>
-
-<p>Os métodos para consultar e configurar as variáveis de classe são privadas no Ruby 1.8. Nessa versão, você pode invocá-las com <code>class_eval</code>:</p>
-
-<figure class='code'><figcaption><span>class_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">class_variable_set</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">}</span>  <span class="c1"># Seta @@x em String</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">class_variable_get</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span> <span class="p">}</span>     <span class="c1"># =&gt; 1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>Object</code> e <code>Module</code> definem métodos privados para variáveis de instância indefinidas, variáveis de classe e constantes. Todos eles retornam o valor
-da variável ou constante removida. Como esses métodos são privados, não pode invocá-los diretamente em um objeto, classe ou módulo, e você deve usar
-um método eval ou o método de envio:</p>
-
-<figure class='code'><figcaption><span>instance_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="n">remove_instance_variable</span> <span class="ss">:@x</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">remove_class_variable</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">send</span> <span class="ss">:remove_const</span><span class="p">,</span> <span class="ss">:EPI</span>  <span class="c1"># Usa send para chamar o método privado</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O método <code>const_missing</code> de um módulo é invocado, se houver um, quando uma referência é feita a uma constante indefinida. Você pode definir este
-método para retornar o valor da constante chamada. (Esta característica pode ser usada, por exemplo, para implementar uma facilidade autoload em que
-as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais simples:</p>
-
-<figure class='code'><figcaption><span>cons_missing</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">Symbol</span><span class="o">.</span><span class="nf">const_missing</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'><span class="err">  </span><span class="nb">name</span> <span class="c1"># Retorna o nome da constante como um símbolo</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="no">Symbol</span><span class="o">::</span><span class="no">Test</span>   <span class="c1"># =&gt;: Teste: constante indefinida avalia um símbolo</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É isso ai amigos&#8230; Bora continuar estudando!</p>
-
-<p>Em breve, irei postar um pouco sobre Engenharia! :)</p>
 ]]></content>
   </entry>
   
