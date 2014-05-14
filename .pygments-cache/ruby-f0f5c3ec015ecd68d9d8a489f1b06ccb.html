@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="n">triplica</span> <span class="o">=</span> <span class="s2">&quot;AAA&quot;</span><span class="o">.</span><span class="n">.</span><span class="s2">&quot;ZZZ&quot;</span>
+<span class="n">triplica</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABC&quot;</span> <span class="c1"># verdade, rápido em 1.8 e lento em 1.9</span>
+<span class="n">triplica</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># verdadeira em 1.8, false em 1.9</span>
+<span class="n">triplica</span><span class="o">.</span><span class="n">cover?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># verdadeiro e rápido em 1.9</span>
+<span class="n">triplica</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">include?</span> <span class="s2">&quot;ABCD&quot;</span> <span class="c1"># false e lento em 1.8 e 1.9</span>
+</pre>
+</div>

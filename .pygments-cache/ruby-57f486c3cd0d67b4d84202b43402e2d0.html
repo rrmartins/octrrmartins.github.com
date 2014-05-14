@@ -1,0 +1,8 @@
+<div class="highlight"><pre><span class="n">M</span> <span class="o">=</span> <span class="no">Module</span><span class="o">.</span><span class="n">new</span>      <span class="c1"># Define um novo módulo M</span>
+<span class="n">C</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span>       <span class="c1"># Define uma nova classe C</span>
+<span class="n">D</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>  <span class="c1"># Definir uma subclasse de C</span>
+<span class="err">  </span><span class="kp">include</span> <span class="n">M</span> 		<span class="c1"># inclui o módulo M</span>
+<span class="p">}</span>
+<span class="n">D</span><span class="o">.</span><span class="n">to_s</span> 				<span class="c1"># =&gt; &quot;D&quot;: classe recebe o nome da constante por magia</span>
+</pre>
+</div>

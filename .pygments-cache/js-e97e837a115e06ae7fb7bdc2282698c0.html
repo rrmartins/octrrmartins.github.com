@@ -1,0 +1,31 @@
+<div class="highlight"><pre><span class="err">﻿</span><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">response</span><span class="p">){</span>
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;helloworld.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="s1">&#39;text/html&#39;</span><span class="p">});</span>  
+    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>  
+    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening on &quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">everyone</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;now&quot;</span><span class="p">).</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
+
+<span class="nx">everyone</span><span class="p">.</span><span class="nx">connected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Joined: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">everyone</span><span class="p">.</span><span class="nx">disconnected</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Left: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">distributeMessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;mensagem &quot;</span><span class="o">+</span><span class="nx">message</span><span class="p">);</span>
+	<span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(&lt;([^&gt;]+)&gt;)/ig</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+	<span class="nx">everyone</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">receiveMessage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">now</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+<span class="p">};</span>
+</pre>
+</div>

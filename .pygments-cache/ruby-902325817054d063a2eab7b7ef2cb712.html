@@ -1,0 +1,19 @@
+<div class="highlight"><pre><span class="c1"># Ruby 2.0:</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;a_very_large_file&#39;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">lazy</span> <span class="c1"># por isso só ler as partes necessárias!</span>
+            <span class="o">.</span><span class="n">select</span> <span class="p">{</span><span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">}</span>
+            <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">each_slice</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">lines</span><span class="o">|</span> <span class="n">lines</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span> <span class="p">}</span>
+            <span class="o">.</span><span class="n">take_while</span> <span class="p">{</span><span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="p">}</span>
+  <span class="c1"># =&gt; Enumerador lazy, ainda não executa nada</span>
+<span class="n">lines</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># =&gt; Lê o arquivo até que ele retornar 3 elementos</span>
+               <span class="c1"># ou até que um elemento de length &lt;= 20 é</span>
+               <span class="c1"># retornado (por causa da take_while)</span>
+
+<span class="c1"># Para consumir o enumerável:</span>
+<span class="n">lines</span><span class="o">.</span><span class="n">to_a</span> <span class="c1"># ou...</span>
+<span class="n">lines</span><span class="o">.</span><span class="n">force</span> <span class="c1"># =&gt; Lê o arquivo e retorna uma array</span>
+<span class="n">lines</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span> <span class="c1"># =&gt; Lê o arquivo e imprime os elementos resultantes</span>
+</pre>
+</div>

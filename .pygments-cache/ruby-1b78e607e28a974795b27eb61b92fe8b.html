@@ -1,0 +1,28 @@
+<div class="highlight"><pre><span class="c1"># Todo codepoints Unicode. Ele usa const_missing para defini-los lazily.</span>
+<span class="c1"># Exemplos:</span>
+<span class="c1">#   copyright = Unicode::U00A9</span>
+<span class="c1">#   euro = Unicode::U20AC</span>
+<span class="c1">#   infinity = Unicode::U221E</span>
+<span class="k">module</span> <span class="nn">Unicode</span>
+  <span class="c1"># Este método permite-nos definir constantes Unicode codepoint lazily.</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">const_missing</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>  <span class="c1"># constante indefinida passada como um símbolo</span>
+    <span class="c1"># Verifique se o nome da constante é da forma certa.</span>
+    <span class="c1"># Capital U seguido de um número hexadecimal entre 0000 e 10FFFF.</span>
+    <span class="k">if</span> <span class="nb">name</span><span class="o">.</span><span class="n">to_s</span> <span class="o">=~</span> <span class="sr">/^U([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4})$/</span>
+<span class="err">      </span><span class="c1"># $1 é o número hexadecimal correspondente. Converte em um inteiro.</span>
+      <span class="n">codepoint</span> <span class="o">=</span> <span class="vg">$1</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="err">      </span><span class="c1"># Converte o número para uma string UTF-8 com a magia do Array.pack.</span>
+      <span class="n">utf8</span> <span class="o">=</span> <span class="o">[</span><span class="n">codepoint</span><span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)</span>
+<span class="err">      </span><span class="c1"># Faz a imutável string UTF-8.</span>
+<span class="err">      </span><span class="n">utf8</span><span class="o">.</span><span class="n">freeze</span>
+<span class="err">      </span><span class="c1"># Define uma constante real para pesquisa mais rápida da próxima vez, e retorna</span>
+<span class="err">      </span><span class="c1"># O texto UTF-8 para este tempo.</span>
+<span class="err">      </span><span class="nb">const_set</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">utf8</span><span class="p">)</span>
+<span class="err">    </span><span class="k">else</span>
+<span class="err">      </span><span class="c1"># Eleva um erro para constantes do formulário errado.</span>
+<span class="err">      </span><span class="k">raise</span> <span class="no">NameError</span><span class="p">,</span> <span class="s2">&quot;Uninitialized constant: Unicode::</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="err">    </span><span class="k">end</span>
+<span class="err">  </span><span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

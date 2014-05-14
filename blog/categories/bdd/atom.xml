@@ -4,7 +4,11 @@
   <title><![CDATA[Category: BDD | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/bdd/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
+<<<<<<< HEAD
   <updated>2013-04-28T19:27:30-03:00</updated>
+=======
+  <updated>2014-02-27T11:04:59-03:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -16,7 +20,11 @@
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+<<<<<<< HEAD
     <updated>2012-11-04T09:30:00-03:00</updated>
+=======
+    <updated>2012-11-04T09:30:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
     <content type="html"><![CDATA[<!--more-->
 

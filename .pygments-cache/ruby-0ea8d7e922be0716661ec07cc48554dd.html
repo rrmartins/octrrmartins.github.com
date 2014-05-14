@@ -1,0 +1,5 @@
+<div class="highlight"><pre><span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="n">remove_instance_variable</span> <span class="ss">:@x</span> <span class="p">}</span>
+<span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">remove_class_variable</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span> <span class="p">}</span>
+<span class="no">Math</span><span class="o">.</span><span class="n">send</span> <span class="ss">:remove_const</span><span class="p">,</span> <span class="ss">:EPI</span>  <span class="c1"># Usa send para chamar o método privado</span>
+</pre>
+</div>

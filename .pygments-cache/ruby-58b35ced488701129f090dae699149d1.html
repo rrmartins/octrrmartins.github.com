@@ -1,0 +1,26 @@
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+
+<span class="c1"># Este método espera um socket ligado a um cliente.</span>
+<span class="c1"># Ele lê as linhas do cliente, inverte-los e envia-los de volta.</span>
+<span class="c1"># Múltiplas Threads podem executar este método, ao mesmo tempo.</span>
+<span class="k">def</span> <span class="nf">handle_client</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+  <span class="k">while</span> <span class="kp">true</span>
+    <span class="n">input</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">chop</span>     <span class="c1"># Ler uma linha de entrada do cliente</span>
+    <span class="k">break</span> <span class="k">if</span> <span class="o">!</span><span class="n">input</span>         <span class="c1"># sai se tem muitas entradas</span>
+    <span class="k">break</span> <span class="k">if</span> <span class="n">input</span><span class="o">==</span><span class="s2">&quot;quit&quot;</span>  <span class="c1"># ou se o cliente pede</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">input</span><span class="o">.</span><span class="n">reverse</span><span class="p">)</span>   <span class="c1"># Caso contrário, responde ao cliente.</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">flush</span>                 <span class="c1"># Força a saída para fora</span>
+  <span class="k">end</span>
+  <span class="n">c</span><span class="o">.</span><span class="n">close</span>                   <span class="c1"># Fecha o socket cliente</span>
+<span class="k">end</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="no">TCPServer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span> <span class="c1"># Ouve na porta 2000</span>
+
+<span class="k">while</span> <span class="kp">true</span>                    <span class="c1"># Laço de servidores para sempre</span>
+  <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">accept</span>      <span class="c1"># Espere um cliente para conectar</span>
+  <span class="no">Thread</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="c1"># Inicia uma nova thread</span>
+    <span class="n">handle_client</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>          <span class="c1"># E Lida com o clinete nessa Thread</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

@@ -4,7 +4,11 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
+<<<<<<< HEAD
   <updated>2013-04-28T19:27:30-03:00</updated>
+=======
+  <updated>2014-02-27T11:04:59-03:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,6 +18,62 @@
 
   
   <entry>
+<<<<<<< HEAD
+=======
+    <title type="html"><![CDATA[Tenho Sede]]></title>
+    <link href="http://rrmartins.github.com/blog/2014/02/26/tenho-sede/"/>
+    <updated>2014-02-26T20:45:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2014/02/26/tenho-sede</id>
+    <content type="html"><![CDATA[<p>Tenho Sede</p>
+
+<!--more-->
+
+
+<p>
+Minha alma pede ajuda<br/>
+Sinto sede, Senhor<br/>
+Sou como um violão sem corda<br/>
+Repleto de silêncio e dor
+</p>
+
+
+<br/>
+
+
+<p>
+Lançai-me, Senhor<br/>
+Teu Espírito de Amor<br/>
+E minha alma reviverá<br/>
+Tira toda tristeza<br/>
+Que há em mim, Senhor<br/>
+Renova-me com Teu Espírito de Amor
+</p>
+
+
+<br/>
+
+
+<p>
+Carrega-me nos Teus braços<br/>
+Não me deixe jamais<br/>
+Sou como um filho<br/>
+Precisando de um Pai
+</p>
+
+
+<br/>
+
+
+<p>
+Ass,
+Rodrigo Martins
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <title type="html"><![CDATA[Não é bem uma String]]></title>
     <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
     <updated>2013-04-28T18:35:00-03:00</updated>
@@ -944,7 +1004,11 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+<<<<<<< HEAD
     <updated>2012-12-02T09:37:00-03:00</updated>
+=======
+    <updated>2012-12-02T09:37:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1189,7 +1253,11 @@ postar um comentário abaixo!</p>
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+<<<<<<< HEAD
     <updated>2012-11-04T09:30:00-03:00</updated>
+=======
+    <updated>2012-11-04T09:30:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1253,7 +1321,11 @@ repensar o teste e desfazer sua implementação.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-11-04T09:20:00-03:00</updated>
+=======
+    <updated>2012-11-04T09:20:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1442,7 +1514,11 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T15:04:00-03:00</updated>
+=======
+    <updated>2012-10-28T15:04:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1495,7 +1571,11 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T14:53:00-03:00</updated>
+=======
+    <updated>2012-10-28T14:53:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -1640,7 +1720,11 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T14:26:00-03:00</updated>
+=======
+    <updated>2012-10-28T14:26:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -3832,6 +3916,7 @@ uma classe. Mas, com <code>class_eval</code>, eles também podem ser usados dina
 ]]></content>
   </entry>
   
+<<<<<<< HEAD
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Variáveis e Constantes - #Ruby 1.9 - Part III]]></title>
     <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
@@ -3989,4 +4074,6 @@ as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais 
 ]]></content>
   </entry>
   
+=======
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
 </feed>

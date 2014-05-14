@@ -1,0 +1,31 @@
+<div class="highlight"><pre><span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">succ</span>
+
+<span class="p">(</span><span class="n">from</span> <span class="n">ruby</span> <span class="n">site</span><span class="p">)</span>
+<span class="o">------------------------------------------------------------------------------</span>
+  <span class="n">str</span><span class="o">.</span><span class="n">succ</span>   <span class="o">-&gt;</span> <span class="n">new_str</span>
+  <span class="n">str</span><span class="o">.</span><span class="n">next</span>   <span class="o">-&gt;</span> <span class="n">new_str</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+
+<span class="no">Returns</span> <span class="n">the</span> <span class="n">successor</span> <span class="n">to</span> <span class="n">str</span><span class="o">.</span> <span class="no">The</span> <span class="n">successor</span> <span class="n">is</span> <span class="n">calculated</span> <span class="n">by</span>
+<span class="n">incrementing</span> <span class="n">characters</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">rightmost</span> <span class="n">alphanumeric</span> <span class="p">(</span><span class="ow">or</span> <span class="n">the</span>
+<span class="n">rightmost</span> <span class="n">character</span> <span class="k">if</span> <span class="n">there</span> <span class="n">are</span> <span class="n">no</span> <span class="n">alphanumerics</span><span class="p">)</span> <span class="k">in</span> <span class="n">the</span> <span class="n">string</span><span class="o">.</span> <span class="no">Incrementing</span>
+<span class="n">a</span> <span class="n">digit</span> <span class="n">always</span> <span class="n">results</span> <span class="k">in</span> <span class="n">another</span> <span class="n">digit</span><span class="p">,</span> <span class="ow">and</span> <span class="n">incrementing</span> <span class="n">a</span> <span class="n">letter</span> <span class="n">results</span> <span class="k">in</span>
+<span class="n">another</span> <span class="n">letter</span> <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="k">case</span><span class="o">.</span> <span class="no">Incrementing</span> <span class="n">nonalphanumerics</span> <span class="n">uses</span> <span class="n">the</span>
+<span class="n">underlying</span> <span class="n">character</span> <span class="n">set</span><span class="s1">&#39;s collating sequence.</span>
+
+<span class="s1">If the increment generates a ``carry,&#39;</span><span class="err">&#39;</span> <span class="n">the</span> <span class="n">character</span> <span class="n">to</span> <span class="n">the</span> <span class="n">left</span> <span class="n">of</span> <span class="n">it</span> <span class="n">is</span>
+<span class="n">incremented</span><span class="o">.</span> <span class="no">This</span> <span class="n">process</span> <span class="n">repeats</span> <span class="k">until</span> <span class="n">there</span> <span class="n">is</span> <span class="n">no</span> <span class="n">carry</span><span class="p">,</span> <span class="n">adding</span> <span class="n">an</span>
+<span class="n">additional</span> <span class="n">character</span> <span class="k">if</span> <span class="n">necessary</span><span class="o">.</span>
+
+  <span class="s2">&quot;abcd&quot;</span><span class="o">.</span><span class="n">succ</span>        <span class="c1">#=&gt; &quot;abce&quot;</span>
+  <span class="s2">&quot;THX1138&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;THX1139&quot;</span>
+  <span class="s2">&quot;&lt;&lt;koala&gt;&gt;&quot;</span><span class="o">.</span><span class="n">succ</span>   <span class="c1">#=&gt; &quot;&lt;&lt;koalb&gt;&gt;&quot;</span>
+  <span class="s2">&quot;1999zzz&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;2000aaa&quot;</span>
+  <span class="s2">&quot;ZZZ9999&quot;</span><span class="o">.</span><span class="n">succ</span>     <span class="c1">#=&gt; &quot;AAAA0000&quot;</span>
+  <span class="s2">&quot;***&quot;</span><span class="o">.</span><span class="n">succ</span>         <span class="c1">#=&gt; &quot;**+&quot;</span>
+
+
+<span class="p">(</span><span class="k">END</span><span class="p">)</span>
+</pre>
+</div>

@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="n">o</span> <span class="o">=</span> <span class="s2">&quot;a string&quot;</span>
+<span class="n">o</span><span class="o">.</span><span class="n">methods</span>                <span class="c1"># =&gt; [nomes de todos os métodos públicos]</span>
+<span class="n">o</span><span class="o">.</span><span class="n">public_methods</span>         <span class="c1"># =&gt; é a mesma coisa</span>
+<span class="n">o</span><span class="o">.</span><span class="n">public_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>  <span class="c1"># Excluir métodos herdados</span>
+<span class="n">o</span><span class="o">.</span><span class="n">protected_methods</span>      <span class="c1"># =&gt; []: não há qualquer</span>
+<span class="n">o</span><span class="o">.</span><span class="n">private_methods</span>        <span class="c1"># =&gt; array de todos os métodos privados</span>
+<span class="n">o</span><span class="o">.</span><span class="n">private_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="c1"># Excluir herdados métodos privados</span>
+<span class="k">def</span> <span class="nc">o</span><span class="o">.</span><span class="nf">single</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="k">end</span>     <span class="c1"># Definir um método singleton</span>
+<span class="n">o</span><span class="o">.</span><span class="n">singleton_methods</span>      <span class="c1"># =&gt; [&quot;single&quot;] (ou: em 1,9 [único])</span>
+</pre>
+</div>

@@ -1,0 +1,13 @@
+<div class="highlight"><pre><span class="c1"># Ruby 1.8:</span>
+<span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/lib&quot;</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/.Gemfile&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ruby 1.9:</span>
+<span class="n">require_relative</span> <span class="s1">&#39;lib&#39;</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/.config&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ruby 2.0</span>
+<span class="n">require_relative</span> <span class="s1">&#39;lib&#39;</span> <span class="c1"># há necessidade de usar __dir__ por isso!</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">__dir__</span> <span class="o">+</span> <span class="s1">&#39;/.config&#39;</span><span class="p">)</span>
+</pre>
+</div>

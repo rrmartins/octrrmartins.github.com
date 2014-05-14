@@ -1,0 +1,63 @@
+<div class="highlight"><pre><span class="c1"># Se comporta exatamente como o original, mas que traça todas as chamadas de método</span>
+<span class="c1"># No objeto. Se rastreamento mais de um objeto, especifique um nome para</span>
+<span class="c1"># Aparecer na saída. Por padrão, as mensagens serão enviadas para STDERR,</span>
+<span class="c1"># Mas você pode especificar qualquer stream (ou qualquer objeto que aceita strings</span>
+<span class="c1"># Como argumentos para &lt;&lt;).</span>
+<span class="n">classe</span> <span class="no">Object</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="nb">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="no">STDERR</span><span class="p">)</span>
+<span class="err">    </span><span class="c1"># Retorna um TracedObject que traços e delegados tudo mais para nós.</span>
+<span class="err">    </span><span class="no">TracedObject</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+<span class="err">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Esta classe usa method_missing para rastrear chamadas de método e</span>
+<span class="c1"># Então delega ele para algum outro objeto. Ele exclui a maioria de seus próprios</span>
+<span class="c1"># Métodos de instância para que eles não ficam no caminho de method_missing.</span>
+<span class="c1"># Note que apenas métodos invocados através da TracedObject será rastreado.</span>
+<span class="c1"># Se o objeto delegado chama métodos em si, aquelas invocações</span>
+<span class="c1"># Não será rastreado.</span>
+<span class="k">class</span> <span class="nc">TracedObject</span>
+<span class="err">  </span><span class="c1"># Indefine todos os nossos métodos de instância públicos não críticos.</span>
+<span class="err">  </span><span class="c1"># Observe o uso do Module.instance_methods e Module.undef_method.</span>
+  <span class="nb">instance_methods</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+<span class="err">    </span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">to_sym</span>   <span class="c1"># Ruby 1.8 retorna string, em vez de símbolos</span>
+    <span class="k">next</span> <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="ss">:object_id</span> <span class="o">||</span> <span class="n">m</span> <span class="o">==</span> <span class="ss">:__id__</span> <span class="o">||</span> <span class="n">m</span> <span class="o">==</span> <span class="ss">:__send__</span>
+<span class="err">    </span><span class="n">undef_method</span> <span class="n">m</span>
+<span class="err">  </span><span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Inicializa esta instancia do TracedObject.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+<span class="err">    </span><span class="vi">@o</span> <span class="o">=</span> <span class="n">o</span>            <span class="c1"># objeto que delegar</span>
+<span class="err">    </span><span class="vi">@n</span> <span class="o">=</span> <span class="nb">name</span>         <span class="c1"># O nome do objeto a aparecer no rastreamento de mensagens</span>
+<span class="err">    </span><span class="vi">@trace</span> <span class="o">=</span> <span class="n">stream</span>   <span class="c1"># Onde essas mensagens de rastreamento são enviados</span>
+<span class="err">  </span><span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Este é o principal método de TracedObject. Ele é invocado por apenas</span>
+<span class="err">  </span><span class="c1"># Sobre qualquer invocação de método em um TracedObject.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+<span class="err">    </span><span class="n">m</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">shift</span>         <span class="c1"># O primeiro é o nome do método</span>
+<span class="err">    </span><span class="k">begin</span>
+<span class="err">      </span><span class="c1"># Acompanhe a invocação do método.</span>
+<span class="err">      </span><span class="n">arglist</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="n">a</span><span class="o">.</span><span class="n">inspect</span><span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="err">      </span><span class="vi">@trace</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Invoking: </span><span class="si">#{</span><span class="vi">@n</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">m</span><span class="si">}</span><span class="s2">(</span><span class="si">#{</span><span class="n">arglist</span><span class="si">}</span><span class="s2">) at </span><span class="si">#{</span><span class="nb">caller</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="err">      </span><span class="c1"># Invoque o método em nosso objeto de delegação e obtem o valor de retorno.</span>
+<span class="err">      </span><span class="n">r</span> <span class="o">=</span> <span class="vi">@o</span><span class="o">.</span><span class="n">send</span> <span class="n">m</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span>
+<span class="err">      </span><span class="c1"># Traça um retorno normal do método.</span>
+<span class="err">      </span><span class="vi">@trace</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Returning: </span><span class="si">#{</span><span class="n">r</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> from </span><span class="si">#{</span><span class="vi">@n</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">m</span><span class="si">}</span><span class="s2"> to </span><span class="si">#{</span><span class="nb">caller</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="err">      </span><span class="c1"># Retorna o valor que o objeto delegado retornado.</span>
+<span class="err">      </span><span class="n">r</span>
+<span class="err">    </span><span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+<span class="err">      </span><span class="c1"># Traçar um retorno anormal do método.</span>
+<span class="err">      </span><span class="vi">@trace</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Raising: </span><span class="si">#{</span><span class="n">e</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2"> from </span><span class="si">#{</span><span class="vi">@n</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">m</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="err">      </span><span class="c1"># E re-envia qualquer exceção que o objeto delegado levantada.</span>
+<span class="err">      </span><span class="k">raise</span>
+<span class="err">    </span><span class="k">end</span>
+<span class="err">  </span><span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Retorna o objeto que delegou.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">__delegate</span>
+<span class="err">    </span><span class="vi">@o</span>
+<span class="err">  </span><span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

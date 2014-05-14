@@ -1,0 +1,29 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Module</span>
+<span class="err">  </span><span class="kp">private</span> <span class="c1"># Os métodos que se seguem são todos privados</span>
+
+<span class="err">  </span><span class="c1"># Este método funciona como attr_reader, mas tem um nome mais curto</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">readonly</span><span class="p">(</span><span class="o">*</span><span class="n">syms</span><span class="p">)</span>
+<span class="err">    </span><span class="k">return</span> <span class="k">if</span> <span class="n">syms</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1"># Se nenhum argumento, não faz nada</span>
+<span class="err">    </span><span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                 <span class="c1"># Comece com uma cadeia vazia de código</span>
+<span class="err">    </span><span class="c1"># Gera uma seqüência de código Ruby para definir métodos leitores de atributos.</span>
+<span class="err">    </span><span class="c1"># Observe como o símbolo é interpolado para a seqüência de código.</span>
+<span class="err">    </span><span class="n">syms</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>                     <span class="c1"># Para cada símbolo</span>
+<span class="err">      </span><span class="n">code</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;def </span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2">; @</span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2">; end</span><span class="se">\n</span><span class="s2">&quot;</span>   <span class="c1"># O método de definição</span>
+<span class="err">    </span><span class="k">end</span>
+<span class="err">    </span><span class="c1"># Finalmente, class_eval o código gerado para criar métodos de instância.</span>
+<span class="err">    </span><span class="nb">class_eval</span> <span class="n">code</span>
+<span class="err">  </span><span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Este método funciona como attr_accessor, mas tem um nome mais curto.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">readwrite</span><span class="p">(</span><span class="o">*</span><span class="n">syms</span><span class="p">)</span>
+<span class="err">    </span><span class="k">return</span> <span class="k">if</span> <span class="n">syms</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="err">    </span><span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="err">    </span><span class="n">syms</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+      <span class="n">code</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;def </span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2">; @</span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2"> end</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="n">code</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;def </span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2">=(value); @</span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2"> = value; end</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">end</span>
+    <span class="nb">class_eval</span> <span class="n">code</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

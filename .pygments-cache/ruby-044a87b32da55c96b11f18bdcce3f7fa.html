@@ -1,0 +1,18 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Ambiguous</span><span class="err">  </span>
+  <span class="k">def</span> <span class="nf">x</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># Um método chamado &quot;x&quot;. Sempre retorna 1  </span>
+
+  <span class="k">def</span> <span class="nf">teste</span><span class="err">    </span>
+    <span class="nb">puts</span> <span class="n">x</span> <span class="c1"># Nenhuma variável foi visto, refere-se ao método acima: imprime 1    </span>
+
+    <span class="c1"># A linha abaixo não é avaliada, por causa da cláusula &quot;if falsa&quot;.</span>
+    <span class="c1"># Mas o analisador vê e trata x como uma variável para o resto do método.    </span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="kp">false</span>
+
+    <span class="nb">puts</span> <span class="n">x</span> <span class="c1"># x é uma variável, mas nunca foi atribuído: irá imprimir nil</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Esta atribuição não é avaliada</span>
+    <span class="nb">puts</span> <span class="n">x</span> <span class="c1"># Então agora esta linha imprime 2  </span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

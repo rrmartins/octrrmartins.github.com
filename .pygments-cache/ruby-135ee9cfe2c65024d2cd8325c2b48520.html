@@ -1,0 +1,8 @@
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">varname</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+<span class="nb">eval</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span>           <span class="c1"># =&gt; 1</span>
+<span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;varname = &#39;$g&#39;&quot;</span><span class="p">)</span>  <span class="c1"># Ajuste o &quot;$g&quot;</span>
+<span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">varname</span><span class="si">}</span><span class="s2"> = x&quot;</span><span class="p">)</span>  <span class="c1"># Seta $g a 1</span>
+<span class="nb">eval</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span>
+</pre>
+</div>

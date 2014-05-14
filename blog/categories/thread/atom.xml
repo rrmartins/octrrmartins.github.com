@@ -4,7 +4,11 @@
   <title><![CDATA[Category: Thread | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/thread/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
+<<<<<<< HEAD
   <updated>2013-04-28T19:27:30-03:00</updated>
+=======
+  <updated>2014-02-27T11:04:59-03:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -16,7 +20,11 @@
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-11-04T09:20:00-03:00</updated>
+=======
+    <updated>2012-11-04T09:20:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -163,7 +171,11 @@ h.each_pair.concurrently {|*pair| process(pair)}
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T15:04:00-03:00</updated>
+=======
+    <updated>2012-10-28T15:04:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -216,7 +228,11 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T14:53:00-03:00</updated>
+=======
+    <updated>2012-10-28T14:53:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
@@ -334,7 +350,11 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+<<<<<<< HEAD
     <updated>2012-10-28T14:26:00-03:00</updated>
+=======
+    <updated>2012-10-28T14:26:00-02:00</updated>
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 

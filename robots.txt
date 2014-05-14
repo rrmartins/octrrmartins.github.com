@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 # www.robotstxt.org/
 # http://code.google.com/web/controlcrawlindex/
 
 User-agent: *
+=======
+User-agent: *
+Disallow: 
+
+Sitemap: http://rrmartins.github.com/sitemap.xml 
+>>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830

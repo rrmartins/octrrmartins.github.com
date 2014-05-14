@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;não confiáveis&quot;</span> <span class="c1"># Os objetos são normalmente não viciada</span>
+<span class="n">s</span><span class="o">.</span><span class="n">taint</span> <span class="c1"># Marcar como não confiável objeto contaminado</span>
+<span class="n">s</span><span class="o">.</span><span class="n">tainted?</span> <span class="c1"># Verdade: ele está contaminado</span>
+<span class="n">s</span><span class="o">.</span><span class="n">upcase</span><span class="o">.</span><span class="n">tainted?</span> <span class="c1"># Verdade: objetos derivados estão contaminados</span>
+<span class="n">s</span><span class="o">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="o">].</span><span class="n">tainted?</span> <span class="c1"># Verdade: substrings estão contaminados</span>
+</pre>
+</div>

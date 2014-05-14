@@ -1,0 +1,13 @@
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">Enumerable</span>           <span class="c1"># Abre o módulo Enumerable</span>
+  <span class="k">def</span> <span class="nf">conmap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>        <span class="c1"># Define um novo método que espera um block</span>
+    <span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>            <span class="c1"># Começa com uma matriz vazia de threads</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>     <span class="c1"># Para cada item enumerable</span>
+      <span class="c1"># Chama o bloco em uma nova Thread, e lembra da Thread</span>
+      <span class="n">threads</span> <span class="o">&lt;&lt;</span> <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">block</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">end</span>
+    <span class="c1"># Agora mapea o conjunto de Threads para os seus valores</span>
+    <span class="n">threads</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="p">}</span> <span class="c1"># E retorna a matriz de valores</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>

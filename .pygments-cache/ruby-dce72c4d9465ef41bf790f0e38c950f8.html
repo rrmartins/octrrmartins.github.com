@@ -1,0 +1,23 @@
+<div class="highlight"><pre><span class="c1"># Ruby 1.9:</span>
+  <span class="c1"># (Do action_view/helpers/text_helper.rb)</span>
+<span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">)</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">extract_options!</span>
+  <span class="nb">name</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+
+<span class="c1"># Ruby 2.0:</span>
+<span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+
+<span class="c1"># ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:</span>
+<span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="n">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="c1"># =&gt; ArgumentError: unknown keyword: nme</span>
+
+<span class="c1"># Para obter o mesmo resultado e melhor exato:</span>
+<span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="n">first_value</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">ignore_extra</span><span class="p">)</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre>
+</div>
