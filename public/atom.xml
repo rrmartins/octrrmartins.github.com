@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
-  <updated>2014-03-21T09:26:31-03:00</updated>
+  <updated>2014-06-16T11:14:26-03:00</updated>
   <id>http://rrmartins.github.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
+    <link href="http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    <updated>2014-05-18T18:44:00-03:00</updated>
+    <id>http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
+
+<p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
+anos atrás, Erlang é a mais avançada plataforma de servidor de código aberto em
+existência, mas parece que quase ninguém sabe sobre isso. Erlang pode lidar com
+centenas de milhares de conexões simultâneas; ele pode gerar
+milhões de processos simultâneos em menos de um segundo; código do servidor pode ser
+atualizado, em produção, sem qualquer interrupção do serviço; e erros
+são tratados de tal forma que falhas do servidor são extremamente raros.</p>
+
+<!--more-->
+
+
+<p>O que não gostar? Por que não é todo o mundo de programação em Erlang?
+Bem, Erlang é uma linguagem funcional, o que significa que, para implementar qualquer
+algoritmo, você deve usar a recursividade em vez dos laços familiares &#8220;for&#8221; e &#8220;while&#8221;.
+Ao contrário de todas as grandes linguagem de script, não há sintaxe embutida
+para dicionários ou mapas de hash. E para realmente escrever um servidor funcionando,
+você deve aprender com uma camada adicional de magia conhecida como OTP. Estas
+barreiras, na minha opinião, têm impedido Erlang de ganhar muita tração fora da Scandinavia.</p>
+
+<p>Mas ChicagoBoss muda tudo isso. O faz Erlang acessível para hackers
+que só querem escrever um site confiável em uma linguagem bacana. Usuários do ChicagoBoss
+geram código para contornar o histórico hash , e tem o
+cuidado com todos os negócios OTP para que você possa se ​​concentrar em escrever as características
+o que precisa para o seu site. Quanto aos supostos encargos da programação funcional, acho que a recursividade
+raramente é necessária em um dia de trabalho de programação; Eu diria que 99% do código de um aplicativo de servidor
+simplesmente transporta dados para e de um banco de dados, de modo que no curso da construção de um
+website, o programador processual caminhe dificilmente perca o seu laço &#8220;do/while&#8221;.</p>
+
+<p>Se você é um programador web experiente, você provavelmente vai desfrutar de toda a
+amenidades que CB tem para oferecer: um ORM avançado com suporte para
+associações de bancos de dados, sharding e caches; modelos velozes compilado até Erlang bytecode;
+recompilação automática e no navegador, relatório de erros; directivas simples para recargas e redirecionamentos;
+rotas para construção de URLs e tratamento dos pedidos; quadros completos para envio
+e recebimento de e-mail; uma fila de mensagens embutida; um quadro para a escrita
+e execução de testes funcionais.</p>
+
+<p>No final, através da combinação da plataforma de Erlang com as suas próprias inovações,
+ChicagoBoss faz sites um deleite para desenvolver e implantar uma alegria.
+Aplicações saliência pode ser escrito no mesmo tempo ou menos equivalentes
+Rails aplicações , e eles quase nunca irá travar ou perda de memória . desde
+a rede subjacente é tudo assíncrona, você pode facilmente escrever
+serviços concorrentes , como o bate-papo , que antes eram só é possível em
+estruturas à base de retorno de chamada (como Nginx , Node.js , Torcido, ou Perlbal ) .</p>
+
+<p>A importância deste avanço não pode ser exagerada . É agora
+viável para uma pequena equipe para desenvolver e operar um banco de dados -driven,
+site altamente interativo , com muito trânsito , com muito pouco investimento de capital .
+Embora Chicago chefe não posso te dizer como adquirir os usuários , o resto desta
+manual irá mostrar-lhe tudo o que você precisa fazer para lidar com os seus pedidos
+e (com sorte) cumprir seus desejos.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tenho Sede]]></title>
@@ -3537,351 +3597,6 @@ são invocados nesse módulo. Quando um método <code>singleton</code> é removi
 <p>Por fim, note que os métodos <code>method_missing</code> e <code>const_missing</code> também se comportam como métodos de <code>hook</code>.</p>
 
 <p>Até o proximos amigos!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Metodos - #Ruby 1.9 - Part IV]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/"/>
-    <updated>2012-08-31T20:12:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Métodos</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Métodos</h1>
-
-
-<p>As classes de <code>Object</code> e <code>Module</code> de definir uma série de métodos para a listagem, de consulta, invocanção, e definição de métodos. Vamos considerar
-cada categoria, por sua vez.</p>
-
-<h3>Listagem e Teste para Métodos</h3>
-
-
-<p><code>Object</code> define métodos para listar os nomes dos métodos definidos no objeto. Estes métodos retornam <code>arrays</code> de nomes de métodos. Aqueles nomes são
-<code>strings</code> em <code>Ruby 1.8</code> e <code>symbols</code> no <code>Ruby 1.9</code>:</p>
-
-<figure class='code'><figcaption><span>Listagem de Metodos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span> <span class="o">=</span> <span class="s2">&quot;a string&quot;</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">methods</span>                <span class="c1"># =&gt; [nomes de todos os métodos públicos]</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">public_methods</span>         <span class="c1"># =&gt; é a mesma coisa</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">public_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>  <span class="c1"># Excluir métodos herdados</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">protected_methods</span>      <span class="c1"># =&gt; []: não há qualquer</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">private_methods</span>        <span class="c1"># =&gt; array de todos os métodos privados</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">private_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="c1"># Excluir herdados métodos privados</span>
-</span><span class='line'><span class="k">def</span> <span class="nc">o</span><span class="o">.</span><span class="nf">single</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="k">end</span>     <span class="c1"># Definir um método singleton</span>
-</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">singleton_methods</span>      <span class="c1"># =&gt; [&quot;single&quot;] (ou: em 1,9 [único])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Também é possível consultar uma classe para os métodos que ele define em vez de consultar uma instância da classe. A seguir os métodos são definidos
-por módulo. Como os métodos de objeto, eles retornam <code>arrays</code> de <code>strings</code> em <code>Ruby 1.8</code> e <code>arrays</code> de <code>symbols</code> em <code>Ruby 1.9</code>:</p>
-
-<figure class='code'><figcaption><span>Consultando uma Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_methods</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="o">.</span><span class="n">public_methods</span>                <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="o">.</span><span class="n">public_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>  <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">public_instance_methods</span> <span class="o">==</span> <span class="nb">String</span><span class="o">.</span><span class="n">instance_methods</span>    <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">protected_instance_methods</span>                                                <span class="c1"># =&gt; []</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">private_instance_methods</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>                                         <span class="c1"># =&gt; [:initialize, :initialize_copy]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lembre-se que os métodos de classe de uma <code>class</code> ou <code>module</code> são métodos <code>singleton</code> do objeto de <code>class</code> ou <code>module</code>. Então, para listar métodos de
-classe, usa <code>Object.singleton_methods</code>:</p>
-
-<figure class='code'><figcaption><span>Singleton</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">singleton_methods</span> <span class="c1"># =&gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,</span>
-</span><span class='line'>                                                       <span class="ss">:tanh</span><span class="p">,</span> <span class="ss">:acosh</span><span class="p">,</span> <span class="ss">:asinh</span><span class="p">,</span> <span class="ss">:atanh</span><span class="p">,</span> <span class="ss">:exp</span><span class="p">,</span> <span class="ss">:log</span><span class="p">,</span> <span class="ss">:log2</span><span class="p">,</span> <span class="ss">:log10</span><span class="p">,</span> <span class="ss">:sqrt</span><span class="p">,</span>
-</span><span class='line'>                                                       <span class="ss">:cbrt</span><span class="p">,</span> <span class="ss">:frexp</span><span class="p">,</span> <span class="ss">:ldexp</span><span class="p">,</span> <span class="ss">:hypot</span><span class="p">,</span> <span class="ss">:erf</span><span class="p">,</span> <span class="ss">:erfc</span><span class="p">,</span> <span class="ss">:gamma</span><span class="p">,</span> <span class="ss">:lgamma</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Para além destes métodos de listagem, a classe <code>Module</code> define alguns predicados para testar se uma classe especificada ou módulo define um método de
-instância nomeada:</p>
-
-<figure class='code'><figcaption><span>Testando metodo de classe</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">public_method_defined?</span> <span class="ss">:reverse</span>     <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">protected_method_defined?</span> <span class="ss">:reverse</span>  <span class="c1"># =&gt; false</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">private_method_defined?</span> <span class="ss">:initialize</span> <span class="c1"># =&gt; true</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">method_defined?</span> <span class="ss">:upcase!</span>            <span class="c1"># =&gt; true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>Module.method_defined?</code> verifica se o método chamado é definido como um método público ou protegido. Ele serve, essencialmente, com mesma finalidade
-que <code>Object.respond_to?</code>. No <code>Ruby 1.9</code>, você pode passar <code>false</code> como o segundo argumento para especificar que os métodos herdados não deve ser
-considerados.</p>
-
-<h3>Obtenção de método de objetos</h3>
-
-
-<p>Para consultar um método específico nomeado, chamar o método em qualquer objeto ou <code>instance_method</code> em qualquer módulo. O primeiro retorna um
-objeto do Método exigído pelo receptor, e o último retorna um <code>UnboundMethod</code>. No <code>Ruby 1.9</code>, você pode limitar sua pesquisa aos métodos públicos
-métodos chamando <code>public_method</code> e <code>public_instance_method</code>. Nós cobrimos esses métodos e os objetos que eles voltam no Método do Objeto:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;s&quot;</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:reverse</span><span class="p">)</span>             <span class="c1"># =&gt; objeto Método</span>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">instance_method</span><span class="p">(</span><span class="ss">:reverse</span><span class="p">)</span> <span class="c1"># =&gt; objeto UnboundMethod</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Invocando Métodos</h3>
-
-
-<p>Como observado anteriormente, e em métodos de objetos, você pode usar o método <code>method</code> de qualquer objeto para obter um objeto que representa
-<code>Method</code> de objeto. Objetos <code>Method</code> têm um método <code>call</code> assim como objetos <code>Proc</code> fazem, você pode usá-lo para chamar o método.</p>
-
-<p>Normalmente, é mais simples para invocar um método chamado de um objeto especificado com <code>send</code>:</p>
-
-<figure class='code'><figcaption><span>Send</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">send</span> <span class="ss">:upcase</span>        <span class="c1"># =&gt; &quot;hello&quot;: invocar um método de instância</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:sin</span><span class="p">,</span> <span class="no">Math</span><span class="o">::</span><span class="no">PI</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># =&gt; 1.0: invocar um método de classe</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>send</code> invoca em seu receptor o método nomeado pelo seu primeiro argumento, passando quaisquer argumentos restantes a esse método. O nome <code>send</code>
-deriva da linguagem orientada a objetos em que invocando um método é chamado, enviando uma mensagem, a um objeto.</p>
-
-<p><code>send</code> pode invocar qualquer método chamando um objeto, incluindo métodos privados e protegidos. Vimos <code>send</code> utilizado anteriormente para invocar o
-método privado <code>remove_const</code> de um objeto <code>Module</code>. Porque funções globais são realmente métodos privados de <code>Object</code>, podemos usar <code>send</code> para
-chamar esses métodos em qualquer objeto (embora isso não é algo que nós, nunca realmente queremos fazer):</p>
-
-<figure class='code'><figcaption><span>Send</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">send</span> <span class="ss">:puts</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span>         <span class="c1"># imprime &quot;world&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby 1.9 define <code>public_send</code> como uma alternativa para <code>send</code>. Este método funciona como <code>send</code>, mas só irá chamar os métodos públicos, não
-métodos privados ou protegidos:</p>
-
-<figure class='code'><figcaption><span>public_send_</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">public_send</span> <span class="ss">:puts</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span>  <span class="c1"># raises NoMethodError</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>send</code> é um método fundamental do objeto, mas tem um nome comum que pode ser substituído em subclasses. Portanto, Ruby
-define <code>__send__</code> como um sinônimo, e emite um aviso se você tentar excluir ou redefinir <code>__send__</code>.</p>
-
-<h3>Definindo, Indefinindo e Métodos Alias</h3>
-
-
-<p>Se você quiser definir um novo método de instância de uma classe ou módulo, utilize <code>define_method</code>. Este método de instância de <code>Module</code> leva o
-nome do novo método (como um <code>symbol</code>), como seu primeiro argumento. O corpo do método é fornecido seja por um método importante que entendemos o
-<code>define_method</code> que é privado. Você deve estar dentro da classe ou módulo que pretende usá-lo para chamá-lo:</p>
-
-<figure class='code'><figcaption><span>define_method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Adicione um método de instância chamado m para a Classe C com o corpo b</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">add_method</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">define_method</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">add_method</span><span class="p">(</span><span class="nb">String</span><span class="p">,</span> <span class="ss">:greet</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nb">self</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&quot;world&quot;</span><span class="o">.</span><span class="n">greet</span>   <span class="c1"># =&gt; &quot;Hello, world&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Para definir um método de classe (ou qualquer método <code>singleton</code>) com <code>define_method</code>, invocá-lo no <code>eigenclass</code>:</p>
-
-<figure class='code'><figcaption><span>eigenclass</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">add_class_method</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'>  <span class="n">eigenclass</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">define_method</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">add_class_method</span><span class="p">(</span><span class="nb">String</span><span class="p">,</span> <span class="ss">:greet</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nb">name</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">greet</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; &quot;Hello, world&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>No Ruby 1.9, você pode usar mais facilmente <code>define_singleton_method</code>, que é um método de objeto:</p>
-
-<figure class='code'><figcaption><span>define_singleton_method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">define_singleton_method</span><span class="p">(</span><span class="ss">:greet</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nb">name</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Uma deficiência do <code>define_method</code> é que ele não permite que você especifique um corpo de método que espera um bloco. Se você precisar dinamicamente
-criar um método que aceita um bloco, você vai precisar usar a instrução <code>def</code> com <code>class_eval</code>. E se o método que está criando é suficientemente
-dinâmico, você pode não ser capaz de passar um bloco para o <code>class_eval</code> e em vez disso tem de especificar a definição do método como uma seqüência
-a ser avaliada.</p>
-
-<p>Para criar um sinônimo ou um <code>alias</code> para um método existente, normalmente você pode usar a declaração <code>alias</code>:</p>
-
-<figure class='code'><figcaption><span>alias</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">alias</span> <span class="s2">&quot;plus&quot;</span> <span class="o">+</span>         <span class="c1"># &quot;plus&quot; é um sinônimo para o operador +</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ao programar dinamicamente, no entanto, às vezes você precisa usar <code>alias_method</code>. Como <code>define_method</code>, <code>alias_method</code> é um método particular do
-<code>Module</code>. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado
-em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É <code>alias_method</code> muitas vezes utilizados para métodos de
-encadeamento de alias existentes. Aqui está um exemplo simples:</p>
-
-<figure class='code'><figcaption><span>alias_method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Crie um alias para o método m da classe (ou módulo) c</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">backup</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;original&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">n</span> <span class="o">=</span> <span class="ss">:&quot;</span><span class="si">#{</span><span class="n">prefix</span><span class="si">}</span><span class="ss">_</span><span class="si">#{</span><span class="n">m</span><span class="si">}</span><span class="ss">&quot;</span>    <span class="c1"># Calcule o alias</span>
-</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span>           <span class="c1"># Porque alias_method é privado</span>
-</span><span class='line'>    <span class="n">alias_method</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>      <span class="c1"># Fazer n um alias para m</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">backup</span><span class="p">(</span><span class="nb">String</span><span class="p">,</span> <span class="ss">:reverse</span><span class="p">)</span>
-</span><span class='line'><span class="s2">&quot;test&quot;</span><span class="o">.</span><span class="n">original_reverse</span> <span class="c1"># =&gt; &quot;tset&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Você pode usar a declaração <code>undef</code> para indefinir um método. Isso só funciona se você pode expressar o nome de um método como um identificador
-codificado no programa. Se você precisar excluir dinamicamente um método cujo nome tem sido calculado pelo seu programa, você tem duas opções: ou
-<code>remove_method</code> ou <code>undef_method</code>. Ambos são métodos privados de Módulo. <code>remove_method</code> remove a definição do método a partir da classe corrente.
-Se existe uma versão definida por uma superclasse, que a versão vai agora ser herdada. <code>undef_method</code> é mais grave, que impede qualquer invocação do
-método especificado por meio de uma instância da classe, mesmo se houver uma versão herdada do método.</p>
-
-<p>Se você definir uma classe e quer evitar alterações dinâmicas para ele, simplesmente chame o método <code>freeze</code> da classe. Uma vez &#8220;congelado&#8221;, a classe
-não pode ser alterada.</p>
-
-<h3>Manipulação de métodos indefinidos</h3>
-
-
-<p>Quando o método do algoritmo de resolução de nomes não consegue encontrar um método, ele procura um método chamado <code>method_missing</code> em vez disso.
-Quando este método é chamado, o primeiro argumento é um <code>simbol</code> que dá nome ao método que não pôde ser encontrado. Este <code>simbol</code> é seguido por todos
-os argumentos que deveriam ser passados para o método original. Se houver um bloqueio associado com o método de invocação, que também é passado para
- o bloco <code>method_missing</code>.</p>
-
-<p>A implementação padrão de <code>method_missing</code>, no módulo de <code>Kernel</code>, simplesmente levanta um <code>NoMethodError</code>. Essa exceção, se não detectada, faz com
-que o programa possa sair com uma mensagem de erro, que é o que você normalmente espera que aconteça quando você tenta invocar um que método não
-existe.</p>
-
-<p>Definindo seu próprio método <code>method_missing</code> para uma classe que permite a você uma oportunidade de lidar com qualquer tipo de chamada em casos da
-classe. O gancho <code>method_missing</code> é um dos mais poderosos do Ruby com capacidades dinâmicas, e um dos mais vulgarmente utilizado nas técnicas
-de metaprogramação. O código de exemplo a seguir adiciona um método <code>method_missing</code> à classe <code>Hash</code>. Ela nos permite consultar ou definir o valor de
-qualquer chave chamada como se a chave fosse o nome de um método:</p>
-
-<figure class='code'><figcaption><span>Hash Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Hash</span>
-</span><span class='line'>  <span class="c1"># Permiti valores de hash para ser consultado e definido como se fossem atributos.</span>
-</span><span class='line'>  <span class="c1"># Simulamos getters e setters para atributos de qualquer tecla.</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">text</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="n">text</span><span class="o">[-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;=&quot;</span>               <span class="c1"># Se termina com chave = definir um valor</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">[</span><span class="n">text</span><span class="o">.</span><span class="n">chop</span><span class="o">.</span><span class="n">to_sym</span><span class="o">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="c1"># Faixa de chave</span>
-</span><span class='line'>    <span class="k">else</span> <span class="c1"># Caso contrário ...</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">[</span><span class="n">key</span><span class="o">]</span>                        <span class="c1"># ... apenas retornar o valor da chave</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">h</span> <span class="o">=</span> <span class="p">{}</span>                <span class="c1"># Criar um objeto vazio de hash</span>
-</span><span class='line'><span class="n">h</span><span class="o">.</span><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># O mesmo que h[:one] = 1</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">h</span><span class="o">.</span><span class="n">one</span>     <span class="c1"># Imprime 1. Mesmo que põe h[:one]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>Definir Visibilidade do Método</h3>
-
-
-<p>Visibilidades de método: <code>Public</code>, <code>Protected</code>, <code>Private</code> introduzindo o <code>public</code>, <code>protected</code>, e <code>private</code>. Parecem palavras-chave da linguagem, mas
-são na verdade métodos de instância privados definidos pelo módulo. Estes métodos são geralmente utilizados como uma parte estática da definição de
-uma classe. Mas, com <code>class_eval</code>, eles também podem ser usados dinamicamente:</p>
-
-<figure class='code'><figcaption><span>class_eval com Visibilidade de Metodo</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="kp">private</span> <span class="ss">:reverse</span> <span class="p">}</span>
-</span><span class='line'><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">reverse</span>  <span class="c1"># NoMethodError: private method &#39;reverse&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>private_class_method`` e</code>public_class_method` são semelhantes, exceto que eles operam em métodos de classe e são eles métodos públicos:</p>
-
-<figure class='code'><figcaption><span>Matematica</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Fazer todos os métodos de Matemática privados</span>
-</span><span class='line'><span class="c1"># Agora temos que incluem matemática, a fim de chamar seus métodos</span>
-</span><span class='line'><span class="no">Math</span><span class="o">.</span><span class="n">private_class_method</span> <span class="o">*</span><span class="no">Math</span><span class="o">.</span><span class="n">singleton_methods</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É isso ai amigos, um post, para introduzir o #StartupDevRumble .. =D</p>
-
-<p>Até o proximo!</p>
 ]]></content>
   </entry>
   
