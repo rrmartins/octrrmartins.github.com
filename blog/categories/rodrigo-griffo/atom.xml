@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rodrigo Griffo | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/rodrigo-griffo/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:23:50-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/rodrigo-griffo/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-06-16T14:02:16-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[#FLISOL_ES 2012 - Um evento Latino-Americano]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/"/>
+    <link href="http://rrmartins.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/"/>
     <updated>2012-04-22T09:26:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano</id>
+    <id>http://rrmartins.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano</id>
     <content type="html"><![CDATA[<!--more-->
 
 

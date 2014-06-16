@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ChicagoBoss | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/chicagoboss/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:23:50-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/chicagoboss/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-06-16T14:02:16-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
     <updated>2014-05-18T18:44:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
     <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
 
 <p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
