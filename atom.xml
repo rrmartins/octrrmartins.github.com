@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2014-06-16T14:02:16-03:00</updated>
+  <updated>2014-12-10T14:04:54-02:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
+    <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    <updated>2014-12-10T14:00:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com um pão, e, ao se encontrarem,
+</span><span class='line'>  trocarem os pães, cada um vai embora com um pão.
+</span><span class='line'>
+</span><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com uma idéia, e, ao se encontrarem,
+</span><span class='line'>  trocarem as idéias,
+</span><span class='line'>  cada um vai embora com duas idéias.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sempre crescemos com algo ao partilhar algo de bom.</p>
+
+<p>Abraços.</p>
+
+<p>Paz e Bem</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
@@ -3461,142 +3494,6 @@ específico.</p>
 <p>É isso ai amigos&#8230;</p>
 
 <p>Até o proximo.. =D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Hooks - #Ruby 1.9 - Part V]]></title>
-    <link href="http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/"/>
-    <updated>2012-09-05T23:04:00-03:00</updated>
-    <id>http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Hooks</h1>
-
-
-<p><code>Class</code>, <code>Module</code>, e os vários métodos de retorno da chamada do <code>Objectimplement</code>, ou <code>hooks</code>. Estes métodos não são definidos por padrão, mas se você
-defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
-estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
-<code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &#8220;ed&#8221;.</p>
-
-<p>Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
-argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
-herdados, de modo que a um método herdado será chamado se ele é definido por qualquer um dos antepassados da nova classe. Definir <code>Object.inherited</code>
-para receber a notificação de todas as novas classes que são definidas:</p>
-
-<figure class='code'><figcaption><span>Object.inherited</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">Object</span><span class="o">.</span><span class="nf">inherited</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;class </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Quando um módulo é incluído numa classe ou em outro módulo, o método da classe incluída do módulo incluído é chamado com o objeto de classe ou módulo
-em que foi incluído como um argumento. Isto dá o módulo incluído uma oportunidade para aumentar ou alterar a classe da maneira que ele efetivamente
-quer ser permitido que um módulo define o seu próprio significado para incluir. Além da adição de métodos para a classe em que se insere, um módulo com
-um método incluído também que pode alterar os métodos existentes dessa classe, por exemplo:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Final</span>             <span class="c1"># Uma classe que inclui Final não pode ser uma subclasse</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># Quando incluídos na classe C</span>
-</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>   <span class="c1"># Defini um método de classe de c</span>
-</span><span class='line'>      <span class="k">def</span> <span class="nf">inherited</span><span class="p">(</span><span class="nb">sub</span><span class="p">)</span> <span class="c1"># Para detectar subclasses</span>
-</span><span class='line'>        <span class="k">raise</span> <span class="no">Exception</span><span class="p">,</span> <span class="c1"># E abortar com uma exceção</span>
-</span><span class='line'>              <span class="s2">&quot;Tentativa de criar subclasse </span><span class="si">#{</span><span class="nb">sub</span><span class="si">}</span><span class="s2"> da classe final </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Da mesma forma, se um módulo de classe define um método chamado <code>extended</code>, este método será invocado em qualquer momento que o módulo é utilizado para
-estender um objeto (com <code>Object.extend</code>). O argumento para o método de extensão será o objeto que foi estendido, é claro, e do método estendido pode
-tomar quaisquer ações que quer o objeto.</p>
-
-<p>Além de <code>hooks</code> para rastreiar as classes e os módulos que incluem, também existem <code>hooks</code> para rastrear os métodos de classes e módulos e os únicos
-métodos de objetos arbitrários. Defini um método de classe chamado <code>method_added</code> para qualquer classe ou módulo e ele será chamado quando um método de
-instância é definido para essa classe ou módulo:</p>
-
-<figure class='code'><figcaption><span>method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New instance method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note-se que o método da classe <code>method_added</code> é herdado pelas subclasses da classe em que ele está definido. Mas nenhum argumento de classe é passado
-para o <code>hook</code>, pelo que não há maneira de dizer se o método chamado foi adicionado à classe que define <code>method_added</code> ou se ela foi adicionada a uma
-subclasse desta classe. A solução para este problema é definir um <code>hook</code> que herda em qualquer classe uma definição de um <code>hook</code> <code>method_added</code>.
-O método pode então ser herdado um método que defini <code>method_added</code> para cada subclasse.</p>
-
-<p>Quando um método <code>singleton</code> é definido para qualquer objeto, o método <code>singleton_method_added</code> é invocado sobre o objeto, passando o nome do novo
-método. Lembre-se que para as classes, métodos <code>singleton</code> são métodos de classe:</p>
-
-<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New class method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Curiosamente, Ruby invoca esse <code>hook</code> <code>singleton_method_added</code> quando o método de <code>hook</code> em si é definido previamente. Aqui é um outro uso do <code>hook</code>.
-Neste caso, <code>singleton_method_added</code> é definido como um método de instância de uma classe que inclui um módulo. É notificado de qualquer métodos
-<code>singleton</code> adicionados a instâncias da classe:</p>
-
-<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Incluindo este módulo em uma classe impede que instâncias da classe</span>
-</span><span class='line'><span class="c1"># De ter métodos singleton adicionados a eles. Quaisquer métodos singleton acrescentados</span>
-</span><span class='line'><span class="c1"># São imediatamente removidos novamente.</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">Strict</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Warning: singleton </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to a Strict object&quot;</span>
-</span><span class='line'>    <span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'>    <span class="n">eigenclass</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">remove_method</span> <span class="nb">name</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Além de <code>method_added</code> e <code>singleton_method_added</code>, há <code>hook</code> para rastreamento quando os métodos de instância e métodos <code>singleton</code> são removidos ou
-indefinidos. Quando um método de instância é removido ou indefinido em uma classe ou módulo, os métodos de classe <code>method_removed</code> e <code>method_undefined</code>
-são invocados nesse módulo. Quando um método <code>singleton</code> é removido ou indefinido em um objeto, os métodos <code>singleton_method_removed</code> e
-<code>singleton_method_undefined</code> são invocados nesse objeto.</p>
-
-<p>Por fim, note que os métodos <code>method_missing</code> e <code>const_missing</code> também se comportam como métodos de <code>hook</code>.</p>
-
-<p>Até o proximos amigos!</p>
 ]]></content>
   </entry>
   
