@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Brincadeira de Criança | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/brincadeira-de-criança/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/brincadeira-de-criança/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
     <updated>2014-05-18T18:44:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
     <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
 
 <p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20

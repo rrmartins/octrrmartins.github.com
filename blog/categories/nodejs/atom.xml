@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: NodeJS | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/nodejs/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/nodejs/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Desenvolvendo Um Chat com NodeJS]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/"/>
+    <link href="http://rrmartins.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/"/>
     <updated>2012-04-30T17:34:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs</id>
+    <id>http://rrmartins.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs</id>
     <content type="html"><![CDATA[<!--more-->
 
 

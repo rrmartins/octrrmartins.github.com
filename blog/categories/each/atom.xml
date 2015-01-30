@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: each | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/each/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/each/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Metodos - #Ruby 1.9 - Part IV]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/"/>
+    <link href="http://rrmartins.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/"/>
     <updated>2012-08-31T20:12:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv</id>
+    <id>http://rrmartins.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -296,9 +296,9 @@ String.class_eval { private :reverse }
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Variáveis e Constantes - #Ruby 1.9 - Part III]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
+    <link href="http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/"/>
     <updated>2012-08-29T23:34:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii</id>
+    <id>http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -413,9 +413,9 @@ Symbol::Test   # =&gt;: Teste: constante indefinida avalia um símbolo
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
+    <link href="http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/"/>
     <updated>2012-08-29T22:15:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
+    <id>http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -536,9 +536,9 @@ do exterior do objecto.</p>
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação #Ruby 1.9 - Part I]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/"/>
     <updated>2012-08-26T19:01:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -712,9 +712,9 @@ Hora de dar um <code>break</code>... :)</p>
   
   <entry>
     <title type="html"><![CDATA[Blocos em #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/"/>
     <updated>2012-08-19T14:02:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
