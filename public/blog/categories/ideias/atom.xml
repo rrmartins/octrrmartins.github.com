@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ideias | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/ideias/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
+    <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    <updated>2014-12-10T14:00:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+
+<p>```
+Se dois homens vêm andando por uma estrada,
+  cada um com um pão, e, ao se encontrarem,
+  trocarem os pães, cada um vai embora com um pão.</p>
+
+<p>Se dois homens vêm andando por uma estrada,
+  cada um com uma idéia, e, ao se encontrarem,
+  trocarem as idéias,
+  cada um vai embora com duas idéias.
+```</p>
+
+<p>Sempre crescemos com algo ao partilhar algo de bom.</p>
+
+<p>Abraços.</p>
+
+<p>Paz e Bem</p>
+]]></content>
+  </entry>
+  
+</feed>

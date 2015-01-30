@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Poemas | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/poemas/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-02-27T11:04:59-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/poemas/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Tenho Sede]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/02/26/tenho-sede/"/>
+    <link href="http://rrmartins.com/blog/2014/02/26/tenho-sede/"/>
     <updated>2014-02-26T20:45:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/02/26/tenho-sede</id>
+    <id>http://rrmartins.com/blog/2014/02/26/tenho-sede</id>
     <content type="html"><![CDATA[<p>Tenho Sede</p>
 
 <!--more-->

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Expressão Regular | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/expressão-regular/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/expressão-regular/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 

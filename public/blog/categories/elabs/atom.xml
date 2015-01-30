@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: elabs | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/elabs/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/elabs/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    <link href="http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
     <updated>2012-12-02T09:37:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+    <id>http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
     <content type="html"><![CDATA[<!--more-->
 
 

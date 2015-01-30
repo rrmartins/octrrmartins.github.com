@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby 1.8 | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/ruby-1-8/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-02-27T11:04:59-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/ruby-1-8/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Iteradores Numéricos #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos/"/>
+    <link href="http://rrmartins.com/blog/2012/07/14/iteradores-numericos/"/>
     <updated>2012-07-14T22:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos</id>
+    <id>http://rrmartins.com/blog/2012/07/14/iteradores-numericos</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -69,9 +69,9 @@ atingir <code>Math::PI</code>:</p>
   
   <entry>
     <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
     <updated>2012-07-05T01:57:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -165,9 +165,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Demonstrações e Estruturas de controle - Part I #Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
+    <link href="http://rrmartins.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
     <updated>2012-06-18T08:43:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
+    <id>http://rrmartins.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -350,9 +350,9 @@ name = if x == 1 then "um"
   
   <entry>
     <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
+    <link href="http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
     <updated>2012-06-11T19:36:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
+    <id>http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -516,9 +516,9 @@ a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
   
   <entry>
     <title type="html"><![CDATA[Atribuições #Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/03/atribuicoes/"/>
+    <link href="http://rrmartins.com/blog/2012/06/03/atribuicoes/"/>
     <updated>2012-06-03T11:55:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/03/atribuicoes</id>
+    <id>http://rrmartins.com/blog/2012/06/03/atribuicoes</id>
     <content type="html"><![CDATA[<!--more-->
 
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-06-16T11:14:26-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -14,10 +14,43 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
+    <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    <updated>2014-12-10T14:00:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com um pão, e, ao se encontrarem,
+</span><span class='line'>  trocarem os pães, cada um vai embora com um pão.
+</span><span class='line'>
+</span><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com uma idéia, e, ao se encontrarem,
+</span><span class='line'>  trocarem as idéias,
+</span><span class='line'>  cada um vai embora com duas idéias.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sempre crescemos com algo ao partilhar algo de bom.</p>
+
+<p>Abraços.</p>
+
+<p>Paz e Bem</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
     <updated>2014-05-18T18:44:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
     <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
 
 <p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
@@ -75,9 +108,9 @@ e (com sorte) cumprir seus desejos.</p>
   
   <entry>
     <title type="html"><![CDATA[Tenho Sede]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/02/26/tenho-sede/"/>
+    <link href="http://rrmartins.com/blog/2014/02/26/tenho-sede/"/>
     <updated>2014-02-26T20:45:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/02/26/tenho-sede</id>
+    <id>http://rrmartins.com/blog/2014/02/26/tenho-sede</id>
     <content type="html"><![CDATA[<p>Tenho Sede</p>
 
 <!--more-->
@@ -128,13 +161,13 @@ Rodrigo Martins
   
   <entry>
     <title type="html"><![CDATA[Não é bem uma String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
     <updated>2013-04-28T18:35:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Continuando o ultimo post <a href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+<p>Continuando o ultimo post <a href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
 que finaliza com a pergunta:</p>
 
 <pre><code>Então, por que o Ruby nos fornece tanto?
@@ -169,9 +202,9 @@ esta é a forma rápida e confiável.</p>
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/"/>
     <updated>2013-04-28T16:30:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -200,7 +233,7 @@ código para que pudéssemos usar uma string para sinal de que queria que todos 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
@@ -208,9 +241,9 @@ do que digitar <code>'all'</code>, não há realmente muito a distinguir um sím
   
   <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -331,9 +364,9 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   
   <entry>
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    <link href="http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
     <updated>2013-02-26T22:54:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    <id>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1056,9 +1089,9 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    <link href="http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
     <updated>2012-12-02T09:37:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+    <id>http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1301,9 +1334,9 @@ postar um comentário abaixo!</p>
   
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+    <link href="http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne/"/>
     <updated>2012-11-04T09:30:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
+    <id>http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1365,9 +1398,9 @@ repensar o teste e desfazer sua implementação.</p>
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
     <updated>2012-11-04T09:20:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1554,9 +1587,9 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T15:04:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1607,9 +1640,9 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T14:53:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1752,9 +1785,9 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
     <updated>2012-10-28T14:26:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1879,9 +1912,9 @@ exemplo, através do mesmo nome:</p>
   
   <entry>
     <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
     <updated>2012-09-18T08:38:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2398,9 +2431,9 @@ objeto.</p>
   
   <entry>
     <title type="html"><![CDATA[Criando Métodos Dinamicamente - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T20:38:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2615,9 +2648,9 @@ significa que os métodos resultantes usam variáveis de instância de classe em
   
   <entry>
     <title type="html"><![CDATA[Missing Methods e Missing Constants - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T12:46:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2939,9 +2972,9 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
   
   <entry>
     <title type="html"><![CDATA[Estruturas de Controle Personalizados - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
     <updated>2012-09-13T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3175,9 +3208,9 @@ de palavras-chave novo estilo!</p>
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - ObjectSpace e GC - #Ruby 1.9 - Part VII]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
     <updated>2012-09-10T23:26:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3224,9 +3257,9 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
     <updated>2012-09-10T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3320,9 +3353,9 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
   
   <entry>
     <title type="html"><![CDATA[Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
+    <link href="http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
     <updated>2012-09-09T19:31:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
+    <id>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3461,142 +3494,6 @@ específico.</p>
 <p>É isso ai amigos&#8230;</p>
 
 <p>Até o proximo.. =D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Hooks - #Ruby 1.9 - Part V]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/"/>
-    <updated>2012-09-05T23:04:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Hooks</h1>
-
-
-<p><code>Class</code>, <code>Module</code>, e os vários métodos de retorno da chamada do <code>Objectimplement</code>, ou <code>hooks</code>. Estes métodos não são definidos por padrão, mas se você
-defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
-estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
-<code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &#8220;ed&#8221;.</p>
-
-<p>Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
-argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
-herdados, de modo que a um método herdado será chamado se ele é definido por qualquer um dos antepassados da nova classe. Definir <code>Object.inherited</code>
-para receber a notificação de todas as novas classes que são definidas:</p>
-
-<figure class='code'><figcaption><span>Object.inherited</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">Object</span><span class="o">.</span><span class="nf">inherited</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;class </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Quando um módulo é incluído numa classe ou em outro módulo, o método da classe incluída do módulo incluído é chamado com o objeto de classe ou módulo
-em que foi incluído como um argumento. Isto dá o módulo incluído uma oportunidade para aumentar ou alterar a classe da maneira que ele efetivamente
-quer ser permitido que um módulo define o seu próprio significado para incluir. Além da adição de métodos para a classe em que se insere, um módulo com
-um método incluído também que pode alterar os métodos existentes dessa classe, por exemplo:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Final</span>             <span class="c1"># Uma classe que inclui Final não pode ser uma subclasse</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># Quando incluídos na classe C</span>
-</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>   <span class="c1"># Defini um método de classe de c</span>
-</span><span class='line'>      <span class="k">def</span> <span class="nf">inherited</span><span class="p">(</span><span class="nb">sub</span><span class="p">)</span> <span class="c1"># Para detectar subclasses</span>
-</span><span class='line'>        <span class="k">raise</span> <span class="no">Exception</span><span class="p">,</span> <span class="c1"># E abortar com uma exceção</span>
-</span><span class='line'>              <span class="s2">&quot;Tentativa de criar subclasse </span><span class="si">#{</span><span class="nb">sub</span><span class="si">}</span><span class="s2"> da classe final </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Da mesma forma, se um módulo de classe define um método chamado <code>extended</code>, este método será invocado em qualquer momento que o módulo é utilizado para
-estender um objeto (com <code>Object.extend</code>). O argumento para o método de extensão será o objeto que foi estendido, é claro, e do método estendido pode
-tomar quaisquer ações que quer o objeto.</p>
-
-<p>Além de <code>hooks</code> para rastreiar as classes e os módulos que incluem, também existem <code>hooks</code> para rastrear os métodos de classes e módulos e os únicos
-métodos de objetos arbitrários. Defini um método de classe chamado <code>method_added</code> para qualquer classe ou módulo e ele será chamado quando um método de
-instância é definido para essa classe ou módulo:</p>
-
-<figure class='code'><figcaption><span>method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New instance method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note-se que o método da classe <code>method_added</code> é herdado pelas subclasses da classe em que ele está definido. Mas nenhum argumento de classe é passado
-para o <code>hook</code>, pelo que não há maneira de dizer se o método chamado foi adicionado à classe que define <code>method_added</code> ou se ela foi adicionada a uma
-subclasse desta classe. A solução para este problema é definir um <code>hook</code> que herda em qualquer classe uma definição de um <code>hook</code> <code>method_added</code>.
-O método pode então ser herdado um método que defini <code>method_added</code> para cada subclasse.</p>
-
-<p>Quando um método <code>singleton</code> é definido para qualquer objeto, o método <code>singleton_method_added</code> é invocado sobre o objeto, passando o nome do novo
-método. Lembre-se que para as classes, métodos <code>singleton</code> são métodos de classe:</p>
-
-<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New class method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Curiosamente, Ruby invoca esse <code>hook</code> <code>singleton_method_added</code> quando o método de <code>hook</code> em si é definido previamente. Aqui é um outro uso do <code>hook</code>.
-Neste caso, <code>singleton_method_added</code> é definido como um método de instância de uma classe que inclui um módulo. É notificado de qualquer métodos
-<code>singleton</code> adicionados a instâncias da classe:</p>
-
-<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Incluindo este módulo em uma classe impede que instâncias da classe</span>
-</span><span class='line'><span class="c1"># De ter métodos singleton adicionados a eles. Quaisquer métodos singleton acrescentados</span>
-</span><span class='line'><span class="c1"># São imediatamente removidos novamente.</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">Strict</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Warning: singleton </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to a Strict object&quot;</span>
-</span><span class='line'>    <span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'>    <span class="n">eigenclass</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">remove_method</span> <span class="nb">name</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Além de <code>method_added</code> e <code>singleton_method_added</code>, há <code>hook</code> para rastreamento quando os métodos de instância e métodos <code>singleton</code> são removidos ou
-indefinidos. Quando um método de instância é removido ou indefinido em uma classe ou módulo, os métodos de classe <code>method_removed</code> e <code>method_undefined</code>
-são invocados nesse módulo. Quando um método <code>singleton</code> é removido ou indefinido em um objeto, os métodos <code>singleton_method_removed</code> e
-<code>singleton_method_undefined</code> são invocados nesse objeto.</p>
-
-<p>Por fim, note que os métodos <code>method_missing</code> e <code>const_missing</code> também se comportam como métodos de <code>hook</code>.</p>
-
-<p>Até o proximos amigos!</p>
 ]]></content>
   </entry>
   

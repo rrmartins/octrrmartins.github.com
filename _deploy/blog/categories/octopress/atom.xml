@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-02-27T11:04:59-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Iniciando com o Octpress :D]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/"/>
+    <link href="http://rrmartins.com/blog/2012/02/15/iniciando-com-o-octpress-d/"/>
     <updated>2012-02-15T13:30:00-02:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d</id>
+    <id>http://rrmartins.com/blog/2012/02/15/iniciando-com-o-octpress-d</id>
     <content type="html"><![CDATA[<p>Olá amigos nerd's... <br/>
 <img class="left" src="/images/octopress.png" width="150" height="250" title="Octopress #3" >
 Estou iniciando com o <a href="http://octopress.org/">Octopress</a>... e é muito MASSAA!! :D</p>

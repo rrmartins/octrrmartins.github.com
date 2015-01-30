@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Marc-Andre | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/marc-andre/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-02-27T11:04:59-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/marc-andre/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    <link href="http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
     <updated>2013-02-26T22:54:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    <id>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
     <content type="html"><![CDATA[<!--more-->
 
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Symbol | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/symbol/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2014-02-27T11:04:59-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <link href="http://rrmartins.com/blog/categories/symbol/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2014-12-10T14:04:54-02:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/"/>
     <updated>2013-04-28T16:30:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -54,9 +54,9 @@ do que digitar <code>'all'</code>, não há realmente muito a distinguir um sím
   
   <entry>
     <title type="html"><![CDATA[Symbols - Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
+    <link href="http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/"/>
     <updated>2012-05-16T21:37:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
+    <id>http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2</id>
     <content type="html"><![CDATA[<!--more-->
 
 
