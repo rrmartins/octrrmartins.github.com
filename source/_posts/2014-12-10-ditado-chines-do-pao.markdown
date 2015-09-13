@@ -10,7 +10,8 @@ categories:
 - Reflexão
 ---
 
-Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!
+Hoje, escutei de um amigo um ditado Chinês.
+Que achei muito massa ser repassado!
 
 ```
 Se dois homens vêm andando por uma estrada,
