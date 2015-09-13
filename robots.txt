@@ -7,5 +7,9 @@ User-agent: *
 User-agent: *
 Disallow: 
 
+<<<<<<< HEAD
 Sitemap: http://rrmartins.github.com/sitemap.xml 
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+Sitemap: http://rrmartins.com/sitemap.xml 
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496

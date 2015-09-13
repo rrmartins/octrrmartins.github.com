@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Code | Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/code/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/blog/categories/code/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Agricultura de Software: Acréscimo no Sistema]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
+    <link href="http://rrmartins.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
     <updated>2012-04-22T20:31:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
+    <id>http://rrmartins.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -62,9 +69,9 @@ Este princípio básico é como início da ostra, uma pérola com um pequeno gr�
   
   <entry>
     <title type="html"><![CDATA[Caligrafia de Software: Escrevendo Códigos]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
+    <link href="http://rrmartins.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
     <updated>2012-04-07T19:22:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
+    <id>http://rrmartins.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -135,9 +142,9 @@ tais objetivos.
   
   <entry>
     <title type="html"><![CDATA[Como usar metáforas de software?]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/"/>
+    <link href="http://rrmartins.com/blog/2012/03/24/como-usar-metaforas-de-software/"/>
     <updated>2012-03-24T10:23:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software</id>
+    <id>http://rrmartins.com/blog/2012/03/24/como-usar-metaforas-de-software</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -220,9 +227,9 @@ mais rápido do que pessoas que não os utilizam.</p>
   
   <entry>
     <title type="html"><![CDATA[A importância das metáforas - Parte II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
+    <link href="http://rrmartins.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
     <updated>2012-03-11T16:33:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
+    <id>http://rrmartins.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -276,9 +283,9 @@ metáforas são uma forma de internalizar e abstrair conceitos, permitindo que u
   
   <entry>
     <title type="html"><![CDATA[A importância das metáforas]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas/"/>
+    <link href="http://rrmartins.com/blog/2012/03/05/a-importancia-das-metaforas/"/>
     <updated>2012-03-05T22:47:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas</id>
+    <id>http://rrmartins.com/blog/2012/03/05/a-importancia-das-metaforas</id>
     <content type="html"><![CDATA[<!--more-->
 
 

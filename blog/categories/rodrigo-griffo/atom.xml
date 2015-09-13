@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rodrigo Griffo | Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/rodrigo-griffo/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/blog/categories/rodrigo-griffo/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[#FLISOL_ES 2012 - Um evento Latino-Americano]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/"/>
+    <link href="http://rrmartins.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/"/>
     <updated>2012-04-22T09:26:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano</id>
+    <id>http://rrmartins.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano</id>
     <content type="html"><![CDATA[<!--more-->
 
 

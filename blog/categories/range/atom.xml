@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Range | Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/range/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/blog/categories/range/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Testando Associações em Range - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/"/>
+    <link href="http://rrmartins.com/blog/2012/05/15/testando-associacoes-em-range/"/>
     <updated>2012-05-15T21:49:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range</id>
+    <id>http://rrmartins.com/blog/2012/05/15/testando-associacoes-em-range</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -122,9 +129,9 @@ e 1.9 têm pouco impacto.</p>
   
   <entry>
     <title type="html"><![CDATA[Ranges - Ruby 1.9.2 - Part I ]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
+    <link href="http://rrmartins.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/"/>
     <updated>2012-05-13T02:16:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
+    <id>http://rrmartins.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i</id>
     <content type="html"><![CDATA[<!--more-->
 
 

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/02/15/criando-combobox-com-rails-3/</loc>
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:27:09-03:00</lastmod>
@@ -14,12 +15,17 @@
         <lastmod>2013-04-28T18:26:53-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <loc>http://rrmartins.com/blog/2012/02/15/criando-combobox-com-rails-3/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/02/15/iniciando-com-o-octpress-d/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/02/15/iniciando-com-o-octpress-d/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/02/25/what-is-software-construction/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
@@ -33,11 +39,20 @@
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <loc>http://rrmartins.com/blog/2012/02/25/what-is-software-construction/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/02/27/what-is-software-construction-part-2/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/02/29/por-que-construcao-de-software-e-importante/
+            http://rrmartins.com/blog/2012/02/29/por-que-construcao-de-software-e-importante/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:26:38-03:00</lastmod>
     </url>
@@ -51,11 +66,19 @@
         <loc>http://rrmartins.github.com/blog/2012/03/01/pontos-chaves/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/03/01/pontos-chaves/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/
+            http://rrmartins.com/blog/2012/03/03/por-que-construcao-de-software-e-importante-parte-2/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:26:24-03:00</lastmod>
 =======
@@ -107,11 +130,35 @@
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/03/05/metaforas-de-desenvolvimento-de-software/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/03/05/a-importancia-das-metaforas/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/03/24/como-usar-metaforas-de-software/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/
+            http://rrmartins.com/blog/2012/04/22/number-flisol-2012-um-evento-latino-americano/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:24:37-03:00</lastmod>
 =======
@@ -127,11 +174,19 @@
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/
+            http://rrmartins.com/blog/2012/04/24/codificacoes-de-string-e-caracteres-multibyte/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:24:31-03:00</lastmod>
 =======
@@ -162,38 +217,55 @@
         <lastmod>2013-04-28T18:23:38-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/04/30/a-classe-encoding/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/04/25/caracteres-multibyte-no-ruby-1-dot-9/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/04/30/a-classe-encoding/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/07/um-pouco-de-array-no-ruby/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+        <loc>http://rrmartins.com/blog/2012/05/07/um-pouco-de-array-no-ruby/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <loc>http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/
+            http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:23:51-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/
+            http://rrmartins.com/blog/2012/05/10/o-mundo-hash-no-ruby-1-dot-9-2-parte-iii-hashs-codes/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:23:31-03:00</lastmod>
     </url>
@@ -218,24 +290,28 @@
         <lastmod>2013-04-28T18:22:40-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/15/testando-associacoes-em-range/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/15/testando-associacoes-em-range/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/18/true/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/18/true/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
@@ -296,12 +372,37 @@
         <lastmod>2013-04-28T18:22:05-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <loc>http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/22/arranhando-sua-propria-coceira/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+        <loc>http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/05/22/arranhando-sua-propria-coceira/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
@@ -342,32 +443,41 @@
         <lastmod>2013-04-28T18:21:10-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <loc>http://rrmartins.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/28/naa-presenca-de-paixao/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/27/literais-e-palavras-chaves-literais/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/05/28/emergencia/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/28/naa-presenca-de-paixao/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/06/01/variaveis-de-referencia/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/05/28/emergencia/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/06/02/variaveis-nao-inicializadas/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/06/01/variaveis-de-referencia/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/06/02/variaveis-nao-inicializadas/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/06/03/atribuicoes/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+        <loc>http://rrmartins.com/blog/2012/06/03/atribuicoes/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
@@ -388,12 +498,21 @@
         <lastmod>2013-04-28T18:20:49-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <loc>http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
+        <loc>http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/07/14/iteradores-numericos/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
@@ -407,11 +526,20 @@
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <loc>http://rrmartins.com/blog/2012/07/14/iteradores-numericos/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/
+            http://rrmartins.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:20:30-03:00</lastmod>
     </url>
@@ -424,60 +552,85 @@
         <lastmod>2013-04-28T18:20:16-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2012/08/08/a-filosofia-do-number-ruby-3/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <loc>http://rrmartins.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:20:08-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/
+            http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:20:01-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/
+            http://rrmartins.com/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-iii/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:53-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/
+            http://rrmartins.com/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:46-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/
+            http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:40-03:00</lastmod>
     </url>
@@ -491,51 +644,75 @@
         <loc>http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/
+            http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:21-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/
+            http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:27-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:11-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:59-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:19:06-03:00</lastmod>
 =======
@@ -551,41 +728,61 @@
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:32-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:27-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:38-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/
+            http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:09-03:00</lastmod>
     </url>
@@ -599,11 +796,19 @@
         <loc>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
         <loc>
-            http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/
+            http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/
         </loc>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <lastmod>2013-04-28T18:18:03-03:00</lastmod>
     </url>
@@ -652,66 +857,82 @@
         <lastmod>2013-04-28T13:48:47-03:00</lastmod>
 =======
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+=======
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/2014/02/26/tenho-sede/</loc>
-        <lastmod>2014-02-27T10:13:13-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2014/02/26/tenho-sede/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/apostilas/2012-05-28-nao-siga-o-lider.html</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/</loc>
+        <lastmod>2014-05-19T19:48:30-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/apostilas/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/</loc>
+        <lastmod>2014-12-10T14:04:24-02:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/archives/</loc>
-        <lastmod>2014-02-27T10:13:13-03:00</lastmod>
+        <loc>http://rrmartins.com/apostilas/2012-05-28-nao-siga-o-lider.html</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/archives/</loc>
-        <lastmod>2014-02-27T10:13:13-03:00</lastmod>
+        <loc>http://rrmartins.com/apostilas/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/blog/</loc>
-        <lastmod>2014-02-27T10:13:13-03:00</lastmod>
+        <loc>http://rrmartins.com/archives/</loc>
+        <lastmod>2014-12-10T14:04:24-02:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/contato/</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/archives/</loc>
+        <lastmod>2014-12-10T14:04:24-02:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/</loc>
-        <lastmod>2014-02-27T10:13:13-03:00</lastmod>
+        <loc>http://rrmartins.com/blog/</loc>
+        <lastmod>2014-12-10T14:04:24-02:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/robots.txt</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/contato/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
     </url>
     <url>
-        <loc>http://rrmartins.github.com/search.html</loc>
-        <lastmod>2013-10-07T19:07:55-03:00</lastmod>
+        <loc>http://rrmartins.com/</loc>
+        <lastmod>2014-12-10T14:04:24-02:00</lastmod>
     </url>
     <url>
+        <loc>http://rrmartins.com/robots.txt</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rrmartins.com/search.html</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+    </url>
+    <url>
+<<<<<<< HEAD
         <loc>http://rrmartins.github.com/who-am/</loc>
         <lastmod>2013-10-07T19:07:55-03:00</lastmod>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+        <loc>http://rrmartins.com/who-am/</loc>
+        <lastmod>2014-05-16T10:48:45-03:00</lastmod>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     </url>
 </urlset>

@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Eloquent Ruby | Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/eloquent-ruby/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/blog/categories/eloquent-ruby/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Não é bem uma String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
     <updated>2013-04-28T18:35:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -60,9 +67,9 @@ esta é a forma rápida e confiável.</p>
   
   <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 

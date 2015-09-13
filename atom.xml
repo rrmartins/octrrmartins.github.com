@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,11 +26,107 @@
   
   <entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
+    <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    <updated>2014-12-10T14:00:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com um pão, e, ao se encontrarem,
+</span><span class='line'>  trocarem os pães, cada um vai embora com um pão.
+</span><span class='line'>
+</span><span class='line'>Se dois homens vêm andando por uma estrada,
+</span><span class='line'>  cada um com uma idéia, e, ao se encontrarem,
+</span><span class='line'>  trocarem as idéias,
+</span><span class='line'>  cada um vai embora com duas idéias.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sempre crescemos com algo ao partilhar algo de bom.</p>
+
+<p>Abraços.</p>
+
+<p>Paz e Bem</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
+    <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    <updated>2014-05-18T18:44:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
+
+<p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
+anos atrás, Erlang é a mais avançada plataforma de servidor de código aberto em
+existência, mas parece que quase ninguém sabe sobre isso. Erlang pode lidar com
+centenas de milhares de conexões simultâneas; ele pode gerar
+milhões de processos simultâneos em menos de um segundo; código do servidor pode ser
+atualizado, em produção, sem qualquer interrupção do serviço; e erros
+são tratados de tal forma que falhas do servidor são extremamente raros.</p>
+
+<!--more-->
+
+
+<p>O que não gostar? Por que não é todo o mundo de programação em Erlang?
+Bem, Erlang é uma linguagem funcional, o que significa que, para implementar qualquer
+algoritmo, você deve usar a recursividade em vez dos laços familiares &#8220;for&#8221; e &#8220;while&#8221;.
+Ao contrário de todas as grandes linguagem de script, não há sintaxe embutida
+para dicionários ou mapas de hash. E para realmente escrever um servidor funcionando,
+você deve aprender com uma camada adicional de magia conhecida como OTP. Estas
+barreiras, na minha opinião, têm impedido Erlang de ganhar muita tração fora da Scandinavia.</p>
+
+<p>Mas ChicagoBoss muda tudo isso. O faz Erlang acessível para hackers
+que só querem escrever um site confiável em uma linguagem bacana. Usuários do ChicagoBoss
+geram código para contornar o histórico hash , e tem o
+cuidado com todos os negócios OTP para que você possa se ​​concentrar em escrever as características
+o que precisa para o seu site. Quanto aos supostos encargos da programação funcional, acho que a recursividade
+raramente é necessária em um dia de trabalho de programação; Eu diria que 99% do código de um aplicativo de servidor
+simplesmente transporta dados para e de um banco de dados, de modo que no curso da construção de um
+website, o programador processual caminhe dificilmente perca o seu laço &#8220;do/while&#8221;.</p>
+
+<p>Se você é um programador web experiente, você provavelmente vai desfrutar de toda a
+amenidades que CB tem para oferecer: um ORM avançado com suporte para
+associações de bancos de dados, sharding e caches; modelos velozes compilado até Erlang bytecode;
+recompilação automática e no navegador, relatório de erros; directivas simples para recargas e redirecionamentos;
+rotas para construção de URLs e tratamento dos pedidos; quadros completos para envio
+e recebimento de e-mail; uma fila de mensagens embutida; um quadro para a escrita
+e execução de testes funcionais.</p>
+
+<p>No final, através da combinação da plataforma de Erlang com as suas próprias inovações,
+ChicagoBoss faz sites um deleite para desenvolver e implantar uma alegria.
+Aplicações saliência pode ser escrito no mesmo tempo ou menos equivalentes
+Rails aplicações , e eles quase nunca irá travar ou perda de memória . desde
+a rede subjacente é tudo assíncrona, você pode facilmente escrever
+serviços concorrentes , como o bate-papo , que antes eram só é possível em
+estruturas à base de retorno de chamada (como Nginx , Node.js , Torcido, ou Perlbal ) .</p>
+
+<p>A importância deste avanço não pode ser exagerada . É agora
+viável para uma pequena equipe para desenvolver e operar um banco de dados -driven,
+site altamente interativo , com muito trânsito , com muito pouco investimento de capital .
+Embora Chicago chefe não posso te dizer como adquirir os usuários , o resto desta
+manual irá mostrar-lhe tudo o que você precisa fazer para lidar com os seus pedidos
+e (com sorte) cumprir seus desejos.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <title type="html"><![CDATA[Tenho Sede]]></title>
-    <link href="http://rrmartins.github.com/blog/2014/02/26/tenho-sede/"/>
+    <link href="http://rrmartins.com/blog/2014/02/26/tenho-sede/"/>
     <updated>2014-02-26T20:45:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2014/02/26/tenho-sede</id>
+    <id>http://rrmartins.com/blog/2014/02/26/tenho-sede</id>
     <content type="html"><![CDATA[<p>Tenho Sede</p>
 
 <!--more-->
@@ -75,13 +178,13 @@ Rodrigo Martins
   <entry>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <title type="html"><![CDATA[Não é bem uma String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
     <updated>2013-04-28T18:35:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Continuando o ultimo post <a href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
+<p>Continuando o ultimo post <a href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces de String</a>
 que finaliza com a pergunta:</p>
 
 <pre><code>Então, por que o Ruby nos fornece tanto?
@@ -116,9 +219,9 @@ esta é a forma rápida e confiável.</p>
   
   <entry>
     <title type="html"><![CDATA[As duas faces de String]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/"/>
     <updated>2013-04-28T16:30:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    <id>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -147,7 +250,7 @@ código para que pudéssemos usar uma string para sinal de que queria que todos 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="http://rrmartins.github.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
@@ -155,9 +258,9 @@ do que digitar <code>'all'</code>, não há realmente muito a distinguir um sím
   
   <entry>
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
     <updated>2013-04-28T13:52:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -278,9 +381,9 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   
   <entry>
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
-    <link href="http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    <link href="http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
     <updated>2013-02-26T22:54:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    <id>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1003,6 +1106,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
   
   <entry>
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
 <<<<<<< HEAD
     <updated>2012-12-02T09:37:00-03:00</updated>
@@ -1010,6 +1114,11 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
     <updated>2012-12-02T09:37:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    <updated>2012-12-02T09:37:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1252,6 +1361,7 @@ postar um comentário abaixo!</p>
   
   <entry>
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
 <<<<<<< HEAD
     <updated>2012-11-04T09:30:00-03:00</updated>
@@ -1259,6 +1369,11 @@ postar um comentário abaixo!</p>
     <updated>2012-11-04T09:30:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+    <updated>2012-11-04T09:30:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1320,6 +1435,7 @@ repensar o teste e desfazer sua implementação.</p>
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
 <<<<<<< HEAD
     <updated>2012-11-04T09:20:00-03:00</updated>
@@ -1327,6 +1443,11 @@ repensar o teste e desfazer sua implementação.</p>
     <updated>2012-11-04T09:20:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+    <updated>2012-11-04T09:20:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1513,6 +1634,7 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
 <<<<<<< HEAD
     <updated>2012-10-28T15:04:00-03:00</updated>
@@ -1520,6 +1642,11 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
     <updated>2012-10-28T15:04:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T15:04:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1570,6 +1697,7 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
 <<<<<<< HEAD
     <updated>2012-10-28T14:53:00-03:00</updated>
@@ -1577,6 +1705,11 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <updated>2012-10-28T14:53:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T14:53:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1719,6 +1852,7 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
   
   <entry>
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
 <<<<<<< HEAD
     <updated>2012-10-28T14:26:00-03:00</updated>
@@ -1726,6 +1860,11 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
     <updated>2012-10-28T14:26:00-02:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+=======
+    <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+    <updated>2012-10-28T14:26:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1850,9 +1989,9 @@ exemplo, através do mesmo nome:</p>
   
   <entry>
     <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
     <updated>2012-09-18T08:38:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2369,9 +2508,9 @@ objeto.</p>
   
   <entry>
     <title type="html"><![CDATA[Criando Métodos Dinamicamente - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T20:38:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2586,9 +2725,9 @@ significa que os métodos resultantes usam variáveis de instância de classe em
   
   <entry>
     <title type="html"><![CDATA[Missing Methods e Missing Constants - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
     <updated>2012-09-15T12:46:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2910,9 +3049,9 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
   
   <entry>
     <title type="html"><![CDATA[Estruturas de Controle Personalizados - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
     <updated>2012-09-13T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3146,9 +3285,9 @@ de palavras-chave novo estilo!</p>
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - ObjectSpace e GC - #Ruby 1.9 - Part VII]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
     <updated>2012-09-10T23:26:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3195,9 +3334,9 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
   
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
     <updated>2012-09-10T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3291,9 +3430,9 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
   
   <entry>
     <title type="html"><![CDATA[Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
+    <link href="http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
     <updated>2012-09-09T19:31:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
+    <id>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3435,6 +3574,7 @@ específico.</p>
 ]]></content>
   </entry>
   
+<<<<<<< HEAD
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Hooks - #Ruby 1.9 - Part V]]></title>
     <link href="http://rrmartins.github.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/"/>
@@ -4076,4 +4216,6 @@ as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais 
   
 =======
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
 </feed>

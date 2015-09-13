@@ -2,6 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Enumerable | Rodrigo Martins]]></title>
+<<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/enumerable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
 <<<<<<< HEAD
@@ -10,6 +11,12 @@
   <updated>2014-02-27T11:04:59-03:00</updated>
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
+=======
+  <link href="http://rrmartins.com/blog/categories/enumerable/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-01-30T14:40:06-02:00</updated>
+  <id>http://rrmartins.com/</id>
+>>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -19,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Escrevendo iteradores personalizados #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
+    <link href="http://rrmartins.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/"/>
     <updated>2012-08-05T16:18:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
+    <id>http://rrmartins.com/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -160,9 +167,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Objetos Enumeráveis #Ruby 1.9.2]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
+    <link href="http://rrmartins.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/"/>
     <updated>2012-07-25T22:50:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
+    <id>http://rrmartins.com/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -250,9 +257,9 @@ max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
   
   <entry>
     <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
+    <link href="http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
     <updated>2012-07-05T01:57:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
+    <id>http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -346,9 +353,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
+    <link href="http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
     <updated>2012-06-11T19:36:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
+    <id>http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
     <content type="html"><![CDATA[<!--more-->
 
 
