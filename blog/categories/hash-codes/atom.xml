@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Hash Codes | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: hash codes | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/hash-codes/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T18:58:36-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -34,7 +34,7 @@
 
 <p>Hashs[1] de Ruby são implementadas, sem surpresa, com um conjunto de dados de
 estrutura conhecida como uma tabela hash. Objetos usados como chaves em um hash deve ter um método chamado de hash que retorna <a href="http://www.ruby-doc.org/core-1.9.2/Fixnum.html">Fixnum</a> hashcode para a chave. Se duas chaves são iguais, elas devem ter o mesmo
-hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash's de tabelas são mais eficientes quando hashcodes duplicados são raros.</p>
+hashcode. Chaves desiguais também pode ter a mesma hashcode, mas hash&rsquo;s de tabelas são mais eficientes quando hashcodes duplicados são raros.</p>
 
 <p>A classe Hash compara chaves igualdade com o método <a href="http://www.ruby-doc.org/core-1.9.2/Hash.html#method-i-eql-3F">eql?</a>. Para
 outras classes Ruby, eql? obras como o operador == . Se você definir uma nova classe que

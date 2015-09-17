@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: FLISOL | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: flisol | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/flisol/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T18:58:36-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -26,7 +26,7 @@
 </h2>
 
 
-<p>{% img center /images/flisol.png FLISOL %}<br/></p>
+<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
 
 <p> Olá amigos...</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:26:47-03:00</updated>
+  <updated>2015-09-17T18:58:36-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -66,7 +66,7 @@ são tratados de tal forma que falhas do servidor são extremamente raros.</p>
 
 <p>O que não gostar? Por que não é todo o mundo de programação em Erlang?
 Bem, Erlang é uma linguagem funcional, o que significa que, para implementar qualquer
-algoritmo, você deve usar a recursividade em vez dos laços familiares &#8220;for&#8221; e &#8220;while&#8221;.
+algoritmo, você deve usar a recursividade em vez dos laços familiares &ldquo;for&rdquo; e &ldquo;while&rdquo;.
 Ao contrário de todas as grandes linguagem de script, não há sintaxe embutida
 para dicionários ou mapas de hash. E para realmente escrever um servidor funcionando,
 você deve aprender com uma camada adicional de magia conhecida como OTP. Estas
@@ -79,7 +79,7 @@ cuidado com todos os negócios OTP para que você possa se ​​concentrar em e
 o que precisa para o seu site. Quanto aos supostos encargos da programação funcional, acho que a recursividade
 raramente é necessária em um dia de trabalho de programação; Eu diria que 99% do código de um aplicativo de servidor
 simplesmente transporta dados para e de um banco de dados, de modo que no curso da construção de um
-website, o programador processual caminhe dificilmente perca o seu laço &#8220;do/while&#8221;.</p>
+website, o programador processual caminhe dificilmente perca o seu laço &ldquo;do/while&rdquo;.</p>
 
 <p>Se você é um programador web experiente, você provavelmente vai desfrutar de toda a
 amenidades que CB tem para oferecer: um ORM avançado com suporte para
@@ -128,8 +128,7 @@ Repleto de silêncio e dor
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Lançai-me, Senhor<br/>
@@ -141,8 +140,7 @@ Renova-me com Teu Espírito de Amor
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Carrega-me nos Teus braços<br/>
@@ -152,8 +150,7 @@ Precisando de um Pai
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Ass,
@@ -190,7 +187,7 @@ objetos livro a partir do banco de dados e você muito provavelmente vai ter sua
 coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
 de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
 voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
-tipo de &#8220;significa&#8221; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+tipo de &ldquo;significa&rdquo; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
 que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
 
 <p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
@@ -223,8 +220,8 @@ esta é a forma rápida e confiável.</p>
 <p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
-Isto não é tão improvável quanto parece: Pense sobre a string &#8220;dog&#8221; e seu primo mais próximo simbólico :dog. A única coisa que
-bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &#8220;d&#8221;, um &#8220;o&#8221;, e &#8220;g&#8221;.</p>
+Isto não é tão improvável quanto parece: Pense sobre a string &ldquo;dog&rdquo; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &ldquo;d&rdquo;, um &ldquo;o&rdquo;, e &ldquo;g&rdquo;.</p>
 
 <p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
 ActiveRecord, que encontra todos os registros no livros de mesa:</p>
@@ -245,7 +242,7 @@ código para que pudéssemos usar uma string para sinal de que queria que todos 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&hellip;</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
@@ -374,7 +371,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.</p>
 
-<p>Até mais&#8230; :)</p>
+<p>Até mais&hellip; :)</p>
 ]]></content>
     
   </entry>
@@ -403,7 +400,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
 
-<p>Vamos a tradução&#8230; :D</p>
+<p>Vamos a tradução&hellip; :D</p>
 
 <hr />
 
@@ -1097,11 +1094,11 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <hr />
 
-<p>Até a proxima amigos&#8230;</p>
+<p>Até a proxima amigos&hellip;</p>
 
-<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>&hellip;</p>
 
-<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>&hellip;</p>
 
 <p>:D</p>
 ]]></content>
@@ -1350,7 +1347,7 @@ postar um comentário abaixo!</p>
 
 <hr />
 
-<p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo&#8230; :D</p>
+<p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo&hellip; :D</p>
 
 <hr />
 ]]></content>
@@ -1398,11 +1395,11 @@ está trabalhando como pretendido.</p>
 <p>BDD é uma metodologia baseada em TDD. Você escreve um teste automatizado para verificar a interação entre as diferentes
 partes da base de código em vez de testar que cada parte funciona de forma independente.</p>
 
-<p>As duas ferramentas são usadas para o BDD são (RSpec)[http://rspec.info/] e (Cucumber)[http://cukes.info/].</p>
+<p>As duas ferramentas são usadas para o BDD são (RSpec)[<a href="http://rspec.info/">http://rspec.info/</a>] e (Cucumber)[<a href="http://cukes.info/">http://cukes.info/</a>].</p>
 
 <h2>Test-Driven Development</h2>
 
-<p>Uma resposta enigmática mas verdadeira para a pergunta &#8220;Por que eu deveria testar?&#8221; é &#8220;porque você é humano.&#8221;. Os seres
+<p>Uma resposta enigmática mas verdadeira para a pergunta &ldquo;Por que eu deveria testar?&rdquo; é &ldquo;porque você é humano.&rdquo;. Os seres
 humanos - a grande maioria deste livro - comete erros. É uma de nossas favoritas maneiras de aprender. Porque os
 seres-humanos cometem erros, ter uma ferramenta para informar quando eles fazem um erro é útil, não é? Teste automatizado
 fornece uma rápida segurança para informar aos desenvolvedores quando eles cometem erros. Por eles, é claro, queremos dizer
@@ -1436,7 +1433,7 @@ repensar o teste e desfazer sua implementação.</p>
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&hellip;</p>
 
 <h4>Exemplos de Threads</h4>
 
@@ -1449,7 +1446,7 @@ exemplos reais de vários códigos de <code>threads</code>.</p>
 mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
 define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
 com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
-destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&#8217;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
+destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&rsquo;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
 <code>Kernel.open</code> e ler como se fossem arquivos:</p>
 
 <figure class='code'><figcaption><span>Lendo arquivos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1629,7 +1626,7 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -1666,7 +1663,7 @@ executada. Outros programadores não são preempção: uma vez que uma <code>th
 que durma, blocos para I/O, ou uma <code>thread</code> de maior prioridade acorda.</p>
 
 <p>Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
-não preemptivo, ela vai &#8220;morrer de fome&#8221; as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
+não preemptivo, ela vai &ldquo;morrer de fome&rdquo; as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
 Para evitar esse problema, de longa duração <code>compute-bound</code> <code>threads</code> devem chamar periodicamente <code>Thread.pass</code> para pedir o
 programador para produzir a CPU para outra <code>thread</code>.</p>
 
@@ -1686,7 +1683,7 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -1835,11 +1832,11 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
-<p>Programas tradicionais têm uma única &#8220;thread de execução&#8221;: as declarações ou instruções que compõem o programa são executadas
+<p>Programas tradicionais têm uma única &ldquo;thread de execução&rdquo;: as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
 thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
 CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
@@ -1967,7 +1964,7 @@ exemplo, através do mesmo nome:</p>
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>&#8230;</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
 
 
@@ -1996,7 +1993,7 @@ utilizando <code>alias_method</code>, <code>define_method</code> e <code>class_e
 
 
 <p>O <code>Exemplo 1-1</code> é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
-ele imprime um relatório. Você pode usar este código para &#8220;instrumento&#8221; de um existente programa para que você entenda melhor o que está fazendo. Uma
+ele imprime um relatório. Você pode usar este código para &ldquo;instrumento&rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
 maneira de usar este código é inserir esta linha no começo do programa:</p>
 
 <figure class='code'><figcaption><span>classtrace</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2490,7 +2487,7 @@ objeto.</p>
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -2711,7 +2708,7 @@ significa que os métodos resultantes usam variáveis de instância de classe em
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3020,7 +3017,7 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>É isso ai amigos&#8230; :)</p>
+<p>É isso ai amigos&hellip; :)</p>
 
 <p>Até o proximo! :D</p>
 ]]></content>
@@ -3039,7 +3036,7 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3056,7 +3053,7 @@ segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência
 
 <p>O exemplo 1-1 define métodos globais nomeados após os dias. Cada um leva um argumento numérico que representa um número de segundos e devem ter um
 bloco associado. Depois cria um novo segmento e retorna o objeto <code>Thread</code> imediatamente. O segmento recém-criado dorme para o número especificado de
-segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &#8220;dorme&#8221; o número
+segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &ldquo;dorme&rdquo; o número
 especificado de segundos entre chamadas. O segundo argumento para todos é um valor para passar para a primeira chamada do bloco. O valor de retorno de
 cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer
 invocações futuras.</p>
@@ -3175,7 +3172,7 @@ invocar o bloco. A parte complicada é que o objeto de Ruby, ao contrário de ob
 1-2 também define um método de instância chamado <code>mutex</code> em Object. Curiosamente, a implementação deste método <code>mutex</code> usa <code>synchoronized</code> na sua forma
 de palavras-chave novo estilo!</p>
 
-<p><code>Mutex</code> -> <a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html">http://www.ruby-doc.org/core-1.9.2/Mutex.html</a></p>
+<p><code>Mutex</code> -> <a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html"><a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html">http://www.ruby-doc.org/core-1.9.2/Mutex.html</a></a></p>
 
 <figure class='code'><figcaption><span>Exemplo 1-2. Simples blocos sincronizados</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3279,7 +3276,7 @@ de palavras-chave novo estilo!</p>
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3310,10 +3307,10 @@ objeto. Use <code>ObjectSpace.undefine_finalizer</code> para excluir todos os bl
 collected</code> também está disponível através do módulo <code>GC</code>. <code>GC.start</code> é sinônimo de <code>ObjectSpace.garbage_collect</code>. <code>garbage collected</code> pode ser
 desativado temporariamente com <code>GC.disable</code>, e ele pode ser ativado novamente com <code>GC.enable</code>.</p>
 
-<p>A combinação do <code>_id2ref</code> e métodos <code>define_finalizer</code> permite a definição de &#8220;fracos&#8221; objetos de referência, que possuem uma referência a um valor sem
+<p>A combinação do <code>_id2ref</code> e métodos <code>define_finalizer</code> permite a definição de &ldquo;fracos&rdquo; objetos de referência, que possuem uma referência a um valor sem
 impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte a classe <code>weakref</code> na biblioteca padrão (em lib/weakref.rb) para um exemplo.</p>
 
-<p>Até o proximo post amigos&#8230;</p>
+<p>Até o proximo post amigos&hellip;</p>
 
 <p>Conhecimento nunca é d+ ! :)</p>
 ]]></content>
@@ -3332,7 +3329,7 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3415,7 +3412,7 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
 <p>O último método de rastreamento é <code>Kernel.set_trace_func</code>, que registra um <code>Proc</code> a ser chamado após cada linha de um programa Ruby. <code>set_trace_func</code>
 é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.</p>
 
-<p>Até a proxima amigos&#8230; =D</p>
+<p>Até a proxima amigos&hellip; =D</p>
 ]]></content>
     
   </entry>
@@ -3432,7 +3429,7 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Metodos de Visibilidade: Public, Protected, Private</b>&#8230;</p>
+<b>Metodos de Visibilidade: Public, Protected, Private</b>...</p>
 
 
 
@@ -3445,7 +3442,7 @@ familiarizado com esses termos. Preste atenção de qualquer maneira, porque est
 outras Linguagens.</p>
 
 <p>Métodos são normalmente <code>public</code> a menos que explicitamente declarado ser <code>private</code> ou <code>protected</code>. Uma exceção é o método <code>initialize</code>, que é sempre
-implicitamente privada. Outra exceção é qualquer método &#8220;global&#8221; declarado fora de uma definição de classe desses métodos são definidos como métodos
+implicitamente privada. Outra exceção é qualquer método &ldquo;global&rdquo; declarado fora de uma definição de classe desses métodos são definidos como métodos
 privados de instância de objeto. Um método <code>public</code> pode ser chamado em qualquer lugar, não há restrições sobre seu uso.</p>
 
 <p>Um método <code>private</code> é uma implementação interna de uma classe, e que só pode ser chamada por métodos de outra instância da classe (ou, como veremos
@@ -3563,7 +3560,7 @@ um bloco no contexto do objeto:</p>
 (no Ruby 1.9) usar <code>public_send</code> em vez de <code>send</code>. Ele funciona como <code>send</code>, mas não invoca métodos <code>private</code> quando chamado com um receptor
 específico.</p>
 
-<p>É isso ai amigos&#8230;</p>
+<p>É isso ai amigos&hellip;</p>
 
 <p>Até o proximo.. =D</p>
 ]]></content>

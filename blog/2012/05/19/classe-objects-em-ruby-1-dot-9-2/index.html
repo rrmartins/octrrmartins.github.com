@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-05-19T10:23:00-03:00" pubdate data-updated="true">19/05/12 às 10:23 hrs</time>
+<time datetime="2012-05-19T10:23:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -140,7 +131,7 @@ em Ruby. Teremos algumas partes para falar desta classe tão poderosa, mas é mu
 
 <p>Quando trabalhamos com objetos em Ruby, realmente estamos trabalhando com referências a objetos. Não é o
 próprio objeto que manipula, mas uma referência a ele<a href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/#referencia">[*]</a>.
-Quando atribuir um valor a uma variável, não estamos copiando um objeto &#8220;em&#8221; variável que, nós
+Quando atribuir um valor a uma variável, não estamos copiando um objeto &ldquo;em&rdquo; variável que, nós
 São apenas armazenar uma referência a um objeto para essa variável. Alguns
 código deixa isso claro:</p>
 
@@ -174,7 +165,7 @@ são, então, visível quando o método retorna.</p>
 
 
 <p>Nós dissemos que todos os valores em Ruby são objetos e todos os objetos
-são manipulados por referência. Na implementação de referência, no entanto objetos Fixnum e Symbol são realmente &#8220;valores imediatos&#8221;,
+são manipulados por referência. Na implementação de referência, no entanto objetos Fixnum e Symbol são realmente &ldquo;valores imediatos&rdquo;,
 em vez de referências. Nenhuma destas duas classes tem métodos diferenciados, de modo que os
 Objetos Fixnum e símbolo são imutáveis, o que significa que não há realmente nenhuma maneira de dizer que eles são manipulados por
 valor, e não pela existência de valores de referencia.</p>
@@ -196,11 +187,11 @@ e isso é feito na maioria das vezes com um método chamado de new:</p>
 
 
 <p>new é um método do Classe Class. Atribui na memória para manter o objeto new, então ele inicializa o estado do
-recém alocados objetos &#8220;vazio&#8221;, invocando seu método initialize. Os argumentos para new são passadas diretamente para inicializar.
+recém alocados objetos &ldquo;vazio&rdquo;, invocando seu método initialize. Os argumentos para new são passadas diretamente para inicializar.
 A maioria das classes definem um método initialize para executar qualquer inicialização, sendo necessário para instâncias.</p>
 
 <p>Os métodos new e initialize fornecer o padrão técnico para a criação de novas classes, mas classes também podem definir outros
-métodos, conhecidos como &#8220;métodos de fábrica&#8221;, que retornam instâncias.</p>
+métodos, conhecidos como &ldquo;métodos de fábrica&rdquo;, que retornam instâncias.</p>
 
 <p>Objetos Ruby não precisa ser desalocada explicitamente, como o fazem as linguagens C, C++, entre outras. Ruby usa uma técnica chamada
 <a href="http://www.rubyinside.com.br/como-o-ruby-gerencia-memoria-e-faz-garbage-collection-3018">garbage collection</a> (coleta de lixo) automaticamente, para destruir objetos que não são mais necessários. Um objeto se torna um candidato para o garbage collection quando é
@@ -214,16 +205,14 @@ falhas de memória. Considere um hash usado como um cache. Se o cache não é po
 menos utilizado recentemente, os objetos em cache permanecem acessíveis enquanto o hash em si é alcançável. Se o hash
 é referenciado por uma variável global, então será acessível como desde que o interpretador Ruby está sendo executado.</p>
 
-<p><a href="referencia"></a></p>
+<p><a href="referencia"></a>
+    [*] -> Se você está familiarizado com C ou C++, você pode pensar de uma
+    referência como um ponteiro: o endereço do objeto na memória. Ruby
+    não utiliza ponteiros, no entanto. Referências em Ruby são opacas e
+    internas para a implementação. Não há maneira de tirar o
+    tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmético.</p>
 
-<pre><code>[*] -&gt; Se você está familiarizado com C ou C++, você pode pensar de uma
-referência como um ponteiro: o endereço do objeto na memória. Ruby
-não utiliza ponteiros, no entanto. Referências em Ruby são opacas e
-internas para a implementação. Não há maneira de tirar o
-tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmético.
-</code></pre>
-
-<p>Um pouco de conceito de Objetos, logo teremos mais na pratica&#8230;</p>
+<p>Um pouco de conceito de Objetos, logo teremos mais na pratica&hellip;</p>
 
 <p>Até a proxima</p>
 </div>
@@ -248,12 +237,12 @@ tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmétic
   
 
 
-<time datetime="2012-05-19T10:23:00-03:00" pubdate data-updated="true">19/05/12 às 10:23 hrs</time>
+<time datetime="2012-05-19T10:23:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/object/'>object</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
   
 </span>
 
@@ -261,8 +250,6 @@ tratamento de um valor não referenciado, um valor, ou fazer ponteiro aritmétic
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

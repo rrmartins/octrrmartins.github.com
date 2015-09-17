@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true">11/06/12 às 19:36 hrs</time>
+<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -223,7 +214,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>No Ruby 1.8, um splat só pode aparecer antes do último <code>rvalue</code> em uma atribuição. No Ruby 1.9, a lista de <code>rvalues</code> ​​em uma atribuição paralela pode ter qualquer número de <code>splats</code>, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um &#8220;splat double&#8221; em uma lista aninhada:</p>
+<p>No Ruby 1.8, um splat só pode aparecer antes do último <code>rvalue</code> em uma atribuição. No Ruby 1.9, a lista de <code>rvalues</code> ​​em uma atribuição paralela pode ter qualquer número de <code>splats</code>, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um &ldquo;splat double&rdquo; em uma lista aninhada:</p>
 
 <figure class='code'><figcaption><span>Erro de Atribuição</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="o">**[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">]]</span>   <span class="c1"># SyntaxError!</span>
@@ -268,7 +259,7 @@
 <h5>Parênteses na atribuição paralelo</h5>
 
 
-<p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para &#8220;sub atrobuição&#8221;. Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
+<p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para &ldquo;sub atrobuição&rdquo;. Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
 
 <figure class='code'><figcaption><span>Atribuição</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
@@ -286,7 +277,7 @@
 
 <p>Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto <code>splattable</code> como um <code>array</code> ou <code>enumerador</code>.</p>
 
-<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a &#8220;desembrulhar&#8221; um nível de <code>array</code> alinhado à direita:</p>
+<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a &ldquo;desembrulhar&rdquo; um nível de <code>array</code> alinhado à direita:</p>
 
 <figure class='code'><figcaption><span>Atribuição</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -326,12 +317,12 @@
   
 
 
-<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true">11/06/12 às 19:36 hrs</time>
+<time datetime="2012-06-11T19:36:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/enumerable/'>enumerable</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>, <a class='category' href='/blog/categories/variable/'>variable</a>
   
 </span>
 
@@ -339,8 +330,6 @@
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

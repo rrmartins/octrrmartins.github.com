@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Matz | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: matz | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/matz/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T18:58:36-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -145,60 +145,60 @@ autorização para colocar aqui para vocês...</p>
 
 
 
-<p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: "Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. " Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p>
+<p><p><b>Bill Venners</b>: Em um artigo introdutório sobre <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, você escreveu: &ldquo;Para mim, o propósito da vida é, em parte, para ter alegria de programadores, que muitas vezes se sentem alegres quando eles podem se concentrar no lado criativo da programação, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, então, é projetado para fazer programadores felizes.. &rdquo; Como pode o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> fazer programadores felizes?<p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Você quer curtir a vida, não é? Se você começa o seu trabalho feito rapidamente e seu trabalho é divertido, isso é bom não é? Esse é o propósito da vida, em parte. Sua vida é melhor.</p></p>
 
-<p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, "Olá, mundo de impressão." Eu só quero dizer, "imprimir isto!" Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p>
+<p><p>Eu quero resolver os problemas que encontro no cotidiano usando computadores, então preciso escrever programas. Usando <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, quero me concentrar nas coisas que faço, e não as regras mágicas da linguagem, como começo com algum público vazio, tenho algo a dizer, &ldquo;Olá, mundo de impressão.&rdquo; Eu só quero dizer, &ldquo;imprimir isto!&rdquo; Eu não quero todas as palavras mágicas circundantes. Eu só quero concentrar-se na tarefa. Essa é a idéia básica. Então eu tentei fazer o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> conciso e com código suscinto.</p></p>
 
-<p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p>
+<p><p><b>Bill Venners</b>: permitir que os programadores escrevem códigos que é conciso e suscinto é uma maneira de fazê-los felizes.</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Sim, para que eles possam se concentrar no problema em si. Às vezes as pessoas anotam pseudo-código no papel. Se esse pseudo-código é executado diretamente em seus computadores, é melhor, não é? <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tenta ser assim, como o pseudo-código que é executado. As pessoas dizem que <a href="http://www.python.org/">Python</a> também.</p></p>
 
-<p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p>
+<p><p><b>Bill Venners</b>: Sim, as pessoas dizem que Pytho é pseudo-código executável. O que mais está em <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para fazer programadores felizes?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Em nossas vidas diárias como programadores, processamos cadeias de texto muito grandes. Então, eu tentei trabalhar duro em processamento de texto, ou seja, a Classe <a href="http://ruby-doc.org/core-1.9.3/String.html">String</a> e <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a>. As <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Expressões Regulares</a> são incorporadas na linguagem e são muito boas para uso. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> pode chamar todas as chamadas de sistema em <a href="http://pt.wikipedia.org/wiki/Unix">Unix</a> e mais da API do Windows. Isto traz o poder e função do sistema operacional para o ambiente da linguagem interpretativa. Assim você pode fazer administração de sistemas e programação diária de processamento de texto. Esse é o maior domínio de, pelo menos, a minha vida, então eu trabalhei duro para fazer isso bom.</p></p>
 
-<p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p>
+<p><p><b>Bill Venners</b>: Então, basicamente, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> me ajuda a gozar a minha vida, me ajudando a fazer meu trabalho mais rapidamente e com mais diversão?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Ele me ajuda a fazer isso. Eu não tenho certeza se <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> funciona para você, mas eu espero que sim.</p></p>
 
-<h6>O Fator Humano</h6>
+<p><h6>O Fator Humano</h6></p>
 
-<p><b>Bill Venners</b>: Em uma entrevista, você disse, " Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana." O que você quer dizer com isso?</p>
+<p><p><b>Bill Venners</b>: Em uma entrevista, você disse, &ldquo; Não subestime o fator humano, ainda penso que nós estamos na frente de computadores, eles são meios que estamos trabalhando para consumo humano, com humana.&rdquo; O que você quer dizer com isso?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Imagine que você está escrevendo um e-mail. Está em frente do computador. Você está operando o computador, clica em um mouse e digita em um teclado, mas a mensagem será enviada a um ser humano através da internet. Então você está trabalhando antes do computador, mas com um ser humano por trás do computador. A maioria das tarefas que fazemos são para seres humanos. Por exemplo, um cálculo do imposto é contar números para que o governo possa tirar dinheiro da minha carteira, mas o governo é composto por seres humanos.</p></p>
 
-<p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p>
+<p><p>A maioria das nossas tarefas estão relacionadas com os seres humanos, afinal. Assim, na programação, ou pedimos ao computador para trabalhar para um ser humano, ou descrevemos nossos pensamentos para um computador de uma maneira muito clara de que até mesmo o computador possa executar. No primeiro caso, tornando o trabalho do computador para os seres humanos, o alvo é um ser humano através do computador. No segundo caso, a expressão dos nossos pensamentos claramente suficiente para ser entendido e executado por computadores, expressa a intenção de nossos cérebros humanos e, como resultado, é executada pelos computadores. Assim, em ambos os casos, o objeto aqui é humano.</p></p>
 
-<p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: "Não subestime o fator humano." Por quê?</p>
+<p><p><b>Bill Venners</b>: O que é importante pensar dessa forma? Você diz: &ldquo;Não subestime o fator humano.&rdquo; Por quê?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: "Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo." Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Porque computadores não se importaria se eu devo fazer o esforço para se comunicar com eles ou se é fácil de se comunicar com eles. Eles não se importam se eu colocar o número de sequências de instruções de bytes em um arquivo e alimentá-lo com eles para correr, ou se uma linguagem de alto nível geradas as instruções. Com os computadores não me importo. Nós, seres humanos se preocupam com o esforço que nós pagamos. Muitas vezes as pessoas, especialmente engenheiros de computação, tem o foco sobre as máquinas. Eles pensam: &ldquo;Ao fazer isso, a máquina irá correr mais rápido. Ao fazer isso, a máquina vai funcionar mais eficazmente. Ao fazer isso, a máquina algo algo algo.&rdquo; Eles estão se concentrando em máquinas. Mas, na verdade temos de nos concentrar em seres humanos, sobre como os seres humanos se preocupam com fazer a programação e operação da aplicação das máquinas. Nós somos os mestres. Eles são os escravos.</p></p>
 
-<p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p>
+<p><p><b>Bill Venners</b>: Por enquanto, de qualquer maneira.</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Por enquanto de qualquer forma, até a idade terminar.</p></p>
 
-<h6>Princípio da menor surpresa</h6>
+<p><h6>Princípio da menor surpresa</h6></p>
 
-<p><b>Bill Venners</b>: Em uma entrevista, você disse "Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. "Por que o princípio da menor surpresa?</p>
+<p><p><b>Bill Venners</b>: Em uma entrevista, você disse &ldquo;Eu projetei <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> para minimizar minha surpresa, eu estava muito surpreso quando as pessoas ao redor do mundo me disse que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>Ruby reduziram a sua surpresa e reforçou a sua alegria de programar. Agora eu tenho certeza de que as mentes dos programadores.. são iguais em todo o mundo. "Por que o princípio da menor surpresa?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Na verdade, eu não fiz a alegação de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue o princípio da menor surpresa. Alguém sentiu a concepção de que <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> segue a filosofia, então eles começaram a dizer isso. Eu não trouxe o que, na verdade.</p></p>
 
-<p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p>
+<p><p>Eu queria minimizar minha frustração durante a programação, assim que eu quero minimizar meu esforço na programação. Esse era o meu objetivo principal no projeto <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Quero divertir-me na programação. Depois de libertar as pessoas de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> e muitos ao redor do mundo que conheci <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, eles disseram que sentem o que sinto. Eles vieram para cima com a frase do princípio da menor surpresa. Mas, na verdade, é muitas vezes incompreendido.</p></p>
 
-<p><b>Bill Venners</b>: Como é mal compreendido?</p>
+<p><p><b>Bill Venners</b>: Como é mal compreendido?</p></p>
 
-<p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: "Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa". Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p>
+<p><p><b>Yukihiro Matsumoto</b>: Todo mundo tem um fundo individual. Alguém pode vir de <a href="http://www.python.org/">Python</a>, alguém pode vir de <a href="http://www.perl.org.br/Main/WebHome">Perl</a>, e podem ser surpreendido por diferentes aspectos da linguagem. Em seguida, eles vêm até mim e dizer: &ldquo;Fiquei surpreso com esse recurso da língua, assim, portanto, o <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> viola o princípio da menor surpresa&rdquo;. Espere. Espere. O princípio da menor surpresa não é apenas para você. O princípio da menor surpresa significa princípio, pelo menos da minha surpresa. E isso significa que o princípio da menor surpresa depois que você aprender <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> muito bem. Por exemplo, eu era um programador <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> antes de começar a projetar <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. Eu programei em <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a> exclusivamente dois ou três anos. E depois de dois anos de programação <a href="http://pt.wikipedia.org/wiki/C%2B%2B">C++</a>, ele ainda me surpreendeu.</p></p>
 
-<p>Fonte: <a href="http://www.artima.com">Artima</a></p>
+<p><p>Fonte: <a href="http://www.artima.com">Artima</a></p></p>
 
-------
-<p>
-É isso ai amigos.. uma boa entrevista!
+<hr />
 
-Até a proxima! =D</p>
+<p><p>
+É isso ai amigos.. uma boa entrevista!</p>
 
+<p>Até a proxima! =D</p></p>
 ]]></content>
   </entry>
   

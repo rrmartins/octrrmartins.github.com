@@ -4,7 +4,7 @@
   <title><![CDATA[Category: else | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/else/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T18:58:36-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -31,12 +31,11 @@
 
 <p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
 
-<p><code>ruby Programa Simples
-x = ARGV[0].to_f # Converter primeiro argumento para um número
+<pre><code class="ruby Programa Simples">x = ARGV[0].to_f # Converter primeiro argumento para um número
 y = ARGV[1].to_f # Converter segundo argumento para um número
 soma = x + y # Adicione os argumentos
 puts soma # Imprimir a soma
-</code></p>
+</code></pre>
 
 <p>Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
 particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
@@ -62,33 +61,28 @@ você pode escolher o que parece mais elegante para a tarefa.</p>
 
 <p>Ele é a mais simples das condicionais. Em sua forma mais simples, parece que isso:</p>
 
-<p><code>ruby Condicional IF
-if expression
+<pre><code class="ruby Condicional IF">if expression
   code
 end
-</code></p>
+</code></pre>
 
 <p>O código entre <code>if</code> e <code>end</code>é executado se (e somente se) o <code>expression</code> é avaliada como algo diferente que <code>falso</code> ou
 <code>nulo</code>. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
 seguida. Aqui estão duas maneiras de escrever a mesma condicional <code>if</code> de forma simples:</p>
 
-<p>```ruby Condicional IF</p>
-
-<h1>Se x é menor que 10, incrementá-lo</h1>
-
-<p>if x &lt; 10 # nova linha de separação
+<pre><code class="ruby Condicional IF"># Se x é menor que 10, incrementá-lo
+if x &lt; 10 # nova linha de separação
   x + = 1
 end
 if x &lt; 10 then x += 1 end # the separato
-```</p>
+</code></pre>
 
 <p>Você também pode usar <code>then</code> como o símbolo de separação, e segui-lo com uma nova linha. Isso torna o seu código robusto.</p>
 
-<p><code>ruby Condicional IF
-if x &lt; 10 then
+<pre><code class="ruby Condicional IF">if x &lt; 10 then
   x + = 1
 end
-</code></p>
+</code></pre>
 
 <p>Os programadores que estão acostumados a C, ou linguagens cuja sintaxe é derivada de C, deve observar duas coisas
 importantes sobre if no Ruby:</p>
@@ -107,13 +101,12 @@ A forma modificador do <code>if</code>, descrito abaixo, fornece uma maneira pa
 <p>Uma declaração <code>if</code> pode incluir uma cláusula <code>else</code> para especificar o código para ser executado se a condição não é
 <code>true</code>:</p>
 
-<p><code>ruby Condicional else
-if expression
+<pre><code class="ruby Condicional else">if expression
   code
 else
   code
 end
-</code></p>
+</code></pre>
 
 <p>O código entre <code>if</code> e <code>else</code> é executado se <code>expression</code> é avaliada como qualquer outra coisa que <code>false</code> ou <code>nil</code>. Caso
 contrário (se expression é <code>false</code> ou <code>nil</code>), o código entre o <code>else</code> e o <code>end</code> é executado. Como na forma simples
@@ -122,13 +115,12 @@ delimitadores adicionais são exigido.</p>
 
 <p>Aqui é um exemplo de um condicional que inclui uma cláusula <code>else</code>:</p>
 
-<p><code>ruby Condicional if - else
-if dados # Se o array existe
+<pre><code class="ruby Condicional if - else">if dados # Se o array existe
   dados &lt;&lt; x # em seguida, acrescentar um valor a ela.
 else # Caso contrário ...
   data = [x] # criar uma nova matriz que contém o valor.
 end # Este é o fim do condicional
-</code></p>
+</code></pre>
 
 <h5>elsif</h5>
 
@@ -136,8 +128,7 @@ end # Este é o fim do condicional
 <p>Se você quiser testar mais de uma condição dentro de uma condicional, você pode adicionar um ou mais cláusulas <code>elsif</code>
 entre um <code>if</code> e um <code>else</code>. <code>elsif</code> é uma forma abreviada de <code>else if</code>. Note que há apenas um <code>else</code> em <code>elsif</code>. A condicional <code>elsif</code> usando parecido com este:</p>
 
-<p><code>ruby Expressão elsif
-if expression1
+<pre><code class="ruby Expressão elsif">if expression1
   code1
 elsif expression2
   code2
@@ -149,7 +140,7 @@ elsif expressionN
 else
   code
 end
-</code></p>
+</code></pre>
 
 <p>Se <code>expression1</code> for avaliado não sendo <code>false</code> ou <code>nil</code>, então <code>code1</code> é executado. Caso contrário, <code>expression2</code> é
 avaliada. Se for outra coisa senão <code>false</code> ou <code>nil</code>, então code2 é executado. Este processo continua até que uma expressão
@@ -161,8 +152,7 @@ executado.</p>
 <p><code>elsif</code> é como se: a expressão deve ser separada do código por uma nova linha, uma vírgula ou uma palavra-chave, em seguida
 . Aqui é um exemplo de uma multi condicional usando <code>elsif</code>:</p>
 
-<p><code>ruby Condicional elsif
-if x == 1
+<pre><code class="ruby Condicional elsif">if x == 1
   name = "um"
 elsif x == 2
   name = "dois"
@@ -171,26 +161,25 @@ elsif x == 4; name = "quatro"
 else
   name = "muitos"
 end
-</code></p>
+</code></pre>
 
 <h5>Valor de retorno</h5>
 
 
 <p>Na maioria das linguagens, a condicional <code>if</code> é uma afirmação. Em Ruby, no entanto, tudo é uma expressão, mesmo as
-estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma "declaração" <code>if</code>, é o valor da
+estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma &ldquo;declaração&rdquo; <code>if</code>, é o valor da
 última expressão no código que foi executado, ou <code>nil</code> se nenhum bloco de código foi executado.</p>
 
 <p>O fato de que, as declarações <code>if</code> devolvem um valor significa que, por exemplo, a muilti condicional mostrado
 anteriormente pode ser elegantemente reescrito como este abaixo:</p>
 
-<p><code>ruby Valor de Retorno
-name = if x == 1 then "um"
+<pre><code class="ruby Valor de Retorno">name = if x == 1 then "um"
        elsif x == 2 then "dois"
        elsif x == 3 then "três"
        elsif x == 4 then "quatro"
        else "muitos"
        end
-</code></p>
+</code></pre>
 
 <p>É isso aí amigos..</p>
 
