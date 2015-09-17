@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+  <updated>2015-09-17T15:27:22-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -551,7 +551,7 @@ hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
 k, v = [value, key]
 </code></p>
 
-<p>Pelas regras de atribuição paralela (ver <a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
+<p>Pelas regras de atribuição paralela (ver <a href="{{ root_url }}/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
 
 <p>Bloco de invocação não funciona exatamente como atribuição paralela. Imagine um iterador que passa dois valores ao seu bloco.
 Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
