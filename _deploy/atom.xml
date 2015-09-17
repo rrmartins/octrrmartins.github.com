@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+  <updated>2015-09-17T15:26:47-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -14,29 +14,25 @@
 
   
   <entry>
+    
     <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
     <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    
     <updated>2014-12-10T14:00:00-02:00</updated>
     <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
-    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+    
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês.
+Que achei muito massa ser repassado!</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Se dois homens vêm andando por uma estrada,
-</span><span class='line'>  cada um com um pão, e, ao se encontrarem,
-</span><span class='line'>  trocarem os pães, cada um vai embora com um pão.
-</span><span class='line'>
-</span><span class='line'>Se dois homens vêm andando por uma estrada,
-</span><span class='line'>  cada um com uma idéia, e, ao se encontrarem,
-</span><span class='line'>  trocarem as idéias,
-</span><span class='line'>  cada um vai embora com duas idéias.</span></code></pre></td></tr></table></div></figure>
+<pre><code>Se dois homens vêm andando por uma estrada,
+cada um com um pão, e, ao se encontrarem,
+trocarem os pães, cada um vai embora com um pão.
 
+Se dois homens vêm andando por uma estrada,
+cada um com uma idéia, e, ao se encontrarem,
+trocarem as idéias,
+cada um vai embora com duas idéias.
+</code></pre>
 
 <p>Sempre crescemos com algo ao partilhar algo de bom.</p>
 
@@ -44,13 +40,17 @@
 
 <p>Paz e Bem</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
     <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    
     <updated>2014-05-18T18:44:00-03:00</updated>
     <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    
     <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
 
 <p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
@@ -104,13 +104,17 @@ Embora Chicago chefe não posso te dizer como adquirir os usuários , o resto de
 manual irá mostrar-lhe tudo o que você precisa fazer para lidar com os seus pedidos
 e (com sorte) cumprir seus desejos.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Tenho Sede]]></title>
     <link href="http://rrmartins.com/blog/2014/02/26/tenho-sede/"/>
+    
     <updated>2014-02-26T20:45:00-03:00</updated>
     <id>http://rrmartins.com/blog/2014/02/26/tenho-sede</id>
+    
     <content type="html"><![CDATA[<p>Tenho Sede</p>
 
 <!--more-->
@@ -157,13 +161,17 @@ Rodrigo Martins
 </p>
 
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Não é bem uma String]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    
     <updated>2013-04-28T18:35:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -198,13 +206,17 @@ esta é a forma rápida e confiável.</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[As duas faces de String]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    
     <updated>2013-04-28T16:30:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -237,13 +249,17 @@ do que digitar <code>'all'</code>, não há realmente muito a distinguir um sím
 
 <p>Até mais galera! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    
     <updated>2013-04-28T13:52:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -360,13 +376,17 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>Até mais&#8230; :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
     <link href="http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    
     <updated>2013-02-26T22:54:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1085,13 +1105,17 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>:D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
     <link href="http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    
     <updated>2012-12-02T09:37:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1330,13 +1354,17 @@ postar um comentário abaixo!</p>
 
 <hr />
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
     <link href="http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+    
     <updated>2012-11-04T09:30:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1394,13 +1422,17 @@ repensar o teste e desfazer sua implementação.</p>
 
 <p>Até mais amigos!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+    
     <updated>2012-11-04T09:20:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1583,13 +1615,17 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
 
 <p>Até o proximo amigos!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T15:04:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1636,13 +1672,17 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
 
 <p>Até a proxima amigos! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T14:53:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1781,13 +1821,17 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
 
 <p>Até a proxima galera! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T14:26:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1908,13 +1952,17 @@ exemplo, através do mesmo nome:</p>
 
 <p>É isso ai amigos.. até a proxima!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-18T08:38:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2427,13 +2475,17 @@ objeto.</p>
 
 <p>É isso ai galera! Até a proxima!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Criando Métodos Dinamicamente - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-15T20:38:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2644,13 +2696,17 @@ significa que os métodos resultantes usam variáveis de instância de classe em
 
 <p>É isso ai amigos, até o proximo post!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Missing Methods e Missing Constants - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-15T12:46:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -2968,13 +3024,17 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
 
 <p>Até o proximo! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Estruturas de Controle Personalizados - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-13T22:50:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3204,13 +3264,17 @@ de palavras-chave novo estilo!</p>
 
 <p>É isso ai amigos, até o proximo! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Reflexão e Metaprogramação - ObjectSpace e GC - #Ruby 1.9 - Part VII]]></title>
     <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
+    
     <updated>2012-09-10T23:26:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3253,13 +3317,17 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
 
 <p>Conhecimento nunca é d+ ! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
     <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
+    
     <updated>2012-09-10T22:50:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3349,13 +3417,17 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
 
 <p>Até a proxima amigos&#8230; =D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
+    
     <updated>2012-09-09T19:31:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -3495,6 +3567,7 @@ específico.</p>
 
 <p>Até o proximo.. =D</p>
 ]]></content>
+    
   </entry>
   
 </feed>

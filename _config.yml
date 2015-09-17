@@ -4,7 +4,7 @@
 
 url: http://rrmartins.com
 title: Rodrigo Martins
-subtitle:
+subtitle: "I'm a software developer. Passionate about life, codes, questions, theories and theorems. :)"
 author: Rodrigo Martins
 dev: Developer
 company: ""
@@ -123,3 +123,7 @@ navigation:
 - text: Palestras
   url: /who-am/index.html
 # [formidable id=4]
+
+mnml_mailto: rodrigo@rrmartins.com
+mnml_host_name: GitHub Pages
+mnml_host_url: http://github.com

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Literal | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/literal/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+  <updated>2015-09-17T15:27:22-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -25,7 +25,7 @@
 
 
 <p>Na primeira parte eu fiz uma introdução do Hash:
--> <a href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
+-> <a href="{{root_url}}/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/">O Mundo Hash no Ruby 1.9.2 - Parte I</a></p>
 
 <p>Vamos lá!</p>
 
