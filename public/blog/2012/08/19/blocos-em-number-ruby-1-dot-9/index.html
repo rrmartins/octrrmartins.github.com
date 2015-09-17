@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples &hellip;">
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples! &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-08-19T14:02:00-03:00" pubdate data-updated="true">19/08/12 às 14:02 hrs</time>
+<time datetime="2012-08-19T14:02:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -115,7 +106,7 @@
 <div class="entry-content"><!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Blocks`... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -127,7 +118,7 @@
 
 <ul>
 <li>A sintaxe para associar um bloco com uma invocação de método</li>
-<li>O &#8220;valor de retorno&#8221; de um bloco</li>
+<li>O &ldquo;valor de retorno&rdquo; de um bloco</li>
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
@@ -198,10 +189,10 @@ ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
 <p>Considerando o método <code>Array.sort</code>. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
 elementos para o bloco, e é o trabalho do bloco para classificá-los.</p>
 
-<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &#8220;valor de retorno&#8221; do bloco está disponível
+<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &ldquo;valor de retorno&rdquo; do bloco está disponível
 com o método <code>iterator</code> como o valor da declaração <code>yield</code>.</p>
 
-<p>O &#8220;valor de retorno&#8221; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
+<p>O &ldquo;valor de retorno&rdquo; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
 
 <figure class='code'><figcaption><span>Metodo sort</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -210,7 +201,7 @@ com o método <code>iterator</code> como o valor da declaração <code>yield</co
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Nós estamos colocando a expressão &#8220;valor de retorno&#8221; entre aspas por uma razão muito importante: você não deve usar normalmente
+<p>Nós estamos colocando a expressão &ldquo;valor de retorno&rdquo; entre aspas por uma razão muito importante: você não deve usar normalmente
 a palavra-chave <code>return</code> para retornar um bloco. Um <code>return</code> dentro de um bloco faz com que o método que o contém (não o método
 iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
 bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o <code>return</code> se você quer apenas
@@ -405,16 +396,14 @@ gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâ
 queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
 explicitamente que estamos prefixando o parâmetro com um <code>*</code>, exatamente como faríamos em uma declaração de método. Observe
 também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
-vírgula, como se dissesse:</p>
-
-<pre><code>"Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele."
-</code></pre>
+vírgula, como se dissesse:
+    &ldquo;Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele.&rdquo;</p>
 
 <p>Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
 também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
 aviso, vai também gerar um erro.</p>
 
-<p>A declaração do <code>yield</code> permite que <code>hashes</code> &#8220;nus&#8221; como o valor do último argumento, assim como invocações de métodos. Isto é,
+<p>A declaração do <code>yield</code> permite que <code>hashes</code> &ldquo;nus&rdquo; como o valor do último argumento, assim como invocações de métodos. Isto é,
 se o último argumento para produzir é um literal de <code>hash</code>, você pode omitir as chaves. Porque não é comum para iteradores para
 produzir <code>hashes</code>, temos que maquinar um exemplo para demonstrar isto:</p>
 
@@ -482,12 +471,12 @@ invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> p
   
 
 
-<time datetime="2012-08-19T14:02:00-03:00" pubdate data-updated="true">19/08/12 às 14:02 hrs</time>
+<time datetime="2012-08-19T14:02:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/each/'>each</a>
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/each/'>each</a>, <a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/integer/'>integer</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>ruby api</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
   
 </span>
 
@@ -495,8 +484,6 @@ invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> p
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

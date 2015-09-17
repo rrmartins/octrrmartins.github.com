@@ -4,7 +4,7 @@
   <title><![CDATA[Category: each | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/each/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -39,8 +39,7 @@ cada categoria, por sua vez.</p>
 <p><code>Object</code> define métodos para listar os nomes dos métodos definidos no objeto. Estes métodos retornam <code>arrays</code> de nomes de métodos. Aqueles nomes são
 <code>strings</code> em <code>Ruby 1.8</code> e <code>symbols</code> no <code>Ruby 1.9</code>:</p>
 
-<p><code>ruby Listagem de Metodos
-o = "a string"
+<pre><code class="ruby Listagem de Metodos">o = "a string"
 o.methods                # =&gt; [nomes de todos os métodos públicos]
 o.public_methods         # =&gt; é a mesma coisa
 o.public_methods(false)  # Excluir métodos herdados
@@ -49,40 +48,34 @@ o.private_methods        # =&gt; array de todos os métodos privados
 o.private_methods(false) # Excluir herdados métodos privados
 def o.single; 1; end     # Definir um método singleton
 o.singleton_methods      # =&gt; ["single"] (ou: em 1,9 [único])
-</code></p>
+</code></pre>
 
 <p>Também é possível consultar uma classe para os métodos que ele define em vez de consultar uma instância da classe. A seguir os métodos são definidos
 por módulo. Como os métodos de objeto, eles retornam <code>arrays</code> de <code>strings</code> em <code>Ruby 1.8</code> e <code>arrays</code> de <code>symbols</code> em <code>Ruby 1.9</code>:</p>
 
-<p><code>ruby Consultando uma Class
-String.instance_methods == "s".public_methods                # =&gt; true
+<pre><code class="ruby Consultando uma Class">String.instance_methods == "s".public_methods                # =&gt; true
 String.instance_methods(false) == "s".public_methods(false)  # =&gt; true
 String.public_instance_methods == String.instance_methods    # =&gt; true
 String.protected_instance_methods                                                # =&gt; []
 String.private_instance_methods(false)                                           # =&gt; [:initialize, :initialize_copy]
-</code></p>
+</code></pre>
 
 <p>Lembre-se que os métodos de classe de uma <code>class</code> ou <code>module</code> são métodos <code>singleton</code> do objeto de <code>class</code> ou <code>module</code>. Então, para listar métodos de
 classe, usa <code>Object.singleton_methods</code>:</p>
 
-<p>``` ruby Singleton
-Math.singleton_methods # => [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,</p>
-
-<pre><code>                                                     :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
-                                                     :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]
+<pre><code class="ruby Singleton">Math.singleton_methods # =&gt; [:atan2, :cos, :sin, :tan, :acos, :asin, :atan, :cosh, :sinh,
+                                                         :tanh, :acosh, :asinh, :atanh, :exp, :log, :log2, :log10, :sqrt,
+                                                         :cbrt, :frexp, :ldexp, :hypot, :erf, :erfc, :gamma, :lgamma]
 </code></pre>
-
-<p>```</p>
 
 <p>Para além destes métodos de listagem, a classe <code>Module</code> define alguns predicados para testar se uma classe especificada ou módulo define um método de
 instância nomeada:</p>
 
-<p><code>ruby Testando metodo de classe
-String.public_method_defined? :reverse     # =&gt; true
+<pre><code class="ruby Testando metodo de classe">String.public_method_defined? :reverse     # =&gt; true
 String.protected_method_defined? :reverse  # =&gt; false
 String.private_method_defined? :initialize # =&gt; true
 String.method_defined? :upcase!            # =&gt; true
-</code></p>
+</code></pre>
 
 <p><code>Module.method_defined?</code> verifica se o método chamado é definido como um método público ou protegido. Ele serve, essencialmente, com mesma finalidade
 que <code>Object.respond_to?</code>. No <code>Ruby 1.9</code>, você pode passar <code>false</code> como o segundo argumento para especificar que os métodos herdados não deve ser
@@ -95,10 +88,9 @@ considerados.</p>
 objeto do Método exigído pelo receptor, e o último retorna um <code>UnboundMethod</code>. No <code>Ruby 1.9</code>, você pode limitar sua pesquisa aos métodos públicos
 métodos chamando <code>public_method</code> e <code>public_instance_method</code>. Nós cobrimos esses métodos e os objetos que eles voltam no Método do Objeto:</p>
 
-<p><code>ruby
-"s".method(:reverse)             # =&gt; objeto Método
+<pre><code class="ruby">"s".method(:reverse)             # =&gt; objeto Método
 String.instance_method(:reverse) # =&gt; objeto UnboundMethod
-</code></p>
+</code></pre>
 
 <h3>Invocando Métodos</h3>
 
@@ -108,10 +100,9 @@ String.instance_method(:reverse) # =&gt; objeto UnboundMethod
 
 <p>Normalmente, é mais simples para invocar um método chamado de um objeto especificado com <code>send</code>:</p>
 
-<p><code>ruby Send
-"hello".send :upcase        # =&gt; "hello": invocar um método de instância
+<pre><code class="ruby Send">"hello".send :upcase        # =&gt; "hello": invocar um método de instância
 Math.send(:sin, Math::PI/2) # =&gt; 1.0: invocar um método de classe
-</code></p>
+</code></pre>
 
 <p><code>send</code> invoca em seu receptor o método nomeado pelo seu primeiro argumento, passando quaisquer argumentos restantes a esse método. O nome <code>send</code>
 deriva da linguagem orientada a objetos em que invocando um método é chamado, enviando uma mensagem, a um objeto.</p>
@@ -120,16 +111,14 @@ deriva da linguagem orientada a objetos em que invocando um método é chamado, 
 método privado <code>remove_const</code> de um objeto <code>Module</code>. Porque funções globais são realmente métodos privados de <code>Object</code>, podemos usar <code>send</code> para
 chamar esses métodos em qualquer objeto (embora isso não é algo que nós, nunca realmente queremos fazer):</p>
 
-<p><code>ruby Send
-"hello".send :puts, "world"         # imprime "world"
-</code></p>
+<pre><code class="ruby Send">"hello".send :puts, "world"         # imprime "world"
+</code></pre>
 
 <p>Ruby 1.9 define <code>public_send</code> como uma alternativa para <code>send</code>. Este método funciona como <code>send</code>, mas só irá chamar os métodos públicos, não
 métodos privados ou protegidos:</p>
 
-<p><code>ruby public_send_
-"hello".public_send :puts, "world"  # raises NoMethodError
-</code></p>
+<pre><code class="ruby public_send_">"hello".public_send :puts, "world"  # raises NoMethodError
+</code></pre>
 
 <p><code>send</code> é um método fundamental do objeto, mas tem um nome comum que pode ser substituído em subclasses. Portanto, Ruby
 define <code>__send__</code> como um sinônimo, e emite um aviso se você tentar excluir ou redefinir <code>__send__</code>.</p>
@@ -141,47 +130,36 @@ define <code>__send__</code> como um sinônimo, e emite um aviso se você tentar
 nome do novo método (como um <code>symbol</code>), como seu primeiro argumento. O corpo do método é fornecido seja por um método importante que entendemos o
 <code>define_method</code> que é privado. Você deve estar dentro da classe ou módulo que pretende usá-lo para chamá-lo:</p>
 
-<p>``` ruby define_method</p>
+<pre><code class="ruby define_method"># Adicione um método de instância chamado m para a Classe C com o corpo b
+def add_method(c, m, &amp;b)
+  c.class_eval {
+    define_method(m, &amp;b)
+  }
+end
 
-<h1>Adicione um método de instância chamado m para a Classe C com o corpo b</h1>
+add_method(String, :greet) { "Hello, " + self }
 
-<p>def add_method(c, m, &amp;b)
-  c.class_eval {</p>
-
-<pre><code>define_method(m, &amp;b)
+"world".greet   # =&gt; "Hello, world"
 </code></pre>
-
-<p>  }
-end</p>
-
-<p>add_method(String, :greet) { "Hello, " + self }</p>
-
-<p>"world".greet   # => "Hello, world"
-```</p>
 
 <p>Para definir um método de classe (ou qualquer método <code>singleton</code>) com <code>define_method</code>, invocá-lo no <code>eigenclass</code>:</p>
 
-<p>``` ruby eigenclass
-def add_class_method(c, m, &amp;b)
+<pre><code class="ruby eigenclass">def add_class_method(c, m, &amp;b)
   eigenclass = class &lt;&lt; c; self; end
-  eigenclass.class_eval {</p>
+  eigenclass.class_eval {
+    define_method(m, &amp;b)
+  }
+end
 
-<pre><code>define_method(m, &amp;b)
+add_class_method(String, :greet) {|name| "Hello, " + name }
+
+String.greet("world")  # =&gt; "Hello, world"
 </code></pre>
-
-<p>  }
-end</p>
-
-<p>add_class_method(String, :greet) {|name| "Hello, " + name }</p>
-
-<p>String.greet("world")  # => "Hello, world"
-```</p>
 
 <p>No Ruby 1.9, você pode usar mais facilmente <code>define_singleton_method</code>, que é um método de objeto:</p>
 
-<p><code>ruby define_singleton_method
-String.define_singleton_method(:greet) {|name| "Hello, " + name }
-</code></p>
+<pre><code class="ruby define_singleton_method">String.define_singleton_method(:greet) {|name| "Hello, " + name }
+</code></pre>
 
 <p>Uma deficiência do <code>define_method</code> é que ele não permite que você especifique um corpo de método que espera um bloco. Se você precisar dinamicamente
 criar um método que aceita um bloco, você vai precisar usar a instrução <code>def</code> com <code>class_eval</code>. E se o método que está criando é suficientemente
@@ -190,31 +168,25 @@ a ser avaliada.</p>
 
 <p>Para criar um sinônimo ou um <code>alias</code> para um método existente, normalmente você pode usar a declaração <code>alias</code>:</p>
 
-<p><code>ruby alias
-alias "plus" +         # "plus" é um sinônimo para o operador +
-</code>
-Ao programar dinamicamente, no entanto, às vezes você precisa usar <code>alias_method</code>. Como <code>define_method</code>, <code>alias_method</code> é um método particular do
+<pre><code class="ruby alias">alias "plus" +         # "plus" é um sinônimo para o operador +
+</code></pre>
+
+<p>Ao programar dinamicamente, no entanto, às vezes você precisa usar <code>alias_method</code>. Como <code>define_method</code>, <code>alias_method</code> é um método particular do
 <code>Module</code>. Como método, ele pode aceitar duas expressões arbitrárias como seus argumentos, em vez de exigir dois identificadores para ser codificado
 em seu código fonte. Como método, também requer uma vírgula entre seus argumentos. É <code>alias_method</code> muitas vezes utilizados para métodos de
 encadeamento de alias existentes. Aqui está um exemplo simples:</p>
 
-<p>``` ruby alias_method</p>
-
-<h1>Crie um alias para o método m da classe (ou módulo) c</h1>
-
-<p>def backup(c, m, prefix="original")
+<pre><code class="ruby alias_method"># Crie um alias para o método m da classe (ou módulo) c
+def backup(c, m, prefix="original")
   n = :"#{prefix}_#{m}"    # Calcule o alias
-  c.class_eval {           # Porque alias_method é privado</p>
+  c.class_eval {           # Porque alias_method é privado
+    alias_method n, m      # Fazer n um alias para m
+  }
+end
 
-<pre><code>alias_method n, m      # Fazer n um alias para m
+backup(String, :reverse)
+"test".original_reverse # =&gt; "tset"
 </code></pre>
-
-<p>  }
-end</p>
-
-<p>backup(String, :reverse)
-"test".original_reverse # => "tset"
-```</p>
 
 <p>Você pode usar a declaração <code>undef</code> para indefinir um método. Isso só funciona se você pode expressar o nome de um método como um identificador
 codificado no programa. Se você precisar excluir dinamicamente um método cujo nome tem sido calculado pelo seu programa, você tem duas opções: ou
@@ -222,7 +194,7 @@ codificado no programa. Se você precisar excluir dinamicamente um método cujo 
 Se existe uma versão definida por uma superclasse, que a versão vai agora ser herdada. <code>undef_method</code> é mais grave, que impede qualquer invocação do
 método especificado por meio de uma instância da classe, mesmo se houver uma versão herdada do método.</p>
 
-<p>Se você definir uma classe e quer evitar alterações dinâmicas para ele, simplesmente chame o método <code>freeze</code> da classe. Uma vez "congelado", a classe
+<p>Se você definir uma classe e quer evitar alterações dinâmicas para ele, simplesmente chame o método <code>freeze</code> da classe. Uma vez &ldquo;congelado&rdquo;, a classe
 não pode ser alterada.</p>
 
 <h3>Manipulação de métodos indefinidos</h3>
@@ -242,28 +214,24 @@ classe. O gancho <code>method_missing</code> é um dos mais poderosos do Ruby co
 de metaprogramação. O código de exemplo a seguir adiciona um método <code>method_missing</code> à classe <code>Hash</code>. Ela nos permite consultar ou definir o valor de
 qualquer chave chamada como se a chave fosse o nome de um método:</p>
 
-<p>``` ruby Hash Class
-class Hash
+<pre><code class="ruby Hash Class">class Hash
   # Permiti valores de hash para ser consultado e definido como se fossem atributos.
   # Simulamos getters e setters para atributos de qualquer tecla.
-  def method_missing(key, *args)</p>
+  def method_missing(key, *args)
+    text = key.to_s
 
-<pre><code>text = key.to_s
-
-if text[-1,1] == "="               # Se termina com chave = definir um valor
-  self[text.chop.to_sym] = args[0] # Faixa de chave
-else # Caso contrário ...
-  self[key]                        # ... apenas retornar o valor da chave
+    if text[-1,1] == "="               # Se termina com chave = definir um valor
+      self[text.chop.to_sym] = args[0] # Faixa de chave
+    else # Caso contrário ...
+      self[key]                        # ... apenas retornar o valor da chave
+    end
+  end
 end
-</code></pre>
 
-<p>  end
-end</p>
-
-<p>h = {}               # Criar um objeto vazio de hash
+h = {}               # Criar um objeto vazio de hash
 h.one = 1        # O mesmo que h[:one] = 1
 puts h.one     # Imprime 1. Mesmo que põe h[:one]
-```</p>
+</code></pre>
 
 <h3>Definir Visibilidade do Método</h3>
 
@@ -272,21 +240,16 @@ puts h.one     # Imprime 1. Mesmo que põe h[:one]
 são na verdade métodos de instância privados definidos pelo módulo. Estes métodos são geralmente utilizados como uma parte estática da definição de
 uma classe. Mas, com <code>class_eval</code>, eles também podem ser usados dinamicamente:</p>
 
-<p><code>ruby class_eval com Visibilidade de Metodo
-String.class_eval { private :reverse }
+<pre><code class="ruby class_eval com Visibilidade de Metodo">String.class_eval { private :reverse }
 "hello".reverse  # NoMethodError: private method 'reverse'
-</code></p>
+</code></pre>
 
 <p><code>private_class_method`` e</code>public_class_method` são semelhantes, exceto que eles operam em métodos de classe e são eles métodos públicos:</p>
 
-<p>``` ruby Matematica</p>
-
-<h1>Fazer todos os métodos de Matemática privados</h1>
-
-<h1>Agora temos que incluem matemática, a fim de chamar seus métodos</h1>
-
-<p>Math.private_class_method *Math.singleton_methods
-```</p>
+<pre><code class="ruby Matematica"># Fazer todos os métodos de Matemática privados
+# Agora temos que incluem matemática, a fim de chamar seus métodos
+Math.private_class_method *Math.singleton_methods
+</code></pre>
 
 <p>É isso ai amigos, um post, para introduzir o #StartupDevRumble .. =D</p>
 
@@ -315,23 +278,21 @@ String.class_eval { private :reverse }
 variáveis locais definidas, todas as variáveis de instância de um objeto, todas as variáveis de classe de uma classe ou módulo, e todas as constantes
 de uma classe ou módulo:</p>
 
-<p>``` ruby Variaveis e Constantes
-global_variables   # => ["$DEBUG", "$SAFE", ...]
+<pre><code class="ruby Variaveis e Constantes">global_variables   # =&gt; ["$DEBUG", "$SAFE", ...]
 x = 1              # Define uma variável local
-local_variables    # => ["x"]</p>
+local_variables    # =&gt; ["x"]
 
-<h1>Define uma classe simples</h1>
-
-<p>class Point
+# Define uma classe simples
+class Point
   def initialize(x,y); @x,@y = x,y; end # define variáveis de instância
   @@classvar = 1                        # Define uma variável de classe
   ORIGIN = Point.new(0,0)               # Define uma constante
-end</p>
+end
 
-<p>Point::ORIGIN.instance_variables # => ["@y", "@x"]
-Point.class_variables            # => ["@@classvar"]
-Point.constants                  # => ["ORIGIN"]
-```</p>
+Point::ORIGIN.instance_variables # =&gt; ["@y", "@x"]
+Point.class_variables            # =&gt; ["@@classvar"]
+Point.constants                  # =&gt; ["ORIGIN"]
+</code></pre>
 
 <p>Os <code>global_variables</code>, <code>local_variables</code>, <code>instance_variables</code>, <code>class_variables</code> e métodos constantes retornam <code>arrays</code> de <code>strings</code> em Ruby 1.8 e
 <code>arrays</code> de símbolos no Ruby 1.9.</p>
@@ -343,14 +304,13 @@ Point.constants                  # => ["ORIGIN"]
 remoção de variáveis de instância, variáveis de classe e constantes. Não há métodos de propósito específico para consultar ou definir as variáveis
 locais ou variáveis globais, mas você pode usar o método <code>eval</code> para esta finalidade:</p>
 
-<p><code>ruby Configurando Variavel
-x = 1
+<pre><code class="ruby Configurando Variavel">x = 1
 varname = "x"
 eval(varname)           # =&gt; 1
 eval("varname = '$g'")  # Ajuste o "$g"
 eval("#{varname} = x")  # Seta $g a 1
 eval(varname)
-</code></p>
+</code></pre>
 
 <p>Note que <code>eval</code> avalia o seu código em um âmbito temporário. <code>eval</code> pode alterar o valor das variáveis locais que já existem. Mas qualquer nova
 variável local definida pelo código avaliado, são locais para a invocação do <code>eval</code> e deixam de existir quando ele retorna. (É como se o código
@@ -359,53 +319,49 @@ avaliado é executado no corpo de um bloco de variáveis-locais para um bloco n�
 <p>Você pode consultar, definir e testar a existência de variáveis de instância em qualquer objeto e de variáveis de classe e constantes em qualquer
 classe ou módulo:</p>
 
-<p>``` ruby Consultar Variavel
-o = Object.new
+<pre><code class="ruby Consultar Variavel">o = Object.new
 o.instance_variable_set(:@x, 0)   # Nota exigido o prefixo @
-o.instance_variable_get(:@x)      # => 0
-o.instance_variable_defined?(:@x) # => true</p>
+o.instance_variable_get(:@x)      # =&gt; 0
+o.instance_variable_defined?(:@x) # =&gt; true
 
-<p>Object.class_variable_set(:@@x, 1)   # Privado no Ruby 1.8
+Object.class_variable_set(:@@x, 1)   # Privado no Ruby 1.8
 Object.class_variable_get(:@@x)      # Privado no Ruby 1.8
-Object.class_variable_defined?(:@@x) # => true; Ruby 1.9 e versões mais novas</p>
+Object.class_variable_defined?(:@@x) # =&gt; true; Ruby 1.9 e versões mais novas
 
-<p>Math.const_set(:EPI, Math::E*Math::PI)
-Math.const_get(:EPI)             # => 8,53973422267357
-Math.const_defined? :EPI         # => true
-```</p>
+Math.const_set(:EPI, Math::E*Math::PI)
+Math.const_get(:EPI)             # =&gt; 8,53973422267357
+Math.const_defined? :EPI         # =&gt; true
+</code></pre>
 
 <p>No Ruby 1.9, você pode passar <code>false</code> como o segundo argumento para <code>const_get</code> e <code>const_defined?</code> para especificar que esses métodos devem olhar
 apenas para a classe atual ou módulo e não deve considerar constantes herdadas.</p>
 
 <p>Os métodos para consultar e configurar as variáveis de classe são privadas no Ruby 1.8. Nessa versão, você pode invocá-las com <code>class_eval</code>:</p>
 
-<p><code>ruby class_eval
-String.class_eval { class_variable_set(:@@x, 1) }  # Seta @@x em String
+<pre><code class="ruby class_eval">String.class_eval { class_variable_set(:@@x, 1) }  # Seta @@x em String
 String.class_eval { class_variable_get(:@@x) }     # =&gt; 1
-</code></p>
+</code></pre>
 
 <p><code>Object</code> e <code>Module</code> definem métodos privados para variáveis de instância indefinidas, variáveis de classe e constantes. Todos eles retornam o valor
 da variável ou constante removida. Como esses métodos são privados, não pode invocá-los diretamente em um objeto, classe ou módulo, e você deve usar
 um método eval ou o método de envio:</p>
 
-<p><code>ruby instance_eval
-o.instance_eval { remove_instance_variable :@x }
+<pre><code class="ruby instance_eval">o.instance_eval { remove_instance_variable :@x }
 String.class_eval { remove_class_variable(:@@x) }
 Math.send :remove_const, :EPI  # Usa send para chamar o método privado
-</code></p>
+</code></pre>
 
 <p>O método <code>const_missing</code> de um módulo é invocado, se houver um, quando uma referência é feita a uma constante indefinida. Você pode definir este
 método para retornar o valor da constante chamada. (Esta característica pode ser usada, por exemplo, para implementar uma facilidade autoload em que
 as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais simples:</p>
 
-<p><code>ruby cons_missing
-def Symbol.const_missing(name)
+<pre><code class="ruby cons_missing">def Symbol.const_missing(name)
   name # Retorna o nome da constante como um símbolo
 end
 Symbol::Test   # =&gt;: Teste: constante indefinida avalia um símbolo
-</code></p>
+</code></pre>
 
-<p>É isso ai amigos... Bora continuar estudando!</p>
+<p>É isso ai amigos&hellip; Bora continuar estudando!</p>
 
 <p>Em breve, irei postar um pouco sobre Engenharia! :)</p>
 ]]></content>
@@ -431,10 +387,9 @@ Symbol::Test   # =&gt;: Teste: constante indefinida avalia um símbolo
 <p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
 válido Ruby, o método <code>Kernel.eval</code> pode avaliar que o código:</p>
 
-<p><code>ruby Kernel.eval
-x = 1
+<pre><code class="ruby Kernel.eval">x = 1
 eval "x + 1"  # =&gt; 2
-</code></p>
+</code></pre>
 
 <p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
@@ -449,20 +404,19 @@ no local da chamada. Você pode passar um objeto de associação como o segundo 
 contexto dessas ligações. Se, por exemplo, definir um método de instância que retorna um objeto <code>Binding</code> que representa a variável de ligações
 dentro de um objeto, então nós podemos usar essas ligações para consultar e definir as variáveis de instância do objeto. Podemos conseguir isso como segue:</p>
 
-<p>``` ruby Binding
-class Object # Abre objeto para adicionar um novo método
+<pre><code class="ruby Binding">class Object # Abre objeto para adicionar um novo método
   def bindings # Nota plural sobre este método
     binding # Este é o método de Kernel predefinido
   end
-end</p>
+end
 
-<p>class Test # Uma classe simples com uma variável de instância
+class Test # Uma classe simples com uma variável de instância
   def initialize(s); @x = s; end
-end</p>
+end
 
-<p>t = Test.new(10) # Criar um objeto test
-eval("@x", t.bindings)  # => 10: Espia dentro t
-```</p>
+t = Test.new(10) # Criar um objeto test
+eval("@x", t.bindings)  # =&gt; 10: Espia dentro t
+</code></pre>
 
 <p>Note que não é realmente necessário definir um método de <code>Object.bindings</code> deste tipo para observar nas variáveis de instância de um objeto. Vários
 outros métodos descritos logo oferecem maneiras mais fáceis de consulta (e de conjunto) do valor das variáveis de instância de um objeto.</p>
@@ -481,25 +435,19 @@ para <code>class_eval</code>. Ambos os métodos avaliam código Ruby, como o <co
 avaliam o código no contexto do objecto específico ou no contexto especificado de cada módulo do objecto ou é o valor enquanto o código está sendo
 avaliado. Aqui estão alguns exemplos:</p>
 
-<p>``` ruby instance_eval e class_eval
-o.instance_eval("@x")  # Retorna o valor da variável de instância o @x</p>
+<pre><code class="ruby instance_eval e class_eval">o.instance_eval("@x")  # Retorna o valor da variável de instância o @x
 
-<h1>Define um len método de instância de String para retornar comprimento da String</h1>
+# Define um len método de instância de String para retornar comprimento da String
+String.class_eval("def len; size; end")
 
-<p>String.class_eval("def len; size; end")</p>
+# Aqui está outra maneira de fazer isso
+# O código citado se comporta como se fosse dentro da "class String" e "end"
+String.class_eval("alias len size")
 
-<h1>Aqui está outra maneira de fazer isso</h1>
-
-<h1>O código citado se comporta como se fosse dentro da "class String" e "end"</h1>
-
-<p>String.class_eval("alias len size")</p>
-
-<h1>Use instance_eval para definir método de classe String.Empty</h1>
-
-<h1>Note que as aspas dentro da aspas fica um pouco complicado ...</h1>
-
-<p>String.instance_eval ("def vazio;''; fim")
-```</p>
+# Use instance_eval para definir método de classe String.Empty
+# Note que as aspas dentro da aspas fica um pouco complicado ...
+String.instance_eval ("def vazio;''; fim")
+</code></pre>
 
 <p>Observe a diferença sutil, mas crucial entre <code>instance_eval</code> e <code>class_eval</code> quando o código que está sendo avaliado contém uma definição de método.
 <code>instance_eval</code> define métodos únicos do objeto (e isso resulta em métodos de classe quando for chamado em uma classe de objeto). <code>class_eval</code> define métodos de instância regulare.</p>
@@ -508,19 +456,15 @@ o.instance_eval("@x")  # Retorna o valor da variável de instância o @x</p>
 avaliar. Quando passa um bloco em vez de uma <code>String</code>, o código do bloco é executado no contexto apropriado. Aqui, por conseguinte, são alternativas
 para as invocações anteriorment mostrada:</p>
 
-<p>``` ruby instance_eval e class_eval
-o.instance_eval { @x }
+<pre><code class="ruby instance_eval e class_eval">o.instance_eval { @x }
 String.class_eval {
-  def len</p>
-
-<pre><code>size
-</code></pre>
-
-<p>  end
+  def len
+    size
+  end
 }
 String.class_eval { alias len size }
 String.instance_eval { def empty; ""; end }
-```</p>
+</code></pre>
 
 <h3>instance_exec e class_exec</h3>
 
@@ -574,7 +518,7 @@ reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post
 metaprogramação que usam essa API.</p>
 
 <p>Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
-encontrar que é útil para ler os próximos post's deste primeiro livro, e depois retornar a este capítulo. Considere este
+encontrar que é útil para ler os próximos post&rsquo;s deste primeiro livro, e depois retornar a este capítulo. Considere este
 post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!</p>
 
 <!--more-->
@@ -586,36 +530,27 @@ post uma espécie de exame final: se você entender os exemplos (especialmente o
 <p>Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
 métodos ele responde. Para rever:</p>
 
-<p>``` ruby Metaprogramming
-o.class</p>
+<pre><code class="ruby Metaprogramming">o.class
+# Retorna a classe de do objeto 'o'.
 
-<h1>Retorna a classe de do objeto 'o'.</h1>
+c.superclass
+# Retorna a superclasse de uma classe 'c'.
 
-<p>c.superclass</p>
+o.instance_of? c
+# Determina se o objeto 'o.class == c'.
 
-<h1>Retorna a superclasse de uma classe 'c'.</h1>
+o.is_a? c
+# Determina se 'o' é um exemplo de 'c', ou de qualquer das suas subclasses. Se 'c' for um módulo, este método testa se 'o.class' (ou qualquer um de seus ancestrais) inclui o módulo.
 
-<p>o.instance_of? c</p>
+o.kind_of? c
+# kind_of? é um sinônimo para is_a?.
 
-<h1>Determina se o objeto 'o.class == c'.</h1>
+c === o
+# Para qualquer classe 'c' ou módulo, determina se 'o.is_a? (c)'
 
-<p>o.is_a? c</p>
-
-<h1>Determina se 'o' é um exemplo de 'c', ou de qualquer das suas subclasses. Se 'c' for um módulo, este método testa se 'o.class' (ou qualquer um de seus ancestrais) inclui o módulo.</h1>
-
-<p>o.kind_of? c</p>
-
-<h1>kind_of? é um sinônimo para is_a?.</h1>
-
-<p>c === o</p>
-
-<h1>Para qualquer classe 'c' ou módulo, determina se 'o.is_a? (c)'</h1>
-
-<p>o.respond_to? nome</p>
-
-<h1>Determina se o objeto 'o' tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</h1>
-
-<p>```</p>
+o.respond_to? nome
+# Determina se o objeto 'o' tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.
+</code></pre>
 
 <h3>Ancestralidade e Módulos</h3>
 
@@ -624,35 +559,34 @@ o.class</p>
 classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
 entender quando demonstrado:</p>
 
-<p>``` ruby Alguns demonstrações
-module A; end                # Modulo vazio
+<pre><code class="ruby Alguns demonstrações">module A; end                # Modulo vazio
 module B; include A; end;    # Módulo B inclui A
-class C; include B; end;     # Classe C inclui o módulo B</p>
+class C; include B; end;     # Classe C inclui o módulo B
 
-<p>C &lt; B                # => true: C inclui B
-B &lt; A                # => true: B inclui A
-C &lt; A                # => true
-Fixnum &lt; Integer     # => true: todos os fixnums são inteiros
-Integer &lt; Comparable # => true: inteiros são comparáveis
-Integer &lt; Fixnum     # => false: nem todos os números inteiros são fixnums
-String &lt; Numeric     # => nil: cordas não são números</p>
+C &lt; B                # =&gt; true: C inclui B
+B &lt; A                # =&gt; true: B inclui A
+C &lt; A                # =&gt; true
+Fixnum &lt; Integer     # =&gt; true: todos os fixnums são inteiros
+Integer &lt; Comparable # =&gt; true: inteiros são comparáveis
+Integer &lt; Fixnum     # =&gt; false: nem todos os números inteiros são fixnums
+String &lt; Numeric     # =&gt; nil: cordas não são números
 
-<p>A.ancestors          # => [A]
-B.ancestors          # => [B, A]
-C.ancestors          # => [C, B, A, Object, Kernel]
-String.ancestors     # => [String, Enumerable, Comparable, Object, Kernel]
-                     # Nota: em Ruby 1.9, String não é mais Enumerable</p>
+A.ancestors          # =&gt; [A]
+B.ancestors          # =&gt; [B, A]
+C.ancestors          # =&gt; [C, B, A, Object, Kernel]
+String.ancestors     # =&gt; [String, Enumerable, Comparable, Object, Kernel]
+                     # Nota: em Ruby 1.9, String não é mais Enumerable
 
-<p>C.include?(B) # => true
-C.include?(A) # => true
-B.include?(A) # => true
-A.include?(A) # => false
-A.include?(B) # => false</p>
+C.include?(B) # =&gt; true
+C.include?(A) # =&gt; true
+B.include?(A) # =&gt; true
+A.include?(A) # =&gt; false
+A.include?(B) # =&gt; false
 
-<p>A.included_modules # => []
-B.included_modules # => [A]
-C.included_modules # => [B, A, Kernel]
-```</p>
+A.included_modules # =&gt; []
+B.included_modules # =&gt; [A]
+C.included_modules # =&gt; [B, A, Kernel]
+</code></pre>
 
 <p>Este código demonstra <code>include?</code>, que é um método público de instância definido pela classe <code>Module</code>. Mas ele também possui duas
 invocações do método <code>include</code> (Sem o sinal de interrogação), que é um método de instância particular de <code>Module</code>. Como um
@@ -663,48 +597,42 @@ núcleo da sintaxe de Ruby.</p>
 <p>Um método relacionado com o método <code>include</code>, particular é o público <code>Object.extend</code>. Este método estende um objeto por tornar
 os métodos de instância de cada um dos módulos específicos em métodos <code>singleton</code> do objeto:</p>
 
-<p><code>ruby Singleton
-module Greeter; def hi; "hello"; end; end # módulo Greeter
+<pre><code class="ruby Singleton">module Greeter; def hi; "hello"; end; end # módulo Greeter
 s = "objeto de string"
 s.extend(Greeter)       # Adicione "hello" como um método singleton para s
 s.hi
 String.extend(Greeter)  # Adicione "hello" como método de classe de String
 String.hi               # =&gt; "hello"
-</code></p>
+</code></pre>
 
 <p>O método <code>Module.nesting</code> de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
 <code>array</code> que especifica o assentamento de módulos da localização atual. <code>Module.nesting[0]</code> é a classe atual ou módulo, <code>Module.nesting[1]</code> é o quem contém a <code>class</code> ou <code>module</code> e assim por diante:</p>
 
-<p>```ruby Module e Class
-module M
-  class C</p>
-
-<pre><code>Module.nesting   # =&gt; [M::C, M]
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Module e Class">module M
+  class C
+    Module.nesting   # =&gt; [M::C, M]
+  end
 end
-```</p>
+</code></pre>
 
 <h3>Definindo Classes e Módulos</h3>
 
 
 <p>Classes e módulos são instâncias das classes de <code>Class</code> e <code>Module</code>. Como tal, você pode criá-los dinamicamente:</p>
 
-<p><code>ruby Class e Module dinamicamente
-M = Module.new      # Define um novo módulo M
+<pre><code class="ruby Class e Module dinamicamente">M = Module.new      # Define um novo módulo M
 C = Class.new       # Define uma nova classe C
 D = Class.new(C) {  # Definir uma subclasse de C
   include M       # inclui o módulo M
 }
 D.to_s              # =&gt; "D": classe recebe o nome da constante por magia
-</code></p>
+</code></pre>
 
 <p>Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
 o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).</p>
 
-<p>É isso ai amigos...
-Hora de dar um <code>break</code>... :)</p>
+<p>É isso ai amigos&hellip;
+Hora de dar um <code>break</code>&hellip; :)</p>
 
 <p>Até o proximo!</p>
 ]]></content>
@@ -730,7 +658,7 @@ Hora de dar um <code>break</code>... :)</p>
 
 <ul>
 <li>A sintaxe para associar um bloco com uma invocação de método</li>
-<li>O "valor de retorno" de um bloco</li>
+<li>O &ldquo;valor de retorno&rdquo; de um bloco</li>
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
@@ -745,17 +673,14 @@ ignorado. Blocos são delimitados por chaves ou com palavras-chave <code>do/end<
 mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
 o bloco:</p>
 
-<p>``` ruby Blocos</p>
-
-<h1>Imprima os números 1 a 10</h1>
-
-<p>1.upto(10) {|x| puts x } # Invocação e bloco em uma linha com aparelho
+<pre><code class="ruby Blocos"># Imprima os números 1 a 10
+1.upto(10) {|x| puts x } # Invocação e bloco em uma linha com aparelho
 1.upto(10) do |x|        # Delimitado bloco com do/end
   puts x
 end
 1.upto(10)               # Bloco não especificado
   {|x| puts x }         # Erro na Sintaxe: bloco é permitido não depois de uma invocação
-```</p>
+</code></pre>
 
 <p>Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar <code>do/end</code> quando o bloco
 se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
@@ -764,23 +689,19 @@ um bloco, em seguida, o bloco vai ser associado com o último argumento do méto
 provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com <code>do</code> e
 <code>end</code>:</p>
 
-<p><code>ruby Blocks
-1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
+<pre><code class="ruby Blocks">1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
 1.upto 3 do |x| puts x end
 1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
-</code></p>
+</code></pre>
 
 <p>Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
 com um par de barra vertical (<code>|</code>), mas eles são de outra maneira muito parecida com os parâmetros do método:</p>
 
-<p>```ruby Blocks</p>
-
-<h1>O iterador Hash.each passa dois argumentos para seu bloco</h1>
-
-<p>hash.each do |chave, valor| # Para cada par (chave, valor) no hash
+<pre><code class="ruby Blocks"># O iterador Hash.each passa dois argumentos para seu bloco
+hash.each do |chave, valor| # Para cada par (chave, valor) no hash
   puts "#{chave}: #{valor}" # Imprimir a chave eo valor
 end # Fim do bloco
-```</p>
+</code></pre>
 
 <p>É uma convenção comum para escrever os parâmetros do bloco, na mesma linha, como a invocação do método e da chave de abertura
 ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
@@ -791,19 +712,16 @@ ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
 <p>Considerando o método <code>Array.sort</code>. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
 elementos para o bloco, e é o trabalho do bloco para classificá-los.</p>
 
-<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O "valor de retorno" do bloco está disponível
+<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &ldquo;valor de retorno&rdquo; do bloco está disponível
 com o método <code>iterator</code> como o valor da declaração <code>yield</code>.</p>
 
-<p>O "valor de retorno" de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
+<p>O &ldquo;valor de retorno&rdquo; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
 
-<p>```ruby Metodo sort</p>
+<pre><code class="ruby Metodo sort"># O bloco tem duas palavras e "retorna" a sua ordem relativa
+words.sort! {| X, y | y.length &lt;=&gt; x.length}
+</code></pre>
 
-<h1>O bloco tem duas palavras e "retorna" a sua ordem relativa</h1>
-
-<p>words.sort! {| X, y | y.length &lt;=> x.length}
-```</p>
-
-<p>Nós estamos colocando a expressão "valor de retorno" entre aspas por uma razão muito importante: você não deve usar normalmente
+<p>Nós estamos colocando a expressão &ldquo;valor de retorno&rdquo; entre aspas por uma razão muito importante: você não deve usar normalmente
 a palavra-chave <code>return</code> para retornar um bloco. Um <code>return</code> dentro de um bloco faz com que o método que o contém (não o método
 iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
 bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o <code>return</code> se você quer apenas
@@ -811,30 +729,22 @@ voltar de um bloco para o método que chamou <code>yield</code>. Se você precis
 ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar <code>next</code> em vez de retorno. Aqui é um
 exemplo que usa <code>next</code> para voltar a partir do bloco:</p>
 
-<p><code>ruby Usando next
-array.collect do |x|
+<pre><code class="ruby Usando next">array.collect do |x|
   next 0 if x == nil  # Retorna se x é nulo
   next x, x*x         # Retorna dois valores
 end
-</code></p>
+</code></pre>
 
 <p>Note-se que não é particularmente comum usar <code>next</code> desta maneira, e o código acima é facilmente reescrito assim:</p>
 
-<p>``` ruby Reescrevendo bloco
-array.collect do |x|
-  if x == nil</p>
-
-<pre><code>0
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>[x, x*x]
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Reescrevendo bloco">array.collect do |x|
+  if x == nil
+    0
+  else
+    [x, x*x]
+  end
 end
-```</p>
+</code></pre>
 
 <h3>Blocos e escopo de variáveis</h3>
 
@@ -845,11 +755,10 @@ dentro desse método. Então, se um bloco atribui um valor a uma variável que j
 variável local nova, mas em vez disso, atribui um novo valor para a variável já existente. Às vezes, isso é exatamente o
 comportamento que queremos:</p>
 
-<p><code>ruby Escopos
-total = 0
+<pre><code class="ruby Escopos">total = 0
 data.each {|x| total += x }  # Some os elementos da matriz de dados
 puts total                   # Impressão do total da soma
-</code></p>
+</code></pre>
 
 <p>Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
 uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
@@ -857,17 +766,13 @@ de uma variável existente, então invocações do bloco simplesmente atribuir u
 criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador <code>i</code>
 como o parâmetro para dois blocos nested blocos:</p>
 
-<p>``` ruby Usando mesma variavel, Ruby 1.8
-1.upto(10) do |i|         # 10 linhas
-  1.upto(10) do |i|       # Cada um tem 10 colunas</p>
-
-<pre><code>print "#{i}"         # Imprimi o número de colunas
-</code></pre>
-
-<p>  end
-  print " ==> Row #{i}\n" # Número de linhas
+<pre><code class="ruby Usando mesma variavel, Ruby 1.8">1.upto(10) do |i|         # 10 linhas
+  1.upto(10) do |i|       # Cada um tem 10 colunas
+    print "#{i}"         # Imprimi o número de colunas
+  end
+  print " ==&gt; Row #{i}\n" # Número de linhas
 end
-```</p>
+</code></pre>
 
 <p>Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
 a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
@@ -878,18 +783,14 @@ variáveis de blocos locais ​​que são garantidas para ser local, mesmo se u
 delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
 variáveis ​​do bloco local. Aqui está um exemplo:</p>
 
-<p>``` ruby Variaveis
-x = y = 0            # variáveis ​​locais
-1.upto(4) do |x;y|   # x e y são locais para bloquear</p>
-
-<pre><code>                 # x e y são "sombra" das variáveis ​​externas
-</code></pre>
-
-<p>  y = x + 1          # Usa y como uma variável que vai receber valores
+<pre><code class="ruby Variaveis">x = y = 0            # variáveis ​​locais
+1.upto(4) do |x;y|   # x e y são locais para bloquear
+                     # x e y são "sombra" das variáveis ​​externas
+  y = x + 1          # Usa y como uma variável que vai receber valores
   puts y*y           # imprime 4, 9, 16, 25
 end
-[x,y]                # => [0,0]: o bloco não altera essas variaveis.
-```</p>
+[x,y]                # =&gt; [0,0]: o bloco não altera essas variaveis.
+</code></pre>
 
 <p>Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
 bloco-local. Ele não receber qualquer valor a partir de uma chamada <code>yield</code>, mas tem o valor nil até que o bloco de fato
@@ -900,9 +801,8 @@ variável local de uma variável existente.</p>
 <p>Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
 três variáveis ​​locais:</p>
 
-<p><code>ruby Variavel Local
-hash.each {|key,value; i,j,k| ... }
-</code></p>
+<pre><code class="ruby Variavel Local">hash.each {|key,value; i,j,k| ... }
+</code></pre>
 
 <h3>Passando argumentos para um bloco</h3>
 
@@ -913,24 +813,21 @@ parâmetros seguindo as regras que estão mais próximos as regras para a atribu
 de método. Assim, quando um iterador executa <code>yield k,v</code>, para invocar um bloco declarado com parâmetros <code>|key, value|</code>, é
 equivalente a esta instrução de atribuição:</p>
 
-<p><code>ruby Atribuição de parametros
-key,value = k,v
-</code></p>
+<pre><code class="ruby Atribuição de parametros">key,value = k,v
+</code></pre>
 
 <p>O iterador <code>Hash.each_pair</code> produz um par <code>key/value</code> como este:</p>
 
-<p><code>ruby Hash.each_pair
-{:one=&gt;1}.each_pair {|key,value| ... } # key=:one, value=1
-</code></p>
+<pre><code class="ruby Hash.each_pair">{:one=&gt;1}.each_pair {|key,value| ... } # key=:one, value=1
+</code></pre>
 
 <p>No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
 são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
 variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
 utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:</p>
 
-<p><code>ruby Variaveis Locais e de Instância
-{:one=&gt;1}.each_pair {|$key, @value| ... } # Não funciona mais no Ruby 1.9
-</code></p>
+<pre><code class="ruby Variaveis Locais e de Instância">{:one=&gt;1}.each_pair {|$key, @value| ... } # Não funciona mais no Ruby 1.9
+</code></pre>
 
 <p>Este iterator define a variável global <code>$key</code> para <code>:one</code> e define a variável de instância <code>@value</code> para <code>1</code>. Como já
 mencionado, o Ruby 1.9 faz os parâmetros dos blocos locais para o bloco. Isto também significa que os parâmetros dos blocos não
@@ -939,52 +836,46 @@ podem mais ser variáveis ​​globais ou de instância.</p>
 <p>Os iteradores <code>Hash.each</code> segue um pares de <code>key/value</code> como dois elementos de uma única matriz. É muito comum, no entanto,
 para ver o código como esta:</p>
 
-<p><code>ruby Hash.each
-hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
-</code></p>
+<pre><code class="ruby Hash.each">hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
+</code></pre>
 
 <p>Isso também funciona por atribuição paralela. O valor cedido, um conjunto de dois elementos, é atribuído às variáveis ​​k e v:</p>
 
-<p><code>ruby Atribuição
-k, v = [value, key]
-</code></p>
+<pre><code class="ruby Atribuição">k, v = [value, key]
+</code></pre>
 
-<p>Pelas regras de atribuição paralela (ver <a href="{{ root_url }}/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
+<p>Pelas regras de atribuição paralela (ver <a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
 
 <p>Bloco de invocação não funciona exatamente como atribuição paralela. Imagine um iterador que passa dois valores ao seu bloco.
 Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
 valores automaticamente preenchido em uma matriz para nós. Mas não é assim que funciona:</p>
 
-<p><code>ruby Parametros
-def two; yield 1,2; end # Um iterador que produz dois valores
+<pre><code class="ruby Parametros">def two; yield 1,2; end # Um iterador que produz dois valores
 two {|x| p x }          # Ruby 1.8: avisa e impressões [1,2],
 two {|x| p x }          # Ruby 1.9: imprime 1, nenhum aviso
 two {|*x| p x }         # versão Ou: impressões [1,2]; nenhum aviso
 two {|x,| p x }         # versão Ou: impressões 1; nenhum aviso
-</code></p>
+</code></pre>
 
 <p>No Ruby 1.8, vários argumentos são embalados em uma matriz, quando existe um parâmetro único no bloco, mas isso é obsoleto e
 gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâmetro do bloco e o segundo valor é descartado. Se
 queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
 explicitamente que estamos prefixando o parâmetro com um <code>*</code>, exatamente como faríamos em uma declaração de método. Observe
 também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
-vírgula, como se dissesse:</p>
-
-<pre><code>"Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele."
-</code></pre>
+vírgula, como se dissesse:
+    &ldquo;Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele.&rdquo;</p>
 
 <p>Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
 também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
 aviso, vai também gerar um erro.</p>
 
-<p>A declaração do <code>yield</code> permite que <code>hashes</code> "nus" como o valor do último argumento, assim como invocações de métodos. Isto é,
+<p>A declaração do <code>yield</code> permite que <code>hashes</code> &ldquo;nus&rdquo; como o valor do último argumento, assim como invocações de métodos. Isto é,
 se o último argumento para produzir é um literal de <code>hash</code>, você pode omitir as chaves. Porque não é comum para iteradores para
 produzir <code>hashes</code>, temos que maquinar um exemplo para demonstrar isto:</p>
 
-<p><code>ruby Hashes sem chaves
-def hashiter; yield :a=&gt;1, :b=&gt;2; end  # Nota final sem chaves
+<pre><code class="ruby Hashes sem chaves">def hashiter; yield :a=&gt;1, :b=&gt;2; end  # Nota final sem chaves
 hashiter {|hash| puts hash[:a] }       # Imprime 1
-</code></p>
+</code></pre>
 
 <h3>Bloquear Parâmetros no Ruby 1.9</h3>
 
@@ -1003,9 +894,8 @@ end
 você deseja iterar os valores de um objeto, mas o que você não sabe se o obejeto é um <code>array</code> ou um <code>hash</code>. Você pode usar um
 bloco como este:</p>
 
-<p><code>ruby Variavel com um valor pré determinado
-o.each {|key=nil,value| puts value}
-</code></p>
+<pre><code class="ruby Variavel com um valor pré determinado">o.each {|key=nil,value| puts value}
+</code></pre>
 
 <p>Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do bloco. Se cada um produz um par de valores,
 são atribuídos a ambos os parâmetros.</p>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: FrontEnd | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: frontend | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/frontend/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -21,39 +21,35 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Olá Developers...</p>
+<p>Olá Developers&hellip;</p>
 
-<p>Vamos desenvolver um pequeno Chat em NodeJS... Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim...</p>
+<p>Vamos desenvolver um pequeno Chat em NodeJS&hellip; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&hellip;</p>
 
-<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos... :D</p>
+<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos&hellip; :D</p>
 
 <p>Vamos criar a aplicação, crie uma pasta com o nome da aplicação:</p>
 
-<p>{% codeblock Criando Pasta %}
-mkdir app_chat
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>Criando Pasta </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir app_chat</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Agora vamos entrar na pasta do projeto, e criar o arquivo que será nosso servidor, nome exemplo: heloword_server.js.</p>
 
 <p>Hora de começar a brincar com o servidor.</p>
 
-<p>``` javascript Criando o server
-var fs = require('fs');
+<pre><code class="javascript Criando o server">var fs = require('fs');
 var server = require('http').createServer(function(req, response){
-  fs.readFile('helloworld.html', function(err, data){</p>
-
-<pre><code>response.writeHead(200, {'Content-Type':'text/html'});
-response.write(data);
-response.end();
+  fs.readFile('helloworld.html', function(err, data){
+    response.writeHead(200, {'Content-Type':'text/html'});
+    response.write(data);
+    response.end();
+  });
+});
 </code></pre>
 
-<p>  });
-});
-```</p>
+<p>Na linha 1, temos um require(&lsquo;fs&rsquo;), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
 
-<p>Na linha 1, temos um require('fs'), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
-
-<p>Na linha 2, estamos instanciando e criando o server 'http'.</p>
+<p>Na linha 2, estamos instanciando e criando o server &lsquo;http&rsquo;.</p>
 
 <p>Na linha 3, já dentro da função do createServer, temos a leitura do arquivo que será alimentado, e uma criação de função.</p>
 
@@ -65,13 +61,12 @@ response.end();
 
 <p>Vamos continuar, agora vamos colocar uma porta para o servidor.</p>
 
-<p>``` javascript Criando uma porta e aplicando ao server
-var port = process.env.PORT || 3000;</p>
+<pre><code class="javascript Criando uma porta e aplicando ao server">var port = process.env.PORT || 3000;
 
-<p>server.listen(port, function() {
+server.listen(port, function() {
   console.log("Listening on " + port);
 });
-```</p>
+</code></pre>
 
 <p>Neste exemplo acima, pegamos o número da porta do processo, ou fica valendo a porta 3000.</p>
 
@@ -79,58 +74,53 @@ var port = process.env.PORT || 3000;</p>
 
 <p>Vamos agora começar a escrever as funcionalidades do servidor. Vamos escrever as funções que tratam que esta entrando e quem esta saindo da app.</p>
 
-<p>``` javascript Function Connected e Disconnected
-var everyone = require("now").initialize(server);</p>
+<pre><code class="javascript Function Connected e Disconnected">var everyone = require("now").initialize(server);
 
-<p>everyone.connected(function(){
+everyone.connected(function(){
   console.log("Joined: " + this.now.name);
-});</p>
+});
 
-<p>everyone.disconnected(function(){
+everyone.disconnected(function(){
   console.log("Left: " + this.now.name);
 });
-```</p>
-
-<p>Nesta função, instancio o framework '<a href="http://www.nowjs.com/">now</a>', que voce pode esta instalando com o comando: npm install now</p>
-
-<p>Dentro do '<a href="http://www.nowjs.com/">now</a>', temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
-
-<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal...</p>
-
-<p>``` javascript Criando Funções dentro de Funções
-everyone.now.distributeMessage = function(message){</p>
-
-<pre><code>console.log("mensagem "+message);
-message = message.replace(/(&lt;([^&gt;]+)&gt;)/ig,"");
-everyone.now.receiveMessage(this.now.name, message);
 </code></pre>
 
-<p>};
-```</p>
+<p>Nesta função, instancio o framework &lsquo;<a href="http://www.nowjs.com/">now</a>&rsquo;, que voce pode esta instalando com o comando: npm install now</p>
+
+<p>Dentro do &lsquo;<a href="http://www.nowjs.com/">now</a>&rsquo;, temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
+
+<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal&hellip;</p>
+
+<pre><code class="javascript Criando Funções dentro de Funções">everyone.now.distributeMessage = function(message){
+    console.log("mensagem "+message);
+    message = message.replace(/(&lt;([^&gt;]+)&gt;)/ig,"");
+    everyone.now.receiveMessage(this.now.name, message);
+};
+</code></pre>
 
 <p>Neste bloco de codigos, estamos criando a função distributeMessage, que esta, receberá a mensagem.</p>
 
 <p>Na linha 2, estou somente logando a mensagem que chegou.</p>
 
-<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas...</p>
+<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas&hellip;</p>
 
 <p>Na linha 4, estamos fazendo a chamada da função que esta na view, e ela que imprimi a mensagem no DOM.</p>
 
 <p>Logo o arquivo do helloword_server.js precisa ficar assim:</p>
 
-<p>{% include_code Arquivo do Server NodeJS helloworld_server.js %}</p>
+<p>File /Volumes/Dados/codes_projects/rrmartins.github.com/source/downloads/code/helloworld_server.js could not be found</p>
 
 <h3>Criando a View</h3>
 
 
 <p>A nossa view, será basicamente HTML, e um pouco de simples javascript, então, dessa vez será 0 de explicação.</p>
 
-<p>{% include_code View do Chat helloworld.html %}</p>
+<p>File /Volumes/Dados/codes_projects/rrmartins.github.com/source/downloads/code/helloworld.html could not be found</p>
 
 <p>Proximo, passo, só levantar o servidor:
-{% codeblock Levantando o Servidor %}
-node helloworld_server.js
-{% endcodeblock %}</p>
+<figure class='code'><figcaption><span>Levantando o Servidor </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>node helloworld_server.js</span></code></pre></td></tr></table></div></figure></p>
 
 <p>É isso ai amigos, segue o lick de como a aplicação ficou no heroku, e o lick do repositorio dela no github.</p>
 

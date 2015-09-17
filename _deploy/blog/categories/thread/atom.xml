@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Thread | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: thread | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/thread/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&hellip;</p>
 
 <h4>Exemplos de Threads</h4>
 
@@ -34,39 +34,33 @@ exemplos reais de vários códigos de <code>threads</code>.</p>
 mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
 define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
 com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
-destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL's <code>HTTP</code> e <code>FTP</code> possam ser abertas com
+destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&rsquo;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
 <code>Kernel.open</code> e ler como se fossem arquivos:</p>
 
-<p>```ruby Lendo arquivos</p>
+<pre><code class="ruby Lendo arquivos">
+# Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.
+# Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.
+def conread(filenames)
+  h = {}            # hash vazio de resultados
 
-<h1>Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.</h1>
-
-<h1>Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.</h1>
-
-<p>def conread(filenames)
-  h = {}            # hash vazio de resultados</p>
-
-<p>  # Crie uma linha para cada arquivo
+  # Crie uma linha para cada arquivo
   filenames.each do |filename|      # Para cada arquivo chamado
     h[filename] = Thread.new do     # Criar um fio, mapa para filename
       open(filename) {|f| f.read }  # Abra e leia o arquivo
     end                             # valor da linha é o conteúdo do arquivo
-  end</p>
+  end
 
-<p>  # Percorre o hash, à espera de cada thread para completar.
+  # Percorre o hash, à espera de cada thread para completar.
   # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
-  h.each_pair do |filename, thread|</p>
-
-<pre><code>begin
-  h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
-rescue
-  h[filename] = $!              # Ou a exceção levantada
+  h.each_pair do |filename, thread|
+    begin
+      h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
+    rescue
+      h[filename] = $!              # Ou a exceção levantada
+    end
+  end
 end
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <h3>Servidor A Multithreads</h3>
 
@@ -74,41 +68,31 @@ end
 de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
 possivelmente menos escalável) solução usa <code>threads</code>:</p>
 
-<p>```ruby Servidor a Multithreads
-require 'socket'</p>
+<pre><code class="ruby Servidor a Multithreads">require 'socket'
 
-<h1>Este método espera um socket ligado a um cliente.</h1>
-
-<h1>Ele lê as linhas do cliente, inverte-los e envia-los de volta.</h1>
-
-<h1>Múltiplas Threads podem executar este método, ao mesmo tempo.</h1>
-
-<p>def handle_client(c)
-  while true</p>
-
-<pre><code>input = c.gets.chop     # Ler uma linha de entrada do cliente
-break if !input         # sai se tem muitas entradas
-break if input=="quit"  # ou se o cliente pede
-c.puts(input.reverse)   # Caso contrário, responde ao cliente.
-c.flush                 # Força a saída para fora
-</code></pre>
-
-<p>  end
+# Este método espera um socket ligado a um cliente.
+# Ele lê as linhas do cliente, inverte-los e envia-los de volta.
+# Múltiplas Threads podem executar este método, ao mesmo tempo.
+def handle_client(c)
+  while true
+    input = c.gets.chop     # Ler uma linha de entrada do cliente
+    break if !input         # sai se tem muitas entradas
+    break if input=="quit"  # ou se o cliente pede
+    c.puts(input.reverse)   # Caso contrário, responde ao cliente.
+    c.flush                 # Força a saída para fora
+  end
   c.close                   # Fecha o socket cliente
-end</p>
-
-<p>server = TCPServer.open(2000) # Ouve na porta 2000</p>
-
-<p>while true                    # Laço de servidores para sempre
-  client = server.accept      # Espere um cliente para conectar
-  Thread.start(client) do |c| # Inicia uma nova thread</p>
-
-<pre><code>handle_client(c)          # E Lida com o clinete nessa Thread
-</code></pre>
-
-<p>  end
 end
-```</p>
+
+server = TCPServer.open(2000) # Ouve na porta 2000
+
+while true                    # Laço de servidores para sempre
+  client = server.accept      # Espere um cliente para conectar
+  Thread.start(client) do |c| # Inicia uma nova thread
+    handle_client(c)          # E Lida com o clinete nessa Thread
+  end
+end
+</code></pre>
 
 <h3>Iteradores simultâneas</h3>
 
@@ -116,35 +100,27 @@ end
 adiciona um método <code>conmap</code> (por mapa concorrente) para o modulo <code>Enumerável</code>. Ele funciona como mapa, mas processa cada
 elemento da matriz de entrada com uma distinta <code>Thread</code>:</p>
 
-<p>```ruby Iterador Simultâneo
-module Enumerable           # Abre o módulo Enumerable
-  def conmap(&amp;block)        # Define um novo método que espera um block</p>
-
-<pre><code>threads = []            # Começa com uma matriz vazia de threads
-self.each do |item|     # Para cada item enumerable
-  # Chama o bloco em uma nova Thread, e lembra da Thread
-  threads &lt;&lt; Thread.new { block.call(item) }
+<pre><code class="ruby Iterador Simultâneo">module Enumerable           # Abre o módulo Enumerable
+  def conmap(&amp;block)        # Define um novo método que espera um block
+    threads = []            # Começa com uma matriz vazia de threads
+    self.each do |item|     # Para cada item enumerable
+      # Chama o bloco em uma nova Thread, e lembra da Thread
+      threads &lt;&lt; Thread.new { block.call(item) }
+    end
+    # Agora mapea o conjunto de Threads para os seus valores
+    threads.map {|t| t.value } # E retorna a matriz de valores
+  end
 end
-# Agora mapea o conjunto de Threads para os seus valores
-threads.map {|t| t.value } # E retorna a matriz de valores
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>E aqui está uma versão concorrente similar do iterador de cada um:</p>
 
-<p>```ruby Módulo Enumerable
-module Enumerable
-  def concurrently</p>
-
-<pre><code>map {|item| Thread.new { yield item }}.each {|t| t.join }
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Módulo Enumerable">module Enumerable
+  def concurrently
+    map {|item| Thread.new { yield item }}.each {|t| t.join }
+  end
 end
-```</p>
+</code></pre>
 
 <p>O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
 Ruby e iteradores Ruby.</p>
@@ -152,9 +128,8 @@ Ruby e iteradores Ruby.</p>
 <p>Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
 que, dado o método <code>concurrently</code> definido mais cedo e um objeto <code>Hash h</code>, podemos escrever:</p>
 
-<p><code>ruby Método Concurrently
-h.each_pair.concurrently {|*pair| process(pair)}
-</code></p>
+<pre><code class="ruby Método Concurrently">h.each_pair.concurrently {|*pair| process(pair)}
+</code></pre>
 
 <p>Até o proximo amigos!</p>
 ]]></content>
@@ -168,7 +143,7 @@ h.each_pair.concurrently {|*pair| process(pair)}
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -205,7 +180,7 @@ executada. Outros programadores não são preempção: uma vez que uma <code>th
 que durma, blocos para I/O, ou uma <code>thread</code> de maior prioridade acorda.</p>
 
 <p>Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
-não preemptivo, ela vai "morrer de fome" as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
+não preemptivo, ela vai &ldquo;morrer de fome&rdquo; as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
 Para evitar esse problema, de longa duração <code>compute-bound</code> <code>threads</code> devem chamar periodicamente <code>Thread.pass</code> para pedir o
 programador para produzir a CPU para outra <code>thread</code>.</p>
 
@@ -221,7 +196,7 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -231,18 +206,17 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
  assim por diante) estão no escopo do bloco:</p>
 
-<p>``` ruby Thread e Variavel
-x = 0</p>
+<pre><code class="ruby Thread e Variavel">x = 0
 
-<p>t1 = Thread.new do
+t1 = Thread.new do
   # Esta Thread pode consultar e definir a variável x
-end</p>
+end
 
-<p>t2 = Thread.new do
+t2 = Thread.new do
   # Esta Thread e também consulta e seta x
   # E pode consultar e definir T1 e T2 também.
 end
-```</p>
+</code></pre>
 
 <p>Quando dois ou mais <code>Thread</code> de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
 fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de <code>threads</code> abaixo.</p>
@@ -256,13 +230,12 @@ outra <code>thread</code>. Isto é simplesmente consequência de regras de vari�
 altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
 respectivamente) os números 1, 2 e 3:</p>
 
-<p><code>ruby Threads Privadas
-n = 1
+<pre><code class="ruby Threads Privadas">n = 1
 while n &lt;= 3
   Thread.new { puts n }
   n += 1
 end
-</code></p>
+</code></pre>
 
 <p>Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
 3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
@@ -273,21 +246,19 @@ segmento é executado em relação para a thread pai.</p>
 <p>Para resolver este problema, passamos o valor atual de n para o método <code>Thread.new</code>, e atribuimos o atual valor da variável a
 um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:</p>
 
-<p><code>ruby Threads Privadas
-n = 1
+<pre><code class="ruby Threads Privadas">n = 1
 while n &lt;= 3
   # Obtem uma cópia privada do valor atual de n em x
   Thread.new(n) {|x| puts x }
   n += 1
 end
-</code></p>
+</code></pre>
 
 <p>Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop <code>while</code>. Neste
 caso, o valor de <code>n</code> é modificado para particular para o bloco externo e nunca durante a execução desse bloco:</p>
 
-<p><code>ruby Thread Privada com Interator
-1.upto (3) {| n | Thread.new {puts n}}
-</code></p>
+<pre><code class="ruby Thread Privada com Interator">1.upto (3) {| n | Thread.new {puts n}}
+</code></pre>
 
 <h4>Variáveis ​​de Threads locais</h4>
 
@@ -306,26 +277,23 @@ pode ter a sua própria cópia.</p>
 <p>Como exemplo, suponha que nós criamos <code>thread</code> para download de arquivos de um servidor web. A <code>Thread</code> principal pode querer
 monitorar o progresso do download. Para permitir isso, cada <code>Thread</code> pode fazer o seguinte:</p>
 
-<p><code>ruby Thread de progresso
-Thread.current[:progress] = bytes_received
-</code></p>
+<pre><code class="ruby Thread de progresso">Thread.current[:progress] = bytes_received
+</code></pre>
 
 <p>A <code>Thread</code> principal poderia, então, determinar o total de bytes baixado com um código como este:</p>
 
-<p><code>ruby Thread de progresso
-total = 0
+<pre><code class="ruby Thread de progresso">total = 0
 download_threads.each {|t| total += t[:progress] }
-</code></p>
+</code></pre>
 
 <p>Junto com <code>[]</code> e <code>[]=</code>, <code>Thread</code> também define um método <code>key?</code> para testar se uma determinada chave existe para uma discussão
 . Os métodos <code>keys</code> retorna uma matriz de símbolos que representam as chaves definidas para a <code>Thread</code>. Este código pode ser
 melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
 :progress ainda:</p>
 
-<p><code>ruby Thread de progresso
-total = 0
+<pre><code class="ruby Thread de progresso">total = 0
 download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
-</code></p>
+</code></pre>
 
 <p>Até a proxima galera! :D</p>
 ]]></content>
@@ -339,11 +307,11 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
-<p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
+<p>Programas tradicionais têm uma única &ldquo;thread de execução&rdquo;: as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
 thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
 CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
@@ -360,17 +328,12 @@ enquanto outra <code>thread</code> está à espera para a próxima imagem para s
 apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
 <code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
 
-<p>```ruby Iniciando um thread</p>
-
-<h1>Thread #1 está sendo executado aqui</h1>
-
-<p>Thread.new {
+<pre><code class="ruby Iniciando um thread"># Thread #1 está sendo executado aqui
+Thread.new {
   # Thread #2 executa esse código
-}</p>
-
-<h1>Thread #1 executa esse código</h1>
-
-<p>```</p>
+}
+# Thread #1 executa esse código
+</code></pre>
 
 <p>Vamos começar nossa cobertura de <code>threads</code> explicando o modelo <code>Thread</code> de Ruby e API em alguns detalhes. Estas seções
 introdutórias explicam as coisas como ciclo de vida da <code>thread</code>, agendamento de threads, e os estados da <code>thread</code>. Com que o
@@ -410,15 +373,14 @@ valor de suas <code>threads</code>, você pode esperar com o método de instanci
 <p>O seguinte método espera até que todas as linhas, com excepção da <code>thread</code> principal e a <code>thread</code> atual (que pode ser a mesma
 coisa), ter saído:</p>
 
-<p><code>ruby Thread Principal
-def join_all
+<pre><code class="ruby Thread Principal">def join_all
   main = Thread.main        # Thread Principal
   current = Thread.current  # Thread atual
   all = Thread.list         # Todas as threads ainda em execução
   # Agora chama join em cada thread
   all.each {|t| t.join unless t == current or t == main }
 end
-</code></p>
+</code></pre>
 
 <h4>Threads e exceções não tratadas</h4>
 
@@ -431,17 +393,15 @@ na <code>thread</code> de <code>s</code>.</p>
 <p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
 classe <code>Thread.abort_on_exception=</code>:</p>
 
-<p><code>ruby Thread
-Thread.abort_on_exception = true
-</code></p>
+<pre><code class="ruby Thread">Thread.abort_on_exception = true
+</code></pre>
 
 <p>Se você quer uma exceção não tratada em uma <code>thread</code> específica faz com que o intérprete saia, utilizando o método de
 exemplo, através do mesmo nome:</p>
 
-<p><code>ruby Thread abort
-t = Thread.new { ... }
+<pre><code class="ruby Thread abort">t = Thread.new { ... }
 t.abort_on_exception = true
-</code></p>
+</code></pre>
 
 <p>É isso ai amigos.. até a proxima!</p>
 ]]></content>

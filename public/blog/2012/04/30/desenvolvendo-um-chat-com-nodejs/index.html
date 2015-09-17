@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Olá Developers&#8230; Vamos desenvolver um pequeno Chat em NodeJS&#8230; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia &hellip;">
+  <meta name="description" content="Olá Developers&hellip; Vamos desenvolver um pequeno Chat em NodeJS&hellip; Estou começando com os estudos de NodeJS tambem, e tem sido de grande &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-04-30T17:34:00-03:00" pubdate data-updated="true">30/04/12 às 17:34 hrs</time>
+<time datetime="2012-04-30T17:34:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -115,11 +106,11 @@
 <div class="entry-content"><!--more-->
 
 
-<p>Olá Developers&#8230;</p>
+<p>Olá Developers&hellip;</p>
 
-<p>Vamos desenvolver um pequeno Chat em NodeJS&#8230; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&#8230;</p>
+<p>Vamos desenvolver um pequeno Chat em NodeJS&hellip; Estou começando com os estudos de NodeJS tambem, e tem sido de grande valia para mim&hellip;</p>
 
-<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos&#8230; :D</p>
+<p>Então, antes de mais nada, vamos fazer o download do NodeJS no link <a href="http://nodejs.org/#download">nodejs.org</a>, ou podemos instalar com o <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Node Package Manager (npm)</a>. Eu estou usando o npm, e indico a todos&hellip; :D</p>
 
 <p>Vamos criar a aplicação, crie uma pasta com o nome da aplicação:</p>
 
@@ -151,9 +142,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Na linha 1, temos um require(&#8216;fs&#8217;), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
+<p>Na linha 1, temos um require(&lsquo;fs&rsquo;), este é um framework do nodejs, que serve para trabalhar com arquivos.</p>
 
-<p>Na linha 2, estamos instanciando e criando o server &#8216;http&#8217;.</p>
+<p>Na linha 2, estamos instanciando e criando o server &lsquo;http&rsquo;.</p>
 
 <p>Na linha 3, já dentro da função do createServer, temos a leitura do arquivo que será alimentado, e uma criação de função.</p>
 
@@ -205,11 +196,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Nesta função, instancio o framework &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, que voce pode esta instalando com o comando: npm install now</p>
+<p>Nesta função, instancio o framework &lsquo;<a href="http://www.nowjs.com/">now</a>&rsquo;, que voce pode esta instalando com o comando: npm install now</p>
 
-<p>Dentro do &#8217;<a href="http://www.nowjs.com/">now</a>&#8217;, temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
+<p>Dentro do &lsquo;<a href="http://www.nowjs.com/">now</a>&rsquo;, temos 2 funções, a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:connect">connected</a> e a <a href="http://www.nowjs.com/doc/symbols/nowjs#event:disconnect">disconnected</a>, nessas funções, estou registrando quem esta se logando e quem esta saindo da aplicação.</p>
 
-<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal&#8230;</p>
+<p>Agora vem a parte legal, vamos criar em modo de execução 2 funções, só que uma dentro da outra, ou seja, vamos usar fortemente o conceito de <a href="http://lucastex.com.br/2009/10/21/nao-tenha-medo-das-closures/">closure</a>, mas por favor, não tenha medo disso, parece estranho no inicio, mas acredite o trem é legal&hellip;</p>
 
 <figure class='code'><figcaption><span>Criando Funções dentro de Funções</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -228,7 +219,7 @@
 
 <p>Na linha 2, estou somente logando a mensagem que chegou.</p>
 
-<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas&#8230;</p>
+<p>Na liinha 3, estamos tratando com uma expressão regular, a mensagem que chega, para que ninguem possa trollar a app com codigo de javascript, e outras coisas&hellip;</p>
 
 <p>Na linha 4, estamos fazendo a chamada da função que esta na view, e ela que imprimi a mensagem no DOM.</p>
 
@@ -279,12 +270,12 @@
   
 
 
-<time datetime="2012-04-30T17:34:00-03:00" pubdate data-updated="true">30/04/12 às 17:34 hrs</time>
+<time datetime="2012-04-30T17:34:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/backend/'>BackEnd</a>, <a class='category' href='/blog/categories/frontend/'>FrontEnd</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/nodejs/'>NodeJS</a>, <a class='category' href='/blog/categories/realtime/'>RealTime</a>
+    <a class='category' href='/blog/categories/backend/'>backend</a>, <a class='category' href='/blog/categories/frontend/'>frontend</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/nodejs/'>nodejs</a>, <a class='category' href='/blog/categories/realtime/'>realtime</a>
   
 </span>
 
@@ -292,8 +283,6 @@
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/04/30/desenvolvendo-um-chat-com-nodejs/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

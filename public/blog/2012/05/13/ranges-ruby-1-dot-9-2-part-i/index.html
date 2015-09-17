@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true">13/05/12 às 02:16 hrs</time>
+<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -151,13 +142,13 @@ há, obviamente, deve ser alguma forma para comparar os valores para os pontos d
 com o operador de comparação &lt;=>, que compara seus dois operandos e avalia a -1, 0 ou 1, dependendo da sua ordem relativa
 (ou igualdade). Classes, tais como números e strings que têm uma ordenação definir o operador &lt;=>. o
 valor só pode ser utilizado como um ponto de extremidade do intervalo se ele responde a esta
-operador. Os pontos de extremidade de um intervalo e os valores &#8220;em&#8221; range são
+operador. Os pontos de extremidade de um intervalo e os valores &ldquo;em&rdquo; range são
 tipicamente, todos da mesma classe. Tecnicamente, no entanto, qualquer valor que é
 compatível com o &lt;=> operador do ponto da extremidade do range pode ser considerado um membro do intervalo.</p>
 
 <p>O objetivo primário para os ranges é comparação: para ser capaz de determinar se um valor está dentro ou fora do range. Um importante
 objetivo secundário é a iteração: se a classe dos parâmetros de um range definido um método succ (por sucessor), então existe um conjunto discreto de membros de intervalo, e eles podem
-ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &#8216;A&#8217; .. &#8216;c&#8217;, por exemplo:</p>
+ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &lsquo;A&rsquo; .. &lsquo;c&rsquo;, por exemplo:</p>
 
 <figure class='code'><figcaption><span>Range</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -170,7 +161,7 @@ ser repetido a cada passo, e métodos de Enumerable. Considere o intervalo &#821
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>A razão pela qual isto funciona é que a classe String define um método succ e &#8216;a&#8217;.succ é &#8216;b&#8217; e &#8216;b&#8217;.succ é &#8216;c&#8217;. Intervalos que
+<p>A razão pela qual isto funciona é que a classe String define um método succ e &lsquo;a&rsquo;.succ é &lsquo;b&rsquo; e &lsquo;b&rsquo;.succ é &lsquo;c&rsquo;. Intervalos que
 podem ser iterados como este, são intervalos discretos. Faixas cuja ponto final não definem um método succ não pode ser iterada,
 e assim eles podem ser chamadas de contínua. Note-se que os intervalos com terminais inteiros são discretos, mas números de ponto flutuante como ponto final são contínuas.</p>
 
@@ -209,12 +200,12 @@ invocar diretamente em uma ampla literal, você deve colocar parênteses o liter
   
 
 
-<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true">13/05/12 às 02:16 hrs</time>
+<time datetime="2012-05-13T02:16:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/range/'>Range</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/range/'>range</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
   
 </span>
 
@@ -222,8 +213,6 @@ invocar diretamente em uma ampla literal, você deve colocar parênteses o liter
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/05/13/ranges-ruby-1-dot-9-2-part-i/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
