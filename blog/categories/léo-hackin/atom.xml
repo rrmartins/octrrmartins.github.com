@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Léo Hackin | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/léo-hackin/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+  <updated>2015-09-17T15:27:22-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -26,7 +26,7 @@
 </h2>
 
 
-<p><img class="center" src="/images/flisol.png" title="FLISOL" ><br/></p>
+<p>{% img center /images/flisol.png FLISOL %}<br/></p>
 
 <p> Olá amigos...</p>
 
