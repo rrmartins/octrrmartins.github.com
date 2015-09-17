@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true">20/05/12 às 19:08 hrs</time>
+<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -133,8 +124,8 @@ superficial do objeto em que eles são chamados. Se o objeto copiado inclui o es
 referências a objetos são copiadas, não os próprios objetos referenciados.</p>
 
 <p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
-classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este &#8220;Construtor
-de cópias&#8221;, podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
+classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este &ldquo;Construtor
+de cópias&rdquo;, podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
 para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
 
 <p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
@@ -169,8 +160,8 @@ objetos empacotados escritos por versões mais antigas do Ruby.</p>
 <p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
 maneira confiável para restaurar seu Estado.</p>
 
-<p>YAML (&#8220;YAML não é Markup Language&#8221;) é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
-partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo &#8216;yaml&#8217;.</p>
+<p>YAML (&ldquo;YAML não é Markup Language&rdquo;) é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
+partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo &lsquo;yaml&rsquo;.</p>
 
 <h3>Objetos de congelamento</h3>
 
@@ -193,7 +184,7 @@ ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de 
 
 <p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
 
-<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para &#8220;descongelar&#8221; um objeto. Se
+<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para &ldquo;descongelar&rdquo; um objeto. Se
 você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
 cópia não será congelada.</p>
 
@@ -227,7 +218,7 @@ pode ser descontaminado com o método untaint. Você só deve fazer isso, claro,
 lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
 confiáveis.</p>
 
-<p>Boa noite amigos&#8230; até a proxima..</p>
+<p>Boa noite amigos&hellip; até a proxima..</p>
 </div>
 
 
@@ -250,12 +241,12 @@ confiáveis.</p>
   
 
 
-<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true">20/05/12 às 19:08 hrs</time>
+<time datetime="2012-05-20T19:08:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/marshal/'>Marshal</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/yaml/'>YAML</a>
+    <a class='category' href='/blog/categories/marshal/'>marshal</a>, <a class='category' href='/blog/categories/object/'>object</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>, <a class='category' href='/blog/categories/yaml/'>yaml</a>
   
 </span>
 
@@ -263,8 +254,6 @@ confiáveis.</p>
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

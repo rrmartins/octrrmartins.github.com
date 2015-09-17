@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Expression | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: expression | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/expression/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -32,14 +32,14 @@
 <p>Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos
 de expressões:</p>
 
-<p><code>ruby Expressões
-2 # Um literal numérico
+<pre><code class="ruby Expressões">2 # Um literal numérico
 x # Uma referência variável local
 Math.sqrt(2) # invocação Um método
 x = Math.sqrt(2) # Atribuição
 x * x # Multiplicação com o operador *
-</code>
-Como você pode ver, expressões primárias, tal como literais, referências variáveis, e invocações de método podem ser combinadas em
+</code></pre>
+
+<p>Como você pode ver, expressões primárias, tal como literais, referências variáveis, e invocações de método podem ser combinadas em
 expressões maiores com operadores, tais como o operador de atribuição e o operador de multiplicação.</p>
 
 <p>Muitas linguagens de programação diferenciam entre expressões de baixo nível e alto nível de declarações, tais como condicionais e loops.

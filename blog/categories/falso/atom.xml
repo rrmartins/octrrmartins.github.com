@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Falso | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: falso | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/falso/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -42,10 +42,9 @@ a ausência de valor.</p>
 
 <p>Se você quiser verificar se um valor é nulo, você pode simplesmente compará-lo a nil, ou usar o método nil?</p>
 
-<p><code>ruby NilClass
-o == nil # o é nil
+<pre><code class="ruby NilClass">o == nil # o é nil
 o.nil? # Outra maneira de testar
-</code></p>
+</code></pre>
 
 <p>Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
 não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de

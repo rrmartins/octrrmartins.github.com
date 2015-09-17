@@ -58,23 +58,14 @@
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss email">
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-
   
     <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
   
 </ul>
-  <!-- 
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:rrmartins.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-   -->
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://twitter.com/rr_martins">Twitter</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
 </ul>
 
 </nav>
@@ -103,7 +94,7 @@
   
 
 
-<time datetime="2012-05-19T13:14:00-03:00" pubdate data-updated="true">19/05/12 às 13:14 hrs</time>
+<time datetime="2012-05-19T13:14:00-03:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -245,7 +236,7 @@ classe do argumento, basta que possamos anexá-lo. Nós podemos testar para isto
 
 <p>A deficiência desta abordagem é que ela só verifica o nome de um método, não os argumentos para esse método. Por exemplo,
 Fixnum e Bignum implementam &lt;&lt; como um operador de deslocamento à esquerda e espera o argumento de ser um número em vez de uma string.
-Objetos inteiros parecem ser &#8220;appendable&#8221; (adicionável) quando usamos um respond_to? de teste, mas que produzem um erro quando
+Objetos inteiros parecem ser &ldquo;appendable&rdquo; (adicionável) quando usamos um respond_to? de teste, mas que produzem um erro quando
 adiciona um código em string. Não há uma solução geral para este problema, mas um recurso ad-hoc, neste caso,
 é explicitamente excluir objectos numéricos com o método is_a? :</p>
 
@@ -254,14 +245,14 @@ adiciona um código em string. Não há uma solução geral para este problema, 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Outro exemplo do tipo distinção-versus-classe é a classe StringIO<a href="partir%20da%20Biblioteca%20padrão%20do%20Ruby">*</a>. StringIO permite a
+<p>Outro exemplo do tipo distinção-versus-classe é a classe StringIO<a href="partir%20da%20Biblioteca%20padr%C3%A3o%20do%20Ruby">*</a>. StringIO permite a
 leitura e gravação das strings como se fossem Objetos de IO. StringIO[*] imita os objetos IO API-StringIO definem os mesmos métodos
 que os objetos IO fazem. Mas StringIO não é uma subclasse de IO. Se você escrever um método que espera um argumento de fluxo,
 e testa a classe do argumento com is_a? IO, em seguida, o método não funciona com argumentos StringIO.</p>
 
 <p>[*] -> <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/stringio/rdoc/StringIO.html">StringIO</a></p>
 
-<p>É isso ai rubistas&#8230; A cada vez que leio sobre, me apaixono mais. :D</p>
+<p>É isso ai rubistas&hellip; A cada vez que leio sobre, me apaixono mais. :D</p>
 </div>
 
 
@@ -284,12 +275,12 @@ e testa a classe do argumento com is_a? IO, em seguida, o método não funciona 
   
 
 
-<time datetime="2012-05-19T13:14:00-03:00" pubdate data-updated="true">19/05/12 às 13:14 hrs</time>
+<time datetime="2012-05-19T13:14:00-03:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/object/'>object</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
   
 </span>
 
@@ -297,8 +288,6 @@ e testa a classe do argumento com is_a? IO, em seguida, o método não funciona 
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/" data-via="rr_martins" data-counturl="http://rrmartins.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Testes | Rodrigo Martins]]></title>
+  <title><![CDATA[Category: testes | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/testes/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T15:27:22-03:00</updated>
+  <updated>2015-09-17T19:05:08-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -51,11 +51,11 @@ está trabalhando como pretendido.</p>
 <p>BDD é uma metodologia baseada em TDD. Você escreve um teste automatizado para verificar a interação entre as diferentes
 partes da base de código em vez de testar que cada parte funciona de forma independente.</p>
 
-<p>As duas ferramentas são usadas para o BDD são (RSpec)[http://rspec.info/] e (Cucumber)[http://cukes.info/].</p>
+<p>As duas ferramentas são usadas para o BDD são (RSpec)[<a href="http://rspec.info/">http://rspec.info/</a>] e (Cucumber)[<a href="http://cukes.info/">http://cukes.info/</a>].</p>
 
 <h2>Test-Driven Development</h2>
 
-<p>Uma resposta enigmática mas verdadeira para a pergunta "Por que eu deveria testar?" é "porque você é humano.". Os seres
+<p>Uma resposta enigmática mas verdadeira para a pergunta &ldquo;Por que eu deveria testar?&rdquo; é &ldquo;porque você é humano.&rdquo;. Os seres
 humanos - a grande maioria deste livro - comete erros. É uma de nossas favoritas maneiras de aprender. Porque os
 seres-humanos cometem erros, ter uma ferramenta para informar quando eles fazem um erro é útil, não é? Teste automatizado
 fornece uma rápida segurança para informar aos desenvolvedores quando eles cometem erros. Por eles, é claro, queremos dizer
