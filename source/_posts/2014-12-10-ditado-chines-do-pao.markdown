@@ -24,7 +24,7 @@ Que achei muito massa ser repassado!
     cada um vai embora com duas idéias.
 
 
-Sempre crescemos com algo ao partilhar algo de bom.
+Sempre crescemos com algo, ao partilhar o que de bom temos.
 
 Abraços.
 
