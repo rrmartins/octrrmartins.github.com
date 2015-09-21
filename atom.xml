@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-18T10:59:44-03:00</updated>
+  <updated>2015-09-21T10:39:30-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Ser importante ou famoso?]]></title>
+    <link href="http://rrmartins.com/blog/2015/09/21/ser-importante-ou-famoso/"/>
+    
+    <updated>2015-09-21T10:14:10-03:00</updated>
+    <id>http://rrmartins.com/blog/2015/09/21/ser-importante-ou-famoso</id>
+    
+    <content type="html"><![CDATA[<p>Este é um dos pensamentos mais legais que já vi sobre este tema. Em uma correria do nossos dias, vejo muitos querendo ser famoso e tal, quando em uma breve realização, e pronto. Mas, vejo que a importancia que damos ao ser famoso é em demasia grande. Quando podemos olhar e viver para ser simples e importante. Nesse sentido, transcrevo abaixo um texto muito bom para esta reflexão do filosofo brasileiro Mario Sergio Cortella.</p>
+
+<p>Destaco para o inicio desta boa leitura:</p>
+
+<pre><code>Aliás, felicidade não é um estado contínuo,
+felicidade é uma ocorrência eventual.
+por Mario Sergio Cortella
+</code></pre>
+
+<!--more-->
+
+
+<p>Segue a reflexão completa.</p>
+
+<pre><code>Felicidade é uma vibração intensa, um momento em que eu sinto a vida
+em plenitude dentro de mim, e quero que aquilo se eternize.
+Felicidade é a capacidade de você ser inundado por uma alegria imensa
+por aquele instante, por aquela situação. Aliás, felicidade não é
+um estado contínuo, felicidade é uma ocorrência eventual.
+
+A felicidade é sempre episódica. Você sentir a vida vibrando, seja num
+abraço, seja na realização de uma obra, seja numa situação, por exemplo,
+em que seu time vence, seja porque algo que você fez deu certo, seja porque
+você ouviu algo que você queria ouvir. É claro que aquilo não tem
+perenidade, aliás, a felicidade se marcada pela perenidade seria impossível.
+Afinal de contas nós só temos a noção de felicidade pela carência.
+
+Se eu tivesse a felicidade como algo contínuo, eu não a perceberia. Nós só
+sentimos a felicidade porque ela não é contínua. Isto é, ela não é o que
+acontece o tempo todo, de todos os modos. A ideia de felicidade sozinha ela
+teria que ter uma questão anterior: se é possível viver sozinho. Que como a
+felicidade pelo óbvio só acontece com alguém que viu ou está e viver é viver
+com outros e outras, como não é possível viver sozinho?
+
+A possibilidade da felicidade isolada, solitária é nenhuma. Pra que eu possa
+ser feliz sozinho eu teria que ser capaz de viver sozinho. Mesmo a literatura,
+como Robson Crusoé, por exemplo, que lida com um homem que está só, mas ele
+está só depois de ter vivido com outros. Ele trás as outras pessoas na sua
+memória, na sua história, no seu desejo, no seu horizonte. Não há, não há
+história de ser humano em que ele tenha sido sozinho da geração até o término.
+Se assim não há, não há possibilidade de se ser feliz sozinho.
+
+Nos últimos 50 anos do século XX, nós tivemos mais desenvolvimento tecnológico
+do que em toda história anterior da humanidade. Todos os 39.950 anos anteriores,
+desde que o homo-sapiens era sapiens, sapiens sapiens na classificação científica,
+foram menos do que os 50 anos finais do século XX. Seria a redenção da humanidade.
+Uma questão: as questões centrais permaneceram. Quem sou eu?, pra que tudo isso?,
+porque eu não sou feliz apenas quando possuo objeto?, porque o mal existe?, porque
+que eu não tenho paz em meio a tanta convivência? Nesta hora, não só a religiosidade,
+ela sofreu um revival, como a filosofia passou, de novo, a ser interessante. E
+aí claro, a filosofia como autoajuda, a filosofia como autoconhecimento, a filosofia
+como auto capacidade, a filosofia como prática sistemática. E de repente a gente
+tem no final do século XX, em vários lugares do mundo e no Brasil também, casas
+pra estudar filosofia; procura de cursos de filosofia.
+
+Nós somos o único animal que é mortal. Todos os outros animais são imortais. Embora
+todos morram, nós somos o único que além de morrer, sabe que vai morrer. Teu
+cachorro tá dormindo sossegado a essa hora. Teu gato tá tranquilo. Você e eu
+sabemos que vamos morrer. Desse ponto de vista, não é a morte que me importa,
+porque ela é um fato. O que me importa é o que eu faço da minha vida enquanto
+minha morte não acontece, pra que essa vida não seja banal, superficial, fútil,
+pequena. Nesta hora, eu preciso ser capaz de fazer falta.
+
+No dia que eu me for, e eu me vou, quero fazer falta. Fazer falta não significa ser
+famoso, significa ser importante. Há uma diferença entre ser famoso e importante.
+Muita gente não é famosa e é absolutamente importante. Importar; quando alguém me
+leva pra dentro, importa. Ele me porta pra dentro, ele me carrega.
+
+Eu quero ser importante. Por isso, pra ser importante, eu preciso não ter uma vida
+que seja pequena. E uma vida se torna pequena quando ela é uma vida que é apoiada
+só em si mesmo, fechada em si. Eu preciso transbordar, ir além da minha borda,
+preciso me comunicar, preciso me juntar, preciso me repartir. Nesta hora, minha
+vida que, sem dúvida, ela é curta, eu desejo que ela não seja pequena.
+</code></pre>
+
+<p>Por Mario Sergio Cortella</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -3413,156 +3501,6 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
 é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.</p>
 
 <p>Até a proxima amigos&hellip; =D</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
-    
-    <updated>2012-09-09T19:31:00-03:00</updated>
-    <id>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
-    
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Metodos de Visibilidade: Public, Protected, Private</b>...</p>
-
-
-
-
-<h1>Metodos de Visibilidade: Public, Protected, Private</h1>
-
-
-<p>Métodos de instância podem ser <code>public</code>, <code>private</code> ou <code>protected</code>. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
-familiarizado com esses termos. Preste atenção de qualquer maneira, porque estas palavras têm um significado um pouco diferente em Ruby do que em
-outras Linguagens.</p>
-
-<p>Métodos são normalmente <code>public</code> a menos que explicitamente declarado ser <code>private</code> ou <code>protected</code>. Uma exceção é o método <code>initialize</code>, que é sempre
-implicitamente privada. Outra exceção é qualquer método &ldquo;global&rdquo; declarado fora de uma definição de classe desses métodos são definidos como métodos
-privados de instância de objeto. Um método <code>public</code> pode ser chamado em qualquer lugar, não há restrições sobre seu uso.</p>
-
-<p>Um método <code>private</code> é uma implementação interna de uma classe, e que só pode ser chamada por métodos de outra instância da classe (ou, como veremos
-mais tarde, as suas subclasses). Métodos <code>private</code> são implicitamente invocado em si mesmo, e não podem ser explicitamente chamado em um objeto. Se <code>m</code>
-é um método <code>private</code>, então você deve chamá-lo em estilo funcional como <code>m</code>. Você não pode escrever <code>o.m</code> ou mesmo <code>self.m</code>.</p>
-
-<p>Um método <code>protected</code> é como um método <code>private</code> em que só pode ser chamado de dentro da implementação de uma classe ou suas subclasses. Ela difere de
-um método <code>private</code> na medida em que pode ser explicitamente chamado em qualquer instância da classe, e ele não se restringe a invocação implícita em
-si mesmo. Um método <code>protected</code> pode ser usado, por exemplo, para definir um acessor que permite que instâncias de uma classe podem compartilhar o
-estado interno com o outro, mas não permite que os utilizadores de classe possam acessar esse estado.</p>
-
-<p>Métodos <code>protected</code> são os menos comumente definido e também o mais difícil de entender. A regra sobre quando um método <code>protected</code> pode ser invocado
-pode ser mais formalmente descritos como segue: um método <code>protected</code> definido por uma classe C pode ser invocado em um <code>objeto o</code> através de um método
-em um <code>objeto p</code> se e somente se as classes de <code>o</code> e <code>p</code> são ambos subclasses ou iguais para, a classe C.</p>
-
-<p>Métodos de visibilidade é declarado com três métodos chamados <code>public</code>, <code>private</code> e <code>protected</code>. Estes são os métodos de instância da Classe do módulo.
-Todas as classes são módulos, e dentro de uma definição de classe, a classe auto-refere-se ao que está sendo definido. Assim, <code>public</code>, <code>private</code> e
-<code>protected</code> pode ser usado como se fossem palavras-chave da linguagem. Em fato, no entanto, são chamadas de método em si. Há duas maneiras para chamar
-esses métodos. Sem argumentos, eles especificam que todas as definições de método subsequentes terão a visibilidade especificada. Uma classe pode
-usá-los como este:</p>
-
-<figure class='code'><figcaption><span>Visibilidade de Metodos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos públicos aqui</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Os seguintes métodos são protegidos</span>
-</span><span class='line'><span class="err">  </span><span class="kp">protected</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos protegidos aqui</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Os seguintes métodos são privados</span>
-</span><span class='line'><span class="err">  </span><span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos privadas aqui</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os métodos também podem ser invocados com os nomes de um ou mais métodos (como <code>symbols</code> ou <code>strings</code>) como argumentos. Quando chamado assim, eles
-alteram a visibilidade dos métodos chamados. Neste uso, a declaração de visibilidade deve vir após a definição do método. Uma abordagem consiste em
-declarar todos os métodos <code>private</code> e <code>protected</code> de uma só vez, no final de uma classe. Outra abordagem é declarar a visibilidade de cada método
-<code>private</code> ou <code>protected</code> imediatamente após sua definição. Aqui, por exemplo, é uma classe com um método de utilidade <code>private</code> e um método de acesso
-<code>protected</code>:</p>
-
-<figure class='code'><figcaption><span>Visibilidade de Metodos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Widget</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">x</span>                       <span class="c1"># método de acesso para @x</span>
-</span><span class='line'>    <span class="vi">@x</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="kp">protected</span> <span class="ss">:x</span>                <span class="c1"># Faça-o protegido</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">utility_method</span>          <span class="c1"># Define um método</span>
-</span><span class='line'>    <span class="kp">nil</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="kp">private</span> <span class="ss">:utility_method</span>     <span class="c1"># E torná-lo privado</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lembre-se que <code>public</code>, <code>private</code> e <code>protected</code> aplicam-se apenas aos métodos em Ruby. Variáveis de instância e de classe são encapsuladas e
-efetivamente <code>private</code>, e constantes são efetivamente <code>public</code>. Não há nenhuma maneira de fazer uma variável de instância acessível a partir de fora de
-uma classe (exceto pela definição de um método de acesso, é claro). E não há maneira de definir uma constante que é inacessível para uso externo.</p>
-
-<p>Ocasionalmente, é útil para especificar que um método de classe deve ser privado. Se sua classe define métodos de fábrica, por exemplo, você pode
-querer fazer o novo método <code>private</code>. Para fazer isso, use o método <code>private_class_method</code>, especificando um ou mais nomes de métodos como símbolos:</p>
-
-<figure class='code'><figcaption><span>private_class_method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">private_class_method</span> <span class="ss">:new</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Você pode tornar público um método <code>private</code> de classe novamente com <code>public_class_method</code>. Nenhum método pode ser chamado sem argumentos na forma que
-o <code>public</code>, <code>protected</code> e <code>private</code> pode ser.</p>
-
-<p>Ruby é, por definição, uma linguagem muito aberta. A capacidade de especificar que alguns métodos são <code>private</code> e <code>protected</code> encoraja p bom estilo de
-programação, e evita o uso inadvertido de métodos que não fazem parte da API pública de uma classe. É importante entender, no entanto, que os recursos
-de metaprogramação de Ruby tornam trivial para invocar métodos <code>private</code> e <code>protected</code> e até mesmo para acessar variáveis de instância encapsuladas.
-Para chamar o método <code>private</code> <code>utility</code> definida no código anterior, você pode usar o método de envio, ou você pode usar <code>instance_eval</code> para avaliar
-um bloco no contexto do objeto:</p>
-
-<figure class='code'><figcaption><span>instance_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">w</span> <span class="o">=</span> <span class="no">Widget</span><span class="o">.</span><span class="n">new</span>                      <span class="c1"># Criar um Widget</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">send</span> <span class="ss">:utility_method</span>              <span class="c1"># Invoke método privado!</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="n">utility_method</span> <span class="p">}</span>  <span class="c1"># Outra forma de invocá-lo</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="vi">@x</span> <span class="p">}</span>              <span class="c1"># Ler variável de instância de w</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se você quiser chamar um método pelo nome, mas você não quer inadvertidamente invocar um método <code>private</code> que você não sabe aproximadamente, você pode
-(no Ruby 1.9) usar <code>public_send</code> em vez de <code>send</code>. Ele funciona como <code>send</code>, mas não invoca métodos <code>private</code> quando chamado com um receptor
-específico.</p>
-
-<p>É isso ai amigos&hellip;</p>
-
-<p>Até o proximo.. =D</p>
 ]]></content>
     
   </entry>
