@@ -4,7 +4,7 @@
   <title><![CDATA[Category: realtime | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/realtime/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-17T19:05:08-03:00</updated>
+  <updated>2015-09-28T16:59:25-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -108,14 +108,14 @@ everyone.disconnected(function(){
 
 <p>Logo o arquivo do helloword_server.js precisa ficar assim:</p>
 
-<p>File /Volumes/Dados/codes_projects/rrmartins.github.com/source/downloads/code/helloworld_server.js could not be found</p>
+<p>File /Volumes/Dados/codes_projects/rrmartins.heroku/source/downloads/code/helloworld_server.js could not be found</p>
 
 <h3>Criando a View</h3>
 
 
 <p>A nossa view, será basicamente HTML, e um pouco de simples javascript, então, dessa vez será 0 de explicação.</p>
 
-<p>File /Volumes/Dados/codes_projects/rrmartins.github.com/source/downloads/code/helloworld.html could not be found</p>
+<p>File /Volumes/Dados/codes_projects/rrmartins.heroku/source/downloads/code/helloworld.html could not be found</p>
 
 <p>Proximo, passo, só levantar o servidor:
 <figure class='code'><figcaption><span>Levantando o Servidor </span></figcaption>
