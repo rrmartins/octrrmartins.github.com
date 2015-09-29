@@ -1,0 +1,7 @@
+<div class="highlight"><pre><span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="c1"># =&gt; 2012-03-02 16:05:37 +0100</span>
+<span class="no">Date</span><span class="o">.</span><span class="n">today</span><span class="o">.</span><span class="n">to_time</span> <span class="c1"># =&gt; 2012-03-02 00:00:00 +0100</span>
+<span class="no">Time</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;2012-03-02 16:05:37&quot;</span><span class="p">)</span> <span class="c1"># =&gt; 2012-03-02 16:05:37 +0100</span>
+<span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="c1"># =&gt; 2012-03-02 16:07:20 +0100</span>
+<span class="no">Date</span><span class="o">.</span><span class="n">today</span> <span class="c1"># This could be yesterday or tomorrow depending on the machine&#39;s time zone!</span>
+<span class="no">Time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">time_string</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-%dT%H:%M:%S%z&#39;</span><span class="p">)</span> <span class="c1"># You won&#39;t have the time in your configured time zone!</span>
+</pre></div>

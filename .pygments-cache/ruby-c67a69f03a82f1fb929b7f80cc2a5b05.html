@@ -1,0 +1,38 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Module</span>
+<span class="err">  </span><span class="c1"># Este método define os atributos de métodos de reader e writer de nomeado</span>
+<span class="err">  </span><span class="c1"># attributes, mas aguarda um argumento de attributes de nomes em hash mapeado para</span>
+<span class="err">  </span><span class="c1"># Valores padrões. Os métodos de reader gerados atributos retorna o</span>
+<span class="err">  </span><span class="c1"># Valor padrão se a variável de instância ainda não foi definido.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">attributes</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="err">    </span><span class="nb">hash</span><span class="o">.</span><span class="n">each_pair</span> <span class="k">do</span> <span class="o">|</span><span class="n">symbol</span><span class="p">,</span> <span class="n">default</span><span class="o">|</span>   <span class="c1"># Para cada par de atributo/default</span>
+<span class="err">      </span><span class="n">getter</span> <span class="o">=</span> <span class="n">symbol</span>                     <span class="c1"># Nome do método getter</span>
+<span class="err">      </span><span class="n">setter</span> <span class="o">=</span> <span class="ss">:&quot;</span><span class="si">#{</span><span class="n">symbol</span><span class="si">}</span><span class="ss">=&quot;</span>              <span class="c1"># nome do método setter</span>
+<span class="err">      </span><span class="n">variable</span> <span class="o">=</span> <span class="ss">:&quot;@</span><span class="si">#{</span><span class="n">symbol</span><span class="si">}</span><span class="ss">&quot;</span>            <span class="c1"># nome da variável de instância</span>
+<span class="err">      </span><span class="n">define_method</span> <span class="n">getter</span> <span class="k">do</span>             <span class="c1"># Definir o método getter</span>
+<span class="err">        </span><span class="k">if</span> <span class="n">instance_variable_defined?</span> <span class="n">variable</span>
+<span class="err">          </span><span class="nb">instance_variable_get</span> <span class="n">variable</span>  <span class="c1"># Retorna variável, se definido</span>
+<span class="err">        </span><span class="k">else</span>
+<span class="err">          </span><span class="n">default</span>                         <span class="c1"># Caso contrário retornar padrão</span>
+<span class="err">        </span><span class="k">end</span>
+<span class="err">      </span><span class="k">end</span>
+
+<span class="err">      </span><span class="n">define_method</span> <span class="n">setter</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>     <span class="c1"># Defini método setter</span>
+<span class="err">        </span><span class="nb">instance_variable_set</span> <span class="n">variable</span><span class="p">,</span>   <span class="c1"># Defina a variável de instância</span>
+<span class="err">                              </span><span class="n">value</span>       <span class="c1"># Para o valor do argumento</span>
+<span class="err">      </span><span class="k">end</span>
+<span class="err">    </span><span class="k">end</span>
+<span class="err">  </span><span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Este método funciona como atributos, mas define métodos de classe em vez de</span>
+<span class="err">  </span><span class="c1"># Invocar atributos no eigenclass em vez de em si mesmo.</span>
+<span class="err">  </span><span class="c1"># Note que os métodos definidos usam variáveis de instância de classe</span>
+<span class="err">  </span><span class="c1"># Em vez de variáveis de classe regulares.</span>
+<span class="err">  </span><span class="k">def</span> <span class="nf">class_attrs</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="err">    </span><span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
+    <span class="n">eigenclass</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">attributes</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Ambos os métodos são privados</span>
+  <span class="kp">private</span> <span class="ss">:attributes</span><span class="p">,</span> <span class="ss">:class_attrs</span>
+<span class="k">end</span>
+</pre></div>

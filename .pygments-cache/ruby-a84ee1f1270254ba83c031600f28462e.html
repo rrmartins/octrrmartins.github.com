@@ -1,0 +1,10 @@
+<div class="highlight"><pre><span class="c1"># - * - Coding: utf-8 - * - # Especifique Unicode UTF-8 caracteres</span>
+<span class="c1"># Esta é uma string literal contendo uma personagem multiplicação multibyte</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;2 × 2 = 4&quot;</span>
+<span class="c1"># A seqüência contém 6 bytes que codificam 5 caracteres</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 6</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bytesize</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">s</span><span class="o">.</span><span class="n">getbyte</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">}</span> <span class="c1"># Mostra &quot;50 195 151 50 61 52&quot;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">length</span> <span class="c1"># =&gt; 5</span>
+<span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">print</span> <span class="n">s</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">}</span> <span class="c1"># imprime &quot;2 × 2 = 4&quot;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setbyte</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">getbyte</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1"># s é agora &quot;2 × 2 = 5&quot;</span>
+</pre></div>

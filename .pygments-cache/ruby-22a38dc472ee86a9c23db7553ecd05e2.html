@@ -1,0 +1,28 @@
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">A</span><span class="p">;</span> <span class="k">end</span>                <span class="c1"># Modulo vazio</span>
+<span class="k">module</span> <span class="nn">B</span><span class="p">;</span> <span class="kp">include</span> <span class="n">A</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>    <span class="c1"># Módulo B inclui A</span>
+<span class="k">class</span> <span class="nc">C</span><span class="p">;</span> <span class="kp">include</span> <span class="n">B</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>     <span class="c1"># Classe C inclui o módulo B</span>
+
+<span class="n">C</span> <span class="o">&lt;</span> <span class="n">B</span>                <span class="c1"># =&gt; true: C inclui B</span>
+<span class="n">B</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true: B inclui A</span>
+<span class="n">C</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true</span>
+<span class="no">Fixnum</span> <span class="o">&lt;</span> <span class="nb">Integer</span>     <span class="c1"># =&gt; true: todos os fixnums são inteiros</span>
+<span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Comparable</span> <span class="c1"># =&gt; true: inteiros são comparáveis</span>
+<span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Fixnum</span>     <span class="c1"># =&gt; false: nem todos os números inteiros são fixnums</span>
+<span class="nb">String</span> <span class="o">&lt;</span> <span class="no">Numeric</span>     <span class="c1"># =&gt; nil: cordas não são números</span>
+
+<span class="n">A</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [A]</span>
+<span class="n">B</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [B, A]</span>
+<span class="n">C</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [C, B, A, Object, Kernel]</span>
+<span class="nb">String</span><span class="o">.</span><span class="n">ancestors</span>     <span class="c1"># =&gt; [String, Enumerable, Comparable, Object, Kernel]</span>
+<span class="err">                     </span><span class="c1"># Nota: em Ruby 1.9, String não é mais Enumerable</span>
+
+<span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+<span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+<span class="n">B</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+<span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
+<span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
+
+<span class="n">A</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; []</span>
+<span class="n">B</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [A]</span>
+<span class="n">C</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [B, A, Kernel]</span>
+</pre></div>

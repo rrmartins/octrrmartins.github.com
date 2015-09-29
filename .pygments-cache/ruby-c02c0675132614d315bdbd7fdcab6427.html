@@ -1,0 +1,13 @@
+<div class="highlight"><pre><span class="n">o</span> <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">new</span>
+<span class="n">o</span><span class="o">.</span><span class="n">instance_variable_set</span><span class="p">(</span><span class="ss">:@x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c1"># Nota exigido o prefixo @</span>
+<span class="n">o</span><span class="o">.</span><span class="n">instance_variable_get</span><span class="p">(</span><span class="ss">:@x</span><span class="p">)</span>      <span class="c1"># =&gt; 0</span>
+<span class="n">o</span><span class="o">.</span><span class="n">instance_variable_defined?</span><span class="p">(</span><span class="ss">:@x</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+
+<span class="no">Object</span><span class="o">.</span><span class="n">class_variable_set</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># Privado no Ruby 1.8</span>
+<span class="no">Object</span><span class="o">.</span><span class="n">class_variable_get</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span>      <span class="c1"># Privado no Ruby 1.8</span>
+<span class="no">Object</span><span class="o">.</span><span class="n">class_variable_defined?</span><span class="p">(</span><span class="ss">:@@x</span><span class="p">)</span> <span class="c1"># =&gt; true; Ruby 1.9 e versões mais novas</span>
+
+<span class="no">Math</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="ss">:EPI</span><span class="p">,</span> <span class="no">Math</span><span class="o">::</span><span class="n">E</span><span class="o">*</span><span class="no">Math</span><span class="o">::</span><span class="no">PI</span><span class="p">)</span>
+<span class="no">Math</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="ss">:EPI</span><span class="p">)</span>             <span class="c1"># =&gt; 8,53973422267357</span>
+<span class="no">Math</span><span class="o">.</span><span class="n">const_defined?</span> <span class="ss">:EPI</span>         <span class="c1"># =&gt; true</span>
+</pre></div>

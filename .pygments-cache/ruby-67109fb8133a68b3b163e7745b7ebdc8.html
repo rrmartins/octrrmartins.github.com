@@ -1,0 +1,36 @@
+<div class="highlight"><pre><span class="c1">#</span>
+<span class="c1"># Defini métodos de kernel after e every por adiar blocos de código.</span>
+<span class="c1"># Exemplos:</span>
+<span class="c1">#</span>
+<span class="c1">#   after 1 { puts &quot;done&quot; }</span>
+<span class="c1">#   every 60 { redraw_clock }</span>
+<span class="c1">#</span>
+<span class="c1"># Ambos os métodos retornam objetos Thread. Chame kill sobre os objetos devolvidos</span>
+<span class="c1"># Para cancelar a execução do código.</span>
+<span class="c1">#</span>
+<span class="c1"># Note que essa é uma implementação muito ingênua. A mais robusta</span>
+<span class="c1"># Implementação usaria uma Thread timer para todas as tarefas globais,</span>
+<span class="c1"># Permitiria uma maneira de recuperar o valor de um bloco diferido, e iria</span>
+<span class="c1"># Fornecer uma maneira de esperar por todas as tarefas pendentes para ser concluído.</span>
+<span class="c1">#</span>
+
+<span class="c1"># Executar o bloco after depois de esperar o número especificado de segundos.</span>
+<span class="k">def</span> <span class="nf">after</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>       <span class="c1"># Em um novo segmento ...</span>
+    <span class="nb">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>    <span class="c1"># Primeiro espera</span>
+    <span class="n">block</span><span class="o">.</span><span class="n">call</span>        <span class="c1"># Em seguida, chamar o bloco</span>
+<span class="err">  </span><span class="k">end</span> <span class="c1"># Retorna o objeto Thread de imediato</span>
+<span class="k">end</span>
+
+<span class="c1"># Repete sleep e after executando o bloco.</span>
+<span class="c1"># Passa valor para o bloco na primeira chamada.</span>
+<span class="c1"># Em chamadas subseqüentes, passar o valor da chamada anterior.</span>
+<span class="k">def</span> <span class="nf">every</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>                 <span class="c1"># Em um novo segmento ...</span>
+    <span class="kp">loop</span> <span class="k">do</span>                     <span class="c1"># loop para sempre (ou até ruptura no bloco)</span>
+      <span class="nb">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>            <span class="c1"># sleep</span>
+<span class="err">      </span><span class="n">value</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="c1"># E invocar bloco</span>
+<span class="err">    </span><span class="k">end</span> <span class="c1"># Em seguida, repita ..</span>
+<span class="err">  </span><span class="k">end</span> <span class="c1"># cada retorna o Tópico</span>
+<span class="k">end</span>
+</pre></div>

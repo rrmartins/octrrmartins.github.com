@@ -1,0 +1,6 @@
+<div class="highlight"><pre><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;gelo&quot;</span> <span class="c1"># String são objetos mutáveis</span>
+<span class="n">s</span><span class="o">.</span><span class="n">freeze</span> <span class="c1"># Faça desta cadeia imutável</span>
+<span class="n">s</span><span class="o">.</span><span class="n">frozen?</span> <span class="c1"># Verdade: ele foi congelado</span>
+<span class="n">s</span><span class="o">.</span><span class="n">upcase!</span> <span class="c1"># TypeError: não pode modificar cadeia de congelados</span>
+<span class="n">s</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;ni&quot;</span> <span class="c1"># TypeError: não pode modificar cadeia de congelados</span>
+</pre></div>

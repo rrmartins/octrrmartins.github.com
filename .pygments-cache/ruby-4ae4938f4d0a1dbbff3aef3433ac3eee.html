@@ -1,0 +1,23 @@
+<div class="highlight"><pre><span class="c1"># Ler arquivos simultaneamente. Use com o módulo &quot;open-uri&quot; para buscar URLs.</span>
+<span class="c1"># Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.</span>
+<span class="k">def</span> <span class="nf">conread</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="p">{}</span> 			<span class="c1"># hash vazio de resultados</span>
+
+  <span class="c1"># Crie uma linha para cada arquivo</span>
+<span class="err">  </span><span class="n">filenames</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">filename</span><span class="o">|</span>      <span class="c1"># Para cada arquivo chamado</span>
+<span class="err">    </span><span class="n">h</span><span class="o">[</span><span class="n">filename</span><span class="o">]</span> <span class="o">=</span> <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>     <span class="c1"># Criar um fio, mapa para filename</span>
+<span class="err">      </span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span> <span class="p">}</span>  <span class="c1"># Abra e leia o arquivo</span>
+<span class="err">    </span><span class="k">end</span> 							<span class="c1"># valor da linha é o conteúdo do arquivo</span>
+  <span class="k">end</span>
+
+<span class="err">  </span><span class="c1"># Percorre o hash, à espera de cada thread para completar.</span>
+<span class="err">  </span><span class="c1"># Substitua a thread no hash com o seu valor (o conteúdo de arquivo)</span>
+  <span class="n">h</span><span class="o">.</span><span class="n">each_pair</span> <span class="k">do</span> <span class="o">|</span><span class="n">filename</span><span class="p">,</span> <span class="n">thread</span><span class="o">|</span>
+    <span class="k">begin</span>
+      <span class="n">h</span><span class="o">[</span><span class="n">filename</span><span class="o">]</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="n">value</span>    <span class="c1"># Mapa de nomes ao conteúdo do arquivo</span>
+    <span class="k">rescue</span>
+      <span class="n">h</span><span class="o">[</span><span class="n">filename</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$!</span>              <span class="c1"># Ou a exceção levantada</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>

@@ -1,0 +1,14 @@
+<div class="highlight"><pre><span class="c1"># - * - Coding: utf-8 - * -</span>
+<span class="no">EURO1</span> <span class="o">=</span> <span class="s2">&quot;\u20AC&quot;</span> <span class="c1"># Comece com o personagem Euro Unicode</span>
+<span class="nb">puts</span> <span class="no">EURO1</span> <span class="c1"># Imprime &quot;€&quot;</span>
+<span class="n">euro1</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># =&gt; &lt;Encoding:UTF-8&gt;</span>
+<span class="n">euro1</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 3</span>
+
+<span class="n">euro2</span> <span class="o">=</span> <span class="n">euro1</span><span class="o">.</span><span class="n">encode</span> <span class="p">(</span><span class="s2">&quot;iso-8859-15&quot;</span><span class="p">)</span> <span class="c1"># transcode para a América-15</span>
+<span class="nb">puts</span> <span class="n">euro2</span><span class="o">.</span><span class="n">inspect</span> <span class="c1"># Imprime &quot;\xA4&quot;</span>
+<span class="n">euro2</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># =&gt; &lt;Encoding:iso-8859-15&gt;</span>
+<span class="n">euro2</span><span class="o">.</span><span class="n">bytesize</span> <span class="c1"># =&gt; 1</span>
+
+<span class="n">euro3</span> <span class="o">=</span> <span class="n">euro2</span><span class="o">.</span><span class="n">encode</span> <span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="c1"># transcode de volta para UTF-8</span>
+<span class="no">EURO1</span> <span class="o">==</span> <span class="n">euro3</span> <span class="c1"># =&gt; true</span>
+</pre></div>

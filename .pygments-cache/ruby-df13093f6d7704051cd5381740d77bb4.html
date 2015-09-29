@@ -1,0 +1,5 @@
+<div class="highlight"><pre><span class="c1"># Imprime a mensagem de cada vez $ mudanças SAFE</span>
+<span class="nb">trace_var</span><span class="p">(:</span><span class="vg">$SAFE</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;$SAFE set to </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2"> at </span><span class="si">#{</span><span class="nb">caller</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">}</span>
+</pre></div>

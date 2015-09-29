@@ -1,0 +1,42 @@
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;thread&#39;</span>
+
+<span class="c1"># Ruby 1.8 mantém Mutex nesta biblioteca</span>
+
+<span class="c1"># Obter o Mutex associado com o objeto o, e então avalia</span>
+<span class="c1"># Bloco sob a proteção do Mutex.</span>
+<span class="c1"># Este funciona como a palavra-chave synchronized do Java.</span>
+<span class="k">def</span> <span class="nf">synchronized</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">mutex</span><span class="o">.</span><span class="n">synchronize</span> <span class="p">{</span> <span class="k">yield</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="c1"># Object.mutex na verdade não existe. Temos que definir isso.</span>
+<span class="c1"># Este método retorna um Mutex único para cada objeto, e</span>
+<span class="c1"># Sempre retorna o mesmo Mutex para qualquer objeto particular.</span>
+<span class="c1"># Cria Mutexes lazily, o que requer sincronização para</span>
+<span class="c1"># Segurança da Thread.</span>
+<span class="k">class</span> <span class="nc">Object</span>
+  <span class="c1"># Retorna o Mutex para este objeto, criando, se necessário.</span>
+  <span class="c1"># A parte difícil é ter certeza de que duas threads não chamam</span>
+  <span class="c1"># Isso ao mesmo tempo e acabam por criar dois mutexes diferentes.</span>
+  <span class="k">def</span> <span class="nf">mutex</span>
+    <span class="c1"># Se este objeto já tem um mutex, basta devolvê-lo</span>
+    <span class="k">return</span> <span class="vi">@__mutex</span> <span class="k">if</span> <span class="vi">@__mutex</span>
+
+    <span class="c1"># Caso contrário, nós temos que criar um mutex para o objeto.</span>
+<span class="err">    </span><span class="c1"># Para fazer isso com segurança que temos para sincronizar em nosso objeto de classe.</span>
+    <span class="n">synchronized</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">      </span><span class="c1"># Verifique novamente: no momento em que entrar neste bloco sincronizado,</span>
+<span class="err">      </span><span class="c1"># Alguma outra thread pode já ter criado o mutex.</span>
+      <span class="vi">@__mutex</span> <span class="o">=</span> <span class="vi">@__mutex</span> <span class="o">||</span> <span class="no">Mutex</span><span class="o">.</span><span class="n">new</span>
+<span class="err">    </span><span class="p">}</span>
+<span class="err">    </span><span class="c1"># O valor de retorno é @__mutex</span>
+<span class="err">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># O método Object.mutex definido acima, necessita para bloquear a classe</span>
+<span class="c1"># Se o objeto não tiver um Mutex ainda. Se a classe não tem</span>
+<span class="c1"># Mutex próprio ainda, então a classe da classe (a Class do Object)</span>
+<span class="c1"># Será bloqueada. A fim de evitar recursão infinita, devemos</span>
+<span class="c1"># Garantir que o objeto da classe tem um mutex.</span>
+<span class="no">Class</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="vi">@__mutex</span> <span class="o">=</span> <span class="no">Mutex</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</pre></div>

@@ -1,0 +1,21 @@
+<div class="highlight"><pre><span class="n">o</span><span class="o">.</span><span class="n">class</span>
+<span class="c1"># Retorna a classe de do objeto &#39;o&#39;.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">superclass</span>
+<span class="c1"># Retorna a superclasse de uma classe &#39;c&#39;.</span>
+
+<span class="n">o</span><span class="o">.</span><span class="n">instance_of?</span> <span class="n">c</span>
+<span class="c1"># Determina se o objeto &#39;o.class == c&#39;.</span>
+
+<span class="n">o</span><span class="o">.</span><span class="n">is_a?</span> <span class="n">c</span>
+<span class="c1"># Determina se &#39;o&#39; é um exemplo de &#39;c&#39;, ou de qualquer das suas subclasses. Se &#39;c&#39; for um módulo, este método testa se &#39;o.class&#39; (ou qualquer um de seus ancestrais) inclui o módulo.</span>
+
+<span class="n">o</span><span class="o">.</span><span class="n">kind_of?</span> <span class="n">c</span>
+<span class="c1"># kind_of? é um sinônimo para is_a?.</span>
+
+<span class="n">c</span> <span class="o">===</span> <span class="n">o</span>
+<span class="c1"># Para qualquer classe &#39;c&#39; ou módulo, determina se &#39;o.is_a? (c)&#39;</span>
+
+<span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">nome</span>
+<span class="c1"># Determina se o objeto &#39;o&#39; tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</span>
+</pre></div>
