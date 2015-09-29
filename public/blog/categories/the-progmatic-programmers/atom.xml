@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: the progmatic programmers | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/the-progmatic-programmers/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Emergencia]]></title>
+    <link href="http://rrmartins.com/blog/2012/05/28/emergencia/"/>
+    <updated>2012-05-28T13:24:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/28/emergencia</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Emergencia</p>
+
+<p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
+projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
+do século 17, que significa “ocorrência não prevista”. Você não pode planejá-la ou agendá-la, mas pode cultivar um ambiente em que a deixe
+ocorrer, se beneficiando dela.</p>
+
+<p>Um exemplo clássico de emergência está no comportamento dos bandos de pássaros. Uma simulação de computador pode usar apenas três regras
+simples (parecidas com “não colida-se com outros”) e de repente você tem comportamento complexo quando o bando vai batendo as asas
+graciosamente pelos céus, se remodelando em torno de obstáculos e assim por diante. Nenhum desses comportamentos avançados (como se
+remodelar na mesma forma ao redor de obstáculos) é especificado pelas regras; eles emergem da dinâmica do sistema.</p>
+
+<p>Regras simples, como na simulação dos pássaros, leva a comportamentos complexos. Regras complexas, como com leis tributárias na maioria
+dos países, levam a comportamentos estúpidos.</p>
+
+<p>Muitas práticas comuns de desenvolvimento de software tem o infeliz efeito-colateral de eliminar qualquer chance de comportamento emergente. A maioria das tentativas de otimização – amarrando alguma coisa muito explicitamente – reduz a extensão e escopo de interações e relacionamentos, que é a origem da emergencia. No exemplo do bando de pássaros, assim como sistemas bem-desenhados, são as interações e relacionamentos que criam os comportamentos interessantes.</p>
+
+<p>Quanto mais amarramos as coisas, menos espaço deixamos para uma solução criativa e emergente. Seja tanto travando requisitos, antes de serem bem entendidos ou otimizando o código prematuramente, como inventando navegações e cenários de fluxo de trabalho complexas, antes de deixar o usuário final usar o sistema, o resultado é o mesmo: um sistema exageramente complicado e estúpido ao invés de um sistema limpo e elegante que aproveita a emergencia.</p>
+
+<p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
+
+<pre><code>—Andrew Hunt, The Pragmatic Programmers
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A presença de paixão]]></title>
+    <link href="http://rrmartins.com/blog/2012/05/28/naa-presenca-de-paixao/"/>
+    <updated>2012-05-28T13:13:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/28/naa-presenca-de-paixao</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&ldquo;Caindo na Real&rdquo;</a>, e me deparei com uma parte muito boa..</p>
+
+<p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
+
+<h2>A presença de paixão</h2>
+
+
+<p>Em design, onde o significado é normalmente e controversamente subjetivo ou dolorosamente indecifrável, poucas coisas são mais aparentes e lúcidas do que a presença de paixão. Isso é verdade seja quando o design do produto o agrada ou o deixa frio; em ambos os casos é difícil não detectar o investimento emocional das mãos que o construíram.</p>
+
+<p>Entusiasmo se manifesta prontamente, claro, mas indiferença é igualmente inesquecível. Se seu compromisso não vem com paixão genuína para o trabalho às mãos, isso se torna um vazio que é quase impossível de conciliar, não importa o quão elaborado ou atrativo é o design.</p>
+
+<pre><code>—Khoi Vinh, Subtraction.com
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Arranhando sua própria coceira]]></title>
+    <link href="http://rrmartins.com/blog/2012/05/22/arranhando-sua-propria-coceira/"/>
+    <updated>2012-05-22T13:21:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/22/arranhando-sua-propria-coceira</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&ldquo;Caindo na Real&rdquo;</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
+
+<p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
+
+<h2>Arranhando sua proípria coceira</h2>
+
+
+<p>O mundo de Código Aberto abraçou esse mantra há muito tempo – eles chamam de “arranhando sua própria coceira”. Para os desenvolvedores de código aberto, significa que terão as ferramentas que querem, entregues da maneira que querem. Mas os benefícios vão mais a fundo.</p>
+
+<p>Como designer ou desenvolvedor de uma nova aplicação, você precisa encarar centenas de micro-decisões todos os dias: azul ou verde? Uma tabela ou duas? Estática ou dinâmica? Abortar ou recuperar? Como tomamos essas decisões? Se é algo que reconhecemos como importante, poderíamos perguntar. O resto, chutamos. E todos esses chutes constroem um tipo de débito em nossas aplicações – uma rede interconectada de coisas que assumimos.</p>
+
+<p>Como um desenvolvedor, detesto isso. O conhecimento de todas essas bombasrelógio em pequena escala nas aplicações que escrevo somam-se ao meu stress. Desenvolvedores de código aberto, arranhando suas próprias coceiras, não sofrem isso. Porque eles são seus próprios usuários, eles sabem a resposta correta para 90% das decisões que precisam tomar. Acho que é uma das razões que as pessoas chegam em casa após um dia duro de trabalho de codificação e ainda trabalham com código aberto: é relaxante.</p>
+
+<pre><code>— Dave Thomas, The Pragmatic Programmers
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

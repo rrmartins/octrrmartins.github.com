@@ -45,9 +45,9 @@ rdiscount:
     - smart
 highlighter: pygments # default python pygments have been replaced by pygments.rb
 github: https://github.com/rrmartins/rrmartins.github.com
-safe: true
+# safe: true
 lsi: false
-source: _deploy
+source: source
 
 paginate: 10          # Posts per page on the blog index
 paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/

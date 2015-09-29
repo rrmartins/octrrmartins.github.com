@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: operator | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/operator/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Expressões e Operadores - O inicio]]></title>
+    <link href="http://rrmartins.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio/"/>
+    <updated>2012-05-23T07:22:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/23/aexpressoes-e-operadores-o-inicio</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Expressões e Operadores</p>
+
+
+
+
+<h1>Expressões e Operadores</h1>
+
+
+<p>Uma expressão é um pedaço de código Ruby que o interpretador Ruby pode avaliar para produzir um valor. Aqui estão alguns exemplos
+de expressões:</p>
+
+<pre><code class="ruby Expressões">2 # Um literal numérico
+x # Uma referência variável local
+Math.sqrt(2) # invocação Um método
+x = Math.sqrt(2) # Atribuição
+x * x # Multiplicação com o operador *
+</code></pre>
+
+<p>Como você pode ver, expressões primárias, tal como literais, referências variáveis, e invocações de método podem ser combinadas em
+expressões maiores com operadores, tais como o operador de atribuição e o operador de multiplicação.</p>
+
+<p>Muitas linguagens de programação diferenciam entre expressões de baixo nível e alto nível de declarações, tais como condicionais e loops.
+Nestas linguagens, as declarações de controlar o fluxo de um programa, mas eles não têm valores. Eles são executados, em vez de avaliados.
+Em Ruby, não há distinção clara entre as afirmações e expressões; tudo em Ruby, incluindo a definição de classe e de método, pode ser
+avaliado como uma expressão e retorna um valor. É ainda útil, no entanto, diferenciam sintaxe normalmente usada como expressões de sintaxe
+tipicamente usadas ​​como indicações.</p>
+
+<p>Até mais amigos.. ainda vem muito conteudo legal com por ai.. :D</p>
+]]></content>
+  </entry>
+  
+</feed>
