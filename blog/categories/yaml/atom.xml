@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: yaml | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/yaml/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T14:35:31-03:00</updated>
+  <id>http://rrmartins.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part VI]]></title>
+    <link href="http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/"/>
+    <updated>2012-05-20T19:08:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+
+
+
+
+<h1>Objetos</h1>
+
+
+
+
+<h3>Copiando objetos</h3>
+
+
+<p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
+superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
+referências a objetos são copiadas, não os próprios objetos referenciados.</p>
+
+<p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
+classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este &ldquo;Construtor
+de cópias&rdquo;, podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
+para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
+
+<p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
+
+<p>Há duas diferenças importantes entre os métodos clone e dup definidos pelo objeto. Primeiro, as cópias do clone tanto o congelado e
+quanto o estado contaminado(definido em breve) de um objeto, enquanto dup apenas copia o estado contaminado, chamando dup sobre um objeto
+congelado retorna uma cópia descongelada. Em segundo lugar, clone cópia quaisquer métodos singleton do objeto, enquanto que dup não.</p>
+
+<h3>Objetos Empacotamento</h3>
+
+
+<p>Você pode salvar o estado de um objeto passando para a classe <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html">Marshal</a>, com o método <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">dump</a>. Se você passar um objeto de fluxo de I/O como o segundo argumento, escreve o estado do objeto Marshal.dump (e, de forma recursiva, quaisquer objetos que referencia) para esse fluxo.
+Caso contrário, ele simplesmente retorna o estado codificado como uma string binária.</p>
+
+<p>Para restaurar um objeto empacotado, passe uma string ou um fluxo de contendo I/O do objeto de <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a>.</p>
+
+<p>O empacotamento de um objeto é uma maneira muito simples para salvar seu estado para uma utilização posterior, e estes métodos podem ser
+usados ​​para fornecer um arquivo automático no formato de programas Ruby. Note, no entanto, que o formato binário usado por <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">Marshal.dump</a> e <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a> é dependente da versão, e nas mais recentes versões do Ruby não são garantidos para ser capaz de ler
+objetos empacotados escritos por versões mais antigas do Ruby.</p>
+
+<p>Outro uso para Marshal.dump e Marshal.load é criar cópias de profundidade de objetos:</p>
+
+<pre><code class="ruby Marshal">def deepcopy(o)
+  Marshal.load (Marshal.dump (o))
+end
+</code></pre>
+
+<p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
+maneira confiável para restaurar seu Estado.</p>
+
+<p>YAML (&ldquo;YAML não é Markup Language&rdquo;) é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
+partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo &lsquo;yaml&rsquo;.</p>
+
+<h3>Objetos de congelamento</h3>
+
+
+<p>Qualquer objeto pode ser congelado chamando seu método de freeze. A objeto congelado torna imutável e nenhum de seu estado interno pode
+ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de modificadores:</p>
+
+<pre><code class="ruby  Freeze">s = "gelo" # String são objetos mutáveis
+s.freeze # Faça desta cadeia imutável
+s.frozen? # Verdade: ele foi congelado
+s.upcase! # TypeError: não pode modificar cadeia de congelados
+s[0] = "ni" # TypeError: não pode modificar cadeia de congelados
+</code></pre>
+
+<p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
+
+<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para &ldquo;descongelar&rdquo; um objeto. Se
+você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
+cópia não será congelada.</p>
+
+<h3>Objetos contaminados e não confiáveis</h3>
+
+
+<p>Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
+de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
+contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
+taint de um objeto pode ser testado com o método tainted? método:</p>
+
+<pre><code class="ruby taint">s = "não confiáveis" # Os objetos são normalmente não viciada
+s.taint # Marcar como não confiável objeto contaminado
+s.tainted? # Verdade: ele está contaminado
+s.upcase.tainted? # Verdade: objetos derivados estão contaminados
+s[3,4].tainted? # Verdade: substrings estão contaminados
+</code></pre>
+
+<p>De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
+contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
+vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
+pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.</p>
+
+<p>Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
+lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
+confiáveis.</p>
+
+<p>Boa noite amigos&hellip; até a proxima..</p>
+]]></content>
+  </entry>
+  
+</feed>
