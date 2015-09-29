@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-21T15:34:22-03:00</updated>
+  <updated>2015-09-29T11:44:19-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
+    <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
+    
+    <updated>2015-09-28T22:24:09-03:00</updated>
+    <id>http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku</id>
+    
+    <content type="html"><![CDATA[<p>Æ,</p>
+
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+<!--more-->
+
+
+<pre><code>Não vou entrar nos detalhes para colocar a app no ar, pois o 'passo-a-passo'
+do Heroku da uma boa ajuda quanto a isso.
+</code></pre>
+
+<p>Um dos <a href="https://golang.org/pkg/">packages</a> nativos de Go, que é bem útil para usar no
+Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
+
+<p>A <a href="https://golang.org/doc/effective_go.html#functions">func</a> que vamos usar aqui será a <a href="https://golang.org/pkg/os/#Getenv">Getenv</a> do pacote <code>os</code>, ela lê uma variavel de ambiente que é passada como parametro do tipo <code>string</code>.</p>
+
+<figure class='code'><figcaption><span>e sua chamada será algo como:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="kd">func</span> <span class="nx">Getenv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ok! Bora para o problema.</p>
+
+<p>Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:</p>
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">28</span><span class="nx">T21</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mf">58.411180</span><span class="o">+</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="nx">heroku</span><span class="p">[</span><span class="nx">web</span><span class="mf">.1</span><span class="p">]:</span> <span class="nx">Error</span> <span class="nx">R10</span> <span class="p">(</span><span class="nx">Boot</span> <span class="nx">timeout</span><span class="p">)</span> <span class="o">-</span><span class="p">&gt;</span> \
+</span><span class='line'>  <span class="nx">Web</span> <span class="nx">process</span> <span class="nx">failed</span> <span class="nx">to</span> <span class="nx">bind</span> <span class="nx">to</span> <span class="err">$</span><span class="nx">PORT</span> <span class="nx">within</span> <span class="mi">60</span> <span class="nx">seconds</span> <span class="nx">of</span> <span class="nx">launch</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente <code>$PORT</code>, e por isso o processo <code>web</code> não foi iniciado, recebendo na cara um <code>SIGKILL</code>.</p>
+
+<p>Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, <a href="https://github.com/heroku/go-getting-started/">app Go Getting Started on Github</a> e ler mais afinco sobre este erro e sobre &lsquo;o como o Heroku Apps precisa desta declaração :)&rsquo;, saiu algo assim:</p>
+
+<figure class='code'><figcaption><span>Declaração com a variavel de ambiente $PORT</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lembrem, como estamos usando o pacote <code>os</code>, temos que fazer seu <code>import</code>.</p>
+
+<figure class='code'><figcaption><span>Importando pacote os</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="kn">import</span> <span class="s">&quot;os&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Caso, não faça este <code>import</code>, verá um erro ao compilar o codigo, algo como:</p>
+
+<figure class='code'><figcaption><span>Erro de compilação</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="err">$</span> <span class="k">go</span> <span class="nx">build</span>
+</span><span class='line'><span class="err">#</span> <span class="nx">heroku</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">rrmartins</span><span class="o">/</span><span class="nx">rrtempo</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Então, faça o <code>import "os"</code>. :)</p>
+
+<p>Sabendo a declaração, podemos iniciar o server:</p>
+
+<figure class='code'><figcaption><span>Levantando o server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">port</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, <code>http</code> e <code>fmt</code>, para fazer funcionar é importante tambem fazer o <code>import</code> deles, ficando algo parecido com isso:</p>
+
+<figure class='code'><figcaption><span>Importando mais pacotes</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>  <span class="s">&quot;os&quot;</span>
+</span><span class='line'>  <span class="s">&quot;net/http&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Mas, como o problema a ser resolvido não é &lsquo;o como levantar o servidor&rsquo;, mas sim &lsquo;o que é preciso para tal&rsquo;, então vamos voltar ao caso aqui. :)</p>
+
+<p>Declarando só com <code>port := os.Getenv("PORT")</code>, é obrigatório que nas configurações da app no Heroku tenha a variavel <code>$PORT</code> declarada, e se não tiver? Quem poderá nos defender?</p>
+
+<p>Para não fazer um <code>if</code> deste modo:</p>
+
+<figure class='code'><figcaption><span>if desnecessario</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="s">&quot;8080&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fazemos uma condicional de uma linha só: :)</p>
+
+<figure class='code'><figcaption><span>Condicional lindão</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">port</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="kc">true</span><span class="p">:</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">),</span> \
+</span><span class='line'>  <span class="kc">false</span><span class="p">:</span> <span class="s">&quot;8080&quot;</span><span class="p">}[</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vejam só, se não tem a declaração da variavel <code>$PORT</code>, assumo a porta <code>8080</code>.</p>
+
+<p>É isso ai.</p>
+
+<p>O codígo deste post esta em <a href="https://github.com/rrmartins/rrtime">Github rrtime</a>, e rodando no Heroku <a href="https://rrtime.herokuapp.com/tempo">Heroku rrtime</a>.</p>
+
+<p>Creditos pela ajuda da condicional mais simples ao <a href="https://twitter.com/iamvsouza">Vinicius Souza Twitter</a> | <a href="https://github.com/vsouza">Vinicius Souza Github</a> contribuidor da comunidade brasileira <a href="http://www.golangbr.org/">Golang BR</a>.</p>
+
+<p>Valeu!</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -3401,106 +3550,6 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
 <p>Até o proximo post amigos&hellip;</p>
 
 <p>Conhecimento nunca é d+ ! :)</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
-    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
-    
-    <updated>2012-09-10T22:50:00-03:00</updated>
-    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
-    
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>... Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Tracing</h1>
-
-
-<p>Ruby define uma série de características para rastrear a execução de um programa. Estes principalmente são os úteis para a depuração do código e
-imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: <code>__FILE__</code> e <code>__LINE__</code>.
-Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
-para especificar o local exato em que ela foi gerado:</p>
-
-<figure class='code'><figcaption><span>__FILE__ e __LINE__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="p">):</span> <span class="n">invalid</span> <span class="n">data</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Como um aparte, note que os métodos <code>Kernel.eval</code>, <code>Object.instance_eval</code>, e <code>Module.class_eval</code> todos aceitam um nome de arquivo (ou outra seqüência) e
-um número de linha como os seus dois últimos argumentos. Se você está avaliando o código que você tenha extraído de um arquivo de algum tipo, você pode
-usar esses argumentos para especificar os valores de <code>__FILE__</code> e <code>__LINE__</code> para a avaliação.</p>
-
-<p>Você, sem dúvida, notou que quando uma exceção não tratada, a mensagem de erro impressa no console contém nome e informações de número de linha. Esta
-informação é baseada em <strong>FILE</strong> e <strong>LINE</strong>, é claro. Cada Objeto de exceção tem um backtrace associado a ele que mostra exatamente onde ele foi criado,
-onde o método que levantou a exceção foi invocado, onde esse método foi chamado, e assim por diante. O método <code>Exception.backtrace</code> retorna um <code>array</code> de
-<code>strings</code> contendo essa informação. O primeiro elemento do <code>array</code> é este o local em que ocorreu a excepção, e cada elemento subsequente é um quadro de
-pilha maior.</p>
-
-<p>Você não precisa levantar uma exceção para obter um rastreamento da pilha atual, no entanto. O método <code>Kernel.caller</code> retorna o estadp atual na pilha de
-chamadas da mesma forma como <code>Exception.backtrace</code>. Com nenhum argumento, o <code>caller</code> retorna um rastreamento de pilha, cujo primeiro elemento é o método
-que chamou o método que chama de <code>caller</code>. Isto é, <code>caller[0]</code> especifica o local a partir do qual o método atual foi chamado. Você também pode chamar
-de <code>caller</code> com um argumento que especifica quantos quadros de pilha a cair a partir do início do registo de <code>caller</code>. O padrão é <code>1</code>, e do
-<code>caller(0)[0]</code> especifica o local em que o método <code>caller</code> é invocado. Isto significa, por exemplo, que o <code>caller[0]</code> é a mesma coisa que o
-<code>caller(0)[1]</code> e que o <code>caller(2)</code> é o mesmo como <code>caller[1 .. -1]</code>.</p>
-
-<p>Rastreamentos de pilha devolvidos por <code>Exception.backtrace</code> e <code>Kernel.caller</code> também incluem nomes de métodos. Antes de Ruby 1.9, você deve analisar as
-seqüências de rastreamento de pilha para extrair nomes de métodos. No Ruby 1.9, no entanto, você pode obter o nome (como um símbolo) da execução
-atual do método com <code>Kernel.__method__</code> ou seu sinônimo <code>Kernel.__callee__</code>. <code>__method__</code> é útil em conjunção com <strong>FILE</strong> e <strong>LINE</strong>:</p>
-
-<figure class='code'><figcaption><span>raise</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">raise</span> <span class="s2">&quot;Assertion failed in </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> at </span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="si">}</span><span class="s2">&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note-se que <code>__method__</code> retorna o nome pelo qual um método foi originalmente definido, mesmo que o método foi invocado por um alias.</p>
-
-<p>Em vez de simplesmente imprimi o nome e número em que ocorre um erro, você pode dar um passo adiante e mostrar a linha real de código. Se o seu programa
-define uma constante global <code>SCRIPT_LINES__</code> e define-a igual a um <code>hash</code>, então os requisitos e métodos de carregar, adicionar uma entrada para este
-<code>hash</code> para cada arquivo que carregar. As chaves de hash são nomes de arquivos e os valores associados com essas chaves são <code>arrays</code> que contêm as
-linhas destes arquivos. Se você quiser incluir o arquivo principal (em vez que apenas incluir os arquivos que ele necessita), no <code>hash</code>, inicializá-lo
-assim:</p>
-
-<figure class='code'><figcaption><span>SCRIPT_LINES__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SCRIPT_LINES__</span> <span class="o">=</span> <span class="p">{</span><span class="bp">__FILE__</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se você fizer isso, então você pode obter a linha atual de código-fonte em qualquer lugar em seu programa com esta expressão:</p>
-
-<figure class='code'><figcaption><span>SCRIPT_LINES__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SCRIPT_LINES__</span><span class="o">[</span><span class="bp">__FILE__</span><span class="o">][</span><span class="bp">__LINE__</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby permite rastrear atribuições para variáveis globais com <code>Kernel.trace_var</code>. Passe este método um símbolo que dá nome a uma variável global e uma
-<code>string</code> ou bloco de código. Quando o valor das alterações de nomes de variáveis, a cadeia de caracteres será avaliada ou o bloco será invocado. Quando
-um bloco é especificado, o novo valor da variável é passado como um argumento. Para parar o rastreamento da variável, chame <code>Kernel.untrace_var</code>. No
-seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local do programa em que o bloco de rastreamento da variável foi invocado:</p>
-
-<figure class='code'><figcaption><span>variavies globais</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Imprime a mensagem de cada vez $ mudanças SAFE</span>
-</span><span class='line'><span class="nb">trace_var</span><span class="p">(:</span><span class="vg">$SAFE</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;$SAFE set to </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2"> at </span><span class="si">#{</span><span class="nb">caller</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>O último método de rastreamento é <code>Kernel.set_trace_func</code>, que registra um <code>Proc</code> a ser chamado após cada linha de um programa Ruby. <code>set_trace_func</code>
-é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.</p>
-
-<p>Até a proxima amigos&hellip; =D</p>
 ]]></content>
     
   </entry>
