@@ -14,7 +14,11 @@
 =======
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+<<<<<<< HEAD
+  <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
   <id>http://rrmartins.com/</id>
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
@@ -27,6 +31,7 @@
   <entry>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
     <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
@@ -34,38 +39,285 @@
     <updated>2014-12-10T14:00:00-02:00</updated>
     <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
     <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês. Que achei muito massa ser repassado!</p>
+=======
+    
+<<<<<<< HEAD
+    <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
+    <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
+    
+    <updated>2015-09-28T22:24:09-03:00</updated>
+    <id>http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku</id>
+    
+    <content type="html"><![CDATA[<p>Æ,</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+<!--more-->
+
+
+<pre><code>Não vou entrar nos detalhes para colocar a app no ar, pois o 'passo-a-passo'
+do Heroku da uma boa ajuda quanto a isso.
+</code></pre>
+
+<p>Um dos <a href="https://golang.org/pkg/">packages</a> nativos de Go, que é bem útil para usar no
+Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
+
+<p>A <a href="https://golang.org/doc/effective_go.html#functions">func</a> que vamos usar aqui será a <a href="https://golang.org/pkg/os/#Getenv">Getenv</a> do pacote <code>os</code>, ela lê uma variavel de ambiente que é passada como parametro do tipo <code>string</code>.</p>
+
+<figure class='code'><figcaption><span>e sua chamada será algo como:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="kd">func</span> <span class="nx">Getenv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ok! Bora para o problema.</p>
+
+<p>Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:</p>
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">28</span><span class="nx">T21</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mf">58.411180</span><span class="o">+</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="nx">heroku</span><span class="p">[</span><span class="nx">web</span><span class="mf">.1</span><span class="p">]:</span> <span class="nx">Error</span> <span class="nx">R10</span> <span class="p">(</span><span class="nx">Boot</span> <span class="nx">timeout</span><span class="p">)</span> <span class="o">-</span><span class="p">&gt;</span> \
+</span><span class='line'>  <span class="nx">Web</span> <span class="nx">process</span> <span class="nx">failed</span> <span class="nx">to</span> <span class="nx">bind</span> <span class="nx">to</span> <span class="err">$</span><span class="nx">PORT</span> <span class="nx">within</span> <span class="mi">60</span> <span class="nx">seconds</span> <span class="nx">of</span> <span class="nx">launch</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente <code>$PORT</code>, e por isso o processo <code>web</code> não foi iniciado, recebendo na cara um <code>SIGKILL</code>.</p>
+
+<p>Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, <a href="https://github.com/heroku/go-getting-started/">app Go Getting Started on Github</a> e ler mais afinco sobre este erro e sobre &lsquo;o como o Heroku Apps precisa desta declaração :)&rsquo;, saiu algo assim:</p>
+
+<figure class='code'><figcaption><span>Declaração com a variavel de ambiente $PORT</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lembrem, como estamos usando o pacote <code>os</code>, temos que fazer seu <code>import</code>.</p>
+
+<figure class='code'><figcaption><span>Importando pacote os</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="kn">import</span> <span class="s">&quot;os&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Caso, não faça este <code>import</code>, verá um erro ao compilar o codigo, algo como:</p>
+
+<figure class='code'><figcaption><span>Erro de compilação</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="err">$</span> <span class="k">go</span> <span class="nx">build</span>
+</span><span class='line'><span class="err">#</span> <span class="nx">heroku</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">rrmartins</span><span class="o">/</span><span class="nx">rrtempo</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Então, faça o <code>import "os"</code>. :)</p>
+
+<p>Sabendo a declaração, podemos iniciar o server:</p>
+
+<figure class='code'><figcaption><span>Levantando o server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">port</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, <code>http</code> e <code>fmt</code>, para fazer funcionar é importante tambem fazer o <code>import</code> deles, ficando algo parecido com isso:</p>
+
+<figure class='code'><figcaption><span>Importando mais pacotes</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Se dois homens vêm andando por uma estrada,
-</span><span class='line'>  cada um com um pão, e, ao se encontrarem,
-</span><span class='line'>  trocarem os pães, cada um vai embora com um pão.
-</span><span class='line'>
-</span><span class='line'>Se dois homens vêm andando por uma estrada,
-</span><span class='line'>  cada um com uma idéia, e, ao se encontrarem,
-</span><span class='line'>  trocarem as idéias,
-</span><span class='line'>  cada um vai embora com duas idéias.</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>  <span class="s">&quot;os&quot;</span>
+</span><span class='line'>  <span class="s">&quot;net/http&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Sempre crescemos com algo ao partilhar algo de bom.</p>
+<p>Mas, como o problema a ser resolvido não é &lsquo;o como levantar o servidor&rsquo;, mas sim &lsquo;o que é preciso para tal&rsquo;, então vamos voltar ao caso aqui. :)</p>
+
+<p>Declarando só com <code>port := os.Getenv("PORT")</code>, é obrigatório que nas configurações da app no Heroku tenha a variavel <code>$PORT</code> declarada, e se não tiver? Quem poderá nos defender?</p>
+
+<p>Para não fazer um <code>if</code> deste modo:</p>
+
+<figure class='code'><figcaption><span>if desnecessario</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="s">&quot;8080&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fazemos uma condicional de uma linha só: :)</p>
+
+<figure class='code'><figcaption><span>Condicional lindão</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">port</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="kc">true</span><span class="p">:</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">),</span> \
+</span><span class='line'>  <span class="kc">false</span><span class="p">:</span> <span class="s">&quot;8080&quot;</span><span class="p">}[</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vejam só, se não tem a declaração da variavel <code>$PORT</code>, assumo a porta <code>8080</code>.</p>
+
+<p>É isso ai.</p>
+
+<p>O codígo deste post esta em <a href="https://github.com/rrmartins/rrtime">Github rrtime</a>, e rodando no Heroku <a href="https://rrtime.herokuapp.com/tempo">Heroku rrtime</a>.</p>
+
+<p>Creditos pela ajuda da condicional mais simples ao <a href="https://twitter.com/iamvsouza">Vinicius Souza Twitter</a> | <a href="https://github.com/vsouza">Vinicius Souza Github</a> contribuidor da comunidade brasileira <a href="http://www.golangbr.org/">Golang BR</a>.</p>
+
+<p>Valeu!</p>
+]]></content>
+    
+  </entry>
+  
+  <entry>
+    
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+    <title type="html"><![CDATA[Ser importante ou famoso?]]></title>
+    <link href="http://rrmartins.com/blog/2015/09/21/ser-importante-ou-famoso/"/>
+    
+    <updated>2015-09-21T10:14:10-03:00</updated>
+    <id>http://rrmartins.com/blog/2015/09/21/ser-importante-ou-famoso</id>
+    
+    <content type="html"><![CDATA[<p>Este é um dos pensamentos mais legais que já vi sobre este tema. Em uma correria do nossos dias, vejo muitos querendo ser famoso e tal, quando em uma breve realização, e pronto. Mas, vejo que a importancia que damos ao ser famoso é em demasia grande. Quando podemos olhar e viver para ser simples e importante. Nesse sentido, transcrevo abaixo um texto muito bom para esta reflexão do filosofo brasileiro Mario Sergio Cortella.</p>
+
+<p>Destaco para o inicio desta boa leitura:</p>
+
+<pre><code>Aliás, felicidade não é um estado contínuo,
+felicidade é uma ocorrência eventual.
+por Mario Sergio Cortella
+</code></pre>
+
+<!--more-->
+
+
+<p>Segue a reflexão completa.</p>
+
+<pre><code>Felicidade é uma vibração intensa, um momento em que eu sinto a vida
+em plenitude dentro de mim, e quero que aquilo se eternize.
+Felicidade é a capacidade de você ser inundado por uma alegria imensa
+por aquele instante, por aquela situação. Aliás, felicidade não é
+um estado contínuo, felicidade é uma ocorrência eventual.
+
+A felicidade é sempre episódica. Você sentir a vida vibrando, seja num
+abraço, seja na realização de uma obra, seja numa situação, por exemplo,
+em que seu time vence, seja porque algo que você fez deu certo, seja porque
+você ouviu algo que você queria ouvir. É claro que aquilo não tem
+perenidade, aliás, a felicidade se marcada pela perenidade seria impossível.
+Afinal de contas nós só temos a noção de felicidade pela carência.
+
+Se eu tivesse a felicidade como algo contínuo, eu não a perceberia. Nós só
+sentimos a felicidade porque ela não é contínua. Isto é, ela não é o que
+acontece o tempo todo, de todos os modos. A ideia de felicidade sozinha ela
+teria que ter uma questão anterior: se é possível viver sozinho. Que como a
+felicidade pelo óbvio só acontece com alguém que viu ou está e viver é viver
+com outros e outras, como não é possível viver sozinho?
+
+A possibilidade da felicidade isolada, solitária é nenhuma. Pra que eu possa
+ser feliz sozinho eu teria que ser capaz de viver sozinho. Mesmo a literatura,
+como Robson Crusoé, por exemplo, que lida com um homem que está só, mas ele
+está só depois de ter vivido com outros. Ele trás as outras pessoas na sua
+memória, na sua história, no seu desejo, no seu horizonte. Não há, não há
+história de ser humano em que ele tenha sido sozinho da geração até o término.
+Se assim não há, não há possibilidade de se ser feliz sozinho.
+
+Nos últimos 50 anos do século XX, nós tivemos mais desenvolvimento tecnológico
+do que em toda história anterior da humanidade. Todos os 39.950 anos anteriores,
+desde que o homo-sapiens era sapiens, sapiens sapiens na classificação científica,
+foram menos do que os 50 anos finais do século XX. Seria a redenção da humanidade.
+Uma questão: as questões centrais permaneceram. Quem sou eu?, pra que tudo isso?,
+porque eu não sou feliz apenas quando possuo objeto?, porque o mal existe?, porque
+que eu não tenho paz em meio a tanta convivência? Nesta hora, não só a religiosidade,
+ela sofreu um revival, como a filosofia passou, de novo, a ser interessante. E
+aí claro, a filosofia como autoajuda, a filosofia como autoconhecimento, a filosofia
+como auto capacidade, a filosofia como prática sistemática. E de repente a gente
+tem no final do século XX, em vários lugares do mundo e no Brasil também, casas
+pra estudar filosofia; procura de cursos de filosofia.
+
+Nós somos o único animal que é mortal. Todos os outros animais são imortais. Embora
+todos morram, nós somos o único que além de morrer, sabe que vai morrer. Teu
+cachorro tá dormindo sossegado a essa hora. Teu gato tá tranquilo. Você e eu
+sabemos que vamos morrer. Desse ponto de vista, não é a morte que me importa,
+porque ela é um fato. O que me importa é o que eu faço da minha vida enquanto
+minha morte não acontece, pra que essa vida não seja banal, superficial, fútil,
+pequena. Nesta hora, eu preciso ser capaz de fazer falta.
+
+No dia que eu me for, e eu me vou, quero fazer falta. Fazer falta não significa ser
+famoso, significa ser importante. Há uma diferença entre ser famoso e importante.
+Muita gente não é famosa e é absolutamente importante. Importar; quando alguém me
+leva pra dentro, importa. Ele me porta pra dentro, ele me carrega.
+
+Eu quero ser importante. Por isso, pra ser importante, eu preciso não ter uma vida
+que seja pequena. E uma vida se torna pequena quando ela é uma vida que é apoiada
+só em si mesmo, fechada em si. Eu preciso transbordar, ir além da minha borda,
+preciso me comunicar, preciso me juntar, preciso me repartir. Nesta hora, minha
+vida que, sem dúvida, ela é curta, eu desejo que ela não seja pequena.
+</code></pre>
+
+<p>Por Mario Sergio Cortella</p>
+]]></content>
+    
+  </entry>
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Ditado Chinês do Pão]]></title>
+    <link href="http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao/"/>
+    
+    <updated>2014-12-10T14:00:00-02:00</updated>
+    <id>http://rrmartins.com/blog/2014/12/10/ditado-chines-do-pao</id>
+    
+    <content type="html"><![CDATA[<p>Hoje, escutei de um amigo um ditado Chinês.
+Que achei muito massa ser repassado!</p>
+
+<pre><code>Se dois homens vêm andando por uma estrada,
+cada um com um pão, e, ao se encontrarem,
+trocarem os pães, cada um vai embora com um pão.
+
+Se dois homens vêm andando por uma estrada,
+cada um com uma idéia, e, ao se encontrarem,
+trocarem as idéias,
+cada um vai embora com duas idéias.
+</code></pre>
+
+<p>Sempre crescemos com algo, ao partilhar o que de bom temos.</p>
 
 <p>Abraços.</p>
 
 <p>Paz e Bem</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Brincando com ChicagoBoss]]></title>
     <link href="http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss/"/>
+    
     <updated>2014-05-18T18:44:00-03:00</updated>
     <id>http://rrmartins.com/blog/2014/05/18/brincando-com-chicagoboss</id>
+    
     <content type="html"><![CDATA[<p>Uma pequena Introdução:</p>
 
 <p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
@@ -81,7 +333,7 @@ são tratados de tal forma que falhas do servidor são extremamente raros.</p>
 
 <p>O que não gostar? Por que não é todo o mundo de programação em Erlang?
 Bem, Erlang é uma linguagem funcional, o que significa que, para implementar qualquer
-algoritmo, você deve usar a recursividade em vez dos laços familiares &#8220;for&#8221; e &#8220;while&#8221;.
+algoritmo, você deve usar a recursividade em vez dos laços familiares &ldquo;for&rdquo; e &ldquo;while&rdquo;.
 Ao contrário de todas as grandes linguagem de script, não há sintaxe embutida
 para dicionários ou mapas de hash. E para realmente escrever um servidor funcionando,
 você deve aprender com uma camada adicional de magia conhecida como OTP. Estas
@@ -94,7 +346,7 @@ cuidado com todos os negócios OTP para que você possa se ​​concentrar em e
 o que precisa para o seu site. Quanto aos supostos encargos da programação funcional, acho que a recursividade
 raramente é necessária em um dia de trabalho de programação; Eu diria que 99% do código de um aplicativo de servidor
 simplesmente transporta dados para e de um banco de dados, de modo que no curso da construção de um
-website, o programador processual caminhe dificilmente perca o seu laço &#8220;do/while&#8221;.</p>
+website, o programador processual caminhe dificilmente perca o seu laço &ldquo;do/while&rdquo;.</p>
 
 <p>Se você é um programador web experiente, você provavelmente vai desfrutar de toda a
 amenidades que CB tem para oferecer: um ORM avançado com suporte para
@@ -119,14 +371,21 @@ Embora Chicago chefe não posso te dizer como adquirir os usuários , o resto de
 manual irá mostrar-lhe tudo o que você precisa fazer para lidar com os seus pedidos
 e (com sorte) cumprir seus desejos.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <title type="html"><![CDATA[Tenho Sede]]></title>
     <link href="http://rrmartins.com/blog/2014/02/26/tenho-sede/"/>
+    
     <updated>2014-02-26T20:45:00-03:00</updated>
     <id>http://rrmartins.com/blog/2014/02/26/tenho-sede</id>
+    
     <content type="html"><![CDATA[<p>Tenho Sede</p>
 
 <!--more-->
@@ -140,8 +399,7 @@ Repleto de silêncio e dor
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Lançai-me, Senhor<br/>
@@ -153,8 +411,7 @@ Renova-me com Teu Espírito de Amor
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Carrega-me nos Teus braços<br/>
@@ -164,8 +421,7 @@ Precisando de um Pai
 </p>
 
 
-<br/>
-
+<p><br/></p>
 
 <p>
 Ass,
@@ -173,14 +429,21 @@ Rodrigo Martins
 </p>
 
 ]]></content>
+    
   </entry>
   
   <entry>
+<<<<<<< HEAD
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <title type="html"><![CDATA[Não é bem uma String]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/"/>
+    
     <updated>2013-04-28T18:35:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -199,7 +462,7 @@ objetos livro a partir do banco de dados e você muito provavelmente vai ter sua
 coisas como querer encontrar <code>:all</code> registros em uma tabela. A principal coisa sobre: ​​tudo em nosso exemplo
 de <code>Books</code> é que ActiveRecord pode reconhecê-lo quando vê-lo - o código precisa saber quais registros para
 voltar, e <code>:all</code> é um flag que diz que ele deve retornar cada um. O bom de usar algo como <code>:all</code> para esse
-tipo de &#8220;significa&#8221; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
+tipo de &ldquo;significa&rdquo; que ele também faz sentido para os seres humanos: Você é muito mais propenso a reconhecer
 que <code>:all</code> quando você se depara com ele do que <code>0</code>, ou <code>-1</code>, ou mesmo <code>0x29ef</code>(Deus me perdoe!).</p>
 
 <p>Estes dois usos para cadeias de caracteres - para tarefas de processamento de dados regulares sobre a
@@ -215,21 +478,25 @@ esta é a forma rápida e confiável.</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[As duas faces de String]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string/"/>
+    
     <updated>2013-04-28T16:30:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/as-duas-faces-de-string</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Às vezes, uma boa maneira de explicar um assunto problemático é se engajar em uma ficção um pouco criativa. Você começa com uma
 explicação simplista e, uma vez que se aprofunda um pouco, você trabalha o seu caminho de lá para voltar para o mundo real.
 Com este espírito, vou começar a exploração de símbolos com uma ligeira simplificação: Símbolos são realmente apenas strings.
-Isto não é tão improvável quanto parece: Pense sobre a string &#8220;dog&#8221; e seu primo mais próximo simbólico :dog. A única coisa que
-bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &#8220;d&#8221;, um &#8220;o&#8221;, e &#8220;g&#8221;.</p>
+Isto não é tão improvável quanto parece: Pense sobre a string &ldquo;dog&rdquo; e seu primo mais próximo simbólico :dog. A única coisa que
+bate no rosto sobre esses dois objetos é que eles são ambos essencialmente três personagens: um &ldquo;d&rdquo;, um &ldquo;o&rdquo;, e &ldquo;g&rdquo;.</p>
 
 <p>Strings e símbolos também são razoavelmente permutáveis ​​em código na vida real: Tome este exemplo familiar de algum de código no
 ActiveRecord, que encontra todos os registros no livros de mesa:</p>
@@ -250,17 +517,21 @@ código para que pudéssemos usar uma string para sinal de que queria que todos 
 <p>Portanto, não é a minha explicação simplificada de símbolos: Além do fato de que a digitação de <code>:all</code> exige um keystroke menos
 do que digitar <code>'all'</code>, não há realmente muito a distinguir um símbolo a partir de uma string. Então, por que o Ruby nos fornece tanto?</p>
 
-<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&#8230;</p>
+<p>Continuando no post <a href="http://rrmartins.com/blog/2013/04/28/nao-e-bem-uma-string/">Não é bem uma String</a>&hellip;</p>
 
 <p>Até mais galera! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Expressões Regulares em Ruby]]></title>
     <link href="http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby/"/>
+    
     <updated>2013-04-28T13:52:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/04/28/expressoes-regulares-em-ruby</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -375,15 +646,19 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>Expressão Regular é muito usado e em alguns momentos ajuda a reduzir bastante as condicionais.</p>
 
-<p>Até mais&#8230; :)</p>
+<p>Até mais&hellip; :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[[Tradução] Ruby 2.0 por Exemplos]]></title>
     <link href="http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/"/>
+    
     <updated>2013-02-26T22:54:00-03:00</updated>
     <id>http://rrmartins.com/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -400,7 +675,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <p>Neste trecho, <a href="https://twitter.com/yukihiro_matz">Matz</a> diz que desde quando começou a desenvolver o Ruby já se passou 20 anos e agradece a toda a comunidade que ajuda direta ou indiretamente.</p>
 
-<p>Vamos a tradução&#8230; :D</p>
+<p>Vamos a tradução&hellip; :D</p>
 
 <hr />
 
@@ -1094,17 +1369,19 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 
 <hr />
 
-<p>Até a proxima amigos&#8230;</p>
+<p>Até a proxima amigos&hellip;</p>
 
-<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+<p>E muito obrigado <a href="https://twitter.com/malafortune">Marc</a>&hellip;</p>
 
-<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>&#8230;</p>
+<p>And thank you very much <a href="https://twitter.com/malafortune">Marc</a>&hellip;</p>
 
 <p>:D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[[TRADUÇÃO] - Trabalhando com time zones em Ruby on Rails]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
@@ -1116,9 +1393,14 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
     <id>http://rrmartins.github.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
 =======
     <link href="http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/"/>
+    
     <updated>2012-12-02T09:37:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1353,13 +1635,15 @@ postar um comentário abaixo!</p>
 
 <hr />
 
-<p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo&#8230; :D</p>
+<p>Agradeço ao amigo <a href="https://twitter.com/cjkihlbom">CJ Kihlbom</a>, abraços amigo&hellip; :D</p>
 
 <hr />
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Teste salva sua carne]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne/"/>
@@ -1371,9 +1655,14 @@ postar um comentário abaixo!</p>
     <id>http://rrmartins.github.com/blog/2012/11/04/teste-salva-sua-carne</id>
 =======
     <link href="http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne/"/>
+    
     <updated>2012-11-04T09:30:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/11/04/teste-salva-sua-carne</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1407,11 +1696,11 @@ está trabalhando como pretendido.</p>
 <p>BDD é uma metodologia baseada em TDD. Você escreve um teste automatizado para verificar a interação entre as diferentes
 partes da base de código em vez de testar que cada parte funciona de forma independente.</p>
 
-<p>As duas ferramentas são usadas para o BDD são (RSpec)[http://rspec.info/] e (Cucumber)[http://cukes.info/].</p>
+<p>As duas ferramentas são usadas para o BDD são (RSpec)[<a href="http://rspec.info/">http://rspec.info/</a>] e (Cucumber)[<a href="http://cukes.info/">http://cukes.info/</a>].</p>
 
 <h2>Test-Driven Development</h2>
 
-<p>Uma resposta enigmática mas verdadeira para a pergunta &#8220;Por que eu deveria testar?&#8221; é &#8220;porque você é humano.&#8221;. Os seres
+<p>Uma resposta enigmática mas verdadeira para a pergunta &ldquo;Por que eu deveria testar?&rdquo; é &ldquo;porque você é humano.&rdquo;. Os seres
 humanos - a grande maioria deste livro - comete erros. É uma de nossas favoritas maneiras de aprender. Porque os
 seres-humanos cometem erros, ter uma ferramenta para informar quando eles fazem um erro é útil, não é? Teste automatizado
 fornece uma rápida segurança para informar aos desenvolvedores quando eles cometem erros. Por eles, é claro, queremos dizer
@@ -1431,9 +1720,11 @@ repensar o teste e desfazer sua implementação.</p>
 
 <p>Até mais amigos!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Exemplos de Threads - Part IV - #Ruby 1.9]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
@@ -1445,13 +1736,18 @@ repensar o teste e desfazer sua implementação.</p>
     <id>http://rrmartins.github.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
 =======
     <link href="http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9/"/>
+    
     <updated>2012-11-04T09:20:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/11/04/threads-e-concorrencia-exemplos-de-threads-part-iv-number-ruby-1-dot-9</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&hellip;</p>
 
 <h4>Exemplos de Threads</h4>
 
@@ -1464,7 +1760,7 @@ exemplos reais de vários códigos de <code>threads</code>.</p>
 mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
 define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
 com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
-destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&#8217;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
+destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&rsquo;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
 <code>Kernel.open</code> e ler como se fossem arquivos:</p>
 
 <figure class='code'><figcaption><span>Lendo arquivos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1630,9 +1926,11 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
 
 <p>Até o proximo amigos!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Escalando Threads - Part III - #Ruby 1.9]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
@@ -1644,13 +1942,18 @@ que, dado o método <code>concurrently</code> definido mais cedo e um objeto <co
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
 =======
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T15:04:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-escalando-threads-part-iii-number-ruby-1-dot-9</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Escalando Threads</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -1687,15 +1990,17 @@ executada. Outros programadores não são preempção: uma vez que uma <code>th
 que durma, blocos para I/O, ou uma <code>thread</code> de maior prioridade acorda.</p>
 
 <p>Se uma longa linha de computação liga (ou seja, aquela que nunca faz bloqueio para I/O) está em execução em um agendador
-não preemptivo, ela vai &#8220;morrer de fome&#8221; as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
+não preemptivo, ela vai &ldquo;morrer de fome&rdquo; as outras <code>threads</code> com a mesma prioridade, e elas nunca tem a chance de correr.
 Para evitar esse problema, de longa duração <code>compute-bound</code> <code>threads</code> devem chamar periodicamente <code>Thread.pass</code> para pedir o
 programador para produzir a CPU para outra <code>thread</code>.</p>
 
 <p>Até a proxima amigos! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Threads e Variáveis - Part II - #Ruby 1.9]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
@@ -1707,13 +2012,18 @@ programador para produzir a CPU para outra <code>thread</code>.</p>
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
 =======
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T14:53:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-threads-e-variaveis-part-ii-number-ruby-1-dot-9</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -1848,9 +2158,11 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
 
 <p>Até a proxima galera! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Threads e Concorrência - Part I - #Ruby 1.9]]></title>
 <<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
@@ -1862,17 +2174,22 @@ melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda nã
     <id>http://rrmartins.github.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
 =======
     <link href="http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9/"/>
+    
     <updated>2012-10-28T14:26:00-02:00</updated>
     <id>http://rrmartins.com/blog/2012/10/28/threads-e-concorrencia-part-i-number-ruby-1-dot-9</id>
+<<<<<<< HEAD
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
+=======
+    
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&#8230;</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
-<p>Programas tradicionais têm uma única &#8220;thread de execução&#8221;: as declarações ou instruções que compõem o programa são executadas
+<p>Programas tradicionais têm uma única &ldquo;thread de execução&rdquo;: as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
 thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
 CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
@@ -1985,18 +2302,22 @@ exemplo, através do mesmo nome:</p>
 
 <p>É isso ai amigos.. até a proxima!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-18T08:38:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>&#8230;</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
 
 
@@ -2025,7 +2346,7 @@ utilizando <code>alias_method</code>, <code>define_method</code> e <code>class_e
 
 
 <p>O <code>Exemplo 1-1</code> é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
-ele imprime um relatório. Você pode usar este código para &#8220;instrumento&#8221; de um existente programa para que você entenda melhor o que está fazendo. Uma
+ele imprime um relatório. Você pode usar este código para &ldquo;instrumento&rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
 maneira de usar este código é inserir esta linha no começo do programa:</p>
 
 <figure class='code'><figcaption><span>classtrace</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2504,18 +2825,22 @@ objeto.</p>
 
 <p>É isso ai galera! Até a proxima!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Criando Métodos Dinamicamente - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-15T20:38:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -2721,18 +3046,22 @@ significa que os métodos resultantes usam variáveis de instância de classe em
 
 <p>É isso ai amigos, até o proximo post!</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Missing Methods e Missing Constants - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-15T12:46:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3041,22 +3370,26 @@ deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>É isso ai amigos&#8230; :)</p>
+<p>É isso ai amigos&hellip; :)</p>
 
 <p>Até o proximo! :D</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Estruturas de Controle Personalizados - #Ruby 1.9]]></title>
     <link href="http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
+    
     <updated>2012-09-13T22:50:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3073,7 +3406,7 @@ segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência
 
 <p>O exemplo 1-1 define métodos globais nomeados após os dias. Cada um leva um argumento numérico que representa um número de segundos e devem ter um
 bloco associado. Depois cria um novo segmento e retorna o objeto <code>Thread</code> imediatamente. O segmento recém-criado dorme para o número especificado de
-segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &#8220;dorme&#8221; o número
+segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &ldquo;dorme&rdquo; o número
 especificado de segundos entre chamadas. O segundo argumento para todos é um valor para passar para a primeira chamada do bloco. O valor de retorno de
 cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer
 invocações futuras.</p>
@@ -3192,7 +3525,7 @@ invocar o bloco. A parte complicada é que o objeto de Ruby, ao contrário de ob
 1-2 também define um método de instância chamado <code>mutex</code> em Object. Curiosamente, a implementação deste método <code>mutex</code> usa <code>synchoronized</code> na sua forma
 de palavras-chave novo estilo!</p>
 
-<p><code>Mutex</code> -> <a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html">http://www.ruby-doc.org/core-1.9.2/Mutex.html</a></p>
+<p><code>Mutex</code> -> <a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html"><a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html">http://www.ruby-doc.org/core-1.9.2/Mutex.html</a></a></p>
 
 <figure class='code'><figcaption><span>Exemplo 1-2. Simples blocos sincronizados</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3281,18 +3614,22 @@ de palavras-chave novo estilo!</p>
 
 <p>É isso ai amigos, até o proximo! :)</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Reflexão e Metaprogramação - ObjectSpace e GC - #Ruby 1.9 - Part VII]]></title>
     <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
+    
     <updated>2012-09-10T23:26:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3323,25 +3660,31 @@ objeto. Use <code>ObjectSpace.undefine_finalizer</code> para excluir todos os bl
 collected</code> também está disponível através do módulo <code>GC</code>. <code>GC.start</code> é sinônimo de <code>ObjectSpace.garbage_collect</code>. <code>garbage collected</code> pode ser
 desativado temporariamente com <code>GC.disable</code>, e ele pode ser ativado novamente com <code>GC.enable</code>.</p>
 
-<p>A combinação do <code>_id2ref</code> e métodos <code>define_finalizer</code> permite a definição de &#8220;fracos&#8221; objetos de referência, que possuem uma referência a um valor sem
+<p>A combinação do <code>_id2ref</code> e métodos <code>define_finalizer</code> permite a definição de &ldquo;fracos&rdquo; objetos de referência, que possuem uma referência a um valor sem
 impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte a classe <code>weakref</code> na biblioteca padrão (em lib/weakref.rb) para um exemplo.</p>
 
-<p>Até o proximo post amigos&#8230;</p>
+<p>Até o proximo post amigos&hellip;</p>
 
 <p>Conhecimento nunca é d+ ! :)</p>
 ]]></content>
+    
   </entry>
   
+<<<<<<< HEAD
+=======
   <entry>
+    
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
     <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
+    
     <updated>2012-09-10T22:50:00-03:00</updated>
     <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
+    
     <content type="html"><![CDATA[<!--more-->
 
 
 <p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>&#8230; Estranho para alguns, mas, veremos que é simples!</p>
+<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
@@ -3424,156 +3767,12 @@ seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local
 <p>O último método de rastreamento é <code>Kernel.set_trace_func</code>, que registra um <code>Proc</code> a ser chamado após cada linha de um programa Ruby. <code>set_trace_func</code>
 é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.</p>
 
-<p>Até a proxima amigos&#8230; =D</p>
+<p>Até a proxima amigos&hellip; =D</p>
 ]]></content>
+    
   </entry>
   
-  <entry>
-    <title type="html"><![CDATA[Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9]]></title>
-    <link href="http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public/"/>
-    <updated>2012-09-09T19:31:00-03:00</updated>
-    <id>http://rrmartins.com/blog/2012/09/09/metodos-de-visibilidade-public</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
-<b>Metodos de Visibilidade: Public, Protected, Private</b>&#8230;</p>
-
-
-
-
-<h1>Metodos de Visibilidade: Public, Protected, Private</h1>
-
-
-<p>Métodos de instância podem ser <code>public</code>, <code>private</code> ou <code>protected</code>. Se você já programou com outras linguagens orientadas a objeto, você já pode estar
-familiarizado com esses termos. Preste atenção de qualquer maneira, porque estas palavras têm um significado um pouco diferente em Ruby do que em
-outras Linguagens.</p>
-
-<p>Métodos são normalmente <code>public</code> a menos que explicitamente declarado ser <code>private</code> ou <code>protected</code>. Uma exceção é o método <code>initialize</code>, que é sempre
-implicitamente privada. Outra exceção é qualquer método &#8220;global&#8221; declarado fora de uma definição de classe desses métodos são definidos como métodos
-privados de instância de objeto. Um método <code>public</code> pode ser chamado em qualquer lugar, não há restrições sobre seu uso.</p>
-
-<p>Um método <code>private</code> é uma implementação interna de uma classe, e que só pode ser chamada por métodos de outra instância da classe (ou, como veremos
-mais tarde, as suas subclasses). Métodos <code>private</code> são implicitamente invocado em si mesmo, e não podem ser explicitamente chamado em um objeto. Se <code>m</code>
-é um método <code>private</code>, então você deve chamá-lo em estilo funcional como <code>m</code>. Você não pode escrever <code>o.m</code> ou mesmo <code>self.m</code>.</p>
-
-<p>Um método <code>protected</code> é como um método <code>private</code> em que só pode ser chamado de dentro da implementação de uma classe ou suas subclasses. Ela difere de
-um método <code>private</code> na medida em que pode ser explicitamente chamado em qualquer instância da classe, e ele não se restringe a invocação implícita em
-si mesmo. Um método <code>protected</code> pode ser usado, por exemplo, para definir um acessor que permite que instâncias de uma classe podem compartilhar o
-estado interno com o outro, mas não permite que os utilizadores de classe possam acessar esse estado.</p>
-
-<p>Métodos <code>protected</code> são os menos comumente definido e também o mais difícil de entender. A regra sobre quando um método <code>protected</code> pode ser invocado
-pode ser mais formalmente descritos como segue: um método <code>protected</code> definido por uma classe C pode ser invocado em um <code>objeto o</code> através de um método
-em um <code>objeto p</code> se e somente se as classes de <code>o</code> e <code>p</code> são ambos subclasses ou iguais para, a classe C.</p>
-
-<p>Métodos de visibilidade é declarado com três métodos chamados <code>public</code>, <code>private</code> e <code>protected</code>. Estes são os métodos de instância da Classe do módulo.
-Todas as classes são módulos, e dentro de uma definição de classe, a classe auto-refere-se ao que está sendo definido. Assim, <code>public</code>, <code>private</code> e
-<code>protected</code> pode ser usado como se fossem palavras-chave da linguagem. Em fato, no entanto, são chamadas de método em si. Há duas maneiras para chamar
-esses métodos. Sem argumentos, eles especificam que todas as definições de método subsequentes terão a visibilidade especificada. Uma classe pode
-usá-los como este:</p>
-
-<figure class='code'><figcaption><span>Visibilidade de Metodos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos públicos aqui</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Os seguintes métodos são protegidos</span>
-</span><span class='line'><span class="err">  </span><span class="kp">protected</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos protegidos aqui</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Os seguintes métodos são privados</span>
-</span><span class='line'><span class="err">  </span><span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># Métodos privadas aqui</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Os métodos também podem ser invocados com os nomes de um ou mais métodos (como <code>symbols</code> ou <code>strings</code>) como argumentos. Quando chamado assim, eles
-alteram a visibilidade dos métodos chamados. Neste uso, a declaração de visibilidade deve vir após a definição do método. Uma abordagem consiste em
-declarar todos os métodos <code>private</code> e <code>protected</code> de uma só vez, no final de uma classe. Outra abordagem é declarar a visibilidade de cada método
-<code>private</code> ou <code>protected</code> imediatamente após sua definição. Aqui, por exemplo, é uma classe com um método de utilidade <code>private</code> e um método de acesso
-<code>protected</code>:</p>
-
-<figure class='code'><figcaption><span>Visibilidade de Metodos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Widget</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">x</span>                       <span class="c1"># método de acesso para @x</span>
-</span><span class='line'>    <span class="vi">@x</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="kp">protected</span> <span class="ss">:x</span>                <span class="c1"># Faça-o protegido</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">utility_method</span>          <span class="c1"># Define um método</span>
-</span><span class='line'>    <span class="kp">nil</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="kp">private</span> <span class="ss">:utility_method</span>     <span class="c1"># E torná-lo privado</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lembre-se que <code>public</code>, <code>private</code> e <code>protected</code> aplicam-se apenas aos métodos em Ruby. Variáveis de instância e de classe são encapsuladas e
-efetivamente <code>private</code>, e constantes são efetivamente <code>public</code>. Não há nenhuma maneira de fazer uma variável de instância acessível a partir de fora de
-uma classe (exceto pela definição de um método de acesso, é claro). E não há maneira de definir uma constante que é inacessível para uso externo.</p>
-
-<p>Ocasionalmente, é útil para especificar que um método de classe deve ser privado. Se sua classe define métodos de fábrica, por exemplo, você pode
-querer fazer o novo método <code>private</code>. Para fazer isso, use o método <code>private_class_method</code>, especificando um ou mais nomes de métodos como símbolos:</p>
-
-<figure class='code'><figcaption><span>private_class_method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">private_class_method</span> <span class="ss">:new</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Você pode tornar público um método <code>private</code> de classe novamente com <code>public_class_method</code>. Nenhum método pode ser chamado sem argumentos na forma que
-o <code>public</code>, <code>protected</code> e <code>private</code> pode ser.</p>
-
-<p>Ruby é, por definição, uma linguagem muito aberta. A capacidade de especificar que alguns métodos são <code>private</code> e <code>protected</code> encoraja p bom estilo de
-programação, e evita o uso inadvertido de métodos que não fazem parte da API pública de uma classe. É importante entender, no entanto, que os recursos
-de metaprogramação de Ruby tornam trivial para invocar métodos <code>private</code> e <code>protected</code> e até mesmo para acessar variáveis de instância encapsuladas.
-Para chamar o método <code>private</code> <code>utility</code> definida no código anterior, você pode usar o método de envio, ou você pode usar <code>instance_eval</code> para avaliar
-um bloco no contexto do objeto:</p>
-
-<figure class='code'><figcaption><span>instance_eval</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">w</span> <span class="o">=</span> <span class="no">Widget</span><span class="o">.</span><span class="n">new</span>                      <span class="c1"># Criar um Widget</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">send</span> <span class="ss">:utility_method</span>              <span class="c1"># Invoke método privado!</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="n">utility_method</span> <span class="p">}</span>  <span class="c1"># Outra forma de invocá-lo</span>
-</span><span class='line'><span class="n">w</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="vi">@x</span> <span class="p">}</span>              <span class="c1"># Ler variável de instância de w</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Se você quiser chamar um método pelo nome, mas você não quer inadvertidamente invocar um método <code>private</code> que você não sabe aproximadamente, você pode
-(no Ruby 1.9) usar <code>public_send</code> em vez de <code>send</code>. Ele funciona como <code>send</code>, mas não invoca métodos <code>private</code> quando chamado com um receptor
-específico.</p>
-
-<p>É isso ai amigos&#8230;</p>
-
-<p>Até o proximo.. =D</p>
-]]></content>
-  </entry>
-  
+<<<<<<< HEAD
 <<<<<<< HEAD
   <entry>
     <title type="html"><![CDATA[Reflexão e Metaprogramação - Hooks - #Ruby 1.9 - Part V]]></title>
@@ -4219,3 +4418,7 @@ as classes ou módulos são carregados sob demanda). Aqui está um exemplo mais 
 =======
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
 </feed>
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+</feed>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+<<<<<<< HEAD
   <title><![CDATA[Category: Array | Rodrigo Martins]]></title>
 <<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/array/atom.xml" rel="self"/>
@@ -12,9 +13,16 @@
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
 =======
+=======
+  <title><![CDATA[Category: array | Rodrigo Martins]]></title>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   <link href="http://rrmartins.com/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+<<<<<<< HEAD
+  <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
   <id>http://rrmartins.com/</id>
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
@@ -44,10 +52,9 @@
 <p>Um dos mais poderosos reflexivos e de características direta do Ruby, é seu método <code>eval</code>. Se o seu programa Ruby pode gerar uma seqüência de código
 válido Ruby, o método <code>Kernel.eval</code> pode avaliar que o código:</p>
 
-<p><code>ruby Kernel.eval
-x = 1
+<pre><code class="ruby Kernel.eval">x = 1
 eval "x + 1"  # =&gt; 2
-</code></p>
+</code></pre>
 
 <p><code>eval</code> é uma função poderosa, mas ao menos que você realmente está escrevendo um programa <code>shell</code> (como irb) que executa as linhas de códigos Ruby
 inserido por um usuário é improvável que você realmente precisa. (E em um contexto de rede, quase nunca é seguro para chamar <code>eval</code> no texto recebido
@@ -62,20 +69,19 @@ no local da chamada. Você pode passar um objeto de associação como o segundo 
 contexto dessas ligações. Se, por exemplo, definir um método de instância que retorna um objeto <code>Binding</code> que representa a variável de ligações
 dentro de um objeto, então nós podemos usar essas ligações para consultar e definir as variáveis de instância do objeto. Podemos conseguir isso como segue:</p>
 
-<p>``` ruby Binding
-class Object # Abre objeto para adicionar um novo método
+<pre><code class="ruby Binding">class Object # Abre objeto para adicionar um novo método
   def bindings # Nota plural sobre este método
     binding # Este é o método de Kernel predefinido
   end
-end</p>
+end
 
-<p>class Test # Uma classe simples com uma variável de instância
+class Test # Uma classe simples com uma variável de instância
   def initialize(s); @x = s; end
-end</p>
+end
 
-<p>t = Test.new(10) # Criar um objeto test
-eval("@x", t.bindings)  # => 10: Espia dentro t
-```</p>
+t = Test.new(10) # Criar um objeto test
+eval("@x", t.bindings)  # =&gt; 10: Espia dentro t
+</code></pre>
 
 <p>Note que não é realmente necessário definir um método de <code>Object.bindings</code> deste tipo para observar nas variáveis de instância de um objeto. Vários
 outros métodos descritos logo oferecem maneiras mais fáceis de consulta (e de conjunto) do valor das variáveis de instância de um objeto.</p>
@@ -94,25 +100,19 @@ para <code>class_eval</code>. Ambos os métodos avaliam código Ruby, como o <co
 avaliam o código no contexto do objecto específico ou no contexto especificado de cada módulo do objecto ou é o valor enquanto o código está sendo
 avaliado. Aqui estão alguns exemplos:</p>
 
-<p>``` ruby instance_eval e class_eval
-o.instance_eval("@x")  # Retorna o valor da variável de instância o @x</p>
+<pre><code class="ruby instance_eval e class_eval">o.instance_eval("@x")  # Retorna o valor da variável de instância o @x
 
-<h1>Define um len método de instância de String para retornar comprimento da String</h1>
+# Define um len método de instância de String para retornar comprimento da String
+String.class_eval("def len; size; end")
 
-<p>String.class_eval("def len; size; end")</p>
+# Aqui está outra maneira de fazer isso
+# O código citado se comporta como se fosse dentro da "class String" e "end"
+String.class_eval("alias len size")
 
-<h1>Aqui está outra maneira de fazer isso</h1>
-
-<h1>O código citado se comporta como se fosse dentro da "class String" e "end"</h1>
-
-<p>String.class_eval("alias len size")</p>
-
-<h1>Use instance_eval para definir método de classe String.Empty</h1>
-
-<h1>Note que as aspas dentro da aspas fica um pouco complicado ...</h1>
-
-<p>String.instance_eval ("def vazio;''; fim")
-```</p>
+# Use instance_eval para definir método de classe String.Empty
+# Note que as aspas dentro da aspas fica um pouco complicado ...
+String.instance_eval ("def vazio;''; fim")
+</code></pre>
 
 <p>Observe a diferença sutil, mas crucial entre <code>instance_eval</code> e <code>class_eval</code> quando o código que está sendo avaliado contém uma definição de método.
 <code>instance_eval</code> define métodos únicos do objeto (e isso resulta em métodos de classe quando for chamado em uma classe de objeto). <code>class_eval</code> define métodos de instância regulare.</p>
@@ -121,19 +121,15 @@ o.instance_eval("@x")  # Retorna o valor da variável de instância o @x</p>
 avaliar. Quando passa um bloco em vez de uma <code>String</code>, o código do bloco é executado no contexto apropriado. Aqui, por conseguinte, são alternativas
 para as invocações anteriorment mostrada:</p>
 
-<p>``` ruby instance_eval e class_eval
-o.instance_eval { @x }
+<pre><code class="ruby instance_eval e class_eval">o.instance_eval { @x }
 String.class_eval {
-  def len</p>
-
-<pre><code>size
-</code></pre>
-
-<p>  end
+  def len
+    size
+  end
 }
 String.class_eval { alias len size }
 String.instance_eval { def empty; ""; end }
-```</p>
+</code></pre>
 
 <h3>instance_exec e class_exec</h3>
 
@@ -187,7 +183,7 @@ reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post
 metaprogramação que usam essa API.</p>
 
 <p>Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
-encontrar que é útil para ler os próximos post's deste primeiro livro, e depois retornar a este capítulo. Considere este
+encontrar que é útil para ler os próximos post&rsquo;s deste primeiro livro, e depois retornar a este capítulo. Considere este
 post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!</p>
 
 <!--more-->
@@ -199,36 +195,27 @@ post uma espécie de exame final: se você entender os exemplos (especialmente o
 <p>Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
 métodos ele responde. Para rever:</p>
 
-<p>``` ruby Metaprogramming
-o.class</p>
+<pre><code class="ruby Metaprogramming">o.class
+# Retorna a classe de do objeto 'o'.
 
-<h1>Retorna a classe de do objeto 'o'.</h1>
+c.superclass
+# Retorna a superclasse de uma classe 'c'.
 
-<p>c.superclass</p>
+o.instance_of? c
+# Determina se o objeto 'o.class == c'.
 
-<h1>Retorna a superclasse de uma classe 'c'.</h1>
+o.is_a? c
+# Determina se 'o' é um exemplo de 'c', ou de qualquer das suas subclasses. Se 'c' for um módulo, este método testa se 'o.class' (ou qualquer um de seus ancestrais) inclui o módulo.
 
-<p>o.instance_of? c</p>
+o.kind_of? c
+# kind_of? é um sinônimo para is_a?.
 
-<h1>Determina se o objeto 'o.class == c'.</h1>
+c === o
+# Para qualquer classe 'c' ou módulo, determina se 'o.is_a? (c)'
 
-<p>o.is_a? c</p>
-
-<h1>Determina se 'o' é um exemplo de 'c', ou de qualquer das suas subclasses. Se 'c' for um módulo, este método testa se 'o.class' (ou qualquer um de seus ancestrais) inclui o módulo.</h1>
-
-<p>o.kind_of? c</p>
-
-<h1>kind_of? é um sinônimo para is_a?.</h1>
-
-<p>c === o</p>
-
-<h1>Para qualquer classe 'c' ou módulo, determina se 'o.is_a? (c)'</h1>
-
-<p>o.respond_to? nome</p>
-
-<h1>Determina se o objeto 'o' tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</h1>
-
-<p>```</p>
+o.respond_to? nome
+# Determina se o objeto 'o' tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.
+</code></pre>
 
 <h3>Ancestralidade e Módulos</h3>
 
@@ -237,35 +224,34 @@ o.class</p>
 classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
 entender quando demonstrado:</p>
 
-<p>``` ruby Alguns demonstrações
-module A; end                # Modulo vazio
+<pre><code class="ruby Alguns demonstrações">module A; end                # Modulo vazio
 module B; include A; end;    # Módulo B inclui A
-class C; include B; end;     # Classe C inclui o módulo B</p>
+class C; include B; end;     # Classe C inclui o módulo B
 
-<p>C &lt; B                # => true: C inclui B
-B &lt; A                # => true: B inclui A
-C &lt; A                # => true
-Fixnum &lt; Integer     # => true: todos os fixnums são inteiros
-Integer &lt; Comparable # => true: inteiros são comparáveis
-Integer &lt; Fixnum     # => false: nem todos os números inteiros são fixnums
-String &lt; Numeric     # => nil: cordas não são números</p>
+C &lt; B                # =&gt; true: C inclui B
+B &lt; A                # =&gt; true: B inclui A
+C &lt; A                # =&gt; true
+Fixnum &lt; Integer     # =&gt; true: todos os fixnums são inteiros
+Integer &lt; Comparable # =&gt; true: inteiros são comparáveis
+Integer &lt; Fixnum     # =&gt; false: nem todos os números inteiros são fixnums
+String &lt; Numeric     # =&gt; nil: cordas não são números
 
-<p>A.ancestors          # => [A]
-B.ancestors          # => [B, A]
-C.ancestors          # => [C, B, A, Object, Kernel]
-String.ancestors     # => [String, Enumerable, Comparable, Object, Kernel]
-                     # Nota: em Ruby 1.9, String não é mais Enumerable</p>
+A.ancestors          # =&gt; [A]
+B.ancestors          # =&gt; [B, A]
+C.ancestors          # =&gt; [C, B, A, Object, Kernel]
+String.ancestors     # =&gt; [String, Enumerable, Comparable, Object, Kernel]
+                     # Nota: em Ruby 1.9, String não é mais Enumerable
 
-<p>C.include?(B) # => true
-C.include?(A) # => true
-B.include?(A) # => true
-A.include?(A) # => false
-A.include?(B) # => false</p>
+C.include?(B) # =&gt; true
+C.include?(A) # =&gt; true
+B.include?(A) # =&gt; true
+A.include?(A) # =&gt; false
+A.include?(B) # =&gt; false
 
-<p>A.included_modules # => []
-B.included_modules # => [A]
-C.included_modules # => [B, A, Kernel]
-```</p>
+A.included_modules # =&gt; []
+B.included_modules # =&gt; [A]
+C.included_modules # =&gt; [B, A, Kernel]
+</code></pre>
 
 <p>Este código demonstra <code>include?</code>, que é um método público de instância definido pela classe <code>Module</code>. Mas ele também possui duas
 invocações do método <code>include</code> (Sem o sinal de interrogação), que é um método de instância particular de <code>Module</code>. Como um
@@ -276,48 +262,42 @@ núcleo da sintaxe de Ruby.</p>
 <p>Um método relacionado com o método <code>include</code>, particular é o público <code>Object.extend</code>. Este método estende um objeto por tornar
 os métodos de instância de cada um dos módulos específicos em métodos <code>singleton</code> do objeto:</p>
 
-<p><code>ruby Singleton
-module Greeter; def hi; "hello"; end; end # módulo Greeter
+<pre><code class="ruby Singleton">module Greeter; def hi; "hello"; end; end # módulo Greeter
 s = "objeto de string"
 s.extend(Greeter)       # Adicione "hello" como um método singleton para s
 s.hi
 String.extend(Greeter)  # Adicione "hello" como método de classe de String
 String.hi               # =&gt; "hello"
-</code></p>
+</code></pre>
 
 <p>O método <code>Module.nesting</code> de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
 <code>array</code> que especifica o assentamento de módulos da localização atual. <code>Module.nesting[0]</code> é a classe atual ou módulo, <code>Module.nesting[1]</code> é o quem contém a <code>class</code> ou <code>module</code> e assim por diante:</p>
 
-<p>```ruby Module e Class
-module M
-  class C</p>
-
-<pre><code>Module.nesting   # =&gt; [M::C, M]
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Module e Class">module M
+  class C
+    Module.nesting   # =&gt; [M::C, M]
+  end
 end
-```</p>
+</code></pre>
 
 <h3>Definindo Classes e Módulos</h3>
 
 
 <p>Classes e módulos são instâncias das classes de <code>Class</code> e <code>Module</code>. Como tal, você pode criá-los dinamicamente:</p>
 
-<p><code>ruby Class e Module dinamicamente
-M = Module.new      # Define um novo módulo M
+<pre><code class="ruby Class e Module dinamicamente">M = Module.new      # Define um novo módulo M
 C = Class.new       # Define uma nova classe C
 D = Class.new(C) {  # Definir uma subclasse de C
   include M       # inclui o módulo M
 }
 D.to_s              # =&gt; "D": classe recebe o nome da constante por magia
-</code></p>
+</code></pre>
 
 <p>Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
 o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).</p>
 
-<p>É isso ai amigos...
-Hora de dar um <code>break</code>... :)</p>
+<p>É isso ai amigos&hellip;
+Hora de dar um <code>break</code>&hellip; :)</p>
 
 <p>Até o proximo!</p>
 ]]></content>
@@ -343,7 +323,7 @@ Hora de dar um <code>break</code>... :)</p>
 
 <ul>
 <li>A sintaxe para associar um bloco com uma invocação de método</li>
-<li>O "valor de retorno" de um bloco</li>
+<li>O &ldquo;valor de retorno&rdquo; de um bloco</li>
 <li>O escopo de variáveis ​​em blocos</li>
 <li>A diferença entre os parâmetros dos blocos e parâmetros de método</li>
 </ul>
@@ -358,17 +338,14 @@ ignorado. Blocos são delimitados por chaves ou com palavras-chave <code>do/end<
 mesma linha com a invocação de método, ou então Ruby interpreta a linha como um terminador de instrução e invoca o método sem
 o bloco:</p>
 
-<p>``` ruby Blocos</p>
-
-<h1>Imprima os números 1 a 10</h1>
-
-<p>1.upto(10) {|x| puts x } # Invocação e bloco em uma linha com aparelho
+<pre><code class="ruby Blocos"># Imprima os números 1 a 10
+1.upto(10) {|x| puts x } # Invocação e bloco em uma linha com aparelho
 1.upto(10) do |x|        # Delimitado bloco com do/end
   puts x
 end
 1.upto(10)               # Bloco não especificado
   {|x| puts x }         # Erro na Sintaxe: bloco é permitido não depois de uma invocação
-```</p>
+</code></pre>
 
 <p>Uma convenção comum é a utilização de chaves quando um bloco se encaixa em uma única linha, e para usar <code>do/end</code> quando o bloco
 se estende sobre linhas.  Isso não é totalmente uma questão de convenção, no entanto, o analisador de Ruby liga firmemente
@@ -377,23 +354,19 @@ um bloco, em seguida, o bloco vai ser associado com o último argumento do méto
 provavelmente, o que deseja. Para evitar neste caso, coloque entre parênteses os argumentos ou delimite o bloco com <code>do</code> e
 <code>end</code>:</p>
 
-<p><code>ruby Blocks
-1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
+<pre><code class="ruby Blocks">1.upto(3) {|x| puts x} # Parens e encaracolado chaves trabalhar
 1.upto 3 do |x| puts x end
 1.upto 3 {|x| puts x} # erro de sintaxe: tentando passar um bloco para 3!
-</code></p>
+</code></pre>
 
 <p>Os blocos podem ser parametrizados, assim como métodos podem. Os parâmetros dos blocos são separados por vírgulas e delimitados
 com um par de barra vertical (<code>|</code>), mas eles são de outra maneira muito parecida com os parâmetros do método:</p>
 
-<p>```ruby Blocks</p>
-
-<h1>O iterador Hash.each passa dois argumentos para seu bloco</h1>
-
-<p>hash.each do |chave, valor| # Para cada par (chave, valor) no hash
+<pre><code class="ruby Blocks"># O iterador Hash.each passa dois argumentos para seu bloco
+hash.each do |chave, valor| # Para cada par (chave, valor) no hash
   puts "#{chave}: #{valor}" # Imprimir a chave eo valor
 end # Fim do bloco
-```</p>
+</code></pre>
 
 <p>É uma convenção comum para escrever os parâmetros do bloco, na mesma linha, como a invocação do método e da chave de abertura
 ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
@@ -404,19 +377,16 @@ ou fazer palavra-chave, mas isto não é requerido pela sintaxe.</p>
 <p>Considerando o método <code>Array.sort</code>. Se você associar um bloco com uma invocação deste método, ele irá produzir pares de
 elementos para o bloco, e é o trabalho do bloco para classificá-los.</p>
 
-<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O "valor de retorno" do bloco está disponível
+<p>O valor do bloco de retorno <code>(-1, 0 ou 1)</code> indica a ordem dos dois argumentos. O &ldquo;valor de retorno&rdquo; do bloco está disponível
 com o método <code>iterator</code> como o valor da declaração <code>yield</code>.</p>
 
-<p>O "valor de retorno" de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
+<p>O &ldquo;valor de retorno&rdquo; de um bloco é simplesmente o valor da última expressão avaliada no bloco. Assim, para classificar um <code>array</code> de palavras maior de a menor, poderíamos escrever:</p>
 
-<p>```ruby Metodo sort</p>
+<pre><code class="ruby Metodo sort"># O bloco tem duas palavras e "retorna" a sua ordem relativa
+words.sort! {| X, y | y.length &lt;=&gt; x.length}
+</code></pre>
 
-<h1>O bloco tem duas palavras e "retorna" a sua ordem relativa</h1>
-
-<p>words.sort! {| X, y | y.length &lt;=> x.length}
-```</p>
-
-<p>Nós estamos colocando a expressão "valor de retorno" entre aspas por uma razão muito importante: você não deve usar normalmente
+<p>Nós estamos colocando a expressão &ldquo;valor de retorno&rdquo; entre aspas por uma razão muito importante: você não deve usar normalmente
 a palavra-chave <code>return</code> para retornar um bloco. Um <code>return</code> dentro de um bloco faz com que o método que o contém (não o método
 iterador que pertence ao bloco, mas o método que o bloco faz parte) o retorno naquela linha, o Ruby retorna a ultima linha do
 bloco. Há, é claro, tem momentos em que isso é exatamente o que você quer fazer. Mas não use o <code>return</code> se você quer apenas
@@ -424,30 +394,22 @@ voltar de um bloco para o método que chamou <code>yield</code>. Se você precis
 ele atinja a última expressão, ou se você deseja retornar mais de um valor, você pode usar <code>next</code> em vez de retorno. Aqui é um
 exemplo que usa <code>next</code> para voltar a partir do bloco:</p>
 
-<p><code>ruby Usando next
-array.collect do |x|
+<pre><code class="ruby Usando next">array.collect do |x|
   next 0 if x == nil  # Retorna se x é nulo
   next x, x*x         # Retorna dois valores
 end
-</code></p>
+</code></pre>
 
 <p>Note-se que não é particularmente comum usar <code>next</code> desta maneira, e o código acima é facilmente reescrito assim:</p>
 
-<p>``` ruby Reescrevendo bloco
-array.collect do |x|
-  if x == nil</p>
-
-<pre><code>0
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>[x, x*x]
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Reescrevendo bloco">array.collect do |x|
+  if x == nil
+    0
+  else
+    [x, x*x]
+  end
 end
-```</p>
+</code></pre>
 
 <h3>Blocos e escopo de variáveis</h3>
 
@@ -458,11 +420,10 @@ dentro desse método. Então, se um bloco atribui um valor a uma variável que j
 variável local nova, mas em vez disso, atribui um novo valor para a variável já existente. Às vezes, isso é exatamente o
 comportamento que queremos:</p>
 
-<p><code>ruby Escopos
-total = 0
+<pre><code class="ruby Escopos">total = 0
 data.each {|x| total += x }  # Some os elementos da matriz de dados
 puts total                   # Impressão do total da soma
-</code></p>
+</code></pre>
 
 <p>Às vezes, no entanto, nós não queremos alterar as variáveis ​​no escopo delimitador, mas fazemos acidentalmente. Este problema é
 uma preocupação particular para os parâmetros dos blocos em Ruby 1.8. No Ruby 1.8, se um parâmetro do bloco compartilha o nome
@@ -470,17 +431,13 @@ de uma variável existente, então invocações do bloco simplesmente atribuir u
 criar uma variável de bloco local novo. O seguinte código, por exemplo, é problemático porque utiliza o mesmo identificador <code>i</code>
 como o parâmetro para dois blocos nested blocos:</p>
 
-<p>``` ruby Usando mesma variavel, Ruby 1.8
-1.upto(10) do |i|         # 10 linhas
-  1.upto(10) do |i|       # Cada um tem 10 colunas</p>
-
-<pre><code>print "#{i}"         # Imprimi o número de colunas
-</code></pre>
-
-<p>  end
-  print " ==> Row #{i}\n" # Número de linhas
+<pre><code class="ruby Usando mesma variavel, Ruby 1.8">1.upto(10) do |i|         # 10 linhas
+  1.upto(10) do |i|       # Cada um tem 10 colunas
+    print "#{i}"         # Imprimi o número de colunas
+  end
+  print " ==&gt; Row #{i}\n" # Número de linhas
 end
-```</p>
+</code></pre>
 
 <p>Ruby 1.9 é diferente: os parâmetros dos blocos são sempre locais para o seu bloco, e invocações do bloco nunca atribuem valores
 a variáveis ​​existentes. Se o Ruby 1.9 é invocado com o flag -w, ele irá avisá-lo se um parâmetro do bloco tem o mesmo nome de
@@ -491,18 +448,14 @@ variáveis de blocos locais ​​que são garantidas para ser local, mesmo se u
 delimitador. Para fazer, siga a lista de parâmetros do bloco com um ponto e vírgula e uma lista separada por vírgulas de
 variáveis ​​do bloco local. Aqui está um exemplo:</p>
 
-<p>``` ruby Variaveis
-x = y = 0            # variáveis ​​locais
-1.upto(4) do |x;y|   # x e y são locais para bloquear</p>
-
-<pre><code>                 # x e y são "sombra" das variáveis ​​externas
-</code></pre>
-
-<p>  y = x + 1          # Usa y como uma variável que vai receber valores
+<pre><code class="ruby Variaveis">x = y = 0            # variáveis ​​locais
+1.upto(4) do |x;y|   # x e y são locais para bloquear
+                     # x e y são "sombra" das variáveis ​​externas
+  y = x + 1          # Usa y como uma variável que vai receber valores
   puts y*y           # imprime 4, 9, 16, 25
 end
-[x,y]                # => [0,0]: o bloco não altera essas variaveis.
-```</p>
+[x,y]                # =&gt; [0,0]: o bloco não altera essas variaveis.
+</code></pre>
 
 <p>Neste código, x é um parâmetro de bloco: ele recebe um valor quando o bloco é invocado com a produtividade. y é uma variável de
 bloco-local. Ele não receber qualquer valor a partir de uma chamada <code>yield</code>, mas tem o valor nil até que o bloco de fato
@@ -513,9 +466,8 @@ variável local de uma variável existente.</p>
 <p>Os blocos podem ter mais do que um parâmetro e mais de uma variável local, é claro. Aqui é um bloco com dois parâmetros e
 três variáveis ​​locais:</p>
 
-<p><code>ruby Variavel Local
-hash.each {|key,value; i,j,k| ... }
-</code></p>
+<pre><code class="ruby Variavel Local">hash.each {|key,value; i,j,k| ... }
+</code></pre>
 
 <h3>Passando argumentos para um bloco</h3>
 
@@ -526,24 +478,21 @@ parâmetros seguindo as regras que estão mais próximos as regras para a atribu
 de método. Assim, quando um iterador executa <code>yield k,v</code>, para invocar um bloco declarado com parâmetros <code>|key, value|</code>, é
 equivalente a esta instrução de atribuição:</p>
 
-<p><code>ruby Atribuição de parametros
-key,value = k,v
-</code></p>
+<pre><code class="ruby Atribuição de parametros">key,value = k,v
+</code></pre>
 
 <p>O iterador <code>Hash.each_pair</code> produz um par <code>key/value</code> como este:</p>
 
-<p><code>ruby Hash.each_pair
-{:one=&gt;1}.each_pair {|key,value| ... } # key=:one, value=1
-</code></p>
+<pre><code class="ruby Hash.each_pair">{:one=&gt;1}.each_pair {|key,value| ... } # key=:one, value=1
+</code></pre>
 
 <p>No Ruby 1.8, é ainda mais claro que a invocação do bloco usa atribuição de variável. Lembre-se que no Ruby 1.8, os parâmetros
 são apenas locais para o bloco se não estiverem já em uso, como variáveis ​​locais do método que a contém. Se eles já são
 variáveis locais, em seguida, eles são simplesmente atribuídos. Na verdade, Ruby 1.8 permite que qualquer tipo de variável seja
 utilizada como um parâmetro de bloco, incluindo variáveis ​​globais e variáveis ​​de instância:</p>
 
-<p><code>ruby Variaveis Locais e de Instância
-{:one=&gt;1}.each_pair {|$key, @value| ... } # Não funciona mais no Ruby 1.9
-</code></p>
+<pre><code class="ruby Variaveis Locais e de Instância">{:one=&gt;1}.each_pair {|$key, @value| ... } # Não funciona mais no Ruby 1.9
+</code></pre>
 
 <p>Este iterator define a variável global <code>$key</code> para <code>:one</code> e define a variável de instância <code>@value</code> para <code>1</code>. Como já
 mencionado, o Ruby 1.9 faz os parâmetros dos blocos locais para o bloco. Isto também significa que os parâmetros dos blocos não
@@ -552,15 +501,13 @@ podem mais ser variáveis ​​globais ou de instância.</p>
 <p>Os iteradores <code>Hash.each</code> segue um pares de <code>key/value</code> como dois elementos de uma única matriz. É muito comum, no entanto,
 para ver o código como esta:</p>
 
-<p><code>ruby Hash.each
-hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
-</code></p>
+<pre><code class="ruby Hash.each">hash.each {|k,v| ... }  # Chave e valor atribuído a params k e v
+</code></pre>
 
 <p>Isso também funciona por atribuição paralela. O valor cedido, um conjunto de dois elementos, é atribuído às variáveis ​​k e v:</p>
 
-<p><code>ruby Atribuição
-k, v = [value, key]
-</code></p>
+<pre><code class="ruby Atribuição">k, v = [value, key]
+</code></pre>
 
 <p>Pelas regras de atribuição paralela (ver <a href="/blog/2012/06/11/atribuicao-paralela-number-ruby/">Atribuição Paralela</a>), uma única matriz da direita é expandida e seus elementos atribuídos às variáveis ​​múltiplas do lado esquerdo.</p>
 
@@ -568,36 +515,32 @@ k, v = [value, key]
 Por as regras de atribuição paralela, podemos esperar para ser capaz de declarar um bloco com um único parâmetro e ter os dois
 valores automaticamente preenchido em uma matriz para nós. Mas não é assim que funciona:</p>
 
-<p><code>ruby Parametros
-def two; yield 1,2; end # Um iterador que produz dois valores
+<pre><code class="ruby Parametros">def two; yield 1,2; end # Um iterador que produz dois valores
 two {|x| p x }          # Ruby 1.8: avisa e impressões [1,2],
 two {|x| p x }          # Ruby 1.9: imprime 1, nenhum aviso
 two {|*x| p x }         # versão Ou: impressões [1,2]; nenhum aviso
 two {|x,| p x }         # versão Ou: impressões 1; nenhum aviso
-</code></p>
+</code></pre>
 
 <p>No Ruby 1.8, vários argumentos são embalados em uma matriz, quando existe um parâmetro único no bloco, mas isso é obsoleto e
 gera uma mensagem de aviso. No Ruby 1.9, o primeiro valor é atribuído ao parâmetro do bloco e o segundo valor é descartado. Se
 queremos que vários valores podem a ser embalado em uma matriz e atribuído a um único parâmetro do bloco, nós devemos indicar
 explicitamente que estamos prefixando o parâmetro com um <code>*</code>, exatamente como faríamos em uma declaração de método. Observe
 também que podemos descartar explicitamente o segundo valor ao declarar uma lista de parâmetros de bloco, que termina com uma
-vírgula, como se dissesse:</p>
-
-<pre><code>"Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele."
-</code></pre>
+vírgula, como se dissesse:
+    &ldquo;Há um outro parâmetro, mas não é usado e eu não posso ser incomodado para escolher um nome para ele.&rdquo;</p>
 
 <p>Embora invocação de bloco não se comporta como a atribuição paralela, neste caso, não se comportam como uma chamada de método,
 também. Se declarar um método com um argumento e depois passar dois argumentos para ele, o Ruby não vai apenas imprimir um
 aviso, vai também gerar um erro.</p>
 
-<p>A declaração do <code>yield</code> permite que <code>hashes</code> "nus" como o valor do último argumento, assim como invocações de métodos. Isto é,
+<p>A declaração do <code>yield</code> permite que <code>hashes</code> &ldquo;nus&rdquo; como o valor do último argumento, assim como invocações de métodos. Isto é,
 se o último argumento para produzir é um literal de <code>hash</code>, você pode omitir as chaves. Porque não é comum para iteradores para
 produzir <code>hashes</code>, temos que maquinar um exemplo para demonstrar isto:</p>
 
-<p><code>ruby Hashes sem chaves
-def hashiter; yield :a=&gt;1, :b=&gt;2; end  # Nota final sem chaves
+<pre><code class="ruby Hashes sem chaves">def hashiter; yield :a=&gt;1, :b=&gt;2; end  # Nota final sem chaves
 hashiter {|hash| puts hash[:a] }       # Imprime 1
-</code></p>
+</code></pre>
 
 <h3>Bloquear Parâmetros no Ruby 1.9</h3>
 
@@ -616,9 +559,8 @@ end
 você deseja iterar os valores de um objeto, mas o que você não sabe se o obejeto é um <code>array</code> ou um <code>hash</code>. Você pode usar um
 bloco como este:</p>
 
-<p><code>ruby Variavel com um valor pré determinado
-o.each {|key=nil,value| puts value}
-</code></p>
+<pre><code class="ruby Variavel com um valor pré determinado">o.each {|key=nil,value| puts value}
+</code></pre>
 
 <p>Se cada iterador produz um único valor, é atribuído ao segundo parâmetro do bloco. Se cada um produz um par de valores,
 são atribuídos a ambos os parâmetros.</p>
@@ -650,39 +592,31 @@ invocação do bloco. Lembre, no entanto, que a invocação <code>yield</code> p
 invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
 invoca o seu bloco duas vezes:</p>
 
-<p><code>ruby yield
-def twice
+<pre><code class="ruby yield">def twice
   yield
   yield
 end
-</code></p>
+</code></pre>
 
 <p>Para passar valores de argumento para o bloco, veja a declaração do <code>yield</code> com uma lista separada por vírgulas de
 expressões. Tal como acontece com invocação de método, os valores dos argumentos podem, opcionalmente, ser colocada
 com parênteses. O iterador simples a seguir mostra uma utilização do <code>yield</code>:</p>
 
-<p>```ruby Method</p>
-
-<h1>Este método espera um bloco. Gera n valores da forma</h1>
-
-<h1>M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,</h1>
-
-<h1>Para o bloco associado.</h1>
-
-<p>def sequencia(n, m, c)
+<pre><code class="ruby Method"># Este método espera um bloco. Gera n valores da forma
+# M * i + c, para i de 0 .. n-1, e os yield deles, um de cada vez,
+# Para o bloco associado.
+def sequencia(n, m, c)
   i = 0
   while (i &lt; n) # loop n vezes
     yield m * i + c # Invocar o bloco, e passar um valor a ela
     i += 1 # Incrementa i de cada vez
   end
-end</p>
+end
 
-<h1>Aqui está uma invocação desse método, com um bloco.</h1>
-
-<h1>Ela imprime os valores 1, 6 e 11</h1>
-
-<p>sequencia(3, 5, 1) {| y | puts y}
-```</p>
+# Aqui está uma invocação desse método, com um bloco.
+# Ela imprime os valores 1, 6 e 11
+sequencia(3, 5, 1) {| y | puts y}
+</code></pre>
 
 <pre><code>Nomenclatura: rendimento e iteradores
 
@@ -704,33 +638,23 @@ Este problema de nomenclatura está relacionada com a distinção entre 'Iterado
 e 'iteradores externos'.
 </code></pre>
 
-<p>Aqui está outro exemplo de um 'iterador' em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
+<p>Aqui está outro exemplo de um &lsquo;iterador&rsquo; em Ruby; ele passa dois argumentos para o seu bloco. Vale notar
 que a implementação deste iterador usa outro iterador internamente:</p>
 
-<p>```ruby  yield</p>
+<pre><code class="ruby  yield"># Gera n pontos uniformemente espaçados em torno da circunferência de um
+# Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y
+# De cada ponto ao bloco associado.
+def circle(r,n)
+  n.times do |i|    #  Observe que este método é implementado com um bloco
+    angle = Math::PI * 2 * i / n
+    yield r*Math.cos(angle), r*Math.sin(angle)
+  end
+end
 
-<h1>Gera n pontos uniformemente espaçados em torno da circunferência de um</h1>
-
-<h1>Círculo de raio r centrado em (0,0). Rendimento da coordenadas X e Y</h1>
-
-<h1>De cada ponto ao bloco associado.</h1>
-
-<p>def circle(r,n)
-  n.times do |i|    #  Observe que este método é implementado com um bloco</p>
-
-<pre><code>angle = Math::PI * 2 * i / n
-yield r*Math.cos(angle), r*Math.sin(angle)
+# Esta invocação das impressões iterador:
+# (1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)
+circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
 </code></pre>
-
-<p>  end
-end</p>
-
-<h1>Esta invocação das impressões iterador:</h1>
-
-<h1>(1,00, 0,00) (0,00, 1,00) (-1,00, 0,00) (-0,00, -1,00)</h1>
-
-<p>circle(1,4) {|x,y| printf "(%.2f, %.2f)", x, y }
-```</p>
 
 <p>Usando a palavra-chave <code>yield</code> realmente é muito parecido com invocação de um método.
 Parênteses nos argumentos são opcionais. Você pode usar <code>*</code> para expandir uma matriz de argumentos
@@ -744,26 +668,19 @@ um erro), se invocado com nenhum bloco. Para fazer isso, use <code>block_given?
 associado com a chamada. <code>block_given?</code>, e seu sinônimo <code>iterator?</code>, são métodos do Kernel, então eles agem como
 funções mundiais. Aqui está um exemplo:</p>
 
-<p>```ruby block_biven?</p>
-
-<h1>Retorna um array com n elementos da forma m * i + c</h1>
-
-<h1>Se um bloco é dado, igualmente produzir cada elemento para o bloco</h1>
-
-<p>def sequence(n, m, c)
+<pre><code class="ruby block_biven?"># Retorna um array com n elementos da forma m * i + c
+# Se um bloco é dado, igualmente produzir cada elemento para o bloco
+def sequence(n, m, c)
   i, s = 0, []                  # Inicializa variáveis
-  while(i &lt; n)                  # Loop n vezes</p>
-
-<pre><code>y = m*i + c                 # calcula o valor
-yield y if block_given?
-s &lt;&lt; y                      # armazena o valor
-i += 1
-</code></pre>
-
-<p>  end
+  while(i &lt; n)                  # Loop n vezes
+    y = m*i + c                 # calcula o valor
+    yield y if block_given?
+    s &lt;&lt; y                      # armazena o valor
+    i += 1
+  end
   s             # Retorna o array de valores
 end
-```</p>
+</code></pre>
 
 <p>É isso aí!</p>
 
@@ -791,56 +708,47 @@ end
 coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
 iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
 
-<p><code>ruby Metodo each
-[1,2,3].each {|x| print x }   # =&gt; prints "123"
+<pre><code class="ruby Metodo each">[1,2,3].each {|x| print x }   # =&gt; prints "123"
 (1..3).each  {|x| print x }   # =&gt; prints "123" Same as 1.upto(3)
-</code></p>
+</code></pre>
 
-<p>O iterador <code>each</code> não é só para as classes tradicionais "de estrutura de dados". Classes <code>IO</code> Ruby definem um
+<p>O iterador <code>each</code> não é só para as classes tradicionais &ldquo;de estrutura de dados&rdquo;. Classes <code>IO</code> Ruby definem um
 iterador <code>each</code> que cada linha de texto lido do objeto produz <code>Input/Output</code>. Assim, você pode processar as linhas
 de um arquivo em Ruby com um código como esse:</p>
 
-<p><code>ruby Metodo each para File
-File.open(filename) do |f|       # Abrir arquivo nomeado, passando f como parametro
+<pre><code class="ruby Metodo each para File">File.open(filename) do |f|       # Abrir arquivo nomeado, passando f como parametro
   f.each {|line| print line }    # Imprimir f em cada linha
 end
-</code></p>
+</code></pre>
 
 <p>A maioria das classes que definem um método <code>each</code> também incluem o módulo <code>Enumerable</code>, que define um número de
 iteradores mais especializados que são implementados em cima do método <code>each</code>. Um iterador é útil tal <code>each_with_index</code>, o que nos permite adicionar a linha de numeração para o exemplo anterior:</p>
 
-<p>``` ruby Metodo each com Index
-File.open(filename) do |f|
-  f.each_with_index do |line,number|</p>
-
-<pre><code>print "#{number}: #{line}"
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Metodo each com Index">File.open(filename) do |f|
+  f.each_with_index do |line,number|
+    print "#{number}: #{line}"
+  end
 end
-```</p>
+</code></pre>
 
 <p>Alguns dos iteradores mais comumentes utilizados são os métodos <code>Enumerable</code>, <code>collect</code>, <code>select</code>, <code>reject</code>, e
 <code>inject</code>. O método <code>collect</code> (também conhecido como <code>map</code>) executa o seu bloco associado para cada elemento do objeto
 enumerável, e coleta os valores de retorno dos blocos em um <code>array</code>:</p>
 
-<p><code>ruby Metodo Collect
-quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
-</code></p>
+<pre><code class="ruby Metodo Collect">quadrados = [1,2,3].collect {|x| x*x}   # =&gt; [1,4,9]
+</code></pre>
 
 <p>O método <code>select</code> invoca o bloco associado para cada elemento no objeto enumerável, e retorna uma matriz de
 elementos para a qual o bloco retorna um outro valor <code>false</code> ou <code>nil</code>. Por exemplo:</p>
 
-<p><code>ruby Metodo Select
-nivela = (1..10).select{|x| x%2 == 0} # =&gt; [2,4,6,8,10]
-</code></p>
+<pre><code class="ruby Metodo Select">nivela = (1..10).select{|x| x%2 == 0} # =&gt; [2,4,6,8,10]
+</code></pre>
 
 <p>O método <code>reject</code> é simplesmente o oposto de <code>select</code>, ele retorna uma matriz de elementos para a qual o bloco
 retorna <code>nil</code> ou <code>false</code>. Por exemplo:</p>
 
-<p><code>ruby Metodo reject
-odds = (1..10).reject{|x| x%2 == 0} # =&gt; [1,3,5,7,9]
-</code></p>
+<pre><code class="ruby Metodo reject">odds = (1..10).reject{|x| x%2 == 0} # =&gt; [1,3,5,7,9]
+</code></pre>
 
 <p>O método <code>inject</code> é um pouco mais complicado do que os outros. Ele invoca o bloco associado com dois argumentos.
 O primeiro argumento é um valor acumulado de algum tipo das iterações anteriores. O segundo argumento é o próximo
@@ -848,16 +756,15 @@ o objeto enumerável. O valor de retorno do bloco é o primeiro argumento bloqu
 se o valor de retorno do iterador após a última iteração. O valor inicial da variável acumula ou é o argumento de
 <code>inject</code>, se houver um, ou o primeiro elemento do objeto enumerável. (Neste caso, o bloco é invocado. Apenas uma vez durante os primeiros dois elementos). Exemplos para <code>injects</code> mais claros:</p>
 
-<p><code>ruby Metodo Inject
-data = [2, 5, 3, 4]
+<pre><code class="ruby Metodo Inject">data = [2, 5, 3, 4]
 sum = data.inject{|sum, x| sum + x }      # =&gt; 14    (2+5+3+4)
 floatprod = data.inject(1.0){|p,x| p*x }  # =&gt; 120.0 (1.0*2*5*3*4)
 max = data.inject{|m,x| m&gt;x ? m : x }     # =&gt; 5     (elemento maior)
-</code></p>
+</code></pre>
 
 <p>Veja <a href="http://ruby-doc.org/core-1.9.2/Enumerable.html">Objetos Enumeráveis</a> ​​para obter mais detalhes sobre o <code>Módulo Enumerable</code> e a seus iteradores.</p>
 
-<p>Até a proxima amigos...</p>
+<p>Até a proxima amigos&hellip;</p>
 ]]></content>
   </entry>
   

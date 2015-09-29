@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Resolvendo problema com $PORT com uma app Golang no Heroku - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Æ, Já faz um tempo que venho estudando e praticando um pouco com Golang. Como alguns codigos estão somente em meu repo particular, resolvi colocar &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Resolvendo Problema Com $PORT Com Uma App Golang No Heroku</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-28T22:24:09-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Æ,</p>
+
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+<!--more-->
+
+
+<pre><code>Não vou entrar nos detalhes para colocar a app no ar, pois o 'passo-a-passo'
+do Heroku da uma boa ajuda quanto a isso.
+</code></pre>
+
+<p>Um dos <a href="https://golang.org/pkg/">packages</a> nativos de Go, que é bem útil para usar no
+Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
+
+<p>A <a href="https://golang.org/doc/effective_go.html#functions">func</a> que vamos usar aqui será a <a href="https://golang.org/pkg/os/#Getenv">Getenv</a> do pacote <code>os</code>, ela lê uma variavel de ambiente que é passada como parametro do tipo <code>string</code>.</p>
+
+<figure class='code'><figcaption><span>e sua chamada será algo como:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="kd">func</span> <span class="nx">Getenv</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ok! Bora para o problema.</p>
+
+<p>Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:</p>
+
+<figure class='code'><figcaption><span>A assinatura da func</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">28</span><span class="nx">T21</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mf">58.411180</span><span class="o">+</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="nx">heroku</span><span class="p">[</span><span class="nx">web</span><span class="mf">.1</span><span class="p">]:</span> <span class="nx">Error</span> <span class="nx">R10</span> <span class="p">(</span><span class="nx">Boot</span> <span class="nx">timeout</span><span class="p">)</span> <span class="o">-</span><span class="p">&gt;</span> \
+</span><span class='line'>  <span class="nx">Web</span> <span class="nx">process</span> <span class="nx">failed</span> <span class="nx">to</span> <span class="nx">bind</span> <span class="nx">to</span> <span class="err">$</span><span class="nx">PORT</span> <span class="nx">within</span> <span class="mi">60</span> <span class="nx">seconds</span> <span class="nx">of</span> <span class="nx">launch</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente <code>$PORT</code>, e por isso o processo <code>web</code> não foi iniciado, recebendo na cara um <code>SIGKILL</code>.</p>
+
+<p>Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, <a href="https://github.com/heroku/go-getting-started/">app Go Getting Started on Github</a> e ler mais afinco sobre este erro e sobre &lsquo;o como o Heroku Apps precisa desta declaração :)&rsquo;, saiu algo assim:</p>
+
+<figure class='code'><figcaption><span>Declaração com a variavel de ambiente $PORT</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lembrem, como estamos usando o pacote <code>os</code>, temos que fazer seu <code>import</code>.</p>
+
+<figure class='code'><figcaption><span>Importando pacote os</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="kn">import</span> <span class="s">&quot;os&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Caso, não faça este <code>import</code>, verá um erro ao compilar o codigo, algo como:</p>
+
+<figure class='code'><figcaption><span>Erro de compilação</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="err">$</span> <span class="k">go</span> <span class="nx">build</span>
+</span><span class='line'><span class="err">#</span> <span class="nx">heroku</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">rrmartins</span><span class="o">/</span><span class="nx">rrtempo</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span><span class='line'><span class="p">.</span><span class="o">/</span><span class="nx">servidor</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span> <span class="nx">undefined</span><span class="p">:</span> <span class="nx">os</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Então, faça o <code>import "os"</code>. :)</p>
+
+<p>Sabendo a declaração, podemos iniciar o server:</p>
+
+<figure class='code'><figcaption><span>Levantando o server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">port</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, <code>http</code> e <code>fmt</code>, para fazer funcionar é importante tambem fazer o <code>import</code> deles, ficando algo parecido com isso:</p>
+
+<figure class='code'><figcaption><span>Importando mais pacotes</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>  <span class="s">&quot;os&quot;</span>
+</span><span class='line'>  <span class="s">&quot;net/http&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Mas, como o problema a ser resolvido não é &lsquo;o como levantar o servidor&rsquo;, mas sim &lsquo;o que é preciso para tal&rsquo;, então vamos voltar ao caso aqui. :)</p>
+
+<p>Declarando só com <code>port := os.Getenv("PORT")</code>, é obrigatório que nas configurações da app no Heroku tenha a variavel <code>$PORT</code> declarada, e se não tiver? Quem poderá nos defender?</p>
+
+<p>Para não fazer um <code>if</code> deste modo:</p>
+
+<figure class='code'><figcaption><span>if desnecessario</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="k">if</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">port</span> <span class="p">=</span> <span class="s">&quot;8080&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fazemos uma condicional de uma linha só: :)</p>
+
+<figure class='code'><figcaption><span>Condicional lindão</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="nx">port</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="kc">true</span><span class="p">:</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">),</span> \
+</span><span class='line'>  <span class="kc">false</span><span class="p">:</span> <span class="s">&quot;8080&quot;</span><span class="p">}[</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Getenv</span><span class="p">(</span><span class="s">&quot;PORT&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;:%s&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span><span class="kc">nil</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vejam só, se não tem a declaração da variavel <code>$PORT</code>, assumo a porta <code>8080</code>.</p>
+
+<p>É isso ai.</p>
+
+<p>O codígo deste post esta em <a href="https://github.com/rrmartins/rrtime">Github rrtime</a>, e rodando no Heroku <a href="https://rrtime.herokuapp.com/tempo">Heroku rrtime</a>.</p>
+
+<p>Creditos pela ajuda da condicional mais simples ao <a href="https://twitter.com/iamvsouza">Vinicius Souza Twitter</a> | <a href="https://github.com/vsouza">Vinicius Souza Github</a> contribuidor da comunidade brasileira <a href="http://www.golangbr.org/">Golang BR</a>.</p>
+
+<p>Valeu!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-28T22:24:09-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/app/'>app</a>, <a class='category' href='/blog/categories/getenv/'>getenv</a>, <a class='category' href='/blog/categories/go/'>go</a>, <a class='category' href='/blog/categories/golang/'>golang</a>, <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/heroku-host/'>heroku host</a>, <a class='category' href='/blog/categories/host/'>host</a>, <a class='category' href='/blog/categories/os/'>os</a>, <a class='category' href='/blog/categories/port/'>port</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/21/ser-importante-ou-famoso/" title="Previous Post: Ser importante ou famoso?">&laquo; Ser importante ou famoso?</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/';
+        var disqus_url = 'http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

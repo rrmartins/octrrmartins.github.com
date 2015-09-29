@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+<<<<<<< HEAD
   <title><![CDATA[Category: Ruby API | Rodrigo Martins]]></title>
 <<<<<<< HEAD
   <link href="http://rrmartins.github.com/blog/categories/ruby-api/atom.xml" rel="self"/>
@@ -12,9 +13,16 @@
 >>>>>>> 55255938ca2a035ba9dea4f1892ebb919702c830
   <id>http://rrmartins.github.com/</id>
 =======
+=======
+  <title><![CDATA[Category: ruby api | Rodrigo Martins]]></title>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   <link href="http://rrmartins.com/blog/categories/ruby-api/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-01-30T14:40:06-02:00</updated>
+<<<<<<< HEAD
+  <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
   <id>http://rrmartins.com/</id>
 >>>>>>> 45205015902ee4fa744defb597ae74e0f64ad496
   <author>
@@ -42,7 +50,7 @@
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Exemplos de Threads</strong>&hellip;</p>
 
 <h4>Exemplos de Threads</h4>
 
@@ -55,39 +63,33 @@ exemplos reais de vários códigos de <code>threads</code>.</p>
 mesmo enquanto espera por alguma entrada do usuário, o sistema de arquivos, ou da rede. A seguir de código, por exemplo,
 define um método <code>conread</code> (para leitura simultânea) que leva uma série de nomes de arquivos e retorna um mapa de <code>hash</code>
 com esses nomes para o conteúdo desses arquivos. Ele usa <code>thread</code> para ler esses arquivos ao mesmo tempo, e é realmente
-destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL's <code>HTTP</code> e <code>FTP</code> possam ser abertas com
+destinado a ser utilizado com o módulo <code>open-uri</code>, que permite que as URL&rsquo;s <code>HTTP</code> e <code>FTP</code> possam ser abertas com
 <code>Kernel.open</code> e ler como se fossem arquivos:</p>
 
-<p>```ruby Lendo arquivos</p>
+<pre><code class="ruby Lendo arquivos">
+# Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.
+# Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.
+def conread(filenames)
+  h = {}            # hash vazio de resultados
 
-<h1>Ler arquivos simultaneamente. Use com o módulo "open-uri" para buscar URLs.</h1>
-
-<h1>Passe uma matriz de nomes de arquivos. Retorna um mapa de nomes de arquivos de hash para o conteúdo.</h1>
-
-<p>def conread(filenames)
-  h = {}            # hash vazio de resultados</p>
-
-<p>  # Crie uma linha para cada arquivo
+  # Crie uma linha para cada arquivo
   filenames.each do |filename|      # Para cada arquivo chamado
     h[filename] = Thread.new do     # Criar um fio, mapa para filename
       open(filename) {|f| f.read }  # Abra e leia o arquivo
     end                             # valor da linha é o conteúdo do arquivo
-  end</p>
+  end
 
-<p>  # Percorre o hash, à espera de cada thread para completar.
+  # Percorre o hash, à espera de cada thread para completar.
   # Substitua a thread no hash com o seu valor (o conteúdo de arquivo)
-  h.each_pair do |filename, thread|</p>
-
-<pre><code>begin
-  h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
-rescue
-  h[filename] = $!              # Ou a exceção levantada
+  h.each_pair do |filename, thread|
+    begin
+      h[filename] = thread.value    # Mapa de nomes ao conteúdo do arquivo
+    rescue
+      h[filename] = $!              # Ou a exceção levantada
+    end
+  end
 end
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <h3>Servidor A Multithreads</h3>
 
@@ -95,41 +97,31 @@ end
 de cada vez. Vimos como fazer isto utilizando multiplexagem com Kernel.select, mas um pouco mais simples (Embora
 possivelmente menos escalável) solução usa <code>threads</code>:</p>
 
-<p>```ruby Servidor a Multithreads
-require 'socket'</p>
+<pre><code class="ruby Servidor a Multithreads">require 'socket'
 
-<h1>Este método espera um socket ligado a um cliente.</h1>
-
-<h1>Ele lê as linhas do cliente, inverte-los e envia-los de volta.</h1>
-
-<h1>Múltiplas Threads podem executar este método, ao mesmo tempo.</h1>
-
-<p>def handle_client(c)
-  while true</p>
-
-<pre><code>input = c.gets.chop     # Ler uma linha de entrada do cliente
-break if !input         # sai se tem muitas entradas
-break if input=="quit"  # ou se o cliente pede
-c.puts(input.reverse)   # Caso contrário, responde ao cliente.
-c.flush                 # Força a saída para fora
-</code></pre>
-
-<p>  end
+# Este método espera um socket ligado a um cliente.
+# Ele lê as linhas do cliente, inverte-los e envia-los de volta.
+# Múltiplas Threads podem executar este método, ao mesmo tempo.
+def handle_client(c)
+  while true
+    input = c.gets.chop     # Ler uma linha de entrada do cliente
+    break if !input         # sai se tem muitas entradas
+    break if input=="quit"  # ou se o cliente pede
+    c.puts(input.reverse)   # Caso contrário, responde ao cliente.
+    c.flush                 # Força a saída para fora
+  end
   c.close                   # Fecha o socket cliente
-end</p>
-
-<p>server = TCPServer.open(2000) # Ouve na porta 2000</p>
-
-<p>while true                    # Laço de servidores para sempre
-  client = server.accept      # Espere um cliente para conectar
-  Thread.start(client) do |c| # Inicia uma nova thread</p>
-
-<pre><code>handle_client(c)          # E Lida com o clinete nessa Thread
-</code></pre>
-
-<p>  end
 end
-```</p>
+
+server = TCPServer.open(2000) # Ouve na porta 2000
+
+while true                    # Laço de servidores para sempre
+  client = server.accept      # Espere um cliente para conectar
+  Thread.start(client) do |c| # Inicia uma nova thread
+    handle_client(c)          # E Lida com o clinete nessa Thread
+  end
+end
+</code></pre>
 
 <h3>Iteradores simultâneas</h3>
 
@@ -137,35 +129,27 @@ end
 adiciona um método <code>conmap</code> (por mapa concorrente) para o modulo <code>Enumerável</code>. Ele funciona como mapa, mas processa cada
 elemento da matriz de entrada com uma distinta <code>Thread</code>:</p>
 
-<p>```ruby Iterador Simultâneo
-module Enumerable           # Abre o módulo Enumerable
-  def conmap(&amp;block)        # Define um novo método que espera um block</p>
-
-<pre><code>threads = []            # Começa com uma matriz vazia de threads
-self.each do |item|     # Para cada item enumerable
-  # Chama o bloco em uma nova Thread, e lembra da Thread
-  threads &lt;&lt; Thread.new { block.call(item) }
+<pre><code class="ruby Iterador Simultâneo">module Enumerable           # Abre o módulo Enumerable
+  def conmap(&amp;block)        # Define um novo método que espera um block
+    threads = []            # Começa com uma matriz vazia de threads
+    self.each do |item|     # Para cada item enumerable
+      # Chama o bloco em uma nova Thread, e lembra da Thread
+      threads &lt;&lt; Thread.new { block.call(item) }
+    end
+    # Agora mapea o conjunto de Threads para os seus valores
+    threads.map {|t| t.value } # E retorna a matriz de valores
+  end
 end
-# Agora mapea o conjunto de Threads para os seus valores
-threads.map {|t| t.value } # E retorna a matriz de valores
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>E aqui está uma versão concorrente similar do iterador de cada um:</p>
 
-<p>```ruby Módulo Enumerable
-module Enumerable
-  def concurrently</p>
-
-<pre><code>map {|item| Thread.new { yield item }}.each {|t| t.join }
-</code></pre>
-
-<p>  end
+<pre><code class="ruby Módulo Enumerable">module Enumerable
+  def concurrently
+    map {|item| Thread.new { yield item }}.each {|t| t.join }
+  end
 end
-```</p>
+</code></pre>
 
 <p>O código é sucinto e desafiador: se você pode fazer sentido, você está bem em seu caminho para o domínio da sintaxe de
 Ruby e iteradores Ruby.</p>
@@ -173,9 +157,8 @@ Ruby e iteradores Ruby.</p>
 <p>Lembre-se que no Ruby 1.9, iteradores padrões que não são passado um bloco retorna um objeto enumerador. Isto significa
 que, dado o método <code>concurrently</code> definido mais cedo e um objeto <code>Hash h</code>, podemos escrever:</p>
 
-<p><code>ruby Método Concurrently
-h.each_pair.concurrently {|*pair| process(pair)}
-</code></p>
+<pre><code class="ruby Método Concurrently">h.each_pair.concurrently {|*pair| process(pair)}
+</code></pre>
 
 <p>Até o proximo amigos!</p>
 ]]></content>
@@ -199,7 +182,7 @@ h.each_pair.concurrently {|*pair| process(pair)}
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Threads e Variáveis</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
@@ -209,18 +192,17 @@ h.each_pair.concurrently {|*pair| process(pair)}
 por blocos, eles têm acesso a qualquer que seja variáveis ​​(variáveis ​​locais, variáveis ​​de instância, variáveis ​​globais e
  assim por diante) estão no escopo do bloco:</p>
 
-<p>``` ruby Thread e Variavel
-x = 0</p>
+<pre><code class="ruby Thread e Variavel">x = 0
 
-<p>t1 = Thread.new do
+t1 = Thread.new do
   # Esta Thread pode consultar e definir a variável x
-end</p>
+end
 
-<p>t2 = Thread.new do
+t2 = Thread.new do
   # Esta Thread e também consulta e seta x
   # E pode consultar e definir T1 e T2 também.
 end
-```</p>
+</code></pre>
 
 <p>Quando dois ou mais <code>Thread</code> de ler e escrever as mesmas variáveis ao mesmo tempo, elas devem tomar cuidado para que elas o
 fazem corretamente. Nós vamos ter mais a dizer sobre isso quando consideramos a sincronização de <code>threads</code> abaixo.</p>
@@ -234,13 +216,12 @@ outra <code>thread</code>. Isto é simplesmente consequência de regras de vari�
 altere se o valor do referido mude de variáveis. Considere o seguinte código, que tenta criar três tópicos que impressão (
 respectivamente) os números 1, 2 e 3:</p>
 
-<p><code>ruby Threads Privadas
-n = 1
+<pre><code class="ruby Threads Privadas">n = 1
 while n &lt;= 3
   Thread.new { puts n }
   n += 1
 end
-</code></p>
+</code></pre>
 
 <p>Em algumas circunstâncias, em algumas implementações, este código pode funcionar como o esperado e imprimir os números 1, 2 e
 3. Em outras circunstâncias, ou em outras implementações, talvez não. É perfeitamente possível (se tópicos recentemente
@@ -251,21 +232,19 @@ segmento é executado em relação para a thread pai.</p>
 <p>Para resolver este problema, passamos o valor atual de n para o método <code>Thread.new</code>, e atribuimos o atual valor da variável a
 um parâmetro de bloco. Parâmetros de bloco são privados para o bloco, e este valor particular não é partilhado entre tópicos:</p>
 
-<p><code>ruby Threads Privadas
-n = 1
+<pre><code class="ruby Threads Privadas">n = 1
 while n &lt;= 3
   # Obtem uma cópia privada do valor atual de n em x
   Thread.new(n) {|x| puts x }
   n += 1
 end
-</code></p>
+</code></pre>
 
 <p>Note-se que temos uma outra forma de resolver este problema é a utilização de um iterador em vez de um loop <code>while</code>. Neste
 caso, o valor de <code>n</code> é modificado para particular para o bloco externo e nunca durante a execução desse bloco:</p>
 
-<p><code>ruby Thread Privada com Interator
-1.upto (3) {| n | Thread.new {puts n}}
-</code></p>
+<pre><code class="ruby Thread Privada com Interator">1.upto (3) {| n | Thread.new {puts n}}
+</code></pre>
 
 <h4>Variáveis ​​de Threads locais</h4>
 
@@ -284,26 +263,23 @@ pode ter a sua própria cópia.</p>
 <p>Como exemplo, suponha que nós criamos <code>thread</code> para download de arquivos de um servidor web. A <code>Thread</code> principal pode querer
 monitorar o progresso do download. Para permitir isso, cada <code>Thread</code> pode fazer o seguinte:</p>
 
-<p><code>ruby Thread de progresso
-Thread.current[:progress] = bytes_received
-</code></p>
+<pre><code class="ruby Thread de progresso">Thread.current[:progress] = bytes_received
+</code></pre>
 
 <p>A <code>Thread</code> principal poderia, então, determinar o total de bytes baixado com um código como este:</p>
 
-<p><code>ruby Thread de progresso
-total = 0
+<pre><code class="ruby Thread de progresso">total = 0
 download_threads.each {|t| total += t[:progress] }
-</code></p>
+</code></pre>
 
 <p>Junto com <code>[]</code> e <code>[]=</code>, <code>Thread</code> também define um método <code>key?</code> para testar se uma determinada chave existe para uma discussão
 . Os métodos <code>keys</code> retorna uma matriz de símbolos que representam as chaves definidas para a <code>Thread</code>. Este código pode ser
 melhor escrito como se segue, de modo que ela trabalhe de tópicos que ainda não começou a correr e não tenha definido a chave
 :progress ainda:</p>
 
-<p><code>ruby Thread de progresso
-total = 0
+<pre><code class="ruby Thread de progresso">total = 0
 download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
-</code></p>
+</code></pre>
 
 <p>Até a proxima galera! :D</p>
 ]]></content>
@@ -327,11 +303,11 @@ download_threads.each {|t| total += t[:progress] if t.key?(:progress)}
     <content type="html"><![CDATA[<!--more-->
 
 
-<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>...</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, é hora de nos aprofundar em um pouco de <strong>Threads e Concorrência</strong> agora <strong>Thread Lifecycle</strong>&hellip;</p>
 
 <h2>Threads e Concorrência</h2>
 
-<p>Programas tradicionais têm uma única "thread de execução": as declarações ou instruções que compõem o programa são executadas
+<p>Programas tradicionais têm uma única &ldquo;thread de execução&rdquo;: as declarações ou instruções que compõem o programa são executadas
 sequencialmente até que o programa termina. Um programa multithread tem mais de uma <code>thread</code> de execução. Dentro de cada <code>
 thread</code>, os comandos são executados sequencialmente, mas as próprias <code>threads</code> podem ser executadas em paralelo em uma
 CPU multicore, por exemplo. Frequentemente (em um núcleo único, uma única CPU, por exemplo), várias <code>Threads</code> não são na
@@ -348,17 +324,12 @@ enquanto outra <code>thread</code> está à espera para a próxima imagem para s
 apenas associa um bloco com uma chamada para <code>Thread.new</code>. Uma nova <code>thread</code> será criada para executar o código no bloco, e a
 <code>thread</code> original retornará do <code>Thread.new</code> imediatamente e continuar a execução com a afirmação seguinte:</p>
 
-<p>```ruby Iniciando um thread</p>
-
-<h1>Thread #1 está sendo executado aqui</h1>
-
-<p>Thread.new {
+<pre><code class="ruby Iniciando um thread"># Thread #1 está sendo executado aqui
+Thread.new {
   # Thread #2 executa esse código
-}</p>
-
-<h1>Thread #1 executa esse código</h1>
-
-<p>```</p>
+}
+# Thread #1 executa esse código
+</code></pre>
 
 <p>Vamos começar nossa cobertura de <code>threads</code> explicando o modelo <code>Thread</code> de Ruby e API em alguns detalhes. Estas seções
 introdutórias explicam as coisas como ciclo de vida da <code>thread</code>, agendamento de threads, e os estados da <code>thread</code>. Com que o
@@ -398,15 +369,14 @@ valor de suas <code>threads</code>, você pode esperar com o método de instanci
 <p>O seguinte método espera até que todas as linhas, com excepção da <code>thread</code> principal e a <code>thread</code> atual (que pode ser a mesma
 coisa), ter saído:</p>
 
-<p><code>ruby Thread Principal
-def join_all
+<pre><code class="ruby Thread Principal">def join_all
   main = Thread.main        # Thread Principal
   current = Thread.current  # Thread atual
   all = Thread.list         # Todas as threads ainda em execução
   # Agora chama join em cada thread
   all.each {|t| t.join unless t == current or t == main }
 end
-</code></p>
+</code></pre>
 
 <h4>Threads e exceções não tratadas</h4>
 
@@ -419,17 +389,15 @@ na <code>thread</code> de <code>s</code>.</p>
 <p>Se você gostaria de qualquer exceção não tratada em qualquer <code>thread</code> para fazer com que o intérprete saia, use o método de
 classe <code>Thread.abort_on_exception=</code>:</p>
 
-<p><code>ruby Thread
-Thread.abort_on_exception = true
-</code></p>
+<pre><code class="ruby Thread">Thread.abort_on_exception = true
+</code></pre>
 
 <p>Se você quer uma exceção não tratada em uma <code>thread</code> específica faz com que o intérprete saia, utilizando o método de
 exemplo, através do mesmo nome:</p>
 
-<p><code>ruby Thread abort
-t = Thread.new { ... }
+<pre><code class="ruby Thread abort">t = Thread.new { ... }
 t.abort_on_exception = true
-</code></p>
+</code></pre>
 
 <p>É isso ai amigos.. até a proxima!</p>
 ]]></content>
@@ -473,18 +441,16 @@ utilizando <code>alias_method</code>, <code>define_method</code> e <code>class_e
 
 
 <p>O <code>Exemplo 1-1</code> é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
-ele imprime um relatório. Você pode usar este código para "instrumento" de um existente programa para que você entenda melhor o que está fazendo. Uma
+ele imprime um relatório. Você pode usar este código para &ldquo;instrumento&rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
 maneira de usar este código é inserir esta linha no começo do programa:</p>
 
-<p><code>ruby classtrace
-require 'classtrace'
-</code></p>
+<pre><code class="ruby classtrace">require 'classtrace'
+</code></pre>
 
 <p>Uma solução mais fácil, no entanto, é usar a opção -r para o seu intérprete Ruby(<code>irb</code>):</p>
 
-<p><code>ruby Opção -r
-ruby -rclasstrace my_program.rb  --traceout /tmp/trace
-</code></p>
+<pre><code class="ruby Opção -r">ruby -rclasstrace my_program.rb  --traceout /tmp/trace
+</code></pre>
 
 <p>A opção -r carrega a biblioteca especificado antes de começar a executar o programa.</p>
 
@@ -494,19 +460,15 @@ Além dos encadeamentos de alias <code>require</code> e <code>load</code> e defi
 definição de um módulo chamado <code>ClassTrace</code>. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
 poluem o <code>namespace</code> com variáveis globais.</p>
 
-<p>``` ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas</p>
-
-<h1>Definimos este módulo para manter o estado global do require, de modo que</h1>
-
-<h1>Nós não alteramos o espaço global mais do que o necessário.</h1>
-
-<p>module ClassTrace
+<pre><code class="ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas"># Definimos este módulo para manter o estado global do require, de modo que
+# Nós não alteramos o espaço global mais do que o necessário.
+module ClassTrace
    # Esta matriz mantém a nossa lista de arquivos carregados e classes definidas.
    # Cada elemento é um subarray segurando a classe definida ou o
    # Arquivo carregado e o quadro de pilha onde ele foi definido ou carregado.
-   T = []  # Array para armazenar os arquivos carregados</p>
+   T = []  # Array para armazenar os arquivos carregados
 
-<p>   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
+   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
    # O padrão é stderr, mas também pode vir a partir de argumentos na linha de comando
    if x = ARGV.index("--traceout")    # Se existe argumento
      OUT = File.open(ARGV[x+1], "w")  # Abre o arquivo especificado
@@ -514,52 +476,44 @@ poluem o <code>namespace</code> com variáveis globais.</p>
    else
      OUT = STDERR                     # Caso contrário, o padrão para STDERR
    end
-end</p>
+end
 
-<h1>Passo 1 encadeamento Alias: definir aliases para os métodos originais</h1>
+# Passo 1 encadeamento Alias: definir aliases para os métodos originais
+alias original_require require
+alias original_load load
 
-<p>alias original_require require
-alias original_load load</p>
-
-<h1>Passo 2 encadeamento Alias 2: definir novas versões dos métodos</h1>
-
-<p>def require(file)
+# Passo 2 encadeamento Alias 2: definir novas versões dos métodos
+def require(file)
   ClassTrace::T &lt;&lt; [file,caller[0]]     # Lembre-se de onde que estava carregado
   original_require(file)                # Chame o método original
-end</p>
-
-<p>def load(<em>args)
-  ClassTrace::T &lt;&lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
-  original_load(</em>args)                  # Chame o método original
-end</p>
-
-<h1>Este método hook é chamado de cada vez que uma nova classe é definida</h1>
-
-<p>def Object.inherited(c)
-  ClassTrace::T &lt;&lt; [c,caller[0]]        # Lembre-se onde que foi definido
-end</p>
-
-<h1>Kernel.at_exit registra um bloco a ser executado quando o programa sai</h1>
-
-<h1>Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos</h1>
-
-<p>at_exit {
-  o = ClassTrace::OUT
-  o.puts "="<em>60
-  o.puts "Files Loaded and Classes Defined:"
-  o.puts "="</em>60
-  ClassTrace::T.each do |what,where|</p>
-
-<pre><code>if what.is_a? Class  # Report class (with hierarchy) defined
-  o.puts "Defined: #{what.ancestors.join('&lt;-')} at #{where}"
-else                 # Report file loaded
-  o.puts "Loaded: #{what} at #{where}"
 end
-</code></pre>
 
-<p>  end
+def load(*args)
+  ClassTrace::T &lt;&lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
+  original_load(*args)                  # Chame o método original
+end
+
+# Este método hook é chamado de cada vez que uma nova classe é definida
+def Object.inherited(c)
+  ClassTrace::T &lt;&lt; [c,caller[0]]        # Lembre-se onde que foi definido
+end
+
+# Kernel.at_exit registra um bloco a ser executado quando o programa sai
+# Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos
+at_exit {
+  o = ClassTrace::OUT
+  o.puts "="*60
+  o.puts "Files Loaded and Classes Defined:"
+  o.puts "="*60
+  ClassTrace::T.each do |what,where|
+    if what.is_a? Class  # Report class (with hierarchy) defined
+      o.puts "Defined: #{what.ancestors.join('&lt;-')} at #{where}"
+    else                 # Report file loaded
+      o.puts "Loaded: #{what} at #{where}"
+    end
+  end
 }
-```</p>
+</code></pre>
 
 <h3>Métodos encadeamento de segurança da Thread</h3>
 
@@ -573,13 +527,9 @@ quando utilizado desta forma, acrescenta sincronização para qualquer método d
 notificação quando um novo método <code>method_added</code> é adicionado.) Note que o código deste exemplo depende do método <code>Object.mutex</code> e a classe
 <code>SynchronizedObject</code>.</p>
 
-<p>``` ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread</p>
-
-<h1>Define um alias corrente Module.synchronize_method de métodos de instância</h1>
-
-<h1>Assim que sincronizar a instância antes da execução.</h1>
-
-<p>class Module
+<pre><code class="ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread"># Define um alias corrente Module.synchronize_method de métodos de instância
+# Assim que sincronizar a instância antes da execução.
+class Module
   # Esta é uma função auxiliar para o encadeamento alias.
   # Dado o nome de um método (como uma string ou símbolo) e um prefixo, cria
   # Um alias exclusivo para o método, e retornar o nome do alias
@@ -587,25 +537,22 @@ notificação quando um novo método <code>method_added</code> é adicionado.) N
   # Serão convertidos em números para que os operadores podem ser alias.
   def create_alias(original, prefix="alias")
     # Cole o prefixo do nome original e converter pontuação
-    aka = "#{prefix}_#{original}"</p>
-
-<pre><code>aka.gsub!(/([\=\|\&amp;\+\-\*\/\^\!\?\~\%\&lt;\&gt;\[\]])/) {
-  num = $1[0]                       # Ruby 1.8 character -&gt; ordinal
-  num = num.ord if num.is_a? String # Ruby 1.9 character -&gt; ordinal
-  '_' + num.to_s
-}
-</code></pre>
-
-<p>    
+    aka = "#{prefix}_#{original}"
+    aka.gsub!(/([\=\|\&amp;\+\-\*\/\^\!\?\~\%\&lt;\&gt;\[\]])/) {
+      num = $1[0]                       # Ruby 1.8 character -&gt; ordinal
+      num = num.ord if num.is_a? String # Ruby 1.9 character -&gt; ordinal
+      '_' + num.to_s
+    }
+    
     # Mantenha acrescentando ressalta até chegarmos a um nome que não está em uso
-    aka += "_" while method_defined? aka or private_method_defined? aka</p>
+    aka += "_" while method_defined? aka or private_method_defined? aka
 
-<p>    aka = aka.to_sym           # Converter o nome de alias de um símbolo
+    aka = aka.to_sym           # Converter o nome de alias de um símbolo
     alias_method aka, original # Na verdade criar o alias
     aka                                              # Retorna o nome do alias
-  end</p>
+  end
 
-<p>  # Alias correntam o método nomeado para adicionar sincronização
+  # Alias correntam o método nomeado para adicionar sincronização
   def synchronize_method(m)
     # Primeiro, fazemos um alias para a versão dessincronizado do método.
     aka = create_alias(m, "unsync")
@@ -614,71 +561,52 @@ notificação quando um novo método <code>method_added</code> é adicionado.) N
     # Não pode usar define_method, e deve avaliar vez uma string com
     # Class_eval. Note-se que tudo entre% Q {} e da correspondência
     # É uma string entre aspas, e não um bloco.
-    class_eval %Q{</p>
-
-<pre><code>  def #{m}(*args, &amp;block)
-    synchronized(self) { #{aka}(*args, &amp;block) }
+    class_eval %Q{
+      def #{m}(*args, &amp;block)
+        synchronized(self) { #{aka}(*args, &amp;block) }
+      end
+    }
   end
-}
-</code></pre>
+end
 
-<p>  end
-end</p>
-
-<h1>Este método global sincronizado agora pode ser usado de três maneiras diferentes.</h1>
-
-<p>def synchronized(*args)
+# Este método global sincronizado agora pode ser usado de três maneiras diferentes.
+def synchronized(*args)
   # Caso 1: com um argumento e um bloco, sincronizar sobre o objeto
-  # E executar o bloco</p>
+  # E executar o bloco
+    if args.size == 1 &amp;&amp; block_given?
+    args[0].mutex.synchronize { yield }
 
-<pre><code>if args.size == 1 &amp;&amp; block_given?
-args[0].mutex.synchronize { yield }
-</code></pre>
-
-<p>  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
+  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
   # Devolve um invólucro de SynchronizedObject
-  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?</p>
+  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?
+    SynchronizedObject.new(args[0])
 
-<pre><code>SynchronizedObject.new(args[0])
-</code></pre>
-
-<p>  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
+  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
   # Chamado métodos para adicionar sincronização. Ou, se não há argumentos,
   # Então apelido acorrentam o próximo método definido.
-  elsif self.is_a? Module and not block_given?</p>
-
-<pre><code>if (args.size &gt; 0) # Synchronize the named methods
-  args.each {|m| self.synchronize_method(m) }
-else
-</code></pre>
-
-<p>      # Se nenhum método é especificado pelo synchronize o método seguinte define
-      eigenclass = class&lt;&lt;self; self; end</p>
-
-<pre><code>  eigenclass.class_eval do # Use eigenclass para definir métodos de classe
-</code></pre>
-
-<p>        # Define method_added para notificação quando próximo método é definido
+  elsif self.is_a? Module and not block_given?
+    if (args.size &gt; 0) # Synchronize the named methods
+      args.each {|m| self.synchronize_method(m) }
+    else
+      # Se nenhum método é especificado pelo synchronize o método seguinte define
+      eigenclass = class&lt;&lt;self; self; end
+      eigenclass.class_eval do # Use eigenclass para definir métodos de classe
+        # Define method_added para notificação quando próximo método é definido
         define_method :method_added do |name|
           # Primeiro remover esse método hook
           eigenclass.class_eval { remove_method :method_added }
           # Em seguida, sincronize o método que acabou de ser adicionado
-          self.synchronize_method name</p>
+          self.synchronize_method name
+        end
+      end
+    end
 
-<pre><code>    end
+  # Caso 4: qualquer outra invocação é um erro
+  else
+    raise ArgumentError, "Invalid arguments to synchronize()"
   end
 end
 </code></pre>
-
-<p>  # Caso 4: qualquer outra invocação é um erro
-  else</p>
-
-<pre><code>raise ArgumentError, "Invalid arguments to synchronize()"
-</code></pre>
-
-<p>  end
-end
-```</p>
 
 <h3>Métodos de encadeamento para Rastreamento</h3>
 
@@ -689,44 +617,32 @@ objeto.</p>
 <p>A coisa interessante sobre esse exemplo é que ele faz o seu encadeamento de um modo diferente a partir do Exemplo 1-2. Ele simplesmente define métodos
 únicos no objeto e usa <code>super</code> dentro do <code>singleton</code> para a cadeia de definição do método original de exemplo. Nenhum método são criado aliases.</p>
 
-<p>``` ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear</p>
-
-<h1>Define métodos trace! e untrace! de instância para todos os objetos.</h1>
-
-<h1>trace! "Cadeias" os métodos chamados por definir métodos singleton</h1>
-
-<h1>Que adiciona a funcionalidade de rastreamento e use super para chamar o original.</h1>
-
-<h1>untrace! exclui os métodos singleton para remover o rastreamento.</h1>
-
-<p>classe Object
+<pre><code class="ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear"># Define métodos trace! e untrace! de instância para todos os objetos.
+# trace! "Cadeias" os métodos chamados por definir métodos singleton
+# Que adiciona a funcionalidade de rastreamento e use super para chamar o original.
+# untrace! exclui os métodos singleton para remover o rastreamento.
+classe Object
   # os métodos trace especificados, enviando a saída para STDERR.
-  def trace!(*methods)</p>
+  def trace!(*methods)
+    @_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados
 
-<pre><code>@_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados
-</code></pre>
-
-<p>    # Se nenhum método foi especificado, use todos os métodos públicos definidos
+    # Se nenhum método foi especificado, use todos os métodos públicos definidos
     # Diretamente (não herdado) pela classe deste objeto
-    methods = public_methods(false) if methods.size == 0</p>
+    methods = public_methods(false) if methods.size == 0
 
-<pre><code>methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
-</code></pre>
-
-<p>    methods -= @<em>traced                     # remove métodos que já estão traçadas
+    methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
+    methods -= @_traced                     # remove métodos que já estão traçadas
     return if methods.empty?        # Voltar mais cedo se não há nada a fazer
-    @</em>traced |= methods           # Adiciona métodos para definir métodos de traçados</p>
+    @_traced |= methods           # Adiciona métodos para definir métodos de traçados
 
-<p>    # Trace o fato de que estamos começando a traçar estes métodos
-    STDERR &lt;&lt; "Tracing #{methods.join(', ')} on #{object_id}\n"</p>
+    # Trace o fato de que estamos começando a traçar estes métodos
+    STDERR &lt;&lt; "Tracing #{methods.join(', ')} on #{object_id}\n"
 
-<pre><code>    # Singleton métodos são definidos na eigenclass
-eigenclass = class &lt;&lt; self; self; end
+        # Singleton métodos são definidos na eigenclass
+    eigenclass = class &lt;&lt; self; self; end
 
-    methods.each do |m| # Para cada método m
-</code></pre>
-
-<p>      # Define uma versão trace singleton do método m.
+        methods.each do |m| # Para cada método m
+      # Define uma versão trace singleton do método m.
       # Saída de informações de rastreamento e usar super para invocar o
       # Método de instância que é o rastreamento.
       # Queremos que os métodos definidos para ser capaz de aceitar blocos, de modo que
@@ -736,56 +652,50 @@ eigenclass = class &lt;&lt; self; self; end
       # Dois níveis de interpolações de string aqui. # {} É interpolada
       # Quando o método singleton é definida. E \ # {} é interpolada
       # Quando o método singleton é invocado.
-      eigenclass.class_eval %Q{</p>
-
-<pre><code>    def #{m}(*args, &amp;block)
-      begin
-        STDERR &lt;&lt; "Entering: #{m}(\#{args.join(', ')})\n"
-        result = super
-        STDERR &lt;&lt; "Exiting: #{m} with \#{result}\n"
-        result
-      rescue
-        STDERR &lt;&lt; "Aborting: #{m}: \#{$!.class}: \#{$!.message}"
-        raise
-      end
+      eigenclass.class_eval %Q{
+        def #{m}(*args, &amp;block)
+          begin
+            STDERR &lt;&lt; "Entering: #{m}(\#{args.join(', ')})\n"
+            result = super
+            STDERR &lt;&lt; "Exiting: #{m} with \#{result}\n"
+            result
+          rescue
+            STDERR &lt;&lt; "Aborting: #{m}: \#{$!.class}: \#{$!.message}"
+            raise
+          end
+        end
+      }
     end
-  }
+  end
+
+  # Untrace os métodos especificados ou todos os métodos rastreados
+    def untrace!(*methods)
+    if methods.size == 0    # Se nenhuma métodos especificados untrace
+      methods = @_traced    # todos os métodos atualmente rastreados
+      STDERR &lt;&lt; "Untracing all methods on #{object_id}\n"
+    else                    # Caso contrário, untrace
+      methods.map! {|m| m.to_sym }  # Converter string para símbolos
+      methods &amp;= @_traced   # todos os métodos especificados que são rastreados
+      STDERR &lt;&lt; "Untracing #{methods.join(', ')} on #{object_id}\n"
+    end
+
+        @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
+
+        # Remove os métodos traçados únicos do eigenclass
+        # Note que nós class_eval um bloco aqui, não uma string
+        (class &lt;&lt; self; self; end).class_eval do
+          methods.each do |m|
+            remove_method m     # undef_method não funciona corretamente
+          end
+        end
+
+        # Se nenhum método são traçados mais, remover o nosso exemplo var
+        if @_traced.empty?
+          remove_instance_variable :@_traced
+        end
+  end
 end
 </code></pre>
-
-<p>  end</p>
-
-<p>  # Untrace os métodos especificados ou todos os métodos rastreados</p>
-
-<pre><code>def untrace!(*methods)
-if methods.size == 0    # Se nenhuma métodos especificados untrace
-  methods = @_traced    # todos os métodos atualmente rastreados
-  STDERR &lt;&lt; "Untracing all methods on #{object_id}\n"
-else                    # Caso contrário, untrace
-  methods.map! {|m| m.to_sym }  # Converter string para símbolos
-  methods &amp;= @_traced   # todos os métodos especificados que são rastreados
-  STDERR &lt;&lt; "Untracing #{methods.join(', ')} on #{object_id}\n"
-end
-
-    @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
-
-    # Remove os métodos traçados únicos do eigenclass
-    # Note que nós class_eval um bloco aqui, não uma string
-    (class &lt;&lt; self; self; end).class_eval do
-      methods.each do |m|
-        remove_method m     # undef_method não funciona corretamente
-      end
-    end
-
-    # Se nenhum método são traçados mais, remover o nosso exemplo var
-    if @_traced.empty?
-      remove_instance_variable :@_traced
-    end
-</code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>É isso ai galera! Até a proxima!</p>
 ]]></content>
@@ -823,12 +733,11 @@ Em seguida, eles avaliam que a seqüência de código usando <code>class_eval</c
 A vantagem, contudo, é que os métodos que definem não precisa usar as APIs reflexivas, pois eles podem consultar ou definir o valor de uma variável de
 instância diretamente.</p>
 
-<p>``` ruby Exemplo 1-1. Métodos de atributos com class_eval</p>
+<pre><code class="ruby Exemplo 1-1. Métodos de atributos com class_eval">
+class Module
+  private # Os métodos que se seguem são todos privados
 
-<p>class Module
-  private # Os métodos que se seguem são todos privados</p>
-
-<p>  # Este método funciona como attr_reader, mas tem um nome mais curto
+  # Este método funciona como attr_reader, mas tem um nome mais curto
   def readonly(*syms)
     return if syms.size == 0  # Se nenhum argumento, não faz nada
     code = ""                 # Comece com uma cadeia vazia de código
@@ -839,23 +748,20 @@ instância diretamente.</p>
     end
     # Finalmente, class_eval o código gerado para criar métodos de instância.
     class_eval code
-  end</p>
+  end
 
-<p>  # Este método funciona como attr_accessor, mas tem um nome mais curto.
+  # Este método funciona como attr_accessor, mas tem um nome mais curto.
   def readwrite(*syms)
     return if syms.size == 0
     code = ""
-    syms.each do |s|</p>
-
-<pre><code>  code &lt;&lt; "def #{s}; @#{s} end\n"
-  code &lt;&lt; "def #{s}=(value); @#{s} = value; end\n"
+    syms.each do |s|
+      code &lt;&lt; "def #{s}; @#{s} end\n"
+      code &lt;&lt; "def #{s}=(value); @#{s} = value; end\n"
+    end
+    class_eval code
+  end
 end
-class_eval code
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <h3>Métodos definidos com define_method</h3>
 
@@ -868,19 +774,17 @@ define os atributos de classe em vez de atributos de instância.</p>
 <p>Lembre-se que Ruby permite que as chaves para ser omitidas em torno de <code>hash</code> literais quando eles são o argumento final em uma invocação de método.
 Assim, o método <code>attributes</code> pode ser chamado com um código como este:</p>
 
-<p><code>ruby Metodo attributes
-class Point
+<pre><code class="ruby Metodo attributes">class Point
   attributes :x =&gt; 0, :y =&gt; 0
 end
-</code></p>
+</code></pre>
 
 <p>No Ruby 1.9, podemos usar a sintaxe do <code>hash</code> é mais sucinta:</p>
 
-<p><code>ruby Attibutes
-class Point
+<pre><code class="ruby Attibutes">class Point
   attributes x:0, y:0
 end
-</code></p>
+</code></pre>
 
 <p>Este é outro exemplo que utiliza sintaxe flexível de Ruby para criar métodos que se comportam como palavras-chave de linguagem.</p>
 
@@ -896,9 +800,8 @@ qualquer tipo. Em vez disso, o valor por defeito para cada atributo é capturado
 <p>O método <code>class_attrs</code> define os atributos de classe muito simples: ele invoca <code>attributes</code> na <a href="http://blog.caelum.com.br/metaprogramacao-eigenclass-em-ruby/">eigenclass</a> da classe. Este
 significa que os métodos resultantes usam variáveis de instância de classe em vez de variáveis de classe regular.</p>
 
-<p>``` ruby Exemplo 1-2. Métodos de atributos com define_method</p>
-
-<p>class Module
+<pre><code class="ruby Exemplo 1-2. Métodos de atributos com define_method">
+class Module
   # Este método define os atributos de métodos de reader e writer de nomeado
   # attributes, mas aguarda um argumento de attributes de nomes em hash mapeado para
   # Valores padrões. Os métodos de reader gerados atributos retorna o
@@ -914,31 +817,28 @@ significa que os métodos resultantes usam variáveis de instância de classe em
         else
           default                         # Caso contrário retornar padrão
         end
-      end</p>
+      end
 
-<p>      define_method setter do |value|     # Defini método setter
+      define_method setter do |value|     # Defini método setter
         instance_variable_set variable,   # Defina a variável de instância
                               value       # Para o valor do argumento
       end
     end
-  end</p>
+  end
 
-<p>  # Este método funciona como atributos, mas define métodos de classe em vez de
+  # Este método funciona como atributos, mas define métodos de classe em vez de
   # Invocar atributos no eigenclass em vez de em si mesmo.
   # Note que os métodos definidos usam variáveis de instância de classe
   # Em vez de variáveis de classe regulares.
   def class_attrs(hash)
-    eigenclass = class &lt;&lt; self; self; end</p>
+    eigenclass = class &lt;&lt; self; self; end
+    eigenclass.class_eval { attributes(hash) }
+  end
 
-<pre><code>eigenclass.class_eval { attributes(hash) }
-</code></pre>
-
-<p>  end</p>
-
-<p>  # Ambos os métodos são privados
+  # Ambos os métodos são privados
   private :attributes, :class_attrs
 end
-```</p>
+</code></pre>
 
 <p>É isso ai amigos, até o proximo post!</p>
 ]]></content>
