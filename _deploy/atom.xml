@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-29T13:57:36-03:00</updated>
+  <updated>2015-09-29T14:06:05-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -684,7 +684,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:</span>
-</span><span class='line'><span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="n">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="ss">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="c1"># =&gt; ArgumentError: unknown keyword: nme</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># Para obter o mesmo resultado e melhor exato:</span>
@@ -705,7 +705,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">name</span><span class="p">({</span><span class="n">required_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="n">optional_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">*</span><span class="n">rest</span> <span class="o">||</span> <span class="n">additional_required_arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span> <span class="c1"># Você Sabia?</span>
-</span><span class='line'>         <span class="p">{</span><span class="n">keyword_arguments</span><span class="p">:</span> <span class="s2">&quot;with_defaults&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="ss">keyword_arguments</span><span class="p">:</span> <span class="s2">&quot;with_defaults&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">**</span><span class="n">rest_of_keyword_arguments</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">&amp;</span><span class="n">block_capture</span><span class="p">})</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -742,7 +742,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 </span><span class='line'>  <span class="k">def</span> <span class="nf">hi</span><span class="p">(</span><span class="n">needed</span><span class="p">,</span> <span class="n">needed2</span><span class="p">,</span>
 </span><span class='line'>         <span class="n">maybe1</span> <span class="o">=</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="n">maybe2</span> <span class="o">=</span> <span class="n">maybe1</span><span class="o">.</span><span class="n">upcase</span><span class="p">,</span>
 </span><span class='line'>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">named1</span><span class="p">:</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">named2</span><span class="p">:</span> <span class="n">a_method</span><span class="p">(</span><span class="n">named1</span><span class="p">,</span> <span class="n">needed2</span><span class="p">),</span>
+</span><span class='line'>         <span class="ss">named1</span><span class="p">:</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="ss">named2</span><span class="p">:</span> <span class="n">a_method</span><span class="p">(</span><span class="n">named1</span><span class="p">,</span> <span class="n">needed2</span><span class="p">),</span>
 </span><span class='line'>         <span class="o">**</span><span class="n">options</span><span class="p">,</span>
 </span><span class='line'>         <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
 </span><span class='line'>  <span class="k">end</span>
@@ -1248,7 +1248,7 @@ que envolvem a pesquisa. Assim, você pode passar uma expressão regular para o 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">upcase</span><span class="o">]</span><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">upcase</span><span class="o">]</span><span class="p">}</span>
 </span><span class='line'>                <span class="o">.</span><span class="n">to_h</span> <span class="c1"># =&gt; NoMethodError:</span>
 </span><span class='line'><span class="c1"># undefined method `to_h&#39; for [[&quot;hello&quot;, &quot;WORLD&quot;]]:Array</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -2832,7 +2832,7 @@ Assim, o método <code>attributes</code> pode ser chamado com um código como es
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Point</span>
-</span><span class='line'>  <span class="n">attributes</span> <span class="n">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="mi">0</span>
+</span><span class='line'>  <span class="n">attributes</span> <span class="ss">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="ss">y</span><span class="p">:</span><span class="mi">0</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -3049,10 +3049,10 @@ usa <code>method_missing</code> para pegar invocações, rastreá-las, e delegá
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Invocando</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-</span><span class='line'><span class="no">Volta</span><span class="p">:</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span> <span class="n">a</span> <span class="n">partir</span> <span class="n">de</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span>
-</span><span class='line'><span class="no">Invocando</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</span><span class='line'><span class="no">Raising</span><span class="p">:</span> <span class="no">IndexError</span><span class="p">:</span> <span class="err">í</span><span class="n">ndice</span> <span class="n">de</span> <span class="mi">3</span> <span class="n">de</span> <span class="n">matriz</span> <span class="n">de</span> <span class="n">a</span><span class="o">.</span><span class="n">fetch</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Invocando</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</span><span class='line'><span class="ss">Volta</span><span class="p">:</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span> <span class="n">a</span> <span class="n">partir</span> <span class="n">de</span> <span class="n">a</span><span class="o">.</span><span class="n">reverse</span>
+</span><span class='line'><span class="ss">Invocando</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="ss">Raising</span><span class="p">:</span> <span class="ss">IndexError</span><span class="p">:</span> <span class="err">í</span><span class="n">ndice</span> <span class="n">de</span> <span class="mi">3</span> <span class="n">de</span> <span class="n">matriz</span> <span class="n">de</span> <span class="n">a</span><span class="o">.</span><span class="n">fetch</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
