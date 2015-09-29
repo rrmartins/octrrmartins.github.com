@@ -220,6 +220,19 @@ end
 # Deploying  #
 ##############
 
+desc "Deploy to branch master"
+task :master do
+  # Check if preview posts exist, which should not be published
+  if File.exists?(".preview-mode")
+    puts "## Found posts in preview mode, regenerating files ..."
+    File.delete(".preview-mode")
+    Rake::Task[:generate].execute
+  end
+
+  system "git push origin `git subtree split --prefix public origin`:master --force"
+  system "git subtree push --prefix public origin master"
+end
+
 desc "Default deploy task"
 task :deploy do
   # Check if preview posts exist, which should not be published
