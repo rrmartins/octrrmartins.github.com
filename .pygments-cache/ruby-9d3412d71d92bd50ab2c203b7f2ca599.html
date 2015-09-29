@@ -1,9 +1,0 @@
-<div class="highlight"><pre><span class="c1"># Ruby 1.9</span>
-<span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; false</span>
-
-<span class="c1"># Ruby 2.0</span>
-<span class="nb">warn</span> <span class="s2">&quot;Optimization only on 64 bit systems&quot;</span> <span class="k">unless</span> <span class="mi">42</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">==</span> <span class="mi">64</span>
-<span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; true (4.2 é imediato)</span>
-<span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="n">e100</span><span class="o">.</span><span class="n">object_id</span> <span class="o">==</span> <span class="mi">4</span><span class="o">.</span><span class="mi">2</span><span class="n">e100</span><span class="o">.</span><span class="n">object_id</span> <span class="c1"># =&gt; false (4.2e100 não é)</span>
-</pre>
-</div>
