@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Software Livre | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/software-livre/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <title><![CDATA[Category: software livre | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/software-livre/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,10 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[Emergencia]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/28/emergencia/"/>
+    <link href="http://rrmartins.com/blog/2012/05/28/emergencia/"/>
     <updated>2012-05-28T13:24:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/28/emergencia</id>
-    <content type="html"><![CDATA[<p>Emergencia</p>
+    <id>http://rrmartins.com/blog/2012/05/28/emergencia</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Emergencia</p>
 
 <p>A emergencia é um dos princípios fundamentais da agilidade, e é a coisa mais próxima da magia pura. Propriedades emergenciais não são
 projetadas ou vêm prontas, elas simplesmente acontecem como um resultado dinâmico do resto do sistema. “Emergencia” vem do Latim da metade
@@ -39,17 +42,20 @@ dos países, levam a comportamentos estúpidos.</p>
 
 <p>Mantenha pequeno. Mantenha simples. Deixe acontecer.</p>
 
-<pre><code>—Andrew Hunt, The Pragmatic Programmers 
+<pre><code>—Andrew Hunt, The Pragmatic Programmers
 </code></pre>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[A presença de paixão]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/28/naa-presenca-de-paixao/"/>
+    <link href="http://rrmartins.com/blog/2012/05/28/naa-presenca-de-paixao/"/>
     <updated>2012-05-28T13:13:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/28/naa-presenca-de-paixao</id>
-    <content type="html"><![CDATA[<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte muito boa..</p>
+    <id>http://rrmartins.com/blog/2012/05/28/naa-presenca-de-paixao</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&ldquo;Caindo na Real&rdquo;</a>, e me deparei com uma parte muito boa..</p>
 
 <p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
 
@@ -67,10 +73,13 @@ dos países, levam a comportamentos estúpidos.</p>
   
   <entry>
     <title type="html"><![CDATA[Arranhando sua própria coceira]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/22/arranhando-sua-propria-coceira/"/>
+    <link href="http://rrmartins.com/blog/2012/05/22/arranhando-sua-propria-coceira/"/>
     <updated>2012-05-22T13:21:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/22/arranhando-sua-propria-coceira</id>
-    <content type="html"><![CDATA[<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">"Caindo na Real"</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
+    <id>http://rrmartins.com/blog/2012/05/22/arranhando-sua-propria-coceira</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Como um apaixonado por codigo aberto, estou lendo o livro <a href="http://gettingreal.37signals.com/GR_por.php">&ldquo;Caindo na Real&rdquo;</a>, e me deparei com uma parte do livro The Progmatic Programmers, o proximo que irei ler.</p>
 
 <p>Então, vejam ai uma parte muito boa, só para dar um gostinho! :D</p>
 

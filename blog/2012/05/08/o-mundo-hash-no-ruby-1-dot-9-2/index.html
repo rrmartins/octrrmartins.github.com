@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Um hash é uma estrutura de dados que mantém um conjunto de objetos &hellip;">
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Um hash é uma estrutura de dados que mantém um conjunto de &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,44 +18,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2">
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2">
   <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <style type="text/css">
-    body {
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-    h1 {
-      margin-bottom: 15px;
-    }
-    .sharing, .meta {
-      margin: 20px 0px 20px 0px;
-    }
-    .pager {
-      margin: 20px 0px 5px 0px;
-    }
-    .page-footer p {
-      text-align: center;
-    }
-  </style>
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
-  <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-    // Avoid conflict with ender.js.
-    jQuery.noConflict();
-</script>
-<!-- jQuery Form Plugin -->
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<!-- jQuery Form Validation Plugin -->
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
-<script src="/javascripts/google_form.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -72,52 +48,38 @@
 
 </head>
 
-<body   >
-  <nav role="navigation"><div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
 
-      <a class="brand" href="/">Rodrigo Martins</a>
 
-      <div class="nav-collapse">
-        <ul class="nav">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Post's</a></li>
-  <li><a href="/who-am">Apresentações</a></li>
-  <li><a href="/contato">Contato</a></li>
-</ul>
- 
-      </div>
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
 
-      <ul class="nav pull-right" data-subscription="rss email">
-        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-          
-            <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
-          
-      </ul>
-
-        
-          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
-            <fieldset role="search">
-              <input type="hidden" name="q" value="site:rrmartins.github.com" />
-              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
-          </form>
-        
-    </div>
-  </div>
-</div>
-</nav>
-  <div class="container">
-    <div class="row-fluid">
-      
-<article class="hentry span9" role="article">
-
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
-  <header class="page-header">
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
     
       <h1 class="entry-title">O Mundo Hash No Ruby 1.9.2 - Parte I</h1>
     
+  
     
       <p class="meta">
         
@@ -132,25 +94,19 @@
   
 
 
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">08/05/12 às 21:27 hrs</time>
+<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true"></time>
         
-         | <a href="#disqus_thread">Comentário</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
   </header>
 
 
-<div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+<div class="entry-content"><!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 <p>Um hash é uma estrutura de dados que mantém um conjunto de objetos conhecidos
@@ -204,12 +160,12 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
   
 
 
-<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true">08/05/12 às 21:27 hrs</time>
-      Categorias: 
+<time datetime="2012-05-08T21:27:00-03:00" pubdate data-updated="true"></time>
+      
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+    <a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
   
 </span>
 
@@ -217,8 +173,6 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
     </p>
     
       <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -229,35 +183,31 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
 </div>
 
     
-    
-    <section>
-      <h1>Comentários</h1>
-      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </section>
-    
-    <ul class="pager">
+    <p class="meta">
       
-      <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/05/07/um-pouco-de-array-no-ruby/" title="Previous Post:
-        Um pouco de Array no Ruby">&laquo; Um pouco de Array no Ruby</a></li>
+        <a class="basic-alignment left" href="/blog/2012/05/07/um-pouco-de-array-no-ruby/" title="Previous Post: Um pouco de Array no Ruby">&laquo; Um pouco de Array no Ruby</a>
       
-      <li><a href="/blog/archives">Blog Archives</a></li>
       
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/"
-        title="Next Post: O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais">O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais
-        &raquo;</a></li>
+        <a class="basic-alignment right" href="/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/" title="Next Post: O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais">O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais &raquo;</a>
       
-    </ul>
+    </p>
   </footer>
 </article>
 
-<aside class="sidebar-nav span3">
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
   
     
-<section class="well">
-  <ul id="tweets" class="nav">
-    <li class="nav-header">Latest Tweets</li>
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
     <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
@@ -271,43 +221,43 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
   
 </section>
 
-<section class="well">
-  <ul id="recent_posts" class="nav nav-list">
-    <li class="nav-header">Recent Posts</li>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/">A Filosofia do #Ruby <3</a>
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Escrevendo iteradores personalizados #Ruby 1.9.2</a>
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Objetos Enumeráveis #Ruby 1.9.2</a>
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/14/iteradores-numericos/">Iteradores Numéricos #Ruby 1.9.2</a>
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/05/unless-number-ruby-1-dot-9/">unless #Ruby 1.9</a>
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
       </li>
     
   </ul>
 </section>
 
-<section class="well">
-  <ul id="gh_repos" class="nav">
-    <li class="nav-header">GitHub Repos</li>
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
     <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -334,10 +284,13 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
 
     </div>
   </div>
-  <footer role="contentinfo" class="page-footer"><hr>
-<p>
-  Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
-  <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
 </p>
 
 </footer>
@@ -348,13 +301,13 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
-        var disqus_url = 'http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2/';
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -365,7 +318,7 @@ Mais informações sobre a API definida pela classe Hash é fornecido em <a href
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: app | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/app/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
+  <author>
+    <name><![CDATA[Rodrigo Martins]]></name>
+    <email><![CDATA[rodrigo@rrmartins.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
+    <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
+    <updated>2015-09-28T22:24:09-03:00</updated>
+    <id>http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku</id>
+    <content type="html"><![CDATA[<p>Æ,</p>
+
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+<!--more-->
+
+
+<pre><code>Não vou entrar nos detalhes para colocar a app no ar, pois o 'passo-a-passo'
+do Heroku da uma boa ajuda quanto a isso.
+</code></pre>
+
+<p>Um dos <a href="https://golang.org/pkg/">packages</a> nativos de Go, que é bem útil para usar no
+Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
+
+<p>A <a href="https://golang.org/doc/effective_go.html#functions">func</a> que vamos usar aqui será a <a href="https://golang.org/pkg/os/#Getenv">Getenv</a> do pacote <code>os</code>, ela lê uma variavel de ambiente que é passada como parametro do tipo <code>string</code>.</p>
+
+<pre><code class="go e sua chamada será algo como:">  os.Getenv("")
+</code></pre>
+
+<pre><code class="go A assinatura da func">  func Getenv(key string) string
+</code></pre>
+
+<p>Ok! Bora para o problema.</p>
+
+<p>Sem a declaração desta chamada, para que a app possa saber qual será a porta que ela vai iniciar. Iremos observar nos logs do Heroku o seguinte erro:</p>
+
+<pre><code>  2015-09-28T21:57:58.411180+00:00 heroku[web.1]: Error R10 (Boot timeout) -&gt; \
+  Web process failed to bind to $PORT within 60 seconds of launch
+</code></pre>
+
+<p>Já se torna visivel que esta reclamando de algo com relação a variavel de ambiente <code>$PORT</code>, e por isso o processo <code>web</code> não foi iniciado, recebendo na cara um <code>SIGKILL</code>.</p>
+
+<p>Ao ler a app de apresentação que foi publicada para ajuda pelo Heroku, <a href="https://github.com/heroku/go-getting-started/">app Go Getting Started on Github</a> e ler mais afinco sobre este erro e sobre &lsquo;o como o Heroku Apps precisa desta declaração :)&rsquo;, saiu algo assim:</p>
+
+<pre><code class="go Declaração com a variavel de ambiente $PORT">  os.Getenv("PORT")
+</code></pre>
+
+<p>Lembrem, como estamos usando o pacote <code>os</code>, temos que fazer seu <code>import</code>.</p>
+
+<pre><code class="go Importando pacote os">   import "os"
+</code></pre>
+
+<p>Caso, não faça este <code>import</code>, verá um erro ao compilar o codigo, algo como:</p>
+
+<pre><code class="go Erro de compilação">$ go build
+# heroku.com/rrmartins/rrtempo
+./servidor.go:15: undefined: os
+./servidor.go:16: undefined: os
+</code></pre>
+
+<p>Então, faça o <code>import "os"</code>. :)</p>
+
+<p>Sabendo a declaração, podemos iniciar o server:</p>
+
+<pre><code class="go Levantando o server">   port := os.Getenv("PORT")
+   http.ListenAndServe(fmt.Sprintf(":%s", port),nil)
+</code></pre>
+
+<p>Na segunda linha do codígo acima, vemos mais dois pacotes nativos Go, <code>http</code> e <code>fmt</code>, para fazer funcionar é importante tambem fazer o <code>import</code> deles, ficando algo parecido com isso:</p>
+
+<pre><code class="go Importando mais pacotes">import (
+  "fmt"
+  "os"
+  "net/http"
+)
+</code></pre>
+
+<p>Mas, como o problema a ser resolvido não é &lsquo;o como levantar o servidor&rsquo;, mas sim &lsquo;o que é preciso para tal&rsquo;, então vamos voltar ao caso aqui. :)</p>
+
+<p>Declarando só com <code>port := os.Getenv("PORT")</code>, é obrigatório que nas configurações da app no Heroku tenha a variavel <code>$PORT</code> declarada, e se não tiver? Quem poderá nos defender?</p>
+
+<p>Para não fazer um <code>if</code> deste modo:</p>
+
+<pre><code class="go if desnecessario">  if os.Getenv("PORT") != "" {
+    port = os.Getenv("PORT")
+  } else {
+    port = "8080"
+  }
+</code></pre>
+
+<p>Fazemos uma condicional de uma linha só: :)</p>
+
+<pre><code class="go Condicional lindão">  port := map[bool]string{true: os.Getenv("PORT"), \
+  false: "8080"}[ os.Getenv("PORT") != ""]
+  http.ListenAndServe(fmt.Sprintf(":%s", port),nil)
+</code></pre>
+
+<p>Vejam só, se não tem a declaração da variavel <code>$PORT</code>, assumo a porta <code>8080</code>.</p>
+
+<p>É isso ai.</p>
+
+<p>O codígo deste post esta em <a href="https://github.com/rrmartins/rrtime">Github rrtime</a>, e rodando no Heroku <a href="https://rrtime.herokuapp.com/tempo">Heroku rrtime</a>.</p>
+
+<p>Creditos pela ajuda da condicional mais simples ao <a href="https://twitter.com/iamvsouza">Vinicius Souza Twitter</a> | <a href="https://github.com/vsouza">Vinicius Souza Github</a> contribuidor da comunidade brasileira <a href="http://www.golangbr.org/">Golang BR</a>.</p>
+
+<p>Valeu!</p>
+]]></content>
+  </entry>
+  
+</feed>

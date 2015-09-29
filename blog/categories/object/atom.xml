@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Object | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/object/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <title><![CDATA[Category: object | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/object/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -14,633 +14,832 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part VI]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi/"/>
-    <updated>2012-05-20T19:08:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-vi</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+    <title type="html"><![CDATA[Encadeamento de Alias - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9/"/>
+    <updated>2012-09-18T08:38:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/18/encadeamento-de-alias-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Encadeamento de Alias</b>...</p>
 
 
-<h1>Objetos</h1>
 
 
+<h1>Encadeamento de Alias</h1>
 
 
-<h3>Copiando objetos</h3>
+<p>Como já visto, metaprogramação em Ruby muitas vezes envolve a dinâmica definição de métodos. Assim como comum é a dinâmica modificação de métodos.
+Métodos são modificados com uma técnica que chamaremos de encadeamento de alias. Ele funciona assim:</p>
 
+<pre><code>* Primeiro, criar um alias para o método a ser modificado. este apelido fornece um nome para
+a versão não modificada do método.
 
-<p>A classe Object define dois métodos estreitamente relacionados para copiar objetos. Tanto o clone e como o dup retornar uma cópia
-superficial do objeto em que eles são chamados. Se o objeto copiado inclui o estado interno que se refere a outros objetos, apenas as
-referências a objetos são copiadas, não os próprios objetos referenciados.</p>
-
-<p>Se o objecto a ser copiado define um método initialize_copy, em seguida, clone e dup simplesmente alocam uma nova instância vazia da
-classe e chamam o método initialize_copy nesta instância vazio. O objeto a ser copiado é passado como um argumento, para este "Construtor
-de cópias", podendo inicializar a cópia. Para exemplo, o método initialize_copy pode copiar recursivamente os dados internos de um objeto
-para que o objeto resultante, não sendo uma simples cópia superficial do original.</p>
-
-<p>Classes também podem substituir os métodos clone e dup diretamente para produzir qualquer tipo de copia que eles desejam.</p>
-
-<p>Há duas diferenças importantes entre os métodos clone e dup definidos pelo objeto. Primeiro, as cópias do clone tanto o congelado e
-quanto o estado contaminado(definido em breve) de um objeto, enquanto dup apenas copia o estado contaminado, chamando dup sobre um objeto
-congelado retorna uma cópia descongelada. Em segundo lugar, clone cópia quaisquer métodos singleton do objeto, enquanto que dup não.</p>
-
-<h3>Objetos Empacotamento</h3>
-
-
-<p>Você pode salvar o estado de um objeto passando para a classe <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html">Marshal</a>, com o método <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">dump</a>. Se você passar um objeto de fluxo de I/O como o segundo argumento, escreve o estado do objeto Marshal.dump (e, de forma recursiva, quaisquer objetos que referencia) para esse fluxo.
-Caso contrário, ele simplesmente retorna o estado codificado como uma string binária.</p>
-
-<p>Para restaurar um objeto empacotado, passe uma string ou um fluxo de contendo I/O do objeto de <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a>.</p>
-
-<p>O empacotamento de um objeto é uma maneira muito simples para salvar seu estado para uma utilização posterior, e estes métodos podem ser
-usados ​​para fornecer um arquivo automático no formato de programas Ruby. Note, no entanto, que o formato binário usado por <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-dump">Marshal.dump</a> e <a href="http://www.ruby-doc.org/core-1.9.2/Marshal.html#method-c-load">Marshal.load</a> é dependente da versão, e nas mais recentes versões do Ruby não são garantidos para ser capaz de ler
-objetos empacotados escritos por versões mais antigas do Ruby.</p>
-
-<p>Outro uso para Marshal.dump e Marshal.load é criar cópias de profundidade de objetos:</p>
-
-<p><code>ruby Marshal
-def deepcopy(o)
-  Marshal.load (Marshal.dump (o))
-end
-</code></p>
-
-<p>Note que os arquivos de fluxo I/O, bem como o método e os objetos Binding, são dinâmicos demais para ser empacotado, não haveria nenhuma
-maneira confiável para restaurar seu Estado.</p>
-
-<p>YAML ("YAML não é Markup Language") é uma alternativa comumente utilizada para o módulo Marshal que depósita objetos (e carrega objetos) a
-partir de um texto com formato legível. É na biblioteca padrão, e você deve exigir usá-lo 'yaml'.</p>
-
-<h3>Objetos de congelamento</h3>
-
-
-<p>Qualquer objeto pode ser congelado chamando seu método de freeze. A objeto congelado torna imutável e nenhum de seu estado interno pode
-ser mudado, e uma tentativa de chamar qualquer um dos seus métodos de falha de modificadores:</p>
-
-<p><code>ruby  Freeze
-s = "gelo" # String são objetos mutáveis
-s.freeze # Faça desta cadeia imutável
-s.frozen? # Verdade: ele foi congelado
-s.upcase! # TypeError: não pode modificar cadeia de congelados
-s[0] = "ni" # TypeError: não pode modificar cadeia de congelados
-</code></p>
-
-<p>Congelar um objeto de classe impede a adição de quaisquer métodos para essa classe.</p>
-
-<p>Você pode verificar se um objeto é congelado com o método frozen?. Uma vez congelado, não há maneira para "descongelar" um objeto. Se
-você copiar um objeto congelado com clone, a cópia também será congelada. Se você copiar um objeto congelado com dup, no entanto, a
-cópia não será congelada.</p>
-
-<h3>Objetos contaminados e não confiáveis</h3>
-
-
-<p>Aplicações Web deve muitas vezes acompanhar de dados de entrada, derivados de não confiáveis do usuário para evitar ataques de injeção
-de SQL e riscos de segurança semelhantes. Ruby oferece uma solução simples para esse problema: qualquer objeto pode ser marcado como
-contaminado, chamando seu método taint. Depois que um objeto está contaminado, qualquer objetos derivado, também será contaminado. O
-taint de um objeto pode ser testado com o método tainted? método:</p>
-
-<p><code>ruby taint
-s = "não confiáveis" # Os objetos são normalmente não viciada
-s.taint # Marcar como não confiável objeto contaminado
-s.tainted? # Verdade: ele está contaminado
-s.upcase.tainted? # Verdade: objetos derivados estão contaminados
-s[3,4].tainted? # Verdade: substrings estão contaminados
-</code></p>
-
-<p>De entrada, tais como usuário de linha de comando argumentos, ambiente de variáveis, e seqüências de leitura com gets, são automaticamente
-contaminados. Quando a variavel global $SAFE é definida com um valor maior que zero, Ruby restringe vários métodos embutidos que eles não
-vão trabalhar com dados adulterados. Cópias de objetos contaminados feitos com clone e dup permanecem contaminados. Um objeto contaminado
-pode ser descontaminado com o método untaint. Você só deve fazer isso, claro, se você examinar o objeto e está convencido de que não apresenta riscos de segurança.</p>
-
-<p>Em Ruby 1.9, os objectos podem não ser confiável para além de ser manchado. Os métodos untrusted?, untrust, e trust verificam e definem a
-lealdade de um objeto. Código não confiável cria objetos não confiáveis, objetos contaminados e não é permitido para modificar objetos
-confiáveis.</p>
-
-<p>Boa noite amigos... até a proxima..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part V]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/"/>
-    <updated>2012-05-20T14:04:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Conversão de objetos</h3>
-
-
-<p></p>
-
-<p>Muitas classes de Ruby definem métodos que retornam uma representação do objeto como um valor de uma classe diferente.
-O método to_s, para a obtenção de uma representação de um objeto, é provavelmente o mais comumente implementado e mais conhecido
-dos métodos. As subseções a seguir descrevem várias categorias de conversões.</p>
-
-<!--more-->
-
-
-<h5>Conversões explícitas</h5>
-
-
-<p>As classes definem métodos de conversão explícitos para uso da aplicação de código que precisa de converter um valor para uma
-outra representação. Os métodos mais comuns nesta categoria são to_s, to_i, to_f e to_a para converter a String, Integer, Float,
-e array, respectivamente. Ruby 1.9 adiciona métodos to_c e to_r que se converterem ao <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/syck/rdoc/Complex.html">Complex</a> e <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/bigdecimal/rdoc/Rational.html">Rational</a>.</p>
-
-<p>Métodos built-in normalmente não chamam esses métodos para você. Se você chamar um método que espera uma String e passar um objeto
-de algum outro tipo, que o método não é esperado para converter o argumento com to_s. (Valores interpolados em aspas dupla em strings,
-no entanto, são automaticamente convertidos com to_s.)</p>
-
-<p>to_s é facilmente o mais importantes dos métodos de conversão, porque representações de seqüência de objetos são tão comumente
-utilizadas em interfaces de usuário. Uma importante alternativa para to_s é o método inspect. to_s é geralmente destinados a retornar uma
-representação legível do objeto, adequado para usuários finais. inspect, por outro lado, é destinados ao uso de depuração, e deve
-retornar uma representação que é útil para os desenvolvedores de Ruby. O padrão do método inspect, herdado de Object, simplesmente chama
-to_s.</p>
-
-<h5>As conversões implícitas</h5>
-
-
-<p>Às vezes, uma classe tem características fortes de uma outra classe. A classe Exception de Ruby representa um erro ou condição
-inesperada em um programa e encapsula uma mensagem de erro. No Ruby 1.8, objetos Exception não são apenas conversível para strings,
-que são strings como objetos e podem ser tratadas como se fossem strings em muitos contextos [*], Por exemplo:</p>
-
-<p>``` ruby class Exception</p>
-
-<h1>Ruby 1.8</h1>
-
-<p>e = Exception.new("não é realmente uma exceção")
-msg = "Erro:" + e # concatenação de String com uma exceção
-```</p>
-
-<p>Como os objetos de exceção são strings, eles podem ser usados ​​com a cadeia no operador de concatenação. Isso não funciona com a
-maioria das outras classes de Ruby. A razão pela qual os objetos de Exceção pode se comportar como Objetos String é que, em Ruby
-1.8, Exception implementa o método to_str, implícito de conversão, e o operador + definido pela String chama esse método em seu
-do lado direito do operando.</p>
-
-<p>Outros métodos de conversão implícitos são to_int para objetos que querem ser inteiro, como to_ary, para objetos que quer ser
-array, e to_hash para objetos que querem ser hash. Infelizmente, as circunstâncias em que estes métodos de conversão são implícitos
-chamados não são bem documentados. Entre as classes embutidas, estes métodos de conversões implícitas que normalmente não são implementadas, tampouco.</p>
-
-<p>Observamos anteriormente, de passagem, que o operador == pode realizar um tipo fraco de tipo de conversão ao testar a igualdade.
-Os operadores == definidos pelo Array, String, e Hash para ver se o operando do lado direito é da mesma classe como o operando esquerdo.
-Se assim for, eles se comparam. Se não, verifica se o operando do lado direito tem um to_str, to_ary, ou método to_hash.
-Eles não invocam estes métodos, mas se eles existem, eles invocam o método == do operando do lado direito e permiti que ele se decida
-se é igual ao do operando esquerda.</p>
-
-<p>No Ruby 1.9, as classes String, Array, Hash, RegExp e IO definiem tudas um método de classe chamado try_convert. Este métodos
-convertem seu argumento se definido um método implícito apropriado de conversão, ou retorna contrário nil . Array.try_convert(o)
-retorna o.to_ary se o método define, caso contrário, retorna nil. Estes métodos são try_convert conveniente se você quiser escrever
-métodos que permitem conversões implícitas no seu argumento.</p>
-
-<h5>Funções de conversão</h5>
-
-
-<p>O módulo de Kernel define quatro métodos de conversão que se comportam como funções globais de conversão. Estas funções de array, Float,
-Integer e String, têm os mesmos nomes que as classes para que se convertam, e eles são incomuns em que eles começam com uma
-letra maiúscula.</p>
-
-<p>A função Array tenta converter seu argumento para um array chamando to_ary. Se esse método é não definido ou retorna nil, ou ele tenta
-o método to_a. Se to_a não está definido retorna nulo, a função Array simplesmente retorna um novo array contendo o argumento como
-seu único elemento.</p>
-
-<p>A função Float converte argumentos numéricos para objetos Float diretamente. Para qualquer valor não numérico, que chama o método to_f.</p>
-
-<p>A função Integer converte o argumento para um Fixnum ou Bignum. Se o argumento é um valor numérico, ele é convertido diretamente. Valores
-de Float são truncados e não arredondado. Se o argumento é uma string, ele procura por um indicador de radix(um condutor 0 para octal,
-0x para hexadecimal, ou 0b para binário) e converte a string em conformidade. Ao contrário String.to_i não permiti caracteres não
-numéricos à direita. Para qualquer outro tipo de argumento, a função Integer tenta converter primeiro com to_int e depois com to_i.</p>
-
-<p>Finalmente, a função String converte o argumento para uma string simplesmente chamando seu método to_s.</p>
-
-<h5>Tipo de operador Aritmético</h5>
-
-
-<p>Tipos numéricos definem um método de conversão chamado <a href="http://www.ruby-doc.org/core-1.9.2/Numeric.html#method-i-coerce">coerce</a>. A intenção deste método é o de converter o argumento para o mesmo tipo como o objeto numérico no qual o método é invocado, ou
-para converter ambos os objetos para algum tipo mais geralmente compatíveis. O método de coerce sempre retorna uma matriz que tem dois
-valores numéricos do mesmo tipo. O primeiro elemento do array é o valor convertido do argumento para coerce. O segundo elemento do
-retornado do array é o valor(convertido, se necessário) em que foi invocado coerce:</p>
-
-<p><code>ruby Coerc
-1.1.coerce(1) # [1.0, 1.1]: coagir Fixnum para Flutuar
-require "rational" # Use números racionais
-r = Rational(1,3) # terceira Um como um número racional
-r.coerce (2) # [Rational (2,1), Rational (1,3)]: Fixnum para Rational
-</code>
-O método coerce é usado pelos operadores aritméticos. O operador + definido por Fixnum não sabe sobre números Rational, por exemplo, e se
-o operando do lado direito é um valor rational, não se sabe como adicionar. coerce fornece a solução. Operadores numéricos são escritos
-de modo que, se eles não sabem o tipo do operando do lado direito, que invocam o método coerce do operando do lado direito, passando o
-operando da esquerda como um argumento. Voltando ao nosso exemplo de adição de um Fixnum e um Rational, o método coerce de Rational
-retorna um array de dois valores racionais. Agora, o operador + definido por Fixnum pode simplesmente invocar + sobre os valores no array.</p>
-
-<h5>Conversões de tipos Booleanos</h5>
-
-
-<p>Valores booleanos merecem uma menção especial no contexto de conversão de tipo. Ruby é muito rigoroso com seus valores booleanos: true e
-falso têm métodos to_s, que retornam "true" e "falso", mas definem nenhum outro método de conversão. E não há nenhum método to_b
-para converter os outros valores para Booleanos.</p>
-
-<p>Em algumas Linguagens, é falsa a mesma coisa que 0, ou pode ser convertidos para 0. Em Ruby, os valores verdadeiros e falsos são os
-seus próprios objetos distintos, e não existem conversões implícitas que convertem os outros valores para verdadeiro ou falso.
-Esta é apenas metade da história, no entanto. Operadores booleanos de Ruby e de sua condicional e construções em loops que usam
-expressões booleanas podem trabalhar com outros valores que o verdadeiro e o falso. A regra é simples: em expressões Boolean, qualquer
-valor diferente de false ou nil se comporta como (mas não é convertida em) verdadeiro. nil, por outro lado se comporta como falsa.</p>
-
-<p>Suponha que você queira testar se a variável x é nula ou não. Em algumas línguagens, você deve escrever explicitamente uma expressão
-de comparação que avalia a verdadeira ou falso:</p>
-
-<p><code>ruby True ou False
-if x != nil #  a expressão "x! = nil" retorna true ou false para o caso
-  puts x # x Imprimir se ela é definida
-end
-</code></p>
-
-<p>Esse código funciona em Ruby, mas é mais comum simplesmente para tomar vantagem do fato de que todos os outros valores do que zero e
-falso se comportam como verdadeiras:</p>
-
-<p><code>ruby True ou False
-if x # Se x é não-nula
-  puts x # Em seguida, imprimi-lo
-end
-</code></p>
-
-<p>É importante lembrar que os valores como 0, 0.0, e uma string vazia "" comportam-se como verdadeiro em Ruby, que é surpreendente se você
-está acostumado a linguagens como C ou JavaScript.</p>
-
-<p>É isso amigos...</p>
-
-<p>Até Mais..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part IV]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/"/>
-    <updated>2012-05-20T13:01:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv</id>
-    <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Ordem de Object</h3>
-
-
-<p></p>
-
-<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
-classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
-ou uma instância deve ser "menos que" a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
-String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
-uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
-
-<!--more-->
-
-
-<p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
-é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
-Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
-em seguida, o operador deve retornar nil:</p>
-
-<p><code>ruby Operador &lt;=&gt;
-1 &lt;=&gt; 5 # -1
-5 &lt;=&gt; 5 # 0
-9 &lt;=&gt; 5 # 1
-"1" &lt;=&gt; 5 # nil: inteiros e strings não são comparáveis
-</code></p>
-
-<p>O operador &lt;=> é tudo que é necessário para comparar os valores. Mas não é particularmente intuitivo. Assim, as classes que definem
-este operador tipicamente também incluir o Módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> como um mixin.
-(Módulos e mixins são abordados em Módulos como Mixins). O mixin Comparable define o seguinte operador em termos de &lt;=>:</p>
-
-<pre><code>&lt;   -   Menor que
-&lt;=  -   Menor ou igual
-==  -   Igual
-&gt;=  -   Maior ou igual
-&gt;   -   Maior que
+* Em seguida, definem uma nova versão do método. Esta nova versão deve chamar a versão não modificada
+através dos alias, mas pode adicionar qualquer funcionalidade que for necessário, antes e depois de que
+faz isso.
 </code></pre>
 
-<p><a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> não define o operador !=; o Ruby automaticamente define o
-operador como a negação do operador ==. Além destes operadores de comparação, <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> também define um método útil de comparação com o between? :</p>
+<p>Note-se que estes passos podem ser aplicados repetidamente (desde que um alias diferente é usado de cada vez), criando uma cadeia de métodos e aliases.</p>
 
-<p><code>ruby Comparable between?
-1.between?(0,10) # verdadeiro: 0 &lt;= 1 &lt;= 10
-</code></p>
+<p>Este post inclui três exemplos de encadeamento de alias. O primeiro realiza o encadeamento de apelido estaticamente, ou seja, usando pseudônimo
+regulares e declarações <code>def</code>. Os segundo e terceiro exemplos são mais dinâmicos; eles são apelidos que acorrentam métodos arbitrariamente nomeados
+utilizando <code>alias_method</code>, <code>define_method</code> e <code>class_eval</code>.</p>
 
-<p>Se o operador &lt;=> retornar nil, todos os operadores de comparação dele derivados retornam falso. O especial Float com valor NaN é um exemplo:</p>
-
-<p><code>ruby Float NaN
-nan = 0.0/0.0; # zero dividido por zero não é um número
-nan &lt; 0 # false: não é menor que zero
-nan &gt; 0 # false: não é maior que zero
-nan == 0 # false: não é igual a zero
-nan == nan # false: não é mesmo igual a si mesmo!
-nan.equal?(nan) # isso é verdade, claro
-</code></p>
-
-<p>Observe que a definição de &lt;=> e incluindo o módulo <a href="http://ruby-doc.org/core-1.9.2/Comparable.html">Comparable</a> define um operador == para o sua classe. Algumas classes que definem o seu próprio operador ==, normalmente quando eles podem
-implementar esta forma mais eficiente do que um teste de igualdade com base no operador &lt;=>. É possível definir classes que
-implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma classe pode fazer comparações de string case-sensitive
-para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
-se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
-
-<p>É isso amigos... o proximo post vamos conversar um pouco de Conversões de Object's.</p>
-
-<p>Até Mais..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part III]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/"/>
-    <updated>2012-05-19T16:58:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+<h3>Rastreando Arquivos Carregados e Classes Definidas</h3>
 
 
+<p>O <code>Exemplo 1-1</code> é um código que mantém o controle de todos os ficheiros carregados e todas as classes definidas num programa. Quando o programa sai,
+ele imprime um relatório. Você pode usar este código para &ldquo;instrumento&rdquo; de um existente programa para que você entenda melhor o que está fazendo. Uma
+maneira de usar este código é inserir esta linha no começo do programa:</p>
 
-
-<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
-
-
-
-
-<h1>Objetos</h1>
-
-
-
-
-<h3>Igualdade objeto</h3>
-
-
-<p>Ruby tem um número surpreendente de maneiras de comparar objetos para igualdade, e é importante entender como eles funcionam, assim você sabe quando usar cada método.</p>
-
-<!--more-->
-
-
-
-
-<h3>O método equal? </h3>
-
-
-<p>O método equal? é definido pelo objeto para testar se os dois valores referem-se exatamente o mesmo objeto. Para qualquer dos dois
-distintos objetos, esse método sempre retorna false:</p>
-
-<p><code>ruby equal?
-a = "Ruby" # Uma referência a um objeto String
-b = c = "Ruby" # Duas referências a outro objeto String
-a.equal?(b) # falsa: a e b são objetos diferentes
-b.equal?(c) # verdadeiro: b e c referem-se ao mesmo objeto
-</code></p>
-
-<p>Por convenção, nunca subclasses substituem o método equal?.</p>
-
-<p>Outra maneira de determinar se os dois objetos são, de fato, do mesmo objetivo é verificar a sua object_id:</p>
-
-<p><code>ruby equal?
-a.object_id == b.object_id # Funciona como a.equal? ​​(b)
-</code></p>
-
-<h3>O operador ==</h3>
-
-
-<p>O operador == é a forma mais comum para testar a igualdade. Na Classe Object, é simplesmente uns testes de sinónimos para equal?, e
-se duas referências de objeto são idênticos. A maioria das classes redefinem este operador para permitir instâncias distintas para ser
-testado para igualdade:</p>
-
-<p><code>ruby Operador ==
-a = "Ruby" # uma string
-b = "Ruby" # Um objeto String diferente com o mesmo conteúdo
-a.equal?(b) # falsa: a e b não se referem ao mesmo objeto
-a == b # verdade: mas estes dois objetos distintos têm valores iguais
-</code></p>
-
-<p>Note que o único sinal de igual nesse código é o operador de atribuição. Leva dois sinais de igual para testar a igualdade
-em Ruby (esta é uma convenção que compartilha Ruby com muitas outras linguagens de programação).</p>
-
-<p>Padrão de Classes do Ruby definem o operador == para implementar uma razoável definição de igualdade. Isso inclui Array
-e as classes de hash. Dois Arrays são iguais de acordo com == se tiverem o mesmo número de elementos,
-e se os seus elementos correspondentes são todos iguais de acordo com ==. Dois hashes são == se contiverem o mesmo número de pares
-chave/valor, e se as chaves e valores são, eles próprios iguais. (Os valores são comparados com o operador ==,
-mas chaves de hash são comparados com o método eql?.)</p>
-
-<pre><code>Igualdade para programadores Java
-
-Se você é um programador Java, você está acostumado a usar o operador == para testar se dois objetos são
-o mesmo objeto, e você está acostumado a usar o método equals para testar se dois objetos distintos têm o mesmo valor. 
-Convenção do Ruby é apenas sobre o oposto de Java.
+<pre><code class="ruby classtrace">require 'classtrace'
 </code></pre>
 
-<p>As classes numéricas realizam conversões de tipo simples nas suas operações de ==, de modo que (por exemplo) o
-Fixnum 1 e o Float 1.0 comparados como iguais. O operador == de classes, como String e Array, normalmente requerem dois operandos
-para ser da mesma classe. Se o operando do lado direito define uma to_str ou função de conversão to_ary, então estes operadores invocam
-o operador == definido pelo lado direito operando, e deixam que objeto decidem se é igual ao lado esquerdo, sendo string ou array.
-Assim, é possível (embora não comum) para definir classes com comportamento comparação de string ou array.</p>
+<p>Uma solução mais fácil, no entanto, é usar a opção -r para o seu intérprete Ruby(<code>irb</code>):</p>
 
-<p>!= ("Não-igual") é usado em Ruby para testar a desigualdade. Quando o Ruby vê !=, Ele simplesmente usa o operador == e depois
-inverte o resultado. Isto significa que uma única classe precisa definir o operador == para definir a sua própria noção de
-igualdade. Ruby dá o operador != de graça. No Ruby 1.9, no entanto, as classes podem explicitamente definir os seus próprios operadores !=.</p>
+<pre><code class="ruby Opção -r">ruby -rclasstrace my_program.rb  --traceout /tmp/trace
+</code></pre>
 
-<h3>O método eql?</h3>
+<p>A opção -r carrega a biblioteca especificado antes de começar a executar o programa.</p>
+
+<p>O <code>Exemplo 1-1</code> usa apelido de encadeamento estático para rastrear todas as chamadas dos métodos <code>Kernel.require</code> e <code>Kernel.load</code>. Ele define um hook
+<code>Object.inherited</code> para rastrear as definições de novas classes. E ele usa <code>Kernel.at_exit</code> para executar um bloco de código quando o programa termina.
+Além dos encadeamentos de alias <code>require</code> e <code>load</code> e defini <code>Object.inherited</code>, a única modificação do espaço global feita por este código é a
+definição de um módulo chamado <code>ClassTrace</code>. Todo o estado necessário para o rastreio é armazenado em constantes dentro deste módulo, de modo que não
+poluem o <code>namespace</code> com variáveis globais.</p>
+
+<pre><code class="ruby Exemplo 1-1. Rastreando Arquivos Carregados e Classes Definidas"># Definimos este módulo para manter o estado global do require, de modo que
+# Nós não alteramos o espaço global mais do que o necessário.
+module ClassTrace
+   # Esta matriz mantém a nossa lista de arquivos carregados e classes definidas.
+   # Cada elemento é um subarray segurando a classe definida ou o
+   # Arquivo carregado e o quadro de pilha onde ele foi definido ou carregado.
+   T = []  # Array para armazenar os arquivos carregados
+
+   # Agora defini a constante OUT para especificar onde saída do rastreamento vai.
+   # O padrão é stderr, mas também pode vir a partir de argumentos na linha de comando
+   if x = ARGV.index("--traceout")    # Se existe argumento
+     OUT = File.open(ARGV[x+1], "w")  # Abre o arquivo especificado
+     ARGV[x,2] = nil                  # E remova os argumentos
+   else
+     OUT = STDERR                     # Caso contrário, o padrão para STDERR
+   end
+end
+
+# Passo 1 encadeamento Alias: definir aliases para os métodos originais
+alias original_require require
+alias original_load load
+
+# Passo 2 encadeamento Alias 2: definir novas versões dos métodos
+def require(file)
+  ClassTrace::T &lt;&lt; [file,caller[0]]     # Lembre-se de onde que estava carregado
+  original_require(file)                # Chame o método original
+end
+
+def load(*args)
+  ClassTrace::T &lt;&lt; [args[0],caller[0]]  # Lembre-se de onde que estava carregado
+  original_load(*args)                  # Chame o método original
+end
+
+# Este método hook é chamado de cada vez que uma nova classe é definida
+def Object.inherited(c)
+  ClassTrace::T &lt;&lt; [c,caller[0]]        # Lembre-se onde que foi definido
+end
+
+# Kernel.at_exit registra um bloco a ser executado quando o programa sai
+# Vamos utilizá-lo para comunicar os dados de arquivo e de classe que recolhemos
+at_exit {
+  o = ClassTrace::OUT
+  o.puts "="*60
+  o.puts "Files Loaded and Classes Defined:"
+  o.puts "="*60
+  ClassTrace::T.each do |what,where|
+    if what.is_a? Class  # Report class (with hierarchy) defined
+      o.puts "Defined: #{what.ancestors.join('&lt;-')} at #{where}"
+    else                 # Report file loaded
+      o.puts "Loaded: #{what} at #{where}"
+    end
+  end
+}
+</code></pre>
+
+<h3>Métodos encadeamento de segurança da Thread</h3>
 
 
-<p>O método eql? é definido pelo objeto como um sinônimo para equal?. Classes que se sobrepõem a ele normalmente usá ele como uma
-versão rígida do operador == que não faz nenhum tipo de conversão. Por exemplo:</p>
+<p>O alias de encadeamento é feito pelo método <code>Module.synchronize_method</code>, o qual, por sua vez usa um método auxiliar <code>Module.create_alias</code> para definir
+um alias adequado para qualquer método dado (incluindo métodos como o operador +).</p>
 
-<p><code>ruby eql?
-1 == 1.0 # verdade: Fixnum e objetos flutuantes podem ser ==
-1.eql (1,0) # falsa: mas eles nunca são eql!
-</code></p>
+<p>Depois de definir estes novo métodos <code>Module</code>, Exemplo 1-2 redefine o método <code>synchronized</code> novamente. Quando o método é invocado dentro de uma classe
+ou de um módulo, ele chama <code>synchronize_method</code> em cada um dos símbolos que é passado. Curiosamente, contudo, pode também ser chamado sem argumentos,
+quando utilizado desta forma, acrescenta sincronização para qualquer método de instância é definido a seguir. (Utiliza o <code>hook</code> para receber
+notificação quando um novo método <code>method_added</code> é adicionado.) Note que o código deste exemplo depende do método <code>Object.mutex</code> e a classe
+<code>SynchronizedObject</code>.</p>
 
-<p>A classe Hash usa eql? para verificar se duas chaves de hash são iguais. Se dois objetos são eql?, os métodos de hash também
-deve retornar o mesmo valor. Normalmente, se você criar uma classe e defini o operador ==, você pode simplesmente escrever um
-método de hash e definir eql? para usar ==.</p>
+<pre><code class="ruby Exemplo 1-2. Alias de encadeamento de segurança da Thread"># Define um alias corrente Module.synchronize_method de métodos de instância
+# Assim que sincronizar a instância antes da execução.
+class Module
+  # Esta é uma função auxiliar para o encadeamento alias.
+  # Dado o nome de um método (como uma string ou símbolo) e um prefixo, cria
+  # Um alias exclusivo para o método, e retornar o nome do alias
+  # Como um símbolo. Quaisquer caracteres de pontuação em nome método original
+  # Serão convertidos em números para que os operadores podem ser alias.
+  def create_alias(original, prefix="alias")
+    # Cole o prefixo do nome original e converter pontuação
+    aka = "#{prefix}_#{original}"
+    aka.gsub!(/([\=\|\&amp;\+\-\*\/\^\!\?\~\%\&lt;\&gt;\[\]])/) {
+      num = $1[0]                       # Ruby 1.8 character -&gt; ordinal
+      num = num.ord if num.is_a? String # Ruby 1.9 character -&gt; ordinal
+      '_' + num.to_s
+    }
+    
+    # Mantenha acrescentando ressalta até chegarmos a um nome que não está em uso
+    aka += "_" while method_defined? aka or private_method_defined? aka
 
-<h3>O operador ===</h3>
+    aka = aka.to_sym           # Converter o nome de alias de um símbolo
+    alias_method aka, original # Na verdade criar o alias
+    aka                                              # Retorna o nome do alias
+  end
+
+  # Alias correntam o método nomeado para adicionar sincronização
+  def synchronize_method(m)
+    # Primeiro, fazemos um alias para a versão dessincronizado do método.
+    aka = create_alias(m, "unsync")
+    # Agora redefini o original para invocar o alias em um bloco sincronizado.
+    # Queremos o método definido como sendo capaz de aceitar os blocos, de modo que
+    # Não pode usar define_method, e deve avaliar vez uma string com
+    # Class_eval. Note-se que tudo entre% Q {} e da correspondência
+    # É uma string entre aspas, e não um bloco.
+    class_eval %Q{
+      def #{m}(*args, &amp;block)
+        synchronized(self) { #{aka}(*args, &amp;block) }
+      end
+    }
+  end
+end
+
+# Este método global sincronizado agora pode ser usado de três maneiras diferentes.
+def synchronized(*args)
+  # Caso 1: com um argumento e um bloco, sincronizar sobre o objeto
+  # E executar o bloco
+    if args.size == 1 &amp;&amp; block_given?
+    args[0].mutex.synchronize { yield }
+
+  # Caso dois: com um argumento que não é um símbolo e nenhum bloco
+  # Devolve um invólucro de SynchronizedObject
+  elsif args.size == 1 and not args[0].is_a? Symbol and not block_given?
+    SynchronizedObject.new(args[0])
+
+  # Caso três: quando invocado em um módulo com nenhum bloco, alias a cadeia
+  # Chamado métodos para adicionar sincronização. Ou, se não há argumentos,
+  # Então apelido acorrentam o próximo método definido.
+  elsif self.is_a? Module and not block_given?
+    if (args.size &gt; 0) # Synchronize the named methods
+      args.each {|m| self.synchronize_method(m) }
+    else
+      # Se nenhum método é especificado pelo synchronize o método seguinte define
+      eigenclass = class&lt;&lt;self; self; end
+      eigenclass.class_eval do # Use eigenclass para definir métodos de classe
+        # Define method_added para notificação quando próximo método é definido
+        define_method :method_added do |name|
+          # Primeiro remover esse método hook
+          eigenclass.class_eval { remove_method :method_added }
+          # Em seguida, sincronize o método que acabou de ser adicionado
+          self.synchronize_method name
+        end
+      end
+    end
+
+  # Caso 4: qualquer outra invocação é um erro
+  else
+    raise ArgumentError, "Invalid arguments to synchronize()"
+  end
+end
+</code></pre>
+
+<h3>Métodos de encadeamento para Rastreamento</h3>
 
 
-<p>O operador === é comumente chamado de "caso de igualdade" e é usado para testar se o valor-alvo de uma declaração caso corresponde
-a qualquer das cláusulas, quando dessa declaração.</p>
+<p>O Exemplo 1-3 suporta o rastreio de métodos denominados de um objeto. Ele define <code>trace!</code> e <code>untrace!</code> a cadeia e desencadeiam métodos chamados de um
+objeto.</p>
 
-<p>Classe Object define por padrão o operador === para que ele chama o operador ==. Para muitas classes, por conseguinte, a igualdade
-caso é o mesmo que == (igualdade). Mas certas classes principais definem === de maneira diferente, e nestes casos, é mais de um membro
-ou operador correspondente. Range define === para testar se um valor está dentro do intervalo. Regexp define === para testar se uma
-string corresponde à expressão regular. E Class define === para testar se um objeto é uma instância dessa Class. No Ruby 1.9, Symbol
-define === retornando true se o operando do lado direito é o mesmo símbolo como o esquerda ou se é uma cadeia guardando o mesmo texto.
-Exemplos:</p>
+<p>A coisa interessante sobre esse exemplo é que ele faz o seu encadeamento de um modo diferente a partir do Exemplo 1-2. Ele simplesmente define métodos
+únicos no objeto e usa <code>super</code> dentro do <code>singleton</code> para a cadeia de definição do método original de exemplo. Nenhum método são criado aliases.</p>
 
-<p><code>ruby Operador ===
-(1..10) === 5 # verdadeiro: 5 está na gama de 1 .. 10
-/\d+/ === "123" # verdade: a seqüência corresponde à expressão regular
-String === "s" # verdade: "s" é uma instância da classe String
-:s === "s" # verdadeiro no Ruby 1.9
-</code></p>
+<pre><code class="ruby Exemplo 8-10. Encadeamento com métodos singleton para rastrear"># Define métodos trace! e untrace! de instância para todos os objetos.
+# trace! "Cadeias" os métodos chamados por definir métodos singleton
+# Que adiciona a funcionalidade de rastreamento e use super para chamar o original.
+# untrace! exclui os métodos singleton para remover o rastreamento.
+classe Object
+  # os métodos trace especificados, enviando a saída para STDERR.
+  def trace!(*methods)
+    @_traced = @_traced || []    # Lembre-se o conjunto de métodos traçados
 
-<p>É raro ver o operador === usado explicitamente como este. Mais comumente, a sua utilização é simplesmente implícita em uma instrução case.</p>
+    # Se nenhum método foi especificado, use todos os métodos públicos definidos
+    # Diretamente (não herdado) pela classe deste objeto
+    methods = public_methods(false) if methods.size == 0
 
-<h3>O operador =~</h3>
+    methods.map! {|m| m.to_sym }    # Converta qualquer cordas para símbolos
+    methods -= @_traced                     # remove métodos que já estão traçadas
+    return if methods.empty?        # Voltar mais cedo se não há nada a fazer
+    @_traced |= methods           # Adiciona métodos para definir métodos de traçados
 
+    # Trace o fato de que estamos começando a traçar estes métodos
+    STDERR &lt;&lt; "Tracing #{methods.join(', ')} on #{object_id}\n"
 
-<p>O operador =~ é definido pela String e Regexp (e Symbol no Ruby 1.9) para realizar ligações de padrões, e isso não é realmente um
-operador de igualdade em tudo. Mas isso não tem um sinal de igual na mesma, de modo que ele está aqui para ser completo.
-Objeto define uma versão sem o operador de =~, que sempre retorna false. Você pode definir este operador em sua própria classe,
-se essa classe define um tipo de correspondência de operação padrão ou tem uma noção de igualdade aproximada, por exemplo.
-!~ é definido como o inverso da =~. É definível em Ruby 1.9 mas não no Ruby 1.8</p>
+        # Singleton métodos são definidos na eigenclass
+    eigenclass = class &lt;&lt; self; self; end
 
-<p>É isso ai rubistas... Até a proxima!</p>
+        methods.each do |m| # Para cada método m
+      # Define uma versão trace singleton do método m.
+      # Saída de informações de rastreamento e usar super para invocar o
+      # Método de instância que é o rastreamento.
+      # Queremos que os métodos definidos para ser capaz de aceitar blocos, de modo que
+      # Não pode usar define_method, e deve avaliar, em vez de uma string.
+      # Note que tudo entre %Q{} e a correspondência é uma
+      # Entre aspas de string, não um bloco. Observe também que há
+      # Dois níveis de interpolações de string aqui. # {} É interpolada
+      # Quando o método singleton é definida. E \ # {} é interpolada
+      # Quando o método singleton é invocado.
+      eigenclass.class_eval %Q{
+        def #{m}(*args, &amp;block)
+          begin
+            STDERR &lt;&lt; "Entering: #{m}(\#{args.join(', ')})\n"
+            result = super
+            STDERR &lt;&lt; "Exiting: #{m} with \#{result}\n"
+            result
+          rescue
+            STDERR &lt;&lt; "Aborting: #{m}: \#{$!.class}: \#{$!.message}"
+            raise
+          end
+        end
+      }
+    end
+  end
+
+  # Untrace os métodos especificados ou todos os métodos rastreados
+    def untrace!(*methods)
+    if methods.size == 0    # Se nenhuma métodos especificados untrace
+      methods = @_traced    # todos os métodos atualmente rastreados
+      STDERR &lt;&lt; "Untracing all methods on #{object_id}\n"
+    else                    # Caso contrário, untrace
+      methods.map! {|m| m.to_sym }  # Converter string para símbolos
+      methods &amp;= @_traced   # todos os métodos especificados que são rastreados
+      STDERR &lt;&lt; "Untracing #{methods.join(', ')} on #{object_id}\n"
+    end
+
+        @_traced -= methods     # Retire-os do nosso conjunto de métodos de traçados
+
+        # Remove os métodos traçados únicos do eigenclass
+        # Note que nós class_eval um bloco aqui, não uma string
+        (class &lt;&lt; self; self; end).class_eval do
+          methods.each do |m|
+            remove_method m     # undef_method não funciona corretamente
+          end
+        end
+
+        # Se nenhum método são traçados mais, remover o nosso exemplo var
+        if @_traced.empty?
+          remove_instance_variable :@_traced
+        end
+  end
+end
+</code></pre>
+
+<p>É isso ai galera! Até a proxima!</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Classe Objects em Ruby 1.9.2 - Part II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii/"/>
-    <updated>2012-05-19T13:14:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-ii</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <title type="html"><![CDATA[Criando Métodos Dinamicamente - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9/"/>
+    <updated>2012-09-15T20:38:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/15/criando-metodos-dinamicamente-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Criando Métodos Dinamicamente</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
-<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+<h1>Criando Métodos Dinamicamente</h1>
+
+
+<p>Uma técnica importante em metaprogramação é a utilização de métodos que criam métodos. Os métodos <code>attr_reader</code> e <code>attr_accessor</code> são exemplos. Estes
+métodos de instância privados do <code>Module</code> são usados como palavras-chave dentro de definições de classe. Eles aceitam nomes de atributos como seus
+argumentos, e dinamicamente criam métodos com esses nomes. Os exemplos que se seguem são variantes sobre essa criação de atributos assessores dos
+métodos e demonstra duas formas diferentes de criar dinamicamente métodos como este.</p>
+
+<h3>Métodos definidos com class_eval</h3>
+
+
+<p>O Exemplo 1-1 define métodos privados de instância do <code>Module</code> chamado <code>readonly</code> e <code>readwrite</code>. Estes métodos funcionam como <code>attr_reader</code>
+e <code>attr_accessor</code>, e eles estão aqui para demonstrar como esses métodos são implementados. A implementação é na verdade muito simples: <code>readonly</code> e
+<code>readwrite</code> primeiro construi uma seqüência de código Ruby contendo as instruções necessárias para definir <code>def</code> os métodos de acesso apropriados.
+Em seguida, eles avaliam que a seqüência de código usando <code>class_eval</code>. Usando <code>class_eval</code> como esta gera a sobrecarga de analisar a cadeia de código.
+A vantagem, contudo, é que os métodos que definem não precisa usar as APIs reflexivas, pois eles podem consultar ou definir o valor de uma variável de
+instância diretamente.</p>
+
+<pre><code class="ruby Exemplo 1-1. Métodos de atributos com class_eval">
+class Module
+  private # Os métodos que se seguem são todos privados
+
+  # Este método funciona como attr_reader, mas tem um nome mais curto
+  def readonly(*syms)
+    return if syms.size == 0  # Se nenhum argumento, não faz nada
+    code = ""                 # Comece com uma cadeia vazia de código
+    # Gera uma seqüência de código Ruby para definir métodos leitores de atributos.
+    # Observe como o símbolo é interpolado para a seqüência de código.
+    syms.each do |s|                     # Para cada símbolo
+      code &lt;&lt; "def #{s}; @#{s}; end\n"   # O método de definição
+    end
+    # Finalmente, class_eval o código gerado para criar métodos de instância.
+    class_eval code
+  end
+
+  # Este método funciona como attr_accessor, mas tem um nome mais curto.
+  def readwrite(*syms)
+    return if syms.size == 0
+    code = ""
+    syms.each do |s|
+      code &lt;&lt; "def #{s}; @#{s} end\n"
+      code &lt;&lt; "def #{s}=(value); @#{s} = value; end\n"
+    end
+    class_eval code
+  end
+end
+</code></pre>
+
+<h3>Métodos definidos com define_method</h3>
+
+
+<p>O Exemplo 1-2 é uma posição diferente sobre os assessores de atributos. O método <code>attributes</code> é algo como o método <code>readwrite</code> definido no <code>Exemplo
+1-1</code>. Em vez de tomar qualquer número de nomes de atributos como argumentos, que espera um único objeto <code>hash</code>. Este <code>hash</code> deve ter nomes de atributos
+como suas chaves, e deve mapear os nomes de atributos para os valores padrões para os atributos. O método <code>class_attrs</code> funciona como atributos, mas
+define os atributos de classe em vez de atributos de instância.</p>
+
+<p>Lembre-se que Ruby permite que as chaves para ser omitidas em torno de <code>hash</code> literais quando eles são o argumento final em uma invocação de método.
+Assim, o método <code>attributes</code> pode ser chamado com um código como este:</p>
+
+<pre><code class="ruby Metodo attributes">class Point
+  attributes :x =&gt; 0, :y =&gt; 0
+end
+</code></pre>
+
+<p>No Ruby 1.9, podemos usar a sintaxe do <code>hash</code> é mais sucinta:</p>
+
+<pre><code class="ruby Attibutes">class Point
+  attributes x:0, y:0
+end
+</code></pre>
+
+<p>Este é outro exemplo que utiliza sintaxe flexível de Ruby para criar métodos que se comportam como palavras-chave de linguagem.</p>
+
+<p>A implementação do método de <code>attributes</code> no <code>Exemplo 1-2</code> é um pouco diferente do que a do método <code>readwrite</code> no <code>Exemplo 1-1</code>. Em vez de definir uma
+seqüência de código Ruby e avaliá-lo com <code>class_eval</code>, o método <code>attributes</code> define o corpo dos acessos de atributos de um bloco e define os métodos
+que utilizam <code>define_method</code>. Uma vez que este método técnico de definição não nos permitem identificadores interpolares diretamente no corpo do
+método, temos de confiar em métodos reflexivos, como <code>instance_variable_get</code>. Devido a isso, os assessores definidos com <code>attributes</code> são susceptíveis
+de ser menos eficientes do que os definidos com <code>readwrite</code>.</p>
+
+<p>Um ponto interessante sobre o método <code>attributes</code> é que não armazena explicitamente os valores padrões para os atributos em uma variável de classe de
+qualquer tipo. Em vez disso, o valor por defeito para cada atributo é capturado pelo âmbito de bloquear o método usado para definir.</p>
+
+<p>O método <code>class_attrs</code> define os atributos de classe muito simples: ele invoca <code>attributes</code> na <a href="http://blog.caelum.com.br/metaprogramacao-eigenclass-em-ruby/">eigenclass</a> da classe. Este
+significa que os métodos resultantes usam variáveis de instância de classe em vez de variáveis de classe regular.</p>
+
+<pre><code class="ruby Exemplo 1-2. Métodos de atributos com define_method">
+class Module
+  # Este método define os atributos de métodos de reader e writer de nomeado
+  # attributes, mas aguarda um argumento de attributes de nomes em hash mapeado para
+  # Valores padrões. Os métodos de reader gerados atributos retorna o
+  # Valor padrão se a variável de instância ainda não foi definido.
+  def attributes(hash)
+    hash.each_pair do |symbol, default|   # Para cada par de atributo/default
+      getter = symbol                     # Nome do método getter
+      setter = :"#{symbol}="              # nome do método setter
+      variable = :"@#{symbol}"            # nome da variável de instância
+      define_method getter do             # Definir o método getter
+        if instance_variable_defined? variable
+          instance_variable_get variable  # Retorna variável, se definido
+        else
+          default                         # Caso contrário retornar padrão
+        end
+      end
+
+      define_method setter do |value|     # Defini método setter
+        instance_variable_set variable,   # Defina a variável de instância
+                              value       # Para o valor do argumento
+      end
+    end
+  end
+
+  # Este método funciona como atributos, mas define métodos de classe em vez de
+  # Invocar atributos no eigenclass em vez de em si mesmo.
+  # Note que os métodos definidos usam variáveis de instância de classe
+  # Em vez de variáveis de classe regulares.
+  def class_attrs(hash)
+    eigenclass = class &lt;&lt; self; self; end
+    eigenclass.class_eval { attributes(hash) }
+  end
+
+  # Ambos os métodos são privados
+  private :attributes, :class_attrs
+end
+</code></pre>
+
+<p>É isso ai amigos, até o proximo post!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Missing Methods e Missing Constants - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9/"/>
+    <updated>2012-09-15T12:46:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/15/missing-methods-e-missing-constants-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Missing Methods e Missing Constants</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
-<h1>Objetos</h1>
+<h1>Missing Methods e Missing Constants</h1>
+
+
+<p>O método <code>method_missing</code> é uma parte fundamental da pesquisa de algoritmo em método em Ruby e fornece uma maneira poderosa para capturar e manipular
+invocações arbitrárias sobre um objeto. O método <code>const_missing</code> de <code>Module</code> executa uma função similar para o algoritmo de pesquisa constante e que
+nos permite calcular ou lazily inicializa as constantes. Os exemplos que seguem demonstram ambos métodos.</p>
+
+<h3>Constantes Unicode Codepoint com const_missing</h3>
+
+
+<p>O Exemplo 1-1 define um módulo <code>Unicode</code> que aparece para definir uma constante (uma string UTF-8) para cada <code>Unicode codepoint</code> de <code>U+0000</code> a
+<code>U+10FFFF</code>. O único modo prático para suportar estas muitas constantes é a utilização do método <code>const_missing</code>. O código faz a suposição de que se uma
+constante é referenciada uma vez, é susceptível de ser utilizado de novo, de modo que o método <code>const_missing</code> chama <code>Module.const_set</code> para definir
+uma constante real para se referir a cada valor calculado.</p>
+
+<pre><code class="ruby Exemplo 1-1. Constantes Unicode codepoint com const_missing">
+# Todo codepoints Unicode. Ele usa const_missing para defini-los lazily.
+# Exemplos:
+#   copyright = Unicode::U00A9
+#   euro = Unicode::U20AC
+#   infinity = Unicode::U221E
+module Unicode
+  # Este método permite-nos definir constantes Unicode codepoint lazily.
+  def self.const_missing(name)  # constante indefinida passada como um símbolo
+    # Verifique se o nome da constante é da forma certa.
+    # Capital U seguido de um número hexadecimal entre 0000 e 10FFFF.
+    if name.to_s =~ /^U([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4})$/
+      # $1 é o número hexadecimal correspondente. Converte em um inteiro.
+      codepoint = $1.to_i(16)
+      # Converte o número para uma string UTF-8 com a magia do Array.pack.
+      utf8 = [codepoint].pack("U")
+      # Faz a imutável string UTF-8.
+      utf8.freeze
+      # Define uma constante real para pesquisa mais rápida da próxima vez, e retorna
+      # O texto UTF-8 para este tempo.
+      const_set(name, utf8)
+    else
+      # Eleva um erro para constantes do formulário errado.
+      raise NameError, "Uninitialized constant: Unicode::#{name}"
+    end
+  end
+end
+</code></pre>
+
+<h3>Rastreamento Invocações de método com method_missing</h3>
+
+
+<p>No início deste post, demonstrei uma extensão para a classe <code>Hash</code> usando <code>method_missing</code>. Agora, no <code>Exemplo 1-2</code>, temos que demonstrar o uso de
+<code>method_missing</code> delega as chamadas arbitrárias em um objeto para outro objeto. Neste exemplo, o que fazemos nesta ordem para a saída de rastreamento
+de mensagens para o objeto.</p>
+
+<p><code>Exemplo 1-2</code> define um método de instância <code>Object.trace</code> e uma classe <code>TracedObject</code>. O método <code>trace</code> retorna uma instância de <code>TracedObject</code> que
+usa <code>method_missing</code> para pegar invocações, rastreá-las, e delegá-las ao objeto que está sendo rastreado. Você pode usar como este:</p>
+
+<pre><code class="ruby Rastrear Metodos">a = [1,2,3]
+a.reverse
+puts a[2]
+puts a.fetch(3)
+</code></pre>
+
+<p>Isso produz a seguinte saída de rastreamento:</p>
+
+<pre><code class="ruby Retorno">Invocando: a.reverse()
+Volta: [3, 2, 1] a partir de a.reverse
+Invocando: a.fetch(3)
+Raising: IndexError: índice de 3 de matriz de a.fetch
+</code></pre>
+
+<p>Note-se que, além de demonstrar <code>method_missing</code>, o <code>Exemplo 1-2</code> demonstra também <code>Module.instance_methods</code>, <code>Module.undef_method</code> e <code>Kernel.caller</code>.</p>
+
+<pre><code class="ruby Exemplo 1-2. Rastreamento invocações de método com method_missing">
+# Se comporta exatamente como o original, mas que traça todas as chamadas de método
+# No objeto. Se rastreamento mais de um objeto, especifique um nome para
+# Aparecer na saída. Por padrão, as mensagens serão enviadas para STDERR,
+# Mas você pode especificar qualquer stream (ou qualquer objeto que aceita strings
+# Como argumentos para &lt;&lt;).
+classe Object
+  def trace(name="", stream=STDERR)
+    # Retorna um TracedObject que traços e delegados tudo mais para nós.
+    TracedObject.new(self, name, stream)
+  end
+end
+
+# Esta classe usa method_missing para rastrear chamadas de método e
+# Então delega ele para algum outro objeto. Ele exclui a maioria de seus próprios
+# Métodos de instância para que eles não ficam no caminho de method_missing.
+# Note que apenas métodos invocados através da TracedObject será rastreado.
+# Se o objeto delegado chama métodos em si, aquelas invocações
+# Não será rastreado.
+class TracedObject
+  # Indefine todos os nossos métodos de instância públicos não críticos.
+  # Observe o uso do Module.instance_methods e Module.undef_method.
+  instance_methods.each do |m|
+    m = m.to_sym   # Ruby 1.8 retorna string, em vez de símbolos
+    next if m == :object_id || m == :__id__ || m == :__send__
+    undef_method m
+  end
+
+  # Inicializa esta instancia do TracedObject.
+  def initialize(o, name, stream)
+    @o = o            # objeto que delegar
+    @n = name         # O nome do objeto a aparecer no rastreamento de mensagens
+    @trace = stream   # Onde essas mensagens de rastreamento são enviados
+  end
+
+  # Este é o principal método de TracedObject. Ele é invocado por apenas
+  # Sobre qualquer invocação de método em um TracedObject.
+  def method_missing(*args, &amp;block)
+    m = args.shift         # O primeiro é o nome do método
+    begin
+      # Acompanhe a invocação do método.
+      arglist = args.map {|a| a.inspect}.join(', ')
+      @trace &lt;&lt; "Invoking: #{@n}.#{m}(#{arglist}) at #{caller[0]}\n"
+      # Invoque o método em nosso objeto de delegação e obtem o valor de retorno.
+      r = @o.send m, *args, &amp;block
+      # Traça um retorno normal do método.
+      @trace &lt;&lt; "Returning: #{r.inspect} from #{@n}.#{m} to #{caller[0]}\n"
+      # Retorna o valor que o objeto delegado retornado.
+      r
+    rescue Exception =&gt; e
+      # Traçar um retorno anormal do método.
+      @trace &lt;&lt; "Raising: #{e.class}:#{e} from #{@n}.#{m}\n"
+      # E re-envia qualquer exceção que o objeto delegado levantada.
+      raise
+    end
+  end
+
+  # Retorna o objeto que delegou.
+  def __delegate
+    @o
+  end
+end
+</code></pre>
+
+<h3>Objetos sincronizados por delegação</h3>
+
+
+<p>No post anterior, vimos um método global sincronizado, que aceita um objeto e executa um bloco sob a proteção do <code>Mutex</code> associado a esse objeto.
+A maior parte do exemplo consistiu na aplicação do método <code>Object.mutex</code>. O método sincronizado foi trivial:</p>
+
+<pre><code class="ruby Mutex">def synchronized(o)
+  o.mutex.synchronize { yield }
+end
+</code></pre>
+
+<p>O Exemplo 1-3 modifica este método de modo que, quando chamado sem um bloco, ele retorna um invólucro em torno do objeto <code>SynchronizedObject</code>.
+<code>SynchronizedObject</code> é uma classe que delega com base em <code>method_missing</code>. É muito parecido com a classe <code>TracedObject</code>, Exemplo 1-2, mas Ruby 1.9 está
+escrito com uma subclasse de <code>BasicObject</code>, por isso não há necessidade de excluir explicitamente os métodos de instância de objeto. Note que o código
+deste exemplo não está sozinho, que exige o método <code>Object.mutex</code> definido anteriormente.</p>
+
+<pre><code class="ruby Exemplo 1-3. Métodos de sincronização com method_missing">
+def synchronized(o)
+  if block_given?
+    o.mutex.synchronize { yield }
+  else
+    SynchronizedObject.new(o)
+  end
+end
+
+# A classe delega usando method_missing de segurança da thread
+# Em vez de estender objetos e excluir nossos métodos que acabamos de estender de
+# BasicObject, que é definido no Ruby 1.9. BasicObject não
+# Herda do Object ou do Kernel, de modo que os métodos de uma BasicObject não pode
+# Chamar os métodos de nível superior: eles não são apenas lá.
+class SynchronizedObject  &lt; BasicObject
+  def initialize(o); @delegate = o;  end
+  def __delegate; @delegate; end
+
+  def method_missing(*args, &amp;block)
+    @delegate.mutex.synchronize {
+      @delegate.send *args, &amp;block
+    }
+  end
+end
+</code></pre>
+
+<p>É isso ai amigos&hellip; :)</p>
+
+<p>Até o proximo! :D</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Estruturas de Controle Personalizados - #Ruby 1.9]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9/"/>
+    <updated>2012-09-13T22:50:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/13/estruturas-de-controle-personalizados-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Estruturas de Controle Personalizados</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
 
 
 
-<h3>Identidade do objeto</h3>
+<h1>Estruturas de Controle Personalizados</h1>
 
 
-<p>Cada objeto tem um identificador de objeto, um Fixnum, que você pode obter com o método object_id. O valor retornado por este
-método é constante e exclusivo para a vida útil do objeto. Enquanto o objeto é acessível, ele terá sempre a mesma identificação, e não
-outro objeto que irá partilhar do mesmo ID.</p>
+<p>Uso de blocos em Ruby, juntamente com sua sintaxe de parênteses opcional, tornam muito fácil de definir métodos que parecem <code>iterator</code> e se comportam
+como estruturas de controle. O método <code>loop</code> do <code>Kernel</code> é um exemplo simples. Neste post, desenvolvo mais três exemplos. Os exemplos aqui usam
+segmentação da API do Ruby, você pode precisar de ler Threads e Concorrência para compreender todos os detalhes.</p>
 
-<p>O ID de método é um sinônimo preterido para object_id. Ruby 1.8 emite um aviso se você usá-lo, e ele foi removido em
-Ruby 1.9.</p>
-
-<p><strong>id</strong> é um sinônimo válido para object_id. Ele existe como um retorno, assim você pode acessar ID de um objeto, mesmo se o método
-object_id foi indefinido ou substituído.</p>
-
-<p>A classe <a href="http://ruby-doc.org/core-1.9.3/Object.html">Object</a> implementa o método de hash para simplesmente retornar um
-ID objeto.</p>
-
-<!--more-->
+<h3>Executando Delaying e Repeating: `after` e `every`</h3>
 
 
+<p>O exemplo 1-1 define métodos globais nomeados após os dias. Cada um leva um argumento numérico que representa um número de segundos e devem ter um
+bloco associado. Depois cria um novo segmento e retorna o objeto <code>Thread</code> imediatamente. O segmento recém-criado dorme para o número especificado de
+segundos e, então, chama (sem argumentos) o bloco que você forneceu. Tudo é semelhante, mas ele chama o bloco repetidamente, &ldquo;dorme&rdquo; o número
+especificado de segundos entre chamadas. O segundo argumento para todos é um valor para passar para a primeira chamada do bloco. O valor de retorno de
+cada invocação se torna o valor que passou para a próxima invocação. O bloco associado a cada intervalo pode ser usado para prevenir qualquer
+invocações futuras.</p>
+
+<p>Aqui está um exemplo de código que usa <code>after</code> e <code>every</code>:</p>
+
+<pre><code class="ruby after e every">require 'afterevery'
+
+1.upto(5) {|i| after i { puts i} }  # Lentamente imprimir os números 1-5
+sleep(5)                            # Aguarde cinco segundos
+every 1, 6 do |count|               # Agora, lentamente, imprimir 6-10
+    puts count
+    break if count == 10
+  count + 1                         # O valor próximo de contagem
+end
+sleep(6)                            # Dê um tempo acima para executar
+</code></pre>
+
+<p>Chamando o <code>sleep</code> no final deste código, evita o programa de sair antes que a <code>thread</code> seja criada por poder todas completar sua contagem. Com esse
+exemplo de como <code>after</code> e <code>every</code> são usadas, agora estamos prontos para apresentar a sua implementação.</p>
+
+<pre><code class="ruby Exemplo 1-1. Os métodos after e every">
+#
+# Defini métodos de kernel after e every por adiar blocos de código.
+# Exemplos:
+#
+#   after 1 { puts "done" }
+#   every 60 { redraw_clock }
+#
+# Ambos os métodos retornam objetos Thread. Chame kill sobre os objetos devolvidos
+# Para cancelar a execução do código.
+#
+# Note que essa é uma implementação muito ingênua. A mais robusta
+# Implementação usaria uma Thread timer para todas as tarefas globais,
+# Permitiria uma maneira de recuperar o valor de um bloco diferido, e iria
+# Fornecer uma maneira de esperar por todas as tarefas pendentes para ser concluído.
+#
+
+# Executar o bloco after depois de esperar o número especificado de segundos.
+def after(seconds, &amp;block)
+  Thread.new do       # Em um novo segmento ...
+    sleep(seconds)    # Primeiro espera
+    block.call        # Em seguida, chamar o bloco
+  end # Retorna o objeto Thread de imediato
+end
+
+# Repete sleep e after executando o bloco.
+# Passa valor para o bloco na primeira chamada.
+# Em chamadas subseqüentes, passar o valor da chamada anterior.
+def every(seconds, value=nil, &amp;block)
+  Thread.new do                 # Em um novo segmento ...
+    loop do                     # loop para sempre (ou até ruptura no bloco)
+      sleep(seconds)            # sleep
+      value = block.call(value) # E invocar bloco
+    end # Em seguida, repita ..
+  end # cada retorna o Tópico
+end
+</code></pre>
+
+<h3>Thread de segurança com blocos sincronizados</h3>
 
 
-<h3>Classe de Objeto e Tipo de Objeto</h3>
+<p>Ao escrever programas que usam várias <code>Threads</code>, é importante que duas <code>threads</code> não tente modificar o mesmo objeto, ao mesmo tempo. Uma maneira de
+fazer isto é colocar o código que deve ser feito em uma <code>thread</code> segura em um bloco associado a uma chamada para o método de <code>synchronize</code> de um objeto
+<code>Mutex</code>. No Exemplo 1-2 que levar isso a um passo adiante, e emula a palavra-chave <code>synchronized</code> do Java com um método global chamado <code>synchronized</code>.
+Este método <code>synchronized</code> espera um único objeto como argumento e um bloco. Ele obtém um <code>Mutex</code> associado ao objeto, e usa <code>Mutex.synchronize</code> para
+invocar o bloco. A parte complicada é que o objeto de Ruby, ao contrário de objetos Java, não tem um <code>Mutex</code> que lhes estão associados. Então o Exemplo
+1-2 também define um método de instância chamado <code>mutex</code> em Object. Curiosamente, a implementação deste método <code>mutex</code> usa <code>synchoronized</code> na sua forma
+de palavras-chave novo estilo!</p>
+
+<p><code>Mutex</code> -> <a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html"><a href="http://www.ruby-doc.org/core-1.9.2/Mutex.html">http://www.ruby-doc.org/core-1.9.2/Mutex.html</a></a></p>
+
+<pre><code class="ruby Exemplo 1-2. Simples blocos sincronizados">
+require 'thread'
+
+# Ruby 1.8 mantém Mutex nesta biblioteca
+
+# Obter o Mutex associado com o objeto o, e então avalia
+# Bloco sob a proteção do Mutex.
+# Este funciona como a palavra-chave synchronized do Java.
+def synchronized(o)
+  o.mutex.synchronize { yield }
+end
+
+# Object.mutex na verdade não existe. Temos que definir isso.
+# Este método retorna um Mutex único para cada objeto, e
+# Sempre retorna o mesmo Mutex para qualquer objeto particular.
+# Cria Mutexes lazily, o que requer sincronização para
+# Segurança da Thread.
+class Object
+  # Retorna o Mutex para este objeto, criando, se necessário.
+  # A parte difícil é ter certeza de que duas threads não chamam
+  # Isso ao mesmo tempo e acabam por criar dois mutexes diferentes.
+  def mutex
+    # Se este objeto já tem um mutex, basta devolvê-lo
+    return @__mutex if @__mutex
+
+    # Caso contrário, nós temos que criar um mutex para o objeto.
+    # Para fazer isso com segurança que temos para sincronizar em nosso objeto de classe.
+    synchronized(self.class) {
+      # Verifique novamente: no momento em que entrar neste bloco sincronizado,
+      # Alguma outra thread pode já ter criado o mutex.
+      @__mutex = @__mutex || Mutex.new
+    }
+    # O valor de retorno é @__mutex
+  end
+end
+
+# O método Object.mutex definido acima, necessita para bloquear a classe
+# Se o objeto não tiver um Mutex ainda. Se a classe não tem
+# Mutex próprio ainda, então a classe da classe (a Class do Object)
+# Será bloqueada. A fim de evitar recursão infinita, devemos
+# Garantir que o objeto da classe tem um mutex.
+Class.instance_eval { @__mutex = Mutex.new }
+</code></pre>
+
+<p>É isso ai amigos, até o proximo! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reflexão e Metaprogramação - ObjectSpace e GC - #Ruby 1.9 - Part VII]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii/"/>
+    <updated>2012-09-10T23:26:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-objectspace-e-gc-number-ruby-1-dot-9-part-vii</id>
+    <content type="html"><![CDATA[<!--more-->
 
 
-<p>Existem várias maneiras de determinar a classe de um objeto em Ruby. O mais simples é simplesmente perguntar para ele:</p>
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>ObjectSpace e GC</b>... Estranho para alguns, mas, veremos que é simples!</p>
 
-<p><code>ruby Class
-o = "teste" # Este é um valor
-o.class # Retorna um objeto que representa a classe String
-</code></p>
 
-<p>Se você estiver interessado na hierarquia de classe de um objeto, você pode perguntar para qualquer classe qual é sua superclasse:</p>
 
-<p><code>ruby Class - Ruby 1.8
-o.class # String: o é um objeto String
-o.class.superclass # Object: superclasse de String é objeto
-o.class.superclass.superclass # nil: Object não tem superclasse
-</code></p>
 
-<p>No Ruby 1.9, Object já não é a verdadeira raiz da hierarquia de classes:</p>
+<h1>ObjectSpace e GC</h1>
 
-<p>``` ruby Class - Ruby 1.9</p>
 
-<h1>Ruby 1.9</h1>
+<p>O módulo <code>ObjectSpace</code> define um punhado de métodos de baixo nível que pode ser ocasionalmente útil para depurar ou trabalhar com metaprogramação.
+O método mais notável é <code>each_object</code>, um iterador que pode render cada objeto (ou a cada instância de uma classe especificada) que o intérprete sabe
+sobre:</p>
 
-<p>Object.superclass # BasicObject: Object tem uma superclasse em 1.9
-BasicObject.superclass # nil: BasicObject não tem nenhuma superclasse
-```</p>
+<pre><code class="ruby ObjectSpace"># Imprima uma lista de todas as classes conhecidas
+ObjectSpace.each_object(Class) {|c| puts c }
+</code></pre>
 
-<p>Assim, uma forma particularmente simples para verificar a classe de um objeto é, por comparação direta:</p>
+<p><code>ObjectSpace._id2ref</code> é o inverso da <code>Object.object_id:</code> leva um objeto como seu argumento ID e retorna ao objeto correspondente, ou levanta uma
+RangeError se não há nenhum objeto com que ID.</p>
 
-<p><code>ruby Class
-o.class == String # true se o é uma String
-</code></p>
+<p><code>ObjectSpace.define_finalizer</code> permite o registo de uma <code>Proc</code> ou um bloco de código a ser chamado quando um objeto especificado é <code>garbage collected</code>.
+Você deve ter cuidado ao registar um finalizador tal, no entanto, como o bloco não tem permissão de <code>finalizer</code> usar o objeto lixo coletado. Quaisquer
+valores necessários para finalizar o objeto deve ser capturados no âmbito do bloco <code>finalizer</code>, de modo a que estejam disponíveis sem desreferência do
+objeto. Use <code>ObjectSpace.undefine_finalizer</code> para excluir todos os blocos inscritos para um objeto <code>finalizer</code>.</p>
 
-<p>O método instance_of? faz a mesma coisa e é um pouco mais elegante:</p>
+<p>O final método <code>ObjectSpace</code> é <code>ObjectSpace.garbage_collect</code>, que força o <code>garbage collected</code> de Ruby para ser executado. Funcionalidade de <code>garbage
+collected</code> também está disponível através do módulo <code>GC</code>. <code>GC.start</code> é sinônimo de <code>ObjectSpace.garbage_collect</code>. <code>garbage collected</code> pode ser
+desativado temporariamente com <code>GC.disable</code>, e ele pode ser ativado novamente com <code>GC.enable</code>.</p>
 
-<p><code>ruby Class
-o.instance_of? String # verdade se o é uma String
-</code></p>
+<p>A combinação do <code>_id2ref</code> e métodos <code>define_finalizer</code> permite a definição de &ldquo;fracos&rdquo; objetos de referência, que possuem uma referência a um valor sem
+impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte a classe <code>weakref</code> na biblioteca padrão (em lib/weakref.rb) para um exemplo.</p>
 
-<p>Normalmente, quando testamos a classe de um objeto, também gostaríamos saber se o objeto é uma instância de qualquer subclasse
-dessa classe. Para testar isso, use o método is_a?, ou seu sinônimo kind_of?</p>
+<p>Até o proximo post amigos&hellip;</p>
 
-<p><code>ruby Class
-x = 1 # Este é o valor que estamos trabalhando com
-x.instance_of? Fixnum # verdade: é uma instância de Fixnum
-x.instance_of? Numeric # false: instance_of? não verifica a herança
-x.is_a? Fixnum # verdadeiro: x é um Fixnum
-x.is_a? Integer # verdade: x é um número inteiro
-x.is_a? Numeric # verdade: x é um numérico
-x.is_a? Comparable # verdade: funciona também com módulos mixin
-x.is_a? Object # verdadeira para qualquer valor de x
-</code></p>
-
-<p>A classe Class define o operador === em tal modo que ele pode ser usado no lugar do is_a?:</p>
-
-<p><code>ruby Class method ===
-Numeric === x # verdade: x is_a Numérico
-</code></p>
-
-<p>Essa expressão é exclusivo para Ruby e é, provavelmente, menos legível do que utilizando o mais tradicional método is_a?.</p>
-
-<p>Cada objeto tem uma classe bem definida em Ruby, e que a classe nunca muda durante a vida útil do objeto. Um objeto
-type, por outro lado, é mais fluido. O tipo de um objeto está relacionada à sua classe, mas a classe é apenas parte de um
-tipo de objeto. Quando falamos sobre o tipo de um objeto, nós entendemos o conjunto de comportamentos que caracterizam o objeto.
-Outra maneira é colocar o tipo de um objeto em um conjunto de métodos que podem responder.
-(Esta definição torna-se recursiva, porque não é apenas o nome dos métodos que importam, mas também os tipos de argumentos que os
-métodos podem aceitar.)</p>
-
-<p>Na programação com Ruby, que muitas vezes não se preocupam com a classe de um objeto, nós só queremos saber se podemos invocar
-algum método nele.  Considere-se, por exemplo, o operador &lt;&lt;. Arrays, strings, files e outros I/O relacionados ao definir as classes
-isso como um operador de acréscimo. Se estamos escrevendo um método que produz produção textual, podemos escrever, genericamente,
-a usar esse operador. Então, o nosso método pode ser invocado com qualquer argumento que implementa &lt;&lt;. Nós não nos importamos com a
-classe do argumento, basta que possamos anexá-lo. Nós podemos testar para isto com o método respond_to? :</p>
-
-<p><code>ruby Class respond_to?
-o.respond_to? :"&lt;&lt;" # Verdadeiro se o operador tem uma &lt;&lt;
-</code></p>
-
-<p>A deficiência desta abordagem é que ela só verifica o nome de um método, não os argumentos para esse método. Por exemplo,
-Fixnum e Bignum implementam &lt;&lt; como um operador de deslocamento à esquerda e espera o argumento de ser um número em vez de uma string.
-Objetos inteiros parecem ser "appendable" (adicionável) quando usamos um respond_to? de teste, mas que produzem um erro quando
-adiciona um código em string. Não há uma solução geral para este problema, mas um recurso ad-hoc, neste caso,
-é explicitamente excluir objectos numéricos com o método is_a? :</p>
-
-<p><code>ruby Class
-o.respond_to? :"&lt;&lt;" and not o.is_a? Numeric
-</code></p>
-
-<p>Outro exemplo do tipo distinção-versus-classe é a classe StringIO<a href="partir%20da%20Biblioteca%20padrão%20do%20Ruby">*</a>. StringIO permite a
-leitura e gravação das strings como se fossem Objetos de IO. StringIO[*] imita os objetos IO API-StringIO definem os mesmos métodos
-que os objetos IO fazem. Mas StringIO não é uma subclasse de IO. Se você escrever um método que espera um argumento de fluxo,
-e testa a classe do argumento com is_a? IO, em seguida, o método não funciona com argumentos StringIO.</p>
-
-<p>[*] -> <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/stringio/rdoc/StringIO.html">StringIO</a></p>
-
-<p>É isso ai rubistas... A cada vez que leio sobre, me apaixono mais. :D</p>
+<p>Conhecimento nunca é d+ ! :)</p>
 ]]></content>
   </entry>
   

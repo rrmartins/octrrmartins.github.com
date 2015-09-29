@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Steve McConnell | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/steve-mcconnell/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <title><![CDATA[Category: steve mcconnell | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/steve-mcconnell/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,10 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[Agricultura de Software: Acréscimo no Sistema]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
+    <link href="http://rrmartins.com/blog/2012/04/22/agricultura-software-acrescimo-sistema/"/>
     <updated>2012-04-22T20:31:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
-    <content type="html"><![CDATA[<h2>Agricultura de Software: Acréscimo no Sistema</h2>
+    <id>http://rrmartins.com/blog/2012/04/22/agricultura-software-acrescimo-sistema</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h2>Agricultura de Software: Acréscimo no Sistema</h2>
 
 
 <p>Às vezes as pessoas falam sobre crescimento de software, quando eles realmente querem dizer software
@@ -32,7 +35,6 @@ aumentar de terra ao longo das margens de um corpo de água através do depósit
 </p>
 
 
-<!--more-->
 
 
 <p>
@@ -56,29 +58,29 @@ Este princípio básico é como início da ostra, uma pérola com um pequeno gr�
   
   <entry>
     <title type="html"><![CDATA[Caligrafia de Software: Escrevendo Códigos]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
+    <link href="http://rrmartins.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos/"/>
     <updated>2012-04-07T19:22:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
-    <content type="html"><![CDATA[<p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
+    <id>http://rrmartins.com/blog/2012/04/07/caligrafia-de-software-escrevendo-codigos</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos, vai ai um mais dos estudos de Metricas, neste momento, vamos brincar com
 a Caligrafia das Codigos.</p>
 
 <p><b>Caligrafia de Software: Escrevendo Códigos</b></p>
 
 <p>A metáfora mais primitiva para desenvolvimento de software, cresce fora da expressão
-"código escrito". A metáfora da escrita sugere que o desenvolvimento de um programa
+&ldquo;código escrito&rdquo;. A metáfora da escrita sugere que o desenvolvimento de um programa
 é como escrever uma carta ocasional - Você se senta com caneta, tinta, papel e
 vai escrevendo a partir do início ao fim. Não exige planejamento formal, e você
 vai descobrindo o que você quer dizer com o andamento da escrita.</p>
 
-<!-- more -->
-
-
 <p>Muitas idéias derivam da metáfora escrita. Jon Bentley diz que você deve ser
 capaz de se sentar perto da lareira com um copo de conhaque, um bom charuto, e seu
-cão de caça favorito para desfrutar de um "programa de alfabetizado" a maneira como
+cão de caça favorito para desfrutar de um &ldquo;programa de alfabetizado&rdquo; a maneira como
 você faria um bom romance. Brian Kernighan e PJ Plauger nomeou seu livro de programação
 de Os Elementos de Estilo da Programação (1978), depois que o livro escrito em
-estilo de The Elements of Style (Strunk e White 2000). Os programadores muitas vezes falam de "leitura do programa."</p>
+estilo de The Elements of Style (Strunk e White 2000). Os programadores muitas vezes falam de &ldquo;leitura do programa.&rdquo;</p>
 
 <p>Para o trabalhos de um indivíduo ou para projetos de pequena escala, uma pequena
 metáfora escrita, funciona adequadamente, mas para outros fins que deixa a brincadeira
@@ -97,42 +99,41 @@ processo de desenvolvimento de software que é muito simples e rígida para ser 
 
 <p>Infelizmente, a metáfora da letra-escrita foi perpetuado por um dos
 livros de software mais populares no planeta Fred Brook The Mythical Man-Month
-(Brooks, 1995). Brooks diz: "Planeje jogar algo fora, você vai de qualquer maneira."
+(Brooks, 1995). Brooks diz: &ldquo;Planeje jogar algo fora, você vai de qualquer maneira.&rdquo;
 Isso evoca uma imagem de uma pilha de meio-escritas rascunhos jogados em um
 cesto de lixo.</p>
 
 <p>A metáfora epistolar sugere que o processo de software se baseia em
 julgamento mais caro e errado, em vez de um planejamento cuidadoso e de bom design.</p>
 
-<p>"Planeje jogar algo fora, você vai jogar de qualquer maneira."
-- Fred Brooks, diz:</p>
+<p>&ldquo;Planeje jogar algo fora, você vai jogar de qualquer maneira.&rdquo;
+- Fred Brooks, diz:
+    Se você pretende jogar algo fora, você vai jogar fora o caro e o errado.</p>
 
-<pre><code>Se você pretende jogar algo fora, você vai jogar fora o caro e o errado.
-</code></pre>
+<p>-Craig Zerouni
+    Planejamento para jogar algo fora pode ser prático quando você está escrevendo
+    um código fácil de se ler. Mas estender a metáfora da &ldquo;escrita&rdquo; de software
+    para um plano de jogar algo fora é mau conselho para desenvolvimento de software,
+    onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares.
+    É fácil pegar o anel de latão se você pode dar ao luxo de sentar no seu
+    pônei de madeira favorita para um número ilimitado de rodadas ao redor do carrossel.
+    O truque é colocá-lo na primeira vez ou se arriscar de varios modos
+    quando é mais barato. Outras metáforas de iluminar melhor as formas de alcançar
+    tais objetivos.</p>
 
-<p>-Craig Zerouni</p>
-
-<pre><code>Planejamento para jogar algo fora pode ser prático quando você está escrevendo 
-um código fácil de se ler. Mas estender a metáfora da "escrita" de software
-para um plano de jogar algo fora é mau conselho para desenvolvimento de software, 
-onde um sistema principal já custa tanto quanto um prédio de escritórios de 10 andares. 
-É fácil pegar o anel de latão se você pode dar ao luxo de sentar no seu
-pônei de madeira favorita para um número ilimitado de rodadas ao redor do carrossel.
-O truque é colocá-lo na primeira vez ou se arriscar de varios modos
-quando é mais barato. Outras metáforas de iluminar melhor as formas de alcançar
-tais objetivos.
-</code></pre>
-
-<p>Até a proxima galera...</p>
+<p>Até a proxima galera&hellip;</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Como usar metáforas de software?]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software/"/>
+    <link href="http://rrmartins.com/blog/2012/03/24/como-usar-metaforas-de-software/"/>
     <updated>2012-03-24T10:23:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/24/como-usar-metaforas-de-software</id>
-    <content type="html"><![CDATA[<p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software...</p>
+    <id>http://rrmartins.com/blog/2012/03/24/como-usar-metaforas-de-software</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos, após ler um pouco sobre Metaforas de Construção de Software...</p>
 
 
 <p> Vamos descrever agora como usar Metaforas..</p>
@@ -156,9 +157,6 @@ tais objetivos.
 <p>Uma metáfora software é mais como um holofote de um mapa rodoviário. Ele não diz
 onde encontrar a resposta, ela diz-lhe como olhar para ele. A metáfora serve
 mais como uma heurística do que como um algoritmo.</p>
-
-<!-- more -->
-
 
 <p>Um algoritmo é um conjunto de instruções bem definidas para a realização de uma determinada
 tarefa. Um algoritmo é previsível, determinista, e não está sujeita ao acaso.
@@ -214,16 +212,16 @@ mais rápido do que pessoas que não os utilizam.</p>
   
   <entry>
     <title type="html"><![CDATA[A importância das metáforas - Parte II]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
+    <link href="http://rrmartins.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii/"/>
     <updated>2012-03-11T16:33:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd's... Continuando os estudos...</p>
+    <id>http://rrmartins.com/blog/2012/03/11/a-importancia-das-metaforas-parte-ii</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos nerd's... Continuando os estudos...</p>
 
 
 <p><strong> A importância das metáforas - Parte II </strong></p>
-
-<!-- more -->
-
 
 <p>Considere o exemplo de uma pedra pesada oscila para frente e para trás em uma corda.
 Antes de Galileu, um aristotélico olhar para a pedra balançando pensei que um
@@ -270,21 +268,21 @@ metáforas são uma forma de internalizar e abstrair conceitos, permitindo que u
   
   <entry>
     <title type="html"><![CDATA[A importância das metáforas]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas/"/>
+    <link href="http://rrmartins.com/blog/2012/03/05/a-importancia-das-metaforas/"/>
     <updated>2012-03-05T22:47:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/03/05/a-importancia-das-metaforas</id>
-    <content type="html"><![CDATA[<p>Olá amigos nerd's... Continuando os estudos...</p>
+    <id>http://rrmartins.com/blog/2012/03/05/a-importancia-das-metaforas</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Olá amigos nerd's... Continuando os estudos...</p>
 
 
 <p><strong> A importância das metáforas! </strong></p>
 
-<!-- more -->
-
-
 <p>Desenvolvimentos importantes com freqüência, surgir de analogias. Ao comparar tópico
 você entende mal a algo similar você entender melhor,
 você pode vir acima com idéias que resultaria em uma melhor compreensão do
-lessfamiliar tópico. Este uso da metáfora é chamada de "modelagem".
+lessfamiliar tópico. Este uso da metáfora é chamada de &ldquo;modelagem&rdquo;.
 A história da ciência está cheia de descobertas baseada na exploração
 o poder das metáforas. O químico Kekulé teve um sonho em que viu
 uma cobra agarrar a cauda em sua boca. Quando ele acordou, percebeu que um
@@ -292,7 +290,7 @@ estrutura molecular com base em forma de anel semelhante seria responsável por
 as propriedades de benzeno. Experimentação mais
 confirmou a hipótese (Barbour 1966).</p>
 
-<p>A teoria cinética dos gases foi baseada em um modelo de "sinuca".
+<p>A teoria cinética dos gases foi baseada em um modelo de &ldquo;sinuca&rdquo;.
 As moléculas de gás foram pensados ​​para ter massa e colidem elasticamente,
 como fazer bolas de bilhar, e muitos teoremas úteis foram desenvolvidos a partir deste modelo.</p>
 
@@ -302,7 +300,7 @@ Sonoridade), freqüência (cor, altura), e outras propriedades em comum.
 A comparação entre as teorias de ondas de som e luz foi tão produtivo
 scientista que passou um grande esforço à procura de um meio que
 se propagar o som se propaga via aérea luz. Eles ainda lhe deram um nome
-- "Éter" - mas nunca encontraram o meio. A analogia foi tão frutífera
+- &ldquo;Éter&rdquo; - mas nunca encontraram o meio. A analogia foi tão frutífera
 em algumas formas provou ser enganosa neste caso.</p>
 
 <p>Em geral, o poder dos modelos é que eles estão vivas e pode ser apreendido como
@@ -315,7 +313,7 @@ para o éter, que seu modelo sobrecarregado.</p>
 Uma boa metáfora é simples, se relaciona bem com metáfora relevantes,
 e explica grande parte das evidências experimentais e outros fenômenos observados.</p>
 
-<p>Aguardem... Em breve novos conteudos!!!</p>
+<p>Aguardem&hellip; Em breve novos conteudos!!!</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,543 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reflexão e Metaprogramação #Ruby 1.9 - Part I - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de nos aprofundar falando um pouco de Reflexão e Metaprogramação... Estranho para alguns, mas, veremos &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Reflexão E Metaprogramação #Ruby 1.9 - Part I</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-26T19:01:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de <b>Reflexão e Metaprogramação</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Reflexão e Metaprogramação</h1>
+
+
+<p>Vimos que Ruby é uma linguagem muito dinâmica, você pode inserir novos métodos em classes em tempo de execução, criar apelidos
+para métodos existentes, e até mesmo definir métodos em objetos individuais. Além disso, ele tem uma rica API para a reflexão.
+Reflexão, também chamado de introspecção, significa simplesmente que um programa pode examinar seu estado e sua estrutura. Um
+programa Ruby pode, por exemplo, obter a lista de métodos definidos pela classe <code>Hash</code>, consultar o valor de uma variável de
+instância nomeada dentro de um objeto especificado, ou percorrer todos os objetos <code>Regexp</code> atualmente definidos pelo intérprete.
+A API de reflexão, na verdade, vai além e permite que um programa para alterar o seu estado e estrutura. Um programa Ruby pode
+definir dinamicamente variáveis chamadas, invocar métodos nomeados, e até mesmo definir novas classes e novos métodos.</p>
+
+<p>API Reflexão Ruby, juntamente com a sua natureza geral, dinâmica, seu controle de estrutura de blocos iteradores, e a sintaxe
+dos seus parênteses opcionais sintaxe torna uma linguagem ideal para metaprogramação. Vagamente definida, metaprogramação está
+escrevendo programas (ou frameworks) que ajudam a escrever programas. Para colocar de outra forma, a metaprogramação é um
+conjunto de técnicas para estender a sintaxe de Ruby de uma forma que facilita a programação. Metaprogramação está intimamente
+ligada à idéia de escrever linguagens específicas de domínio, ou <code>DSL's</code>. <code>DSL's</code> em Ruby normalmente usam invocações de métodos e
+blocos, como se fossem palavras-chave em uma extensão de tarefas específicas para a linguagem.</p>
+
+<p>Neste post começo com várias seções que introduzem a API de reflexão do Ruby. Esta API é surpreendentemente rica e consiste de
+poucos métodos. Estes métodos são definidos, para a maior parte, pelo <code>Kernel</code>, <code>Module</code> e <code>Object</code>.</p>
+
+<p>Enquanto você lê estas seções introdutórias, tenha em mente que reflexão não é, por si só, a metaprogramação. Metaprogramação
+tipicamente estende a sintaxe ou o comportamento de Ruby, de alguma forma, e com frequência envolve mais do que um tipo de
+reflexão. Depois de introduzir a reflexão o núcleo da API de Ruby, neste post demonstrarei, por exemplo, técnicas comuns de
+metaprogramação que usam essa API.</p>
+
+<p>Note-se que este post aborda tópicos avançados. Você pode ser um programador Ruby produtivo sem nunca ler este post. Você pode
+encontrar que é útil para ler os próximos post&rsquo;s deste primeiro livro, e depois retornar a este capítulo. Considere este
+post uma espécie de exame final: se você entender os exemplos (especialmente os mais queridos no final), então você domina Ruby!</p>
+
+<!--more-->
+
+
+<h3>Tipos, classes e módulos</h3>
+
+
+<p>Os métodos mais utilizados são aqueles mais reflexivos para determinar o tipo de um objeto que classe é uma instância e quais
+métodos ele responde. Para rever:</p>
+
+<figure class='code'><figcaption><span>Metaprogramming</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">class</span>
+</span><span class='line'><span class="c1"># Retorna a classe de do objeto &#39;o&#39;.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">c</span><span class="o">.</span><span class="n">superclass</span>
+</span><span class='line'><span class="c1"># Retorna a superclasse de uma classe &#39;c&#39;.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">instance_of?</span> <span class="n">c</span>
+</span><span class='line'><span class="c1"># Determina se o objeto &#39;o.class == c&#39;.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">is_a?</span> <span class="n">c</span>
+</span><span class='line'><span class="c1"># Determina se &#39;o&#39; é um exemplo de &#39;c&#39;, ou de qualquer das suas subclasses. Se &#39;c&#39; for um módulo, este método testa se &#39;o.class&#39; (ou qualquer um de seus ancestrais) inclui o módulo.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">kind_of?</span> <span class="n">c</span>
+</span><span class='line'><span class="c1"># kind_of? é um sinônimo para is_a?.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">c</span> <span class="o">===</span> <span class="n">o</span>
+</span><span class='line'><span class="c1"># Para qualquer classe &#39;c&#39; ou módulo, determina se &#39;o.is_a? (c)&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">o</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">nome</span>
+</span><span class='line'><span class="c1"># Determina se o objeto &#39;o&#39; tem um método público ou protegido com o nome especificado. Passar true como o segundo argumento para verificar métodos privados, também.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>Ancestralidade e Módulos</h3>
+
+
+<p>Além desses métodos que você já viu, há mais alguns métodos relacionados reflexivos para determinar os ancestrais de uma
+classe ou módulo e para determinar quais os módulos que são incluídos por uma classe ou módulo. Esses métodos são fáceis de
+entender quando demonstrado:</p>
+
+<figure class='code'><figcaption><span>Alguns demonstrações</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">A</span><span class="p">;</span> <span class="k">end</span>                <span class="c1"># Modulo vazio</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">B</span><span class="p">;</span> <span class="kp">include</span> <span class="n">A</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>    <span class="c1"># Módulo B inclui A</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">C</span><span class="p">;</span> <span class="kp">include</span> <span class="n">B</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>     <span class="c1"># Classe C inclui o módulo B</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">C</span> <span class="o">&lt;</span> <span class="n">B</span>                <span class="c1"># =&gt; true: C inclui B</span>
+</span><span class='line'><span class="n">B</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true: B inclui A</span>
+</span><span class='line'><span class="n">C</span> <span class="o">&lt;</span> <span class="n">A</span>                <span class="c1"># =&gt; true</span>
+</span><span class='line'><span class="no">Fixnum</span> <span class="o">&lt;</span> <span class="nb">Integer</span>     <span class="c1"># =&gt; true: todos os fixnums são inteiros</span>
+</span><span class='line'><span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Comparable</span> <span class="c1"># =&gt; true: inteiros são comparáveis</span>
+</span><span class='line'><span class="nb">Integer</span> <span class="o">&lt;</span> <span class="no">Fixnum</span>     <span class="c1"># =&gt; false: nem todos os números inteiros são fixnums</span>
+</span><span class='line'><span class="nb">String</span> <span class="o">&lt;</span> <span class="no">Numeric</span>     <span class="c1"># =&gt; nil: cordas não são números</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [A]</span>
+</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [B, A]</span>
+</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">ancestors</span>          <span class="c1"># =&gt; [C, B, A, Object, Kernel]</span>
+</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">ancestors</span>     <span class="c1"># =&gt; [String, Enumerable, Comparable, Object, Kernel]</span>
+</span><span class='line'><span class="err">                     </span><span class="c1"># Nota: em Ruby 1.9, String não é mais Enumerable</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
+</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">A</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; []</span>
+</span><span class='line'><span class="n">B</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [A]</span>
+</span><span class='line'><span class="n">C</span><span class="o">.</span><span class="n">included_modules</span> <span class="c1"># =&gt; [B, A, Kernel]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Este código demonstra <code>include?</code>, que é um método público de instância definido pela classe <code>Module</code>. Mas ele também possui duas
+invocações do método <code>include</code> (Sem o sinal de interrogação), que é um método de instância particular de <code>Module</code>. Como um
+método particular, pode apenas ser chamado implicitamente em si, o que limita a sua utilização para o corpo de uma definição de
+<code>class</code> ou <code>module</code>. Este uso do método <code>include</code>, como se tratasse de uma palavra-chave, é um exemplo de metaprogramação no
+núcleo da sintaxe de Ruby.</p>
+
+<p>Um método relacionado com o método <code>include</code>, particular é o público <code>Object.extend</code>. Este método estende um objeto por tornar
+os métodos de instância de cada um dos módulos específicos em métodos <code>singleton</code> do objeto:</p>
+
+<figure class='code'><figcaption><span>Singleton</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Greeter</span><span class="p">;</span> <span class="k">def</span> <span class="nf">hi</span><span class="p">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># módulo Greeter</span>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;objeto de string&quot;</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="no">Greeter</span><span class="p">)</span>       <span class="c1"># Adicione &quot;hello&quot; como um método singleton para s</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">hi</span>
+</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="no">Greeter</span><span class="p">)</span>  <span class="c1"># Adicione &quot;hello&quot; como método de classe de String</span>
+</span><span class='line'><span class="nb">String</span><span class="o">.</span><span class="n">hi</span>               <span class="c1"># =&gt; &quot;hello&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O método <code>Module.nesting</code> de classe não está relacionado com a inclusão do módulo ou ascendência, em vez disso, ele retorna um
+<code>array</code> que especifica o assentamento de módulos da localização atual. <code>Module.nesting[0]</code> é a classe atual ou módulo, <code>Module.nesting[1]</code> é o quem contém a <code>class</code> ou <code>module</code> e assim por diante:</p>
+
+<figure class='code'><figcaption><span>Module e Class</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">M</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">C</span>
+</span><span class='line'>    <span class="no">Module</span><span class="o">.</span><span class="n">nesting</span>   <span class="c1"># =&gt; [M::C, M]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>Definindo Classes e Módulos</h3>
+
+
+<p>Classes e módulos são instâncias das classes de <code>Class</code> e <code>Module</code>. Como tal, você pode criá-los dinamicamente:</p>
+
+<figure class='code'><figcaption><span>Class e Module dinamicamente</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">M</span> <span class="o">=</span> <span class="no">Module</span><span class="o">.</span><span class="n">new</span>      <span class="c1"># Define um novo módulo M</span>
+</span><span class='line'><span class="n">C</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span>       <span class="c1"># Define uma nova classe C</span>
+</span><span class='line'><span class="n">D</span> <span class="o">=</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="p">{</span>  <span class="c1"># Definir uma subclasse de C</span>
+</span><span class='line'><span class="err">  </span><span class="kp">include</span> <span class="n">M</span>         <span class="c1"># inclui o módulo M</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">D</span><span class="o">.</span><span class="n">to_s</span>               <span class="c1"># =&gt; &quot;D&quot;: classe recebe o nome da constante por magia</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Um recurso interessante do Ruby é que, quando um criado dinamicamente um módulo anónimo ou classe é atribuído a uma constante,
+o nome dessa constante é usado como o nome do módulo ou classe (e é retornado pelo seu nome e método to_s).</p>
+
+<p>É isso ai amigos&hellip;
+Hora de dar um <code>break</code>&hellip; :)</p>
+
+<p>Até o proximo!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-26T19:01:00-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/each/'>each</a>, <a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/integer/'>integer</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>ruby api</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/19/blocos-em-number-ruby-1-dot-9/" title="Previous Post: Blocos em #Ruby 1.9">&laquo; Blocos em #Ruby 1.9</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/08/29/reflexao-e-metaprogramacao-number-ruby-1-dot-9-part-ii/" title="Next Post: Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II">Reflexão e Metaprogramação - Avaliando Strings e Blocos - #Ruby 1.9 - Part II &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/08/26/reflexao-e-metaprogramacao-number-ruby-1-dot-9/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

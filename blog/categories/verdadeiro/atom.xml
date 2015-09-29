@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Verdadeiro | Rodrigo Martins]]></title>
-  <link href="http://rrmartins.github.com/blog/categories/verdadeiro/atom.xml" rel="self"/>
-  <link href="http://rrmartins.github.com/"/>
-  <updated>2012-08-09T01:16:17-03:00</updated>
-  <id>http://rrmartins.github.com/</id>
+  <title><![CDATA[Category: verdadeiro | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/verdadeiro/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+  <updated>2015-09-29T13:55:20-03:00</updated>
+  <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,10 +15,13 @@
   
   <entry>
     <title type="html"><![CDATA[True, False e Nil]]></title>
-    <link href="http://rrmartins.github.com/blog/2012/05/18/true/"/>
+    <link href="http://rrmartins.com/blog/2012/05/18/true/"/>
     <updated>2012-05-18T12:58:00-03:00</updated>
-    <id>http://rrmartins.github.com/blog/2012/05/18/true</id>
-    <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+    <id>http://rrmartins.com/blog/2012/05/18/true</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
 
 
 
@@ -39,10 +42,9 @@ a ausência de valor.</p>
 
 <p>Se você quiser verificar se um valor é nulo, você pode simplesmente compará-lo a nil, ou usar o método nil?</p>
 
-<p><code>ruby NilClass
-o == nil # o é nil
+<pre><code class="ruby NilClass">o == nil # o é nil
 o.nil? # Outra maneira de testar
-</code></p>
+</code></pre>
 
 <p>Note que True, False e nil se referem a objetos, e não números. False e nil não são a mesma coisa que 0, e True
 não é a mesma coisa que 1. Quando o Ruby exige um valor booleano, nil se comporta como False e qualquer valor diferente de

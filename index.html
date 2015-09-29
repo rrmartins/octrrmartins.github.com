@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo Martins">
 
   
-  <meta name="description" content="Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(http://www.artima.com/intv/ruby.html), que já &hellip;">
+  <meta name="description" content="Æ, Já faz um tempo que venho estudando e praticando um pouco com Golang. Como alguns codigos estão somente em meu repo particular, resolvi colocar &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,43 +18,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rrmartins.github.com">
+  <link rel="canonical" href="http://rrmartins.com">
   <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <style type="text/css">
-    body {
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-    h1 {
-      margin-bottom: 15px;
-    }
-    .sharing, .meta {
-      margin: 20px 0px 20px 0px;
-    }
-    .pager {
-      margin: 20px 0px 5px 0px;
-    }
-    .page-footer p {
-      text-align: center;
-    }
-  </style>
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
-  <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-    // Avoid conflict with ender.js.
-    jQuery.noConflict();
-</script>
-<!-- jQuery Form Plugin -->
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<!-- jQuery Form Validation Plugin -->
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -71,530 +48,518 @@
 
 </head>
 
-<body   >
-  <nav role="navigation"><div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
 
-      <a class="brand" href="/">Rodrigo Martins</a>
 
-      <div class="nav-collapse">
-        <ul class="nav">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Post's</a></li>
-  <li><a href="/who-am">Apresentações</a></li>
-  <li><a href="/contato">Contato</a></li>
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
 </ul>
- 
-      </div>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
 
-      <ul class="nav pull-right" data-subscription="rss email">
-        <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-          
-            <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
-          
-      </ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo Problema Com $PORT Com Uma App Golang No Heroku</a></h1>
+      
+      
+    
+      <p class="meta">
+        
 
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-28T22:24:09-03:00" pubdate data-updated="true"></time>
         
-          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
-            <fieldset role="search">
-              <input type="hidden" name="q" value="site:rrmartins.github.com" />
-              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
-            </fieldset>
-          </form>
+         | <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/#disqus_thread">Comments</a>
         
-    </div>
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Æ,</p>
+
+<p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>
+
+<p>Porém ao seguir o seu <a href="https://devcenter.heroku.com/articles/getting-started-with-go#introduction">Getting Started with Go</a>, percebi uma coisa: não deixam claro as politicas de porta de acesso à app.</p>
+
+<p>Como resolver?</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser Importante Ou Famoso?</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-21T10:14:10-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2015/09/21/ser-importante-ou-famoso/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Este é um dos pensamentos mais legais que já vi sobre este tema. Em uma correria do nossos dias, vejo muitos querendo ser famoso e tal, quando em uma breve realização, e pronto. Mas, vejo que a importancia que damos ao ser famoso é em demasia grande. Quando podemos olhar e viver para ser simples e importante. Nesse sentido, transcrevo abaixo um texto muito bom para esta reflexão do filosofo brasileiro Mario Sergio Cortella.</p>
+
+<p>Destaco para o inicio desta boa leitura:</p>
+
+<pre><code>Aliás, felicidade não é um estado contínuo,
+felicidade é uma ocorrência eventual.
+por Mario Sergio Cortella
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/21/ser-importante-ou-famoso/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês Do Pão</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-10T14:00:00-02:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/12/10/ditado-chines-do-pao/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hoje, escutei de um amigo um ditado Chinês.
+Que achei muito massa ser repassado!</p>
+
+<pre><code>Se dois homens vêm andando por uma estrada,
+cada um com um pão, e, ao se encontrarem,
+trocarem os pães, cada um vai embora com um pão.
+
+Se dois homens vêm andando por uma estrada,
+cada um com uma idéia, e, ao se encontrarem,
+trocarem as idéias,
+cada um vai embora com duas idéias.
+</code></pre>
+
+<p>Sempre crescemos com algo, ao partilhar o que de bom temos.</p>
+
+<p>Abraços.</p>
+
+<p>Paz e Bem</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando Com ChicagoBoss</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-18T18:44:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/05/18/brincando-com-chicagoboss/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Uma pequena Introdução:</p>
+
+<p>Se você quiser guardar um segredo, diga a ele para um sueco. Nascido em Stockholm mais de 20
+anos atrás, Erlang é a mais avançada plataforma de servidor de código aberto em
+existência, mas parece que quase ninguém sabe sobre isso. Erlang pode lidar com
+centenas de milhares de conexões simultâneas; ele pode gerar
+milhões de processos simultâneos em menos de um segundo; código do servidor pode ser
+atualizado, em produção, sem qualquer interrupção do serviço; e erros
+são tratados de tal forma que falhas do servidor são extremamente raros.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/18/brincando-com-chicagoboss/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-26T20:45:00-03:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Tenho Sede</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/26/tenho-sede/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/28/nao-e-bem-uma-string/">Não é Bem Uma String</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-28T18:35:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/04/28/nao-e-bem-uma-string/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/28/nao-e-bem-uma-string/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/28/as-duas-faces-de-string/">As Duas Faces De String</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-28T16:30:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/04/28/as-duas-faces-de-string/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/28/as-duas-faces-de-string/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/28/expressoes-regulares-em-ruby/">Expressões Regulares Em Ruby</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-28T13:52:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/04/28/expressoes-regulares-em-ruby/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/28/expressoes-regulares-em-ruby/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/">[Tradução] Ruby 2.0 Por Exemplos</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-26T22:54:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/26/traducao-ruby-2-dot-0-por-exemplos/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/">[TRADUÇÃO] - Trabalhando Com Time Zones Em Ruby on Rails</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-02T09:37:00-02:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/02/traducao-trabalhando-com-time-zones-em-ruby-on-rails/">abre ai :) &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="2">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
   </div>
 </div>
-</nav>
-  <div class="container">
-    <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/">A Filosofia Do #Ruby <3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-08T22:59:00-03:00" pubdate data-updated="true">08/08/12 às 22:59 hrs</time>
-        
-         | <a href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/matz/'>Matz</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Nessa noite, eu estava assistindo um jogo na tv, e navegando na internet achei um link muito bom(<a href="http://www.artima.com/intv/ruby.html">http://www.artima.com/intv/ruby.html</a>), que já consegui a 
-autorização para colocar aqui para vocês&#8230;</p>
-
-
-
-
-<p>Então, abaixo uma entrevista do criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, o <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>.</p>
-
-
-
-
-<h2>A Filosofia do #<a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a></h2>
-
-
-
-
-<h6>Resumo</h6>
-
-
-
-
-<p><a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto &#8216;Matz&#8217;</a>, como é conhecido online, é o criador da linguagem de programação <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>. <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> é uma linguagem orientada a objeto adequada para escrever scripts do dia-a-dia, assim como em grande escala de aplicações. Matz começou a trabalhar no <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> em 1993, porque ele queria uma linguagem que o fizesse produtivo enquanto fosse divertido de usar. Inicialmente popular no Japão, <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a> tem encontrado seu caminho para os corações de programadores em todo o mundo.</p>
-
-
-
-
-<p>Nesta entrevista, Yukihiro Matsumoto discute a filosofia do design do <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, as características da linguagem <a href="http://www.ruby-doc.org/core-1.9.3/">Ruby</a>, e se tornar um programador melhor. Neste capítulo inicial, Matz faz filosofias sobre a imperfeição de design, o perigo de <a href="http://pt.wikipedia.org/wiki/Ortogonalidade">ortogonalidade</a>, a concessão de liberdade com a orientação, o princípio da menor surpresa e a importância do ser humano em empreendimentos de computador.</p>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/08/a-filosofia-do-number-ruby-3/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Escrevendo Iteradores Personalizados #Ruby 1.9.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-05T16:18:00-03:00" pubdate data-updated="true">05/08/12 às 16:18 hrs</time>
-        
-         | <a href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/each/'>each</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Escrevendo iteradores personalizados`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Escrevendo iteradores personalizados</h1>
-
-
-<p>A definição de característica de um método <code>Iterator</code>, é que ele invoca um bloco de código associado com a
-invocação do método. Você faz isso com a declaração <code>yield</code>. O método que se segue é um iterador trivial que apenas
-invoca o seu bloco duas vezes:</p>
-
-<figure class='code'><figcaption><span>yield</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">twice</span>
-</span><span class='line'>  <span class="k">yield</span>
-</span><span class='line'><span class="err">  </span><span class="k">yield</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/05/escrevendo-iteradores-personalizados-number-ruby-1-dot-9-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Objetos Enumeráveis #Ruby 1.9.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-25T22:50:00-03:00" pubdate data-updated="true">25/07/12 às 22:50 hrs</time>
-        
-         | <a href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/each/'>each</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Objetos Enumeráveis`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Objetos Enumeráveis</h1>
-
-
-<p><code>Array</code>, <code>Range</code>, <code>Hash</code>, e um número de outras classes definem um iterador <code>each</code> que passa cada elemento da
-coleção para o bloco associado. Este é talvez o mais comumente usado iterador em Ruby, o loop só funciona para
-iterar sobre objetos que têm o método <code>each</code>. Exemplos de iteradores <code>each</code>:</p>
-
-<figure class='code'><figcaption><span>Metodo each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot;</span>
-</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span>  <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>   <span class="c1"># =&gt; prints &quot;123&quot; Same as 1.upto(3)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/25/objetos-enumeraveis-number-ruby-1-dot-9-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/14/iteradores-numericos/">Iteradores Numéricos #Ruby 1.9.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-14T22:52:00-03:00" pubdate data-updated="true">14/07/12 às 22:52 hrs</time>
-        
-         | <a href="/blog/2012/07/14/iteradores-numericos/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/integer/'>Integer</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>Ruby API</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `Iteradores Numéricos`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Iteradores Numéricos</h1>
-
-
-<p>O núcleo do <code>Ruby API</code> fornece um número de iteradores padrão. Os métodos de loops do Kernel se comporta como um
-loop infinito, executando seu bloco associado repetidamente até que o bloco executa um <code>return</code>, <code>break</code>, ou outra
-declaração que sai do laço.</p>
-
-<p>A classe <code>Integer</code> define três iteradores usados. O método <code>upto</code> chama seu bloco associado uma vez para cada número
-inteiro entre o número inteiro no qual ele é invocado e o número inteiro que é passado como um argumento.
-Por exemplo:</p>
-
-<figure class='code'><figcaption><span>upto</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">4</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">6</span><span class="p">){</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span><span class="p">}</span> <span class="c1"># =&gt; prints &quot;456&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Como você pode ver, <code>upto</code> intera cada número inteiro para o bloco associado, e inclui tanto o ponto de partida e o
-ponto final na iteração. Em geral, <code>n.upto(m)</code> é executado o bloco <code>m-n +1</code> vezes.</p>
-
-<p>O método <code>downto</code> é como <code>upto</code> mas itera a partir de um maior número para um número menor.</p>
-
-<p>Quando o método <code>Integer.times</code> é chamado no <code>n</code> inteiro, invoque o seu bloco de <code>n vezes</code>, passando os valores de
-<code>0 a n-1</code> em iterações sucessivas. Por exemplo:</p>
-
-<figure class='code'><figcaption><span>times</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">print</span> <span class="n">x</span> <span class="p">}</span>    <span class="c1"># =&gt; prints &quot;012&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Em geral, é <code>n.times</code> equivalente a <code>0.upto(n-1)</code>.</p>
-
-<p>Se você quer fazer uma iteração numérica usando um ponto flutuante de números, você pode usar o método <code>step</code> mais
-complexo definido pela classe numérica. O iterador a seguir, por exemplo, começa a 0 e itera em passos de 0.1 até
-atingir <code>Math::PI</code>:</p>
-
-<figure class='code'><figcaption><span>metodo step</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">0</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="no">Math</span><span class="o">::</span><span class="no">PI</span><span class="p">,</span> <span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">){</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="no">Math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>Até a proxima!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/05/unless-number-ruby-1-dot-9/">Unless #Ruby 1.9</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-05T01:57:00-03:00" pubdate data-updated="true">05/07/12 às 01:57 hrs</time>
-        
-         | <a href="/blog/2012/07/05/unless-number-ruby-1-dot-9/#disqus_thread">Comentário</a>
-        
-      </p>
-    
-    Categorias: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/enumerable/'>Enumerable</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
-  
-</span>
-
-
-  </header>
-
-
-  <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`&#8230; Estranho para alguns, mas, veremos que é simples!</p>
-
-
-
-
-<h1>Unless</h1>
-
-
-<p><code>unless</code>, como uma declaração ou um modificador, é o oposto do <code>case</code>: ele executa o código apenas se uma expressão
-associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
-permitidas:</p>
-
-<figure class='code'><figcaption><span>Declaração unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Uma maneira, declaração unless</span>
-</span><span class='line'><span class="k">unless</span> <span class="n">condition</span>
-</span><span class='line'>  <span class="n">code</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Duas vias da declaração unless</span>
-</span><span class='line'><span class="k">unless</span> <span class="n">condition</span>
-</span><span class='line'>  <span class="n">code</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="n">code</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># modificador unless</span>
-</span><span class='line'><span class="n">code</span> <span class="k">unless</span> <span class="n">condition</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
-uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
-código que são executados, ou <code>nil</code> se executar nada:</p>
-
-<figure class='code'><figcaption><span>Declaração unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Chama o método to_s sobre o objeto, a menos que o objeto &#39;o&#39; for nulo</span>
-</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span>                        <span class="c1"># Nova linha de separação</span>
-</span><span class='line'>  <span class="n">o</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span> <span class="k">then</span> <span class="n">o</span><span class="o">.</span><span class="n">to_s</span> <span class="k">end</span>        <span class="c1"># separador então</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
-
-<figure class='code'><figcaption><span>Unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">to_s</span> <span class="k">unless</span> <span class="n">o</span><span class="o">.</span><span class="n">nil?</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
-
-<figure class='code'><figcaption><span>unless</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">unless</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;x is not 0&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="k">unless</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;y is not 0&quot;</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="k">unless</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;z is not 0&quot;</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;all are 0&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>É isso ai amigos!</p>
-
-<p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
-
-<p>Esta ai..</p>
-
-<p>Até a proxima!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <ul class="pager">
-    
-    <li class="previous"><a href="/blog/page/2/">&larr; Older</a></li>
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
-</div>
-<aside class="sidebar-nav span3">
+<aside class="sidebar">
   
     
-<section class="well">
-  <ul id="tweets" class="nav">
-    <li class="nav-header">Latest Tweets</li>
-    <li class="loading">Status updating&#8230;</li>
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -608,16 +573,16 @@ código que são executados, ou <code>nil</code> se executar nada:</p>
 </section>
 
 
-<section class="well">
-  <ul id="gh_repos" class="nav">
-    <li class="nav-header">GitHub Repos</li>
-    <li class="loading">Status updating&#8230;</li>
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -643,10 +608,13 @@ código que são executados, ou <code>nil</code> se executar nada:</p>
 
     </div>
   </div>
-  <footer role="contentinfo" class="page-footer"><hr>
-<p>
-  Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
-  <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
 </p>
 
 </footer>
@@ -660,7 +628,7 @@ código que são executados, ou <code>nil</code> se executar nada:</p>
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -671,7 +639,7 @@ código que são executados, ou <code>nil</code> se executar nada:</p>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
