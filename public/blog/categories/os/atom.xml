@@ -4,7 +4,7 @@
   <title><![CDATA[Category: os | Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/blog/categories/os/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-29T14:35:31-03:00</updated>
+  <updated>2015-09-29T15:26:21-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
-    <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
+    <link href="http://rrmartins.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/"/>
     <updated>2015-09-28T22:24:09-03:00</updated>
-    <id>http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku</id>
+    <id>http://rrmartins.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku</id>
     <content type="html"><![CDATA[<p>Æ,</p>
 
 <p>Já faz um tempo que venho estudando e praticando um pouco com <a href="https://golang.org">Golang</a>. Como alguns codigos estão somente em meu repo particular, resolvi colocar alguns de meus codígos em algum host para testes iniciais. Optei por usar o <a href="heroku.com">Heroku</a> (não estou ganhando nada para fazer propaganda kkkkk).</p>

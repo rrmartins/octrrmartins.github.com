@@ -4,7 +4,7 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
-  <updated>2015-09-29T14:35:31-03:00</updated>
+  <updated>2015-09-29T15:26:21-03:00</updated>
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -16,10 +16,10 @@
   <entry>
     
     <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
-    <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
+    <link href="http://rrmartins.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku/"/>
     
     <updated>2015-09-28T22:24:09-03:00</updated>
-    <id>http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku</id>
+    <id>http://rrmartins.com/blog/2015/09/28/resolvendo-problema-com-port-com-uma-app-golang-no-heroku</id>
     
     <content type="html"><![CDATA[<p>Æ,</p>
 
