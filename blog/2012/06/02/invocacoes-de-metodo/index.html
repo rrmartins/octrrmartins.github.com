@@ -18,6 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
+<<<<<<< HEAD
   <link rel="canonical" href="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -56,6 +57,22 @@
 <!-- jQuery Form Validation Plugin -->
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
 <script src="/javascripts/google_form.js"></script>
+=======
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -72,6 +89,7 @@
 
 </head>
 
+<<<<<<< HEAD
 <body   >
   <nav role="navigation"><div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -118,6 +136,40 @@
     
       <h1 class="entry-title">Invocações De Método</h1>
     
+=======
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Invocações De Método</h1>
+    
+  
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     
       <p class="meta">
         
@@ -132,6 +184,7 @@
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
         
          | <a href="#disqus_thread">Comentário</a>
@@ -151,6 +204,21 @@
 
 
 <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+=======
+<time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -176,7 +244,11 @@ dependem da definição do método. Alguns métodos podem ser chamodos sem argum
 usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.</p>
 
 <p>Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+<<<<<<< HEAD
 chamado usando um processo conhecido como &#8220;método de pesquisa&#8221; ou &#8220;resolução de nome do método.&#8221; Os detalhes não são importantes aqui,
+=======
+chamado usando um processo conhecido como &ldquo;método de pesquisa&rdquo; ou &ldquo;resolução de nome do método.&rdquo; Os detalhes não são importantes aqui,
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 mas eles são explicados completamente no método de pesquisa.</p>
 
 <p>O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
@@ -226,7 +298,11 @@ Ruby invoca em resposta a atribuição. Se um tal método é definido, então es
 
 <p>O acesso ao <code>Array</code> torna-se uma invocação do método chamado <code>[]</code>, com o índice do <code>Array</code> como seu
 argumento. Esta sintaxe de acesso de <code>Array</code> não se limita a <code>Arrays</code>. Qualquer objeto é permitido para definir um
+<<<<<<< HEAD
 método chamado <code>[]</code>. Quando o objeto é &#8220;indexado&#8221;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+=======
+método chamado <code>[]</code>. Quando o objeto é &ldquo;indexado&rdquo;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 para o método. Se o método <code>[]</code> é escrito para esperar três argumentos, então você deve colocar três expressões separados por
 vírgula dentro dos colchetes.</p>
 
@@ -251,7 +327,11 @@ classe. Por si só, <code>super</code> passa os argumentos do método corrente p
 pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
 <code>super</code> é abordada em detalhes no Aumentando Comportamento por encadeamento.</p>
 
+<<<<<<< HEAD
 <p>Até a Proxima&#8230; :)</p>
+=======
+<p>Até a Proxima&hellip; :)</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 </div>
 
 
@@ -274,12 +354,21 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true">02/06/12 às 15:36 hrs</time>
       Categorias: 
 
 <span class="categories">
   
     <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/hash/'>Hash</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>String</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>, <a class='category' href='/blog/categories/variable/'>Variable</a>
+=======
+<time datetime="2012-06-02T15:36:00-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>, <a class='category' href='/blog/categories/variable/'>variable</a>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
 </span>
 
@@ -288,8 +377,11 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
     
       <div class="sharing">
   
+<<<<<<< HEAD
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/" >Tweet</a>
   
+=======
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <div class="g-plusone" data-size="medium"></div>
   
@@ -299,6 +391,7 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 </div>
 
     
+<<<<<<< HEAD
     
     <section>
       <h1>Comentários</h1>
@@ -328,6 +421,33 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
+=======
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/02/variaveis-nao-inicializadas/" title="Previous Post: Variáveis ​​não inicializadas">&laquo; Variáveis ​​não inicializadas</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/03/atribuicoes/" title="Next Post: Atribuições #Ruby">Atribuições #Ruby &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
@@ -341,6 +461,7 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
   
 </section>
 
+<<<<<<< HEAD
 <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
@@ -371,13 +492,60 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
+=======
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+<<<<<<< HEAD
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+=======
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+<<<<<<< HEAD
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
   
   <script type="text/javascript">
+<<<<<<< HEAD
     $.domReady(function(){
+=======
+    $(document).ready(function(){
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -404,10 +572,20 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 
     </div>
   </div>
+<<<<<<< HEAD
   <footer role="contentinfo" class="page-footer"><hr>
 <p>
   Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
   <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+=======
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 </p>
 
 </footer>
@@ -418,13 +596,22 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
       
         
         // var disqus_developer = 1;
+<<<<<<< HEAD
         var disqus_identifier = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
         var disqus_url = 'http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/';
+=======
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo/';
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+<<<<<<< HEAD
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+=======
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -435,7 +622,11 @@ pode ser usado como se fosse realmente o nome de um método e pode ser seguido p
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
+<<<<<<< HEAD
   js = d.createElement(s); js.id = id;
+=======
+  js = d.createElement(s); js.id = id; js.async = true;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

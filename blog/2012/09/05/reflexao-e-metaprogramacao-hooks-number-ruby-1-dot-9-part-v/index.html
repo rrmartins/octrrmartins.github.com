@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reflexão e Metaprogramação - Hooks - #Ruby 1.9 - Part V - Rodrigo Martins</title>
+  <meta name="author" content="Rodrigo Martins">
+
+  
+  <meta name="description" content="Hoje vamos continuar falando de Ruby, é hora de continuar nos aprofundando um pouco mais de
+Reflexão e Metaprogramação agora Hooks... Estranho para &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32145575-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Reflexão E Metaprogramação - Hooks - #Ruby 1.9 - Part V</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T23:04:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Hooks</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Hooks</h1>
+
+
+<p><code>Class</code>, <code>Module</code>, e os vários métodos de retorno da chamada do <code>Objectimplement</code>, ou <code>hooks</code>. Estes métodos não são definidos por padrão, mas se você
+defini-los para um módulo de classe, ou objeto, então eles vão ser invocados quando ocorrerem determinados eventos. Isso lhe dá uma oportunidade para
+estender o comportamento de Ruby quando as classes são uma subclasse, quando os módulos estão incluídos, ou quando os métodos são definidos. Métodos de
+<code>hook</code> (exceto para alguns mais preteridos não descritos aqui) têm nomes que terminam em &ldquo;ed&rdquo;.</p>
+
+<p>Quando uma nova classe é definida, Ruby chama o método de classe herdada na superclasse da nova classe, passando o objeto da nova classe como
+argumento. Isso permite adicionar classes para comportamento ou impor restrições sobre seus descendentes. Lembre-se que os método de classe são
+herdados, de modo que a um método herdado será chamado se ele é definido por qualquer um dos antepassados da nova classe. Definir <code>Object.inherited</code>
+para receber a notificação de todas as novas classes que são definidas:</p>
+
+<figure class='code'><figcaption><span>Object.inherited</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">Object</span><span class="o">.</span><span class="nf">inherited</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;class </span><span class="si">#{</span><span class="n">c</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Quando um módulo é incluído numa classe ou em outro módulo, o método da classe incluída do módulo incluído é chamado com o objeto de classe ou módulo
+em que foi incluído como um argumento. Isto dá o módulo incluído uma oportunidade para aumentar ou alterar a classe da maneira que ele efetivamente
+quer ser permitido que um módulo define o seu próprio significado para incluir. Além da adição de métodos para a classe em que se insere, um módulo com
+um método incluído também que pode alterar os métodos existentes dessa classe, por exemplo:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Final</span>             <span class="c1"># Uma classe que inclui Final não pode ser uma subclasse</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># Quando incluídos na classe C</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>   <span class="c1"># Defini um método de classe de c</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">inherited</span><span class="p">(</span><span class="nb">sub</span><span class="p">)</span> <span class="c1"># Para detectar subclasses</span>
+</span><span class='line'>        <span class="k">raise</span> <span class="no">Exception</span><span class="p">,</span> <span class="c1"># E abortar com uma exceção</span>
+</span><span class='line'>              <span class="s2">&quot;Tentativa de criar subclasse </span><span class="si">#{</span><span class="nb">sub</span><span class="si">}</span><span class="s2"> da classe final </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Da mesma forma, se um módulo de classe define um método chamado <code>extended</code>, este método será invocado em qualquer momento que o módulo é utilizado para
+estender um objeto (com <code>Object.extend</code>). O argumento para o método de extensão será o objeto que foi estendido, é claro, e do método estendido pode
+tomar quaisquer ações que quer o objeto.</p>
+
+<p>Além de <code>hooks</code> para rastreiar as classes e os módulos que incluem, também existem <code>hooks</code> para rastrear os métodos de classes e módulos e os únicos
+métodos de objetos arbitrários. Defini um método de classe chamado <code>method_added</code> para qualquer classe ou módulo e ele será chamado quando um método de
+instância é definido para essa classe ou módulo:</p>
+
+<figure class='code'><figcaption><span>method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New instance method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note-se que o método da classe <code>method_added</code> é herdado pelas subclasses da classe em que ele está definido. Mas nenhum argumento de classe é passado
+para o <code>hook</code>, pelo que não há maneira de dizer se o método chamado foi adicionado à classe que define <code>method_added</code> ou se ela foi adicionada a uma
+subclasse desta classe. A solução para este problema é definir um <code>hook</code> que herda em qualquer classe uma definição de um <code>hook</code> <code>method_added</code>.
+O método pode então ser herdado um método que defini <code>method_added</code> para cada subclasse.</p>
+
+<p>Quando um método <code>singleton</code> é definido para qualquer objeto, o método <code>singleton_method_added</code> é invocado sobre o objeto, passando o nome do novo
+método. Lembre-se que para as classes, métodos <code>singleton</code> são métodos de classe:</p>
+
+<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">String</span><span class="o">.</span><span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;New class method </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to String&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Curiosamente, Ruby invoca esse <code>hook</code> <code>singleton_method_added</code> quando o método de <code>hook</code> em si é definido previamente. Aqui é um outro uso do <code>hook</code>.
+Neste caso, <code>singleton_method_added</code> é definido como um método de instância de uma classe que inclui um módulo. É notificado de qualquer métodos
+<code>singleton</code> adicionados a instâncias da classe:</p>
+
+<figure class='code'><figcaption><span>singleton_method_added</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Incluindo este módulo em uma classe impede que instâncias da classe</span>
+</span><span class='line'><span class="c1"># De ter métodos singleton adicionados a eles. Quaisquer métodos singleton acrescentados</span>
+</span><span class='line'><span class="c1"># São imediatamente removidos novamente.</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">Strict</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">singleton_method_added</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Warning: singleton </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> added to a Strict object&quot;</span>
+</span><span class='line'>    <span class="n">eigenclass</span> <span class="o">=</span> <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span> <span class="nb">self</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>    <span class="n">eigenclass</span><span class="o">.</span><span class="n">class_eval</span> <span class="p">{</span> <span class="n">remove_method</span> <span class="nb">name</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Além de <code>method_added</code> e <code>singleton_method_added</code>, há <code>hook</code> para rastreamento quando os métodos de instância e métodos <code>singleton</code> são removidos ou
+indefinidos. Quando um método de instância é removido ou indefinido em uma classe ou módulo, os métodos de classe <code>method_removed</code> e <code>method_undefined</code>
+são invocados nesse módulo. Quando um método <code>singleton</code> é removido ou indefinido em um objeto, os métodos <code>singleton_method_removed</code> e
+<code>singleton_method_undefined</code> são invocados nesse objeto.</p>
+
+<p>Por fim, note que os métodos <code>method_missing</code> e <code>const_missing</code> também se comportam como métodos de <code>hook</code>.</p>
+
+<p>Até o proximos amigos!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo Martins</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T23:04:00-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hook/'>hook</a>, <a class='category' href='/blog/categories/integer/'>integer</a>, <a class='category' href='/blog/categories/kernel/'>kernel</a>, <a class='category' href='/blog/categories/object/'>object</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/ruby-api/'>ruby api</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/31/reflexao-e-metaprogramacao-metodos-number-ruby-1-dot-9-part-iv/" title="Previous Post: Reflexão e Metaprogramação - Metodos - #Ruby 1.9 - Part IV">&laquo; Reflexão e Metaprogramação - Metodos - #Ruby 1.9 - Part IV</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/09/metodos-de-visibilidade-public/" title="Next Post: Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9">Metodos de Visibilidade: Public, Protected, Private - #Ruby 1.9 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rr_martins", 5, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rr_martins" class="twitter-follow-button" data-show-count="true">Follow @rr_martins</a>
+  
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+<<<<<<< HEAD
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+=======
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+<<<<<<< HEAD
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rrmartins',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rrmartins';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/09/05/reflexao-e-metaprogramacao-hooks-number-ruby-1-dot-9-part-v/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

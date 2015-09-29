@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+<<<<<<< HEAD
   <title><![CDATA[Category: Literal | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/literal/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
   <updated>2012-08-09T01:16:17-03:00</updated>
   <id>http://rrmartins.github.com/</id>
+=======
+  <title><![CDATA[Category: literal | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/literal/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+<<<<<<< HEAD
+  <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  <id>http://rrmartins.com/</id>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,10 +27,20 @@
   
   <entry>
     <title type="html"><![CDATA[O Mundo Hash no Ruby 1.9.2 - Parte II - Hashs Literais]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/"/>
     <updated>2012-05-08T22:28:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais</id>
     <content type="html"><![CDATA[<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais/"/>
+    <updated>2012-05-08T22:28:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/05/08/o-mundo-hash-no-ruby-1-dot-9-2-parte-ii-hashs-literais</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 <p>Na primeira parte eu fiz uma introdução do Hash:
@@ -28,6 +50,7 @@
 
 <p>Um literal de hash é escrita como uma lista separada por vírgulas de chave/valor de
 pares, colocados dentro de chaves. Chaves e valores são separados
+<<<<<<< HEAD
 com um caractere de dois "arrow": '=>'. O objeto Hash criado anteriormente também pode ser
 criado com o literal seguinte:</p>
 
@@ -43,29 +66,56 @@ números = {"um" =&gt; 1, "dois" =&gt; 2, "três" =&gt; 3}
 <p><code>ruby Hash Literal
 números = {:um =&gt; 1,:dois =&gt; 2,:três =&gt; 3}
 </code></p>
+=======
+com um caractere de dois &ldquo;arrow&rdquo;: &lsquo;=>&rsquo;. O objeto Hash criado anteriormente também pode ser
+criado com o literal seguinte:</p>
+
+<pre><code class="ruby Hash Literal">números = {"um" =&gt; 1, "dois" =&gt; 2, "três" =&gt; 3}
+</code></pre>
+
+<p>Em geral, objetos <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> trabalham mais eficientemente como chaves de hash de strings, fazem assim:</p>
+
+<pre><code class="ruby Hash Literal">números = {:um =&gt; 1,:dois =&gt; 2,:três =&gt; 3}
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Os <a href="http://www.ruby-doc.org/core-1.9.2/Symbol.html">Símbolos</a> são imutáveis, escrito como
 prefixados identificadores, que serão explicados em maior detalhe em um outro post.</p>
 
 <p>Ruby 1.8 permite vírgulas em lugar de setas, mas isso não teve a sintaxe substituída, mais suportado no Ruby 1.9:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Hash Literal
  numeros = {:um, 1, :dois, 2, :tres, 3} # Igual, mas mais difícil de ler
 </code></p>
+=======
+<pre><code class="ruby Hash Literal"> numeros = {:um, 1, :dois, 2, :tres, 3} # Igual, mas mais difícil de ler
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Tanto Ruby 1.8 quanto no Ruby 1.9 permite uma única vírgula à direita do
 final da lista de chave / valor:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Hash Literal
 números = {: um =&gt; 1,: dois =&gt; 2} # vírgula extra ignorado
 </code></p>
+=======
+<pre><code class="ruby Hash Literal">números = {: um =&gt; 1,: dois =&gt; 2} # vírgula extra ignorado
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Ruby 1.9 suporta muito útil e sucinto a sintaxe literal de Hash
 quando as chaves são símbolos. Neste caso, move-se para o fim da chave de hash e substitui a seta:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Hash Literal
 números = {um: 1, dois: 2, tres: 3}
 </code></p>
+=======
+<pre><code class="ruby Hash Literal">números = {um: 1, dois: 2, tres: 3}
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Note-se que pode não haver qualquer espaço entre a chave Hash
 identificador e dos dois pontos.</p>

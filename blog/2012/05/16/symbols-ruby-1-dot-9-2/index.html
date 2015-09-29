@@ -9,7 +9,11 @@
   <meta name="author" content="Rodrigo Martins">
 
   
+<<<<<<< HEAD
   <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar. &hellip;">
+=======
+  <meta name="description" content="Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language Hoje vamos continuar falando de Symbol, é hora de nos aprofundar &hellip;">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,6 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
+<<<<<<< HEAD
   <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -56,6 +61,22 @@
 <!-- jQuery Form Validation Plugin -->
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
 <script src="/javascripts/google_form.js"></script>
+=======
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -72,6 +93,7 @@
 
 </head>
 
+<<<<<<< HEAD
 <body   >
   <nav role="navigation"><div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -118,6 +140,40 @@
     
       <h1 class="entry-title">Symbols - Ruby 1.9.2</h1>
     
+=======
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Symbols - Ruby 1.9.2</h1>
+    
+  
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     
       <p class="meta">
         
@@ -132,6 +188,7 @@
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
         
          | <a href="#disqus_thread">Comentário</a>
@@ -151,6 +208,21 @@
 
 
 <div class="entry-content"><p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+=======
+<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!--more-->
+
+
+<p>Continuando os estudos de Ruby, e a leitura do livro The Ruby Programming Language</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -168,9 +240,12 @@ que ele armazena os nomes de todas as classes, métodos e variáveis ​​que e
 Isso permite que tal intérprete evite mais comparações de string: refere-se a nomes de métodos (por exemplo) pelo sua
 posição na presente tabela de símbolos. Isso transforma uma string relativamente pesada em uma certa operação, e relativamente leve com operação de números inteiro.</p>
 
+<<<<<<< HEAD
 <!--more-->
 
 
+=======
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 <p>Esses símbolos não são puramente interno para o intérprete, pois eles podem também ser usado por
 programas Ruby. Um objeto de Symbol refere-se a um símbolo. Um símbolo literal é escrito prefixando um identificador ou uma string com um
 dois pontos:</p>
@@ -237,7 +312,11 @@ Duas strings com o mesmo conteúdo irá tanto converter para exatamente o mesmo 
 
 <p>Sempre que você escrever código que usa string não para o seu conteúdo textual,
 mas como uma espécie de identificador único, considere o uso de symbols em vez disso.
+<<<<<<< HEAD
 Ao invés de escrever um método que espera um argumento para ser ou a string de &#8220;AM&#8221; ou &#8220;PM&#8221;, por exemplo, você poderia escrevê-lo para
+=======
+Ao invés de escrever um método que espera um argumento para ser ou a string de &ldquo;AM&rdquo; ou &ldquo;PM&rdquo;, por exemplo, você poderia escrevê-lo para
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 esperar o símbolo :AM ou o símbolo :PM. Comparando-se dois objetos Symbols de igualdade, é muito mais rápido
 de comparar duas strings para a igualdade. Por esta razão, os símbolos são geralmente preferido para strings como chaves de hash.</p>
 
@@ -268,12 +347,21 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true">16/05/12 às 21:37 hrs</time>
       Categorias: 
 
 <span class="categories">
   
     <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>Symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+=======
+<time datetime="2012-05-16T21:37:00-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/symbol/'>symbol</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
 </span>
 
@@ -282,8 +370,11 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
     
       <div class="sharing">
   
+<<<<<<< HEAD
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/" >Tweet</a>
   
+=======
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <div class="g-plusone" data-size="medium"></div>
   
@@ -293,6 +384,7 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
 </div>
 
     
+<<<<<<< HEAD
     
     <section>
       <h1>Comentários</h1>
@@ -322,6 +414,33 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
+=======
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/15/testando-associacoes-em-range/" title="Previous Post: Testando Associações em Range - Part II">&laquo; Testando Associações em Range - Part II</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/18/true/" title="Next Post: True, False e Nil">True, False e Nil &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
@@ -335,6 +454,7 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
   
 </section>
 
+<<<<<<< HEAD
 <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
@@ -365,13 +485,60 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
+=======
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+<<<<<<< HEAD
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+=======
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+<<<<<<< HEAD
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
   
   <script type="text/javascript">
+<<<<<<< HEAD
     $.domReady(function(){
+=======
+    $(document).ready(function(){
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -398,10 +565,20 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
 
     </div>
   </div>
+<<<<<<< HEAD
   <footer role="contentinfo" class="page-footer"><hr>
 <p>
   Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
   <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+=======
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 </p>
 
 </footer>
@@ -412,13 +589,22 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
       
         
         // var disqus_developer = 1;
+<<<<<<< HEAD
         var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
         var disqus_url = 'http://rrmartins.github.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
+=======
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/05/16/symbols-ruby-1-dot-9-2/';
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+<<<<<<< HEAD
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+=======
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -429,7 +615,11 @@ de comparar duas strings para a igualdade. Por esta razão, os símbolos são ge
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
+<<<<<<< HEAD
   js = d.createElement(s); js.id = id;
+=======
+  js = d.createElement(s); js.id = id; js.async = true;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+<<<<<<< HEAD
   <title><![CDATA[Category: Variable | Rodrigo Martins]]></title>
   <link href="http://rrmartins.github.com/blog/categories/variable/atom.xml" rel="self"/>
   <link href="http://rrmartins.github.com/"/>
   <updated>2012-08-09T01:16:17-03:00</updated>
   <id>http://rrmartins.github.com/</id>
+=======
+  <title><![CDATA[Category: variable | Rodrigo Martins]]></title>
+  <link href="http://rrmartins.com/blog/categories/variable/atom.xml" rel="self"/>
+  <link href="http://rrmartins.com/"/>
+<<<<<<< HEAD
+  <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  <id>http://rrmartins.com/</id>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
     <email><![CDATA[rodrigo@rrmartins.com]]></email>
@@ -15,10 +27,20 @@
   
   <entry>
     <title type="html"><![CDATA[unless #Ruby 1.9]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
     <updated>2012-07-05T01:57:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9/"/>
+    <updated>2012-07-05T01:57:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/07/05/unless-number-ruby-1-dot-9</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de `unless`... Estranho para alguns, mas, veremos que é simples!</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -30,6 +52,7 @@
 associada é avaliada como <code>false</code> ou <code>nil</code>. Sua sintaxe é como <code>if</code>, exceto que as cláusulas <code>elsif</code>, que não são
 permitidas:</p>
 
+<<<<<<< HEAD
 <p>``` ruby Declaração unless</p>
 
 <h1>Uma maneira, declaração unless</h1>
@@ -50,11 +73,29 @@ end</p>
 
 <p>code unless condition
 ```</p>
+=======
+<pre><code class="ruby Declaração unless"># Uma maneira, declaração unless
+unless condition
+  code
+end
+
+# Duas vias da declaração unless
+unless condition
+  code
+else
+  code
+end
+
+# modificador unless
+code unless condition
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>A declaração <code>unless</code>, como a declaração <code>if</code>, exige que a condição e o código são separados por uma mudança de linha,
 uma vírgula, ou a palavra-chave <code>then</code>. Também como <code>if</code>, as declarações <code>unless</code> são expressões e retornam o valor do
 código que são executados, ou <code>nil</code> se executar nada:</p>
 
+<<<<<<< HEAD
 <p>``` ruby Declaração unless</p>
 
 <h1>Chama o método to_s sobre o objeto, a menos que o objeto 'o' for nulo</h1>
@@ -96,6 +137,38 @@ end
 end
 ```</p>
 
+=======
+<pre><code class="ruby Declaração unless"># Chama o método to_s sobre o objeto, a menos que o objeto 'o' for nulo
+s = unless o.nil?                        # Nova linha de separação
+  o.to_s
+end
+
+s = unless o.nil? then o.to_s end        # separador então
+</code></pre>
+
+<p>Para uma única linha condicionais como esta, a forma do modificador <code>unless</code> é geralmente mais clara:</p>
+
+<pre><code class="ruby Unless">s = o.to_s unless o.nil?
+</code></pre>
+
+<p>Ruby não tem nenhum equivalente da cláusula <code>elsif</code> para a condicional <code>unless</code>. Você ainda pode escrever um multiway da instrução <code>unless</code>, no entanto, se você está disposto a ser um pouco mais detalhado:</p>
+
+<pre><code class="ruby unless">unless x == 0
+  puts "x is not 0"
+else
+  unless y == 0
+    puts "y is not 0"
+  else
+    unless z == 0
+      puts "z is not 0"
+    else
+      puts "all are 0"
+    end
+  end
+end
+</code></pre>
+
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 <p>É isso ai amigos!</p>
 
 <p>Para todos aqueles que não sabiam ao certo o que seria o <code>unless</code>, e que tipo de monstro é isso..</p>
@@ -108,10 +181,20 @@ end
   
   <entry>
     <title type="html"><![CDATA[Demonstrações e Estruturas de controle - Part I #Ruby]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
     <updated>2012-06-18T08:43:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle/"/>
+    <updated>2012-06-18T08:43:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/06/18/demonstracoes-e-estruturas-de-controle</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Demonstrações e estruturas de controle</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -121,12 +204,20 @@ end
 
 <p>Considere o programa Ruby seguinte. Acrescenta dois números passados ​​para na linha de comando e imprime a soma:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Programa Simples
 x = ARGV[0].to_f # Converter primeiro argumento para um número
 y = ARGV[1].to_f # Converter segundo argumento para um número
 soma = x + y # Adicione os argumentos
 puts soma # Imprimir a soma
 </code></p>
+=======
+<pre><code class="ruby Programa Simples">x = ARGV[0].to_f # Converter primeiro argumento para um número
+y = ARGV[1].to_f # Converter segundo argumento para um número
+soma = x + y # Adicione os argumentos
+puts soma # Imprimir a soma
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Este é um programa simples que consiste essencialmente em invocar variável de atribuição e método. O que o torna
 particularmente simples é sua execução puramente seqüencial. As quatro linhas de código são executadas uma após a outra
@@ -152,16 +243,24 @@ você pode escolher o que parece mais elegante para a tarefa.</p>
 
 <p>Ele é a mais simples das condicionais. Em sua forma mais simples, parece que isso:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Condicional IF
 if expression
   code
 end
 </code></p>
+=======
+<pre><code class="ruby Condicional IF">if expression
+  code
+end
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>O código entre <code>if</code> e <code>end</code>é executado se (e somente se) o <code>expression</code> é avaliada como algo diferente que <code>falso</code> ou
 <code>nulo</code>. O código deve ser separado a partir da expressão com uma nova linha ou ponto e vírgula ou a palavra-chave, em
 seguida. Aqui estão duas maneiras de escrever a mesma condicional <code>if</code> de forma simples:</p>
 
+<<<<<<< HEAD
 <p>```ruby Condicional IF</p>
 
 <h1>Se x é menor que 10, incrementá-lo</h1>
@@ -179,6 +278,21 @@ if x &lt; 10 then
   x + = 1
 end
 </code></p>
+=======
+<pre><code class="ruby Condicional IF"># Se x é menor que 10, incrementá-lo
+if x &lt; 10 # nova linha de separação
+  x + = 1
+end
+if x &lt; 10 then x += 1 end # the separato
+</code></pre>
+
+<p>Você também pode usar <code>then</code> como o símbolo de separação, e segui-lo com uma nova linha. Isso torna o seu código robusto.</p>
+
+<pre><code class="ruby Condicional IF">if x &lt; 10 then
+  x + = 1
+end
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Os programadores que estão acostumados a C, ou linguagens cuja sintaxe é derivada de C, deve observar duas coisas
 importantes sobre if no Ruby:</p>
@@ -197,13 +311,21 @@ A forma modificador do <code>if</code>, descrito abaixo, fornece uma maneira pa
 <p>Uma declaração <code>if</code> pode incluir uma cláusula <code>else</code> para especificar o código para ser executado se a condição não é
 <code>true</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Condicional else
 if expression
+=======
+<pre><code class="ruby Condicional else">if expression
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   code
 else
   code
 end
+<<<<<<< HEAD
 </code></p>
+=======
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>O código entre <code>if</code> e <code>else</code> é executado se <code>expression</code> é avaliada como qualquer outra coisa que <code>false</code> ou <code>nil</code>. Caso
 contrário (se expression é <code>false</code> ou <code>nil</code>), o código entre o <code>else</code> e o <code>end</code> é executado. Como na forma simples
@@ -212,13 +334,21 @@ delimitadores adicionais são exigido.</p>
 
 <p>Aqui é um exemplo de um condicional que inclui uma cláusula <code>else</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Condicional if - else
 if dados # Se o array existe
+=======
+<pre><code class="ruby Condicional if - else">if dados # Se o array existe
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   dados &lt;&lt; x # em seguida, acrescentar um valor a ela.
 else # Caso contrário ...
   data = [x] # criar uma nova matriz que contém o valor.
 end # Este é o fim do condicional
+<<<<<<< HEAD
 </code></p>
+=======
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>elsif</h5>
 
@@ -226,8 +356,12 @@ end # Este é o fim do condicional
 <p>Se você quiser testar mais de uma condição dentro de uma condicional, você pode adicionar um ou mais cláusulas <code>elsif</code>
 entre um <code>if</code> e um <code>else</code>. <code>elsif</code> é uma forma abreviada de <code>else if</code>. Note que há apenas um <code>else</code> em <code>elsif</code>. A condicional <code>elsif</code> usando parecido com este:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Expressão elsif
 if expression1
+=======
+<pre><code class="ruby Expressão elsif">if expression1
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   code1
 elsif expression2
   code2
@@ -239,7 +373,11 @@ elsif expressionN
 else
   code
 end
+<<<<<<< HEAD
 </code></p>
+=======
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Se <code>expression1</code> for avaliado não sendo <code>false</code> ou <code>nil</code>, então <code>code1</code> é executado. Caso contrário, <code>expression2</code> é
 avaliada. Se for outra coisa senão <code>false</code> ou <code>nil</code>, então code2 é executado. Este processo continua até que uma expressão
@@ -251,8 +389,12 @@ executado.</p>
 <p><code>elsif</code> é como se: a expressão deve ser separada do código por uma nova linha, uma vírgula ou uma palavra-chave, em seguida
 . Aqui é um exemplo de uma multi condicional usando <code>elsif</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Condicional elsif
 if x == 1
+=======
+<pre><code class="ruby Condicional elsif">if x == 1
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   name = "um"
 elsif x == 2
   name = "dois"
@@ -261,26 +403,42 @@ elsif x == 4; name = "quatro"
 else
   name = "muitos"
 end
+<<<<<<< HEAD
 </code></p>
+=======
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>Valor de retorno</h5>
 
 
 <p>Na maioria das linguagens, a condicional <code>if</code> é uma afirmação. Em Ruby, no entanto, tudo é uma expressão, mesmo as
+<<<<<<< HEAD
 estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma "declaração" <code>if</code>, é o valor da
+=======
+estruturas de controle que são comumente chamadas de declarações. O valor <code>return</code> de uma &ldquo;declaração&rdquo; <code>if</code>, é o valor da
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 última expressão no código que foi executado, ou <code>nil</code> se nenhum bloco de código foi executado.</p>
 
 <p>O fato de que, as declarações <code>if</code> devolvem um valor significa que, por exemplo, a muilti condicional mostrado
 anteriormente pode ser elegantemente reescrito como este abaixo:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Valor de Retorno
 name = if x == 1 then "um"
+=======
+<pre><code class="ruby Valor de Retorno">name = if x == 1 then "um"
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
        elsif x == 2 then "dois"
        elsif x == 3 then "três"
        elsif x == 4 then "quatro"
        else "muitos"
        end
+<<<<<<< HEAD
 </code></p>
+=======
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>É isso aí amigos..</p>
 
@@ -290,10 +448,20 @@ name = if x == 1 then "um"
   
   <entry>
     <title type="html"><![CDATA[Atribuição Paralela #Ruby]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
     <updated>2012-06-11T19:36:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby/"/>
+    <updated>2012-06-11T19:36:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/06/11/atribuicao-paralela-number-ruby</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições Paralelas</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -305,69 +473,105 @@ name = if x == 1 then "um"
 
 <p>Expressões de atribuição mais paralelas são simples, e é óbvio que eles significam. Existem alguns casos complicados, no entanto, e os subtitulos seguintes explicam todas as possibilidades.</p>
 
+<<<<<<< HEAD
 <!--more-->
 
 
 
 
+=======
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 <h5>Mesmo número de lvalues ​​e rvalues</h5>
 
 
 <p>Atribuição paralela é a sua forma mais simples quando não são os mesmos número de <code>lvalues</code> ​​e <code>rvalues</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição de Mesmo número
 x, y, z = 1, 2, 3 # x = 1; y = 2; z = 3
 </code></p>
+=======
+<pre><code class="ruby Atribuição de Mesmo número">x, y, z = 1, 2, 3 # x = 1; y = 2; z = 3
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Neste caso, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>; o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante.</p>
 
 <p>Estas atribuições são efetivamente executadas em paralelo, não seqüencialmente. Por exemplo, as seguintes duas linhas não são as mesmas:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x, y = y, x # Paralela: trocar o valor de duas variáveis
 x = y; y = x # seqüencial: ambas as variáveis ​​têm o mesmo valor
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x, y = y, x # Paralela: trocar o valor de duas variáveis
+x = y; y = x # seqüencial: ambas as variáveis ​​têm o mesmo valor
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>Um lvalue, ​​múltiplos rvalues</h5>
 
 
 <p>Quando há um único <code>lvalue</code> e mais do que um <code>rvalue</code>, Ruby cria um <code>array</code> para armazenar os <code>rvalues</code> ​​e atribui esse <code>array</code> para o <code>lvalue</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Um lvalue e Múltiplos rvalues
 x = 1, 2, 3 # x = [1,2,3]
 </code></p>
+=======
+<pre><code class="ruby Um lvalue e Múltiplos rvalues">x = 1, 2, 3 # x = [1,2,3]
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Você pode colocar um <code>*</code> antes do lvalue sem alterar o significado ou o valor de retorno desta atribuição.</p>
 
 <p>Se você quiser impedir que os ​múltiplos <code>rvalues</code> de serem combinados em um único <code>array</code>, siga o <code>lvalue</code> com uma vírgula. Mesmo sem um lvalue depois da vírgula, isto torna que o Ruby se comporte como se há ​​múltiplos lvalues:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuições
 x, = 1, 2, 3 # x = 1; outros valores são descartados
 </code></p>
+=======
+<pre><code class="ruby Atribuições">x, = 1, 2, 3 # x = 1; outros valores são descartados
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>M​últiplos lvalues, array único de rvalue</h5>
 
 
 <p>Quando existem múltiplos <code>lvalues​</code> e apenas um único <code>rvalue</code>, Ruby tenta expandir o rvalue em uma <code>lista</code> de valores a atribuir. Se o <code>rvalue</code> é um <code>array</code>, Ruby expande o <code>array</code> para que cada elemento torna-se seu próprio <code>rvalue</code>. Se o <code>rvalue</code> não é um <code>array</code>, mas implementa um método <code>to_ary</code>, Ruby invoca esse método e, em seguida, se expande o <code>array</code> no retorno:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x, y, z = [1, 2, 3] # mesmo que x, y, z = 1,2,3
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x, y, z = [1, 2, 3] # mesmo que x, y, z = 1,2,3
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>A atribuição paralela foi transformado de modo que há ​​múltiplos <code>lvalues</code> e zero (se expandida o <code>array</code> estando <code>empty</code>) ou mais <code>rvalues</code>. Se o número de <code>lvalues</code> ​​e <code>rvalues</code> ​​são os mesmos, então a atribuição ocorre conforme descrito anteriormente, Mesmo número de lvalues ​​e rvalues<code>. Se os números são diferentes, então a atribuição ocorre como descrito a seguir em</code>Diferentes números de lvalues ​​e rvalues`.</p>
 
 <p>Podemos usar o truque de fuga por vírgula descrito acima para transformar uma sessão ordinária não paralela em uma atribuição que automaticamente descompacta um <code>array</code> à direita:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x = [1,2] # x torna-se [1,2]: isso não é atribuição paralela
 x, = [1,2] # x torna-se 1: da vírgula torna paralelo
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x = [1,2] # x torna-se [1,2]: isso não é atribuição paralela
+x, = [1,2] # x torna-se 1: da vírgula torna paralelo
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>Diferentes números de lvalues ​​e rvalues</h5>
 
 
 <p>Se houver <code>lvalues</code> mais do que ​​<code>rvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, o primeiro <code>rvalue</code> é atribuído ao primeiro <code>lvalue</code>, o segundo <code>rvalue</code> é atribuído ao segundo <code>lvalue</code>, e assim por diante, até todos os <code>rvalues</code> ​​forem atribuídos. Em seguida, cada um dos restantes <code>lvalues</code> ​​é atribuído nil, substituindo qualquer valor existente para que <code>lvalue</code>:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x, y, z = 1, 2 # x = 1; y = 2; z = nil
 </code></p>
@@ -377,12 +581,22 @@ x, y, z = 1, 2 # x = 1; y = 2; z = nil
 <p><code>ruby Atribuição
 x, y = 1, 2, 3 # x = 1; y = 2, 3 não é atribuído
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x, y, z = 1, 2 # x = 1; y = 2; z = nil
+</code></pre>
+
+<p>Se houver <code>rvalues</code> mais do que ​<code>​lvalues</code>, e nenhum operador <code>splat</code> é envolvido, em seguida, os <code>rvalues</code> ​são atribuídos em ordem a cada um dos <code>lvalues</code>, e os restantes <code>rvalues</code> são descartados :</p>
+
+<pre><code class="ruby Atribuição">x, y = 1, 2, 3 # x = 1; y = 2, 3 não é atribuído
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>O operador splat</h5>
 
 
 <p>Quando um <code>rvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que o referido valor é um <code>array</code> e que seus elementos devem ser cada um <code>rvalues</code>. Os elementos do <code>array</code> substituem o <code>array</code> na lista original do <code>rvalue</code>, e a atribuição procede como descrito abaixo:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3
 </code></p>
@@ -392,11 +606,21 @@ x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3
 <p><code>ruby Erro de Atribuição
 x,y = **[[1,2]]   # SyntaxError!
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x, y, z = 1, * [2,3] # mesmo que x, y, z = 1,2,3
+</code></pre>
+
+<p>No Ruby 1.8, um splat só pode aparecer antes do último <code>rvalue</code> em uma atribuição. No Ruby 1.9, a lista de <code>rvalues</code> ​​em uma atribuição paralela pode ter qualquer número de <code>splats</code>, e eles podem aparecer em qualquer posição na lista. Não é legal, porém, em qualquer versão da linguagem, para tentar um &ldquo;splat double&rdquo; em uma lista aninhada:</p>
+
+<pre><code class="ruby Erro de Atribuição">x,y = **[[1,2]]   # SyntaxError!
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Os <code>rvalues</code> com i​ntervalo de <code>arrays</code> e de <code>hash</code> pode ser <code>splatted</code>. Em geral, qualquer <code>rvalue</code> que define um método <code>to_a</code> pode ser prefixado com um <code>splat</code>. Qualquer objeto <a href="http://ruby-doc.org/core-1.9.3/Enumerable.html"><code>Enumerable</code></a>, incluindo enumeradores pode ser <code>splatted</code>, por exemplo. Quando um <code>splat</code> é aplicado a um objecto que não define um método <code>to_a</code>, nenhuma expansão é realizada e o <code>splat</code> avaliado como o próprio objeto.</p>
 
 <p>Quando um <code>lvalue</code> é precedido por um asterisco(<code>*</code>), isso significa que todos ​​os adicionais <code>rvalues</code> devem ser colocados em um <code>array</code> e atribuído ao <code>lvalue</code>. O valor atribuído a esse <code>lvalue</code> é sempre um <code>array</code>, e ele pode ter zero, um ou mais elementos:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x,*y = 1, 2, 3  # x=1; y=[2,3]
 x,*y = 1, 2     # x=1; y=[2]
@@ -419,12 +643,32 @@ x,*y = 1        # x=1; y=[]
 <p><code>ruby Atribuição
 x, y, *z = 1, *[2,3,4]  # x=1; y=2; z=[3,4].
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x,*y = 1, 2, 3  # x=1; y=[2,3]
+x,*y = 1, 2     # x=1; y=[2]
+x,*y = 1        # x=1; y=[]
+</code></pre>
+
+<p>No Ruby 1.8, um <code>splat</code> só pode preceder o <code>lvalue</code> passado na lista. No Ruby 1.9, do lado esquerdo de uma atribuição paralela pode incluem um operador <code>splat</code>, mas pode aparecer em qualquer posição na lista:</p>
+
+<pre><code class="ruby Atribuição"># Ruby 1.9 somente
+*x,y = 1, 2, 3  # x=[1,2]; y=3
+*x,y = 1, 2     # x=[1]; y=2
+*x,y = 1        # x=[]; y=1
+</code></pre>
+
+<p>Note-se que <code>splats</code> pode aparecer em ambos os lados de uma expressão paralela de atribuição:</p>
+
+<pre><code class="ruby Atribuição">x, y, *z = 1, *[2,3,4]  # x=1; y=2; z=[3,4].
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Finalmente, lembre-se que anteriormente descrevemos dois casos simples de atribuição paralela em que há um <code>lvalue</code> único ou uma única <code>rvalue</code>. Note-se que ambos os casos se comportam como se existe um <code>splat</code> antes da única <code>lvalue</code> ou <code>rvalue</code>. Explicitamente, incluindo um <code>splat</code> em nestes casos não tem qualquer efeito adicional.</p>
 
 <h5>Parênteses na atribuição paralelo</h5>
 
 
+<<<<<<< HEAD
 <p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para "sub atrobuição". Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
 
 <p><code>ruby Atribuição
@@ -449,6 +693,29 @@ x,(y,z) = 1,[2,3]           # Parenteses: x=1;y=2;z=3</p>
 <p>a,b,c,d = [1,[2,[3,4]]]     # Sem parenteses: a=1;b=[2,[3,4]];c=d=nil
 a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
 ```</p>
+=======
+<p>Uma das características menos compreendidas da atribuição paralela é que o lado esquerdo pode usar parênteses para &ldquo;sub atrobuição&rdquo;. Se um grupo de dois ou mais <code>lvalues</code> ​​é colocado entre parênteses, então é inicialmente tratada como um <code>lvalue</code> único. Uma vez que o <code>rvalue</code> correspondente foi determinado, as regras de atribuição paralela são aplicadas recursivamente, o <code>rvalue</code> que é atribuído ao grupo de <code>lvalues</code> ​​que foi em parênteses. Considere o seguinte exercício:</p>
+
+<pre><code class="ruby Atribuição">x, (y, z) = a, b
+</code></pre>
+
+<p>Este é efetivamente executam dois trabalhos ao mesmo tempo:</p>
+
+<pre><code class="ruby Atribuição">x = a
+y,z = b
+</code></pre>
+
+<p>Mas note que a segunda tarefa é em si uma atribuição paralela. Como usamos parênteses no lado esquerdo, uma atribuição paralela recursiva é executada. Em ordem para que ele funcione, b deve ser um objeto <code>splattable</code> como um <code>array</code> ou <code>enumerador</code>.</p>
+
+<p>Aqui estão alguns exemplos concretos que devem tornar isso mais claro. Note que os parênteses no ato da esquerda a &ldquo;desembrulhar&rdquo; um nível de <code>array</code> alinhado à direita:</p>
+
+<pre><code class="ruby Atribuição">x,y,z = 1,[2,3]             # Sem parenteses: x=1;y=[2,3];z=nil
+x,(y,z) = 1,[2,3]           # Parenteses: x=1;y=2;z=3
+
+a,b,c,d = [1,[2,[3,4]]]     # Sem parenteses: a=1;b=[2,[3,4]];c=d=nil
+a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>É isso aí amigos..</p>
 
@@ -458,10 +725,20 @@ a,(b,(c,d)) = [1,[2,[3,4]]] # Parenteses: a=1;b=2;c=3;d=4
   
   <entry>
     <title type="html"><![CDATA[Atribuições #Ruby]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/06/03/atribuicoes/"/>
     <updated>2012-06-03T11:55:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/03/atribuicoes</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/06/03/atribuicoes/"/>
+    <updated>2012-06-03T11:55:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/06/03/atribuicoes</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Atribuições</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -474,6 +751,7 @@ esquerdo de uma atribuição do operador. Os valores no lado direito de um oper
 contraste. Variáveis, constantes, atributos e elementos do Array são lvalues ​​em Ruby. As regras para o significado de expressões de
 atribuição são um pouco diferente para diferentes tipos de lvalues, e cada tipo é descrito em detalhe neste post.</p>
 
+<<<<<<< HEAD
 <!--more-->
 
 
@@ -483,10 +761,18 @@ Para exemplo:</p>
 <p><code>ruby Atribuição
 x = 1 # Define o lvalue x para o valor 1
 </code></p>
+=======
+<p>Existem três diferentes formas de expressões de atribuição em Ruby. Atribuição simples envolve um lvalue do operador <code>=</code>, e um rvalue.
+Para exemplo:</p>
+
+<pre><code class="ruby Atribuição">x = 1 # Define o lvalue x para o valor 1
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Atribuição abreviada é uma expressão abreviada que atualiza o valor de uma variável através da aplicação de alguma outro operador (tais
 como a adição) ao valor atual da variável. Atribuição abreviada utiliza a atribuição de operadores como <code>+=</code> e <code>*=</code> que combinam operadores binários com uma sinal de igual:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x += 1 # Define o lvalue x para o valor de x + 1
 </code></p>
@@ -496,6 +782,15 @@ x += 1 # Define o lvalue x para o valor de x + 1
 <p><code>ruby Atribuição
 x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x += 1 # Define o lvalue x para o valor de x + 1
+</code></pre>
+
+<p>Por fim, a atribuição paralela é qualquer expressão de atribuição que tem mais do que um lvalue ou mais do que um rvalue. Aqui é um simples exemplo:</p>
+
+<pre><code class="ruby Atribuição">x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Atribuição paralela é mais complicado quando o número de lvalues não é o mesmo que o número de rvalues ​​ou quando existe um <code>array</code> sobre à direita.</p>
 
@@ -503,9 +798,14 @@ x, y, z = 1,2,3 # Definir x a 1, y a 2 e z a 3
 é "Associativo à direita", se aparecer várias atribuições em uma única expressão, eles são avaliados da direita para a esquerda.
 Isto significa que a atribuição pode ser acorrentado para atribuir o mesmo valor para as múltiplas variáveis:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 x = y = 0 # X e Y recebem 0
 </code></p>
+=======
+<pre><code class="ruby Atribuição">x = y = 0 # X e Y recebem 0
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Note-se que este não é um caso de atribuição paralela é duas atribuições simples, acorrentados juntos: Y é atribuído o valor 0, e então x é atribuído o valor da primeira tarefa (também 0).</p>
 
@@ -516,14 +816,20 @@ x = y = 0 # X e Y recebem 0
 
 <p>Tenha em mente que as variáveis ​​de instância de objetos do Ruby são nunca nomes visíveis fora do objeto, e variável nunca é qualificado com um nome de objeto. Considere esta atribuição:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 ponto.x, ponto.y = 1, 2
 </code></p>
+=======
+<pre><code class="ruby Atribuição">ponto.x, ponto.y = 1, 2
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Os lvalues ​​nesta expressão não são variáveis, são atributos.</p>
 
 <p>Atribuição a uma variável funciona como seria de se esperar: a variável é simplesmente definida como o valor especificado. Ruby não tem nenhuma sintaxe para declarar explicitamente uma variável: variáveis ​​simplesmente vir à existência quando são atribuídas. Assim, uma  expressão simples como X poderia se referir a uma variável local chamada x ou um método chamado x. Para resolver essa ambigüidade, Ruby trata de um identificador como uma variável local se tem visto qualquer trabalho anterior para a variável. Ele faz isso com uma atribuição nunca foi executada. O código a seguir demonstra isso:</p>
 
+<<<<<<< HEAD
 <p>```ruby Atribuição
 class Ambiguous  
   def x; 1; end # Um método chamado "x". Sempre retorna 1  </p>
@@ -545,6 +851,25 @@ puts x # Então agora esta linha imprime 2  
 <p>  end
 end
 ```</p>
+=======
+<pre><code class="ruby Atribuição">class Ambiguous  
+  def x; 1; end # Um método chamado "x". Sempre retorna 1  
+
+  def teste    
+    puts x # Nenhuma variável foi visto, refere-se ao método acima: imprime 1    
+
+    # A linha abaixo não é avaliada, por causa da cláusula "if falsa".
+    # Mas o analisador vê e trata x como uma variável para o resto do método.    
+    x = 0 if false
+
+    puts x # x é uma variável, mas nunca foi atribuído: irá imprimir nil
+
+    x = 2 # Esta atribuição não é avaliada
+    puts x # Então agora esta linha imprime 2  
+  end
+end
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>Atribuindo a Constantes</h5>
 
@@ -554,17 +879,28 @@ end
 <pre><code>* Atribuição a uma constante que já existe, faz com o Ruby emita um aviso. O Ruby executa a tarefa,
 no entanto, que significa que as constantes não são realmente constante.
 
+<<<<<<< HEAD
 * Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos 
 destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método, 
 que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é 
+=======
+* Atribuição a constantes não é permitido dentro do corpo de um método. Ruby assume que os métodos
+destinados a ser invocados mais de uma vez, se você poderia atribuir a uma constante em um método,
+que método ira emitir alertas a cada requisição após a primeira.  Então, isso simplesmente não é
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 permitido.
 </code></pre>
 
 <p>Ao contrário das variáveis, as constantes não vem a existir até que o <code>Intérprete Ruby</code> realmente executa a expressão de atribuição. A expressão não avaliada abaixo, não cria uma constante:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuiçao de Constante
 N = 100 if false
 </code></p>
+=======
+<pre><code class="ruby Atribuiçao de Constante">N = 100 if false
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Note-se que isto significa que uma constante nunca está em um estado de inicialização. Se uma constante existe, então ele tem um valor atribuído a ela. A constante só terá valor se o valor realmente for <code>nil</code>.</p>
 
@@ -573,6 +909,7 @@ N = 100 if false
 
 <p>Atribuição a um atributo ou um elemento de um <code>Array</code> é na verdade uma abreviação do Ruby para a invocação método. Suponha que um objeto tem um método chamado <code>m=:</code>, o nome do método tem um sinal de igual como seu último caractere. Em seguida, <code>o.m</code> pode ser usado como um lvalue em uma expressão de atribuição. Suponha, além disso, que o valor v é atribuído:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição
 o.m = v
 </code></p>
@@ -597,12 +934,35 @@ o.[]= (x, y)
 o[x, y] = z
 o.[] = (x, y, z)
 </code></p>
+=======
+<pre><code class="ruby Atribuição">o.m = v
+</code></pre>
+
+<p>O interpretador Ruby converte essa tarefa para a seguinte invocação de método:</p>
+
+<pre><code class="ruby Atribuição">o.m=(v) # Se omitir os parênteses e adicionar um espaço, isso parece tarefa!
+</code></pre>
+
+<p>Isto é, ele passa o valor v para o método <code>m=</code>. Esse método pode fazer o que quiser com o valor. Normalmente, ele irá verificar que o valor é de desejado tipo e dentro da gama desejada, e, em seguida, armazená-lo em uma variável de instância do objeto. Métodos como <code>m=</code> são geralmente acompanhados de um método <code>m</code>, que simplesmente retorna o valor mais recentemente passado para <code>m=</code>. Alguns dizem que <code>m=</code> é um método setter e <code>m</code> é um método getter. Quando um objeto tem esse par de métodos, dizemos que ele tem um atributo <code>m</code>. Atributos são às vezes chamado de &ldquo;Propriedades&rdquo; em outras línguas.</p>
+
+<p>Atribuindo valores aos elementos de um <code>Array</code> também é feito pelo método de invocação. Se um objeto define um método chamado <code>[]=</code> (nome do método é apenas esses três caracteres de pontuação) que espera dois argumentos, então na expressão o <code>[x] = y</code> é realmente executado como:</p>
+
+<pre><code class="ruby Atribuição">o.[]= (x, y)
+</code></pre>
+
+<p>Se um objeto tem um método <code>[]=</code> que espera três argumentos, então ele pode ser indexado com dois valores entre os colchetes. As dois seguintes expressões são equivalentes neste caso:</p>
+
+<pre><code class="ruby Atribuição">o[x, y] = z
+o.[] = (x, y, z)
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <h5>Atribuição Abreviada</h5>
 
 
 <p>Atribuição Abreviada é uma forma de atribuição que combina atribuição com alguns outras operações. Ele é usado mais comumente para incrementar variáveis:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Atribuição Abreviada
 x += 1
 </code></p>
@@ -626,6 +986,27 @@ o.m=(o.m()+1)
 o[x] -= 2
 o.[]=(x, o.[](x) - 2)
 </code></p>
+=======
+<pre><code class="ruby Atribuição Abreviada">x += 1
+</code></pre>
+
+<p>O <code>+=</code>, não é um operador real de Ruby, e a expressão acima é simplesmente uma abreviatura para:</p>
+
+<pre><code class="ruby Atribuição Abreviada">x = x + 1
+</code></pre>
+
+<p>Atribuição Abreviada não pode ser combinado com paralelo de atribuição: ela só funciona quando há um único lvalue à esquerda e um único valor do lado direito. Ela não deve ser usado quando o lvalue é uma constante, porque ele vai reatribuir a constante e causar um aviso. Atribuição abreviada pode, contudo, ser utilizado quando o lvalue é um atributo. As duas expressões a seguir são equivalentes:</p>
+
+<pre><code class="ruby Atribuição Abreviada">o.m += 1
+o.m=(o.m()+1)
+</code></pre>
+
+<p>Atribuição abreviada funciona até mesmo quando o lvalue é um elemento de um <code>array</code>. Estas duas expressões são equivalente:</p>
+
+<pre><code class="ruby Atribuição Abreviada">o[x] -= 2
+o.[]=(x, o.[](x) - 2)
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Observe que esse código usa <code>-=</code> em vez de <code>+=</code>. Como você poderia esperar, o <code>-=</code> é pseudooperator que subtrai seu rvalue a partir do seu lvalue.</p>
 
@@ -647,16 +1028,30 @@ x &lt;&lt;= y                             x = x &lt;&lt; y
 x &gt;&gt;= y                             x = x &gt;&gt; y
 </code></pre>
 
+<<<<<<< HEAD
 <p>É isso aí amigos... até o proximo post!</p>
+=======
+<p>É isso aí amigos&hellip; até o proximo post!</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Invocações de método]]></title>
+<<<<<<< HEAD
     <link href="http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo/"/>
     <updated>2012-06-02T15:36:00-03:00</updated>
     <id>http://rrmartins.github.com/blog/2012/06/02/invocacoes-de-metodo</id>
     <content type="html"><![CDATA[<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+=======
+    <link href="http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo/"/>
+    <updated>2012-06-02T15:36:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/06/02/invocacoes-de-metodo</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de nos aprofundar falando um pouco de Variáveis ​​não inicializadas</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -682,18 +1077,30 @@ dependem da definição do método. Alguns métodos podem ser chamodos sem argum
 usado porque pode fazer invocações de método parecem mais com referênciar constantes expressões.</p>
 
 <p>Quando o interpretador Ruby tem o nome de um método e um objeto em que deve ser invocado, ele encontra a definição adequada do método
+<<<<<<< HEAD
 chamado usando um processo conhecido como "método de pesquisa" ou "resolução de nome do método." Os detalhes não são importantes aqui,
+=======
+chamado usando um processo conhecido como &ldquo;método de pesquisa&rdquo; ou &ldquo;resolução de nome do método.&rdquo; Os detalhes não são importantes aqui,
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 mas eles são explicados completamente no método de pesquisa.</p>
 
 <p>O valor de uma invocação expressão de método é o valor da expressão avaliada pelo último método no corpo do código. Aqui, no entanto, são
 alguns exemplos de invocações de método:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Ruby
 puts "Olá mundo" # "puts" invocado em auto, com uma seqüência de arg
 Math.sqrt(2) # "sqrt" invocado em Matemática objeto com uma arg
 message.length # "comprimento" invocado em mensagem objeto; não args
 a.each{|x| p x} # "cada" chamado em um objeto, com um bloco associado
 </code></p>
+=======
+<pre><code class="ruby Ruby">puts "Olá mundo" # "puts" invocado em auto, com uma seqüência de arg
+Math.sqrt(2) # "sqrt" invocado em Matemática objeto com uma arg
+message.length # "comprimento" invocado em mensagem objeto; não args
+a.each{|x| p x} # "cada" chamado em um objeto, com um bloco associado
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Um dos exemplos do método de invocação mostradas anteriormente foi <code>message.length</code>. Você pode ser tentado a pensar-lo como uma variável
 de expressão de referência, avaliando para o valor do comprimento da variável do objeto mensage. Este não é o caso, no entanto, Ruby tem
@@ -704,6 +1111,7 @@ dizemos que o objeto da <code>mensage</code> tem um atributo de <code>lenght</co
 para definir um método chamado <code>length=</code>. Se este método espera um único argumento, então é um método setter do atributo e
 Ruby invoca em resposta a atribuição. Se um tal método é definido, então estas duas linhas de código seria tanto chamar o mesmo método:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Length
 message.length=(3) # invocação do método tradicional
 message.length = 3 # invocação Método como a atribuição
@@ -714,10 +1122,21 @@ message.length = 3 # invocação Método como a atribuição
 <p><code>ruby Array
 a[0]
 </code></p>
+=======
+<pre><code class="ruby Length">message.length=(3) # invocação do método tradicional
+message.length = 3 # invocação Método como a atribuição
+</code></pre>
+
+<p>Agora, considere a seguinte linha de código, assumindo que uma variável contém um <code>Array</code>:</p>
+
+<pre><code class="ruby Array">a[0]
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Você pode pensar novamente que este é um tipo especial de variável de referência, onde a variável em questão é na verdade um elemento do
 <code>Array</code>. Novamente, no entanto, esta é invocação do método. O intérprete Ruby converte o acesso ao <code>Array</code> para isso:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Array
 a.[](0)
 </code></p>
@@ -725,6 +1144,14 @@ a.[](0)
 <p>O acesso ao <code>Array</code> torna-se uma invocação do método chamado <code>[]</code>, com o índice do <code>Array</code> como seu
 argumento. Esta sintaxe de acesso de <code>Array</code> não se limita a <code>Arrays</code>. Qualquer objeto é permitido para definir um
 método chamado <code>[]</code>. Quando o objeto é "indexado", com o indix entre parênteses, os valores dentro dos parênteses será passado
+=======
+<pre><code class="ruby Array">a.[](0)
+</code></pre>
+
+<p>O acesso ao <code>Array</code> torna-se uma invocação do método chamado <code>[]</code>, com o índice do <code>Array</code> como seu
+argumento. Esta sintaxe de acesso de <code>Array</code> não se limita a <code>Arrays</code>. Qualquer objeto é permitido para definir um
+método chamado <code>[]</code>. Quando o objeto é &ldquo;indexado&rdquo;, com o indix entre parênteses, os valores dentro dos parênteses será passado
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 para o método. Se o método <code>[]</code> é escrito para esperar três argumentos, então você deve colocar três expressões separados por
 vírgula dentro dos colchetes.</p>
 
@@ -736,9 +1163,14 @@ esses operadores na sua próprias classes.</p>
 
 <p>Agora, vamos considerar esta expressão muito simples:</p>
 
+<<<<<<< HEAD
 <p><code>ruby Ruby
 x
 </code></p>
+=======
+<pre><code class="ruby Ruby">x
+</code></pre>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Se uma variável x nomeada existe (Isto é, se o interpretador Ruby tem visto uma atribuição a x), então esta é uma variável de referência.
 Se nenhuma variável existe, então esta é uma invocação do método x, sem argumentos.</p>
@@ -748,7 +1180,11 @@ classe. Por si só, <code>super</code> passa os argumentos do método corrente p
 pode ser usado como se fosse realmente o nome de um método e pode ser seguido por uma lista de argumentos arbitrários. A palavra-chave
 <code>super</code> é abordada em detalhes no Aumentando Comportamento por encadeamento.</p>
 
+<<<<<<< HEAD
 <p>Até a Proxima... :)</p>
+=======
+<p>Até a Proxima&hellip; :)</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 ]]></content>
   </entry>
   

@@ -8,6 +8,7 @@ function prettyDate(time) {
   }
   var say = {
     just_now:    " now",
+<<<<<<< HEAD
     minute_ago:  "1 minute ago",
     minutes_ago: " minutes ago",
     hour_ago:    "1 hour ago",
@@ -16,6 +17,16 @@ function prettyDate(time) {
     days_ago:    " days ago",
     last_week:   "1 week ago",
     weeks_ago:   " weeks ago"
+=======
+    minute_ago:  "1m",
+    minutes_ago: "m",
+    hour_ago:    "1h",
+    hours_ago:   "h",
+    yesterday:   "1d",
+    days_ago:    "d",
+    last_week:   "1w",
+    weeks_ago:   "w"
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   };
 
   var current_date = new Date(),
@@ -42,8 +53,13 @@ function prettyDate(time) {
 function linkifyTweet(text, url) {
   // Linkify urls, usernames, hashtags
   text = text.replace(/(https?:\/\/)([\w\-:;?&=+.%#\/]+)/gi, '<a href="$1$2">$2</a>')
+<<<<<<< HEAD
     .replace(/(^|\W)@(\w+)/g, '$1<a href="http://twitter.com/$2">@$2</a>')
     .replace(/(^|\W)#(\w+)/g, '$1<a href="http://search.twitter.com/search?q=%23$2">#$2</a>');
+=======
+    .replace(/(^|\W)@(\w+)/g, '$1<a href="https://twitter.com/$2">@$2</a>')
+    .replace(/(^|\W)#(\w+)/g, '$1<a href="https://search.twitter.com/search?q=%23$2">#$2</a>');
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
   // Use twitter's api to replace t.co shortened urls with expanded ones.
   for (var u in url) {
@@ -59,6 +75,7 @@ function linkifyTweet(text, url) {
 
 function showTwitterFeed(tweets, twitter_user) {
   var timeline = document.getElementById('tweets'),
+<<<<<<< HEAD
       content = '<li class="nav-header">Latest Tweets</li>';
 
   for (var t in tweets) {
@@ -70,6 +87,12 @@ function showTwitterFeed(tweets, twitter_user) {
     content += linkifyTweet(tweets[t].text.replace(/\n/g, '<br>'), tweets[t].entities.urls);
     content += '</p>';
     content += '</li>';
+=======
+      content = '';
+
+  for (var t in tweets) {
+    content += '<li>'+'<p>'+'<a href="https://twitter.com/'+twitter_user+'/status/'+tweets[t].id_str+'">'+prettyDate(tweets[t].created_at)+'</a>'+linkifyTweet(tweets[t].text.replace(/\n/g, '<br>'), tweets[t].entities.urls)+'</p>'+'</li>';
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   }
   timeline.innerHTML = content;
 }
@@ -77,7 +100,11 @@ function showTwitterFeed(tweets, twitter_user) {
 function getTwitterFeed(user, count, replies) {
   count = parseInt(count, 10);
   $.ajax({
+<<<<<<< HEAD
       url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) + "&include_entities=1&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
+=======
+      url: "https://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) + "&include_entities=1&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     , type: 'jsonp'
     , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
     , success: function(data) { showTwitterFeed(data.slice(0, count), user); }

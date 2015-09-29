@@ -18,6 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
+<<<<<<< HEAD
   <link rel="canonical" href="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -56,6 +57,22 @@
 <!-- jQuery Form Validation Plugin -->
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> 
 <script src="/javascripts/google_form.js"></script>
+=======
+  <link rel="canonical" href="http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rodrigo Martins" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -72,6 +89,7 @@
 
 </head>
 
+<<<<<<< HEAD
 <body   >
   <nav role="navigation"><div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -118,6 +136,40 @@
     
       <h1 class="entry-title">Classe Objects Em Ruby 1.9.2 - Part IV</h1>
     
+=======
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Rodrigo Martins</a></div>
+
+
+	<br><div class="header-subtitle">I'm a Catholic Christian, software developer, Passionate about life, codes, questions, theories and theorems. :)</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="mailto:rodrigo@rrmartins.com" rel="subscribe-email" title="subscribe via email rrmartins.com">Email</a></li>
+  
+</ul>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://twitter.com/rr_martins">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Classe Objects Em Ruby 1.9.2 - Part IV</h1>
+    
+  
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     
       <p class="meta">
         
@@ -132,6 +184,7 @@
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
         
          | <a href="#disqus_thread">Comentário</a>
@@ -151,6 +204,21 @@
 
 
 <div class="entry-content"><p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+=======
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://ruby-doc.org/core-1.9.3/Object.html">Objects</a>, é hora de nos aprofundar.</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 
 
@@ -163,6 +231,7 @@
 <h3>Ordem de Object</h3>
 
 
+<<<<<<< HEAD
 <p></p>
 
 <p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
@@ -174,6 +243,14 @@ uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
 <!--more-->
 
 
+=======
+<p>Praticamente todas as classes podem definir o método ==, sendo útil para testar as suas instâncias para a igualdade. Algumas
+classes também podem definir uma ordenação. Ou seja: para quaisquer duas instâncias de uma classe, as duas instâncias devem ser iguais,
+ou uma instância deve ser &ldquo;menos que&rdquo; a outra. Numbers são das classes mais óbvias para que tal ordenação seja definido.
+String são também ordena, de acordo com o numéro de ordenação dos códigos de caracteres que compõem as strings. Se uma classe define
+uns casos de pedido, em seguida, a classe pode ser comparada e classificada.</p>
+
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 <p>Em Ruby, classes definem um ordenação através da implementação do operador &lt;=>. Este operador deve retornar -1 se o operando da esquerda
 é menor que o operando da direita, 0 se os dois operandos são iguais, e 1 se o operando esquerdo é maior que o operando direito.
 Se os dois operandos não podem ser  significativamente comparados (se o operando direito é de uma classe diferente, por exemplo),
@@ -232,7 +309,11 @@ implementam diferentes noções de igualdade em seus operadores == e &lt;=>. Uma
 para o operador ==, por exemplo, mas, em seguida, fazem comparações de maiúsculos e minúsculos com &lt;=>, de modo que as instâncias da classe
 se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> retorna 0 se e somente se == retorna true.</p>
 
+<<<<<<< HEAD
 <p>É isso amigos&#8230; o proximo post vamos conversar um pouco de Conversões de Object&#8217;s.</p>
+=======
+<p>É isso amigos&hellip; o proximo post vamos conversar um pouco de Conversões de Object&rsquo;s.</p>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 
 <p>Até Mais..</p>
 </div>
@@ -257,12 +338,21 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
   
 
 
+<<<<<<< HEAD
 <time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true">20/05/12 às 13:01 hrs</time>
       Categorias: 
 
 <span class="categories">
   
     <a class='category' href='/blog/categories/comparable/'>Comparable</a>, <a class='category' href='/blog/categories/object/'>Object</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/ruby-1-8/'>Ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-9/'>Ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>The Ruby Programming Language</a>
+=======
+<time datetime="2012-05-20T13:01:00-03:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/comparable/'>comparable</a>, <a class='category' href='/blog/categories/object/'>object</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ruby-1-dot-8/'>ruby 1.8</a>, <a class='category' href='/blog/categories/ruby-1-dot-9/'>ruby 1.9</a>, <a class='category' href='/blog/categories/the-ruby-programming-language/'>the ruby programming language</a>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
 </span>
 
@@ -271,8 +361,11 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
     
       <div class="sharing">
   
+<<<<<<< HEAD
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" data-via="rr_martins" data-counturl="http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/" >Tweet</a>
   
+=======
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   
   <div class="g-plusone" data-size="medium"></div>
   
@@ -282,6 +375,7 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
 </div>
 
     
+<<<<<<< HEAD
     
     <section>
       <h1>Comentários</h1>
@@ -311,6 +405,33 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
+=======
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/19/classe-objects-em-ruby-1-dot-9-2-part-iii/" title="Previous Post: Classe Objects em Ruby 1.9.2 - Part III">&laquo; Classe Objects em Ruby 1.9.2 - Part III</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-v/" title="Next Post: Classe Objects em Ruby 1.9.2 - Part V">Classe Objects em Ruby 1.9.2 - Part V &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section id="twitter">
+  <h1 class="tweets">Tweets</h1>
+  <ul id="tweets">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
@@ -324,6 +445,7 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
   
 </section>
 
+<<<<<<< HEAD
 <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
@@ -354,13 +476,60 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
 <section class="well">
   <ul id="gh_repos" class="nav">
     <li class="nav-header">GitHub Repos</li>
+=======
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+<<<<<<< HEAD
+        <a href="/blog/2015/09/28/levantando-uma-app-golang-no-heroku/">Resolvendo problema com $PORT com uma app Golang no Heroku</a>
+=======
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/21/ser-importante-ou-famoso/">Ser importante ou famoso?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/10/ditado-chines-do-pao/">Ditado Chinês do Pão</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/18/brincando-com-chicagoboss/">Brincando com ChicagoBoss</a>
+      </li>
+    
+<<<<<<< HEAD
+      <li class="post">
+        <a href="/blog/2014/02/26/tenho-sede/">Tenho Sede</a>
+      </li>
+    
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
     <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/rrmartins">@rrmartins</a> on GitHub
   
   <script type="text/javascript">
+<<<<<<< HEAD
     $.domReady(function(){
+=======
+    $(document).ready(function(){
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -387,10 +556,20 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
 
     </div>
   </div>
+<<<<<<< HEAD
   <footer role="contentinfo" class="page-footer"><hr>
 <p>
   Copyright &copy; 2012 - <span class="credit"><a href="rr_martins">Rodrigo Martins</a></span>
   <!--span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span-->
+=======
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - <a href="mailto:rodrigo@rrmartins.com">Rodrigo Martins</a><br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+	  Hosted by <a href="http://github.com">GitHub Pages</a>. 
+	  
+  </span>
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
 </p>
 
 </footer>
@@ -401,13 +580,22 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
       
         
         // var disqus_developer = 1;
+<<<<<<< HEAD
         var disqus_identifier = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
         var disqus_url = 'http://rrmartins.github.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+=======
+        var disqus_identifier = 'http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+        var disqus_url = 'http://rrmartins.com/blog/2012/05/20/classe-objects-em-ruby-1-dot-9-2-part-iv/';
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+<<<<<<< HEAD
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+=======
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -418,7 +606,11 @@ se classificam com mais naturalidade. Em geral, porém, é melhor se &lt;=> reto
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
+<<<<<<< HEAD
   js = d.createElement(s); js.id = id;
+=======
+  js = d.createElement(s); js.id = id; js.async = true;
+>>>>>>> e6afad1eda35d241cd16bfeee03436f0db5a7017
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
