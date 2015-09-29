@@ -4,7 +4,11 @@
   <title><![CDATA[Rodrigo Martins]]></title>
   <link href="http://rrmartins.com/atom.xml" rel="self"/>
   <link href="http://rrmartins.com/"/>
+<<<<<<< HEAD
   <updated>2015-09-29T11:44:19-03:00</updated>
+=======
+  <updated>2015-09-21T15:34:22-03:00</updated>
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
   <id>http://rrmartins.com/</id>
   <author>
     <name><![CDATA[Rodrigo Martins]]></name>
@@ -15,6 +19,7 @@
   
   <entry>
     
+<<<<<<< HEAD
     <title type="html"><![CDATA[Resolvendo problema com $PORT com uma app Golang no Heroku]]></title>
     <link href="http://rrmartins.com/blog/2015/09/28/levantando-uma-app-golang-no-heroku/"/>
     
@@ -164,6 +169,8 @@ Heroku, é o package <a href="https://golang.org/pkg/os/">os</a>.</p>
   
   <entry>
     
+=======
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
     <title type="html"><![CDATA[Ser importante ou famoso?]]></title>
     <link href="http://rrmartins.com/blog/2015/09/21/ser-importante-ou-famoso/"/>
     
@@ -3554,4 +3561,107 @@ impedir o valor de ser coletado se tornar de outra forma inacessível. Consulte 
     
   </entry>
   
+<<<<<<< HEAD
+=======
+  <entry>
+    
+    <title type="html"><![CDATA[Reflexão e Metaprogramação - Tracing - #Ruby 1.9 - Part VI]]></title>
+    <link href="http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi/"/>
+    
+    <updated>2012-09-10T22:50:00-03:00</updated>
+    <id>http://rrmartins.com/blog/2012/09/10/reflexao-e-metaprogramacao-tracing-number-ruby-1-dot-9-part-vi</id>
+    
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>Hoje vamos continuar falando de <a href="http://www.ruby-doc.org/core-1.9.2/">Ruby</a>, é hora de continuar nos aprofundando um pouco mais de
+<b>Reflexão e Metaprogramação</b> agora <b>Tracing</b>... Estranho para alguns, mas, veremos que é simples!</p>
+
+
+
+
+<h1>Tracing</h1>
+
+
+<p>Ruby define uma série de características para rastrear a execução de um programa. Estes principalmente são os úteis para a depuração do código e
+imprimir mensagens de erro informativos. Duas das mais simples das características são as palavras-chave da linguagem: <code>__FILE__</code> e <code>__LINE__</code>.
+Essas palavras-chave sempre avaliam o nome do arquivo e o número da linha dentro do arquivo em que se aparece, e eles permitem que uma mensagem de erro
+para especificar o local exato em que ela foi gerado:</p>
+
+<figure class='code'><figcaption><span>__FILE__ e __LINE__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="p">):</span> <span class="n">invalid</span> <span class="n">data</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Como um aparte, note que os métodos <code>Kernel.eval</code>, <code>Object.instance_eval</code>, e <code>Module.class_eval</code> todos aceitam um nome de arquivo (ou outra seqüência) e
+um número de linha como os seus dois últimos argumentos. Se você está avaliando o código que você tenha extraído de um arquivo de algum tipo, você pode
+usar esses argumentos para especificar os valores de <code>__FILE__</code> e <code>__LINE__</code> para a avaliação.</p>
+
+<p>Você, sem dúvida, notou que quando uma exceção não tratada, a mensagem de erro impressa no console contém nome e informações de número de linha. Esta
+informação é baseada em <strong>FILE</strong> e <strong>LINE</strong>, é claro. Cada Objeto de exceção tem um backtrace associado a ele que mostra exatamente onde ele foi criado,
+onde o método que levantou a exceção foi invocado, onde esse método foi chamado, e assim por diante. O método <code>Exception.backtrace</code> retorna um <code>array</code> de
+<code>strings</code> contendo essa informação. O primeiro elemento do <code>array</code> é este o local em que ocorreu a excepção, e cada elemento subsequente é um quadro de
+pilha maior.</p>
+
+<p>Você não precisa levantar uma exceção para obter um rastreamento da pilha atual, no entanto. O método <code>Kernel.caller</code> retorna o estadp atual na pilha de
+chamadas da mesma forma como <code>Exception.backtrace</code>. Com nenhum argumento, o <code>caller</code> retorna um rastreamento de pilha, cujo primeiro elemento é o método
+que chamou o método que chama de <code>caller</code>. Isto é, <code>caller[0]</code> especifica o local a partir do qual o método atual foi chamado. Você também pode chamar
+de <code>caller</code> com um argumento que especifica quantos quadros de pilha a cair a partir do início do registo de <code>caller</code>. O padrão é <code>1</code>, e do
+<code>caller(0)[0]</code> especifica o local em que o método <code>caller</code> é invocado. Isto significa, por exemplo, que o <code>caller[0]</code> é a mesma coisa que o
+<code>caller(0)[1]</code> e que o <code>caller(2)</code> é o mesmo como <code>caller[1 .. -1]</code>.</p>
+
+<p>Rastreamentos de pilha devolvidos por <code>Exception.backtrace</code> e <code>Kernel.caller</code> também incluem nomes de métodos. Antes de Ruby 1.9, você deve analisar as
+seqüências de rastreamento de pilha para extrair nomes de métodos. No Ruby 1.9, no entanto, você pode obter o nome (como um símbolo) da execução
+atual do método com <code>Kernel.__method__</code> ou seu sinônimo <code>Kernel.__callee__</code>. <code>__method__</code> é útil em conjunção com <strong>FILE</strong> e <strong>LINE</strong>:</p>
+
+<figure class='code'><figcaption><span>raise</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">raise</span> <span class="s2">&quot;Assertion failed in </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> at </span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="bp">__LINE__</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note-se que <code>__method__</code> retorna o nome pelo qual um método foi originalmente definido, mesmo que o método foi invocado por um alias.</p>
+
+<p>Em vez de simplesmente imprimi o nome e número em que ocorre um erro, você pode dar um passo adiante e mostrar a linha real de código. Se o seu programa
+define uma constante global <code>SCRIPT_LINES__</code> e define-a igual a um <code>hash</code>, então os requisitos e métodos de carregar, adicionar uma entrada para este
+<code>hash</code> para cada arquivo que carregar. As chaves de hash são nomes de arquivos e os valores associados com essas chaves são <code>arrays</code> que contêm as
+linhas destes arquivos. Se você quiser incluir o arquivo principal (em vez que apenas incluir os arquivos que ele necessita), no <code>hash</code>, inicializá-lo
+assim:</p>
+
+<figure class='code'><figcaption><span>SCRIPT_LINES__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SCRIPT_LINES__</span> <span class="o">=</span> <span class="p">{</span><span class="bp">__FILE__</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Se você fizer isso, então você pode obter a linha atual de código-fonte em qualquer lugar em seu programa com esta expressão:</p>
+
+<figure class='code'><figcaption><span>SCRIPT_LINES__</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SCRIPT_LINES__</span><span class="o">[</span><span class="bp">__FILE__</span><span class="o">][</span><span class="bp">__LINE__</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby permite rastrear atribuições para variáveis globais com <code>Kernel.trace_var</code>. Passe este método um símbolo que dá nome a uma variável global e uma
+<code>string</code> ou bloco de código. Quando o valor das alterações de nomes de variáveis, a cadeia de caracteres será avaliada ou o bloco será invocado. Quando
+um bloco é especificado, o novo valor da variável é passado como um argumento. Para parar o rastreamento da variável, chame <code>Kernel.untrace_var</code>. No
+seguinte exemplo, notar o uso de <code>caller[1]</code>, para determinar o local do programa em que o bloco de rastreamento da variável foi invocado:</p>
+
+<figure class='code'><figcaption><span>variavies globais</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Imprime a mensagem de cada vez $ mudanças SAFE</span>
+</span><span class='line'><span class="nb">trace_var</span><span class="p">(:</span><span class="vg">$SAFE</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;$SAFE set to </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2"> at </span><span class="si">#{</span><span class="nb">caller</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>O último método de rastreamento é <code>Kernel.set_trace_func</code>, que registra um <code>Proc</code> a ser chamado após cada linha de um programa Ruby. <code>set_trace_func</code>
+é útil se você quer escrever um módulo depurador que permite que linha por linha de passo através de um programa, mas não vamos cobri-lo em detalhes aqui.</p>
+
+<p>Até a proxima amigos&hellip; =D</p>
+]]></content>
+    
+  </entry>
+  
+>>>>>>> f0fad74ab02c4e5669e277aa283faa25f065f1cb
 </feed>
