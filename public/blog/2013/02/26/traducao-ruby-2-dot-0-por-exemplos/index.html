@@ -166,7 +166,7 @@
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># ATENÇÃO: Não exatamente idêntica, como palavras-chave são aplicadas:</span>
-</span><span class='line'><span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="n">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">cycle</span><span class="p">(</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">,</span> <span class="ss">nme</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="c1"># =&gt; ArgumentError: unknown keyword: nme</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># Para obter o mesmo resultado e melhor exato:</span>
@@ -187,7 +187,7 @@
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">name</span><span class="p">({</span><span class="n">required_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="n">optional_arguments</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">*</span><span class="n">rest</span> <span class="o">||</span> <span class="n">additional_required_arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span> <span class="c1"># Você Sabia?</span>
-</span><span class='line'>         <span class="p">{</span><span class="n">keyword_arguments</span><span class="p">:</span> <span class="s2">&quot;with_defaults&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
+</span><span class='line'>         <span class="p">{</span><span class="ss">keyword_arguments</span><span class="p">:</span> <span class="s2">&quot;with_defaults&quot;</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">**</span><span class="n">rest_of_keyword_arguments</span><span class="p">}</span>
 </span><span class='line'>         <span class="p">{</span><span class="o">&amp;</span><span class="n">block_capture</span><span class="p">})</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -224,7 +224,7 @@
 </span><span class='line'>  <span class="k">def</span> <span class="nf">hi</span><span class="p">(</span><span class="n">needed</span><span class="p">,</span> <span class="n">needed2</span><span class="p">,</span>
 </span><span class='line'>         <span class="n">maybe1</span> <span class="o">=</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="n">maybe2</span> <span class="o">=</span> <span class="n">maybe1</span><span class="o">.</span><span class="n">upcase</span><span class="p">,</span>
 </span><span class='line'>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">named1</span><span class="p">:</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">named2</span><span class="p">:</span> <span class="n">a_method</span><span class="p">(</span><span class="n">named1</span><span class="p">,</span> <span class="n">needed2</span><span class="p">),</span>
+</span><span class='line'>         <span class="ss">named1</span><span class="p">:</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="ss">named2</span><span class="p">:</span> <span class="n">a_method</span><span class="p">(</span><span class="n">named1</span><span class="p">,</span> <span class="n">needed2</span><span class="p">),</span>
 </span><span class='line'>         <span class="o">**</span><span class="n">options</span><span class="p">,</span>
 </span><span class='line'>         <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
 </span><span class='line'>  <span class="k">end</span>
@@ -730,7 +730,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">upcase</span><span class="o">]</span><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">}</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">upcase</span><span class="o">]</span><span class="p">}</span>
 </span><span class='line'>                <span class="o">.</span><span class="n">to_h</span> <span class="c1"># =&gt; NoMethodError:</span>
 </span><span class='line'><span class="c1"># undefined method `to_h&#39; for [[&quot;hello&quot;, &quot;WORLD&quot;]]:Array</span>
 </span></code></pre></td></tr></table></div></figure>
